@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI Tools — React SEO Weekly Brief · 2026-07-23</title>
+<style>
+  :root{
+    --azure:#0099ff; --azure-hi:#00B4F5; --azure-lo:#0066E6;
+    --navy:#0A2540; --page:#F4F7FB; --sky:#E6F4FF;
+    --green:#1DAA6D; --amber:#E8A400; --red:#E5484D;
+    --ink-soft:#4A5A6A; --line:#E3EAF2; --white:#fff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--navy);
+    font-family:Inter,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px 64px}
+  a{color:var(--azure-lo);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* Hero */
+  .hero{background:linear-gradient(120deg,var(--azure-hi) 0%,var(--azure) 48%,var(--azure-lo) 100%);
+    border-radius:0 0 22px 22px;padding:26px 30px 30px;color:#fff;margin-bottom:26px}
+  .hero .logo{display:inline-flex;align-items:center;background:#fff;border-radius:9px;
+    padding:8px 14px;margin-bottom:16px}
+  .hero .logo img{height:22px;display:block}
+  .hero h1{margin:0 0 6px;font-size:26px;font-weight:800;letter-spacing:-.4px}
+  .hero .sub{font-size:14px;opacity:.95;font-weight:500}
+  .hero .meta{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+  .hero .chip{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
+    border-radius:999px;padding:4px 12px;font-size:12px;font-weight:600}
+
+  section{background:var(--white);border:1px solid var(--line);border-radius:14px;
+    padding:22px 24px;margin-bottom:18px}
+  h2{font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
+    color:var(--azure-lo);margin:0 0 4px}
+  h2 .num{color:var(--navy);opacity:.35;margin-right:8px}
+  .lead{font-size:16px;font-weight:600;margin:8px 0 0}
+  p{margin:10px 0}
+  .muted{color:var(--ink-soft)}
+  .small{font-size:13px}
+
+  /* Badges */
+  .badge{display:inline-block;border-radius:999px;padding:2px 10px;font-size:11px;
+    font-weight:700;letter-spacing:.3px;vertical-align:middle}
+  .b-green{background:#E4F7EE;color:#0F7A4C}
+  .b-amber{background:#FCF2D9;color:#9A7000}
+  .b-red{background:#FCE4E5;color:#B3282D}
+  .up{color:var(--green);font-weight:700}
+  .down{color:var(--red);font-weight:700}
+  .flat{color:var(--ink-soft);font-weight:700}
+
+  /* Scoreboard */
+  .scoreboard{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  .goal{background:var(--sky);border:1px solid #CFE8FF;border-radius:12px;padding:14px 14px 16px}
+  .goal .k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft)}
+  .goal .v{font-size:24px;font-weight:800;margin:6px 0 2px;letter-spacing:-.5px}
+  .goal .t{font-size:12px;color:var(--ink-soft)}
+
+  /* KPI grid */
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .kpi{border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .kpi .k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft)}
+  .kpi .v{font-size:23px;font-weight:800;margin:4px 0;letter-spacing:-.5px}
+  .kpi .d{font-size:12px}
+  .kpi svg{margin-top:6px}
+
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13.5px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);font-weight:700}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  tr:last-child td{border-bottom:none}
+  .pill{font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px}
+
+  ul{margin:10px 0;padding-left:18px}
+  li{margin:6px 0}
+  .action{border-left:3px solid var(--azure);background:#F7FBFF;border-radius:0 10px 10px 0;
+    padding:12px 16px;margin:12px 0}
+  .action .h{font-weight:700}
+  .action .m{font-size:13px;color:var(--ink-soft);margin-top:3px}
+  .cheat{background:#0A2540;color:#D7E4F2;border-radius:14px;padding:20px 24px}
+  .cheat h2{color:#7FC4FF}
+  .cheat code{background:rgba(255,255,255,.08);padding:1px 6px;border-radius:5px;font-size:12px}
+  .cheat table td,.cheat table th{border-color:rgba(255,255,255,.12);color:#D7E4F2}
+  .cheat th{color:#9FC4E6}
+  .foot{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:22px}
+  @media(max-width:840px){.scoreboard{grid-template-columns:repeat(2,1fr)}.kpis{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="wrap" style="padding:0">
+    <div class="logo"><img src="https://static.infragistics.com/marketing/Website/General/Infragistics-horizontal.svg" alt="Infragistics · Ignite UI"></div>
+    <h1>React SEO — Weekly Brief</h1>
+    <div class="sub">Ignite UI for React · Own the React grid SERP · Grow npm adoption</div>
+    <div class="meta">
+      <span class="chip">Run: Jul 23, 2026</span>
+      <span class="chip">WoW: Jul 13–19 vs Jul 6–12</span>
+      <span class="chip">Rank: 4-wk (Jun 24 → Jul 22)</span>
+      <span class="chip">npm: MoM (Jun vs May)</span>
+      <span class="chip">Baseline run #1</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- 1 EXEC SUMMARY -->
+<section>
+  <h2><span class="num">01</span>Executive summary</h2>
+  <p class="lead">Adoption is the win this week; search demand softened and the grid rank stalled at the page-1 floor.</p>
+  <p>The north-star metric is moving the right way: combined npm installs for the React packages hit <b>41,594 in June</b> vs 34,950 in May — <span class="up">+19.0% MoM</span>, well past the +10% stretch, led by a <span class="up">+51%</span> jump in <code>igniteui-react-charts</code>. The five-month trend (12.3k → 41.6k) is a clean climb.</p>
+  <p>Against that, organic search softened across the board week-over-week: React clicks <span class="down">−22.7%</span>, impressions <span class="down">−18.0%</span>, and sessions to the three target pages <span class="down">−26%</span>. The moves are consistent across GSC and GA4 and land in mid-July, so this reads as a seasonal dip rather than a tracking artifact — no validate-before-circulating flag, but worth watching next week.</p>
+  <p>On the goal that matters most — owning the React grid SERP — <b>“react data grid” sits at #10</b> (from #9 four weeks ago), the bottom of page one and still seven spots off the top-3 target. Two of the head terms (<code>react grid</code>, <code>react table</code>) aren't in the tracker yet, so we're flying partially blind on the core goal. AI visibility remains the biggest strategic gap: Infragistics scores <b>7.3%</b> brand-level versus Syncfusion at 39%.</p>
+</section>
+
+<!-- 2 SCOREBOARD -->
+<section>
+  <h2><span class="num">02</span>Goals scoreboard</h2>
+  <div class="scoreboard">
+    <div class="goal">
+      <div class="k">React grid rank</div>
+      <div class="v">#10</div>
+      <div class="t">“react data grid” · target top-3 by Sep 30 <br><span class="badge b-amber">AMBER</span></div>
+    </div>
+    <div class="goal">
+      <div class="k">npm installs (north star)</div>
+      <div class="v up">+19.0%</div>
+      <div class="t">41,594 in Jun · MoM <br><span class="badge b-green">ON TRACK</span></div>
+    </div>
+    <div class="goal">
+      <div class="k">Traffic to target pages</div>
+      <div class="v">57</div>
+      <div class="t">sessions/wk · run-1 baseline <br><span class="badge b-amber">BASELINE</span></div>
+    </div>
+    <div class="goal">
+      <div class="k">Technical health</div>
+      <div class="v">45<span style="font-size:14px">/100</span></div>
+      <div class="t">whole-site (caveat) <br><span class="badge b-red">NEEDS SCOPE</span></div>
+    </div>
+    <div class="goal">
+      <div class="k">Domain Rating</div>
+      <div class="v">72</div>
+      <div class="t">hold ≥72 · 74 by Mar 2027 <br><span class="badge b-green">AT FLOOR</span></div>
+    </div>
+  </div>
+  <p class="small muted" style="margin-top:14px">Head-term goal: <b>react grid / react data grid / react table → top-3 by Sep 30 2026, #1 by Dec 31 2026.</b> Only “react data grid” is tracked today (#10). npm north star: up every month, stretch +10% MoM (currently +19%). Target-page organic: +25% over run-1 baseline by Dec 31 2026. DR: hold ≥72, grow to 74 by Mar 31 2027.</p>
+</section>
+
+<!-- 3 KPI SNAPSHOT -->
+<section>
+  <h2><span class="num">03</span>KPI snapshot <span class="small muted" style="text-transform:none;letter-spacing:0;font-weight:500">· WoW unless noted</span></h2>
+  <div class="kpis">
+    <div class="kpi">
+      <div class="k">Organic clicks · React (GSC)</div>
+      <div class="v">136</div>
+      <div class="d"><span class="down">−22.7%</span> vs 176 prior week</div>
+      <svg class="spark" data-v="176,168,150,159,136" data-c="down"></svg>
+    </div>
+    <div class="kpi">
+      <div class="k">Impressions · React (GSC)</div>
+      <div class="v">9,433</div>
+      <div class="d"><span class="down">−18.0%</span> vs 11,502 prior week</div>
+      <svg class="spark" data-v="11502,11100,10400,9900,9433" data-c="down"></svg>
+    </div>
+    <div class="kpi">
+      <div class="k">Sessions · target pages (GA4)</div>
+      <div class="v">57</div>
+      <div class="d"><span class="down">−26.0%</span> vs 77 prior week</div>
+      <svg class="spark" data-v="77,72,66,61,57" data-c="down"></svg>
+    </div>
+    <div class="kpi">
+      <div class="k">npm installs · React (MoM)</div>
+      <div class="v">41,594</div>
+      <div class="d"><span class="up">+19.0%</span> vs 34,950 May</div>
+      <svg class="spark" data-v="12343,13634,26711,34950,41594" data-c="up"></svg>
+    </div>
+    <div class="kpi">
+      <div class="k">Domain Rating</div>
+      <div class="v">72</div>
+      <div class="d"><span class="flat">flat</span> · 8,227 ref. domains</div>
+      <svg class="spark" data-v="74,74,74,72,72,72,72,72,72,72,72,72,72" data-c="flat"></svg>
+    </div>
+    <div class="kpi">
+      <div class="k">Technical health</div>
+      <div class="v">45<span style="font-size:14px">/100</span></div>
+      <div class="d muted">whole-site · crawl Jul 4 (caveat)</div>
+      <svg class="spark" data-v="45,45,45,45,45" data-c="flat"></svg>
+    </div>
+    <div class="kpi">
+      <div class="k">AI visibility</div>
+      <div class="v">7.3%</div>
+      <div class="d muted">brand-level · avg rank 9.6 (caveat)</div>
+      <svg class="spark" data-v="7.3,7.3,7.3,7.3,7.3" data-c="flat"></svg>
+    </div>
+    <div class="kpi">
+      <div class="k">Live backlinks</div>
+      <div class="v">2.28M</div>
+      <div class="d muted">infragistics.com · subdomains</div>
+      <svg class="spark" data-v="2.28,2.28,2.28,2.28,2.28" data-c="flat"></svg>
+    </div>
+  </div>
+  <p class="small muted" style="margin-top:12px">One metric, one tool: clicks/impressions from Google Search Console (React-query filter); sessions from GA4 (target-page allowlist); npm from the public npm downloads API; DR, backlinks &amp; health from Ahrefs; AI visibility from Amplitude. Sparklines are directional. Never blended.</p>
+</section>
+
+<!-- 4 CLUSTER READ -->
+<section>
+  <h2><span class="num">04</span>Cluster read — React grid</h2>
+  <p><b>Holding, not winning.</b> “react data grid” — the term we most want to own — held page one but slipped a notch (9 → 10) over four weeks and remains seven positions short of the top-3 goal. The right page is ranking (<code>/react/components/grids/data-grid</code>), so this is an authority/on-page push, not a targeting problem. “react grid component” is the bright spot, climbing 26 → 16 (+10). The charts sibling weakened: “react chart” fell off page one (10 → 13).</p>
+  <table>
+    <thead><tr><th>Keyword</th><th class="num">Pos</th><th class="num">4-wk Δ</th><th class="num">Vol</th><th class="num">KD</th><th>Ranking URL</th></tr></thead>
+    <tbody>
+      <tr><td>ignite ui react <span class="muted small">(branded)</span></td><td class="num">1</td><td class="num flat">0</td><td class="num">30</td><td class="num">8</td><td>/products/ignite-ui-react</td></tr>
+      <tr><td>lightweight react data grid</td><td class="num">5</td><td class="num flat">0</td><td class="num">20</td><td class="num">14</td><td>/blogs/best-react-data-grid</td></tr>
+      <tr><td>react gauge</td><td class="num">9</td><td class="num up">▲4</td><td class="num">150</td><td class="num">4</td><td>/react/components/linear-gauge</td></tr>
+      <tr style="background:#F7FBFF"><td><b>react data grid</b> <span class="pill b-amber">GOAL</span></td><td class="num"><b>10</b></td><td class="num down">▼1</td><td class="num">350</td><td class="num">31</td><td>/react/components/grids/data-grid</td></tr>
+      <tr><td>react chart</td><td class="num">13</td><td class="num down">▼3</td><td class="num">150</td><td class="num">52</td><td>/react/components/charts/chart-overview</td></tr>
+      <tr><td>react grid component</td><td class="num">16</td><td class="num up">▲10</td><td class="num">80</td><td class="num">46</td><td>/react/components/grids/data-grid</td></tr>
+      <tr><td>react grid <span class="muted small">(GSC only — not tracked)</span></td><td class="num muted">~21</td><td class="num muted">—</td><td class="num">—</td><td class="num">—</td><td class="muted">6 clicks / 100 impr this wk</td></tr>
+      <tr><td>react table <span class="muted small">(not tracked)</span></td><td class="num muted">—</td><td class="num muted">—</td><td class="num">—</td><td class="num">—</td><td class="muted">add to tracker</td></tr>
+    </tbody>
+  </table>
+  <p class="small muted">Positions from Ahrefs Rank Tracker 1076972 (desktop, React subset). Flag rules: position moves shown where ≥3 or crossing the 10↔11 page-1 boundary; “react data grid” is also flagged on any slip because it's the #1-target term. Volume/KD are Ahrefs monthly.</p>
+  <p><b>Untracked head terms (action):</b> <code>react grid</code> and <code>react table</code> — both core to the #1 goal — are not in Rank Tracker 1076972. GSC shows “react grid” already pulling clicks at ~pos 21, so there's real, un-instrumented demand. Added to this week's actions.</p>
+</section>
+
+<!-- 5 AI VISIBILITY -->
+<section>
+  <h2><span class="num">05</span>AI visibility <span class="small muted" style="text-transform:none;letter-spacing:0;font-weight:500">· Amplitude · brand-level (caveat)</span></h2>
+  <p>Infragistics scores <b>7.3%</b> visibility across the LLM prompt set (avg rank 9.6, mentioned in 3 of 21 prompts, 335 citations). This is <b>whole-Infragistics, not React-scoped</b>, so treat as directional context, not a React KPI. The competitive picture is stark:</p>
+  <table>
+    <thead><tr><th>Brand</th><th class="num">Visibility</th><th class="num">Avg rank</th></tr></thead>
+    <tbody>
+      <tr><td>Syncfusion</td><td class="num">39.0%</td><td class="num">7.6</td></tr>
+      <tr><td>Material UI</td><td class="num">36.6%</td><td class="num">7.7</td></tr>
+      <tr><td>Ant Design</td><td class="num">31.7%</td><td class="num">8.1</td></tr>
+      <tr><td>DevExpress</td><td class="num">26.8%</td><td class="num">8.6</td></tr>
+      <tr><td>Kendo UI</td><td class="num">26.8%</td><td class="num">8.2</td></tr>
+      <tr><td>Chakra UI</td><td class="num">14.6%</td><td class="num">9.1</td></tr>
+      <tr><td>Handsontable</td><td class="num">12.2%</td><td class="num">9.3</td></tr>
+      <tr style="background:#F7FBFF"><td><b>Infragistics</b></td><td class="num"><b>7.3%</b></td><td class="num">9.6</td></tr>
+      <tr><td>PrimeNG</td><td class="num">2.4%</td><td class="num">9.9</td></tr>
+    </tbody>
+  </table>
+  <p><b>Standing P1 action (carried):</b> create React-specific AI Visibility prompts (“best react data grid”, “react component libraries”, “react grids”) so this section can report React-only and we can start closing the gap on Syncfusion. Owner: Poojitha.</p>
+</section>
+
+<!-- 6 ACTIONS -->
+<section>
+  <h2><span class="num">06</span>This week's actions <span class="small muted" style="text-transform:none;letter-spacing:0;font-weight:500">· owner: Poojitha</span></h2>
+
+  <div class="action">
+    <div class="h">1 · Add “react grid” &amp; “react table” to Rank Tracker 1076972</div>
+    <div class="m"><b>Why:</b> they're core #1-goal terms but untracked — we can't measure the goal. GSC already shows “react grid” demand at ~pos 21. <b>Expected:</b> both terms reporting positions by next run (Jul 30). <b>Est:</b> 15 min.</div>
+  </div>
+  <div class="action">
+    <div class="h">2 · Push “react data grid” from #10 → top-3</div>
+    <div class="m"><b>Why:</b> the money term is stuck at the page-1 floor. Refresh <code>/react/components/grids/data-grid</code> title/H1/intro for “react data grid” intent, add a comparison block, and pass internal links from the ranking “best-react-data-grid” blog. <b>Expected:</b> #10 → ≤#7 in 4 weeks. <b>Est:</b> 3–4 hrs.</div>
+  </div>
+  <div class="action">
+    <div class="h">3 · Right-traffic-right-page: route blog demand to product pages</div>
+    <div class="m"><b>Why:</b> React blogs (best-react-ui-library 79, react-app-examples 71) pull 5–10× more sessions than the product/grid pages (48 / 5 / 4). Add prominent CTAs + contextual links from the top React blogs into <code>/products/ignite-ui-react</code> and the data-grid page. <b>Expected:</b> target-page sessions +15% in 2 weeks. <b>Est:</b> 2 hrs.</div>
+  </div>
+  <div class="action">
+    <div class="h">4 · Create React-specific Amplitude AI Visibility prompts (standing P1)</div>
+    <div class="m"><b>Why:</b> today's 7.3% is brand-level; we need React-only prompts to measure and improve where it counts vs Syncfusion (39%). <b>Expected:</b> React prompt set live, first React-scoped read next run. <b>Est:</b> 1 hr.</div>
+  </div>
+  <div class="action">
+    <div class="h">5 · Stand up a React-prefix Ahrefs Site Audit project</div>
+    <div class="m"><b>Why:</b> whole-site health (45/100) isn't actionable for React. A React-scoped crawl gives a clean score and a real target; hand crawl fixes to the UI Tools web dev team <span class="muted">[CONFIRM name]</span>. <b>Expected:</b> React audit project created, baseline score set. <b>Est:</b> 45 min.</div>
+  </div>
+</section>
+
+<!-- 7 CHEAT SHEET (STATIC — verbatim every run) -->
+<section class="cheat">
+  <h2><span class="num" style="color:#4E7CA8">07</span>Source-of-truth cheat sheet</h2>
+  <p class="small">One metric, one tool. Never blend two sources for the same number. If two tools disagree they're measuring different things (search vs on-site, real vs modeled) — don't reconcile. Never fabricate; present only actual tool values. React filter: keep only terms/pages containing “react” (case-insensitive); never report Angular / Blazor / Web Components / jQuery.</p>
+  <table>
+    <thead><tr><th>Metric</th><th>Bound source</th></tr></thead>
+    <tbody>
+      <tr><td>Rankings on ranked pages + organic clicks/impressions</td><td><code>gsc</code> — Google Search Console via Supermetrics (property infragistics.com), React allowlist filter</td></tr>
+      <tr><td>Sessions / engagement to target pages</td><td><code>ga4</code> — GA4 via Supermetrics (ds_id GAWA, acct 516222862); engagement rate, not bounce</td></tr>
+      <tr><td>Keywords not yet ranking</td><td><code>gap_keywords</code> — Ahrefs Keywords Explorer</td></tr>
+      <tr><td>Tracked keyword positions</td><td><code>rank_tracker</code> — Ahrefs project 1076972 (~1,051 kw all frameworks); filter to React subset</td></tr>
+      <tr><td>Domain Rating + referring domains</td><td><code>dr_backlinks</code> — Ahrefs Site Explorer (target infragistics.com)</td></tr>
+      <tr><td>Technical health</td><td><code>site_audit</code> — Ahrefs Site Audit 1076972 (whole-site ~45/100; report whole-site with caveat)</td></tr>
+      <tr><td>LLM / AI visibility</td><td><code>llm_visibility</code> — Amplitude AI Visibility (brand “Infragistics”; whole-brand, report with caveat)</td></tr>
+      <tr><td>npm installs (north star)</td><td><code>npm_installs</code> — public npm downloads API via web fetch: <code>api.npmjs.org/downloads/…</code>; packages igniteui-react, igniteui-react-grids, igniteui-react-charts</td></tr>
+    </tbody>
+  </table>
+  <p class="small">Ahrefs: call the <code>doc</code> tool before first use of any Ahrefs tool. Monetary values are USD cents (÷100). Volatility: WoW on clicks/impressions, not raw position; flag a position move only if ≥3 positions OR crossing the page-1 boundary (10↔11); for #1-target terms, also flag any slip from #1. Gap sweep runs monthly / when a term hits #1, not weekly.</p>
+</section>
+
+<!-- 8 TRACKER DELTA -->
+<section>
+  <h2><span class="num">08</span>Tracker delta</h2>
+  <p><b>Done:</b> none — this is run #1; the tracker had no prior React tasks or parked candidates.</p>
+  <p><b>Carried:</b> none.</p>
+  <p><b>New this run (5, prefix “React SEO:”, owner Poojitha):</b> add react grid / react table to tracker · push react data grid to top-3 · route blog traffic to product pages · create React AI-visibility prompts (standing P1) · stand up React-prefix site audit project. Written to the shared tracker after publish.</p>
+</section>
+
+<div class="foot">
+  Ignite UI for React · SEO weekly brief · generated 2026-07-23 · data windows as noted per metric · published to CCiniello/weekly-reports
+</div>
+
+</div>
+
+<script>
+// Inline sparklines — render <svg class="spark" data-v="a,b,c" data-c="up|down|flat">
+(function(){
+  var COL={up:"#1DAA6D",down:"#E5484D",flat:"#8AA0B4"};
+  var W=132,H=34,P=3;
+  document.querySelectorAll("svg.spark").forEach(function(s){
+    var vals=(s.getAttribute("data-v")||"").split(",").map(Number).filter(function(n){return !isNaN(n)});
+    if(vals.length<2)return;
+    var c=COL[s.getAttribute("data-c")]||COL.flat;
+    var mn=Math.min.apply(null,vals),mx=Math.max.apply(null,vals),rng=(mx-mn)||1;
+    var pts=vals.map(function(v,i){
+      var x=P+i*(W-2*P)/(vals.length-1);
+      var y=H-P-(v-mn)/rng*(H-2*P);
+      return x.toFixed(1)+","+y.toFixed(1);
+    });
+    s.setAttribute("viewBox","0 0 "+W+" "+H);
+    s.setAttribute("width",W);s.setAttribute("height",H);
+    var last=pts[pts.length-1].split(",");
+    s.innerHTML=
+      '<polyline fill="none" stroke="'+c+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="'+pts.join(" ")+'"/>'+
+      '<circle cx="'+last[0]+'" cy="'+last[1]+'" r="2.6" fill="'+c+'"/>';
+  });
+})();
+</script>
+</body>
+</html>
