@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reveal — Technical SEO Audit · Jul 23 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
+    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
+    --gray:#8a93a3; --gray-bg:#eef0f5;
+    --magenta:#EC417A; --magenta-soft:#fde4ee; --amber:#FBB764; --pink:#F78DA7;
+    --mono:'Roboto Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Roboto',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:28px 22px 80px}
+
+  header.top{background:linear-gradient(120deg,var(--amber) 0%,var(--magenta) 62%,#d63384 100%);color:#fff;border-radius:16px;padding:22px 26px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
+  header.top .logochip{display:inline-block;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14)}
+  header.top .logochip img{height:26px;display:block}
+  header.top .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:27px;font-weight:900}
+  header.top h1 span{font-weight:500;opacity:.9}
+  header.top .meta{margin-top:14px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)}
+  header.top .meta b{color:#fff;font-weight:700}
+
+  h2.sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:34px 4px 14px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{width:22px;height:22px;border-radius:6px;background:var(--peri-soft);color:var(--cobalt);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+  h2.sec .aside{margin-left:auto;font-weight:500;letter-spacing:.02em;color:var(--gray);text-transform:none}
+  .pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px;letter-spacing:.02em}
+  .p-good{background:var(--good-bg);color:var(--good)}.p-warn{background:var(--warn-bg);color:var(--warn)}.p-bad{background:var(--bad-bg);color:var(--bad)}.p-gray{background:var(--gray-bg);color:var(--gray)}
+
+  .readout{font-size:13.5px;line-height:1.6;color:var(--muted);margin:-4px 4px 14px;padding-left:12px;border-left:3px solid var(--peri-soft)}
+  .readout b{color:var(--navy)}
+
+  .health{display:grid;grid-template-columns:150px 1fr;gap:26px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 26px}
+  .dial{position:relative;width:150px;height:150px}
+  .dial .num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .dial .num b{font-family:var(--mono);font-size:38px;font-weight:600;line-height:1;color:var(--navy)}
+  .dial .num small{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
+  .health p{margin:0 0 11px;font-size:15.5px;line-height:1.6}.health p:last-child{margin-bottom:0}
+  .health .lede{font-weight:500}.health b{font-weight:700;color:var(--navy)}
+
+  .changed{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 24px}
+  .changed .topline{font-size:15px;line-height:1.6;margin:0 0 14px}.changed .topline b{font-weight:700;color:var(--navy)}
+  .cbul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+  .cbul li{display:grid;grid-template-columns:24px 1fr;gap:12px;font-size:14px;line-height:1.55}
+  .cbul .ic{width:24px;height:24px;border-radius:7px;background:var(--peri-soft);color:var(--cobalt);font-family:var(--mono);font-weight:600;font-size:12px;display:flex;align-items:center;justify-content:center}
+  .cbul b{color:var(--navy);font-weight:700}
+  .cfoot{margin:16px 0 0;padding-top:13px;border-top:1px dashed var(--line);font-size:14px;line-height:1.55}.cfoot b{color:var(--navy);font-weight:700}
+
+  .issue{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-top:14px;overflow:hidden}
+  .issue-h{display:flex;align-items:center;gap:12px;padding:15px 20px 13px;flex-wrap:wrap}
+  .issue-h .rank{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--cobalt)}
+  .issue-h .name{font-weight:700;font-size:16px;flex:1;min-width:180px;color:var(--navy)}
+  .issue-h .count{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--navy);background:var(--gray-bg);padding:3px 10px;border-radius:999px}
+  .why{margin:0;padding:13px 20px;background:var(--magenta-soft);border-top:1px solid #f7cede;border-bottom:1px solid var(--line)}
+  .why .lbl{font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#c9367f;display:block;margin-bottom:4px}
+  .why p{margin:0;font-size:14.5px;line-height:1.55;color:#7a1140;font-weight:500}
+  .issue-b{padding:15px 20px 18px}
+  .issue-b h5{font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray);margin:0 0 5px}
+  .whatis{font-size:14px;line-height:1.55;color:var(--ink);margin:0 0 14px}.whatis b{color:var(--navy);font-weight:700}
+  code{font-family:var(--mono);font-size:12px;background:var(--peri-soft);color:var(--cobalt);padding:1px 5px;border-radius:4px}
+  details.ex{margin:0 0 14px;border:1px solid var(--line);border-radius:10px;background:#fbfcff}
+  details.ex summary{cursor:pointer;padding:9px 14px;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--cobalt);list-style:none;display:flex;align-items:center;gap:8px}
+  details.ex summary::-webkit-details-marker{display:none}
+  details.ex summary::before{content:'▸';font-size:10px}details.ex[open] summary::before{content:'▾'}
+  details.ex .exwrap{padding:2px 14px 12px}
+  details.ex ul{margin:0 0 8px;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px}
+  details.ex li{font-family:var(--mono);font-size:11px;color:var(--ink);word-break:break-all}
+  details.ex li .co{color:var(--bad);font-weight:600}
+  details.ex .exnote{font-family:var(--mono);font-size:10px;color:var(--gray);margin:0}
+  .likely{font-size:14px;line-height:1.55;margin:0 0 14px}.likely b{color:var(--navy);font-weight:700}
+  .fixbox{background:#eaf1ff;border:1px solid #cdd9f7;border-radius:12px;padding:13px 16px 14px;margin:0 0 14px}
+  .fixbox h5{color:var(--cobalt)}
+  .fixbox ol{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+  .fixbox li{font-size:13.5px;line-height:1.5;color:var(--ink)}
+  .fixbox li code{background:#dbe4fb}
+  .mrow{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--gray-bg);color:var(--muted)}
+  .tag b{color:var(--navy);font-weight:700}
+  .tag.time{background:var(--good-bg);color:var(--good)}
+  .tag.own{background:var(--peri-soft);color:var(--cobalt)}
+
+  .ignore{background:var(--card);border:1px dashed #cfd6e6;border-radius:16px;padding:16px 22px;margin-top:4px}
+  .ignore ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+  .ignore li{font-size:13.5px;color:#3a4658;line-height:1.45;padding-left:16px;position:relative}
+  .ignore li::before{content:'—';position:absolute;left:0;color:var(--gray)}
+  .ignore li b{font-weight:700;color:var(--navy)}
+
+  .tablewrap{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  thead th{background:#eef2fa;font-size:11px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 14px;text-align:left;border-bottom:1px solid #dce3f0}
+  tbody td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:#fafbff}
+  .est{font-family:var(--mono);font-size:11px;color:var(--good);white-space:nowrap}
+  .due{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+  .fixcell{font-weight:500;color:var(--navy)}
+
+  .cheat details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:8px;overflow:hidden}
+  .cheat summary{cursor:pointer;padding:13px 18px;font-weight:700;font-size:13.5px;color:var(--navy);list-style:none;display:flex;align-items:center;gap:10px}
+  .cheat summary::-webkit-details-marker{display:none}
+  .cheat summary::before{content:'+';font-family:var(--mono);color:var(--magenta);font-weight:700}
+  .cheat details[open] summary::before{content:'–'}
+  .cheat .body{padding:0 18px 15px 40px;font-size:13.5px;line-height:1.55;color:var(--ink)}
+  .cheat .body b{color:var(--navy);font-weight:700}
+  .cheat .body .who{font-family:var(--mono);font-size:10.5px;color:var(--cobalt);display:block;margin-top:6px}
+
+  .foot{margin-top:30px;font-size:11.5px;color:var(--gray);border-top:1px solid var(--line);padding-top:14px;line-height:1.7}
+  a{color:var(--cobalt)}
+  @media(max-width:720px){.health{grid-template-columns:1fr;justify-items:center;text-align:center}.wrap{padding:20px 14px 60px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="logochip"><img src="data:image/png;base64,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" "Reveal"></div>
+    <div class="kick">revealbi.io · Technical SEO</div>
+    <h1>Technical SEO Audit <span>/ site health</span></h1>
+    <div class="meta">
+      <span>Crawl <b>Jul 22 2026</b></span>
+      <span>Source <b>Ahrefs Site Audit · 1241581</b></span>
+      <span>URLs crawled <b>11,494</b></span>
+      <span>For <b>Casey → web dev</b></span>
+    </div>
+  </header>
+
+  <h2 class="sec"><span class="n">1</span> Site health<span class="aside">score · what it means</span></h2>
+  <div class="health">
+    <div class="dial">
+      <svg viewBox="0 0 120 120" width="150" height="150">
+        <circle cx="60" cy="60" r="52" fill="none" stroke="#e9e9f4" stroke-width="12"/>
+        <circle cx="60" cy="60" r="52" fill="none" stroke="var(--bad)" stroke-width="12" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="209.1" transform="rotate(-90 60 60)"/>
+      </svg>
+      <div class="num"><b>36</b><small>/ 100</small></div>
+    </div>
+    <div>
+      <p class="lede">Health is <b>36/100 — poor, and flat</b> vs last week's crawl. The score is still dragged almost entirely by one thing: a very large number of broken and hidden-from-Google URLs. <span class="pill p-bad">Poor</span></p>
+      <p>In plain terms: the site works fine for a human clicking around, but under the hood Google keeps running into thousands of dead ends and "do not index" signs. That wastes the crawl attention Google gives us and makes it harder for our good pages to get seen. <b>This is a foundation problem — fixing it is what lets everything else (rankings, new content) actually work.</b> The fix tasks were created this week and are sitting with the dev team; the score won't move until they ship. The good news below: most of it still traces to a few specific, fixable causes — not thousands of separate problems.</p>
+    </div>
+  </div>
+
+  <h2 class="sec"><span class="n">2</span> What changed since last crawl<span class="aside">in plain English</span></h2>
+  <p class="readout"><b>The dummies version:</b> nothing shipped yet, so the big picture is unchanged — same three root causes, same churn. But a few things are quietly getting worse: internal links to redirects, slow pages, and our international/hreflang errors all climbed this week. Worth catching before they spread.</p>
+  <div class="changed">
+    <p class="topline">The broken-URL count barely moved (<b>−14</b>) — but <b>~2,848 URLs dropped off and ~2,848 different ones appeared</b> in their place again. That churn signature is the auto-generated staging copy regenerating itself, exactly as last week. What's new is the drift underneath:</p>
+    <ul class="cbul">
+      <li><span class="ic">1</span><div><b>Internal links pointing at redirects rose again — 1,833 pages (+184 this week).</b> Every link that hops through a redirect instead of going straight to the final page wastes a little crawl budget and leaks a little ranking value. Slow, steady bleed.</div></li>
+      <li><span class="ic">2</span><div><b>Slow pages jumped to 118 (+43), with 105 newly flagged.</b> A sudden jump usually means something heavy shipped recently — an unoptimized image or a new script.</div></li>
+      <li><span class="ic">3</span><div><b>International (hreflang) errors are climbing.</b> 44 pages now point their language tags at a broken or redirecting URL (+4), and 8 point at a non-canonical one (+4). This is a side-effect of the localized pages being blocked — the language wiring references pages that currently error.</div></li>
+      <li><span class="ic">4</span><div><b>Small new cracks in the canonical + sitemap layer.</b> Canonicals aimed at broken URLs ticked up to 380 (+5), 3 new canonicals now point at a redirect, and a server-error (5xx) URL slipped into the XML sitemap for the first time.</div></li>
+    </ul>
+    <p class="cfoot"><b>So did we do something wrong?</b> Same answer as last week — partly, and that's the good news, because it means it's in our control. These are leftover-migration housekeeping issues (a staging copy left switched on, a mistyped link, blocked translated pages) plus normal drift. All of it is on the fix list below; the drift items are early enough to squash cheaply.</p>
+  </div>
+
+  <h2 class="sec"><span class="n">3</span> The issues that actually matter<span class="aside">why · what · how to fix</span></h2>
+  <p class="readout"><b>How to read each card:</b> the pink strip at the top is the one-line "why you should care." Under it: what the thing actually is in plain words, real example URLs you can expand, our best guess at why it's happening, and a numbered fix your dev can follow — with an owner and a time estimate. All numbers are from the Jul 22 2026 crawl.</p>
+
+  <div class="issue">
+    <div class="issue-h"><span class="rank">01</span><span class="name">Broken pages (4xx / 5xx)</span><span class="count">~5,835 URLs · −14</span><span class="pill p-bad">Error</span></div>
+    <div class="why"><span class="lbl">Why it matters</span><p>Every broken URL is a dead end. Google only spends so much attention crawling our site, and thousands of dead ends burn that budget instead of landing on the pages we want ranked. It's the single biggest reason our score is 36.</p></div>
+    <div class="issue-b">
+      <p class="whatis"><b>What these actually are:</b> each one is a <b>whole URL</b> — a complete web address — that returns an error instead of a page. (A "4xx" is always the entire address, never "part of a page" — you can't half-break a page this way.) Two kinds: <b>404 = "not found"</b> (address doesn't exist) and <b>403 = "forbidden"</b> (server refuses it). The ~5,835 figure counts broken sub-resources too; the core internal broken pages are <b>731 (+9)</b>, of which <b>420 are hard 404s (+5)</b> and 1 is a 5xx. They sort into the three named causes in cards 02–04.</p>
+      <details class="ex"><summary>See real example URLs</summary><div class="exwrap"><ul>
+        <li>https://www.revealbi.io/ja/embedded-analytics-software <span class="co">403</span></li>
+        <li>https://www.revealbi.io/ko/license-agreements <span class="co">403</span></li>
+        <li>https://wp-staging.revealbi.io/academy <span class="co">404</span></li>
+        <li>https://www.revealbi.io/support@revealbi.io <span class="co">403</span></li>
+        <li>https://help.revealbi.io/api/java/latest/.../RVAthenaDataSourceItem.html <span class="co">404</span></li>
+      </ul><p class="exnote">Full list: Ahrefs → Site Audit (1241581) → Page Explorer → filter "4XX page."</p></div></details>
+      <p class="likely"><b>Likely why:</b> leftover URLs from the WordPress→Astro migration that were never redirected, plus the three causes below. Most of this number collapses once cards 02–04 are fixed. Note: a handful of real blog/author pages (e.g. <code>/author/jasonb</code>, <code>/blog/boost-customer-retention…</code>) are also returning 403 — likely the same server/firewall rule catching more than just the locale paths, so check breadth when fixing card 04.</p>
+      <div class="fixbox"><h5>The fix — step by step</h5><ol>
+        <li>Fix the three root causes below first (staging copy, email bug, localized 403s) — they're the large majority.</li>
+        <li>Re-crawl, then export whatever 4xx URLs remain.</li>
+        <li>For each remaining one: if a live equivalent exists, <code>301</code> to it; if it's gone for good, return <code>410</code> so Google stops retrying.</li>
+        <li>Remove internal links that still point at dead URLs.</li>
+      </ol></div>
+      <div class="mrow"><span class="tag own">Owner: <b>web dev</b></span><span class="tag">Effort: <b>High</b></span><span class="tag time">Est: rolls up into 02–04 + ~2–4h cleanup</span></div>
+    </div>
+  </div>
+
+  <div class="issue">
+    <div class="issue-h"><span class="rank">02</span><span class="name">A full copy of the old site is live at wp-staging (plus old. / dev.)</span><span class="count">~2,848 churn URLs</span><span class="pill p-bad">Root cause</span></div>
+    <div class="why"><span class="lbl">Why it matters</span><p>It's a complete duplicate of our website on a public sub-address. Google can partly see it, so it competes with the real site as duplicate content and muddies which version ranks. It's also the churning block dragging the score — and yes, this is our housekeeping to fix, not Google's fault.</p></div>
+    <div class="issue-b">
+      <p class="whatis"><b>What this actually is:</b> <code>wp-staging.revealbi.io</code> is a living copy of the <b>old WordPress site</b> — homepage, <code>/faq</code>, <code>/data-sources</code>, every <code>/reveal-vs-</code> page, industry pages, <code>/stories</code>, <code>/webinars</code>. It's marked "hidden from Google," but it's still reachable and crawlable, which is enough to cause duplicate-content confusion. It accounts for the ~2,848-URL churn (noindex block holding steady at <b>3,425 pages</b>). The <code>old.</code> and <code>dev.</code> sub-addresses are the same story, and we've seen those pulling impressions in Search Console — Google has them.</p>
+      <details class="ex"><summary>See real example URLs</summary><div class="exwrap"><ul>
+        <li>https://wp-staging.revealbi.io/ (full homepage)</li>
+        <li>https://wp-staging.revealbi.io/faq</li>
+        <li>https://wp-staging.revealbi.io/reveal-vs-luzmo</li>
+        <li>https://wp-staging.revealbi.io/reveal-vs-domo</li>
+        <li>https://wp-staging.revealbi.io/insurance-analytics</li>
+      </ul><p class="exnote">Full list: Ahrefs → Page Explorer → filter "Noindex page" (the block is almost entirely wp-staging URLs).</p></div></details>
+      <p class="likely"><b>Likely why:</b> the staging/old environments from the migration were left publicly reachable instead of locked down or taken offline once Astro went live.</p>
+      <div class="fixbox"><h5>The fix — step by step</h5><ol>
+        <li>Put the entire non-production sub-addresses behind a password (HTTP auth) so neither Google nor Ahrefs can load them: <code>wp-staging.</code>, <code>old.</code>, <code>dev.revealbi.io</code>.</li>
+        <li>Add <code>Disallow: /</code> to each one's robots.txt and a site-wide <code>noindex</code> header — belt and suspenders.</li>
+        <li>In Search Console, submit a removal request for each sub-address.</li>
+        <li>Decide whether any still need to exist; if not, take them offline.</li>
+        <li>Confirm with <code>site:wp-staging.revealbi.io</code> — it should return nothing.</li>
+      </ol></div>
+      <div class="mrow"><span class="tag own">Owner: <b>web dev / infra</b></span><span class="tag">Effort: <b>Low</b> — high payoff</span><span class="tag time">Est: 2–4 hrs</span><span class="tag">Due Jul 29 · in Slingshot</span></div>
+    </div>
+  </div>
+
+  <div class="issue">
+    <div class="issue-h"><span class="rank">03</span><span class="name">The support-email link bug is manufacturing broken URLs</span><span class="count">sitewide</span><span class="pill p-bad">Root cause</span></div>
+    <div class="why"><span class="lbl">Why it matters</span><p>A single one-line coding mistake is generating fake broken pages on every page of the site — inflating our error count for no reason. Tiny fix, disproportionately large cleanup.</p></div>
+    <div class="issue-b">
+      <p class="whatis"><b>What this actually is:</b> the support email is written as a normal link (<code>href="support@revealbi.io"</code>) instead of an email link (<code>href="mailto:support@revealbi.io"</code>). Missing the <code>mailto:</code>, the browser and Google read it as a page and try to visit <code>revealbi.io/support@revealbi.io</code> — which doesn't exist, so it errors. It's in the footer/contact area of nearly every page, so it multiplies fast — and it's now showing up on the staging copy too.</p>
+      <details class="ex"><summary>See real example URLs</summary><div class="exwrap"><ul>
+        <li>https://www.revealbi.io/support@revealbi.io <span class="co">403</span></li>
+        <li>https://www.revealbi.io/glossary/support@revealbi.io <span class="co">403</span></li>
+        <li>https://wp-staging.revealbi.io/support@revealbi.io <span class="co">404</span></li>
+      </ul><p class="exnote">Same email, rendered as a path on many pages → many broken URLs.</p></div></details>
+      <p class="likely"><b>Likely why:</b> a template/component where the email was pasted as a link without the <code>mailto:</code> prefix.</p>
+      <div class="fixbox"><h5>The fix — step by step</h5><ol>
+        <li>Find where the support email is output (footer or contact component).</li>
+        <li>Change <code>href="support@revealbi.io"</code> to <code>href="mailto:support@revealbi.io"</code> — or show it as plain text.</li>
+        <li>Search the codebase for other bare email-as-link instances; fix the same way.</li>
+        <li>Redeploy and re-crawl.</li>
+      </ol></div>
+      <div class="mrow"><span class="tag own">Owner: <b>web dev</b></span><span class="tag">Effort: <b>Very low</b></span><span class="tag time">Est: 1–2 hrs</span><span class="tag">Due Jul 25 · in Slingshot</span></div>
+    </div>
+  </div>
+
+  <div class="issue">
+    <div class="issue-h"><span class="rank">04</span><span class="name">Our non-English pages are blocked (403 "forbidden")</span><span class="count">/ja /ko /es /pt-BR</span><span class="pill p-bad">Root cause</span></div>
+    <div class="why"><span class="lbl">Why it matters</span><p>Every localized page returns "you're not allowed to view this." If we're investing in international content, none of it can currently be seen by customers or ranked by Google — that investment is sitting behind a locked door. And it's now spilling into hreflang errors (card 09).</p></div>
+    <div class="issue-b">
+      <p class="whatis"><b>What this actually is:</b> a <b>403 means "forbidden"</b> — the server is refusing access (different from a 404, which means the page doesn't exist). Our Japanese, Korean, Spanish and Portuguese pages all come back 403, across many page types. The pages most likely exist; a server rule is blocking them. This week the same 403 is also hitting some real English blog/author pages, which suggests the blocking rule is broader than the locale prefixes.</p>
+      <details class="ex"><summary>See real example URLs</summary><div class="exwrap"><ul>
+        <li>https://www.revealbi.io/ja/embedded-analytics-software <span class="co">403</span></li>
+        <li>https://www.revealbi.io/ko/license-agreements <span class="co">403</span></li>
+        <li>https://www.revealbi.io/es/embedded-analytics-software <span class="co">403</span></li>
+        <li>https://www.revealbi.io/pt-BR/embedded-analytics-software <span class="co">403</span></li>
+        <li>https://www.revealbi.io/author/jasonb <span class="co">403</span></li>
+      </ul><p class="exnote">Full list: Ahrefs → Page Explorer → filter "4XX page," sort by URL to see the locale prefixes.</p></div></details>
+      <p class="likely"><b>Likely why:</b> a server/CDN/firewall access rule, or the localized routes weren't published in the Astro build — either can surface as a 403. The English pages caught in it point at an over-broad WAF/bot rule.</p>
+      <div class="fixbox"><h5>The fix — step by step</h5><ol>
+        <li>Load one directly (e.g. <code>revealbi.io/ja/embedded-analytics-software</code>) and capture the exact 403 + server logs.</li>
+        <li>Check the server/CDN/firewall and any edge config for a rule blocking the locale path prefixes — and for a broader rule catching real pages.</li>
+        <li>Confirm the localized routes are actually built and published in Astro.</li>
+        <li>Fix so the locale paths return <code>200</code>; re-crawl.</li>
+      </ol></div>
+      <div class="mrow"><span class="tag own">Owner: <b>web dev / infra</b></span><span class="tag">Effort: <b>Medium</b></span><span class="tag time">Est: 4–8 hrs</span><span class="tag">Due Jul 30 · in Slingshot</span></div>
+    </div>
+  </div>
+
+  <div class="issue">
+    <div class="issue-h"><span class="rank">05</span><span class="name">Canonical tags pointing at broken / redirecting URLs</span><span class="count">384 URLs · +6</span><span class="pill p-bad">Error</span></div>
+    <div class="why"><span class="lbl">Why it matters</span><p>A canonical tag is a page telling Google "this is the official version of me." On 384 pages that pointer aims at a dead or moved URL — so we're telling Google the real version of these pages is broken, and Google may drop them from search. It ticked up again this week.</p></div>
+    <div class="issue-b">
+      <p class="whatis"><b>What this actually is:</b> <b>380 pages have a canonical pointing at a broken (4xx) URL (+5)</b>, <b>3 point at a redirect (all new this week)</b>, and 1 points at a server error (5xx). Think of it as a page handing Google a forwarding address that leads nowhere.</p>
+      <p class="likely"><b>Likely why:</b> the canonical logic still builds URLs in the old pre-migration structure.</p>
+      <div class="fixbox"><h5>The fix — step by step</h5><ol>
+        <li>Export the affected URLs (Page Explorer → "Canonical points to 4XX" / "…to redirect" / "…to 5XX").</li>
+        <li>Find where canonicals are generated (Astro layout / SEO component).</li>
+        <li>Make each page's canonical point to its own final, live (200) address (self-referencing for standard pages).</li>
+        <li>Spot-check 5–10 rendered pages after deploy; re-crawl.</li>
+      </ol></div>
+      <div class="mrow"><span class="tag own">Owner: <b>web dev</b></span><span class="tag">Effort: <b>Medium</b></span><span class="tag time">Est: 3–6 hrs</span><span class="tag">Due Jul 31 · in Slingshot</span></div>
+    </div>
+  </div>
+
+  <div class="issue">
+    <div class="issue-h"><span class="rank">06</span><span class="name">Dirty XML sitemap</span><span class="count">9 bad URLs</span><span class="pill p-bad">Error</span></div>
+    <div class="why"><span class="lbl">Why it matters</span><p>The sitemap is the clean "please crawl these" list we hand Google. Ours has broken and redirecting URLs in it — which tells Google to chase junk and chips away at its trust in the one list we most want it to believe.</p></div>
+    <div class="issue-b">
+      <p class="whatis"><b>What this actually is:</b> the sitemap contains 1 server-error (5xx) URL (<b>new this week</b>), 4 redirecting (3xx) URLs, and 4 non-canonical URLs. A sitemap should only list live, canonical, indexable pages.</p>
+      <p class="likely"><b>Likely why:</b> the sitemap auto-generates from a source list that still includes non-live URLs.</p>
+      <div class="fixbox"><h5>The fix — step by step</h5><ol>
+        <li>Open the sitemap generation config (Astro sitemap integration).</li>
+        <li>Exclude anything that isn't live + canonical + indexable (no 4xx/5xx, redirects, noindex, non-canonical).</li>
+        <li>Regenerate, validate the format, resubmit in Search Console.</li>
+      </ol></div>
+      <div class="mrow"><span class="tag own">Owner: <b>web dev</b></span><span class="tag">Effort: <b>Low</b></span><span class="tag time">Est: 1–2 hrs</span><span class="tag">Due Aug 1 · in Slingshot</span></div>
+    </div>
+  </div>
+
+  <div class="issue">
+    <div class="issue-h"><span class="rank">07</span><span class="name">Internal links pointing at redirects</span><span class="count">1,833 pages · +184</span><span class="pill p-warn">Warning · rising</span></div>
+    <div class="why"><span class="lbl">Why it matters</span><p>Not fatal, but it's death by a thousand cuts — and trending the wrong way again (+184 this week). Every link that goes through a redirect instead of straight to the final page wastes crawl budget and leaks a little ranking value.</p></div>
+    <div class="issue-b">
+      <p class="whatis"><b>What this actually is:</b> 1,833 pages contain internal links that point at an old URL which then bounces (redirects) to the real one, instead of linking to the real one directly. (Counting every instance, not just pages, it's 4,642 links — also up +185.)</p>
+      <p class="likely"><b>Likely why:</b> old internal links never updated to the new URL structure after the migration.</p>
+      <div class="fixbox"><h5>The fix — step by step</h5><ol>
+        <li>Export the redirect map (old URL → final URL) from the migration/server config.</li>
+        <li>In templates and shared components (nav, footer, CTAs), swap old URLs for their final destinations.</li>
+        <li>Bulk find-and-replace in-content links across the CMS using the map.</li>
+        <li>Redeploy; re-crawl to confirm the count drops.</li>
+      </ol></div>
+      <div class="mrow"><span class="tag own">Owner: <b>web dev + content</b></span><span class="tag">Effort: <b>Medium</b></span><span class="tag time">Est: 4–8 hrs</span><span class="tag">Due Aug 8 · in Slingshot</span></div>
+    </div>
+  </div>
+
+  <div class="issue">
+    <div class="issue-h"><span class="rank">08</span><span class="name">Slow pages &amp; broken images</span><span class="count">118 slow · 266 images</span><span class="pill p-warn">Warning · rising</span></div>
+    <div class="why"><span class="lbl">Why it matters</span><p>Slow pages jumped +43 this week — a sudden jump usually means something heavy shipped recently, and speed affects both rankings and how visitors feel. Worth catching before it spreads.</p></div>
+    <div class="issue-b">
+      <p class="whatis"><b>What this actually is:</b> 118 pages load slowly (105 newly flagged this week), and 266 images fail to load (flat). Neither is a ranking emergency, but the slow-page trend is the one to watch.</p>
+      <p class="likely"><b>Likely why:</b> a recent deploy added weight (an unoptimized image or new script); broken images are often old paths that will partly resolve once the subdomain/redirect fixes land.</p>
+      <div class="fixbox"><h5>The fix — step by step</h5><ol>
+        <li>Pull the slow-page list; check what deployed in the last ~2 weeks. Compress/lazy-load images, defer non-critical scripts.</li>
+        <li>Export the broken-image list; fix the src paths or replace missing files.</li>
+        <li>Re-crawl and confirm both counts stop climbing.</li>
+      </ol></div>
+      <div class="mrow"><span class="tag own">Owner: <b>web dev</b></span><span class="tag">Effort: <b>Medium</b></span><span class="tag time">Est: 3–6 hrs</span><span class="tag">Due Aug 15 · in Slingshot</span></div>
+    </div>
+  </div>
+
+  <div class="issue">
+    <div class="issue-h"><span class="rank">09</span><span class="name">International (hreflang) errors are rising</span><span class="count">44 + 8 URLs · new focus</span><span class="pill p-warn">Warning · rising</span></div>
+    <div class="why"><span class="lbl">Why it matters</span><p>Hreflang is how we tell Google "here's the Japanese/Korean/Spanish version of this page." Right now those tags point at pages that are broken or redirecting — so Google gets contradictory signals about our international content and may show the wrong version, or none. It rose this week and is tied to the blocked localized pages.</p></div>
+    <div class="issue-b">
+      <p class="whatis"><b>What this actually is:</b> <b>44 pages have an hreflang tag pointing at a broken or redirecting URL (+4)</b>, <b>8 point at a non-canonical URL (+4)</b>, and ~380 pages declare an hreflang without a matching HTML <code>lang</code> attribute. In plain terms: the "which language version lives where" wiring is pointing at doors that are currently locked (the card-04 403s) or moved.</p>
+      <details class="ex"><summary>See real example URLs</summary><div class="exwrap"><ul>
+        <li>https://www.revealbi.io/in-the-news</li>
+        <li>https://www.revealbi.io/license-agreements</li>
+        <li>https://www.revealbi.io/pt-BR/reveal-vs-qrvey</li>
+        <li>https://www.revealbi.io/es/reveal-vs-qrvey</li>
+        <li>https://www.revealbi.io/author/jberes</li>
+      </ul><p class="exnote">Full list: Ahrefs → Page Explorer → filter "Hreflang to redirect or broken page" / "Hreflang to non-canonical."</p></div></details>
+      <p class="likely"><b>Likely why:</b> a knock-on of card 04 — the localized targets return 403, so every hreflang that references them is now "pointing at a broken page." Fixing the 403s will clear the bulk; the non-canonical and missing-lang bits need an hreflang-generation cleanup.</p>
+      <div class="fixbox"><h5>The fix — step by step</h5><ol>
+        <li>Fix card 04 first (localized 403s) and re-crawl — most hreflang-to-broken entries should clear on their own.</li>
+        <li>For whatever remains, point each hreflang at the final, live (200), canonical URL for that language.</li>
+        <li>Add the matching HTML <code>lang</code> attribute on pages that declare hreflang.</li>
+        <li>Re-crawl and confirm the localization error counts drop.</li>
+      </ol></div>
+      <div class="mrow"><span class="tag own">Owner: <b>web dev</b></span><span class="tag">Effort: <b>Medium</b></span><span class="tag time">Est: 3–5 hrs</span><span class="tag">Due Aug 6 · new in Slingshot</span></div>
+    </div>
+  </div>
+
+  <h2 class="sec"><span class="n">4</span> Safe to ignore this week<span class="aside">considered, not missed</span></h2>
+  <p class="readout"><b>The dummies version:</b> a site audit flags <em>hundreds</em> of issue types. Most are cosmetic. Here's what I looked at and deliberately set aside so you can focus on the nine above.</p>
+  <div class="ignore"><ul>
+    <li><b>Missing alt text (3,305, −5)</b> — image descriptions for accessibility + image search. A content pass later, not a ranking emergency.</li>
+    <li><b>Meta descriptions too long / short / missing (thousands)</b> — affects the wording under our search result, not whether pages rank. Batch into content work.</li>
+    <li><b>Title-length notices, multiple-H1 notices (324), Open Graph / X-card gaps</b> — cosmetic polish.</li>
+    <li><b>Structured-data / schema notices (1,456, +1)</b> — worth revisiting once the foundation is fixed.</li>
+    <li><b>"Referring domains dropped," "organic traffic dropped," "pages dropped from Top 10"</b> — these belong to the <b>SEO Analyst</b> weekly brief, not the technical audit.</li>
+  </ul></div>
+
+  <h2 class="sec"><span class="n">5</span> Hand-off list for web dev<span class="aside">now in Slingshot</span></h2>
+  <p class="readout"><b>These are already created as tasks in the SEO tracker</b> (Slingshot), each with the plain-English "why," a step-by-step fix, an owner, a start/due date, and a time estimate. Assign to the dev team and they can start without another meeting. Do the P1s first — ~80% of the score problem, mostly the staging copy + the two bugs. Nothing shipped last week, so the P1 dates are the priority now.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Pri</th><th>Fix</th><th>Est</th><th>Due</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill p-bad">P1</span></td><td class="fixcell">Retire wp-staging + block old./dev. subdomains</td><td class="est">2–4h</td><td class="due">Jul 29</td></tr>
+      <tr><td><span class="pill p-bad">P1</span></td><td class="fixcell">Fix the support@ email-as-link bug</td><td class="est">1–2h</td><td class="due">Jul 25</td></tr>
+      <tr><td><span class="pill p-bad">P1</span></td><td class="fixcell">Fix 403s on localized /ja /ko /es /pt-BR pages (check WAF breadth)</td><td class="est">4–8h</td><td class="due">Jul 30</td></tr>
+      <tr><td><span class="pill p-bad">P1</span></td><td class="fixcell">Repoint canonicals aimed at broken/redirecting URLs (384)</td><td class="est">3–6h</td><td class="due">Jul 31</td></tr>
+      <tr><td><span class="pill p-warn">P2</span></td><td class="fixcell">Regenerate a clean XML sitemap</td><td class="est">1–2h</td><td class="due">Aug 1</td></tr>
+      <tr><td><span class="pill p-warn">P2</span></td><td class="fixcell">Fix rising hreflang / localization errors (44 + 8) — new</td><td class="est">3–5h</td><td class="due">Aug 6</td></tr>
+      <tr><td><span class="pill p-warn">P2</span></td><td class="fixcell">Update internal links pointing at redirects (1,833)</td><td class="est">4–8h</td><td class="due">Aug 8</td></tr>
+      <tr><td><span class="pill p-gray">P3</span></td><td class="fixcell">Investigate slow pages (+43) &amp; broken images (266)</td><td class="est">3–6h</td><td class="due">Aug 15</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:12px;color:var(--muted);margin:10px 4px 0">Total P1 effort ≈ 10–20 hrs. Tip: the Slingshot tasks have a "Time Tracking" field — set the "estimated" number there for structured tracking beyond the estimate in each title.</p>
+
+  <h2 class="sec"><span class="n">6</span> Cheat sheet<span class="aside">every term above, in plain English</span></h2>
+  <div class="cheat">
+    <details open><summary>Health score</summary><div class="body">Ahrefs' rough 0–100 grade for the site's technical shape. Directional, not precise — a low score means lots of errors on the pages it crawled. Watch the trend.<span class="who">move it up over time</span></div></details>
+    <details><summary>4xx vs 5xx (broken pages) — and "is it the whole page?"</summary><div class="body">A 4xx/5xx is always the <b>whole URL</b> (the whole address), never part of a page — you can't 404 half a page. <b>404</b> = not found. <b>403</b> = forbidden (server refuses access). <b>5xx</b> = server failed to deliver it. All are dead ends that waste Google's crawl attention.<span class="who">fix: web dev</span></div></details>
+    <details><summary>Canonical tag</summary><div class="body">A hidden tag telling Google "this is the official version of this page," used when similar pages exist. If it points at a broken or redirecting URL, you're telling Google the real version is dead/moved — so Google may drop the page.<span class="who">fix: web dev</span></div></details>
+    <details><summary>Noindex / nofollow</summary><div class="body"><b>Noindex</b> = "do not put this in search results." <b>Nofollow</b> = "don't pass ranking credit through this page's links." Fine when intentional; harmful when it hits pages we want found.<span class="who">fix: web dev / CMS</span></div></details>
+    <details><summary>XML sitemap</summary><div class="body">The clean list of URLs we hand Google saying "these are my real pages." It should contain only live, canonical, indexable pages — never broken or redirecting ones.<span class="who">fix: web dev</span></div></details>
+    <details><summary>Redirect (3xx) &amp; redirect chain</summary><div class="body">A redirect forwards one URL to another (used when a URL changes). Normal in small numbers. A <b>chain</b> is A→B→C — several hops — which is slow and leaks a little value each hop. Link straight to the final URL.<span class="who">fix: web dev</span></div></details>
+    <details><summary>Crawl budget</summary><div class="body">The finite attention Google spends crawling our site. Every dead end, redirect, and junk URL eats into it — so broken pages literally cost our good pages visibility. The "why it matters" behind most of this report.<span class="who">the core idea</span></div></details>
+    <details><summary>Non-production subdomain (staging / dev / old)</summary><div class="body">A test/pre-launch copy of the site (<code>wp-staging.</code>, <code>dev.</code>, <code>old.</code>). Should never be reachable by Google — if it is, it competes with the real site as duplicate content.<span class="who">fix: web dev / infra</span></div></details>
+    <details><summary>mailto: link</summary><div class="body">The correct way to code an email as a clickable link (<code>mailto:name@site.com</code>). Without <code>mailto:</code>, the browser treats it as a page on your site — the bug in card 03.<span class="who">fix: web dev</span></div></details>
+    <details><summary>hreflang</summary><div class="body">A tag that tells Google which language/region version of a page to show which visitors (e.g. the Japanese version to searchers in Japan). If it points at a broken, redirecting, or non-canonical URL, Google gets confused signals and may show the wrong version — or none. The issue in card 09.<span class="who">fix: web dev</span></div></details>
+  </div>
+
+  <div class="foot">
+    Generated from live Ahrefs Site Audit data (project 1241581, crawl Jul 22 2026, 11,494 URLs). Compared against the prior crawl. Example URLs are real, pulled from Page Explorer. Health 36/100, flat week-over-week — fix tasks created but not yet shipped.<br>
+    Reveal brand style (Roboto · amber→magenta hero · cobalt/periwinkle accents · navy #0F172A). Status green/amber/red are functional additions. This agent owns the technical foundation; rankings / traffic / AI visibility live in the SEO Analyst brief.
+  </div>
+
+</div>
+</body>
+</html>
