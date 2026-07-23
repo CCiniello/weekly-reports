@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly Reports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A1F44;
+    --cobalt: #2547D0;
+    --periwinkle: #8DA2FB;
+    --ink: #1A2233;
+    --muted: #5B6577;
+    --line: #E4E8F0;
+    --bg: #F7F9FC;
+    --card: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--bg); color: var(--ink); line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 64px 24px 96px; }
+  header { border-bottom: 2px solid var(--navy); padding-bottom: 24px; margin-bottom: 44px; }
+  .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--cobalt); margin-bottom: 10px; }
+  h1 { font-size: 34px; font-weight: 700; color: var(--navy); letter-spacing: -.02em; }
+  .sub { color: var(--muted); font-size: 15px; margin-top: 8px; }
+
+  .category { margin-bottom: 44px; }
+  .category > h2 {
+    font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--navy); margin-bottom: 18px; padding-bottom: 8px; border-bottom: 1px solid var(--line);
+  }
+  .product { margin-bottom: 22px; }
+  .product > h3 {
+    font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--periwinkle); margin-bottom: 10px;
+  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  a.report {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 15px 18px; text-decoration: none; color: var(--ink);
+    transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+  }
+  a.report:hover { border-color: var(--periwinkle); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(37,71,208,.08); }
+  .report .name { font-weight: 600; font-size: 15px; color: var(--navy); }
+  .arrow { color: var(--cobalt); font-size: 18px; margin-left: 14px; flex-shrink: 0; }
+
+  .standalone .grid { grid-template-columns: 1fr; max-width: 360px; }
+
+  footer { margin-top: 40px; font-size: 12px; color: var(--muted); line-height: 1.7; }
+  footer code { font-family: 'IBM Plex Mono', monospace; font-size: 11px; background: #EEF1F8; padding: 1px 5px; border-radius: 4px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="eyebrow">Infragistics &middot; Internal</div>
+      <h1>Weekly Reports</h1>
+      <p class="sub">Live dashboards, refreshed automatically. Bookmark this page.</p>
+    </header>
+
+    <section class="category">
+      <h2>Weekly Team Reports</h2>
+      <div class="grid">
+        <a class="report" href="./weekly-team-reports/marketing/"><span class="name">Marketing Weekly</span><span class="arrow">&rarr;</span></a>
+        <a class="report" href="./weekly-team-reports/reveal/"><span class="name">Reveal Weekly</span><span class="arrow">&rarr;</span></a>
+        <a class="report" href="./weekly-team-reports/ui-tools/"><span class="name">UI Tools Weekly</span><span class="arrow">&rarr;</span></a>
+        <a class="report" href="./weekly-team-reports/slingshot/"><span class="name">Slingshot Weekly</span><span class="arrow">&rarr;</span></a>
+      </div>
+    </section>
+
+    <section class="category">
+      <h2>Paid Ads</h2>
+      <div class="product">
+        <h3>Reveal</h3>
+        <div class="grid">
+          <a class="report" href="./paid-ads/reveal/ppc/"><span class="name">PPC Weekly Analysis</span><span class="arrow">&rarr;</span></a>
+          <a class="report" href="./paid-ads/reveal/linkedin/"><span class="name">LinkedIn Ads Weekly Analysis</span><span class="arrow">&rarr;</span></a>
+          <a class="report" href="./paid-ads/reveal/reddit/"><span class="name">Reddit Ads Weekly Analysis</span><span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+      <div class="product">
+        <h3>UI Tools</h3>
+        <div class="grid">
+          <a class="report" href="./paid-ads/ui-tools/react/"><span class="name">React PPC Weekly Analysis</span><span class="arrow">&rarr;</span></a>
+          <a class="report" href="./paid-ads/ui-tools/angular/"><span class="name">Angular PPC Weekly Analysis</span><span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+      <div class="product">
+        <h3>Slingshot</h3>
+        <div class="grid">
+          <a class="report" href="./paid-ads/slingshot/"><span class="name">Slingshot Paid (coming soon)</span><span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="category">
+      <h2>SEO</h2>
+      <div class="product">
+        <h3>Reveal</h3>
+        <div class="grid">
+          <a class="report" href="./seo/reveal/analysis/"><span class="name">SEO Weekly Analysis</span><span class="arrow">&rarr;</span></a>
+          <a class="report" href="./seo/reveal/technical-audit/"><span class="name">SEO Weekly Technical Audit</span><span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+      <div class="product">
+        <h3>Slingshot</h3>
+        <div class="grid">
+          <a class="report" href="./seo/slingshot/analysis/"><span class="name">SEO Weekly Analysis</span><span class="arrow">&rarr;</span></a>
+          <a class="report" href="./seo/slingshot/technical-audit/"><span class="name">SEO Weekly Technical Audit</span><span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+      <div class="product">
+        <h3>UI Tools</h3>
+        <div class="grid">
+          <a class="report" href="./seo/ui-tools/react-analysis/"><span class="name">SEO React Weekly Analysis</span><span class="arrow">&rarr;</span></a>
+          <a class="report" href="./seo/ui-tools/angular-analysis/"><span class="name">SEO Angular Weekly Analysis</span><span class="arrow">&rarr;</span></a>
+          <a class="report" href="./seo/ui-tools/technical-audit/"><span class="name">SEO Weekly Technical Audit</span><span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="category standalone">
+      <h2>Pipeline &amp; MQLs</h2>
+      <div class="grid">
+        <a class="report" href="./pipeline-mqls/"><span class="name">Pipeline &amp; MQLs</span><span class="arrow">&rarr;</span></a>
+      </div>
+    </section>
+
+    <footer>
+      Each report goes live the first time its agent commits to
+      <code>category/product/report/index.html</code>. Add a new report by pointing an agent at a new path and adding a link here.
+    </footer>
+  </div>
+</body>
+</html>
