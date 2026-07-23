@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reveal — Weekly Paid Media Brief · Jul 22 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F172A; --navy2:#2A41A2; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#ffffff;
+    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
+    --gray:#8a93a3; --gray-bg:#eef0f5;
+    --magenta:#EC417A; --amber:#FBB764; --pink:#F78DA7;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Roboto',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:28px 22px 80px}
+  header.top{background:linear-gradient(120deg,var(--amber) 0%,var(--magenta) 62%,#d63384 100%);color:#fff;border-radius:16px;padding:22px 26px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
+  header.top .logochip{display:inline-block;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14)}
+  header.top .logochip img{height:26px;display:block}
+  header.top .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:27px;font-weight:900}
+  header.top .meta{margin-top:14px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)}
+  header.top .meta b{color:#fff;font-weight:700}
+  h2.sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:36px 4px 14px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{width:22px;height:22px;border-radius:6px;background:var(--peri-soft);color:var(--cobalt);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+
+  /* ---- KPI tiles (aligned) ---- */
+  .kpigrid{display:grid;gap:12px}
+  .g5{grid-template-columns:repeat(5,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:900px){.g5{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:820px){.g4,.g3{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.g5,.g4,.g3,.g2{grid-template-columns:1fr 1fr}}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column}
+  .kpi .lab{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600;min-height:30px}
+  .kpi .val{font-size:23px;font-weight:700;line-height:1.1;margin:2px 0 8px}
+  .kpi .delta{margin-top:auto;align-self:flex-start;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
+  .d-good{background:var(--good-bg);color:var(--good)} .d-bad{background:var(--bad-bg);color:var(--bad)} .d-gray{background:var(--gray-bg);color:var(--gray)} .d-warn{background:var(--warn-bg);color:var(--warn)}
+
+  .lead{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--magenta);border-radius:14px;padding:18px 22px;margin-top:14px}
+  .lead p{margin:0 0 10px;font-size:14.5px}.lead p:last-child{margin-bottom:0}.lead b{font-weight:600}
+
+  /* ---- scoreboard (aligned) ---- */
+  .scorecard{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  @media(max-width:820px){.scorecard{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.scorecard{grid-template-columns:1fr 1fr}}
+  .sc{border:1px solid var(--line);border-radius:12px;padding:13px 14px;background:#fff;display:flex;flex-direction:column}
+  .sc .g{font-size:12px;color:var(--muted);font-weight:600;min-height:34px} .sc .v{font-size:19px;font-weight:700;margin:4px 0 8px}
+  .sc .pill{margin-top:auto;align-self:flex-start}
+  .pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 9px;border-radius:999px;letter-spacing:.02em}
+  .p-good{background:var(--good-bg);color:var(--good)} .p-warn{background:var(--warn-bg);color:var(--warn)} .p-bad{background:var(--bad-bg);color:var(--bad)} .p-gray{background:var(--gray-bg);color:var(--gray)}
+
+  /* ---- platform cards / deep dives ---- */
+  .plat{border-radius:16px;border:1px solid var(--line);overflow:hidden;margin-bottom:8px}
+  .plat .phd{padding:16px 20px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;color:#fff}
+  .plat .phd .nm{font-size:18px;font-weight:700}
+  .plat .phd .role{font-size:12px;opacity:.92;margin-top:3px;max-width:600px}
+  .plat .phd .owner{display:inline-block;margin-top:9px;font-size:10.5px;font-weight:700;letter-spacing:.03em;background:rgba(255,255,255,.18);color:#fff;padding:2px 9px;border-radius:6px}
+  .plat .phd .spend{text-align:right;font-family:'Roboto Mono',monospace;white-space:nowrap}
+  .plat .phd .spend .v{font-size:20px;font-weight:700}
+  .plat .phd .spend .l{font-size:11px;opacity:.85;text-transform:uppercase;letter-spacing:.05em}
+  .g-google .phd{background:linear-gradient(120deg,#2A41A2,#4a6bf5)}
+  .g-bing .phd{background:linear-gradient(120deg,#0F172A,#223a86)}
+  .g-li .phd{background:linear-gradient(120deg,#3E5BD0,#6C8CFD)}
+  .g-reddit .phd{background:linear-gradient(120deg,#F2994A,#EC417A)}
+  .g-g2 .phd{background:linear-gradient(120deg,#C9367F,#EC417A)}
+  .plat .pbody{padding:18px 20px;background:#fff}
+
+  .verdict{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px}
+  @media(max-width:720px){.verdict{grid-template-columns:1fr}}
+  .vbox{border-radius:10px;padding:11px 13px;font-size:12.5px}
+  .vbox .h{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+  .vbox.w{background:var(--good-bg)} .vbox.w .h{color:var(--good)}
+  .vbox.n{background:var(--bad-bg)} .vbox.n .h{color:var(--bad)}
+  .vbox.f{background:var(--peri-soft)} .vbox.f .h{color:var(--cobalt)}
+  .vbox ul{margin:0;padding-left:15px} .vbox li{margin:2px 0}
+
+  /* ---- consistent sub-sections (4a..4e) ---- */
+  .subsec{margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+  .subsec:first-of-type{margin-top:4px;padding-top:0;border-top:none}
+  .subsec-h{font-size:13.5px;font-weight:700;color:var(--navy);margin:0 0 10px;padding-left:11px;border-left:3px solid var(--cobalt)}
+  .subsec-h .q{font-weight:400;color:var(--muted);font-size:12.5px}
+
+  /* ---- real tables ---- */
+  .tablewrap{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  thead th{background:#eef2fa;font-size:11px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:9px 12px;text-align:left;border-bottom:1px solid #dce3f0}
+  tbody td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:#fafbff}
+  td.r,th.r{text-align:right;font-family:'Roboto Mono',monospace}
+  thead th.r{text-align:right}
+  tr.grp td{background:#f6f8fc;font-weight:600}
+  tr.grp td:first-child{box-shadow:inset 3px 0 0 var(--peri)}
+  td.sub .ind{padding-left:18px;display:inline-block}
+  .badlbl{color:var(--bad);font-weight:600}.avglbl{color:var(--warn);font-weight:600}.goodlbl{color:var(--good);font-weight:600}
+  .info{display:inline-flex;width:14px;height:14px;border-radius:50%;background:var(--peri-soft);color:var(--cobalt);font-size:10px;line-height:1;align-items:center;justify-content:center;cursor:help;font-weight:700;margin-left:4px;vertical-align:middle}
+
+  /* ---- platform KPI mini-row (with goal) ---- */
+  .mkpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
+  @media(max-width:820px){.mkpis{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:520px){.mkpis{grid-template-columns:1fr 1fr}}
+  .mkpi{border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;background:#fcfdff}
+  .mkpi .l{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600;min-height:26px}
+  .mkpi .v{font-size:18px;font-weight:700;margin:2px 0 2px}
+  .mkpi .sub{font-size:10.5px;color:var(--muted);margin-top:auto}
+  .mkpi .sub b.g{color:var(--good)} .mkpi .sub b.r{color:var(--bad)} .mkpi .sub b.w{color:var(--warn)}
+
+  .subh{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:16px 0 8px}
+  .keyfix{font-size:13px;margin:0 0 12px;padding:12px 15px;background:#eaf1ff;border:1px solid #cdd9f7;border-radius:10px}
+  .keyfix b{color:var(--navy)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .grid{display:grid;gap:14px}
+  .wl{font-size:13px;margin:6px 0 0;padding-left:0;list-style:none}
+  .wl li{margin:6px 0;padding-left:18px;position:relative}
+  .wl li::before{position:absolute;left:0;top:1px;font-size:12px}
+  .wl li.pro::before{content:"\25B2";color:var(--good)}.wl li.con::before{content:"\25BC";color:var(--bad)}
+  .wl li.do::before{content:"\2192";color:var(--cobalt)}.wl li.watch::before{content:"\25C6";color:var(--warn)}
+  .path{display:flex;align-items:stretch;flex-wrap:wrap}
+  .pstep{flex:1;min-width:112px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 14px;text-align:center}
+  .pstep .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em} .pstep .n{font-size:21px;font-weight:700;margin-top:3px} .pstep .s{font-size:11.5px;color:var(--muted);margin-top:2px}
+  .parrow{display:flex;align-items:center;color:var(--peri);font-size:18px;padding:0 5px}
+  @media(max-width:640px){.parrow{transform:rotate(90deg)}}
+  .callout{background:var(--warn-bg);border:1px solid #f0dcae;border-radius:12px;padding:13px 16px;font-size:13px;color:#7a5a12}.callout b{color:#5f4708}
+  .owner-tag{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:5px;letter-spacing:.03em;white-space:nowrap}
+  .o-p{background:#e7ecff;color:#2A41A2}.o-s{background:#fde4ee;color:#C9367F}.o-c{background:#fdf0dc;color:#9a6a12}
+  .freq{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:5px;background:#fff3d6;color:#8a6412;margin-left:6px}
+  .ladder .step{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line)}
+  .ladder .step:last-child{border-bottom:none}
+  .ladder .num{flex:none;width:26px;height:26px;border-radius:7px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+  .ladder .txt{font-size:13px}.ladder .txt b{color:var(--navy)}
+  .chartwrap{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .legend{display:flex;gap:16px;font-size:12px;color:var(--muted);margin-top:6px;flex-wrap:wrap}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .swatch{width:14px;height:3px;border-radius:2px;display:inline-block}
+  .copybox{background:#f8faff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:12.5px;margin-top:8px}
+  .copybox code{font-family:'Roboto Mono',monospace;font-size:12px;color:var(--navy)}
+  small.src{color:var(--gray);font-size:11px}
+  .foot{margin-top:26px;font-size:11.5px;color:var(--gray);border-top:1px solid var(--line);padding-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="logochip"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22112%22%20height%3D%2228%22%20viewBox%3D%220%200%20112%2028%22%3E%3Ctext%20x%3D%220%22%20y%3D%2222%22%20font-family%3D%22Roboto%2CArial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22900%22%20fill%3D%22%232A41A2%22%3EReveal%3C/text%3E%3Ccircle%20cx%3D%22106%22%20cy%3D%228%22%20r%3D%224.5%22%20fill%3D%22%23EC417A%22/%3E%3C/svg%3E" alt="Reveal"></div>
+  <div class="kick">revealbi.io · Paid Media</div>
+  <h1>Weekly Paid Media Brief</h1>
+  <div class="meta">
+    <span>Report date <b>Wed 22 Jul 2026</b></span>
+    <span>Window <b>Jul 13-19</b> vs <b>Jul 6-12</b></span>
+    <span>Owner <b>Poojitha</b> (driver)</span>
+    <span>Supporting <b>Sydney</b> — LinkedIn, Reddit &amp; channel growth</span>
+  </div>
+</header>
+
+<h2 class="sec"><span class="n">1</span> Executive summary</h2>
+<div class="kpigrid g5">
+  <div class="kpi"><div class="lab">Paid leads (wk)</div><div class="val">17</div><span class="delta d-good">&#9650; 70% WoW</span></div>
+  <div class="kpi"><div class="lab">Cost / qualified lead</div><div class="val">~$518</div><span class="delta d-good">&#9660; improving</span></div>
+  <div class="kpi"><div class="lab">Paid pipeline (90d)</div><div class="val">$386k</div><span class="delta d-good">9 opportunities</span></div>
+  <div class="kpi"><div class="lab">Weekly spend</div><div class="val">$10.3k</div><span class="delta d-gray">on plan</span></div>
+  <div class="kpi"><div class="lab">Monthly run-rate</div><div class="val">~$45k</div><span class="delta d-gray">under $68k cap</span></div>
+</div>
+<div class="lead">
+  <p>Paid is producing pipeline and the lead engine is building — <b>leads rose 70% week over week</b> and cost per qualified lead is down roughly a third. Spend remains on plan and within budget.</p>
+  <p>The priority is <b>Quality Score on our top non-brand search</b>. It has been limiting how much we can compete on our most valuable terms — a scoring issue, not a budget one. We have identified the cause and corrections are underway, which reopens spend against demand we can't currently reach. In parallel, <b>Power BI "embedded" search — historically one of our strongest converters — is surging</b>, and we're moving to capture it across Google and Bing.</p>
+  <p>The watch item is <b>lead quality</b>: about two-thirds of paid leads are still disqualified, so the next dollar goes to tighter targeting, not simply more volume.</p>
+</div>
+
+<h2 class="sec"><span class="n">2</span> Goal scoreboard</h2>
+<div class="scorecard">
+  <div class="sc"><div class="g">Quality leads / mo (goal 100)</div><div class="v">~55</div><span class="pill p-warn">Building</span></div>
+  <div class="sc"><div class="g">Cost per qualified lead</div><div class="v">~$518</div><span class="pill p-warn">Define target</span></div>
+  <div class="sc"><div class="g">Top non-brand — show-up</div><div class="v">26%</div><span class="pill p-bad">Behind</span></div>
+  <div class="sc"><div class="g">Brand defense (~100%)</div><div class="v">58%</div><span class="pill p-bad">Behind</span></div>
+  <div class="sc"><div class="g">Competitor search (top 3)</div><div class="v">64-77%</div><span class="pill p-warn">At risk</span></div>
+</div>
+<p style="font-size:12px;color:var(--muted);margin:10px 4px 0">Cost-per-lead note: the "$75" plan target tracks form-fills (~$65 actual); a qualified Salesforce lead costs ~$518. Agreeing one definition (recommend qualified lead + pipeline) is an action in &sect;12.</p>
+
+<h2 class="sec"><span class="n">3</span> Per-platform read — at a glance</h2>
+<div class="grid" style="grid-template-columns:1fr 1fr;gap:14px">
+  <div class="card" style="padding:0">
+    <div style="padding:13px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center"><span style="font-weight:700">Google Ads</span><span class="pill p-good">Healthy · driving pipeline</span></div>
+    <div style="padding:12px 16px;font-size:12.5px;color:var(--muted)">The engine — 16 of 17 leads. Healthy overall; the one drag is Quality Score holding down non-brand rank, and it's fixable (&sect;4).</div>
+  </div>
+  <div class="card" style="padding:0">
+    <div style="padding:13px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center"><span style="font-weight:700">Bing / Microsoft</span><span class="pill p-good">Cheap · watch spam</span></div>
+    <div style="padding:12px 16px;font-size:12.5px;color:var(--muted)">Cheap Microsoft/Edge coverage that converts over time. Spam control is the standing job — exact terms named in &sect;5.</div>
+  </div>
+  <div class="card" style="padding:0">
+    <div style="padding:13px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center"><span style="font-weight:700">LinkedIn</span><span class="pill p-warn">Under-optimized</span></div>
+    <div style="padding:12px 16px;font-size:12.5px;color:var(--muted)">Strong CTR, but narrow reach at high frequency (fatigue). Fresh creative + 6sense expansion are the fixes (&sect;6).</div>
+  </div>
+  <div class="card" style="padding:0">
+    <div style="padding:13px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center"><span style="font-weight:700">Reddit</span><span class="pill p-good">Efficient reach</span></div>
+    <div style="padding:12px 16px;font-size:12.5px;color:var(--muted)">Cheap developer awareness that's landing; frequency and a 2nd creative are the levers (&sect;7).</div>
+  </div>
+</div>
+
+<!-- ============ GOOGLE ============ -->
+<h2 class="sec"><span class="n">4</span> Google Ads — deep dive</h2>
+<div class="plat g-google">
+  <div class="phd">
+    <div>
+      <div class="nm">Google Ads</div>
+      <div class="role">Demand capture — the engine · Search + Demand Gen + PMax + Display</div>
+      <span class="owner">Owner · Poojitha</span>
+    </div>
+    <div class="spend"><div class="l">Spend / wk</div><div class="v">$8,171</div><div class="l" style="text-transform:none">&#9650; 22% WoW</div></div>
+  </div>
+  <div class="pbody">
+    <div class="verdict">
+      <div class="vbox w"><div class="h">Working</div><ul>
+        <li>16 of 17 paid leads + most of $386k pipeline</li>
+        <li>Where we appear, engagement rose 41% &rarr; 58%</li>
+        <li>Comparison pages engage strongly</li>
+      </ul></div>
+      <div class="vbox n"><div class="h">Not working</div><ul>
+        <li>Quality Score caps non-brand rank &rarr; 26% show-up</li>
+        <li>Brand only 58% (should be ~100%)</li>
+        <li>Demand Gen sends traffic to the homepage</li>
+      </ul></div>
+      <div class="vbox f"><div class="h">Focus this week</div><ul>
+        <li>Fix Quality Score (pages + copy)</li>
+        <li>Capture the Power BI embedded surge</li>
+        <li>Re-tier Demand Gen by intent</li>
+      </ul></div>
+    </div>
+
+    <!-- 4a -->
+    <div class="subsec">
+      <div class="subsec-h">4a &middot; Search visibility <span class="q">— where we appear, and why we don't</span></div>
+      <p style="font-size:13px;margin:0 0 12px">Nothing we want to win is capped by budget — the US auctions are capped by ad rank (Quality Score), and our flagship non-brand campaign spent about 2% of its available budget. The lever is Quality Score and two missing pages, covered in 4e.</p>
+      <div class="tablewrap">
+      <table>
+        <thead><tr>
+          <th>Campaign / ad group</th>
+          <th class="r">Show-up<span class="info" title="Search impression share: of all searches we could have appeared for, the share we actually showed up for.">i</span></th>
+          <th class="r">Lost: budget<span class="info" title="Share of appearances missed because the campaign ran out of money. ~0 for US.">i</span></th>
+          <th class="r">Lost: rank<span class="info" title="Share missed because ad rank (bid x Quality Score x relevance) wasn't high enough. Reveal's main gap.">i</span></th>
+          <th>Read</th>
+        </tr></thead>
+        <tbody>
+          <tr class="grp"><td>Non-Brand US</td><td class="r">26%</td><td class="r">0%</td><td class="r badlbl">74%</td><td>Flagship. $600/day, spent $84. Quality-Score lockout — see 4e.</td></tr>
+          <tr><td class="sub"><span class="ind">Embedded Analytics — Core</span></td><td class="r">22%</td><td class="r">—</td><td class="r">78%</td><td>Head term, badly outranked.</td></tr>
+          <tr><td class="sub"><span class="ind">Embedded BI — Core</span></td><td class="r">22%</td><td class="r">—</td><td class="r">78%</td><td>No dedicated page yet.</td></tr>
+          <tr><td class="sub"><span class="ind">White Label Analytics — Core</span></td><td class="r">21%</td><td class="r">—</td><td class="r">79%</td><td>Page exists but scores low.</td></tr>
+          <tr><td class="sub"><span class="ind">Embedded Dashboards — Core</span></td><td class="r">55%</td><td class="r">—</td><td class="r">45%</td><td>Better; still needs a page.</td></tr>
+          <tr class="grp"><td>Brand — reveal bi / revealbi</td><td class="r">58%</td><td class="r">0%</td><td class="r badlbl">42%</td><td>Missing our own brand; cheap to fix with bids.</td></tr>
+          <tr class="grp"><td>Compete US</td><td class="r">64%</td><td class="r">0%</td><td class="r avglbl">36%</td><td>Closest to top-3; selective bid lifts move it fastest.</td></tr>
+          <tr><td class="sub"><span class="ind">Compete — Power BI</span></td><td class="r">52%</td><td class="r">—</td><td class="r badlbl">48%</td><td>Hottest intent, weakest rank — lift bids first.</td></tr>
+          <tr><td class="sub"><span class="ind">Compete — Luzmo</span></td><td class="r">85%</td><td class="r">—</td><td class="r">15%</td><td>Strong; hold.</td></tr>
+          <tr><td class="sub"><span class="ind">Compete — Metabase</span></td><td class="r">80%</td><td class="r">—</td><td class="r">20%</td><td>Strong.</td></tr>
+          <tr><td class="sub"><span class="ind">Compete — Tableau</span></td><td class="r">62%</td><td class="r">—</td><td class="r">38%</td><td>Room to gain.</td></tr>
+          <tr class="grp"><td>Compete English-International</td><td class="r">~70%</td><td class="r">0%</td><td class="r">~30%</td><td>Healthy coverage.</td></tr>
+          <tr class="grp"><td>Compete India</td><td class="r">66%</td><td class="r avglbl">22%</td><td class="r">12%</td><td>Only place budget binds. Fund legit US-HQ research; keep negatives tight.</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <!-- 4b -->
+    <div class="subsec">
+      <div class="subsec-h">4b &middot; Top search terms <span class="q">— week over week</span></div>
+      <div class="tablewrap">
+      <table>
+        <thead><tr><th>Search term</th><th class="r">This wk</th><th class="r">Prior wk</th><th class="r">Change</th><th>Read</th></tr></thead>
+        <tbody>
+          <tr><td>reveal bi (brand)</td><td class="r">$230</td><td class="r">$91</td><td class="r goodlbl">+154%</td><td>Brand spend up; ties to the brand-defense gap.</td></tr>
+          <tr><td>luzmo</td><td class="r">$201</td><td class="r">$387</td><td class="r">&minus;48%</td><td>Biggest single competitor term.</td></tr>
+          <tr><td>power bi embedded pricing</td><td class="r">$102</td><td class="r">$4</td><td class="r goodlbl">+2,500%</td><td>Surging, high-intent.</td></tr>
+          <tr><td>metabase alternatives</td><td class="r">$100</td><td class="r">$21</td><td class="r goodlbl">+382%</td><td>Rising.</td></tr>
+          <tr><td>white label data analytics</td><td class="r">$84</td><td class="r">$0</td><td class="r goodlbl">new</td><td>New this week.</td></tr>
+          <tr><td>embedded power bi</td><td class="r">$81</td><td class="r">$0</td><td class="r goodlbl">new</td><td>Power BI theme.</td></tr>
+          <tr><td>tableau embedded analytics</td><td class="r">$51</td><td class="r">$0</td><td class="r goodlbl">new</td><td>Embed-intent.</td></tr>
+          <tr><td>cost of power bi embedded</td><td class="r">$49</td><td class="r">$0</td><td class="r goodlbl">new</td><td>Pricing intent.</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="font-size:12.5px;color:var(--muted);margin:10px 2px 0">Power BI embedded intent is rising across four new or accelerating terms — and it's the ad group where our rank is weakest (52%). That combination makes it the clearest bid move this week. All show zero same-week conversions, consistent with the normal research lag.</p>
+    </div>
+
+    <!-- 4c -->
+    <div class="subsec">
+      <div class="subsec-h">4c &middot; Customer journey <span class="q">— where paid clicks land</span></div>
+      <div class="tablewrap">
+      <table>
+        <thead><tr><th>Landing page</th><th class="r">Sessions</th><th class="r">Engaged</th><th class="r">Bounce</th><th class="r">Conv</th></tr></thead>
+        <tbody>
+          <tr><td>/reveal-vs-power-bi</td><td class="r">95</td><td class="r">61%</td><td class="r">39%</td><td class="r">0</td></tr>
+          <tr><td>/ (homepage)</td><td class="r">80</td><td class="r">41%</td><td class="r">59%</td><td class="r">3</td></tr>
+          <tr><td>/reveal-vs-logi-analytics</td><td class="r">56</td><td class="r goodlbl">88%</td><td class="r">12%</td><td class="r">0</td></tr>
+          <tr><td>/reveal-vs-metabase</td><td class="r">49</td><td class="r">47%</td><td class="r">53%</td><td class="r">0</td></tr>
+          <tr><td>/reveal-vs-tableau</td><td class="r">29</td><td class="r">55%</td><td class="r">—</td><td class="r">0</td></tr>
+          <tr><td>/pricing/embedded-analytics</td><td class="r">9</td><td class="r">56%</td><td class="r">—</td><td class="r">0</td></tr>
+          <tr class="grp"><td>Demand Gen &rarr; homepage</td><td class="r">963</td><td class="r badlbl">34%</td><td class="r">66%</td><td class="r">1</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="font-size:12.5px;color:var(--muted);margin:10px 2px 0">Comparison pages perform well; the two leaks are paid-search clicks hitting the homepage (~59% bounce) and Demand Gen sending high volume to the homepage at 66% bounce. The page-gap clusters get almost no traffic because we can't yet rank them.</p>
+    </div>
+
+    <!-- 4d -->
+    <div class="subsec">
+      <div class="subsec-h">4d &middot; Demand Gen analysis <span class="q">— 46% of Google spend</span></div>
+      <div class="mkpis" style="grid-template-columns:repeat(4,1fr)">
+        <div class="mkpi"><div class="l">Share of Google spend</div><div class="v">46%</div><div class="sub">~$3.76k / wk</div></div>
+        <div class="mkpi"><div class="l">Sessions (wk)</div><div class="v">963</div><div class="sub">to homepage</div></div>
+        <div class="mkpi"><div class="l">Engagement rate</div><div class="v">34%</div><div class="sub"><b class="r">vs 58%</b> on search</div></div>
+        <div class="mkpi"><div class="l">Conversions (wk)</div><div class="v">1</div><div class="sub">low direct yield</div></div>
+      </div>
+      <p style="font-size:13px;margin:0 0 8px">Demand Gen is running broadly against a single generic audience, and nearly all of its traffic is directed to the homepage — where engagement (34%) runs well below paid search (58%) and bounce is high. It is buying reach, but not yet the intent-level quality the program needs.</p>
+      <p style="font-size:13px;margin:0"><b>The suggestion is to segment Demand Gen by intent</b> so spend follows the strongest signal and each tier can be measured on quality: a top tier of competitor and pricing searchers, a middle tier of embedded-analytics and BI researchers, and a broad awareness tier. Each tier should point to a dedicated, matching page — comparison and pricing pages for high intent — rather than the homepage. This turns Demand Gen into a graded quality-and-reach engine instead of a single broad line.</p>
+    </div>
+
+    <!-- 4e -->
+    <div class="subsec">
+      <div class="subsec-h">4e &middot; Quality Score <span class="q">— the unlock</span></div>
+      <p class="keyfix"><b>Diagnosis (keyword-level data):</b> across every Non-Brand-US ad group, <b>landing-page experience is "Below average" on 100% of keywords</b> and <b>predicted CTR is "Below average" almost everywhere</b>, while <b>ad relevance is mostly "Above average."</b> The ads are on-target; the pages and the copy hooks are what pull ad rank down. Because Google won't serve a low-QS ad even when we'll pay, this is exactly why the flagship budget sits idle — and raising Quality Score lifts rank without raising bids.</p>
+      <div class="tablewrap">
+      <table>
+        <thead><tr><th>Ad group</th><th class="r">QS</th><th>Predicted CTR</th><th>Ad relevance</th><th>Landing page</th></tr></thead>
+        <tbody>
+          <tr><td>Embedded Analytics — Core</td><td class="r">2-3</td><td class="badlbl">Below</td><td class="goodlbl">Above</td><td class="badlbl">Below</td></tr>
+          <tr><td>Embedded BI — Core</td><td class="r">1-3</td><td class="badlbl">Below</td><td class="avglbl">Avg/Below</td><td class="badlbl">Below</td></tr>
+          <tr><td>Embedded Dashboards — Core</td><td class="r">3-5</td><td class="badlbl">Below</td><td class="goodlbl">Above</td><td class="badlbl">Below</td></tr>
+          <tr><td>White Label Analytics — Core</td><td class="r">2-3</td><td class="badlbl">Below</td><td class="goodlbl">Above</td><td class="badlbl">Below</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="subh">Landing-page experience — the fixes (this is the bigger lever)</div>
+      <ul class="wl">
+        <li class="do"><b>Build the two missing pages</b> (/embedded-bi, /embedded-dashboards). Those ad groups have no dedicated page, so the score is capped until they exist.</li>
+        <li class="do"><b>Repoint every ad to its exact-match page</b> (not the homepage) and make the H1 mirror the keyword.</li>
+        <li class="do"><b>Improve the existing pages</b> (/embedded-analytics, /white-label-analytics): page speed &amp; Core Web Vitals, mobile experience, clear above-the-fold value, a visible demo/CTA, and deeper on-topic content. Landing-page experience is more than message match — speed and relevance both count.</li>
+      </ul>
+      <div class="subh">Predicted CTR — the second lever</div>
+      <ul class="wl">
+        <li class="do"><b>Refresh the ad copy</b> (RSA): pin the exact keyword into headlines, sharpen CTAs, add sitelinks/callouts. Suggestions are in the monthly copy refresh (&sect;11).</li>
+        <li class="watch"><b>Leave ad relevance alone</b> — it's already "Above average," so effort there is wasted; and don't raise bids blindly, because the constraint is Quality Score, not bid.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============ BING ============ -->
+<h2 class="sec"><span class="n">5</span> Bing / Microsoft — deep dive</h2>
+<div class="plat g-bing">
+  <div class="phd">
+    <div>
+      <div class="nm">Bing / Microsoft Ads</div>
+      <div class="role">Demand capture (search) — new / restarted · spam watch</div>
+      <span class="owner">Owner · Poojitha</span>
+    </div>
+    <div class="spend"><div class="l">Spend / wk</div><div class="v">$634</div><div class="l" style="text-transform:none">&#9660; 14% WoW</div></div>
+  </div>
+  <div class="pbody">
+    <div class="subsec" style="border-top:none;padding-top:0;margin-top:0">
+      <div class="subsec-h">5a &middot; Search visibility <span class="q">— all loss is rank; no budget cap</span></div>
+      <div class="tablewrap">
+      <table>
+        <thead><tr><th>Campaign</th><th class="r">Spend</th><th class="r">Show-up</th><th class="r">Lost: rank</th><th class="r">QS</th><th class="r">Junk clicks</th><th>Read &amp; fix</th></tr></thead>
+        <tbody>
+          <tr class="grp"><td>Compete US</td><td class="r">$357</td><td class="r">77%</td><td class="r">23%</td><td class="r">8</td><td class="r avglbl">105</td><td>Best line (32 conv / 4wk ~$65). Hold bids, add negatives.</td></tr>
+          <tr><td>Compete International</td><td class="r">$182</td><td class="r">99%</td><td class="r">1%</td><td class="r">6</td><td class="r badlbl">57</td><td>Full coverage but junkiest — tighten hardest.</td></tr>
+          <tr><td>Non-Brand International</td><td class="r">$66</td><td class="r">100%</td><td class="r">0%</td><td class="r">7</td><td class="r">0</td><td>Tiny, clean.</td></tr>
+          <tr><td>Non-Brand US</td><td class="r">$16</td><td class="r">98%</td><td class="r">2%</td><td class="r">7</td><td class="r">1</td><td>Tiny volume; fine.</td></tr>
+          <tr><td>Brand</td><td class="r">$12</td><td class="r">76%</td><td class="r">24%</td><td class="r">6</td><td class="r">2</td><td>Nudge to full coverage.</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-h">5b &middot; Top search terms <span class="q">— week over week</span></div>
+      <div class="tablewrap">
+      <table>
+        <thead><tr><th>Search term</th><th class="r">This wk</th><th class="r">Prior wk</th><th class="r">Change</th><th>Read</th></tr></thead>
+        <tbody>
+          <tr><td>power bi embedded analytics</td><td class="r">$64</td><td class="r">$30</td><td class="r goodlbl">+113%</td><td>10 clicks / 266 impr — Power BI surge on Bing too.</td></tr>
+          <tr><td>power bi embedding in a company website</td><td class="r">$24</td><td class="r">$42</td><td class="r">&minus;42%</td><td>High-intent embed.</td></tr>
+          <tr><td>metabase competitors</td><td class="r">$23</td><td class="r">$0</td><td class="r goodlbl">new</td><td>Competitor intent.</td></tr>
+          <tr><td>power bi embedded pricing</td><td class="r">$21</td><td class="r">$4</td><td class="r goodlbl">+402%</td><td>Pricing intent surging.</td></tr>
+          <tr><td>embedded analytics</td><td class="r">$16</td><td class="r">$0</td><td class="r goodlbl">new</td><td>Head term.</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-h">5c &middot; Spam &amp; waste to kill <span class="q">— standing job, tightest on Bing</span></div>
+      <div class="tablewrap">
+      <table>
+        <thead><tr><th>Query</th><th class="r">Wasted</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>"insolence dashboard"</td><td class="r badlbl">$49</td><td>Nonsense broad match</td></tr>
+          <tr><td>"...toco toucan; with its strikingly lar..."</td><td class="r badlbl">$50</td><td>Broad-match garbage</td></tr>
+          <tr><td>"open altimetry data"</td><td class="r badlbl">$34</td><td>Irrelevant</td></tr>
+          <tr><td>"who are net health software competitor"</td><td class="r badlbl">$20</td><td>Wrong company</td></tr>
+          <tr><td>"reveal sign in" / "reveal xb"</td><td class="r badlbl">$45</td><td>Existing-customer navigation</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="font-size:12.5px;color:var(--muted);margin:10px 2px 0"><b>Negatives to add (task in &sect;12):</b> <code>insolence</code>, <code>toucan</code>, <code>toco</code>, <code>altimetry</code>, <code>net health</code>, <code>grok</code>, <code>sign in</code>, <code>xb</code> — roughly $150+ of waste over two weeks. Bing runs broader match so it needs the tightest watch; Google's exact-match keywords are cleaner, but any junk that appears there gets the same treatment.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LINKEDIN ============ -->
+<h2 class="sec"><span class="n">6</span> LinkedIn — deep dive</h2>
+<div class="plat g-li">
+  <div class="phd">
+    <div>
+      <div class="nm">LinkedIn Ads</div>
+      <div class="role">Amplification — reach the CTO / economic buyer at ICP accounts · judged on audience quality &amp; influence</div>
+      <span class="owner">Owner · Sydney</span>
+    </div>
+    <div class="spend"><div class="l">Spend / wk</div><div class="v">$1,092</div><div class="l" style="text-transform:none">flat WoW</div></div>
+  </div>
+  <div class="pbody">
+    <div class="mkpis">
+      <div class="mkpi"><div class="l">Spend</div><div class="v">$1,092</div><div class="sub">flat WoW · goal: hold</div></div>
+      <div class="mkpi"><div class="l">CTR</div><div class="v">4.59%</div><div class="sub"><b class="g">vs ~0.45% benchmark</b></div></div>
+      <div class="mkpi"><div class="l">Reach</div><div class="v">3,972</div><div class="sub"><b class="w">narrow</b> · +9% WoW</div></div>
+      <div class="mkpi"><div class="l">Frequency</div><div class="v">5.2&times;</div><div class="sub"><b class="w">goal 3-5</b> · at ceiling</div></div>
+      <div class="mkpi"><div class="l">Engagement rate</div><div class="v">4.63%</div><div class="sub"><b class="g">strong</b></div></div>
+    </div>
+    <p style="font-size:13px;margin:0 0 14px"><b>Top insight:</b> CTR and engagement are excellent — well above LinkedIn benchmark — but we're reaching only ~3,970 people at a frequency of 5.2×. We're saturating a narrow audience, which is what's fatiguing the creative. The gains come from widening reach (6sense accounts) and refreshing what's fatiguing, not from spending more against the same small pool.</p>
+    <div class="subsec" style="border-top:none;padding-top:0;margin-top:0">
+      <div class="subsec-h">What's running &amp; how it's paying back</div>
+      <div class="tablewrap">
+      <table>
+        <thead><tr><th>Campaign / ad</th><th class="r">Spend</th><th class="r">CTR</th><th class="r">Trend</th><th>ROI read</th></tr></thead>
+        <tbody>
+          <tr><td>TOF ICP — Image</td><td class="r">$651</td><td class="r">4.85%</td><td class="r goodlbl">&#9650;</td><td>The ROI driver — above benchmark and rising. Shift budget here.</td></tr>
+          <tr><td>TOF ICP — Video</td><td class="r">$231</td><td class="r">4.16%</td><td class="r badlbl">&#9660;</td><td>Fatiguing from 6.84% — refresh or pause.</td></tr>
+          <tr><td>Website Retargeting</td><td class="r">$210</td><td class="r">0.20%</td><td class="r badlbl">&#9660;</td><td>$210 for ~1 click — pool too small.</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="subh">The ROI moves</div>
+      <ul class="wl">
+        <li class="pro"><b>Concentrate on the image ad</b> — the one asset beating benchmark and improving.</li>
+        <li class="do"><b>Feed 6sense in-market accounts into remarketing</b> — fixes the starved retargeting pool and widens reach beyond the ~3,970 we keep hitting; measure on influenced pipeline.</li>
+        <li class="do"><b>Refresh the fatiguing video</b> and give paid-social clicks a dedicated CTO landing page instead of the homepage.</li>
+        <li class="watch"><b>Confirm CTO/VP delivery</b> via the demographic report — audience quality is where LinkedIn ROI starts.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============ REDDIT ============ -->
+<h2 class="sec"><span class="n">7</span> Reddit — deep dive</h2>
+<div class="plat g-reddit">
+  <div class="phd">
+    <div>
+      <div class="nm">Reddit Ads</div>
+      <div class="role">Amplification — developer / researcher awareness · judged on reach, recall &amp; assist</div>
+      <span class="owner">Owner · Sydney</span>
+    </div>
+    <div class="spend"><div class="l">Spend / wk</div><div class="v">$405</div><div class="l" style="text-transform:none">flat WoW</div></div>
+  </div>
+  <div class="pbody">
+    <div class="mkpis">
+      <div class="mkpi"><div class="l">Spend</div><div class="v">$405</div><div class="sub">flat WoW</div></div>
+      <div class="mkpi"><div class="l">Reach</div><div class="v">33.6k</div><div class="sub">130k over 4 wks</div></div>
+      <div class="mkpi"><div class="l">CTR</div><div class="v">0.82%</div><div class="sub"><b class="g">vs ~0.4% benchmark</b></div></div>
+      <div class="mkpi"><div class="l">Frequency</div><div class="v">1.05&times;</div><div class="sub"><b class="r">goal 2-3</b> · too low</div></div>
+      <div class="mkpi"><div class="l">Efficiency</div><div class="v">~$11</div><div class="sub">CPM · ~$1.39 CPC</div></div>
+    </div>
+    <p style="font-size:13px;margin:0 0 14px"><b>Top insight:</b> cheap, efficient developer reach with a rising CTR — but at a frequency of 1.05 the audience sees us once and forgets. The opportunity is recall, not more reach: tighten the audience, raise frequency, and give a second creative something to rotate to.</p>
+    <div class="subsec" style="border-top:none;padding-top:0;margin-top:0">
+      <div class="subsec-h">The ROI moves</div>
+      <ul class="wl">
+        <li class="do"><b>Lift frequency to ~2-3</b> on a tighter audience to build recall.</li>
+        <li class="do"><b>Add a second dev-native creative</b> (SDK / "embed in hours" / docs) to fight fatigue and enable learning.</li>
+        <li class="do"><b>Send clicks to a developer page</b> (SDK / docs / trial), not the homepage.</li>
+        <li class="watch"><b>Audit subreddit placements</b> for fit and measure the assist — branded-search lift after exposure, not direct leads.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============ G2 ============ -->
+<h2 class="sec"><span class="n">8</span> G2 Advertising — deep dive</h2>
+<div class="plat g-g2">
+  <div class="phd">
+    <div>
+      <div class="nm">G2 (Paid Promotions)</div>
+      <div class="role">Comparison-shortlist channel — where embedded-BI buyers build their list · Active, ends Jul 31</div>
+      <span class="owner">Owner · Casey</span>
+    </div>
+    <div class="spend"><div class="l">Sponsored CTR</div><div class="v">0.0%</div><div class="l" style="text-transform:none">0 clicks</div></div>
+  </div>
+  <div class="pbody">
+    <div class="mkpis">
+      <div class="mkpi"><div class="l">Sponsored impr.</div><div class="v">67</div><div class="sub">May 1 – Jul 22</div></div>
+      <div class="mkpi"><div class="l">Sponsored clicks</div><div class="v">0</div><div class="sub"><b class="r">0.0% CTR</b></div></div>
+      <div class="mkpi"><div class="l">Organic CTR</div><div class="v">5.6%</div><div class="sub">2 clicks / 36 impr</div></div>
+      <div class="mkpi"><div class="l">Competitors targeted</div><div class="v">0</div><div class="sub"><b class="r">category only</b></div></div>
+      <div class="mkpi"><div class="l">CTA destination</div><div class="v">Home</div><div class="sub"><b class="r">not comparison</b></div></div>
+    </div>
+
+    <div class="chartwrap" style="margin-bottom:14px">
+      <div style="font-weight:700;font-size:13px;margin-bottom:2px">Sponsored impressions vs clicks — the flight</div>
+      <div style="font-size:11.5px;color:var(--muted);margin-bottom:8px">Impressions built to a small peak in early July; clicks stayed flat at zero the entire time.</div>
+      <svg viewBox="0 0 640 190" width="100%" font-family="Roboto" role="img" aria-label="G2 sponsored impressions vs clicks">
+        <g stroke="#e4e9f2" stroke-width="1">
+          <line x1="40" y1="20" x2="620" y2="20"/><line x1="40" y1="70" x2="620" y2="70"/><line x1="40" y1="120" x2="620" y2="120"/><line x1="40" y1="160" x2="620" y2="160"/>
+        </g>
+        <g fill="#7a8aa3" font-size="10" text-anchor="end"><text x="34" y="23">30</text><text x="34" y="73">20</text><text x="34" y="123">10</text><text x="34" y="163">0</text></g>
+        <!-- impressions -->
+        <polyline fill="none" stroke="#2A41A2" stroke-width="2.5" points="72,160 132,160 192,160 252,160 312,140 372,150 432,135 492,95 552,30 592,85"/>
+        <g fill="#2A41A2"><circle cx="312" cy="140" r="2.6"/><circle cx="372" cy="150" r="2.6"/><circle cx="432" cy="135" r="2.6"/><circle cx="492" cy="95" r="2.6"/><circle cx="552" cy="30" r="3.2"/><circle cx="592" cy="85" r="2.6"/></g>
+        <text x="552" y="22" fill="#2A41A2" font-size="10" text-anchor="middle">26</text>
+        <!-- clicks (flat 0) -->
+        <polyline fill="none" stroke="#c23b39" stroke-width="2.5" stroke-dasharray="5,4" points="72,160 592,160"/>
+        <text x="596" y="163" fill="#c23b39" font-size="10">0 clicks</text>
+        <g fill="#7a8aa3" font-size="9" text-anchor="middle"><text x="72" y="178">4/27</text><text x="252" y="178">5/25</text><text x="432" y="178">6/22</text><text x="552" y="178">7/6</text><text x="592" y="178">7/20</text></g>
+      </svg>
+      <div class="legend"><span><span class="swatch" style="background:#2A41A2"></span> Sponsored impressions</span><span><span class="swatch" style="background:#c23b39"></span> Sponsored clicks (flat at 0)</span></div>
+    </div>
+
+    <p class="keyfix"><b>This placement is underperforming, and it's a setup problem — not a channel problem.</b> Over the flight the sponsored ad drew 67 impressions and 0 clicks; the free organic listing outperformed it. Three misconfigurations explain it:</p>
+    <ul class="wl">
+      <li class="con"><b>No competitors targeted.</b> The placement is category-only, so it never appears on the competitor and "alternatives" pages where buyers actually shortlist — the same Power BI / Tableau / Sisense comparisons where our search demand is surging.</li>
+      <li class="con"><b>The CTA points to the homepage</b>, not a comparison or embedded-analytics page — the wrong destination for a shortlisting buyer.</li>
+      <li class="con"><b>Volume is minimal</b> (67 impressions in ~12 weeks) because the lone category page carries little traffic.</li>
+    </ul>
+    <div class="subh">The fix</div>
+    <ul class="wl">
+      <li class="do"><b>Add targeted competitors</b> (Power BI, Tableau, Sisense, Metabase, Luzmo, Looker, Domo, GoodData); lead with Power BI given the live demand.</li>
+      <li class="do"><b>Repoint the CTA</b> to /reveal-vs-&lt;competitor&gt; and /embedded-analytics.</li>
+      <li class="do"><b>Evaluate G2 Clicks (CPC)</b> for accountability, and harvest G2 buyer-intent into ABM / 6sense. <small class="src">Live intent pull is one connector approval away.</small></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ FUNNEL ============ -->
+<h2 class="sec"><span class="n">9</span> The path — spend &rarr; site &rarr; lead &rarr; opp (with lag)</h2>
+<div class="card">
+  <div class="path">
+    <div class="pstep"><div class="l">Spend</div><div class="n">$10.3k</div><div class="s">4 channels</div></div>
+    <div class="parrow">&rarr;</div>
+    <div class="pstep"><div class="l">Paid sessions</div><div class="n">~1,630</div><div class="s">GA4</div></div>
+    <div class="parrow">&rarr;</div>
+    <div class="pstep"><div class="l">Leads (wk)</div><div class="n">17</div><div class="s">&#9650; 70%</div></div>
+    <div class="parrow">&rarr;</div>
+    <div class="pstep"><div class="l">Qualified</div><div class="n">~33%</div><div class="s">67% unqual</div></div>
+    <div class="parrow">&rarr;</div>
+    <div class="pstep" style="border-color:#a9cbb5;background:var(--good-bg)"><div class="l">Pipeline (90d)</div><div class="n">$386k</div><div class="s">9 opps</div></div>
+  </div>
+  <div class="callout" style="margin-top:12px"><b>The lag is the strategy.</b> Discovery happens on a non-brand or competitor search; the opportunity lands 30+ days later, often on brand. The campaign we're starving (top non-brand, 26% show-up) is the front door — the Quality-Score fix in &sect;4 widens it. The real break point is quality, not flow: leads are up 70% and pipeline is real, but two-thirds of leads are disqualified, so the next dollar buys tighter targeting.</div>
+</div>
+
+<!-- ============ COVERAGE ============ -->
+<h2 class="sec"><span class="n">10</span> Coverage &amp; the next dollar</h2>
+<div class="grid" style="grid-template-columns:1fr 1fr;gap:14px">
+  <div class="card">
+    <div style="font-weight:700;margin-bottom:8px">Coverage map — who we buy, where</div>
+    <div class="tablewrap">
+    <table>
+      <thead><tr><th>Buyer</th><th>Channel</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>In-market analytics buyer</td><td>Google + Bing search</td><td><span class="pill p-warn">QS-limited</span></td></tr>
+        <tr><td>CTO / economic buyer</td><td>LinkedIn (+ 6sense)</td><td><span class="pill p-warn">RT starved</span></td></tr>
+        <tr><td>Developer / researcher</td><td>Reddit + non-brand</td><td><span class="pill p-good">Covered</span></td></tr>
+        <tr><td>Comparison shortlister</td><td>G2</td><td><span class="pill p-bad">Misconfigured</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="font-size:12.5px;color:var(--muted);margin:10px 2px 0">Budget: ~$45k/mo vs the ~$68k cap = <b>~$23k/mo headroom</b>. Google can't absorb it yet (QS-limited), so it's free for G2-with-competitors and the 6sense&rarr;LinkedIn layer.</p>
+  </div>
+  <div class="card">
+    <div style="font-weight:700;margin-bottom:8px">Where the next dollar goes</div>
+    <ul class="wl" style="font-size:13px">
+      <li class="do"><b>Quality-Score work first</b> — unlocking the idle non-brand budget beats any new line and carries no media cost.</li>
+      <li class="do"><b>G2 with competitors</b> — turn a 0-click placement into shortlist interception.</li>
+      <li class="do"><b>6sense &rarr; LinkedIn</b> — convert aware accounts with a second touch.</li>
+      <li class="watch"><b>ChatGPT Ads — not yet.</b> Revisit once search rank is fixed.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ SCALING ============ -->
+<h2 class="sec"><span class="n">11</span> Scaling — how do we grow quality volume?</h2>
+<div class="card" style="margin-bottom:14px">
+  <p style="font-size:13.5px;margin:0 0 6px"><b>Can we 10x paid volume? Not on paid search alone.</b> This is a high-ticket, niche category; total high-intent search volume caps pure capture. The realistic near-term prize is <b>~1.5-2x quality leads over a quarter</b> by unlocking what's already wasted, then adding surfaces. 10x is a portfolio question — new channels plus more mid-funnel — not a bid change.</p>
+  <div class="ladder">
+    <div class="step"><div class="num">1</div><div class="txt"><b>Unlock idle budget via Quality Score.</b> ~$600/day sits unused on non-brand. Free volume, no media cost — the biggest single lever.</div></div>
+    <div class="step"><div class="num">2</div><div class="txt"><b>Own the Power BI embedded surge.</b> Bids on the weak-rank Power BI ad group + a dedicated push across Google, Bing &amp; G2.</div></div>
+    <div class="step"><div class="num">3</div><div class="txt"><b>Fix G2 with competitor targeting.</b> A high-intent surface at 0 clicks today — pure upside.</div></div>
+    <div class="step"><div class="num">4</div><div class="txt"><b>Build the two missing pages.</b> Unlocks clusters we can't rank today.</div></div>
+    <div class="step"><div class="num">5</div><div class="txt"><b>Intent-tier Demand Gen.</b> Convert 46% of spend from a homepage firehose into graded quality + reach.</div></div>
+    <div class="step"><div class="num">6</div><div class="txt"><b>6sense &rarr; LinkedIn.</b> Multi-touch on aware accounts to lift conversion.</div></div>
+    <div class="step"><div class="num">7</div><div class="txt"><b>EMEA as US saturates.</b> Follow Ahrefs volume by country; US intent first, always.</div></div>
+  </div>
+</div>
+
+<div class="chartwrap">
+  <div style="font-weight:700;font-size:14px;margin-bottom:2px">Weekly paid leads — 12-week trend &amp; 1-month forecast</div>
+  <div style="font-size:12px;color:var(--muted);margin-bottom:10px">Illustrative forecast assuming the &sect;11 optimizations land. An estimate, not a guarantee — the larger lift arrives in month 2-3 as the new pages and G2 mature.</div>
+  <svg viewBox="0 0 660 250" width="100%" font-family="Roboto" role="img" aria-label="Weekly paid leads trend and forecast">
+    <g stroke="#e4e9f2" stroke-width="1">
+      <line x1="54" y1="24" x2="614" y2="24"/><line x1="54" y1="72" x2="614" y2="72"/><line x1="54" y1="119" x2="614" y2="119"/><line x1="54" y1="166" x2="614" y2="166"/><line x1="54" y1="214" x2="614" y2="214"/>
+    </g>
+    <g fill="#7a8aa3" font-size="10" text-anchor="end"><text x="48" y="27">24</text><text x="48" y="75">18</text><text x="48" y="122">12</text><text x="48" y="169">6</text><text x="48" y="217">0</text></g>
+    <rect x="464.7" y="24" width="149.3" height="190" fill="#f4f7ff"/>
+    <line x1="464.7" y1="24" x2="464.7" y2="214" stroke="#c9d5f2" stroke-width="1" stroke-dasharray="3,3"/>
+    <text x="470" y="36" fill="#9aa8c6" font-size="10">forecast &rarr;</text>
+    <polyline fill="none" stroke="#9aa8c6" stroke-width="2" stroke-dasharray="5,4" points="464.7,79.4 502.0,111.1 539.3,111.1 576.7,111.1 614.0,111.1"/>
+    <polyline fill="none" stroke="#EC417A" stroke-width="2.5" stroke-dasharray="6,3" points="464.7,79.4 502.0,95.2 539.3,79.4 576.7,63.6 614.0,55.7"/>
+    <polyline fill="none" stroke="#2A41A2" stroke-width="2.5" points="54.0,174.4 91.3,142.8 128.7,158.6 166.0,150.7 203.3,119.0 240.7,190.2 278.0,47.8 315.3,126.9 352.7,142.8 390.0,87.3 427.3,134.8 464.7,79.4"/>
+    <g fill="#2A41A2"><circle cx="54.0" cy="174.4" r="2.6"/><circle cx="91.3" cy="142.8" r="2.6"/><circle cx="128.7" cy="158.6" r="2.6"/><circle cx="166.0" cy="150.7" r="2.6"/><circle cx="203.3" cy="119.0" r="2.6"/><circle cx="240.7" cy="190.2" r="2.6"/><circle cx="278.0" cy="47.8" r="2.6"/><circle cx="315.3" cy="126.9" r="2.6"/><circle cx="352.7" cy="142.8" r="2.6"/><circle cx="390.0" cy="87.3" r="2.6"/><circle cx="427.3" cy="134.8" r="2.6"/><circle cx="464.7" cy="79.4" r="3.4"/></g>
+    <g fill="#EC417A"><circle cx="502.0" cy="95.2" r="2.6"/><circle cx="539.3" cy="79.4" r="2.6"/><circle cx="576.7" cy="63.6" r="2.6"/><circle cx="614.0" cy="55.7" r="3.4"/></g>
+    <text x="278.0" y="40" fill="#212529" font-size="10" text-anchor="middle">21</text>
+    <text x="620" y="55" fill="#EC417A" font-size="10">~20</text>
+    <text x="620" y="114" fill="#9aa8c6" font-size="10">~13</text>
+    <g fill="#7a8aa3" font-size="9" text-anchor="middle"><text x="54" y="230">4/27</text><text x="128.7" y="230">5/11</text><text x="203.3" y="230">5/25</text><text x="278" y="230">6/8</text><text x="352.7" y="230">6/22</text><text x="427.3" y="230">7/6</text><text x="464.7" y="243">7/13</text><text x="539.3" y="230">7/27</text><text x="614" y="230">8/10</text></g>
+  </svg>
+  <div class="legend">
+    <span><span class="swatch" style="background:#2A41A2"></span> Actual weekly leads</span>
+    <span><span class="swatch" style="background:#EC417A"></span> Forecast — optimizations land (~20/wk)</span>
+    <span><span class="swatch" style="background:#9aa8c6"></span> Baseline — no change (~13/wk)</span>
+  </div>
+  <p style="font-size:12px;color:var(--muted);margin:10px 2px 0">Recent 4-week average ~13 leads/wk (~55/mo). If the Quality-Score unlock, Power BI push and G2 fix land, a realistic ramp reaches ~20/wk (~85/mo) within the month — closing most of the gap to the 100/mo floor.</p>
+</div>
+
+<div class="card" style="margin-top:14px">
+  <div style="font-weight:700;margin-bottom:6px">Monthly cadence — copy &amp; creative refresh</div>
+  <div class="subh">Ad copy refresh <span class="freq">MONTHLY</span></div>
+  <div class="copybox">
+    <b>Embedded Analytics — Core:</b> <code>Embedded Analytics SDK</code> · <code>Embed Dashboards in Your App</code> · <code>Native Analytics for SaaS &amp; ISVs</code> · <code>Ship Analytics in Days</code> — desc: <code>White-label dashboards your users own. See pricing.</code><br>
+    <b>White Label Analytics — Core:</b> <code>White-Label Analytics, Fully Yours</code> · <code>Your Brand, Not Ours</code><br>
+    <b>Embedded BI / Dashboards</b> (once pages ship): mirror the new page H1s in pinned headlines.
+  </div>
+  <div class="subh">Ad creative refresh <span class="freq">MONTHLY</span> — what's not working</div>
+  <ul class="wl" style="margin-top:2px">
+    <li class="con"><b>LinkedIn TOF video</b> — CTR fell 6.84% &rarr; 4.16% (fatigue, amplified by 5.2&times; frequency). Request a fresh cut.</li>
+    <li class="con"><b>Reddit</b> — single static creative; add a 2nd dev-native angle.</li>
+    <li class="watch"><b>Display &rarr; /webinars/build-vs-buy</b> — 63% bounce; refresh creative or repoint.</li>
+  </ul>
+</div>
+
+<!-- ============ ACTIONS ============ -->
+<h2 class="sec"><span class="n">12</span> This week's actions <span style="font-size:11px;color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400">— all live in the Slingshot "Paid — Reveal" list</span></h2>
+<div class="tablewrap">
+<table>
+  <thead><tr><th>Task</th><th>Owner</th><th class="r">Start</th><th class="r">Due</th><th class="r">Est.</th></tr></thead>
+  <tbody>
+    <tr><td>Build /embedded-bi + /embedded-dashboards pages (top QS lever)</td><td><span class="owner-tag o-c">Casey</span></td><td class="r">Jul 23</td><td class="r">Aug 5</td><td class="r">4h</td></tr>
+    <tr><td>Repoint NB-US ads to exact-match pages + refresh RSA copy (QS)</td><td><span class="owner-tag o-p">Poojitha</span></td><td class="r">Jul 23</td><td class="r">Jul 29</td><td class="r">2h</td></tr>
+    <tr><td>Lift bids on Compete-US "Power BI" ad group</td><td><span class="owner-tag o-p">Poojitha</span></td><td class="r">Jul 23</td><td class="r">Jul 25</td><td class="r">45m</td></tr>
+    <tr><td>Restore brand defense to ~100% Search IS</td><td><span class="owner-tag o-p">Poojitha</span></td><td class="r">Jul 23</td><td class="r">Jul 24</td><td class="r">30m</td></tr>
+    <tr><td>Rebuild Demand Gen by intent tiers; point T1–2 at comparison pages</td><td><span class="owner-tag o-p">Poojitha</span></td><td class="r">Jul 23</td><td class="r">Jul 29</td><td class="r">3h</td></tr>
+    <tr><td>Bing spam sweep — negatives (insolence, toucan, toco, altimetry, net health, grok, sign in, xb)</td><td><span class="owner-tag o-p">Poojitha</span></td><td class="r">Jul 23</td><td class="r">Jul 24</td><td class="r">30m</td></tr>
+    <tr><td>Pause Compete-Brazil + Non-Brand-Brazil</td><td><span class="owner-tag o-p">Poojitha</span></td><td class="r">Jul 23</td><td class="r">Jul 24</td><td class="r">15m</td></tr>
+    <tr><td>G2 — add competitors, repoint CTA, evaluate G2 Clicks (CPC)</td><td><span class="owner-tag o-c">Casey</span></td><td class="r">Jul 23</td><td class="r">Jul 28</td><td class="r">1h</td></tr>
+    <tr><td>Feed 6sense in-market accounts into LinkedIn remarketing</td><td><span class="owner-tag o-s">Sydney</span></td><td class="r">Jul 23</td><td class="r">Jul 29</td><td class="r">1.5h</td></tr>
+    <tr><td>Shift LinkedIn budget to image ad; pause/refresh fatiguing video</td><td><span class="owner-tag o-s">Sydney</span></td><td class="r">Jul 23</td><td class="r">Jul 25</td><td class="r">45m</td></tr>
+    <tr><td>Pull LinkedIn demographic report (verify CTO/VP reach)</td><td><span class="owner-tag o-s">Sydney</span></td><td class="r">Jul 23</td><td class="r">Jul 25</td><td class="r">30m</td></tr>
+    <tr><td>Reddit — lift frequency to ~2-3 + add 2nd dev creative</td><td><span class="owner-tag o-s">Sydney</span></td><td class="r">Jul 23</td><td class="r">Jul 26</td><td class="r">45m</td></tr>
+    <tr><td>Reddit — audit subreddit placements</td><td><span class="owner-tag o-s">Sydney</span></td><td class="r">Jul 23</td><td class="r">Jul 26</td><td class="r">30m</td></tr>
+    <tr><td>Tighten targeting to cut 67% unqualified + LeadQuality__c + one CPL definition</td><td><span class="owner-tag o-c">Casey</span></td><td class="r">Jul 23</td><td class="r">Jul 31</td><td class="r">2h</td></tr>
+    <tr><td><span class="freq">MONTHLY</span> Ad copy refresh (suggestions in &sect;11)</td><td><span class="owner-tag o-p">Poojitha</span></td><td class="r">Jul 23</td><td class="r">Aug 3</td><td class="r">2h</td></tr>
+    <tr><td><span class="freq">MONTHLY</span> Request creative refresh (LinkedIn video, Reddit 2nd angle)</td><td><span class="owner-tag o-s">Sydney</span></td><td class="r">Jul 23</td><td class="r">Aug 3</td><td class="r">45m</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="foot">
+  <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22112%22%20height%3D%2228%22%20viewBox%3D%220%200%20112%2028%22%3E%3Ctext%20x%3D%220%22%20y%3D%2222%22%20font-family%3D%22Roboto%2CArial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22900%22%20fill%3D%22%232A41A2%22%3EReveal%3C/text%3E%3Ccircle%20cx%3D%22106%22%20cy%3D%228%22%20r%3D%224.5%22%20fill%3D%22%23EC417A%22/%3E%3C/svg%3E" alt="Reveal" style="height:20px;vertical-align:middle;margin-right:8px;opacity:.92">
+  Weekly paid brief · v8 (Reveal brand style), generated 22 Jul 2026 · sources: Google Ads &amp; GA4 (Supermetrics); Bing &amp; Reddit (Adzviser); LinkedIn (Supermetrics); leads/opps/pipeline (Salesforce); G2 Advertising (screenshots + connector). Quality-Score components from keyword-level Google Ads data (last 30d). Lead trend = weekly Mon-Sun paid Reveal leads; forecast is an illustrative scenario, not a guarantee. Not investment or financial advice.
+</div>
+
+</div>
+</body>
+</html>
