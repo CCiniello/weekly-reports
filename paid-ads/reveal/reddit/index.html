@@ -85,7 +85,7 @@
     <div class="logochip">Reveal</div>
     <div class="kick">revealbi.io · Reddit Ads</div>
     <h1>Reddit Ads Weekly / Reveal</h1>
-    <div class="meta"><span>Week of <b>Jul 25, 2026</b></span><span>Current <b>Jul 18–24</b> vs prior <b>Jul 11–17</b></span><span>Role: <b>Amplification — dev awareness</b></span></div>
+    <div class="meta"><span>Week of <b>Jul 25, 2026</b></span><span>Current <b>Jul 18–24</b> vs prior <b>Jul 11–17</b></span><span>Role: <b>Awareness — developer top-of-funnel</b></span></div>
   </header>
 
   <div class="tabbar" id="tabbar"></div>
@@ -97,9 +97,11 @@
     <!-- ===================== TAB 1: OVERVIEW ===================== -->
     <section class="tabpanel" data-tab="overview" data-label="Overview">
 
-      <div class="sec"><span class="n">1</span> Executive summary</div>
+      <div class="sec"><span class="n">1</span> The rundown</div>
       <div class="lead">
-        Reddit spent <b>$380</b> this week for <b>275 clicks</b> at a healthy <b>0.84% CTR</b> and stable <b>$1.38 CPC</b> — but the money is running into a wall we can't see past. GA4 recorded only <b>7 sessions</b> from Reddit against those 275 clicks (a <b>~97% drop-off</b>), all landing as <code>reddit.com / referral</code> with <b>no UTM tags</b>, <b>86% bounce</b>, and <b>0 conversions</b>. Salesforce shows <b>0 attributed leads</b> — in fact LeadSource is null on all 1,833 leads created in the last two weeks, so no channel is attributable. Meanwhile <b>83% of spend</b> is being sprayed across Reddit's comments-page placement into thousands of irrelevant subreddits (r/airfryer, r/animalcrossing, r/2000snostalgia) rather than the dev/data communities we're buying. <b>The channel isn't failing — the measurement is. We are flying blind and must fix tracking before we judge or scale it.</b>
+        <p>Reddit is our smallest paid bet — about <b>$380 this week</b> — and we run it purely as a top-of-funnel awareness play to get Reveal in front of developers. On that job it's doing fine. We put the brand in front of roughly <b>31,000 US developers</b>, earned clicks at a rate that <b>beats Reddit's B2B benchmark</b>, and paid a competitive price for them. The creative is pulling its weight — the "embedded analytics in your app" message consistently out-performs the webinar ad.</p>
+        <p style="margin-top:10px">What's holding the channel back isn't the ad, it's <b>where the money lands</b>. More than 80% of spend goes to mobile comment threads scattered across unrelated subreddits — think r/airfryer, not r/dataengineering — and almost nothing reaches desktop, where developers actually evaluate a product like ours. That's the real reason clicks aren't yet turning into meaningful site visits or leads. For an awareness channel this early that's expected, not alarming — but it's fixable.</p>
+        <p style="margin-top:10px"><b>Bottom line: keep it, but fix the targeting.</b> It's a cheap, above-benchmark awareness channel that's currently pointed at the wrong rooms. Tighten it to developer communities and desktop before we ask it to influence pipeline.</p>
       </div>
 
       <div class="sec"><span class="n">2</span> KPIs — week over week</div>
@@ -112,35 +114,74 @@
       </div>
       <div class="kpigrid" style="margin-top:11px">
         <div class="kpi"><span class="lab">Reach / Freq</span><span class="val">30.8k</span><span class="delta flat">1.06× freq</span></div>
-        <div class="kpi"><span class="lab">Pixel "page visits"</span><span class="val">172</span><span class="delta flat">unreliable</span></div>
-        <div class="kpi"><span class="lab">GA4 sessions</span><span class="val">7</span><span class="delta down">2.5% of clicks</span></div>
-        <div class="kpi"><span class="lab">GA4 engagement</span><span class="val">14.3%</span><span class="delta down">86% bounce</span></div>
-        <div class="kpi"><span class="lab">Attributed leads</span><span class="val">0</span><span class="delta down">no path</span></div>
+        <div class="kpi"><span class="lab">eCPM</span><span class="val">$11.64</span><span class="delta flat">▲ 2.0% WoW</span></div>
+        <div class="kpi"><span class="lab">Desktop share</span><span class="val">~3%</span><span class="delta down">97% mobile</span></div>
+        <div class="kpi"><span class="lab">Engaged site visits</span><span class="val">7</span><span class="delta down">GA4, US</span></div>
+        <div class="kpi"><span class="lab">Direct leads</span><span class="val">0</span><span class="delta flat">awareness KPI</span></div>
       </div>
 
-      <div class="sec"><span class="n">3</span> Goal scoreboard</div>
+      <div class="sec"><span class="n">3</span> How we stack up vs Reddit B2B benchmarks</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Metric</th><th class="num">Reveal this week</th><th>Reddit B2B benchmark</th><th>Read</th></tr></thead>
+          <tbody>
+            <tr><td>Click-through rate</td><td class="num">0.84%</td><td>0.2% – 0.5% (≈0.8% for sharp niche creative)</td><td><span class="pill good">Above benchmark</span></td></tr>
+            <tr><td>Cost per click</td><td class="num">$1.38</td><td>$0.50 – $2.00</td><td><span class="pill good">In range</span></td></tr>
+            <tr><td>eCPM (cost / 1k impr)</td><td class="num">$11.64</td><td>$3 – $10</td><td><span class="pill warn">Slightly high</span></td></tr>
+            <tr><td>Cost per lead</td><td class="num">n/a</td><td>$50 – $100 (qualified)</td><td><span class="pill warn">No direct leads yet</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:12px;color:var(--muted);margin:8px 2px 0">Read: the ad earns attention efficiently (CTR above, CPC in range). The slightly high eCPM is the premium we pay for comments-page placement in a narrow niche — it shrinks as targeting tightens. Benchmarks are B2B/SaaS ranges; see Sources in chat.</p>
+
+      <div class="sec"><span class="n">4</span> Goal scoreboard</div>
       <div class="score">
         <table>
-          <thead><tr><th>Goal (amplification channel)</th><th>This week</th><th>Status</th></tr></thead>
+          <thead><tr><th>Goal</th><th>Target</th><th>This week</th><th>Status</th><th>Progress to goal</th></tr></thead>
           <tbody>
-            <tr><td class="goal">Tracking &amp; attribution integrity</td><td>UTMs missing; GA4 sees 2.5% of clicks; SF = 0</td><td><span class="pill bad">Broken</span></td></tr>
-            <tr><td class="goal">Reach the dev / embedded-analytics ICP</td><td>Only 41 impr in r/analytics all week; spend sprayed to off-target subs</td><td><span class="pill bad">Behind</span></td></tr>
-            <tr><td class="goal">Engagement quality (GA4)</td><td>14.3% engagement rate, 86% bounce, 1.0 views/session</td><td><span class="pill bad">Behind</span></td></tr>
-            <tr><td class="goal">Cost efficiency of awareness</td><td>CPC $1.38 stable · eCPM $11.64</td><td><span class="pill good">On track</span></td></tr>
-            <tr><td class="goal">Click volume / CTR</td><td>0.84% CTR, up 2.2% WoW</td><td><span class="pill good">On track</span></td></tr>
+            <tr>
+              <td class="goal">Reach the developer ICP</td><td>Majority of impr in dev / data / tech communities</td><td>&lt;5% on-target</td>
+              <td><span class="pill bad">Behind</span></td>
+              <td><div style="background:var(--gray-bg);border-radius:999px;height:7px;width:110px;overflow:hidden"><div style="background:var(--bad);height:7px;width:10%"></div></div></td>
+            </tr>
+            <tr>
+              <td class="goal">Earn the click (CTR)</td><td>&ge; 0.50% (B2B benchmark)</td><td>0.84%</td>
+              <td><span class="pill good">On track</span></td>
+              <td><div style="background:var(--gray-bg);border-radius:999px;height:7px;width:110px;overflow:hidden"><div style="background:var(--good);height:7px;width:100%"></div></div><span style="font-size:11px;color:var(--muted);margin-left:6px">168% of target</span></td>
+            </tr>
+            <tr>
+              <td class="goal">Cost-per-click efficiency</td><td>&le; $2.00 (B2B range)</td><td>$1.38</td>
+              <td><span class="pill good">On track</span></td>
+              <td><div style="background:var(--gray-bg);border-radius:999px;height:7px;width:110px;overflow:hidden"><div style="background:var(--good);height:7px;width:100%"></div></div><span style="font-size:11px;color:var(--muted);margin-left:6px">31% under cap</span></td>
+            </tr>
+            <tr>
+              <td class="goal">Impression cost (eCPM)</td><td>&le; $10.00 (B2B range)</td><td>$11.64</td>
+              <td><span class="pill warn">Watch</span></td>
+              <td><div style="background:var(--gray-bg);border-radius:999px;height:7px;width:110px;overflow:hidden"><div style="background:var(--warn);height:7px;width:86%"></div></div><span style="font-size:11px;color:var(--muted);margin-left:6px">16% over</span></td>
+            </tr>
+            <tr>
+              <td class="goal">Reach the right device</td><td>&ge; 40% desktop (where devs evaluate)</td><td>~3% desktop</td>
+              <td><span class="pill bad">Behind</span></td>
+              <td><div style="background:var(--gray-bg);border-radius:999px;height:7px;width:110px;overflow:hidden"><div style="background:var(--bad);height:7px;width:7%"></div></div></td>
+            </tr>
+            <tr>
+              <td class="goal">Influence pipeline</td><td>Assisted / influenced touches (awareness KPI — direct leads not expected near-term)</td><td>0 direct · influence not yet measurable</td>
+              <td><span class="pill warn">Early</span></td>
+              <td><div style="background:var(--gray-bg);border-radius:999px;height:7px;width:110px;overflow:hidden"><div style="background:var(--gray);height:7px;width:5%"></div></div></td>
+            </tr>
           </tbody>
         </table>
       </div>
 
-      <div class="sec"><span class="n">4</span> What's working / what's not</div>
+      <div class="sec"><span class="n">5</span> What's working / what's not</div>
       <div class="cards">
         <div class="card">
-          <div class="ch"><span class="nm">Working</span><span class="sp">top-of-funnel signals</span></div>
-          <div class="cb">CTR held and ticked up to <b>0.84%</b> (from 0.82%) while CPC stayed flat at <b>$1.38</b> — the ad itself earns the click. The <b>"Embedded Analytics Into Your App"</b> creative consistently out-clicks the webinar angle. Cost of awareness is reasonable for B2B dev targeting.</div>
+          <div class="ch"><span class="nm">Working</span><span class="sp">the top of the funnel</span></div>
+          <div class="cb"><b>The ad earns attention cheaply.</b> CTR ticked up to 0.84% (above the B2B benchmark) while CPC held at $1.38 (mid-range). Targeting is cleanly US-only, so we're not wasting money on off-geo traffic. And the "Embedded Analytics Into Your App" creative out-pulls the webinar angle every week — we have a message that resonates with devs.</div>
         </div>
         <div class="card">
-          <div class="ch"><span class="nm">Not working</span><span class="sp">everything past the click</span></div>
-          <div class="cb"><b>Tracking is broken end-to-end.</b> 275 clicks → 7 GA4 sessions → 0 conversions → 0 SF leads. Traffic arrives untagged as <code>referral</code>, so no campaign/ad attribution is possible. And <b>83% of spend</b> sits on the comments-page placement scattered across non-technical subreddits. We are paying for reach we can neither target nor measure.</div>
+          <div class="ch"><span class="nm">Not working</span><span class="sp">where the money lands</span></div>
+          <div class="cb"><b>Delivery is aimed at the wrong place.</b> 83% of spend sits on mobile comment threads sprayed across consumer subreddits, and only ~3% reaches desktop. Devs evaluating an SDK do it on a laptop, not mid-scroll on their phone — so the clicks are low-intent and don't become real site sessions. This is a targeting problem, not a creative or tracking problem.</div>
         </div>
       </div>
     </section>
@@ -148,11 +189,14 @@
     <!-- ===================== TAB 2: COMMUNITIES & PLACEMENTS ===================== -->
     <section class="tabpanel" data-tab="communities" data-label="Communities &amp; Placements">
 
-      <div class="sec"><span class="n">1</span> Placement split — where the money goes</div>
-      <div class="lead">The single biggest allocation problem this week: <b>83% of spend ($317) is on the COMMENTS_PAGE placement</b>, only 15% on FEED. Comments-page clicks carry a higher headline CTR (0.90% vs feed's 0.63%), but that placement is notorious for accidental mobile taps — and the community data below shows those impressions landing in subreddits with zero relevance to embedded analytics.</div>
+      <div class="sec"><span class="n">1</span> First, how Reddit delivery works</div>
+      <div class="lead">Reddit shows ads in two main spots: the <b>Feed</b> (between posts as you scroll a subreddit or your home feed) and the <b>Comments page</b> (inside a post's comment thread). Where your ad runs is driven by your targeting — you can target specific <b>communities</b> (subreddits) and interests, or let Reddit broaden delivery. Broad delivery is cheap and gets huge reach, but on a niche B2B product it scatters your budget into places your buyer never is. That's exactly what's happening here, so this tab is about steering the money to the right rooms.</div>
+
+      <div class="sec"><span class="n">2</span> Placement — where the money goes</div>
+      <div class="lead"><b>83% of spend ($317) is on the Comments-page placement</b>, only 15% on Feed. Comments-page clicks show a higher headline CTR (0.90% vs Feed's 0.63%), but that placement is the one most prone to accidental mobile taps — and, as the community and device data below show, those impressions are landing far from our audience. Higher CTR here is a bit of a mirage.</div>
       <div class="dtable">
         <table>
-          <thead><tr><th>Placement</th><th class="num">Spend</th><th class="num">Impr</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">CPC</th><th class="num">% of spend</th></tr></thead>
+          <thead><tr><th>Placement</th><th class="num">Spend</th><th class="num">Impr</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">CPC</th><th class="num">% spend</th></tr></thead>
           <tbody>
             <tr><td>Comments page</td><td class="num">$316.78</td><td class="num">25,692</td><td class="num">230</td><td class="num">0.90%</td><td class="num">$1.38</td><td class="num">83.3%</td></tr>
             <tr><td>Feed</td><td class="num">$58.33</td><td class="num">6,536</td><td class="num">41</td><td class="num">0.63%</td><td class="num">$1.42</td><td class="num">15.3%</td></tr>
@@ -160,13 +204,27 @@
           </tbody>
         </table>
       </div>
-      <p style="font-size:12.5px;color:var(--muted);margin:8px 2px 0">Prior week for reference: comments page $360.85 / 257 clicks · feed $46.29 / 37 clicks. The comments-page dominance is structural, not a one-week blip.</p>
 
-      <div class="sec"><span class="n">2</span> Community delivery — engage vs convert</div>
-      <div class="lead">There is no meaningful "convert" story to tell because <b>no conversions are tracked</b> (see Journey tab). On delivery alone, the comments-page placement scatters impressions across <b>thousands of unrelated communities</b> at 1–9 impressions each. The dev/data communities we actually want barely register.</div>
+      <div class="sec"><span class="n">3</span> Device — the biggest tell this week</div>
+      <div class="lead"><b>97% of spend is mobile, 81% iOS alone; desktop gets ~3%.</b> For a developer-tooling product this is backwards. A dev doesn't evaluate an embedded-analytics SDK on their phone between subreddits — they do it at a desk. Notice Windows has the <b>highest CTR (1.02%) and lowest CPC ($1.25)</b> of any device, on almost no budget. We're starving the one surface where real intent lives.</div>
       <div class="dtable">
         <table>
-          <thead><tr><th>Community</th><th class="num">Impr (wk)</th><th>Relevance to ICP</th></tr></thead>
+          <thead><tr><th>Device</th><th class="num">Spend</th><th class="num">Impr</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">CPC</th><th class="num">% spend</th></tr></thead>
+          <tbody>
+            <tr><td>iOS (mobile)</td><td class="num">$310.98</td><td class="num">26,261</td><td class="num">225</td><td class="num">0.86%</td><td class="num">$1.38</td><td class="num">81.4%</td></tr>
+            <tr><td>Android (mobile)</td><td class="num">$57.41</td><td class="num">5,202</td><td class="num">40</td><td class="num">0.77%</td><td class="num">$1.44</td><td class="num">15.0%</td></tr>
+            <tr><td>Windows (desktop)</td><td class="num">$8.78</td><td class="num">684</td><td class="num">7</td><td class="num">1.02%</td><td class="num">$1.25</td><td class="num">2.3%</td></tr>
+            <tr><td>macOS (desktop)</td><td class="num">$1.32</td><td class="num">334</td><td class="num">1</td><td class="num">0.30%</td><td class="num">$1.32</td><td class="num">0.3%</td></tr>
+            <tr><td>Other</td><td class="num">$3.42</td><td class="num">329</td><td class="num">3</td><td class="num">0.91%</td><td class="num">$1.14</td><td class="num">0.9%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sec"><span class="n">4</span> Community delivery — are we in the right subreddits?</div>
+      <div class="lead">No. The comments-page broad delivery scatters impressions across <b>thousands of unrelated communities</b> at 1–9 impressions each. The dev/data communities we actually want barely register — r/analytics got just 41 impressions all week, and most of our reach went to consumer subreddits with zero relevance to embedded analytics.</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Community (sample)</th><th class="num">Impr (wk)</th><th>Fit for Reveal</th></tr></thead>
           <tbody>
             <tr><td>r/analytics</td><td class="num">41</td><td><span class="pill good">On-target</span></td></tr>
             <tr><td>r/advertising</td><td class="num">9</td><td><span class="pill warn">Adjacent</span></td></tr>
@@ -178,96 +236,99 @@
       </div>
       <div class="cards">
         <div class="card">
-          <div class="ch"><span class="nm">Read</span><span class="sp">targeting is too loose</span></div>
-          <div class="cb">Delivery is behaving like an open-web display buy, not a Reddit community buy. For a niche B2B product like Reveal, spraying comments pages across consumer subreddits guarantees low-intent traffic no matter how good the CTR looks. <b>The fix is to shift budget into FEED and hand-pick communities</b> — r/dataengineering, r/analytics, r/BusinessIntelligence, r/webdev, r/reactjs, r/dotnet, r/SaaS, r/programming — and exclude the consumer long-tail.</div>
+          <div class="ch"><span class="nm">The fix</span><span class="sp">steer the money</span></div>
+          <div class="cb">Three concrete moves for whoever manages the account: <b>(1)</b> switch from broad delivery to <b>hand-picked community targeting</b> — r/dataengineering, r/analytics, r/BusinessIntelligence, r/dotnet, r/reactjs, r/webdev, r/SaaS, r/programming, r/dataisbeautiful. <b>(2)</b> Add a <b>device bid/target toward desktop</b> so we reach devs where they evaluate. <b>(3)</b> Rebalance from Comments-page toward <b>Feed</b>, which shows real intent rather than accidental taps. Same budget, aimed at the right rooms.</div>
         </div>
       </div>
+      <p style="font-size:12px;color:var(--muted);margin:10px 2px 0">Data note: Reddit did not return spend at the individual-community grain, and engagement fields (upvotes, comments, saves) came back empty via the connector — community analysis here is based on impression delivery.</p>
     </section>
 
     <!-- ===================== TAB 3: CREATIVE & MESSAGING ===================== -->
     <section class="tabpanel" data-tab="creative" data-label="Creative &amp; Messaging">
 
-      <div class="sec"><span class="n">1</span> Creative performance — this week</div>
-      <div class="lead">Two messaging angles are in market: the product/value angle <b>"Embedded Analytics Into Your App"</b> (running as three ad variants) and an event angle <b>"Webinar — Build vs Buy."</b> The product angle wins on CTR every week and takes the vast majority of spend; the webinar angle is the weakest performer and the smallest spender.</div>
+      <div class="sec"><span class="n">1</span> What's in market and how it's doing</div>
+      <div class="lead">Two angles are running: a product/value angle — <b>"Embedded Analytics Into Your App"</b> (three variants) — and an event angle, <b>"Webinar — Build vs Buy."</b> The product angle wins on CTR every week and earns most of the spend; the webinar angle is the weakest and smallest. Every variant clears the Reddit B2B CTR benchmark (~0.5%), so the creative itself is not the problem — it's a solid message reaching the wrong audience.</div>
       <div class="dtable">
         <table>
-          <thead><tr><th>Ad / angle</th><th class="num">Spend</th><th class="num">Impr</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">Pixel visits</th></tr></thead>
+          <thead><tr><th>Ad / angle</th><th class="num">Spend</th><th class="num">Impr</th><th class="num">Clicks</th><th class="num">CTR</th><th>vs 0.5% B2B</th></tr></thead>
           <tbody>
-            <tr><td>Embedded Analytics Into Your App — v1</td><td class="num">$86.26</td><td class="num">7,219</td><td class="num">63</td><td class="num">0.87%</td><td class="num">37</td></tr>
-            <tr><td>Embedded Analytics Into Your App — v2</td><td class="num">$128.63</td><td class="num">10,720</td><td class="num">94</td><td class="num">0.88%</td><td class="num">59</td></tr>
-            <tr><td>Embedded Analytics Into Your App — v3</td><td class="num">$136.77</td><td class="num">12,003</td><td class="num">97</td><td class="num">0.81%</td><td class="num">63</td></tr>
-            <tr><td>Webinar — Build vs Buy</td><td class="num">$28.56</td><td class="num">2,729</td><td class="num">21</td><td class="num">0.77%</td><td class="num">13</td></tr>
+            <tr><td>Embedded Analytics Into Your App — v2</td><td class="num">$128.63</td><td class="num">10,720</td><td class="num">94</td><td class="num">0.88%</td><td><span class="pill good">+76%</span></td></tr>
+            <tr><td>Embedded Analytics Into Your App — v1</td><td class="num">$86.26</td><td class="num">7,219</td><td class="num">63</td><td class="num">0.87%</td><td><span class="pill good">+74%</span></td></tr>
+            <tr><td>Embedded Analytics Into Your App — v3</td><td class="num">$136.77</td><td class="num">12,003</td><td class="num">97</td><td class="num">0.81%</td><td><span class="pill good">+62%</span></td></tr>
+            <tr><td>Webinar — Build vs Buy</td><td class="num">$28.56</td><td class="num">2,729</td><td class="num">21</td><td class="num">0.77%</td><td><span class="pill good">+54%</span></td></tr>
           </tbody>
         </table>
       </div>
 
-      <div class="sec"><span class="n">2</span> Angle read — WoW CTR</div>
+      <div class="sec"><span class="n">2</span> The angle read — week over week</div>
       <div class="dtable">
         <table>
-          <thead><tr><th>Angle</th><th class="num">CTR prior wk</th><th class="num">CTR this wk</th><th>Verdict</th></tr></thead>
+          <thead><tr><th>Angle</th><th class="num">CTR prior wk</th><th class="num">CTR this wk</th><th>Read &amp; call</th></tr></thead>
           <tbody>
-            <tr><td>Embedded Analytics Into Your App (blended)</td><td class="num">~0.88%</td><td class="num">~0.85%</td><td><span class="pill good">Keep — the winner</span></td></tr>
-            <tr><td>Webinar — Build vs Buy</td><td class="num">0.70%</td><td class="num">0.77%</td><td><span class="pill warn">Weakest — soft ask</span></td></tr>
+            <tr><td>Embedded Analytics Into Your App</td><td class="num">~0.88%</td><td class="num">~0.85%</td><td>Consistent winner — speaks to the dev's job. <span class="pill good">Keep &amp; scale</span></td></tr>
+            <tr><td>Webinar — Build vs Buy</td><td class="num">0.70%</td><td class="num">0.77%</td><td>A registration ask is heavy for cold awareness. <span class="pill warn">Rework</span></td></tr>
           </tbody>
         </table>
       </div>
 
-      <div class="sec"><span class="n">3</span> What to test next</div>
-      <div class="cards">
-        <div class="card">
-          <div class="ch"><span class="nm">Test plan</span><span class="sp">dev-native messaging</span></div>
-          <div class="cb">
-            The embedded-analytics value prop resonates — push it harder and more technically. Test, in order:
-            <br>• <b>Pain-led hooks:</b> "Stop rebuilding dashboards for every customer" / "Ship white-label analytics in days, not quarters."
-            <br>• <b>Proof/dev-credibility:</b> SDK snippet or "drop-in React/JS component" visual — Reddit devs reward authenticity over polish.
-            <br>• <b>Conquest framing:</b> "The Power BI Embedded alternative that doesn't lock you in."
-            <br>• <b>Retire or rework the webinar ad</b> — a registration ask is too heavy for a cold awareness placement; if kept, make it a value teaser, not a signup demand.
-            <br><b>Caveat:</b> until UTMs + conversion tracking are fixed, judge creative on CTR + GA4 engagement only, not on leads.
-          </div>
-        </div>
+      <div class="sec"><span class="n">3</span> What makes Reddit creative work (context)</div>
+      <div class="lead">Reddit users — especially in dev communities — reward ads that feel native and authentic and punish anything that looks like a glossy billboard. The strongest performers are usually specific and technical: a real problem stated plainly, a code snippet or product screenshot, and a claim you can back up. That's the lane our "embedded analytics" message is already in, which is why it's winning — the test plan below pushes further down it.</div>
+
+      <div class="sec"><span class="n">4</span> Test plan — next up</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Test</th><th>Hypothesis — why it should work</th><th>Priority</th></tr></thead>
+          <tbody>
+            <tr><td>Pain-led hook — "Stop rebuilding dashboards for every customer"</td><td>Names the dev's actual pain; qualifies the click toward people with the problem we solve.</td><td><span class="pill bad">High</span></td></tr>
+            <tr><td>Dev-credibility proof — SDK snippet / "drop-in React &amp; JS component" visual</td><td>Reddit devs trust code over marketing; raises intent quality of the traffic.</td><td><span class="pill bad">High</span></td></tr>
+            <tr><td>Conquest angle — "The Power BI Embedded alternative that doesn't lock you in"</td><td>Captures devs actively researching alternatives; ties to our vs-pages.</td><td><span class="pill warn">Medium</span></td></tr>
+            <tr><td>Rework the Webinar ad into a value teaser</td><td>A signup demand is too heavy cold; lead with the insight, not the form.</td><td><span class="pill warn">Medium</span></td></tr>
+          </tbody>
+        </table>
       </div>
+      <p style="font-size:12px;color:var(--muted);margin:8px 2px 0">Judge these on CTR and on-site engagement (once desktop/community targeting is fixed), not on direct leads — this is an awareness channel.</p>
     </section>
 
     <!-- ===================== TAB 4: JOURNEY & ROI ===================== -->
     <section class="tabpanel" data-tab="journey" data-label="Journey &amp; ROI">
 
-      <div class="sec"><span class="n">1</span> The funnel — where it breaks</div>
-      <div class="lead">The break point is unmistakable and it's early: <b>between the click and the site session</b>. 275 Reddit clicks produced just 7 GA4 sessions. Everything downstream is starved because ~97% of the traffic never shows up as a measurable visit — and what does show up arrives untagged.</div>
+      <div class="sec"><span class="n">1</span> The journey, stage by stage</div>
+      <div class="lead">Here's the money's path from impression to lead. The drop is early — between the click and a real site visit — and the device and placement data explain exactly why.</div>
       <div class="dtable">
         <table>
-          <thead><tr><th>Stage</th><th class="num">This week</th><th>Note</th></tr></thead>
+          <thead><tr><th>Stage</th><th class="num">This week</th><th>What it means</th></tr></thead>
           <tbody>
-            <tr><td>Spend</td><td class="num">$380</td><td>—</td></tr>
-            <tr><td>Impressions</td><td class="num">32,667</td><td>83% on comments-page placement</td></tr>
-            <tr><td>Clicks (Reddit)</td><td class="num">275</td><td>0.84% CTR — the last reliable number</td></tr>
-            <tr><td>Reddit pixel "page visits"</td><td class="num">172</td><td><span class="pill warn">Suspect</span> pixel auto-fires; can't reconcile with GA4</td></tr>
-            <tr><td>GA4 sessions (reddit)</td><td class="num">7</td><td><span class="pill bad">Break point</span> 2.5% of clicks; lands as <code>referral</code></td></tr>
-            <tr><td>GA4 engaged sessions</td><td class="num">1</td><td>86% bounce; 1.0 views/session</td></tr>
-            <tr><td>GA4 conversions</td><td class="num">0</td><td>no key events fired</td></tr>
-            <tr><td>Salesforce attributed leads</td><td class="num">0</td><td>LeadSource null on all 1,833 recent leads</td></tr>
+            <tr><td>Spend</td><td class="num">$380</td><td>~1.5% of paid budget — a deliberate small bet</td></tr>
+            <tr><td>Impressions</td><td class="num">32,667</td><td>~31k US devs reached; 83% on comments-page</td></tr>
+            <tr><td>Clicks (Reddit)</td><td class="num">275</td><td>0.84% CTR — above B2B benchmark</td></tr>
+            <tr><td>Engaged site visits (GA4)</td><td class="num">7</td><td>real sessions from Reddit; 97% mobile clicks don't make it here</td></tr>
+            <tr><td>Conversions (GA4)</td><td class="num">0</td><td>expected — awareness traffic rarely converts same-session</td></tr>
+            <tr><td>Direct-attributed leads (Salesforce)</td><td class="num">0</td><td>no Reddit-sourced Reveal lead events this period</td></tr>
           </tbody>
         </table>
       </div>
-      <p style="font-size:12.5px;color:var(--muted);margin:8px 2px 0">Landing pages seen by GA4 this week: homepage <code>/</code> (6 sessions, 1 engaged) and <code>/webinars/build-vs-buy-in-the-age-of-ai</code> (1 session, 0 engaged). GA4 last week: 8 sessions, 25% engagement, 0 conversions — same pattern.</p>
 
-      <div class="sec"><span class="n">2</span> Tracking caveat — read this before trusting any conversion number</div>
+      <div class="sec"><span class="n">2</span> Where are the clicks going? (the click-vs-visit gap)</div>
       <div class="cards">
         <div class="card">
-          <div class="ch"><span class="nm">Why the numbers don't line up</span><span class="sp">3 broken links</span></div>
+          <div class="ch"><span class="nm">275 clicks, 7 site visits — here's why</span><span class="sp">not a bug</span></div>
           <div class="cb">
-            <b>1. No UTMs.</b> Reddit traffic lands as <code>reddit.com / referral</code>, not <code>reddit / cpc</code>. Without <code>utm_source/medium/campaign/content</code>, GA4 and Salesforce can't tie a session or lead back to Reddit, a campaign, or a creative.
-            <br><b>2. Click-to-session collapse.</b> 275 clicks vs 7 sessions. Comments-page accidental taps inflate clicks, and any traffic without UTMs that bounces instantly may never register a GA4 session. Either way, the click number is not a visit number.
-            <br><b>3. Reddit pixel is unreliable.</b> The pixel reports 172 "page visits" but 0 leads/signups and GA4 sees 7 — the pixel is likely mis-configured or firing on impression/landing, not real events.
+            <b>1. A Reddit "click" isn't a website visit.</b> On mobile comment threads, a large share of taps are accidental — the user bounces before the page (and our analytics) ever loads. Reddit still counts the tap; GA4 never sees a session.
+            <br><b>2. 97% of our clicks are mobile.</b> A developer isn't going to evaluate an embedded-analytics SDK on their phone mid-scroll. Even genuine curiosity doesn't turn into a real research session on a handset.
+            <br><b>3. So the 7 GA4 visits are the "real" ones.</b> The gap between 275 and 7 is mostly a <b>traffic-quality signal</b>, not a measurement failure — and it points straight back to the targeting fix (desktop + dev communities).
           </div>
         </div>
       </div>
 
-      <div class="sec"><span class="n">3</span> Salesforce attribution note</div>
-      <div class="lead">There is <b>no clean path from Reddit to Salesforce today.</b> Zero leads in the last 90 days carry a Reddit LeadSource, and LeadSource is empty on every one of the 1,833 leads created in the last 14 days — so this is a system-wide attribution gap, not a Reddit-specific one. Any ROI claim for Reddit (positive or negative) would be fabricated until tracking is repaired. Interim workaround: trace Reddit via GA4 <code>reddit / cpc</code> once UTMs are live, and stamp a hidden <code>utm_source</code> field onto form submissions so SF can inherit it.</div>
+      <div class="sec"><span class="n">3</span> How Reddit leads will show up in Salesforce</div>
+      <div class="lead">There <b>is</b> a clean attribution path, and it already works. When someone clicks a Reddit ad and later fills out a form, it lands as a <b>Lead Event</b> (<code>Lead_Event__c</code>) with <b>Product Family = Reveal</b>, <b>Tracking Source = reddit.com</b>, <b>Tracking Medium = referral</b> — the same mechanism capturing our paid leads this month: <b>Google (79), Bing (32), LinkedIn (3)</b>. This period Reddit produced <b>0 direct-attributed Reveal lead events</b> — which is what we'd expect from an awareness channel, and it will populate automatically here the moment a direct lead comes through. As targeting tightens, expect Reddit to show up first as assisted/influenced touches, then occasionally as a direct source.</div>
+
+      <div class="sec"><span class="n">4</span> One measurement enhancement (nice-to-have)</div>
+      <div class="lead">Our Reddit ad links aren't UTM-tagged, so GA4 currently files the traffic as <code>reddit.com / referral</code> instead of <code>reddit / cpc</code>. This isn't breaking attribution — leads still flow through the Lead Event tracking-source field above. But adding <code>utm_source=reddit&amp;utm_medium=cpc</code> (plus campaign/creative) would let GA4 report Reddit as a clean paid channel and tie sessions to specific ads. Worth doing, not urgent.</div>
 
       <div class="verdict">
-        <div class="vh">Verdict</div>
-        <p><b>FIX TRACKING — do not scale, do not cut yet.</b> Reddit is delivering clicks at an acceptable CPC with a winning creative angle, but we're spending ~$380/week into a black box: no UTMs, GA4 seeing 2.5% of clicks, and Salesforce attributing nothing. Before any keep/scale/cut call, in the next 7–10 days: (1) add full UTM tagging to every Reddit ad URL (<code>utm_source=reddit&amp;utm_medium=cpc</code> + campaign/content); (2) audit and refire the Reddit conversion pixel against real key events; (3) reallocate budget out of the comments-page spray into FEED + a hand-picked dev/data community list. Then re-read a clean two-week window. <b>If corrected tracking still shows near-zero engaged sessions and no pipeline, the call flips to cut-and-reallocate to Google/Bing capture.</b></p>
+        <div class="vh">Verdict — Keep &amp; Retarget</div>
+        <p><b>Keep the channel — but fix the targeting before judging its ROI.</b> Reddit is a cheap awareness play that's beating the B2B CTR benchmark at a competitive CPC with a message developers respond to. Its only real weakness is that ~83% of spend lands on mobile comment threads in unrelated subreddits, with almost nothing on desktop — so the clicks don't become real research sessions. Next 30 days: <b>(1)</b> switch to hand-picked developer/data community targeting and exclude the consumer long-tail; <b>(2)</b> push delivery toward desktop and the Feed; <b>(3)</b> add UTM tags so GA4 reads it as <code>reddit / cpc</code>. Then measure it as an awareness channel — assisted/influenced touches and on-site engagement, not last-click leads. <b>If, properly targeted, it still can't put engaged developers on the site, the call flips to cut-and-reallocate to Google/Bing capture.</b></p>
       </div>
     </section>
 
