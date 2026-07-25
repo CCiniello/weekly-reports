@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reddit Ads Weekly / Reveal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
+    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
+    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
+  }
+  body.theme-reveal   {--accent:#EC417A;--accent-deep:#C9367F;--accent-soft:#fde4ee;--hero:linear-gradient(120deg,#FBB764,#EC417A 62%,#d63384)}
+  body.theme-slingshot{--accent:#4B45C6;--accent-deep:#2D2A90;--accent-soft:#ECEBFB;--hero:linear-gradient(120deg,#6C5CE7,#4B45C6 55%,#2D2A90)}
+  body.theme-ui       {--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
+  body.theme-all      {--accent:#2563EB;--accent-deep:#7C3AED;--accent-soft:#EEF1FF;--hero:linear-gradient(120deg,#2563EB,#7C3AED)}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 80px}
+
+  header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
+  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
+  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
+  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)} .meta b{color:#fff;font-weight:700}
+
+  /* dynamic tab bar (built from panels) */
+  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03);overflow-x:auto}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;white-space:nowrap}
+  .tab:hover{color:var(--ink)}
+  .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+  .tabpanel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
+  .tabpanel.on{display:block}
+
+  /* ===== SHARED CONTENT VOCABULARY (agents use these classes) ===== */
+  .sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:26px 2px 13px;display:flex;align-items:center;gap:10px}
+  .sec:first-child{margin-top:2px}
+  .sec .n{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  .lead{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:16px 20px;font-size:14.5px;line-height:1.6} .lead b{color:var(--navy)}
+
+  .kpigrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
+  @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:#fcfdff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column}
+  .kpi .lab{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;min-height:28px}
+  .kpi .val{font-size:22px;font-weight:700;margin:2px 0 8px;font-family:var(--mono)}
+  .kpi .delta{align-self:flex-start;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
+  .delta.up{background:var(--good-bg);color:var(--good)} .delta.down{background:var(--bad-bg);color:var(--bad)} .delta.flat{background:var(--warn-bg);color:var(--warn)}
+
+  .score{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  .score table{width:100%;border-collapse:collapse;font-size:13px}
+  .score th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  .score td{padding:11px 13px;border-top:1px solid var(--line);vertical-align:middle}
+  .score .goal{font-weight:600;color:var(--navy)}
+  .pill{font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px}
+  .pill.good{background:var(--good-bg);color:var(--good)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.bad{background:var(--bad-bg);color:var(--bad)}
+
+  .cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
+  .card{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .card .ch{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:var(--accent-soft);border-bottom:1px solid var(--line)}
+  .card .ch .nm{font-size:15px;font-weight:700;color:var(--accent-deep)} .card .ch .sp{font-family:var(--mono);font-size:12.5px;color:var(--navy)}
+  .card .cb{padding:14px 18px;font-size:13.5px;line-height:1.55} .card .cb b{color:var(--navy)}
+
+  .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  .dtable table{width:100%;border-collapse:collapse;font-size:13px}
+  .dtable th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  .dtable td{padding:10px 13px;border-top:1px solid var(--line)} .dtable td.num{font-family:var(--mono);text-align:right}
+  .dtable tr:hover td{background:#fafbff}
+
+  .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
+  .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
+  .verdict p{font-size:15px;line-height:1.6;margin:0} .verdict b{color:var(--navy)}
+  code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+</style>
+</head>
+<!-- AGENT: set theme class (theme-reveal for all Reveal channels) -->
+<body class="theme-reveal">
+<div class="wrap">
+
+  <header class="top">
+    <div class="logochip">Reveal</div>
+    <div class="kick">revealbi.io · Reddit Ads</div>
+    <h1>Reddit Ads Weekly / Reveal</h1>
+    <div class="meta"><span>Week of <b>Jul 25, 2026</b></span><span>Current <b>Jul 18–24</b> vs prior <b>Jul 11–17</b></span><span>Role: <b>Amplification — dev awareness</b></span></div>
+  </header>
+
+  <div class="tabbar" id="tabbar"></div>
+
+  <!-- AGENT: inject one <section class="tabpanel" data-tab="id" data-label="Label"> … </section>
+       per tab. Put "Overview" first. The tab bar builds itself from these. -->
+  <div id="panels">
+
+    <!-- ===================== TAB 1: OVERVIEW ===================== -->
+    <section class="tabpanel" data-tab="overview" data-label="Overview">
+
+      <div class="sec"><span class="n">1</span> Executive summary</div>
+      <div class="lead">
+        Reddit spent <b>$380</b> this week for <b>275 clicks</b> at a healthy <b>0.84% CTR</b> and stable <b>$1.38 CPC</b> — but the money is running into a wall we can't see past. GA4 recorded only <b>7 sessions</b> from Reddit against those 275 clicks (a <b>~97% drop-off</b>), all landing as <code>reddit.com / referral</code> with <b>no UTM tags</b>, <b>86% bounce</b>, and <b>0 conversions</b>. Salesforce shows <b>0 attributed leads</b> — in fact LeadSource is null on all 1,833 leads created in the last two weeks, so no channel is attributable. Meanwhile <b>83% of spend</b> is being sprayed across Reddit's comments-page placement into thousands of irrelevant subreddits (r/airfryer, r/animalcrossing, r/2000snostalgia) rather than the dev/data communities we're buying. <b>The channel isn't failing — the measurement is. We are flying blind and must fix tracking before we judge or scale it.</b>
+      </div>
+
+      <div class="sec"><span class="n">2</span> KPIs — week over week</div>
+      <div class="kpigrid">
+        <div class="kpi"><span class="lab">Spend</span><span class="val">$380</span><span class="delta flat">▼ 6.6% WoW</span></div>
+        <div class="kpi"><span class="lab">Impressions</span><span class="val">32,667</span><span class="delta flat">▼ 8.5% WoW</span></div>
+        <div class="kpi"><span class="lab">Clicks</span><span class="val">275</span><span class="delta flat">▼ 6.5% WoW</span></div>
+        <div class="kpi"><span class="lab">CTR</span><span class="val">0.84%</span><span class="delta up">▲ 2.2% WoW</span></div>
+        <div class="kpi"><span class="lab">CPC</span><span class="val">$1.38</span><span class="delta flat">≈ flat</span></div>
+      </div>
+      <div class="kpigrid" style="margin-top:11px">
+        <div class="kpi"><span class="lab">Reach / Freq</span><span class="val">30.8k</span><span class="delta flat">1.06× freq</span></div>
+        <div class="kpi"><span class="lab">Pixel "page visits"</span><span class="val">172</span><span class="delta flat">unreliable</span></div>
+        <div class="kpi"><span class="lab">GA4 sessions</span><span class="val">7</span><span class="delta down">2.5% of clicks</span></div>
+        <div class="kpi"><span class="lab">GA4 engagement</span><span class="val">14.3%</span><span class="delta down">86% bounce</span></div>
+        <div class="kpi"><span class="lab">Attributed leads</span><span class="val">0</span><span class="delta down">no path</span></div>
+      </div>
+
+      <div class="sec"><span class="n">3</span> Goal scoreboard</div>
+      <div class="score">
+        <table>
+          <thead><tr><th>Goal (amplification channel)</th><th>This week</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="goal">Tracking &amp; attribution integrity</td><td>UTMs missing; GA4 sees 2.5% of clicks; SF = 0</td><td><span class="pill bad">Broken</span></td></tr>
+            <tr><td class="goal">Reach the dev / embedded-analytics ICP</td><td>Only 41 impr in r/analytics all week; spend sprayed to off-target subs</td><td><span class="pill bad">Behind</span></td></tr>
+            <tr><td class="goal">Engagement quality (GA4)</td><td>14.3% engagement rate, 86% bounce, 1.0 views/session</td><td><span class="pill bad">Behind</span></td></tr>
+            <tr><td class="goal">Cost efficiency of awareness</td><td>CPC $1.38 stable · eCPM $11.64</td><td><span class="pill good">On track</span></td></tr>
+            <tr><td class="goal">Click volume / CTR</td><td>0.84% CTR, up 2.2% WoW</td><td><span class="pill good">On track</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sec"><span class="n">4</span> What's working / what's not</div>
+      <div class="cards">
+        <div class="card">
+          <div class="ch"><span class="nm">Working</span><span class="sp">top-of-funnel signals</span></div>
+          <div class="cb">CTR held and ticked up to <b>0.84%</b> (from 0.82%) while CPC stayed flat at <b>$1.38</b> — the ad itself earns the click. The <b>"Embedded Analytics Into Your App"</b> creative consistently out-clicks the webinar angle. Cost of awareness is reasonable for B2B dev targeting.</div>
+        </div>
+        <div class="card">
+          <div class="ch"><span class="nm">Not working</span><span class="sp">everything past the click</span></div>
+          <div class="cb"><b>Tracking is broken end-to-end.</b> 275 clicks → 7 GA4 sessions → 0 conversions → 0 SF leads. Traffic arrives untagged as <code>referral</code>, so no campaign/ad attribution is possible. And <b>83% of spend</b> sits on the comments-page placement scattered across non-technical subreddits. We are paying for reach we can neither target nor measure.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TAB 2: COMMUNITIES & PLACEMENTS ===================== -->
+    <section class="tabpanel" data-tab="communities" data-label="Communities &amp; Placements">
+
+      <div class="sec"><span class="n">1</span> Placement split — where the money goes</div>
+      <div class="lead">The single biggest allocation problem this week: <b>83% of spend ($317) is on the COMMENTS_PAGE placement</b>, only 15% on FEED. Comments-page clicks carry a higher headline CTR (0.90% vs feed's 0.63%), but that placement is notorious for accidental mobile taps — and the community data below shows those impressions landing in subreddits with zero relevance to embedded analytics.</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Placement</th><th class="num">Spend</th><th class="num">Impr</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">CPC</th><th class="num">% of spend</th></tr></thead>
+          <tbody>
+            <tr><td>Comments page</td><td class="num">$316.78</td><td class="num">25,692</td><td class="num">230</td><td class="num">0.90%</td><td class="num">$1.38</td><td class="num">83.3%</td></tr>
+            <tr><td>Feed</td><td class="num">$58.33</td><td class="num">6,536</td><td class="num">41</td><td class="num">0.63%</td><td class="num">$1.42</td><td class="num">15.3%</td></tr>
+            <tr><td>Other</td><td class="num">$5.11</td><td class="num">443</td><td class="num">4</td><td class="num">0.90%</td><td class="num">$1.28</td><td class="num">1.3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:12.5px;color:var(--muted);margin:8px 2px 0">Prior week for reference: comments page $360.85 / 257 clicks · feed $46.29 / 37 clicks. The comments-page dominance is structural, not a one-week blip.</p>
+
+      <div class="sec"><span class="n">2</span> Community delivery — engage vs convert</div>
+      <div class="lead">There is no meaningful "convert" story to tell because <b>no conversions are tracked</b> (see Journey tab). On delivery alone, the comments-page placement scatters impressions across <b>thousands of unrelated communities</b> at 1–9 impressions each. The dev/data communities we actually want barely register.</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Community</th><th class="num">Impr (wk)</th><th>Relevance to ICP</th></tr></thead>
+          <tbody>
+            <tr><td>r/analytics</td><td class="num">41</td><td><span class="pill good">On-target</span></td></tr>
+            <tr><td>r/advertising</td><td class="num">9</td><td><span class="pill warn">Adjacent</span></td></tr>
+            <tr><td>r/ai_agents</td><td class="num">4</td><td><span class="pill warn">Adjacent</span></td></tr>
+            <tr><td>r/3dprinting</td><td class="num">3</td><td><span class="pill bad">Off-target</span></td></tr>
+            <tr><td>r/adviceanimals, r/animalcrossing, r/airfryer, r/2000snostalgia …</td><td class="num">1–6 ea.</td><td><span class="pill bad">Off-target</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="ch"><span class="nm">Read</span><span class="sp">targeting is too loose</span></div>
+          <div class="cb">Delivery is behaving like an open-web display buy, not a Reddit community buy. For a niche B2B product like Reveal, spraying comments pages across consumer subreddits guarantees low-intent traffic no matter how good the CTR looks. <b>The fix is to shift budget into FEED and hand-pick communities</b> — r/dataengineering, r/analytics, r/BusinessIntelligence, r/webdev, r/reactjs, r/dotnet, r/SaaS, r/programming — and exclude the consumer long-tail.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TAB 3: CREATIVE & MESSAGING ===================== -->
+    <section class="tabpanel" data-tab="creative" data-label="Creative &amp; Messaging">
+
+      <div class="sec"><span class="n">1</span> Creative performance — this week</div>
+      <div class="lead">Two messaging angles are in market: the product/value angle <b>"Embedded Analytics Into Your App"</b> (running as three ad variants) and an event angle <b>"Webinar — Build vs Buy."</b> The product angle wins on CTR every week and takes the vast majority of spend; the webinar angle is the weakest performer and the smallest spender.</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Ad / angle</th><th class="num">Spend</th><th class="num">Impr</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">Pixel visits</th></tr></thead>
+          <tbody>
+            <tr><td>Embedded Analytics Into Your App — v1</td><td class="num">$86.26</td><td class="num">7,219</td><td class="num">63</td><td class="num">0.87%</td><td class="num">37</td></tr>
+            <tr><td>Embedded Analytics Into Your App — v2</td><td class="num">$128.63</td><td class="num">10,720</td><td class="num">94</td><td class="num">0.88%</td><td class="num">59</td></tr>
+            <tr><td>Embedded Analytics Into Your App — v3</td><td class="num">$136.77</td><td class="num">12,003</td><td class="num">97</td><td class="num">0.81%</td><td class="num">63</td></tr>
+            <tr><td>Webinar — Build vs Buy</td><td class="num">$28.56</td><td class="num">2,729</td><td class="num">21</td><td class="num">0.77%</td><td class="num">13</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sec"><span class="n">2</span> Angle read — WoW CTR</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Angle</th><th class="num">CTR prior wk</th><th class="num">CTR this wk</th><th>Verdict</th></tr></thead>
+          <tbody>
+            <tr><td>Embedded Analytics Into Your App (blended)</td><td class="num">~0.88%</td><td class="num">~0.85%</td><td><span class="pill good">Keep — the winner</span></td></tr>
+            <tr><td>Webinar — Build vs Buy</td><td class="num">0.70%</td><td class="num">0.77%</td><td><span class="pill warn">Weakest — soft ask</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sec"><span class="n">3</span> What to test next</div>
+      <div class="cards">
+        <div class="card">
+          <div class="ch"><span class="nm">Test plan</span><span class="sp">dev-native messaging</span></div>
+          <div class="cb">
+            The embedded-analytics value prop resonates — push it harder and more technically. Test, in order:
+            <br>• <b>Pain-led hooks:</b> "Stop rebuilding dashboards for every customer" / "Ship white-label analytics in days, not quarters."
+            <br>• <b>Proof/dev-credibility:</b> SDK snippet or "drop-in React/JS component" visual — Reddit devs reward authenticity over polish.
+            <br>• <b>Conquest framing:</b> "The Power BI Embedded alternative that doesn't lock you in."
+            <br>• <b>Retire or rework the webinar ad</b> — a registration ask is too heavy for a cold awareness placement; if kept, make it a value teaser, not a signup demand.
+            <br><b>Caveat:</b> until UTMs + conversion tracking are fixed, judge creative on CTR + GA4 engagement only, not on leads.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TAB 4: JOURNEY & ROI ===================== -->
+    <section class="tabpanel" data-tab="journey" data-label="Journey &amp; ROI">
+
+      <div class="sec"><span class="n">1</span> The funnel — where it breaks</div>
+      <div class="lead">The break point is unmistakable and it's early: <b>between the click and the site session</b>. 275 Reddit clicks produced just 7 GA4 sessions. Everything downstream is starved because ~97% of the traffic never shows up as a measurable visit — and what does show up arrives untagged.</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Stage</th><th class="num">This week</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td>Spend</td><td class="num">$380</td><td>—</td></tr>
+            <tr><td>Impressions</td><td class="num">32,667</td><td>83% on comments-page placement</td></tr>
+            <tr><td>Clicks (Reddit)</td><td class="num">275</td><td>0.84% CTR — the last reliable number</td></tr>
+            <tr><td>Reddit pixel "page visits"</td><td class="num">172</td><td><span class="pill warn">Suspect</span> pixel auto-fires; can't reconcile with GA4</td></tr>
+            <tr><td>GA4 sessions (reddit)</td><td class="num">7</td><td><span class="pill bad">Break point</span> 2.5% of clicks; lands as <code>referral</code></td></tr>
+            <tr><td>GA4 engaged sessions</td><td class="num">1</td><td>86% bounce; 1.0 views/session</td></tr>
+            <tr><td>GA4 conversions</td><td class="num">0</td><td>no key events fired</td></tr>
+            <tr><td>Salesforce attributed leads</td><td class="num">0</td><td>LeadSource null on all 1,833 recent leads</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:12.5px;color:var(--muted);margin:8px 2px 0">Landing pages seen by GA4 this week: homepage <code>/</code> (6 sessions, 1 engaged) and <code>/webinars/build-vs-buy-in-the-age-of-ai</code> (1 session, 0 engaged). GA4 last week: 8 sessions, 25% engagement, 0 conversions — same pattern.</p>
+
+      <div class="sec"><span class="n">2</span> Tracking caveat — read this before trusting any conversion number</div>
+      <div class="cards">
+        <div class="card">
+          <div class="ch"><span class="nm">Why the numbers don't line up</span><span class="sp">3 broken links</span></div>
+          <div class="cb">
+            <b>1. No UTMs.</b> Reddit traffic lands as <code>reddit.com / referral</code>, not <code>reddit / cpc</code>. Without <code>utm_source/medium/campaign/content</code>, GA4 and Salesforce can't tie a session or lead back to Reddit, a campaign, or a creative.
+            <br><b>2. Click-to-session collapse.</b> 275 clicks vs 7 sessions. Comments-page accidental taps inflate clicks, and any traffic without UTMs that bounces instantly may never register a GA4 session. Either way, the click number is not a visit number.
+            <br><b>3. Reddit pixel is unreliable.</b> The pixel reports 172 "page visits" but 0 leads/signups and GA4 sees 7 — the pixel is likely mis-configured or firing on impression/landing, not real events.
+          </div>
+        </div>
+      </div>
+
+      <div class="sec"><span class="n">3</span> Salesforce attribution note</div>
+      <div class="lead">There is <b>no clean path from Reddit to Salesforce today.</b> Zero leads in the last 90 days carry a Reddit LeadSource, and LeadSource is empty on every one of the 1,833 leads created in the last 14 days — so this is a system-wide attribution gap, not a Reddit-specific one. Any ROI claim for Reddit (positive or negative) would be fabricated until tracking is repaired. Interim workaround: trace Reddit via GA4 <code>reddit / cpc</code> once UTMs are live, and stamp a hidden <code>utm_source</code> field onto form submissions so SF can inherit it.</div>
+
+      <div class="verdict">
+        <div class="vh">Verdict</div>
+        <p><b>FIX TRACKING — do not scale, do not cut yet.</b> Reddit is delivering clicks at an acceptable CPC with a winning creative angle, but we're spending ~$380/week into a black box: no UTMs, GA4 seeing 2.5% of clicks, and Salesforce attributing nothing. Before any keep/scale/cut call, in the next 7–10 days: (1) add full UTM tagging to every Reddit ad URL (<code>utm_source=reddit&amp;utm_medium=cpc</code> + campaign/content); (2) audit and refire the Reddit conversion pixel against real key events; (3) reallocate budget out of the comments-page spray into FEED + a hand-picked dev/data community list. Then re-read a clean two-week window. <b>If corrected tracking still shows near-zero engaged sessions and no pipeline, the call flips to cut-and-reallocate to Google/Bing capture.</b></p>
+      </div>
+    </section>
+
+  </div>
+
+</div>
+
+<script>
+  // Build the tab bar from whatever panels the agent injected.
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.tabpanel'));
+  var bar = document.getElementById('tabbar');
+  panels.forEach(function(p,i){
+    var b=document.createElement('button');
+    b.className='tab'+(i===0?' on':''); b.textContent=p.dataset.label||('Tab '+(i+1));
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+      panels.forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on'); p.classList.add('on');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+    bar.appendChild(b);
+    if(i===0) p.classList.add('on');
+  });
+</script>
+</body>
+</html>
