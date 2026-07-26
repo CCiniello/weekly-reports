@@ -416,14 +416,38 @@
       </div>
 
       <div class="sec"><span class="n">3</span>Device</div>
-      <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:6px;background:#fcfdff">
-        <svg viewBox="0 0 180 180" width="160" height="160" role="img" aria-label="Device split donut">
-          <circle cx="90" cy="90" r="60" fill="none" stroke="#C9367F" stroke-width="26" stroke-dasharray="251.7 377" stroke-dashoffset="0" transform="rotate(-90 90 90)"></circle>
-          <circle cx="90" cy="90" r="60" fill="none" stroke="#EC417A" stroke-width="26" stroke-dasharray="115.9 377" stroke-dashoffset="-251.7" transform="rotate(-90 90 90)"></circle>
-          <circle cx="90" cy="90" r="60" fill="none" stroke="#FBB764" stroke-width="26" stroke-dasharray="9.4 377" stroke-dashoffset="-367.6" transform="rotate(-90 90 90)"></circle>
-          <text x="90" y="86" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="22" font-weight="700" fill="#0F172A">361</text>
-          <text x="90" y="104" text-anchor="middle" font-family="Roboto,sans-serif" font-size="11" fill="#5f6b7a">sessions</text>
-        </svg>
+      <div style="display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:6px;background:#fcfdff">
+        <div style="text-align:center">
+          <svg viewBox="0 0 180 180" width="150" height="150" role="img" aria-label="Device split donut, this week">
+            <circle cx="90" cy="90" r="60" fill="none" stroke="#C9367F" stroke-width="26" stroke-dasharray="251.7 377" stroke-dashoffset="0" transform="rotate(-90 90 90)"></circle>
+            <circle cx="90" cy="90" r="60" fill="none" stroke="#EC417A" stroke-width="26" stroke-dasharray="115.9 377" stroke-dashoffset="-251.7" transform="rotate(-90 90 90)"></circle>
+            <circle cx="90" cy="90" r="60" fill="none" stroke="#FBB764" stroke-width="26" stroke-dasharray="9.4 377" stroke-dashoffset="-367.6" transform="rotate(-90 90 90)"></circle>
+            <text x="90" y="86" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="22" font-weight="700" fill="#0F172A">361</text>
+            <text x="90" y="104" text-anchor="middle" font-family="Roboto,sans-serif" font-size="11" fill="#5f6b7a">this week</text>
+          </svg>
+        </div>
+        <div style="flex:1;min-width:320px">
+          <div style="font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:#5f6b7a;font-weight:600;margin-bottom:2px">Sessions by device · by week</div>
+          <svg viewBox="0 0 380 210" width="100%" role="img" aria-label="Device sessions by week stacked columns">
+            <line x1="40" y1="180" x2="366" y2="180" stroke="#c9cede"></line>
+            <!-- Jun 20-26 -->
+            <rect x="52" y="163.7" width="40" height="16.3" fill="#C9367F"></rect><rect x="52" y="158.8" width="40" height="4.9" fill="#EC417A"></rect><text x="72" y="154" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">69</text>
+            <!-- Jun 27-Jul 3 -->
+            <rect x="116" y="108.9" width="40" height="71.1" fill="#C9367F"></rect><rect x="116" y="29.2" width="40" height="79.7" fill="#EC417A"></rect><rect x="116" y="23.7" width="40" height="5.5" fill="#FBB764"></rect><text x="136" y="19" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">508</text>
+            <!-- Jul 4-10 -->
+            <rect x="180" y="136.0" width="40" height="44.0" fill="#C9367F"></rect><rect x="180" y="72.6" width="40" height="63.4" fill="#EC417A"></rect><rect x="180" y="71.4" width="40" height="1.2" fill="#FBB764"></rect><text x="200" y="67" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">353</text>
+            <!-- Jul 11-17 -->
+            <rect x="244" y="126.5" width="40" height="53.5" fill="#C9367F"></rect><rect x="244" y="97.0" width="40" height="29.5" fill="#EC417A"></rect><rect x="244" y="93.9" width="40" height="3.1" fill="#FBB764"></rect><text x="264" y="90" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">280</text>
+            <!-- Jul 18-24 -->
+            <rect x="308" y="105.8" width="40" height="74.2" fill="#C9367F"></rect><rect x="308" y="71.6" width="40" height="34.2" fill="#EC417A"></rect><rect x="308" y="68.8" width="40" height="2.8" fill="#FBB764"></rect><text x="328" y="65" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">361</text>
+            <!-- week labels -->
+            <text x="72" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">6/20</text>
+            <text x="136" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">6/27</text>
+            <text x="200" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">7/4</text>
+            <text x="264" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">7/11</text>
+            <text x="328" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">7/18</text>
+          </svg>
+        </div>
         <div style="font-family:Roboto,sans-serif;font-size:13px;color:#212529;line-height:2">
           <div><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:#C9367F;margin-right:8px"></span><b>Desktop</b> — 241 · 67% · <span style="color:#12915b">4 conv</span></div>
           <div><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:#EC417A;margin-right:8px"></span><b>Mobile</b> — 111 · 31% · 0 conv</div>
@@ -441,18 +465,43 @@
         </table>
       </div>
       <div class="lead" style="margin-top:14px">
-        <b>Desktop is the buyer.</b> It's two-thirds of sessions and <b>100% of conversions</b> — expected for a B2B embedded-analytics decision. Mobile engages well (77%) but doesn't convert; it's a research surface, not a decision one. Reasonable to <b>bid desktop up</b> and keep mobile as low-cost awareness.
+        <b>Desktop is the buyer.</b> It's two-thirds of sessions and <b>100% of conversions</b> — expected for a B2B embedded-analytics decision. The weekly trend adds nuance: the launch weeks were <b>mobile-heavy</b> (mobile outran desktop the weeks of Jun 27 and Jul 4), then the mix <b>shifted decisively to desktop</b> — a healthy sign the channel is maturing from casual mobile browsing toward desktop evaluation. Mobile still engages well (77%) but doesn't convert; it's a research surface. Reasonable to <b>bid desktop up</b> and keep mobile as low-cost awareness.
       </div>
 
       <div class="sec"><span class="n">4</span>New vs returning &amp; source campaign</div>
-      <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:6px;background:#fcfdff">
-        <svg viewBox="0 0 180 180" width="160" height="160" role="img" aria-label="New vs returning donut">
-          <circle cx="90" cy="90" r="60" fill="none" stroke="#C9367F" stroke-width="26" stroke-dasharray="358.1 377" stroke-dashoffset="0" transform="rotate(-90 90 90)"></circle>
-          <circle cx="90" cy="90" r="60" fill="none" stroke="#6C8CFD" stroke-width="26" stroke-dasharray="13.6 377" stroke-dashoffset="-358.1" transform="rotate(-90 90 90)"></circle>
-          <circle cx="90" cy="90" r="60" fill="none" stroke="#cbd2e0" stroke-width="26" stroke-dasharray="5.2 377" stroke-dashoffset="-371.7" transform="rotate(-90 90 90)"></circle>
-          <text x="90" y="86" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="20" font-weight="700" fill="#0F172A">95%</text>
-          <text x="90" y="104" text-anchor="middle" font-family="Roboto,sans-serif" font-size="11" fill="#5f6b7a">new</text>
-        </svg>
+      <div style="display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:6px;background:#fcfdff">
+        <div style="text-align:center">
+          <svg viewBox="0 0 180 180" width="150" height="150" role="img" aria-label="New vs returning donut, this week">
+            <circle cx="90" cy="90" r="60" fill="none" stroke="#C9367F" stroke-width="26" stroke-dasharray="358.1 377" stroke-dashoffset="0" transform="rotate(-90 90 90)"></circle>
+            <circle cx="90" cy="90" r="60" fill="none" stroke="#6C8CFD" stroke-width="26" stroke-dasharray="13.6 377" stroke-dashoffset="-358.1" transform="rotate(-90 90 90)"></circle>
+            <circle cx="90" cy="90" r="60" fill="none" stroke="#cbd2e0" stroke-width="26" stroke-dasharray="5.2 377" stroke-dashoffset="-371.7" transform="rotate(-90 90 90)"></circle>
+            <text x="90" y="86" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="20" font-weight="700" fill="#0F172A">95%</text>
+            <text x="90" y="104" text-anchor="middle" font-family="Roboto,sans-serif" font-size="11" fill="#5f6b7a">new</text>
+          </svg>
+          <div style="font-size:11px;color:#5f6b7a;margin-top:2px">this week</div>
+        </div>
+        <div style="flex:1;min-width:320px">
+          <div style="font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:#5f6b7a;font-weight:600;margin-bottom:2px">New vs returning · by week</div>
+          <svg viewBox="0 0 380 210" width="100%" role="img" aria-label="New vs returning sessions by week stacked columns">
+            <line x1="40" y1="180" x2="366" y2="180" stroke="#c9cede"></line>
+            <!-- Jun 20-26 -->
+            <rect x="52" y="160.6" width="40" height="19.4" fill="#C9367F"></rect><rect x="52" y="158.8" width="40" height="1.8" fill="#6C8CFD"></rect><text x="72" y="154" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">69</text>
+            <!-- Jun 27-Jul 3 -->
+            <rect x="116" y="28.6" width="40" height="151.4" fill="#C9367F"></rect><rect x="116" y="25.5" width="40" height="3.1" fill="#6C8CFD"></rect><rect x="116" y="24.0" width="40" height="1.5" fill="#cbd2e0"></rect><text x="136" y="19" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">507</text>
+            <!-- Jul 4-10 -->
+            <rect x="180" y="75.1" width="40" height="104.9" fill="#C9367F"></rect><rect x="180" y="71.7" width="40" height="3.4" fill="#6C8CFD"></rect><rect x="180" y="71.4" width="40" height="0.3" fill="#cbd2e0"></rect><text x="200" y="67" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">353</text>
+            <!-- Jul 11-17 -->
+            <rect x="244" y="98.8" width="40" height="81.2" fill="#C9367F"></rect><rect x="244" y="94.8" width="40" height="4.0" fill="#6C8CFD"></rect><rect x="244" y="93.9" width="40" height="0.9" fill="#cbd2e0"></rect><text x="264" y="90" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">280</text>
+            <!-- Jul 18-24 -->
+            <rect x="308" y="74.8" width="40" height="105.2" fill="#C9367F"></rect><rect x="308" y="70.8" width="40" height="4.0" fill="#6C8CFD"></rect><rect x="308" y="69.3" width="40" height="1.5" fill="#cbd2e0"></rect><text x="328" y="65" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">360</text>
+            <!-- week labels -->
+            <text x="72" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">6/20</text>
+            <text x="136" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">6/27</text>
+            <text x="200" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">7/4</text>
+            <text x="264" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">7/11</text>
+            <text x="328" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">7/18</text>
+          </svg>
+        </div>
         <div style="font-family:Roboto,sans-serif;font-size:13px;color:#212529;line-height:2">
           <div><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:#C9367F;margin-right:8px"></span><b>New</b> — 342 · 95%</div>
           <div><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:#6C8CFD;margin-right:8px"></span><b>Returning</b> — 13 · 4%</div>
