@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Search Visibility / Ignite UI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
+    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
+    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
+  }
+  body.theme-reveal   {--accent:#EC417A;--accent-deep:#C9367F;--accent-soft:#fde4ee;--hero:linear-gradient(120deg,#FBB764,#EC417A 62%,#d63384)}
+  body.theme-slingshot{--accent:#4B45C6;--accent-deep:#2D2A90;--accent-soft:#ECEBFB;--hero:linear-gradient(120deg,#6C5CE7,#4B45C6 55%,#2D2A90)}
+  body.theme-ui       {--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
+  body.theme-all      {--accent:#2563EB;--accent-deep:#7C3AED;--accent-soft:#EEF1FF;--hero:linear-gradient(120deg,#2563EB,#7C3AED)}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 80px}
+
+  header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
+  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
+  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
+  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)} .meta b{color:#fff;font-weight:700}
+
+  /* dynamic tab bar (built from panels) */
+  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03);overflow-x:auto}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;white-space:nowrap}
+  .tab:hover{color:var(--ink)}
+  .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+  .tabpanel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
+  .tabpanel.on{display:block}
+
+  /* ===== SHARED CONTENT VOCABULARY (agents use these classes) ===== */
+  .sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:26px 2px 13px;display:flex;align-items:center;gap:10px}
+  .sec:first-child{margin-top:2px}
+  .sec .n{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  .lead{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:16px 20px;font-size:14.5px;line-height:1.6} .lead b{color:var(--navy)}
+
+  .kpigrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
+  @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:#fcfdff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column}
+  .kpi .lab{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;min-height:28px}
+  .kpi .val{font-size:22px;font-weight:700;margin:2px 0 8px;font-family:var(--mono)}
+  .kpi .delta{align-self:flex-start;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
+  .delta.up{background:var(--good-bg);color:var(--good)} .delta.down{background:var(--bad-bg);color:var(--bad)} .delta.flat{background:var(--warn-bg);color:var(--warn)}
+
+  .score{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  .score table{width:100%;border-collapse:collapse;font-size:13px}
+  .score th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  .score td{padding:11px 13px;border-top:1px solid var(--line);vertical-align:middle}
+  .score .goal{font-weight:600;color:var(--navy)}
+  .pill{font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px}
+  .pill.good{background:var(--good-bg);color:var(--good)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.bad{background:var(--bad-bg);color:var(--bad)}
+
+  .cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
+  .card{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .card .ch{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:var(--accent-soft);border-bottom:1px solid var(--line)}
+  .card .ch .nm{font-size:15px;font-weight:700;color:var(--accent-deep)} .card .ch .sp{font-family:var(--mono);font-size:12.5px;color:var(--navy)}
+  .card .cb{padding:14px 18px;font-size:13.5px;line-height:1.55} .card .cb b{color:var(--navy)}
+
+  .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  .dtable table{width:100%;border-collapse:collapse;font-size:13px}
+  .dtable th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  .dtable td{padding:10px 13px;border-top:1px solid var(--line)} .dtable td.num{font-family:var(--mono);text-align:right}
+  .dtable tr:hover td{background:#fafbff}
+
+  .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
+  .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
+  .verdict p{font-size:15px;line-height:1.6;margin:0} .verdict b{color:var(--navy)}
+  code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+</style>
+</head>
+<body class="theme-ui">
+<div class="wrap">
+
+  <header class="top">
+    <div class="logochip">Ignite UI</div>
+    <div class="kick">UI Tools · AI Search Visibility</div>
+    <h1>AI Search Visibility / Ignite UI</h1>
+    <div class="meta"><span>Week of <b>2026-07-26</b></span><span>Report <b>#185443</b> (Jul 23) vs <b>#181665</b> (Jul 16)</span><span>Source <b>Amplitude AI Visibility</b> · brand Infragistics</span></div>
+  </header>
+
+  <div class="tabbar" id="tabbar"></div>
+
+  <div id="panels">
+
+  <!-- ============ TAB 1: OVERVIEW ============ -->
+  <section class="tabpanel" data-tab="overview" data-label="Overview">
+
+    <div class="lead">Ignite UI's parent brand <b>Infragistics</b> shows up in <b>7.3%</b> of consumer-LLM answers about UI component libraries this week — essentially flat WoW (7.1% → 7.3%) and roughly <b>5&times; behind category leader Syncfusion (39%)</b>. We rank near the bottom of the pack (<b>avg rank 9.6</b> out of ~10). The one bright spot: prompt coverage rose from 9.5% to 14.3% — we now surface on 3 of 21 tracked prompts, all of them narrow comparison/"alternatives" queries. We are invisible on every high-volume category prompt. Our own blog/product pages are the only source reliably citing us; the third-party listicles that LLMs cite most still leave Ignite UI out.</div>
+
+    <div class="sec"><span class="n">1</span> Top-line scorecard <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— delta vs report #181665 (Jul 16)</span></div>
+    <div class="kpigrid">
+      <div class="kpi"><div class="lab">Visibility Score</div><div class="val">7.3%</div><span class="delta up">&#9650; +0.2 pp</span></div>
+      <div class="kpi"><div class="lab">Avg Rank (of ~10)</div><div class="val">9.6</div><span class="delta flat">&#9660; 0.1 worse</span></div>
+      <div class="kpi"><div class="lab">Prompt Coverage</div><div class="val">14.3%</div><span class="delta up">&#9650; +4.8 pp</span></div>
+      <div class="kpi"><div class="lab">Answers Mentioning Us</div><div class="val">3 / 41</div><span class="delta flat">&#8213; flat (was 3/42)</span></div>
+      <div class="kpi"><div class="lab">Own-Site Citations</div><div class="val">7</div><span class="delta flat">6 pages · new baseline</span></div>
+    </div>
+
+    <div class="sec"><span class="n">2</span> Health vs where we need to be</div>
+    <div class="score">
+      <table>
+        <thead><tr><th>Metric</th><th>This week</th><th>Target / benchmark</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">Visibility score</td><td>7.3%</td><td>Beat Figma (7.3%) &rarr; chase DevExpress/Kendo (26.8%)</td><td><span class="pill warn">Stalled</span></td></tr>
+          <tr><td class="goal">Avg answer rank</td><td>9.6</td><td>&le; 8.0 (competitor band)</td><td><span class="pill bad">Behind</span></td></tr>
+          <tr><td class="goal">Prompt coverage</td><td>14.3% (3/21)</td><td>50%+</td><td><span class="pill warn">Improving</span></td></tr>
+          <tr><td class="goal">Model coverage</td><td>2 of 4 engines</td><td>ChatGPT, Gemini, Claude, AI Overview</td><td><span class="pill warn">Partial</span></td></tr>
+          <tr><td class="goal">Own-site citations</td><td>7 cites / 6 pages</td><td>Maintain &amp; grow into gap prompts</td><td><span class="pill good">Holding</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec"><span class="n">3</span> Setup gap — read before trusting the cut</div>
+    <div class="cards">
+      <div class="card">
+        <div class="ch"><span class="nm">Brand is tracked at Infragistics level only</span><span class="sp">action required</span></div>
+        <div class="cb">AI Visibility has <b>one brand set up: "Infragistics"</b> (orgBrandId 35242). There is <b>no Ignite UI, React, Angular, or Blazor brand</b>. Everything here is the parent-company read — it cannot isolate Ignite UI or per-framework presence. <b>Add component-library-specific brands</b> (Ignite UI, Ignite UI for React, Ignite UI for Angular, Ignite UI for Blazor) to get finer tracking.</div>
+      </div>
+      <div class="card">
+        <div class="ch"><span class="nm">14 of 15 topics have zero prompts</span><span class="sp">data gap</span></div>
+        <div class="cb">All 21 prompts sit under one topic, <b>"UI component libraries."</b> The framework topics — <b>React UI components, Angular UI controls, Blazor components, Data grid solutions, Data visualization</b> and 9 more — return <b>0 prompts / 0 responses</b>. They exist but are unpopulated, so per-framework visibility reads as zero everywhere but the umbrella topic. Populate these before drawing framework conclusions.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAB 2: TOPICS & PROMPTS ============ -->
+  <section class="tabpanel" data-tab="topics" data-label="Topics &amp; Prompts">
+
+    <div class="lead">Only one topic carries data this week — <b>UI component libraries</b> (7% visibility, 21 prompts, 41 responses, 3 mentions). We win only on <b>narrow, low-volume comparison prompts</b> ("alternatives to devexpress", "SLA comparison for UI suites", "grid for 1M+ rows") where we hit 50% visibility and a strong ~7 rank. On the <b>high-volume category prompts that actually matter</b> — enterprise UI libraries, react datagrid rankings, complex dashboards, excel-like grids — we score <b>zero</b>. That is the whole story: we're a footnote in the specific, invisible in the general.</div>
+
+    <div class="sec"><span class="n">1</span> Topic visibility (component / dev-tool topics)</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Topic</th><th class="num">Visibility</th><th class="num">Prompts</th><th class="num">Responses</th><th class="num">Mentions</th></tr></thead>
+        <tbody>
+          <tr><td>UI component libraries</td><td class="num">7.0%</td><td class="num">21</td><td class="num">41</td><td class="num">3</td></tr>
+          <tr><td>React UI components</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr><td>Angular UI controls</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr><td>Blazor components</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr><td>Data grid solutions</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr><td>Data visualization tools</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr><td>JavaScript charting libraries</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr><td>WPF and WinForms development</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr><td>+ 7 more (all 0 prompts)</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <div class="cb"><b>Caveat:</b> the 14 zero-rows are not "we lost" — they have <b>no prompts assigned</b>. Only the umbrella "UI component libraries" topic is being queried. Framework-level presence is currently unmeasured, not absent.</div>
+    </div>
+
+    <div class="sec"><span class="n">2</span> Prompts that surface Ignite UI / Infragistics</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Prompt</th><th class="num">Vis.</th><th class="num">Rank</th><th class="num">Mo. Vol</th></tr></thead>
+        <tbody>
+          <tr><td>alternatives to devexpress</td><td class="num">50%</td><td class="num">7.5</td><td class="num">10</td></tr>
+          <tr><td>global support and sla comparison for ui suites</td><td class="num">50%</td><td class="num">7.0</td><td class="num">0</td></tr>
+          <tr><td>how to choose a grid for 1m+ rows</td><td class="num">50%</td><td class="num">6.5</td><td class="num">10</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec"><span class="n">3</span> High-value prompts where we're invisible (0% visibility)</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Prompt</th><th class="num">Mo. Vol</th><th>Who wins instead</th></tr></thead>
+        <tbody>
+          <tr><td>design system tooling with figma support</td><td class="num">3,600</td><td>Figma</td></tr>
+          <tr><td>top web components for design systems</td><td class="num">3,600</td><td>&mdash;</td></tr>
+          <tr><td>tools to avoid for mission-critical grids</td><td class="num">2,900</td><td>&mdash;</td></tr>
+          <tr><td>which ui kit for complex dashboards</td><td class="num">2,400</td><td>Ant Design, Chakra UI, MUI</td></tr>
+          <tr><td>fastest data grid benchmarks</td><td class="num">2,400</td><td>DevExpress, Handsontable, Syncfusion</td></tr>
+          <tr><td>mobile-friendly react components for enterprise</td><td class="num">1,900</td><td>Ant Design, Chakra UI, MUI</td></tr>
+          <tr><td>alternatives to kendo ui</td><td class="num">1,300</td><td>Kendo UI, MUI, PrimeNG, Syncfusion</td></tr>
+          <tr><td>ui libraries with excel-like spreadsheets</td><td class="num">1,300</td><td>Handsontable, Syncfusion, DevExpress</td></tr>
+          <tr><td>ui libraries with accessibility aa compliance</td><td class="num">1,300</td><td>Chakra UI, Material UI, Ant Design</td></tr>
+          <tr><td>ui libraries with low code prototyping</td><td class="num">1,300</td><td>Ant Design, Chakra UI, Figma</td></tr>
+          <tr><td>best components for financial dashboards</td><td class="num">1,300</td><td>&mdash;</td></tr>
+          <tr><td>react datagrid libraries ranked</td><td class="num">590</td><td>Material UI, DevExpress, Kendo UI, Syncfusion</td></tr>
+          <tr><td>best ui component libraries for enterprise apps</td><td class="num">480</td><td>Ant Design, Chakra UI, Kendo UI, MUI</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <div class="cb"><b>The pattern:</b> we own the <b>"vs / alternatives"</b> long tail (tiny volume) but forfeit the <b>"best / ranked / for enterprise"</b> head terms (hundreds–thousands of searches). Every high-volume prompt is a data-grid, dashboard, enterprise, or accessibility query — squarely Ignite UI's strengths — yet Syncfusion, DevExpress, Kendo, MUI and Ant Design take the slots.</div>
+    </div>
+  </section>
+
+  <!-- ============ TAB 3: COMPETITORS ============ -->
+  <section class="tabpanel" data-tab="competitors" data-label="Competitors">
+
+    <div class="lead">On the identical set of prompts, <b>Infragistics ties Figma dead last at 7.3%</b> among tracked brands. <b>Syncfusion (39%)</b> laps the field, followed by <b>Material UI (36.6%)</b> and <b>Ant Design (31.7%)</b>. Our closest paid, enterprise-suite competitors — <b>DevExpress and Kendo UI (both 26.8%)</b> — out-appear us by nearly 4&times;. The gap is not sentiment or ranking finesse; it's raw presence: they get named in answers, we don't.</div>
+
+    <div class="sec"><span class="n">1</span> Visibility vs competitors — same prompts</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Brand</th><th class="num">Visibility</th><th class="num">Avg Rank</th><th>Gap vs us</th></tr></thead>
+        <tbody>
+          <tr><td>Syncfusion</td><td class="num">39.0%</td><td class="num">7.6</td><td>+31.7 pp</td></tr>
+          <tr><td>Material UI</td><td class="num">36.6%</td><td class="num">7.7</td><td>+29.3 pp</td></tr>
+          <tr><td>Ant Design</td><td class="num">31.7%</td><td class="num">8.1</td><td>+24.4 pp</td></tr>
+          <tr><td>DevExpress</td><td class="num">26.8%</td><td class="num">8.6</td><td>+19.5 pp</td></tr>
+          <tr><td>Kendo UI</td><td class="num">26.8%</td><td class="num">8.2</td><td>+19.5 pp</td></tr>
+          <tr><td>Chakra UI</td><td class="num">14.6%</td><td class="num">9.1</td><td>+7.3 pp</td></tr>
+          <tr><td>Handsontable</td><td class="num">12.2%</td><td class="num">9.3</td><td>+4.9 pp</td></tr>
+          <tr><td>Figma</td><td class="num">7.3%</td><td class="num">9.7</td><td>tie</td></tr>
+          <tr><td><b>Infragistics (Ignite UI)</b></td><td class="num"><b>7.3%</b></td><td class="num"><b>9.6</b></td><td>&mdash;</td></tr>
+          <tr><td>PrimeNG</td><td class="num">2.4%</td><td class="num">9.9</td><td>&minus;4.9 pp</td></tr>
+          <tr><td>Telerik</td><td class="num">0%</td><td class="num">10.0</td><td>&minus;7.3 pp</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec"><span class="n">2</span> Who's out-citing us, and where</div>
+    <div class="cards">
+      <div class="card">
+        <div class="ch"><span class="nm">Syncfusion — the one to beat</span><span class="sp">39% · 16 mentions</span></div>
+        <div class="cb">Named in the <b>most answers of any brand</b> across the topic and cited on nearly every high-value prompt we miss: enterprise libraries, excel-like grids, blazor suites, financial dashboards, 1M-row grids. It appears on both third-party listicles <b>and</b> its own docs/blog. This is the direct enterprise-suite competitor and it is winning AI answers outright.</div>
+      </div>
+      <div class="card">
+        <div class="ch"><span class="nm">DevExpress &amp; Kendo UI — same tier, 4&times; ahead</span><span class="sp">26.8% · 11 mentions each</span></div>
+        <div class="cb">Our nearest positioning peers (paid enterprise component suites). Both surface on "alternatives", "enterprise", "accessibility" and grid-ranking prompts. Note we <b>do</b> beat them on the specific "alternatives to devexpress" prompt (we hit 50%) — proof that targeted comparison content works when it exists.</div>
+      </div>
+      <div class="card">
+        <div class="ch"><span class="nm">Material UI &amp; Ant Design — the open-source default</span><span class="sp">36.6% / 31.7%</span></div>
+        <div class="cb">LLMs reach for these first on generic React/enterprise/dashboard prompts because they saturate third-party listicles and community posts (Reddit, dev.to). Not our commercial buyer, but they consume the answer real estate we need for consideration-stage queries.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAB 4: SOURCES & MODELS ============ -->
+  <section class="tabpanel" data-tab="sources" data-label="Sources &amp; Models">
+
+    <div class="lead">When an LLM does mention us, it's overwhelmingly citing <b>our own pages</b>: <b>infragistics.com is the top source that mentions Infragistics</b> — 7 citations across 6 pages, 100% of them naming us. The problem is scale: those 7 sit inside <b>335 total citations</b> in the report, the vast majority going to third-party "best of" listicles (adminlte.io, builder.io, hashbyt.com, tailgrids, dev.to, Reddit) that mostly omit Ignite UI. By engine, we do better on <b>Google AI Overview (9.5%)</b> than <b>ChatGPT (5%)</b> — and <b>Gemini and Claude aren't in this report at all</b>.</div>
+
+    <div class="sec"><span class="n">1</span> Visibility by model / engine</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Engine</th><th class="num">Visibility</th><th class="num">Avg Rank</th><th class="num">Responses</th><th class="num">Mentions</th></tr></thead>
+        <tbody>
+          <tr><td>Google AI Overview</td><td class="num">9.5%</td><td class="num">9.4</td><td class="num">21</td><td class="num">2</td></tr>
+          <tr><td>ChatGPT (GPT)</td><td class="num">5.0%</td><td class="num">9.8</td><td class="num">20</td><td class="num">1</td></tr>
+          <tr><td>Gemini</td><td class="num">n/a</td><td class="num">&mdash;</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr><td>Claude</td><td class="num">n/a</td><td class="num">&mdash;</td><td class="num">0</td><td class="num">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <div class="cb"><b>Caveat:</b> this report only ran <b>Google AI Overview and ChatGPT</b> — Gemini and Claude returned no responses. Read the model split as a two-engine picture, and add Gemini/Claude coverage to complete it.</div>
+    </div>
+
+    <div class="sec"><span class="n">2</span> Own pages vs third-party — who cites us</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Our page (cited by LLMs)</th><th class="num">Cites</th><th class="num">Answers</th></tr></thead>
+        <tbody>
+          <tr><td>blogs/best-react-ui-library — "Best React UI Library: Top 9"</td><td class="num">2</td><td class="num">2</td></tr>
+          <tr><td>blogs/best-react-data-grid</td><td class="num">1</td><td class="num">1</td></tr>
+          <tr><td>blogs/best-react-data-grid-for-large-datasets</td><td class="num">1</td><td class="num">1</td></tr>
+          <tr><td>blogs/blazor-component-libraries</td><td class="num">1</td><td class="num">1</td></tr>
+          <tr><td>blogs/the-best-angular-grid</td><td class="num">1</td><td class="num">1</td></tr>
+          <tr><td>products/react-data-grid</td><td class="num">1</td><td class="num">1</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cards" style="margin-top:12px">
+      <div class="card">
+        <div class="ch"><span class="nm">Own-domain: our only reliable citation source</span><span class="sp">infragistics.com · 100% mention</span></div>
+        <div class="cb">Our owned "best X" comparison blogs are what LLMs pull us from — and they work. But 7 self-citations can't move a 41-response denominator. We're effectively <b>talking about ourselves</b> while the neutral third-party lists that models trust for category answers leave us out.</div>
+      </div>
+      <div class="card">
+        <div class="ch"><span class="nm">Third-party listicles: cited heavily, rarely include us</span><span class="sp">the real gap</span></div>
+        <div class="cb">Top cited external pages (builder.io "15 Best React UI Libraries", hashbyt, adminlte.io, tailgrids, dev.to, Reddit) list MUI, Ant Design, Chakra, shadcn, Radix — <b>not Ignite UI</b>. A few enterprise-leaning lists that <b>do</b> include us — htmlelements.com (Best Angular Grid), gleexa.com (Best Blazor) — prove placement is winnable. faciletechnolab's "Top 10 Enterprise React" lists Syncfusion, DevExpress, KendoReact but drops us.</div>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <div class="vh">Verdict — the one move this week</div>
+      <p><b>Get Ignite UI into the high-volume third-party "best of" listicles that LLMs cite most — starting with the enterprise/data-grid lists that already rank our competitors.</b> Our own blogs are the only thing surfacing us, and self-citation caps out fast; the answer real estate on the head prompts (enterprise UI libraries, react datagrid rankings, excel-like grids, complex dashboards — 480–2,400 searches each) is decided by neutral listicles where we're absent but DevExpress/Kendo/Syncfusion are present. Prioritize outreach/placement on builder.io, hashbyt.com, adminlte.io, faciletechnolab and tailgrids, and in parallel expand our proven owned comparison pages to target the five highest-volume gap prompts. <b>Owner: Poojitha (content/SEO) with Beth on third-party placement/backlinks.</b></p>
+    </div>
+  </section>
+
+  </div>
+
+</div>
+
+<script>
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.tabpanel'));
+  var bar = document.getElementById('tabbar');
+  panels.forEach(function(p,i){
+    var b=document.createElement('button');
+    b.className='tab'+(i===0?' on':''); b.textContent=p.dataset.label||('Tab '+(i+1));
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+      panels.forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on'); p.classList.add('on');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+    bar.appendChild(b);
+    if(i===0) p.classList.add('on');
+  });
+</script>
+</body>
+</html>
