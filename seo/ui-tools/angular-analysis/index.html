@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEO Angular Weekly / Ignite UI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
+    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
+    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
+  }
+  body.theme-reveal   {--accent:#EC417A;--accent-deep:#C9367F;--accent-soft:#fde4ee;--hero:linear-gradient(120deg,#FBB764,#EC417A 62%,#d63384)}
+  body.theme-slingshot{--accent:#4B45C6;--accent-deep:#2D2A90;--accent-soft:#ECEBFB;--hero:linear-gradient(120deg,#6C5CE7,#4B45C6 55%,#2D2A90)}
+  body.theme-ui       {--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
+  body.theme-all      {--accent:#2563EB;--accent-deep:#7C3AED;--accent-soft:#EEF1FF;--hero:linear-gradient(120deg,#2563EB,#7C3AED)}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 80px}
+
+  header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
+  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
+  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
+  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)} .meta b{color:#fff;font-weight:700}
+
+  /* dynamic tab bar (built from panels) */
+  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03);overflow-x:auto}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;white-space:nowrap}
+  .tab:hover{color:var(--ink)}
+  .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+  .tabpanel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
+  .tabpanel.on{display:block}
+
+  /* ===== SHARED CONTENT VOCABULARY (agents use these classes) ===== */
+  .sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:26px 2px 13px;display:flex;align-items:center;gap:10px}
+  .sec:first-child{margin-top:2px}
+  .sec .n{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  .lead{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:16px 20px;font-size:14.5px;line-height:1.6} .lead b{color:var(--navy)}
+
+  .kpigrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
+  @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:#fcfdff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column}
+  .kpi .lab{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;min-height:28px}
+  .kpi .val{font-size:22px;font-weight:700;margin:2px 0 8px;font-family:var(--mono)}
+  .kpi .delta{align-self:flex-start;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
+  .delta.up{background:var(--good-bg);color:var(--good)} .delta.down{background:var(--bad-bg);color:var(--bad)} .delta.flat{background:var(--warn-bg);color:var(--warn)}
+
+  .score{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  .score table{width:100%;border-collapse:collapse;font-size:13px}
+  .score th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  .score td{padding:11px 13px;border-top:1px solid var(--line);vertical-align:middle}
+  .score .goal{font-weight:600;color:var(--navy)}
+  .pill{font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px}
+  .pill.good{background:var(--good-bg);color:var(--good)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.bad{background:var(--bad-bg);color:var(--bad)}
+
+  .cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
+  .card{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .card .ch{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:var(--accent-soft);border-bottom:1px solid var(--line)}
+  .card .ch .nm{font-size:15px;font-weight:700;color:var(--accent-deep)} .card .ch .sp{font-family:var(--mono);font-size:12.5px;color:var(--navy)}
+  .card .cb{padding:14px 18px;font-size:13.5px;line-height:1.55} .card .cb b{color:var(--navy)}
+
+  .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  .dtable table{width:100%;border-collapse:collapse;font-size:13px}
+  .dtable th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  .dtable td{padding:10px 13px;border-top:1px solid var(--line)} .dtable td.num{font-family:var(--mono);text-align:right}
+  .dtable tr:hover td{background:#fafbff}
+
+  .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
+  .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
+  .verdict p{font-size:15px;line-height:1.6;margin:0} .verdict b{color:var(--navy)}
+  code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+</style>
+</head>
+<body class="theme-ui">
+<div class="wrap">
+
+  <header class="top">
+    <div class="logochip">Ignite UI</div>
+    <div class="kick">UI Tools · Angular · SEO</div>
+    <h1>SEO Angular Weekly / Ignite UI</h1>
+    <div class="meta"><span>Week of <b>July 26, 2026</b></span><span>Scope: <b>www.infragistics.com/products/ignite-ui-angular</b> (prefix)</span><span>WoW: <b>Jul 26 vs Jul 19</b></span></div>
+  </header>
+
+  <div class="tabbar" id="tabbar"></div>
+
+  <div id="panels">
+
+    <!-- ============ TAB 1: OVERVIEW ============ -->
+    <section class="tabpanel" data-tab="overview" data-label="Overview">
+
+      <div class="sec"><span class="n">1</span>Executive summary</div>
+      <div class="lead">
+        Angular organic held steady and ticked up: modeled organic traffic rose to <b>1,610/mo</b> (+4.5% WoW) and the <b>top-3 footprint grew to 134 keywords</b> (+4). The story of the week is <b>"data binding in angular"</b> (1,200 vol, KD&nbsp;1) breaking onto page one at <b>#8</b> — it lifted the WPF-to-Angular two-way-binding page from 99 to <b>162 traffic</b> (+63) and is now our single biggest organic page. Offsetting that, <b>"angular chart" slipped 5&nbsp;&rarr;&nbsp;8</b> and the date-range-picker page shed 15 traffic. The bigger flag isn't rankings — it's measurement: <b>GA4 sees only 13 organic sessions/wk on Angular pages</b> against Ahrefs' 1,610/mo model, meaning our component/docs pages are almost invisible to on-site analytics. Rankings are the source of truth this week; GA4 behavior is directional at best until tracking is fixed.
+      </div>
+
+      <div class="sec"><span class="n">2</span>KPIs — week over week</div>
+      <div class="kpigrid">
+        <div class="kpi"><div class="lab">Organic traffic (modeled/mo)</div><div class="val">1,610</div><span class="delta up">&#9650; +69 (+4.5%)</span></div>
+        <div class="kpi"><div class="lab">Ranking keywords</div><div class="val">482</div><span class="delta down">&#9660; &minus;2 (&minus;0.4%)</span></div>
+        <div class="kpi"><div class="lab">Keywords in top 3</div><div class="val">134</div><span class="delta up">&#9650; +4 (+3.1%)</span></div>
+        <div class="kpi"><div class="lab">Est. traffic value/mo</div><div class="val">$968</div><span class="delta flat">&#9650; +$3 (+0.3%)</span></div>
+        <div class="kpi"><div class="lab">GA4 organic sessions (wk)</div><div class="val">13</div><span class="delta down">&#9660; &minus;4 (&minus;23.5%)</span></div>
+      </div>
+
+      <div class="sec"><span class="n">3</span>Goal scorecard</div>
+      <div class="score">
+        <table>
+          <thead><tr><th>Goal</th><th>Where it stands</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="goal">Own #1 on core Angular grid terms</td><td><code>angular tree grid</code> #1, <code>hierarchical grid</code> #1&ndash;2, <code>angular grid component</code> #3 — but <code>angular datagrid</code> stuck at #6</td><td><span class="pill warn">Partial</span></td></tr>
+            <tr><td class="goal">Grow top-3 footprint</td><td>134 keywords in top 3, +4 WoW — steady climb</td><td><span class="pill good">On track</span></td></tr>
+            <tr><td class="goal">Capture "data binding in angular" (1,200 vol)</td><td>New page-one entry at #8; already the #1 traffic page — not yet top 3</td><td><span class="pill warn">Momentum</span></td></tr>
+            <tr><td class="goal">Defend chart terms</td><td><code>angular chart</code> dropped 5&nbsp;&rarr;&nbsp;8; chart-overview traffic 99&nbsp;&rarr;&nbsp;96</td><td><span class="pill bad">Slipping</span></td></tr>
+            <tr><td class="goal">Measure organic behavior on-site</td><td>GA4 logs 13 organic sessions/wk vs 1,610/mo modeled — docs/component pages under-instrumented</td><td><span class="pill bad">Blind spot</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sec"><span class="n">4</span>What's working / what's not</div>
+      <div class="cards">
+        <div class="card">
+          <div class="ch"><span class="nm">Working</span><span class="sp">+69 traffic WoW</span></div>
+          <div class="cb"><b>The WPF-to-Angular guide is paying off.</b> "data binding in angular" (1,200 vol) and "two way binding in angular" (#1) now anchor the top traffic page at 162 visits. Component docs continue to hold strong top-3 spots: stepper #2, tree grid #1, time picker #2&ndash;3, date range picker #2, calendar #3, group by #1.</div>
+        </div>
+        <div class="card">
+          <div class="ch"><span class="nm">Not working</span><span class="sp">2 declines to defend</span></div>
+          <div class="cb"><b>Charts are softening and analytics is dark.</b> "angular chart" fell three spots to #8 and the date-range-picker page lost 15 traffic WoW. Separately, GA4 can't see the pages that Ahrefs says drive nearly all the traffic — so we're flying on ranking data alone. Both need attention this cycle.</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============ TAB 2: RANKINGS & KEYWORDS ============ -->
+    <section class="tabpanel" data-tab="rankings" data-label="Rankings &amp; Keywords">
+
+      <div class="lead">
+        482 keywords ranking, 134 in the top 3. The Angular set is dominated by component-intent terms (<code>angular slider</code>, <code>angular datagrid</code>, <code>angular stepper</code>) where the docs pages rank well. The week's momentum came from one new high-volume entry; the risk is a chart term sliding and one keyword dropping out entirely.
+      </div>
+
+      <div class="sec"><span class="n">1</span>Top keywords by organic traffic</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Keyword</th><th>Pos</th><th>WoW</th><th class="num">Volume</th><th class="num">KD</th><th class="num">Traffic</th></tr></thead>
+          <tbody>
+            <tr><td>data binding in angular</td><td>8</td><td><span class="pill good">NEW</span></td><td class="num">1,200</td><td class="num">1</td><td class="num">58</td></tr>
+            <tr><td>angular slider</td><td>6</td><td>&mdash;</td><td class="num">400</td><td class="num">2</td><td class="num">27</td></tr>
+            <tr><td>hierarchical grid</td><td>2</td><td>&mdash;</td><td class="num">70</td><td class="num">3</td><td class="num">25</td></tr>
+            <tr><td>angular spreadsheet</td><td>4</td><td>&mdash;</td><td class="num">250</td><td class="num">2</td><td class="num">23</td></tr>
+            <tr><td>angular form validation</td><td>4</td><td>&mdash;</td><td class="num">150</td><td class="num">9</td><td class="num">21</td></tr>
+            <tr><td>angular accordion</td><td>4</td><td>&mdash;</td><td class="num">100</td><td class="num">1</td><td class="num">18</td></tr>
+            <tr><td>angular datagrid</td><td>6</td><td>&mdash;</td><td class="num">300</td><td class="num">10</td><td class="num">18</td></tr>
+            <tr><td>angular stepper</td><td>2</td><td>&mdash;</td><td class="num">100</td><td class="num">1</td><td class="num">17</td></tr>
+            <tr><td>angular tooltip</td><td>7</td><td>&mdash;</td><td class="num">250</td><td class="num">0</td><td class="num">17</td></tr>
+            <tr><td>angular tabs</td><td>4</td><td>&mdash;</td><td class="num">100</td><td class="num">1</td><td class="num">17</td></tr>
+            <tr><td>angular datepicker</td><td>3</td><td><span class="pill good">&#9650; 4&rarr;3</span></td><td class="num">70</td><td class="num">8</td><td class="num">13</td></tr>
+            <tr><td>angular tree grid</td><td>1</td><td>&mdash;</td><td class="num">40</td><td class="num">3</td><td class="num">14</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sec"><span class="n">2</span>Movers — up &amp; down</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Keyword</th><th>Move</th><th class="num">Volume</th><th>Page</th></tr></thead>
+          <tbody>
+            <tr><td>data binding in angular</td><td><span class="pill good">Entered #8 (new)</span></td><td class="num">1,200</td><td>wpf-to-angular-guide/two-way-binding</td></tr>
+            <tr><td>angular datepicker</td><td><span class="pill good">&#9650; 4 &rarr; 3 (into top 3)</span></td><td class="num">70</td><td>components/date-picker</td></tr>
+            <tr><td>daterangepicker</td><td><span class="pill warn">Entered #11 (new)</span></td><td class="num">400</td><td>components/date-range-picker</td></tr>
+            <tr><td>angular chart</td><td><span class="pill bad">&#9660; 5 &rarr; 8</span></td><td class="num">150</td><td>components/charts/chart-overview</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sec"><span class="n">3</span>Ranking opportunities — striking distance (pos 4&ndash;15)</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Keyword</th><th>Pos</th><th class="num">Volume</th><th class="num">KD</th><th>Why it's a target</th></tr></thead>
+          <tbody>
+            <tr><td>data binding in angular</td><td>8</td><td class="num">1,200</td><td class="num">1</td><td>Highest-volume, near-zero difficulty; one page-one push from a top-3 jump</td></tr>
+            <tr><td>date range picker</td><td>4</td><td class="num">450</td><td class="num">15</td><td>Page already #2 for the "angular" variant — win the generic term</td></tr>
+            <tr><td>angular slider</td><td>6</td><td class="num">400</td><td class="num">2</td><td>Big volume, trivial KD; slider docs already rank</td></tr>
+            <tr><td>daterangepicker</td><td>11</td><td class="num">400</td><td class="num">15</td><td>Just entered — consolidate onto the date-range-picker page</td></tr>
+            <tr><td>angular datagrid</td><td>6</td><td class="num">300</td><td class="num">10</td><td>Core grid intent; move grid/grid page from #6 into top 3</td></tr>
+            <tr><td>angular tooltip</td><td>7</td><td class="num">250</td><td class="num">0</td><td>Zero difficulty — quick win with on-page tuning</td></tr>
+            <tr><td>angular material navbar</td><td>8</td><td class="num">250</td><td class="num">0</td><td>Zero difficulty, high volume; navbar page underperforms its potential</td></tr>
+            <tr><td>angular spreadsheet</td><td>4</td><td class="num">250</td><td class="num">2</td><td>Already close; small push to top 3</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sec"><span class="n">4</span>Losses to defend</div>
+      <div class="cards">
+        <div class="card">
+          <div class="ch"><span class="nm">angular chart</span><span class="sp">5 &rarr; 8</span></div>
+          <div class="cb">Dropped three positions on a 150-vol term; the chart-overview page also lost traffic (99&rarr;96). Refresh the page — competitors are gaining. This is the clearest ranking regression of the week.</div>
+        </div>
+        <div class="card">
+          <div class="ch"><span class="nm">Dropped-out keyword</span><span class="sp">was #5, 11 traffic</span></div>
+          <div class="cb">One term that ranked #5 last week (≈11 modeled visits) fell out of the tracked set entirely. Worth a SERP check to confirm whether it's a temporary flux or a lost page.</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============ TAB 3: TOP PAGES & CONTENT ============ -->
+    <section class="tabpanel" data-tab="pages" data-label="Top Pages &amp; Content">
+
+      <div class="lead">
+        The traffic base is component and guide docs. One page (<b>two-way-binding</b>) jumped +63 WoW and is now #1; the rest are flat-to-slightly-down. Highest-value pages by traffic value are the grid, chart, dropdown and time-picker docs — protect those.
+      </div>
+
+      <div class="sec"><span class="n">1</span>Top Angular pages by organic traffic</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Page</th><th class="num">Traffic</th><th class="num">WoW</th><th class="num">Keywords</th><th>Top keyword (pos)</th></tr></thead>
+          <tbody>
+            <tr><td>wpf-to-angular-guide/two-way-binding</td><td class="num">162</td><td class="num">+63</td><td class="num">27</td><td>data binding in angular (8)</td></tr>
+            <tr><td>components/charts/chart-overview</td><td class="num">96</td><td class="num">&minus;3</td><td class="num">22</td><td>angular graphs (6)</td></tr>
+            <tr><td>components/date-range-picker</td><td class="num">80</td><td class="num">&minus;15</td><td class="num">10</td><td>angular date range picker (2)</td></tr>
+            <tr><td>components/date-picker</td><td class="num">74</td><td class="num">+6</td><td class="num">21</td><td>angular datepicker (3)</td></tr>
+            <tr><td>components/grid/grid</td><td class="num">71</td><td class="num">+4</td><td class="num">20</td><td>angular datagrid (6)</td></tr>
+            <tr><td>components/time-picker</td><td class="num">67</td><td class="num">0</td><td class="num">18</td><td>angular time picker (3)</td></tr>
+            <tr><td>components/slider/slider</td><td class="num">62</td><td class="num">0</td><td class="num">7</td><td>angular slider (6)</td></tr>
+            <tr><td>components/angular-reactive-form-validation</td><td class="num">61</td><td class="num">+2</td><td class="num">27</td><td>angular form validation (4)</td></tr>
+            <tr><td>components/navbar</td><td class="num">56</td><td class="num">&minus;1</td><td class="num">18</td><td>angular material navbar (8)</td></tr>
+            <tr><td>components/stepper</td><td class="num">55</td><td class="num">0</td><td class="num">7</td><td>angular stepper (2)</td></tr>
+            <tr><td>components/tabs</td><td class="num">49</td><td class="num">0</td><td class="num">5</td><td>angular tabs (4)</td></tr>
+            <tr><td>components/grid/paging</td><td class="num">47</td><td class="num">&minus;1</td><td class="num">12</td><td>pagination in angular (3)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sec"><span class="n">2</span>What's winning</div>
+      <div class="cards">
+        <div class="card">
+          <div class="ch"><span class="nm">two-way-binding guide</span><span class="sp">99 &rarr; 162 (+63)</span></div>
+          <div class="cb"><b>Biggest gainer, and it's compounding.</b> The WPF-to-Angular guide picked up "data binding in angular" (1,200 vol) at #8 on top of its existing #1 for "two way binding in angular." This single page now carries the section. Add internal links from the grid/forms docs and tighten the H1/title toward "data binding" to chase the top 3.</div>
+        </div>
+        <div class="card">
+          <div class="ch"><span class="nm">date-picker &amp; grid</span><span class="sp">+6 / +4</span></div>
+          <div class="cb">date-picker moved its top keyword 4&rarr;3 into the top 3; grid/grid gained modestly and holds 20 keywords. Both are healthy, high-value pages ($34&ndash;97/mo traffic value) worth continued internal linking.</div>
+        </div>
+      </div>
+
+      <div class="sec"><span class="n">3</span>Thin / decaying — improve</div>
+      <div class="cards">
+        <div class="card">
+          <div class="ch"><span class="nm">date-range-picker</span><span class="sp">95 &rarr; 80 (&minus;15)</span></div>
+          <div class="cb"><b>Largest decliner this week.</b> Still ranks #2&ndash;4 across the date-range cluster and holds three striking-distance terms (450 + 400 + 150 vol). The traffic dip suggests SERP volatility or a snippet loss — refresh the page and reclaim the generic "date range picker" (#4, 450 vol).</div>
+        </div>
+        <div class="card">
+          <div class="ch"><span class="nm">chart-overview</span><span class="sp">99 &rarr; 96 (&minus;3)</span></div>
+          <div class="cb">Losing ground on "angular chart" (5&rarr;8) even though it's the second-highest traffic-value page ($81/mo). A content refresh with current examples and updated meta should stop the slide before it compounds.</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============ TAB 4: SITE BEHAVIOR (GA4) ============ -->
+    <section class="tabpanel" data-tab="behavior" data-label="Site Behavior (GA4)">
+
+      <div class="lead">
+        <b>Read this tab with a caveat.</b> GA4 (property 516222862) records just <b>13 organic sessions on Angular pages last week</b> — against Ahrefs' modeled 1,610/mo. That's not a traffic collapse; it's an instrumentation gap. Nearly all Angular traffic lands on <code>/angular/components/*</code> and <code>/docs/*</code> pages that this GA4 stream barely captures. Treat the metrics below as directional and prioritize fixing measurement. Per our one-metric-one-tool rule, we do <b>not</b> reconcile GA4 vs Ahrefs — they measure different things (real on-site vs modeled search).
+      </div>
+
+      <div class="sec"><span class="n">1</span>Organic &rarr; Angular pages (GA4, WoW)</div>
+      <div class="kpigrid">
+        <div class="kpi"><div class="lab">Sessions (landing)</div><div class="val">13</div><span class="delta down">&#9660; &minus;4 (&minus;23.5%)</span></div>
+        <div class="kpi"><div class="lab">Engaged sessions</div><div class="val">10</div><span class="delta down">&#9660; &minus;3</span></div>
+        <div class="kpi"><div class="lab">Engagement rate</div><div class="val">76.9%</div><span class="delta up">&#9650; +0.4 pt</span></div>
+        <div class="kpi"><div class="lab">Views</div><div class="val">44</div><span class="delta flat">&rarr; flat</span></div>
+        <div class="kpi"><div class="lab">Key events</div><div class="val">0</div><span class="delta flat">&rarr; 0</span></div>
+      </div>
+
+      <div class="sec"><span class="n">2</span>New vs returning &amp; engagement depth</div>
+      <div class="score">
+        <table>
+          <thead><tr><th>Segment / metric</th><th>This week</th><th>Read</th></tr></thead>
+          <tbody>
+            <tr><td class="goal">Returning sessions</td><td>10 of 13 (77%)</td><td><span class="pill warn">Skewed to returning</span></td></tr>
+            <tr><td class="goal">New sessions</td><td>3 of 13 (23%)</td><td><span class="pill warn">Thin new-visitor capture</span></td></tr>
+            <tr><td class="goal">New users</td><td>3 (was 7)</td><td><span class="pill bad">Down WoW</span></td></tr>
+            <tr><td class="goal">Avg session duration</td><td>457s</td><td><span class="pill warn">Skewed by one 1,250s docs session</span></td></tr>
+            <tr><td class="goal">Page-scoped organic sessions</td><td>28 (27 views)</td><td><span class="pill warn">Wider lens, still tiny vs model</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sec"><span class="n">3</span>Top organic entry pages (GA4)</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Landing page</th><th class="num">Sessions</th><th class="num">Engaged</th><th class="num">Avg dur (s)</th></tr></thead>
+          <tbody>
+            <tr><td>/products/ignite-ui-angular</td><td class="num">8</td><td class="num">8</td><td class="num">565</td></tr>
+            <tr><td>/angular/components/treegrid/paging</td><td class="num">1</td><td class="num">0</td><td class="num">1.4</td></tr>
+            <tr><td>/docs/12.1.10/.../IgxYearsViewComponent.html</td><td class="num">1</td><td class="num">0</td><td class="num">6.2</td></tr>
+            <tr><td>/docs/6.2.12/.../igxdialogcomponent.html</td><td class="num">1</td><td class="num">1</td><td class="num">1,250</td></tr>
+            <tr><td>/docs/6.2.12/.../igxiconservice.html</td><td class="num">1</td><td class="num">1</td><td class="num">149</td></tr>
+            <tr><td>/docs/7.2.21/.../displaydensity.html</td><td class="num">1</td><td class="num">0</td><td class="num">5.0</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="verdict">
+        <div class="vh">Verdict — where to invest next</div>
+        <p><b>Push the "data binding in angular" cluster and fix analytics — in that order.</b> The two-way-binding guide is the highest-leverage asset on the property: it just cracked page one at #8 for a 1,200-volume, KD-1 term and already leads all Angular pages at 162 visits. Tighten its title/H1 around "data binding," add internal links from the grid and forms docs, and it should reach the top 3 for a likely +100 visits/mo. Second, <b>close the GA4 blind spot</b> — the component/docs pages that Ahrefs credits with nearly all our traffic register almost nothing in GA4, so we can't measure engagement or conversions where the audience actually is; get the docs app onto this stream. Third, <b>defend charts</b>: refresh chart-overview to stop "angular chart" (5&rarr;8) sliding further. Rankings are healthy and growing; the growth ceiling this quarter is measurement, not search.</p>
+      </div>
+
+    </section>
+
+  </div>
+
+</div>
+
+<script>
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.tabpanel'));
+  var bar = document.getElementById('tabbar');
+  panels.forEach(function(p,i){
+    var b=document.createElement('button');
+    b.className='tab'+(i===0?' on':''); b.textContent=p.dataset.label||('Tab '+(i+1));
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+      panels.forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on'); p.classList.add('on');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+    bar.appendChild(b);
+    if(i===0) p.classList.add('on');
+  });
+</script>
+</body>
+</html>
