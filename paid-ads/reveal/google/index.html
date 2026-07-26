@@ -96,6 +96,23 @@
   .donut .hole b{font-size:19px;font-family:var(--mono);color:var(--navy)} .donut .hole span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
   .legend{display:flex;flex-direction:column;gap:10px;font-size:13px}
   .legend .li{display:flex;align-items:center;gap:9px} .legend .sw{width:12px;height:12px;border-radius:3px;flex-shrink:0} .legend b{font-family:var(--mono)}
+  .stack{display:flex;height:28px;border-radius:8px;overflow:hidden;border:1px solid var(--line);margin-top:8px}
+  .stack div{display:flex;align-items:center;color:#fff;font-size:11.5px;font-weight:600;padding:0 10px;white-space:nowrap}
+  .rank{display:flex;flex-direction:column;gap:7px;margin-top:12px}
+  .rankrow{display:grid;grid-template-columns:190px 1fr 46px;align-items:center;gap:10px;font-size:12.5px}
+  .rankrow .lp{font-family:var(--mono);font-size:12px;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rankrow .tk{background:#eef1f7;border-radius:6px;height:17px;overflow:hidden}
+  .rankrow .fl{height:100%;border-radius:6px}
+  .rankrow .vv{font-family:var(--mono);font-size:11.5px;text-align:right;color:var(--navy)}
+  .gal{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:8px}
+  @media(max-width:820px){.gal{grid-template-columns:repeat(2,1fr)}}
+  .gal .it{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fcfdff}
+  .gal .it img{width:100%;height:118px;object-fit:contain;background:#f2f4f8;display:block}
+  .gal .it .cap{padding:8px 10px;font-size:11.5px;color:var(--muted)} .gal .it .cap b{color:var(--navy)}
+  .chartcard{border:1px solid var(--line);border-radius:12px;padding:14px 16px 10px;margin-top:10px;background:#fcfdff}
+  .chartcard .ct{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;margin-bottom:6px}
+  .chartcard svg{width:100%;height:auto;display:block}
+  .clg{display:flex;gap:16px;margin-top:4px;font-size:12px;color:var(--muted)} .clg .li{display:flex;align-items:center;gap:6px} .clg .sw{width:13px;height:3px;border-radius:2px}
 
   .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
   .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
@@ -383,7 +400,20 @@
       Creative lives almost entirely in the <b>DemandGen / PMax</b> campaigns (images, video, carousel) plus responsive search text. The headline issue: <b>Google has not graded a single non-Japan asset</b> (&ldquo;Pending information&rdquo;) &mdash; because asset performance labels need conversion data, and our import isn&rsquo;t firing. So the engine is <b>rotating creative blind</b>. Ranking by CTR, <b>portrait/marketing images and the Compete-Intl video are the standouts</b>, while <b>carousel cards and several videos are fatiguing</b>.
     </div>
 
-    <div class="sec"><span class="n">2</span>Format performance</div>
+    <div class="sec"><span class="n">2</span>The actual creative <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">&mdash; live image assets pulled from the account</span></div>
+    <div class="gal">
+      <div class="it"><img src="https://tpc.googlesyndication.com/simgad/9672679339688012062" alt="PMax logo" loading="lazy"><div class="cap"><b>Logo</b> · PMax · 62.9K impr</div></div>
+      <div class="it"><img src="https://tpc.googlesyndication.com/simgad/2383149930152822424" alt="Reveal business logo" loading="lazy"><div class="cap"><b>Business logo</b> · Search · ~24K impr</div></div>
+      <div class="it"><img src="https://tpc.googlesyndication.com/simgad/3127727231810535400" alt="Ad image" loading="lazy"><div class="cap"><b>Ad image</b> · Compete search · top-served</div></div>
+      <div class="it"><img src="https://tpc.googlesyndication.com/simgad/14645863122699124145" alt="Ad image" loading="lazy"><div class="cap"><b>Ad image</b> · Brand / Japan · ~505 impr</div></div>
+      <div class="it"><img src="https://tpc.googlesyndication.com/simgad/13827008254389160225" alt="Ad image" loading="lazy"><div class="cap"><b>Ad image</b> · Compete Intl</div></div>
+      <div class="it"><img src="https://tpc.googlesyndication.com/simgad/3969583626365133399" alt="Ad image" loading="lazy"><div class="cap"><b>Ad image</b> · Non-Brand</div></div>
+      <div class="it"><img src="https://tpc.googlesyndication.com/simgad/8739430711695992205" alt="Ad image" loading="lazy"><div class="cap"><b>Ad image</b> · Brand / Compete</div></div>
+      <div class="it"><img src="https://tpc.googlesyndication.com/simgad/1546767478817635639" alt="Ad image" loading="lazy"><div class="cap"><b>Ad image</b> · Brand</div></div>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:8px">These are the live logo and search/display image assets, pulled straight from the account via the connector. The richer DemandGen marketing images and YouTube videos aren&rsquo;t exposed as URLs by Supermetrics, so their thumbnails can&rsquo;t be embedded here &mdash; their <i>performance</i> is in the format table below. (If a thumbnail is blank, Google&rsquo;s ad CDN is blocking the hotlink &mdash; open it in the account.)</p>
+
+    <div class="sec"><span class="n">3</span>Format performance</div>
     <div class="dtable">
       <table>
         <thead><tr><th>Format</th><th>Role</th><th>Read</th><th>Best CTR seen</th></tr></thead>
@@ -398,7 +428,7 @@
       </table>
     </div>
 
-    <div class="sec"><span class="n">3</span>Fatigue &amp; refresh map</div>
+    <div class="sec"><span class="n">4</span>Fatigue &amp; refresh map</div>
     <div class="cards">
       <div class="card">
         <div class="ch"><span class="nm">Performing &mdash; scale</span><span class="sp">keep</span></div>
@@ -419,7 +449,7 @@
       </div>
     </div>
 
-    <div class="sec"><span class="n">4</span>The blind-spot to fix</div>
+    <div class="sec"><span class="n">5</span>The blind-spot to fix</div>
     <div class="lead">
       <b>Restore conversion import so Google can grade assets.</b> Right now every non-Japan asset is &ldquo;Pending,&rdquo; which means Smart Bidding and asset rotation are optimizing without a quality signal &mdash; we&rsquo;re paying to serve creative Google can&rsquo;t learn from. Fixing the conversion feed (same root cause as the 0 in the Google Ads conversion column) unlocks asset grading, better rotation, and real creative A/B reads.
     </div>
@@ -440,20 +470,65 @@
       <div class="kpi"><span class="lab">Mobile share</span><span class="val">76%</span><span class="delta down">weak engage</span></div>
     </div>
 
-    <div class="sec"><span class="n">2</span>Where paid traffic lands <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">&mdash; sessions by page (bar color = bounce health)</span></div>
-    <div class="bars">
-      <div class="barrow"><span class="lp">/ (home)</span><span class="bartrack"><span class="barfill r" style="width:100%"></span></span><span class="barval">1,057</span></div>
-      <div class="barrow"><span class="lp">/webinars/build-vs-buy</span><span class="bartrack"><span class="barfill r" style="width:7.3%"></span></span><span class="barval">77</span></div>
-      <div class="barrow"><span class="lp">/reveal-vs-power-bi</span><span class="bartrack"><span class="barfill g" style="width:3.4%"></span></span><span class="barval">36</span></div>
-      <div class="barrow"><span class="lp">/pricing/embedded-analytics</span><span class="bartrack"><span class="barfill w" style="width:1.2%"></span></span><span class="barval">13</span></div>
-      <div class="barrow"><span class="lp">/embedded-analytics-platform</span><span class="bartrack"><span class="barfill g" style="width:1.0%"></span></span><span class="barval">11</span></div>
-      <div class="barrow"><span class="lp">/embedded-bi</span><span class="bartrack"><span class="barfill r" style="width:1.0%"></span></span><span class="barval">11</span></div>
-      <div class="barrow"><span class="lp">/reveal-vs-metabase</span><span class="bartrack"><span class="barfill g" style="width:0.5%"></span></span><span class="barval">5</span></div>
-      <div class="barrow"><span class="lp">/request-demo</span><span class="bartrack"><span class="barfill g" style="width:0.5%"></span></span><span class="barval">5</span></div>
+    <div class="sec"><span class="n">2</span>Trend since the property went live <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">&mdash; google/cpc, monthly (GA4 for revealbi.io started Dec 2025)</span></div>
+    <div class="lead" style="font-size:13.5px">
+      Volume scaled hard in Q1 &mdash; peaking near <b>20K sessions in March</b> &mdash; then pulled back. As we scaled cold DemandGen volume, <b>bounce rose and engagement fell</b>, hitting the worst point in April (~64% bounce / 36% engagement). Since then, tighter targeting has <b>recovered quality</b>: June posted the best average duration (3:19) and engagement is climbing back toward 46%. A full 12-month trail isn&rsquo;t available yet &mdash; GA4 on the site only started tracking in December.
     </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:8px">The homepage absorbs <b>82%</b> of paid sessions. The pages that actually engage buyers sit in the long tail with single-digit sessions &mdash; a routing problem, not a page-quality problem.</p>
+    <div class="chartcard">
+      <div class="ct">Sessions per month</div>
+      <svg viewBox="0 0 660 200" role="img" aria-label="Sessions per month trend">
+        <line x1="40" y1="155" x2="640" y2="155" stroke="#e3e7f0" stroke-width="1"/>
+        <line x1="40" y1="88" x2="640" y2="88" stroke="#eef1f7" stroke-width="1"/>
+        <line x1="40" y1="21" x2="640" y2="21" stroke="#eef1f7" stroke-width="1"/>
+        <text x="34" y="158" font-size="9" fill="#8a93a3" text-anchor="end">0</text>
+        <text x="34" y="91" font-size="9" fill="#8a93a3" text-anchor="end">10K</text>
+        <text x="34" y="24" font-size="9" fill="#8a93a3" text-anchor="end">20K</text>
+        <path d="M40,155 L40,154.6 L137,127.9 L233,97.6 L330,21 L427,77.5 L523,117.6 L620,68.7 L620,155 Z" fill="#6C8CFD" fill-opacity="0.16"/>
+        <polyline points="40,154.6 137,127.9 233,97.6 330,21 427,77.5 523,117.6 620,68.7" fill="none" stroke="#2A41A2" stroke-width="2.5"/>
+        <g fill="#2A41A2"><circle cx="40" cy="154.6" r="3"/><circle cx="137" cy="127.9" r="3"/><circle cx="233" cy="97.6" r="3"/><circle cx="330" cy="21" r="3.5"/><circle cx="427" cy="77.5" r="3"/><circle cx="523" cy="117.6" r="3"/><circle cx="620" cy="68.7" r="3"/></g>
+        <text x="330" y="14" font-size="10" font-weight="700" fill="#2A41A2" text-anchor="middle">19.8K</text>
+        <g font-size="10" fill="#5f6b7a" text-anchor="middle"><text x="40" y="175">Dec</text><text x="137" y="175">Jan</text><text x="233" y="175">Feb</text><text x="330" y="175">Mar</text><text x="427" y="175">Apr</text><text x="523" y="175">May</text><text x="620" y="175">Jun</text></g>
+      </svg>
+    </div>
+    <div class="chartcard">
+      <div class="ct">Bounce rate vs engagement rate</div>
+      <svg viewBox="0 0 660 200" role="img" aria-label="Bounce vs engagement trend">
+        <line x1="40" y1="155" x2="640" y2="155" stroke="#eef1f7" stroke-width="1"/>
+        <line x1="40" y1="88" x2="640" y2="88" stroke="#eef1f7" stroke-width="1"/>
+        <line x1="40" y1="21" x2="640" y2="21" stroke="#eef1f7" stroke-width="1"/>
+        <text x="34" y="158" font-size="9" fill="#8a93a3" text-anchor="end">30%</text>
+        <text x="34" y="91" font-size="9" fill="#8a93a3" text-anchor="end">50%</text>
+        <text x="34" y="24" font-size="9" fill="#8a93a3" text-anchor="end">70%</text>
+        <polyline points="40,92.6 137,69.95 233,66.6 330,55.4 427,39.2 523,59.5 620,72.3" fill="none" stroke="#c23b39" stroke-width="2.5"/>
+        <polyline points="40,82.4 137,105.05 233,108.4 330,119.6 427,135.8 523,115.6 620,102.7" fill="none" stroke="#12915b" stroke-width="2.5"/>
+        <g fill="#c23b39"><circle cx="40" cy="92.6" r="2.6"/><circle cx="137" cy="69.95" r="2.6"/><circle cx="233" cy="66.6" r="2.6"/><circle cx="330" cy="55.4" r="2.6"/><circle cx="427" cy="39.2" r="3.4"/><circle cx="523" cy="59.5" r="2.6"/><circle cx="620" cy="72.3" r="2.6"/></g>
+        <g fill="#12915b"><circle cx="40" cy="82.4" r="2.6"/><circle cx="137" cy="105.05" r="2.6"/><circle cx="233" cy="108.4" r="2.6"/><circle cx="330" cy="119.6" r="2.6"/><circle cx="427" cy="135.8" r="3.4"/><circle cx="523" cy="115.6" r="2.6"/><circle cx="620" cy="102.7" r="2.6"/></g>
+        <text x="427" y="33" font-size="9.5" font-weight="700" fill="#c23b39" text-anchor="middle">64%</text>
+        <text x="427" y="148" font-size="9.5" font-weight="700" fill="#12915b" text-anchor="middle">36%</text>
+        <g font-size="10" fill="#5f6b7a" text-anchor="middle"><text x="40" y="175">Dec</text><text x="137" y="175">Jan</text><text x="233" y="175">Feb</text><text x="330" y="175">Mar</text><text x="427" y="175">Apr</text><text x="523" y="175">May</text><text x="620" y="175">Jun</text></g>
+      </svg>
+      <div class="clg"><div class="li"><span class="sw" style="background:#c23b39"></span>Bounce rate</div><div class="li"><span class="sw" style="background:#12915b"></span>Engagement rate</div></div>
+    </div>
 
-    <div class="sec"><span class="n">3</span>Device split &amp; behavior</div>
+    <div class="sec"><span class="n">3</span>Where paid traffic lands <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">&mdash; this week (Jul 18&ndash;24)</span></div>
+    <div class="stack">
+      <div style="width:82%;background:var(--bad)">Homepage &mdash; 82%</div>
+      <div style="width:18%;background:var(--good)">Intent pages &mdash; 18%</div>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:8px"><b>82% of paid sessions land on the homepage</b>; only 18% reach a more specific page. Below is where that other 18% goes (bar color = bounce health, homepage excluded so the rest is visible):</p>
+    <div class="rank">
+      <div class="rankrow"><span class="lp">/webinars/build-vs-buy</span><span class="tk"><span class="fl" style="width:100%;background:var(--bad)"></span></span><span class="vv">77</span></div>
+      <div class="rankrow"><span class="lp">/reveal-vs-power-bi</span><span class="tk"><span class="fl" style="width:47%;background:var(--good)"></span></span><span class="vv">36</span></div>
+      <div class="rankrow"><span class="lp">/pricing/embedded-analytics</span><span class="tk"><span class="fl" style="width:17%;background:var(--warn)"></span></span><span class="vv">13</span></div>
+      <div class="rankrow"><span class="lp">/embedded-analytics-platform</span><span class="tk"><span class="fl" style="width:14%;background:var(--good)"></span></span><span class="vv">11</span></div>
+      <div class="rankrow"><span class="lp">/embedded-bi</span><span class="tk"><span class="fl" style="width:14%;background:var(--bad)"></span></span><span class="vv">11</span></div>
+      <div class="rankrow"><span class="lp">/reveal-vs-metabase</span><span class="tk"><span class="fl" style="width:6.5%;background:var(--good)"></span></span><span class="vv">5</span></div>
+      <div class="rankrow"><span class="lp">/request-demo</span><span class="tk"><span class="fl" style="width:6.5%;background:var(--good)"></span></span><span class="vv">5</span></div>
+      <div class="rankrow"><span class="lp">/chart-types</span><span class="tk"><span class="fl" style="width:6.5%;background:var(--good)"></span></span><span class="vv">5</span></div>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:8px">The intent pages that engage best (vs-power-bi, pricing, platform) get a handful of sessions each &mdash; a <b>routing problem, not a page-quality problem</b>. Point DemandGen and compete campaigns at these pages instead of the homepage.</p>
+
+    <div class="sec"><span class="n">4</span>Device split &amp; behavior</div>
     <div class="donutwrap">
       <div class="donut" style="background:conic-gradient(var(--peri) 0 76.4%, var(--cobalt) 76.4% 97.5%, var(--warn) 97.5% 100%)">
         <div class="hole"><b>76%</b><span>mobile</span></div>
@@ -466,7 +541,7 @@
     </div>
     <p style="font-size:13px;color:var(--muted);margin-top:10px"><b>Desktop engages far better than mobile</b> (43% vs 33%, and 4:15 vs 1:27 on site) &mdash; expected for a technical/developer buyer who evaluates an SDK on a laptop. Yet three-quarters of paid traffic is mobile. Worth testing device bid adjustments toward desktop and hardening the mobile LP experience.</p>
 
-    <div class="sec"><span class="n">4</span>Page-by-page &mdash; what&rsquo;s working, what&rsquo;s not</div>
+    <div class="sec"><span class="n">5</span>Page-by-page &mdash; what&rsquo;s working, what&rsquo;s not</div>
     <div class="dtable">
       <table>
         <thead><tr><th>Landing page</th><th>Sessions</th><th>Engaged</th><th>Bounce</th><th>Avg dur</th><th>Verdict</th></tr></thead>
@@ -487,7 +562,7 @@
     </div>
     <p style="font-size:12px;color:var(--muted);margin-top:8px">Pattern: <b>vs-competitor, pricing, platform and demo pages engage 55&ndash;80%</b> with low bounce &mdash; that&rsquo;s where high-intent search lands. The homepage and generic pages bounce hardest. Route DemandGen/compete traffic to the matching intent page.</p>
 
-    <div class="sec"><span class="n">5</span>Engagement by campaign <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">&mdash; who sends quality traffic</span></div>
+    <div class="sec"><span class="n">6</span>Engagement by campaign <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">&mdash; who sends quality traffic</span></div>
     <div class="dtable">
       <table>
         <thead><tr><th>Campaign</th><th>Sessions</th><th>Engagement</th><th>Bounce</th><th>Avg dur</th></tr></thead>
