@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Competitive Intelligence / Reveal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
+    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
+    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
+  }
+  body.theme-reveal   {--accent:#EC417A;--accent-deep:#C9367F;--accent-soft:#fde4ee;--hero:linear-gradient(120deg,#FBB764,#EC417A 62%,#d63384)}
+  body.theme-slingshot{--accent:#4B45C6;--accent-deep:#2D2A90;--accent-soft:#ECEBFB;--hero:linear-gradient(120deg,#6C5CE7,#4B45C6 55%,#2D2A90)}
+  body.theme-ui       {--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
+  body.theme-all      {--accent:#2563EB;--accent-deep:#7C3AED;--accent-soft:#EEF1FF;--hero:linear-gradient(120deg,#2563EB,#7C3AED)}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 80px}
+
+  header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
+  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
+  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
+  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)} .meta b{color:#fff;font-weight:700}
+
+  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03);overflow-x:auto}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;white-space:nowrap}
+  .tab:hover{color:var(--ink)}
+  .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+  .tabpanel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
+  .tabpanel.on{display:block}
+
+  .sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:26px 2px 13px;display:flex;align-items:center;gap:10px}
+  .sec:first-child{margin-top:2px}
+  .sec .n{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  .lead{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:16px 20px;font-size:14.5px;line-height:1.6} .lead b{color:var(--navy)}
+
+  .kpigrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
+  @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:#fcfdff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column}
+  .kpi .lab{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;min-height:28px}
+  .kpi .val{font-size:22px;font-weight:700;margin:2px 0 8px;font-family:var(--mono)}
+  .kpi .delta{align-self:flex-start;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
+  .delta.up{background:var(--good-bg);color:var(--good)} .delta.down{background:var(--bad-bg);color:var(--bad)} .delta.flat{background:var(--warn-bg);color:var(--warn)}
+
+  .score{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  .score table{width:100%;border-collapse:collapse;font-size:13px}
+  .score th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  .score td{padding:11px 13px;border-top:1px solid var(--line);vertical-align:middle}
+  .score .goal{font-weight:600;color:var(--navy)}
+  .pill{font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px}
+  .pill.good{background:var(--good-bg);color:var(--good)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.bad{background:var(--bad-bg);color:var(--bad)}
+
+  .cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
+  .card{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .card .ch{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:var(--accent-soft);border-bottom:1px solid var(--line)}
+  .card .ch .nm{font-size:15px;font-weight:700;color:var(--accent-deep)} .card .ch .sp{font-family:var(--mono);font-size:12.5px;color:var(--navy)}
+  .card .cb{padding:14px 18px;font-size:13.5px;line-height:1.55} .card .cb b{color:var(--navy)}
+
+  .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  .dtable table{width:100%;border-collapse:collapse;font-size:13px}
+  .dtable th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  .dtable td{padding:10px 13px;border-top:1px solid var(--line)} .dtable td.num{font-family:var(--mono);text-align:right}
+  .dtable tr:hover td{background:#fafbff}
+
+  .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
+  .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
+  .verdict p{font-size:15px;line-height:1.6;margin:0} .verdict b{color:var(--navy)}
+  code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+  a{color:var(--accent-deep)}
+</style>
+</head>
+<body class="theme-reveal">
+<div class="wrap">
+
+  <header class="top">
+    <div class="logochip">Reveal</div>
+    <div class="kick">revealbi.io · Competitive Intelligence</div>
+    <h1>Competitive Intelligence / Reveal</h1>
+    <div class="meta"><span>Week of <b>July 26, 2026</b></span> <span>vs Luzmo · Explo · Qrvey · Domo</span></div>
+  </header>
+
+  <div class="tabbar" id="tabbar"></div>
+
+  <div id="panels">
+
+  <!-- ============ OVERVIEW ============ -->
+  <section class="tabpanel" data-tab="overview" data-label="Overview">
+    <div class="sec"><span class="n">1</span>The week in one read</div>
+    <div class="lead">
+      <b>First edition — baseline, no prior report to diff against.</b> Everything here is a new standing read; from next week we lead with what changed.
+      Two things define this week. First, the biggest M&A event our category has seen in years: <b>Domo agreed to sell substantially all of its assets to Progress Software for ~$400M</b> on July 22 — its ~2,400 customers, including Domo Everywhere embedded accounts, now face an ownership change closing by Nov 30. Second, an <b>MCP / AI-agent arms race</b>: Qrvey (9.4, GA this month) and Luzmo (June release) both shipped embedded MCP servers and agent APIs in the last six weeks. Reveal has conversational AI but no published MCP server or agent API — <b>this is the gap forming against us.</b> Meanwhile Explo continues winding into Omni (12-month sunset clock started Oct 2025).
+    </div>
+
+    <div class="sec"><span class="n">2</span>Biggest moves &amp; why they matter</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Move</th><th>Competitor</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td><b>Sold AI/Data Platform to Progress Software (~$400M)</b>, July 22</td><td>Domo</td><td>~2,400 accounts in ownership limbo through Nov 30. A rare, time-boxed window to displace Domo Everywhere embedded customers worried about roadmap continuity.</td></tr>
+          <tr><td><b>Qrvey 9.4 — Sidekick + AI agents + MCP Server</b> (GA July)</td><td>Qrvey</td><td>Embedded conversational AI is now table stakes in RFPs. Qrvey pairs it with a "perpetual license" cost-predictability play aimed straight at our flat-pricing message.</td></tr>
+          <tr><td><b>Embedded MCP Server + unified Agent API</b> (June)</td><td>Luzmo</td><td>Luzmo can render charts inside Claude/ChatGPT via MCP with no viz layer. It reframes "embedded analytics" as "analytics your customer's agents can call" — a narrative we don't yet have.</td></tr>
+          <tr><td><b>Absorption into Omni continues</b> (sunset ~Oct 2026)</td><td>Explo</td><td>Explo still posts the highest organic traffic of the pure-plays (9.8K/mo) and a 4.9 G2 rating, but it is a frozen roadmap. Every Explo renewal this year is contestable.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec"><span class="n">3</span>KPIs — Reveal vs the field</div>
+    <div class="kpigrid">
+      <div class="kpi"><div class="lab">Notable moves this week</div><div class="val">4</div><span class="delta flat">baseline</span></div>
+      <div class="kpi"><div class="lab">Our organic SoV (pure-play set)</div><div class="val">~25%</div><span class="delta flat">1st edition</span></div>
+      <div class="kpi"><div class="lab">Our AI-answer SoV</div><div class="val">4.7%</div><span class="delta down">▼ from 9.1% (7/15)</span></div>
+      <div class="kpi"><div class="lab">Our G2 rating</div><div class="val">4.6★</div><span class="delta flat">60 reviews</span></div>
+      <div class="kpi"><div class="lab">vs peer G2 avg</div><div class="val">+0.05</div><span class="delta up">above avg 4.55</span></div>
+    </div>
+
+    <div class="sec"><span class="n">4</span>Scorecard — at a glance</div>
+    <div class="score">
+      <table>
+        <thead><tr><th>Competitor</th><th>SEO</th><th>Product velocity</th><th>Paid</th><th>Reputation</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">Luzmo</td><td><span class="pill warn">rising</span></td><td><span class="pill bad">shipping fast (AI)</span></td><td><span class="pill good">light</span></td><td><span class="pill warn">strong 4.6</span></td></tr>
+          <tr><td class="goal">Qrvey</td><td><span class="pill warn">rising (OEM)</span></td><td><span class="pill bad">shipping fast (AI)</span></td><td><span class="pill good">light</span></td><td><span class="pill warn">solid 4.4</span></td></tr>
+          <tr><td class="goal">Explo</td><td><span class="pill bad">strong traffic</span></td><td><span class="pill good">frozen (sunset)</span></td><td><span class="pill good">none</span></td><td><span class="pill bad">high 4.9 (fading)</span></td></tr>
+          <tr><td class="goal">Domo</td><td><span class="pill bad">dominant</span></td><td><span class="pill warn">disrupted (sale)</span></td><td><span class="pill bad">dominant</span></td><td><span class="pill warn">mixed 4.3</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:11.5px;color:var(--muted);margin-top:8px">Pills read as competitive threat level from Reveal's seat: <span class="pill bad">red</span> = pressure on us, <span class="pill warn">amber</span> = watch, <span class="pill good">green</span> = opening for us.</p>
+
+    <div class="sec"><span class="n">5</span>Our recommended responses</div>
+    <div class="lead">
+      <b>1. Run a Domo-displacement play now</b> — the Progress sale is a 4-month window; arm sales with a "roadmap-certainty" battlecard. <b>2. Close the AI-agent narrative gap</b> — publish Reveal's MCP/agent story (even a roadmap post) before "does it have an MCP server?" becomes a lost-deal reason. <b>3. Defend flat pricing</b> — Qrvey's perpetual-license and Domo's consumption model both invite a pricing-predictability comparison we win. <b>4. Poach Explo renewals</b> — build an Explo→Reveal migration landing page while their roadmap is frozen. Full actions in <b>Our Moves</b>.
+    </div>
+  </section>
+
+  <!-- ============ SEO FOCUS ============ -->
+  <section class="tabpanel" data-tab="seo" data-label="SEO Focus">
+    <div class="sec"><span class="n">1</span>Organic footprint — the field</div>
+    <div class="lead">Among the embedded pure-plays, <b>Explo leads on raw organic traffic (9.8K/mo)</b> despite its frozen roadmap — a legacy content moat that is now contestable. <b>Reveal is #2 on traffic (~5.0K) and #1 on paid presence.</b> Luzmo has the widest keyword spread (602) and the fastest-rising blog. Domo is a different weight class entirely (161K organic) and not a like-for-like SEO competitor. Reveal's own gap: a thinner top-of-funnel blog than Luzmo/Qrvey.</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Domain</th><th class="num">Org. keywords</th><th class="num">Org. traffic/mo</th><th class="num">KW in top 3</th><th class="num">Paid keywords</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">revealbi.io (us)</td><td class="num">367</td><td class="num">4,975</td><td class="num">164</td><td class="num">131</td></tr>
+          <tr><td>luzmo.com</td><td class="num">602</td><td class="num">3,448</td><td class="num">165</td><td class="num">43</td></tr>
+          <tr><td>qrvey.com</td><td class="num">373</td><td class="num">1,631</td><td class="num">181</td><td class="num">40</td></tr>
+          <tr><td>explo.co</td><td class="num">805</td><td class="num">9,797</td><td class="num">457</td><td class="num">0</td></tr>
+          <tr><td>domo.com</td><td class="num">12,111</td><td class="num">161,601</td><td class="num">6,919</td><td class="num">1,703</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:11.5px;color:var(--muted);margin-top:8px">Source: Ahrefs Site Explorer, mode=subdomains, snapshot 2026-07-24.</p>
+
+    <div class="sec"><span class="n">2</span>Who's investing where — rising pages</div>
+    <div class="cards">
+      <div class="card">
+        <div class="ch"><span class="nm">Luzmo</span><span class="sp">theme: AI + comparison/alternatives</span></div>
+        <div class="cb">
+          Fastest movers this month: <code>/blog/ai-data-analysis</code> (156→467), <code>/blog/embedded-analytics-tools</code> (10→108), <code>/blog/grafana-alternatives</code> (45→132), <code>/blog/chart-types</code> (67→149). <b>Read:</b> Luzmo is buying top-of-funnel education ("types of chart", "embedded ai") plus bottom-funnel "alternatives to X" pages. <b>Overlap with us:</b> "embedded analytics", "white label reports" — where they now outrank Reveal.
+        </div>
+      </div>
+      <div class="card">
+        <div class="ch"><span class="nm">Qrvey</span><span class="sp">theme: OEM, vertical, competitor pricing</span></div>
+        <div class="cb">
+          Rising: <code>/blog/data-analytics-modernization</code> (94→206), <code>/blog/oem-embedded-analytics</code> (19→74), <code>/blog/healthcare-analytics-software</code> (11→61), new <code>/blog/white-label-reporting</code> (153). Plus a bank of competitor-pricing pages (Snowflake, Tableau, Sigma). <b>Read:</b> Qrvey is fishing in OEM/ISV and regulated-vertical waters — the exact buyers Reveal sells to.
+        </div>
+      </div>
+      <div class="card">
+        <div class="ch"><span class="nm">Explo</span><span class="sp">theme: legacy moat, now static</span></div>
+        <div class="cb">
+          Highest pure-play traffic and top-3 count, but no paid and a frozen roadmap. <b>Read:</b> the content ranks; the company behind it is being absorbed. Their rankings will decay as pages go unmaintained — an opening to build "Explo alternative" and migration content now.
+        </div>
+      </div>
+    </div>
+
+    <div class="sec"><span class="n">3</span>Where they beat us</div>
+    <div class="lead">Reveal wins on <b>brand + paid efficiency</b> but is thin on educational/comparison content. Luzmo and Qrvey both outrank us on generic "embedded analytics" and "white label" terms because they publish weekly; we don't. <b>The cheapest win:</b> a handful of comparison pages (Reveal vs Luzmo, Reveal vs Domo, Explo alternative) would let us intercept high-intent traffic these competitors are actively cultivating.</div>
+  </section>
+
+  <!-- ============ PRODUCT & RELEASES ============ -->
+  <section class="tabpanel" data-tab="product" data-label="Product &amp; Releases">
+    <div class="sec"><span class="n">1</span>What shipped — last ~6 weeks</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Competitor</th><th>Release</th><th>What's in it</th><th>Gap for us?</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">Qrvey</td><td><b>9.4</b> (GA July; announced Jun 16)</td><td>Qrvey Sidekick (embedded conversational AI assistant), AI agents, MCP Server for agent-to-app embedding.</td><td><span class="pill bad">opens a gap</span></td></tr>
+          <tr><td class="goal">Luzmo</td><td><b>June 2026</b> release</td><td>Embedded MCP Server, unified Agent API (<code>/AIPrompt</code>), Chart Agent API, embeddable Analyst page + localization.</td><td><span class="pill bad">opens a gap</span></td></tr>
+          <tr><td class="goal">Qrvey</td><td><b>Perpetual Licensing</b> (Apr)</td><td>One-time license option for long-term cost control on embedded analytics infrastructure.</td><td><span class="pill warn">pricing pressure</span></td></tr>
+          <tr><td class="goal">Domo</td><td><b>Core BI upgrade</b> (Mar 26)</td><td>Worksheets (spreadsheet-native exploration), Report Builder for PDF, new semantic layer.</td><td><span class="pill good">not embedded-first</span></td></tr>
+          <tr><td class="goal">Explo</td><td><b>—</b></td><td>No net-new product; in migration mode into Omni.</td><td><span class="pill good">frozen</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec"><span class="n">2</span>Cadence read</div>
+    <div class="lead">
+      <b>Qrvey and Luzmo are the fast shippers</b> — both on roughly monthly release cycles and both have now planted a flag on the same ground: <b>embedded MCP servers + agent APIs.</b> The category narrative has moved in one quarter from "dashboards in your app" to "analytics your customers' AI agents can query." <b>Domo's velocity is now a question mark</b> given the Progress sale. <b>Explo's is zero.</b>
+      <br><br>
+      <b>Where this closes a gap we sell against:</b> our "True SDK, native, no iFrame" story is still differentiated on embedding depth — none of the June/July releases touch that. <b>Where it opens a new gap:</b> if a prospect's RFP asks "do you expose an MCP server / agent API?", Reveal currently answers with conversational AI but no published agent endpoint. We need a public answer.
+    </div>
+    <p style="font-size:11.5px;color:var(--muted)">Sources: <a href="https://www.luzmo.com/blog/product-release-update-june-2026">Luzmo June release</a> · <a href="https://finance.yahoo.com/technology/ai/articles/qrvey-9-4-brings-ai-120000225.html">Qrvey 9.4</a> · <a href="https://www.hpcwire.com/bigdatawire/this-just-in/domo-adds-spreadsheet-native-exploration-and-new-semantic-layer-to-its-agent-building-platform/">Domo Mar upgrade</a>.</p>
+  </section>
+
+  <!-- ============ PAID & PLATFORMS ============ -->
+  <section class="tabpanel" data-tab="paid" data-label="Paid &amp; Platforms">
+    <div class="sec"><span class="n">1</span>Paid search presence</div>
+    <div class="lead"><b>Reveal is the most active paid bidder among the pure-plays</b> — 131 paid keywords across 87 paid landing pages (~1,347 paid visits/mo), well ahead of Luzmo (43) and Qrvey (40). <b>Explo runs zero paid.</b> Domo is in a different league (1,703 paid keywords, ~146K paid visits) — we cannot outspend Domo and shouldn't try; we compete on precision, not volume.</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Domain</th><th class="num">Paid keywords</th><th class="num">Paid pages</th><th class="num">Est. paid traffic/mo</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">revealbi.io (us)</td><td class="num">131</td><td class="num">87</td><td class="num">1,347</td></tr>
+          <tr><td>qrvey.com</td><td class="num">40</td><td class="num">16</td><td class="num">325</td></tr>
+          <tr><td>luzmo.com</td><td class="num">43</td><td class="num">19</td><td class="num">191</td></tr>
+          <tr><td>explo.co</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr><td>domo.com</td><td class="num">1,703</td><td class="num">225</td><td class="num">145,965</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sec"><span class="n">2</span>Direction &amp; opportunity</div>
+    <div class="lead">The pure-plays are under-investing in paid — a lane Reveal already leads. <b>Recommendation for David:</b> with Domo's brand in flux, bid on <code>domo everywhere alternative</code> and <code>domo embedded analytics</code> defensively/offensively now; and stand up an <code>explo alternative</code> campaign to catch orphaned Explo demand. Low competition, high intent, short window.</div>
+  </section>
+
+  <!-- ============ REPUTATION & MARKET ============ -->
+  <section class="tabpanel" data-tab="reputation" data-label="Reputation &amp; Market">
+    <div class="sec"><span class="n">1</span>G2 ratings snapshot</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Product</th><th class="num">Rating</th><th class="num">Reviews</th><th>Read</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">Explo</td><td class="num">4.9</td><td class="num">138</td><td>Highest-rated, but roadmap frozen — sentiment will lag reality.</td></tr>
+          <tr><td class="goal">Reveal (us)</td><td class="num">4.6</td><td class="num">60</td><td>46 of 60 are 5-star, zero 1–2 star. Support &amp; white-label praised repeatedly.</td></tr>
+          <tr><td class="goal">Luzmo</td><td class="num">4.6</td><td class="num">76</td><td>Praised for fast time-to-deploy and support.</td></tr>
+          <tr><td class="goal">Qrvey</td><td class="num">4.4</td><td class="num">31</td><td>5-year Dresner "leader"; thin review volume.</td></tr>
+          <tr><td class="goal">Domo</td><td class="num">4.3</td><td class="num">997</td><td>Huge base, mixed sentiment; pricing/consumption a recurring gripe.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec"><span class="n">2</span>Their weaknesses = our openings</div>
+    <div class="cards">
+      <div class="card"><div class="ch"><span class="nm">Sisense / Domo</span><span class="sp">pricing unpredictability</span></div><div class="cb">Recurring complaints: usage-based costs that balloon, hard-to-estimate TCO, heavy implementation. <b>Our opening:</b> lead every competitive with Reveal's <b>flat-rate, no-usage-penalty</b> pricing — a customer who scaled usage ~3000% reported zero price increase. This is our sharpest wedge.</div></div>
+      <div class="card"><div class="ch"><span class="nm">iFrame-based tools</span><span class="sp">shallow embedding</span></div><div class="cb">Buyers repeatedly cite off-brand, "bolted-on" analytics. <b>Our opening:</b> Reveal's <b>True SDK / no-iFrame</b> native embedding — reviewers specifically call this out as the reason they chose us. Keep it front and center vs Explo/Domo Everywhere.</div></div>
+      <div class="card"><div class="ch"><span class="nm">Explo</span><span class="sp">acquisition uncertainty</span></div><div class="cb">Frozen roadmap, migration to Omni underway. <b>Our opening:</b> "roadmap certainty" + a concrete Explo→Reveal migration path. Their 4.9 rating gives us warm, high-satisfaction accounts that now have a reason to look.</div></div>
+    </div>
+
+    <div class="sec"><span class="n">3</span>PR / M&amp;A / market</div>
+    <div class="lead">
+      <b>Domo → Progress Software, ~$400M</b> (Jul 22): asset sale incl. operating business, tech, ~2,400 customer contracts; Domo Inc. stays public under a new name/ticker; closes by Nov 30 pending regulatory approval. <b>Explo → Omni</b> (Oct 2025): 12-month support/migration window, i.e. sunset around Oct 2026. <b>Qrvey</b>: 5th straight year as a Dresner Wisdom of Crowds leader. Net market signal: consolidation at the top (Domo, Explo absorbed), pure-plays racing on AI agents.
+    </div>
+    <p style="font-size:11.5px;color:var(--muted)">Sources: <a href="https://www.domo.com/news/press/domo-announces-agreement-to-sell-substantially-all-assets-and-certain-liabilities-to-progress-software-for-400-million">Domo/Progress deal</a> · <a href="https://omni.co/blog/omni-accelerates-growth-with-acquisition-of-explo">Omni acquires Explo</a> · G2 profiles (Reveal, Luzmo, Qrvey, Domo, Explo).</p>
+
+    <div class="sec"><span class="n">4</span>Our AI-answer visibility</div>
+    <div class="lead"><b>Reveal BI's share of AI-answer voice fell to 4.7% this week</b> (report 7/21) from 9.1% on 7/15 and a 10.7% peak on 6/14 — mentioned in just 12 of 253 LLM responses, avg rank 9.8. The metric is volatile week to week, but we sit at the bottom of the tracked set (Microsoft 70%, Looker 67%, Metabase 35%, Qlik 29%, Sisense 23%). <b>Implication:</b> as buyers increasingly ask ChatGPT/Claude "best embedded analytics SDK", we're barely in the answer. This ties directly to the SEO comparison-content gap.</div>
+  </section>
+
+  <!-- ============ COMPETITIVE MATRIX ============ -->
+  <section class="tabpanel" data-tab="matrix" data-label="Competitive Matrix">
+    <div class="sec"><span class="n">1</span>Reveal vs the field — ICP: CTO / VP Eng, midmarket SaaS &amp; ISV</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Dimension</th><th>Reveal</th><th>Luzmo</th><th>Qrvey</th><th>Explo</th><th>Domo</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">Embedding / SDK depth</td><td><span class="pill good">WIN — True SDK, native, no iFrame</span></td><td>SDK + iframe</td><td>JS/component embed</td><td>Component/iframe</td><td>Domo Everywhere (iframe-led)</td></tr>
+          <tr><td class="goal">Self-service authoring</td><td><span class="pill warn">Parity — drag-drop for end users</span></td><td>Strong</td><td>Strong</td><td>Moderate</td><td>Strong</td></tr>
+          <tr><td class="goal">Data connectors</td><td><span class="pill bad">GAP — no Iceberg/Delta yet</span></td><td>Good</td><td>AWS-native, broad</td><td>Good</td><td>WIN — 1000+</td></tr>
+          <tr><td class="goal">White-label / theming</td><td><span class="pill good">WIN — full white-label</span></td><td>Good</td><td>Good</td><td>Good</td><td>Weaker (Domo branding)</td></tr>
+          <tr><td class="goal">Deployment (cloud/on-prem/embedded)</td><td><span class="pill good">WIN — cloud, private, on-prem, air-gapped</span></td><td>Cloud</td><td>AWS single-tenant/VPC</td><td>Cloud</td><td>Cloud</td></tr>
+          <tr><td class="goal">Developer experience</td><td><span class="pill warn">Parity — native SDKs (.NET/Java/Node + React/Angular/Vue/Blazor); SDK learning curve</span></td><td>Good</td><td>Good</td><td>Strong DX</td><td>Moderate</td></tr>
+          <tr><td class="goal">AI / NL features</td><td><span class="pill bad">GAP — conversational AI, but no published MCP/agent API</span></td><td>MCP server + Agent API (Jun)</td><td>Sidekick + agents + MCP (9.4)</td><td>Static</td><td>Agent platform (in flux)</td></tr>
+          <tr><td class="goal">Pricing model</td><td><span class="pill good">WIN — flat-rate, no usage penalty</span></td><td>Tiered, from $995/mo</td><td>No public price; perpetual-license option</td><td>Tiered</td><td>Consumption credits (criticized)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sec"><span class="n">2</span>Honest read</div>
+    <div class="lead">
+      <b>We win decisively on embedding depth, white-label, deployment flexibility, and pricing</b> — the pillars our ICP (regulated, on-prem-capable SaaS/ISVs) actually buys on, and the ones our own G2 reviews echo. <b>We have two real gaps:</b> (1) <b>modern lakehouse connectors</b> — no Iceberg/Delta yet, flagged by a customer in a recent review; and (2) <b>the AI-agent surface</b> — competitors now publish MCP servers and agent APIs while we lead with conversational AI only. Neither is fatal, but both will show up in technical RFPs this quarter. A flattering matrix would hide these; hiding them loses deals.
+    </div>
+  </section>
+
+  <!-- ============ OUR MOVES ============ -->
+  <section class="tabpanel" data-tab="moves" data-label="Our Moves">
+    <div class="sec"><span class="n">1</span>This week — specific actions</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>#</th><th>Action</th><th>Owner</th><th>Tied to</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td><b>Domo-displacement battlecard</b> — one-pager on "roadmap certainty vs ownership change," aimed at Domo Everywhere accounts. Arm Jarrett's ABM sequences.</td><td>Jarrett / PMM</td><td>Domo–Progress sale</td></tr>
+          <tr><td class="num">2</td><td><b>Publish Reveal's AI-agent story</b> — even a roadmap/POV post ("Reveal + MCP: embedded analytics your agents can call"). Get ahead of "do you have an MCP server?" in RFPs.</td><td>PMM + Ryan/Pam</td><td>Luzmo &amp; Qrvey MCP releases</td></tr>
+          <tr><td class="num">3</td><td><b>Explo→Reveal migration landing page</b> + "Explo alternative" content; brief SDR outreach into high-satisfaction Explo accounts.</td><td>Alex (SEO) / PMM</td><td>Explo sunset</td></tr>
+          <tr><td class="num">4</td><td><b>Pricing-predictability comparison</b> — "flat-rate vs consumption vs perpetual" asset; lead with the 3000%-scale / zero-increase proof point.</td><td>PMM</td><td>Qrvey perpetual license, Domo credits</td></tr>
+          <tr><td class="num">5</td><td><b>Ship 3 comparison pages</b> — Reveal vs Luzmo, Reveal vs Domo, Reveal vs Sisense — to reclaim "embedded analytics" SERP + feed AI answers.</td><td>Alex (SEO)</td><td>SEO + AI-SoV gap</td></tr>
+          <tr><td class="num">6</td><td><b>Defensive/offensive paid</b> — bid <code>domo everywhere alternative</code>, <code>explo alternative</code>; low competition, high intent.</td><td>David (paid)</td><td>Paid opening</td></tr>
+          <tr><td class="num">7</td><td><b>Iceberg/Delta Lake connector — roadmap signal</b> — publish intent even if delivery is out; neutralize the one recurring technical objection.</td><td>Product (Casey)</td><td>Connector gap</td></tr>
+          <tr><td class="num">8</td><td><b>Lift AI-answer SoV</b> — seed Reveal into "best embedded analytics SDK" listicles &amp; keep G2 review velocity up; re-measure next week.</td><td>PMM + Beth</td><td>AI-SoV drop to 4.7%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="verdict">
+      <div class="vh">Verdict — the one response that matters this week</div>
+      <p><b>Run the Domo-displacement play immediately.</b> The Progress Software sale hands us a rare, 4-month window where ~2,400 embedded-analytics accounts are questioning their vendor's roadmap. No amount of our own content moves as many qualified pipeline dollars this quarter as pointing a battlecard + ABM sequence at anxious Domo Everywhere customers — while we simultaneously patch the AI-agent narrative so we don't hand the deal back on a technical checkbox. Everything else is important; this is urgent.</p>
+    </div>
+  </section>
+
+  </div>
+</div>
+
+<script>
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.tabpanel'));
+  var bar = document.getElementById('tabbar');
+  panels.forEach(function(p,i){
+    var b=document.createElement('button');
+    b.className='tab'+(i===0?' on':''); b.textContent=p.dataset.label||('Tab '+(i+1));
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+      panels.forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on'); p.classList.add('on');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+    bar.appendChild(b);
+    if(i===0) p.classList.add('on');
+  });
+</script>
+</body>
+</html>
