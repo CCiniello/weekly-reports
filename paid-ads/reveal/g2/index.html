@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>G2 Weekly / Reveal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
+    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
+    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
+  }
+  body.theme-reveal   {--accent:#EC417A;--accent-deep:#C9367F;--accent-soft:#fde4ee;--hero:linear-gradient(120deg,#FBB764,#EC417A 62%,#d63384)}
+  body.theme-slingshot{--accent:#4B45C6;--accent-deep:#2D2A90;--accent-soft:#ECEBFB;--hero:linear-gradient(120deg,#6C5CE7,#4B45C6 55%,#2D2A90)}
+  body.theme-ui       {--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
+  body.theme-all      {--accent:#2563EB;--accent-deep:#7C3AED;--accent-soft:#EEF1FF;--hero:linear-gradient(120deg,#2563EB,#7C3AED)}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 80px}
+
+  header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
+  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
+  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
+  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)} .meta b{color:#fff;font-weight:700}
+
+  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03);overflow-x:auto}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;white-space:nowrap}
+  .tab:hover{color:var(--ink)}
+  .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+  .tabpanel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
+  .tabpanel.on{display:block}
+
+  .sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:26px 2px 13px;display:flex;align-items:center;gap:10px}
+  .sec:first-child{margin-top:2px}
+  .sec .n{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  .lead{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:16px 20px;font-size:14.5px;line-height:1.6} .lead b{color:var(--navy)}
+
+  .kpigrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
+  @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:#fcfdff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column}
+  .kpi .lab{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;min-height:28px}
+  .kpi .val{font-size:22px;font-weight:700;margin:2px 0 8px;font-family:var(--mono)}
+  .kpi .delta{align-self:flex-start;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
+  .delta.up{background:var(--good-bg);color:var(--good)} .delta.down{background:var(--bad-bg);color:var(--bad)} .delta.flat{background:var(--warn-bg);color:var(--warn)}
+
+  .score{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  .score table{width:100%;border-collapse:collapse;font-size:13px}
+  .score th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  .score td{padding:11px 13px;border-top:1px solid var(--line);vertical-align:middle}
+  .score .goal{font-weight:600;color:var(--navy)}
+  .pill{font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px}
+  .pill.good{background:var(--good-bg);color:var(--good)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.bad{background:var(--bad-bg);color:var(--bad)}
+
+  .cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
+  .card{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .card .ch{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:var(--accent-soft);border-bottom:1px solid var(--line)}
+  .card .ch .nm{font-size:15px;font-weight:700;color:var(--accent-deep)} .card .ch .sp{font-family:var(--mono);font-size:12.5px;color:var(--navy)}
+  .card .cb{padding:14px 18px;font-size:13.5px;line-height:1.55} .card .cb b{color:var(--navy)}
+
+  .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  .dtable table{width:100%;border-collapse:collapse;font-size:13px}
+  .dtable th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  .dtable td{padding:10px 13px;border-top:1px solid var(--line)} .dtable td.num{font-family:var(--mono);text-align:right}
+  .dtable tr:hover td{background:#fafbff}
+
+  .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
+  .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
+  .verdict p{font-size:15px;line-height:1.6;margin:0} .verdict b{color:var(--navy)}
+  code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+</style>
+</head>
+<body class="theme-reveal">
+<div class="wrap">
+
+  <header class="top">
+    <div class="logochip">Reveal</div>
+    <div class="kick">revealbi.io · G2</div>
+    <h1>G2 Weekly / Reveal</h1>
+    <div class="meta"><span>Week of <b>July 26, 2026</b></span><span>Source: <b>G2 (profile &amp; reviews tier)</b></span><span>Pipeline: <b>Salesforce</b></span></div>
+  </header>
+
+  <div class="tabbar" id="tabbar"></div>
+
+  <div id="panels">
+
+    <!-- ===================== TAB 1: OVERVIEW ===================== -->
+    <section class="tabpanel" data-tab="overview" data-label="Overview">
+
+      <div class="sec"><span class="n">1</span> Executive summary</div>
+      <div class="lead">
+        <b>Access note first:</b> Reveal's G2 plan does <b>not</b> include the buyer-intent tier, so this week's report cannot name in-market accounts, comparison views, intent scores, or trace G2 &rarr; Salesforce pipeline. Those sources return "plan does not provide access." Rather than fabricate them, this report runs on what Reveal's plan <b>does</b> expose &mdash; profile, reviews, and category standing &mdash; and flags the gaps honestly.<br><br>
+        <b>The story:</b> Reveal's G2 presence is a <b>quality asset with a proof-volume problem</b>. Rating is <b>4.6&#9733; (9.1/10)</b> &mdash; the highest in its accessible Embedded BI peer set &mdash; with a clean 92% 4-and-5-star mix and zero 1&ndash;2 star reviews. But review generation has <b>stalled: 0 new reviews in all of 2026</b> (last review Dec 22, 2025). Reveal wins on sentiment and loses on volume &mdash; competitors carry 400&ndash;3,800 reviews vs Reveal's 60. With intent data dark, <b>review velocity is the single G2 lever Reveal actually controls</b>, and it's idle.
+      </div>
+
+      <div class="sec"><span class="n">2</span> KPI scorecard <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">· WoW deltas unavailable — first tracked run, no prior snapshot</span></div>
+      <div class="kpigrid">
+        <div class="kpi"><div class="lab">Star Rating</div><div class="val">4.6&#9733;</div><span class="delta flat">baseline</span></div>
+        <div class="kpi"><div class="lab">Avg Score</div><div class="val">9.1/10</div><span class="delta flat">baseline</span></div>
+        <div class="kpi"><div class="lab">Total Reviews (proof)</div><div class="val">60</div><span class="delta flat">+0 WoW</span></div>
+        <div class="kpi"><div class="lab">New Reviews (2026 YTD)</div><div class="val">0</div><span class="delta down">stalled</span></div>
+        <div class="kpi"><div class="lab">Buyer-Intent Signals</div><div class="val">N/A</div><span class="delta flat">plan-gated</span></div>
+      </div>
+
+      <div class="sec"><span class="n">3</span> Goal scoreboard</div>
+      <div class="score"><table>
+        <thead><tr><th>Goal</th><th>Current</th><th>Target</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">Category rating rank (Embedded BI)</td><td>#1 of 6 on rating (4.6)</td><td>Hold #1</td><td><span class="pill good">On track</span></td></tr>
+          <tr><td class="goal">Review sentiment quality</td><td>92% 4&ndash;5&#9733;, 0 detractors</td><td>&gt;90% positive</td><td><span class="pill good">On track</span></td></tr>
+          <tr><td class="goal">Review volume vs peers</td><td>60 (peers 421&ndash;3,780)</td><td>Close proof gap</td><td><span class="pill bad">Behind</span></td></tr>
+          <tr><td class="goal">Review velocity</td><td>0 in 2026 YTD</td><td>&ge;2&ndash;3 / month</td><td><span class="pill bad">Behind</span></td></tr>
+          <tr><td class="goal">Buyer-intent &rarr; ABM feed</td><td>No plan access</td><td>Enable intent tier</td><td><span class="pill warn">Blocked</span></td></tr>
+          <tr><td class="goal">G2-influenced pipeline (SF)</td><td>Not attributable</td><td>Traceable overlap</td><td><span class="pill warn">Blocked</span></td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- ===================== TAB 2: BUYER INTENT ===================== -->
+    <section class="tabpanel" data-tab="intent" data-label="Buyer Intent">
+
+      <div class="sec"><span class="n">1</span> Status: plan-gated</div>
+      <div class="lead">
+        The buyer-intent feed &mdash; <b>which companies are researching Reveal</b>, what they're comparing, intent scores, and geography &mdash; is <b>not available on Reveal's current G2 subscription</b>. <code>browse_buyer_intent</code>, <code>browse_competitive_intelligence</code>, and market-intelligence reviews all return "plan does not provide access." This is the tab that feeds ABM and sales named, in-market accounts, and it stays dark until the intent tier is enabled on Reveal (note: Slingshot appears subscribed; Reveal is not).
+      </div>
+
+      <div class="sec"><span class="n">2</span> Closest available proxy: who Reveal actually lands</div>
+      <div class="lead" style="border-left-color:var(--warn)">
+        Until intent is live, the honest substitute for "who's in-market" is <b>who already buys and reviews Reveal</b> &mdash; the demonstrated ICP from 60 verified reviews. This describes demand Reveal <b>wins</b>, not demand currently <b>shopping</b>, but it's the sharpest targeting signal the plan exposes.
+      </div>
+
+      <div class="sec"><span class="n">3</span> ICP by company segment</div>
+      <div class="dtable"><table>
+        <thead><tr><th>Segment</th><th class="num">Reviews</th><th class="num">Share</th><th>Read</th></tr></thead>
+        <tbody>
+          <tr><td>Small Business (&le;50)</td><td class="num">32</td><td class="num">53%</td><td>Core base &mdash; flat pricing + fast deploy resonate hardest here</td></tr>
+          <tr><td>Mid-Market (51&ndash;1000)</td><td class="num">16</td><td class="num">27%</td><td>Healthy second tier; strongest expansion motion</td></tr>
+          <tr><td>Enterprise (&gt;1000)</td><td class="num">12</td><td class="num">20%</td><td>Punches above weight &mdash; on-prem/air-gapped wins land here</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="sec"><span class="n">4</span> ICP by industry &amp; region</div>
+      <div class="dtable"><table>
+        <thead><tr><th>Top industries</th><th class="num">Reviews</th><th>Top regions</th><th class="num">Reviews</th></tr></thead>
+        <tbody>
+          <tr><td>Computer Software</td><td class="num">10</td><td>United States</td><td class="num">21</td></tr>
+          <tr><td>IT &amp; Services</td><td class="num">6</td><td>India</td><td class="num">16</td></tr>
+          <tr><td>Financial Services</td><td class="num">4</td><td>Peru</td><td class="num">11</td></tr>
+          <tr><td>Construction / Higher Ed / Retail</td><td class="num">3 ea</td><td>Europe (BG, DK, IT, UK)</td><td class="num">5</td></tr>
+          <tr><td>Banking / Security / Telecom</td><td class="num">2 ea</td><td>Africa (KE, ZA)</td><td class="num">4</td></tr>
+        </tbody>
+      </table></div>
+      <div class="lead" style="margin-top:12px">
+        <b>ABM read:</b> the reviewable ICP is <b>US-first software/SaaS + fintech</b>, with a notable Latin America (Peru) and India footprint. When intent turns on, prioritize matching signals against <b>US Computer Software and Financial Services</b> accounts &mdash; that's where Reveal both wins and has proof to close.
+      </div>
+    </section>
+
+    <!-- ===================== TAB 3: COMPETITIVE & PROFILE ===================== -->
+    <section class="tabpanel" data-tab="competitive" data-label="Competitive &amp; Profile">
+
+      <div class="sec"><span class="n">1</span> Category standing &mdash; Embedded Business Intelligence</div>
+      <div class="lead">
+        Reveal <b>leads its accessible peer set on rating</b> but sits at the bottom on review volume by a wide margin. On G2, rating wins the click but <b>review count wins the trust</b> &mdash; a buyer comparing tiles sees 60 vs thousands. Named rivals from the brief (Luzmo, Domo, Qrvey) are <b>not resolvable on this plan</b>; the peers below are the accessible Embedded BI set.
+      </div>
+      <div class="dtable"><table>
+        <thead><tr><th>Product</th><th class="num">Rating</th><th class="num">Reviews</th><th>Position vs Reveal</th></tr></thead>
+        <tbody>
+          <tr><td><b>Reveal</b></td><td class="num">4.6</td><td class="num">60</td><td>&mdash; highest rating, lowest volume</td></tr>
+          <tr><td>Looker (Google)</td><td class="num">4.4</td><td class="num">1,654</td><td>Loses on rating, 28&times; the proof</td></tr>
+          <tr><td>Tableau</td><td class="num">4.4</td><td class="num">3,780</td><td>Loses on rating, 63&times; the proof</td></tr>
+          <tr><td>Logi Symphony</td><td class="num">4.3</td><td class="num">421</td><td>Closest embed-native rival; 7&times; proof</td></tr>
+          <tr><td>Sisense</td><td class="num">4.2</td><td class="num">1,062</td><td>Loses on rating, 18&times; the proof</td></tr>
+          <tr><td>Google Chart Tools</td><td class="num">4.2</td><td class="num">513</td><td>Dev-tool, not true competitor</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="sec"><span class="n">2</span> Where Reveal wins the click</div>
+      <div class="cards">
+        <div class="card">
+          <div class="ch"><span class="nm">True SDK, no iFrames</span><span class="sp">win theme</span></div>
+          <div class="cb">Reviewers repeatedly cite <b>native white-label embedding</b> as the deciding factor &mdash; "the only platform we tried that offers a genuine white-label experience&hellip; no iFrames, no hidden hints who's behind the analytics layer." This is Reveal's sharpest wedge against bolt-on BI. <b>Lean into it in the profile tagline and comparison content.</b></div>
+        </div>
+        <div class="card">
+          <div class="ch"><span class="nm">Flat pricing at scale</span><span class="sp">win theme</span></div>
+          <div class="cb">"Usage increased ~3000%, yet no price increases, no renegotiations." Multiple reviewers switched <b>from Tableau</b> specifically over usage-based cost. This is a live conquest angle against every consumption-priced rival.</div>
+        </div>
+        <div class="card">
+          <div class="ch"><span class="nm">Fast deploy · on-prem · regulated fit</span><span class="sp">win theme</span></div>
+          <div class="cb">Deploys in "weeks vs a year"; runs fully on customer infrastructure with no external connections &mdash; the reason regulated buyers (fintech, security) pick it. Strong Enterprise proof despite low volume.</div>
+        </div>
+        <div class="card">
+          <div class="ch"><span class="nm">Where Reveal loses ground</span><span class="sp">friction</span></div>
+          <div class="cb"><b>SDK learning curve</b> &mdash; "not plug-and-play," "config options overwhelming," "hard without a professional dev team." One product gap flagged: <b>no Iceberg / Delta Lake table support</b>, called out as increasingly important. Feeds product (Ryan/Pam) and objection-handling content.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TAB 4: JOURNEY & ROI ===================== -->
+    <section class="tabpanel" data-tab="journey" data-label="Journey &amp; ROI">
+
+      <div class="sec"><span class="n">1</span> G2 &rarr; Salesforce: what can and can't be traced</div>
+      <div class="lead">
+        Reveal carries <b>$3.29M in open pipeline across 67 active "Reveal" opportunities</b> in Salesforce today. But <b>G2's specific influence on that pipeline cannot be isolated</b>: there is no G2 LeadSource in Salesforce, and without the intent tier there are no G2 buyer-intent accounts to match against Accounts/Opps by domain. Any "G2-influenced pipeline" number this week would be invented, so none is reported.
+      </div>
+      <div class="kpigrid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="kpi"><div class="lab">Open Reveal Pipeline (SF)</div><div class="val">$3.29M</div><span class="delta flat">context only</span></div>
+        <div class="kpi"><div class="lab">Open Reveal Opps</div><div class="val">67</div><span class="delta flat">context only</span></div>
+        <div class="kpi"><div class="lab">G2-Attributed Pipeline</div><div class="val">N/A</div><span class="delta flat">not traceable</span></div>
+      </div>
+
+      <div class="sec"><span class="n">2</span> This week's actions</div>
+      <div class="dtable"><table>
+        <thead><tr><th>Action</th><th>Why (what it moves)</th><th>Owner</th></tr></thead>
+        <tbody>
+          <tr><td>Enable the G2 buyer-intent tier on Reveal (or confirm which plan holds it)</td><td>Unblocks the entire report's purpose &mdash; named in-market accounts + pipeline attribution</td><td>Casey / G2 rep</td></tr>
+          <tr><td>Restart review generation &mdash; target existing 5&#9733; SMB &amp; fintech customers</td><td>0 reviews in 2026; volume is the trust gap vs peers and the only lever we control now</td><td>Casey / CS</td></tr>
+          <tr><td>Push "True SDK / no iFrames" + flat-pricing into G2 profile &amp; comparison copy</td><td>Converts the rating lead into click-win against bolt-on and usage-priced rivals</td><td>Casey / Alex (SEO)</td></tr>
+          <tr><td>Route Iceberg / Delta Lake gap to product</td><td>Named deal-blocker in a verified review; affects regulated/data-heavy buyers</td><td>Ryan &amp; Pam</td></tr>
+          <tr><td>Stand up a G2 LeadSource / UTM in Salesforce ahead of intent go-live</td><td>Makes future G2 &rarr; pipeline attribution actually computable</td><td>Jarrett / RevOps</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="verdict">
+        <div class="vh">Verdict</div>
+        <p><b>G2 is currently a proof asset, not a demand engine &mdash; because the demand half is switched off.</b> Reveal has the best rating in its category and glowing switched-from-Tableau reviews, but with intent gated and review velocity at zero for seven months, G2 is doing nothing to <b>surface</b> or <b>route</b> in-market accounts. The single highest-leverage move is enabling the intent tier on Reveal; the second is restarting reviews to close the volume gap. Until the first happens, sales/ABM should treat G2 as a <b>positioning and objection-handling source</b> (lead with True-SDK/no-iFrame + flat pricing against Tableau/Sisense/Looker), not a lead source &mdash; and there is no G2-attributable pipeline to action this week.</p>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.tabpanel'));
+  var bar = document.getElementById('tabbar');
+  panels.forEach(function(p,i){
+    var b=document.createElement('button');
+    b.className='tab'+(i===0?' on':''); b.textContent=p.dataset.label||('Tab '+(i+1));
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+      panels.forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on'); p.classList.add('on');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+    bar.appendChild(b);
+    if(i===0) p.classList.add('on');
+  });
+</script>
+</body>
+</html>
