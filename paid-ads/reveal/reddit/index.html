@@ -302,32 +302,43 @@
     <section class="tabpanel" data-tab="ga4" data-label="Site Behavior (GA4)">
 
       <div class="sec"><span class="n">1</span> What this tab tracks</div>
-      <div class="lead">This is the on-site view of Reddit traffic from GA4 (property <code>revealbi.io</code>): how many people Reddit sends to the site, whether that number is growing, where they land, and how they behave once they arrive. <b>Volume is small (single-digit sessions a week), so read trends not single points</b> — but the pattern is clear and useful. <b>Headline: sessions have softened over the last three weeks, not grown — and desktop visitors behave dramatically better than mobile.</b></div>
+      <div class="lead">This is the on-site view of Reddit traffic from GA4 (property <code>revealbi.io</code>): how many people Reddit sends to the site, whether that's growing, and how they behave once they arrive. Weekly counts are tiny, so we read it <b>monthly</b> — and the monthly view tells a real story. <b>Headline: Reddit drove big traffic in spring (291 sessions in March, 381 in April), the campaign went dark in May ($0 spend, 3 sessions), and it returned in June–July at a fraction of the size. More telling: each click now delivers far fewer real site visits than it used to.</b></div>
 
-      <div class="sec"><span class="n">2</span> On-site KPIs — this week vs last</div>
+      <div class="sec"><span class="n">2</span> On-site snapshot</div>
       <div class="kpigrid">
-        <div class="kpi"><span class="lab">Sessions</span><span class="val">7</span><span class="delta down">▼ from 8</span></div>
-        <div class="kpi"><span class="lab">Engaged sessions</span><span class="val">1</span><span class="delta down">▼ from 2</span></div>
-        <div class="kpi"><span class="lab">Engagement rate</span><span class="val">14.3%</span><span class="delta down">▼ from 25%</span></div>
-        <div class="kpi"><span class="lab">Bounce rate</span><span class="val">85.7%</span><span class="delta down">▲ from 75%</span></div>
-        <div class="kpi"><span class="lab">Avg session</span><span class="val">53s</span><span class="delta down">▼ from 7m24s</span></div>
+        <div class="kpi"><span class="lab">Sessions (Jul MTD)</span><span class="val">43</span><span class="delta down">▼ 89% vs Apr</span></div>
+        <div class="kpi"><span class="lab">Peak month (Apr)</span><span class="val">381</span><span class="delta flat">$2.8k spend</span></div>
+        <div class="kpi"><span class="lab">Click→visit rate</span><span class="val">~5%</span><span class="delta down">was ~34% in spring</span></div>
+        <div class="kpi"><span class="lab">Engagement (Jul)</span><span class="val">20.9%</span><span class="delta flat">Jun 39%</span></div>
+        <div class="kpi"><span class="lab">Desktop vs mobile</span><span class="val">3.4×</span><span class="delta up">better engagement</span></div>
       </div>
-      <p style="font-size:12px;color:var(--muted);margin:8px 2px 0">GA4 has no classic "bounce" the way UA did — here bounce = the inverse of engagement rate (sessions that weren't engaged). At this volume a single long visit can swing the averages, hence the big duration swing.</p>
 
-      <div class="sec"><span class="n">3</span> Are Reddit sessions growing?</div>
+      <div class="sec"><span class="n">3</span> Reddit site traffic by month — is it growing?</div>
       <div class="chartgrid">
         <div class="chartcard">
-          <h4>Weekly sessions &amp; engaged sessions</h4>
-          <p class="cap">Last 7 ISO weeks · reddit source · GA4. Total vs engaged.</p>
-          <div class="chartbox"><canvas id="chSessions"></canvas></div>
+          <h4>Sessions vs spend by month</h4>
+          <p class="cap">GA4 reddit sessions (bars) against Reddit Ads spend (line) · 2026.</p>
+          <div class="chartbox"><canvas id="chMonthly"></canvas></div>
         </div>
         <div class="chartcard">
-          <h4>Engagement vs bounce rate</h4>
-          <p class="cap">Weekly % · engaged share vs non-engaged share.</p>
-          <div class="chartbox"><canvas id="chEngage"></canvas></div>
+          <h4>Click → site-visit rate by month</h4>
+          <p class="cap">Share of Reddit clicks that became a tracked GA4 session.</p>
+          <div class="chartbox"><canvas id="chC2S"></canvas></div>
         </div>
       </div>
-      <div class="lead" style="margin-top:12px">The read: Reddit sent <b>18–19 sessions/week through June, then fell to 7 and 5</b> in the last two weeks as spend and impressions dipped — so <b>we are not yet growing site traffic from this channel</b>. Engagement bounces around (choppy at this volume) but has been weak in the two most recent weeks. This is the baseline we want the targeting fix to move: more sessions, and a higher engaged share.</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Month</th><th class="num">Spend</th><th class="num">Clicks</th><th class="num">GA4 sessions</th><th class="num">Click→visit</th><th class="num">Engagement</th><th class="num">Avg session</th></tr></thead>
+          <tbody>
+            <tr><td>March</td><td class="num">$1,802</td><td class="num">860</td><td class="num">291</td><td class="num">33.8%</td><td class="num">12.0%</td><td class="num">1m 22s</td></tr>
+            <tr><td>April</td><td class="num">$2,763</td><td class="num">1,076</td><td class="num">381</td><td class="num">35.4%</td><td class="num">15.8%</td><td class="num">1m 06s</td></tr>
+            <tr><td>May</td><td class="num">$0</td><td class="num">0</td><td class="num">3</td><td class="num">—</td><td class="num">66.7%</td><td class="num">22s</td></tr>
+            <tr><td>June</td><td class="num">$1,289</td><td class="num">754</td><td class="num">56</td><td class="num">7.4%</td><td class="num">39.3%</td><td class="num">9m 50s</td></tr>
+            <tr><td>July*</td><td class="num">$1,276</td><td class="num">937</td><td class="num">43</td><td class="num">4.6%</td><td class="num">20.9%</td><td class="num">5m 03s</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="lead" style="margin-top:12px">Two things stand out. <b>(1) We're not growing — we're well below the spring peak,</b> and the May gap shows how directly traffic tracks spend (spend off → traffic off). <b>(2) The click has gotten much weaker:</b> in March–April roughly <b>a third of clicks became real site visits; now it's ~5%.</b> Similar click volume, far fewer landings — the fingerprint of the shift to mobile comment-page taps. Pulling that click→visit rate back up is exactly what the targeting fix (desktop + dev communities) is for. <span style="color:var(--muted)">*July is month-to-date through Jul 24.</span></div>
 
       <div class="sec"><span class="n">4</span> Mobile vs desktop — the behavior gap</div>
       <div class="chartgrid">
@@ -440,32 +451,32 @@
 
   // ---- GA4 charts ----
   var C={accent:'#EC417A',cobalt:'#2A41A2',peri:'#6C8CFD',good:'#12915b',bad:'#c23b39',warn:'#b7791f',gray:'#8a93a3',line:'#E9E9F4',muted:'#5f6b7a'};
-  var weeks=['Jun 8','Jun 15','Jun 22','Jun 29','Jul 6','Jul 13','Jul 20*'];
+  var months=['Mar','Apr','May','Jun','Jul*'];
   Chart.defaults.font.family="'Roboto',system-ui,sans-serif";
   Chart.defaults.color=C.muted;
   Chart.defaults.plugins.legend.labels.boxWidth=12;
   Chart.defaults.plugins.legend.labels.font={size:11};
 
-  new Chart(document.getElementById('chSessions'),{
-    type:'bar',
-    data:{labels:weeks,datasets:[
-      {label:'Sessions',data:[18,13,19,19,18,7,5],backgroundColor:C.peri,borderRadius:4},
-      {label:'Engaged',data:[4,8,5,10,2,1,1],backgroundColor:C.accent,borderRadius:4}
+  new Chart(document.getElementById('chMonthly'),{
+    data:{labels:months,datasets:[
+      {type:'bar',label:'GA4 sessions',data:[291,381,3,56,43],backgroundColor:C.peri,borderRadius:4,yAxisID:'y',order:2},
+      {type:'line',label:'Reddit spend',data:[1802,2763,0,1289,1276],borderColor:C.accent,backgroundColor:'rgba(236,65,122,.08)',tension:.3,pointRadius:3,yAxisID:'y1',order:1,fill:true}
     ]},
     options:{responsive:true,maintainAspectRatio:false,
-      scales:{y:{beginAtZero:true,grid:{color:C.line},ticks:{precision:0}},x:{grid:{display:false}}},
+      scales:{
+        y:{position:'left',beginAtZero:true,grid:{color:C.line},title:{display:true,text:'Sessions'}},
+        y1:{position:'right',beginAtZero:true,grid:{display:false},ticks:{callback:function(v){return '$'+(v/1000)+'k';}},title:{display:true,text:'Spend'}},
+        x:{grid:{display:false}}
+      },
       plugins:{legend:{position:'bottom'}}}
   });
 
-  new Chart(document.getElementById('chEngage'),{
-    type:'line',
-    data:{labels:weeks,datasets:[
-      {label:'Engagement rate %',data:[22.2,61.5,26.3,52.6,11.1,14.3,20.0],borderColor:C.good,backgroundColor:'rgba(18,145,91,.10)',tension:.3,fill:true,pointRadius:3},
-      {label:'Bounce rate %',data:[77.8,38.5,73.7,47.4,88.9,85.7,80.0],borderColor:C.bad,backgroundColor:'rgba(194,59,57,.06)',tension:.3,fill:false,pointRadius:3,borderDash:[5,4]}
-    ]},
+  new Chart(document.getElementById('chC2S'),{
+    type:'bar',
+    data:{labels:months,datasets:[{label:'Click → visit %',data:[33.8,35.4,null,7.4,4.6],backgroundColor:[C.good,C.good,C.gray,C.warn,C.bad],borderRadius:4}]},
     options:{responsive:true,maintainAspectRatio:false,
-      scales:{y:{beginAtZero:true,max:100,grid:{color:C.line},ticks:{callback:function(v){return v+'%';}}},x:{grid:{display:false}}},
-      plugins:{legend:{position:'bottom'}}}
+      scales:{y:{beginAtZero:true,grid:{color:C.line},ticks:{callback:function(v){return v+'%';}}},x:{grid:{display:false}}},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return (c.raw==null?'no spend':c.raw+'% of clicks landed');}}}}}
   });
 
   new Chart(document.getElementById('chDeviceMix'),{
