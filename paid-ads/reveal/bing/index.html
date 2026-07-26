@@ -97,7 +97,11 @@
 
       <div class="sec"><span class="n">1</span>Executive summary</div>
       <div class="lead">
-        Bing held spend flat at <b>~$703</b> (+2% WoW) but bought <b>31% more clicks</b> — 416 vs 318 — as avg CPC fell <b>22% to $1.69</b>. The efficiency came from reining in the <b>Compete-English-International</b> campaign (CPC halved, $8.83&rarr;$4.38) and scaling <b>Compete-US</b> impression share from 70% to 83%. Quality traffic followed: GA4 engagement rate on <code>bing/cpc</code> rose to <b>71%</b> (from 62%) and session duration jumped 48%. The catch is <b>conversion visibility</b>: the Bing pixel recorded just <b>1 conversion</b> (a brand click) while GA4 saw <b>4 key events</b> from bing/cpc — and Salesforce has no clean Bing LeadSource to confirm any of it. The channel is directionally working, but we are <b>flying partially blind on ROI</b>. Verdict: <b>Fix &amp; tighten before scaling</b> (see Journey &amp; ROI).
+        <b>Bing is our newest and smallest paid channel for Reveal — and this week it turned a corner.</b> For the same weekly budget as last week, it delivered meaningfully more traffic at a lower cost, and for the first time since we restarted it, that traffic began to convert. Just as important, it's buying the <b>right</b> audience: people actively comparing Reveal against Power BI, Tableau and Logi Analytics, who then spend real time on our comparison pages instead of bouncing.
+        <br><br>
+        The honest caveat is <b>measurement</b>. Our systems don't yet agree on how many leads Bing produced — the ad platform sees one, Google Analytics sees four, and Salesforce can't confirm any because Bing isn't set up as a lead source. So the signal is encouraging but not yet bankable.
+        <br><br>
+        <b>Recommendation: keep Bing on and let it keep proving itself, but hold spend flat until we can trust the conversion numbers.</b> It's too early to invest more and too promising to cut. The highest-value move this week isn't a bigger budget — it's fixing the tracking so next week's report can tell you, with confidence, exactly how much pipeline Bing is creating.
       </div>
 
       <div class="sec"><span class="n">2</span>KPIs · week over week</div>
@@ -112,20 +116,20 @@
         <div class="kpi"><div class="lab">Impressions</div><div class="val">26.1K</div><span class="delta flat">▼ 12%</span></div>
         <div class="kpi"><div class="lab">CPL · Bing pixel</div><div class="val">$703</div><span class="delta down">1 conv only</span></div>
         <div class="kpi"><div class="lab">CPL · GA4 view</div><div class="val">$176</div><span class="delta flat">4 GA4 conv</span></div>
-        <div class="kpi"><div class="lab">GA4 bing/cpc conv</div><div class="val">4</div><span class="delta up">▲ from 0</span></div>
-        <div class="kpi"><div class="lab">Engagement rate</div><div class="val">71%</div><span class="delta up">▲ 9 pt</span></div>
+        <div class="kpi"><div class="lab">GA4 conv · bing/cpc</div><div class="val">4</div><span class="delta up">▲ from 0</span></div>
+        <div class="kpi"><div class="lab">Engagement rate</div><div class="val">73%</div><span class="delta up">▲ 12 pt</span></div>
       </div>
 
       <div class="sec"><span class="n">3</span>Goal scoreboard</div>
       <div class="score">
         <table>
-          <thead><tr><th>Goal</th><th>Current</th><th>Target</th><th>Status</th></tr></thead>
+          <thead><tr><th>Goal</th><th>Current</th><th>Target</th><th>Status</th><th>Progress vs goal</th></tr></thead>
           <tbody>
-            <tr><td class="goal">Quality-lead CPL</td><td>$176 (GA4) · $703 (pixel)</td><td>&le; $75</td><td><span class="pill bad">Behind</span></td></tr>
-            <tr><td class="goal">Conversion trend</td><td>0 &rarr; 4 GA4 key events</td><td>Growing</td><td><span class="pill good">On track</span></td></tr>
-            <tr><td class="goal">Brand defense IS</td><td>79% (losing 21% to rank)</td><td>~100%</td><td><span class="pill warn">At risk</span></td></tr>
-            <tr><td class="goal">Non-brand head IS (Compete-US)</td><td>83%</td><td>&ge; 80%</td><td><span class="pill good">On track</span></td></tr>
-            <tr><td class="goal">Conversion tracking integrity</td><td>Pixel 1 vs GA4 4 — mismatch</td><td>Aligned + SF-traceable</td><td><span class="pill bad">Broken</span></td></tr>
+            <tr><td class="goal">Quality-lead CPL</td><td>$176 (GA4) · $703 (pixel)</td><td>&le; $75</td><td><span class="pill bad">Behind</span></td><td>2.3&times; over target (best case)</td></tr>
+            <tr><td class="goal">Conversion trend</td><td>0 &rarr; 4 GA4 key events</td><td>Growing</td><td><span class="pill good">On track</span></td><td>+4 vs prior week</td></tr>
+            <tr><td class="goal">Brand defense IS</td><td>79%</td><td>~100%</td><td><span class="pill warn">At risk</span></td><td>21 pts short (losing to rank)</td></tr>
+            <tr><td class="goal">Non-brand head IS (Compete-US)</td><td>83%</td><td>&ge; 80%</td><td><span class="pill good">Ahead</span></td><td>+3 pts over target</td></tr>
+            <tr><td class="goal">Conversion tracking integrity</td><td>Pixel 1 vs GA4 4</td><td>Aligned + SF-traceable</td><td><span class="pill bad">Broken</span></td><td>3-event gap · SF blind</td></tr>
           </tbody>
         </table>
       </div>
@@ -135,13 +139,13 @@
         <div class="card">
           <div class="ch"><span class="nm">Working</span><span class="sp">efficiency + engagement</span></div>
           <div class="cb">
-            <b>CPC down 22%</b> while clicks rose 31% — the account is buying more, cheaper. <b>Compete-English-International</b> CPC halved after cleanup. <b>Compete-US</b> impression share climbed to 83%, and its clicks land on high-intent vs-competitor pages (Logi, Power BI, Tableau) that GA4 shows converting at <b>71% engagement</b>. Brand finally got funded ($3&rarr;$47) and produced the week's one confirmed pixel conversion.
+            More clicks for the same money — CPC fell 22% while clicks rose 31%. The traffic is high-quality: <b>73% engagement rate</b> and ~3 minutes on page, landing on competitor-comparison pages that are clearly doing their job. Brand search finally got funded and produced the week's one confirmed conversion.
           </div>
         </div>
         <div class="card">
-          <div class="ch"><span class="nm">Not working</span><span class="sp">attribution + waste</span></div>
+          <div class="ch"><span class="nm">Not working</span><span class="sp">attribution + concentration</span></div>
           <div class="cb">
-            <b>We can't trust the conversion count.</b> Pixel says 1, GA4 says 4, Salesforce says nothing (no Bing LeadSource). <b>Compete-US eats 70% of spend ($490) with zero pixel conversions.</b> Bing's <b>close-variant</b> expansion on Exact keywords is leaking budget to off-ICP queries — <code>who is bi worldwide's biggest competitor</code> ($28), <code>grok build competitors</code> ($8). Brand IS is only 79% — we're ceding 21% of our own name to rank.
+            <b>We can't trust the conversion count</b> — pixel, GA4 and Salesforce all disagree. <b>One campaign (Compete-US) is 70% of spend</b> with no pixel conversions of its own. Bing's <b>close-variant</b> keyword expansion is leaking budget to off-target searches, and we're ceding 21% of our own brand impressions to rank.
           </div>
         </div>
       </div>
@@ -150,27 +154,88 @@
     <!-- ============ TAB 2: CAMPAIGNS ============ -->
     <section class="tabpanel" data-tab="campaigns" data-label="Campaigns">
 
-      <div class="sec"><span class="n">1</span>Spend &amp; performance by campaign · this week</div>
+      <div class="sec"><span class="n">1</span>Budget pacing</div>
+      <div class="lead">
+        <b><span class="pill good">Within budget</span></b> &nbsp;All Reveal campaigns lost <b>0% of impressions to budget</b> this week — none is capped or throttled by spend. Where campaigns miss impressions, it's to <b>rank</b>, not money (see impression share below). No over-pacing to flag; the ~$703 weekly run-rate is holding steady.
+      </div>
+
+      <div class="sec"><span class="n">2</span>Spend &amp; performance by campaign · WoW indicators</div>
       <div class="dtable">
         <table>
-          <thead><tr><th>Campaign</th><th>Spend</th><th>Clicks</th><th>CTR</th><th>CPC</th><th>Conv</th><th>Impr share</th><th>WoW spend</th></tr></thead>
+          <thead><tr><th>Campaign</th><th>Spend&nbsp;/&nbsp;WoW</th><th>Clicks&nbsp;/&nbsp;WoW</th><th>CTR&nbsp;/&nbsp;WoW</th><th>Impr share&nbsp;/&nbsp;WoW</th><th>Conv</th></tr></thead>
           <tbody>
-            <tr><td>Compete-US</td><td class="num">$489.51</td><td class="num">360</td><td class="num">1.54%</td><td class="num">$1.36</td><td class="num">0</td><td class="num">83%</td><td class="num">▲ 21%</td></tr>
-            <tr><td>Compete-English-International</td><td class="num">$78.76</td><td class="num">18</td><td class="num">2.67%</td><td class="num">$4.38</td><td class="num">0</td><td class="num">96%</td><td class="num">▼ 61%</td></tr>
-            <tr><td>Non-Brand-US</td><td class="num">$50.86</td><td class="num">2</td><td class="num">2.94%</td><td class="num">$25.43</td><td class="num">0</td><td class="num">—</td><td class="num">▲ 202%</td></tr>
-            <tr><td>Brand-Terms-WW</td><td class="num">$46.70</td><td class="num">9</td><td class="num">11.84%</td><td class="num">$5.19</td><td class="num">1</td><td class="num">79%</td><td class="num">▲ 1320%</td></tr>
-            <tr><td>Compete-Core-Terms-US <span class="pill good">new</span></td><td class="num">$25.72</td><td class="num">15</td><td class="num">1.09%</td><td class="num">$1.71</td><td class="num">0</td><td class="num">0%</td><td class="num">new</td></tr>
-            <tr><td>Non-Brand-English-International</td><td class="num">$7.60</td><td class="num">2</td><td class="num">4.44%</td><td class="num">$3.80</td><td class="num">0</td><td class="num">—</td><td class="num">▼ 88%</td></tr>
-            <tr><td>Compete-India <span class="pill good">new</span></td><td class="num">$3.78</td><td class="num">10</td><td class="num">2.19%</td><td class="num">$0.38</td><td class="num">0</td><td class="num">—</td><td class="num">new</td></tr>
-            <tr><td>Non-Brand-India <span class="pill good">new</span></td><td class="num">$0.00</td><td class="num">0</td><td class="num">0%</td><td class="num">—</td><td class="num">0</td><td class="num">—</td><td class="num">new</td></tr>
+            <tr>
+              <td>Compete-US</td>
+              <td class="num">$489.51 <span class="pill warn">▲21%</span></td>
+              <td class="num">360 <span class="pill good">▲25%</span></td>
+              <td class="num">1.54% <span class="pill good">▲0.5pt</span></td>
+              <td class="num">83% <span class="pill good">▲13pt</span></td>
+              <td class="num">0</td>
+            </tr>
+            <tr>
+              <td>Compete-English-International</td>
+              <td class="num">$78.76 <span class="pill warn">▼61%</span></td>
+              <td class="num">18 <span class="pill bad">▼22%</span></td>
+              <td class="num">2.67% <span class="pill good">▲0.9pt</span></td>
+              <td class="num">96% <span class="pill warn">▼3pt</span></td>
+              <td class="num">0</td>
+            </tr>
+            <tr>
+              <td>Non-Brand-US</td>
+              <td class="num">$50.86 <span class="pill warn">▲202%</span></td>
+              <td class="num">2 <span class="pill warn">flat</span></td>
+              <td class="num">2.94% <span class="pill good">▲0.5pt</span></td>
+              <td class="num">— </td>
+              <td class="num">0</td>
+            </tr>
+            <tr>
+              <td>Brand-Terms-WW</td>
+              <td class="num">$46.70 <span class="pill warn">▲1320%</span></td>
+              <td class="num">9 <span class="pill good">▲350%</span></td>
+              <td class="num">11.84% <span class="pill good">▲8.9pt</span></td>
+              <td class="num">79% <span class="pill good">▲3pt</span></td>
+              <td class="num">1</td>
+            </tr>
+            <tr>
+              <td>Compete-Core-Terms-US <span class="pill good">new</span></td>
+              <td class="num">$25.72 <span class="pill warn">new</span></td>
+              <td class="num">15 <span class="pill warn">new</span></td>
+              <td class="num">1.09% <span class="pill warn">new</span></td>
+              <td class="num">0% <span class="pill warn">new</span></td>
+              <td class="num">0</td>
+            </tr>
+            <tr>
+              <td>Non-Brand-English-International</td>
+              <td class="num">$7.60 <span class="pill warn">▼88%</span></td>
+              <td class="num">2 <span class="pill bad">▼33%</span></td>
+              <td class="num">4.44% <span class="pill bad">▼0.8pt</span></td>
+              <td class="num">— </td>
+              <td class="num">0</td>
+            </tr>
+            <tr>
+              <td>Compete-India <span class="pill good">new</span></td>
+              <td class="num">$3.78 <span class="pill warn">new</span></td>
+              <td class="num">10 <span class="pill warn">new</span></td>
+              <td class="num">2.19% <span class="pill warn">new</span></td>
+              <td class="num">— </td>
+              <td class="num">0</td>
+            </tr>
+            <tr>
+              <td>Non-Brand-India <span class="pill good">new</span></td>
+              <td class="num">$0.00 <span class="pill warn">new</span></td>
+              <td class="num">0 <span class="pill warn">new</span></td>
+              <td class="num">0% <span class="pill warn">new</span></td>
+              <td class="num">— </td>
+              <td class="num">0</td>
+            </tr>
           </tbody>
         </table>
       </div>
       <div class="lead" style="margin-top:14px">
-        <b>Spend is dangerously concentrated.</b> Compete-US is <b>70% of the week's budget</b> and carries zero pixel conversions — everything rides on whether those vs-page clicks convert downstream (GA4 says some do; see Journey). Compete-English-International is the efficiency win: half the CPC for the same job. <b>Non-Brand-US at $25.43 CPC is the single worst unit economic</b> in the account — 2 clicks, $51, nothing to show. Three new campaigns launched this week (Compete-Core-Terms-US, Compete-India, Non-Brand-India) — India is cheap ($0.38 CPC) but is exactly the noise region we watch; keep it capped and spam-gated.
+        <b>Green = improving, red = declining, amber = spend move or new campaign (judge on budget, not direction).</b> The healthy story is <b>Compete-US</b>: more spend, but more clicks, higher CTR and +13 pts of impression share to show for it. <b>Compete-English-International</b> was deliberately cut 61% and got more efficient (CTR up), though at fewer clicks. The concern is <b>Non-Brand-US — spend tripled to $51 for 2 clicks and zero conversions</b> ($25 CPC); that's the least defensible dollar in the account. Three new campaigns launched this week; keep <b>India capped and spam-gated</b> — it's the noise region we watch.
       </div>
 
-      <div class="sec"><span class="n">2</span>Match-type health</div>
+      <div class="sec"><span class="n">3</span>Match-type health</div>
       <div class="dtable">
         <table>
           <thead><tr><th>Bidded match type</th><th>Delivered</th><th>Clicks</th><th>Spend</th><th>Share of spend</th></tr></thead>
@@ -182,11 +247,57 @@
         </table>
       </div>
       <div class="lead" style="margin-top:14px">
-        <b>Good news first: the classic Bing broad-match leak does not exist here</b> — 99.9% of spend runs on <b>Exact</b> match, with a token $0.32 on Phrase. <b>But don't declare victory.</b> The search-term report (next tab) shows Bing serving heavily under <b>"Exact (close variant)"</b> — its engine is quietly expanding your Exact keywords to loose variants like <code>who is bi worldwide's biggest competitor</code>. On Bing, <b>close-variant expansion is the real leak vector</b>, not broad match. The fix is aggressive negatives, not match-type changes.
+        <b>The classic Bing broad-match leak does not exist here</b> — 99.9% of spend runs on <b>Exact</b> match. But don't declare victory: the search-term report shows Bing serving heavily under <b>"Exact (close variant)"</b>, quietly expanding Exact keywords to loose variants. On Bing, <b>close-variant expansion is the real leak vector</b>, not broad match. The fix is aggressive negatives (see Search Terms), not match-type changes.
       </div>
     </section>
 
-    <!-- ============ TAB 3: SEARCH TERMS & KEYWORDS ============ -->
+    <!-- ============ TAB 3: COPY ============ -->
+    <section class="tabpanel" data-tab="copy" data-label="Copy">
+
+      <div class="sec"><span class="n">1</span>How to read this</div>
+      <div class="lead">
+        Every Reveal Bing ad is a <b>Responsive Search Ad (RSA)</b> — Bing assembles headlines and descriptions on the fly. The connector reports <b>performance per ad</b> (impressions, CTR, conversions) but <b>does not expose the headline/description text</b>, so ads are identified by their Ad ID. <b>To review the literal wording, open these Ad IDs in the Microsoft Ads UI.</b> What we <em>can</em> answer here: which ads Bing is showing most, and which are earning the clicks.
+      </div>
+
+      <div class="sec"><span class="n">2</span>Compete-US · the engine (13 RSAs live)</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Ad ID</th><th>Impressions</th><th>Share of shown</th><th>Clicks</th><th>CTR</th><th>Read</th></tr></thead>
+          <tbody>
+            <tr><td>…59154</td><td class="num">10,249</td><td class="num">44%</td><td class="num">151</td><td class="num">1.47%</td><td>Most-shown · avg CTR</td></tr>
+            <tr><td>…46869</td><td class="num">4,655</td><td class="num">20%</td><td class="num">74</td><td class="num">1.59%</td><td>2nd-most shown · avg</td></tr>
+            <tr><td>…30446</td><td class="num">2,019</td><td class="num">9%</td><td class="num">17</td><td class="num">0.84%</td><td><b>Over-served, weak</b></td></tr>
+            <tr><td>…52345</td><td class="num">1,977</td><td class="num">8%</td><td class="num">36</td><td class="num">1.82%</td><td>Solid</td></tr>
+            <tr><td>…42311</td><td class="num">1,231</td><td class="num">5%</td><td class="num">14</td><td class="num">1.14%</td><td>Below avg</td></tr>
+            <tr><td>…60364</td><td class="num">709</td><td class="num">3%</td><td class="num">18</td><td class="num">2.54%</td><td><b>Best CTR at volume</b></td></tr>
+            <tr><td>…08982</td><td class="num">558</td><td class="num">2%</td><td class="num">14</td><td class="num">2.51%</td><td><b>High CTR, starved</b></td></tr>
+            <tr><td>…85377</td><td class="num">551</td><td class="num">2%</td><td class="num">3</td><td class="num">0.54%</td><td><b>Worst CTR — prune</b></td></tr>
+            <tr><td>…06823</td><td class="num">277</td><td class="num">1%</td><td class="num">8</td><td class="num">2.89%</td><td><b>Best CTR, starved</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="lead" style="margin-top:14px">
+        <b>Bing is over-serving mediocre creative and starving the winners.</b> The top two ads take <b>64% of impressions at ~1.5% CTR</b>, while the three highest-CTR ads (…06823 at 2.89%, …60364 at 2.54%, …08982 at 2.51%) split barely 6% of delivery. Two ads (…30446 at 0.84%, …85377 at 0.54%) are burning ~2,570 impressions at half the campaign's CTR. <b>Action:</b> pause the two laggards, and rebuild the winning headlines into fresh RSAs so Bing's optimizer pushes delivery toward the 2.5%+ creative. Pull the actual copy for …06823 / …60364 from the Bing UI — those are the messages resonating.
+      </div>
+
+      <div class="sec"><span class="n">3</span>Other campaigns · copy read</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Campaign</th><th>Live RSAs</th><th>Top ad</th><th>Impr</th><th>CTR</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td>Brand-Terms-WW</td><td class="num">1</td><td>…50419</td><td class="num">76</td><td class="num">11.84%</td><td>Single RSA, the only converter</td></tr>
+            <tr><td>Compete-English-Intl</td><td class="num">12</td><td>…88241</td><td class="num">593</td><td class="num">3.04%</td><td>1 ad does ~90% of the work; 11 near-zero</td></tr>
+            <tr><td>Compete-Core-Terms-US</td><td class="num">2</td><td>…22688</td><td class="num">1,068</td><td class="num">1.40%</td><td>2nd ad (…37671) got 311 impr, <b>0 clicks — prune</b></td></tr>
+            <tr><td>Non-Brand-US</td><td class="num">8</td><td>…46868</td><td class="num">19</td><td class="num">10.53%</td><td>Only 1 ad served; rest starved</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="lead" style="margin-top:14px">
+        Pattern across the account: <b>ad rotation is lopsided</b> — most campaigns lean on a single RSA while the rest collect impressions with no clicks. Brand's lone ad is efficient (11.84% CTR) but is a single point of failure — <b>add a second brand RSA</b>. Prune the dead ads (Compete-Core …37671, the idle Compete-Intl variants) so quality signals aren't diluted.
+      </div>
+    </section>
+
+    <!-- ============ TAB 4: SEARCH TERMS & KEYWORDS ============ -->
     <section class="tabpanel" data-tab="terms" data-label="Search Terms &amp; Keywords">
 
       <div class="sec"><span class="n">1</span>Converting &amp; on-ICP queries</div>
@@ -224,49 +335,106 @@
       </div>
     </section>
 
-    <!-- ============ TAB 4: JOURNEY & ROI ============ -->
-    <section class="tabpanel" data-tab="journey" data-label="Journey &amp; ROI">
+    <!-- ============ TAB 5: LANDING PAGES ============ -->
+    <section class="tabpanel" data-tab="landing" data-label="Landing Pages">
 
-      <div class="sec"><span class="n">1</span>GA4 story · bing/cpc sessions (WoW)</div>
-      <div class="kpigrid">
-        <div class="kpi"><div class="lab">Sessions</div><div class="val">319</div><span class="delta up">▲ 18%</span></div>
-        <div class="kpi"><div class="lab">Engaged sessions</div><div class="val">226</div><span class="delta up">▲ 35%</span></div>
-        <div class="kpi"><div class="lab">Engagement rate</div><div class="val">71%</div><span class="delta up">▲ 9 pt</span></div>
-        <div class="kpi"><div class="lab">Avg session (sec)</div><div class="val">185</div><span class="delta up">▲ 48%</span></div>
-        <div class="kpi"><div class="lab">GA4 key events</div><div class="val">4</div><span class="delta up">▲ from 0</span></div>
+      <div class="sec"><span class="n">1</span>Where Bing clicks land &amp; how they behave</div>
+      <div class="lead">
+        Source <code>bing</code> / medium <code>cpc</code> in GA4 (property 516472465). Bing sent <b>416 ad clicks &rarr; ~361 sessions</b> (a healthy ~13% click-to-session drop). Below: which pages they hit, how long they stayed, and whether they bounced.
       </div>
-      <div class="lead" style="margin-top:14px">
-        Bing sent <b>319 sessions</b> (vs 416 ad clicks — a normal ~23% click-to-session drop). The behavior signal is <b>strong and improving</b>: engagement rate 71%, engaged sessions up 35%, and average session duration up 48% to just over three minutes. This is not junk traffic — visitors are landing on comparison pages and reading.
-      </div>
-
-      <div class="sec"><span class="n">2</span>Where the clicks land · top bing/cpc landing pages</div>
       <div class="dtable">
         <table>
-          <thead><tr><th>Landing page</th><th>Sessions</th><th>Engaged</th><th>Eng. rate</th><th>GA4 conv</th></tr></thead>
+          <thead><tr><th>Landing page</th><th>Sessions</th><th>Bounce</th><th>Avg time (s)</th><th>Engagement</th><th>Conv</th></tr></thead>
           <tbody>
-            <tr><td>/reveal-vs-logi-analytics</td><td class="num">104</td><td class="num">76</td><td class="num">73%</td><td class="num">0</td></tr>
-            <tr><td>/reveal-vs-power-bi</td><td class="num">67</td><td class="num">49</td><td class="num">73%</td><td class="num">0</td></tr>
-            <tr><td>/reveal-vs-tableau</td><td class="num">55</td><td class="num">40</td><td class="num">73%</td><td class="num">2</td></tr>
-            <tr><td>/reveal-vs-luzmo</td><td class="num">18</td><td class="num">13</td><td class="num">72%</td><td class="num">0</td></tr>
-            <tr><td>/ (home)</td><td class="num">15</td><td class="num">9</td><td class="num">60%</td><td class="num">2</td></tr>
-            <tr><td>/reveal-vs-looker</td><td class="num">13</td><td class="num">11</td><td class="num">85%</td><td class="num">0</td></tr>
-            <tr><td>/reveal-vs-metabase</td><td class="num">9</td><td class="num">6</td><td class="num">67%</td><td class="num">0</td></tr>
-            <tr><td>/embedded-bi</td><td class="num">6</td><td class="num">3</td><td class="num">50%</td><td class="num">0</td></tr>
+            <tr><td>/reveal-vs-logi-analytics</td><td class="num">119</td><td class="num">27%</td><td class="num">146</td><td class="num">73%</td><td class="num">0</td></tr>
+            <tr><td>/reveal-vs-power-bi</td><td class="num">70</td><td class="num">27%</td><td class="num">398</td><td class="num">73%</td><td class="num">0</td></tr>
+            <tr><td>/reveal-vs-tableau</td><td class="num">58</td><td class="num">26%</td><td class="num">118</td><td class="num">74%</td><td class="num">2</td></tr>
+            <tr><td>/reveal-vs-luzmo</td><td class="num">18</td><td class="num">28%</td><td class="num">23</td><td class="num">72%</td><td class="num">0</td></tr>
+            <tr><td>/ (home)</td><td class="num">14</td><td class="num">29%</td><td class="num">411</td><td class="num">71%</td><td class="num">2</td></tr>
+            <tr><td>/reveal-vs-looker</td><td class="num">14</td><td class="num">14%</td><td class="num">114</td><td class="num">86%</td><td class="num">0</td></tr>
+            <tr><td>/compare</td><td class="num">13</td><td class="num">38%</td><td class="num">40</td><td class="num">62%</td><td class="num">0</td></tr>
+            <tr><td>/reveal-vs-bold-bi</td><td class="num">13</td><td class="num">15%</td><td class="num">46</td><td class="num">85%</td><td class="num">0</td></tr>
+            <tr><td>/reveal-vs-metabase</td><td class="num">11</td><td class="num">27%</td><td class="num">50</td><td class="num">73%</td><td class="num">0</td></tr>
+            <tr><td>/reveal-vs-sisense</td><td class="num">7</td><td class="num">14%</td><td class="num">70</td><td class="num">86%</td><td class="num">0</td></tr>
+            <tr><td>/embedded-bi</td><td class="num">6</td><td class="num">50%</td><td class="num">234</td><td class="num">50%</td><td class="num">0</td></tr>
+            <tr><td>/reveal-vs-domo</td><td class="num">4</td><td class="num">50%</td><td class="num">11</td><td class="num">50%</td><td class="num">0</td></tr>
           </tbody>
         </table>
       </div>
       <div class="lead" style="margin-top:14px">
-        The <b>vs-competitor pages are the engine</b> — Logi Analytics, Power BI and Tableau comparisons pull the bulk of Bing traffic at ~73% engagement. GA4 credits the <b>4 conversions to /reveal-vs-tableau (2)</b> and the <b>homepage (2)</b>. That means Compete-US's zero-pixel-conversion headline is misleading: the campaign <em>is</em> producing key events, they're just not being captured by Bing's own tag.
+        <b>The vs-competitor pages are the whole engine</b> — Logi Analytics, Power BI and Tableau comparisons pull the bulk of Bing traffic, all at ~73% engagement and low-to-mid 20s% bounce. Visitors are genuinely reading: the <b>Power BI</b> and <b>home</b> pages hold sessions for 6–7 minutes. All <b>4 tracked conversions came from just two pages — /reveal-vs-tableau (2) and home (2).</b> Weak spots: <code>/compare</code> and <code>/embedded-bi</code> bounce far higher (38–50%) — either a message-match problem with the ad or thin content; worth a look since <code>/embedded-bi</code> is a known SEO page gap too.
+      </div>
+
+      <div class="sec"><span class="n">2</span>Device</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Device</th><th>Sessions&nbsp;/&nbsp;WoW</th><th>Bounce</th><th>Avg time (s)</th><th>Engagement</th><th>Conv</th></tr></thead>
+          <tbody>
+            <tr><td>Desktop</td><td class="num">241 <span class="pill good">▲39%</span></td><td class="num">29%</td><td class="num">209</td><td class="num">71%</td><td class="num">4</td></tr>
+            <tr><td>Mobile</td><td class="num">111 <span class="pill good">▲16%</span></td><td class="num">23%</td><td class="num">115</td><td class="num">77%</td><td class="num">0</td></tr>
+            <tr><td>Tablet</td><td class="num">9 <span class="pill bad">▼10%</span></td><td class="num">22%</td><td class="num">102</td><td class="num">78%</td><td class="num">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="lead" style="margin-top:14px">
+        <b>Desktop is the buyer.</b> It's two-thirds of sessions and <b>100% of conversions</b> — expected for a B2B embedded-analytics decision. Mobile engages well (77%) but doesn't convert; it's a research surface, not a decision one. Reasonable to <b>bid desktop up</b> and keep mobile as low-cost awareness.
+      </div>
+
+      <div class="sec"><span class="n">3</span>New vs returning &amp; source campaign</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Visitor type</th><th>Sessions</th><th>Avg time (s)</th><th>Engagement</th><th>Conv</th></tr></thead>
+          <tbody>
+            <tr><td>New</td><td class="num">342</td><td class="num">184</td><td class="num">74%</td><td class="num">4</td></tr>
+            <tr><td>Returning</td><td class="num">13</td><td class="num">83</td><td class="num">69%</td><td class="num">0</td></tr>
+            <tr><td>(not set)</td><td class="num">5</td><td class="num">1</td><td class="num">0%</td><td class="num">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="lead" style="margin-top:14px">
+        Bing is almost entirely a <b>net-new audience</b> (95% new visitors) — good for top-of-funnel discovery, but it means conversion depends on a first-visit decision or a later return via another channel. Only 13 returning sessions came back through Bing itself, which is why last-click attribution understates it. On tagging: <b>356 of 360 sessions carry the lowercase <code>reveal</code> campaign</b>; a stray <b>4 sessions land under capitalized <code>Reveal</code></b> — a UTM casing inconsistency to standardize so reporting doesn't fragment.
+      </div>
+    </section>
+
+    <!-- ============ TAB 6: JOURNEY & ROI ============ -->
+    <section class="tabpanel" data-tab="journey" data-label="Journey &amp; ROI">
+
+      <div class="sec"><span class="n">1</span>GA4 story · bing/cpc sessions (WoW)</div>
+      <div class="kpigrid">
+        <div class="kpi"><div class="lab">Sessions</div><div class="val">361</div><span class="delta up">▲ 29%</span></div>
+        <div class="kpi"><div class="lab">Engaged sessions</div><div class="val">263</div><span class="delta up">▲ 54%</span></div>
+        <div class="kpi"><div class="lab">Engagement rate</div><div class="val">73%</div><span class="delta up">▲ 12 pt</span></div>
+        <div class="kpi"><div class="lab">Avg session (sec)</div><div class="val">178</div><span class="delta up">▲ 30%</span></div>
+        <div class="kpi"><div class="lab">GA4 key events</div><div class="val">4</div><span class="delta up">▲ from 0</span></div>
+      </div>
+      <div class="lead" style="margin-top:14px">
+        The behavior signal is <b>strong and improving on every axis</b>: more sessions, more of them engaged, longer visits, and the first key events since restart. This is not junk traffic — Bing is buying engaged, on-ICP visitors who read the comparison pages. The question isn't whether they engage; it's whether we can <b>see</b> the resulting leads in our revenue systems.
+      </div>
+
+      <div class="sec"><span class="n">2</span>Funnel · spend &rarr; site &rarr; lead</div>
+      <div class="dtable">
+        <table>
+          <thead><tr><th>Stage</th><th>This week</th><th>Source</th><th>Read</th></tr></thead>
+          <tbody>
+            <tr><td>Spend</td><td class="num">$703</td><td>Bing Ads</td><td>Flat WoW</td></tr>
+            <tr><td>Clicks</td><td class="num">416</td><td>Bing Ads</td><td>+31%</td></tr>
+            <tr><td>Sessions</td><td class="num">361</td><td>GA4</td><td>Healthy 13% click-loss</td></tr>
+            <tr><td>Engaged sessions</td><td class="num">263</td><td>GA4</td><td>73% — quality holds</td></tr>
+            <tr><td>Conversions (pixel)</td><td class="num">1</td><td>Bing Ads</td><td>Brand only</td></tr>
+            <tr><td>Conversions (GA4)</td><td class="num">4</td><td>GA4</td><td>Tableau ×2, home ×2</td></tr>
+            <tr><td>Leads / pipeline</td><td class="num">?</td><td>Salesforce</td><td><b>Unverifiable — no Bing LeadSource</b></td></tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="sec"><span class="n">3</span>Salesforce attribution gap</div>
       <div class="lead" style="border-left-color:var(--bad)">
-        <b>Read this before trusting any CPL number.</b> Salesforce has <b>no clean Bing LeadSource</b>, so we cannot confirm a single Bing-sourced lead or dollar of pipeline in the CRM. We are triangulating from three disagreeing sources: <b>Bing pixel = 1</b> conversion, <b>GA4 bing/cpc = 4</b> key events (last-click), <b>Salesforce = unverifiable</b>. GA4 key events are form-fills/goals, not confirmed MQLs or opps. So the honest ROI picture is: Bing is buying engaged, on-ICP traffic to comparison pages, and <em>some</em> conversion signal is appearing — but <b>we cannot yet tie it to revenue.</b> One data-hygiene note: GA4 also shows a stray <code>bing / CPC</code> (capitalized) source with 4 sessions — a UTM casing inconsistency that fragments reporting and should be standardized to lowercase.
+        <b>Read this before trusting any CPL number.</b> Salesforce has <b>no clean Bing LeadSource</b>, so we cannot confirm a single Bing-sourced lead or dollar of pipeline in the CRM. We're triangulating three disagreeing sources: <b>Bing pixel = 1</b>, <b>GA4 bing/cpc = 4</b> (last-click key events, not confirmed MQLs), <b>Salesforce = blind</b>. Because Bing is 95% net-new traffic, most conversions happen on a <em>later</em> visit through another channel — so last-click badly understates it. Honest picture: Bing is buying engaged, on-ICP traffic and <em>some</em> conversion signal is appearing, but <b>we cannot yet tie it to revenue.</b>
       </div>
 
       <div class="verdict">
         <div class="vh">Verdict — Fix</div>
-        <p><b>Keep the channel on, but fix before you scale.</b> The fundamentals moved the right way this week — CPC down 22%, clicks up 31%, engagement up to 71%, and the first conversion signals appearing on the Tableau comparison page. The blockers are not media, they're <b>measurement and concentration</b>: (1) <b>close the tracking gap</b> — reconcile the Bing pixel (1) against GA4 (4) and stand up a Bing LeadSource in Salesforce so we can see pipeline, not guess at it; (2) <b>de-risk Compete-US</b>, which is 70% of spend on unproven-in-pixel conversions — hold budget flat until the tracking is trustworthy rather than pouring in more; (3) <b>add the four negatives</b> to stop close-variant drift; (4) <b>lift Brand IS from 79% toward 100%</b> — cheap, defensive, and it's where the only confirmed conversion came from. <b>Do not scale spend until we can answer "how many Bing leads reached Salesforce."</b> Reallocate the ~$38 of weekly close-variant waste into brand defense.</p>
+        <p><b>Keep the channel on, but fix before you scale.</b> The fundamentals moved the right way — CPC down 22%, clicks up 31%, engagement up to 73%, first conversions appearing on the Tableau comparison page and home. The blockers aren't media, they're <b>measurement and concentration</b>: (1) <b>close the tracking gap</b> — reconcile the Bing pixel (1) against GA4 (4) and stand up a Bing LeadSource in Salesforce so we see pipeline, not guesses; (2) <b>de-risk Compete-US</b> (70% of spend) — hold flat until tracking is trustworthy; (3) <b>fix the creative rotation</b> — pause the two lagging Compete-US ads and feed delivery to the 2.5%+ CTR winners, and add a second Brand RSA; (4) <b>add the four negatives</b> to stop close-variant drift; (5) <b>lift Brand IS from 79% toward 100%</b> — cheap, defensive, and where the only confirmed conversion came from. <b>Do not scale spend until we can answer "how many Bing leads reached Salesforce."</b></p>
       </div>
     </section>
 
