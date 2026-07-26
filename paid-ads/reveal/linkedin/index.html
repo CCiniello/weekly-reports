@@ -40,6 +40,8 @@
   .sec:first-child{margin-top:2px}
   .sec .n{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
   .lead{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:16px 20px;font-size:14.5px;line-height:1.6} .lead b{color:var(--navy)}
+  .lead p{margin:0 0 11px} .lead p:last-child{margin-bottom:0}
+  .lead .q{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);font-weight:700;display:block;margin-bottom:3px}
 
   .kpigrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
   @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}}
@@ -54,8 +56,14 @@
   .score th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
   .score td{padding:11px 13px;border-top:1px solid var(--line);vertical-align:middle}
   .score .goal{font-weight:600;color:var(--navy)}
-  .pill{font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px}
+  .pill{font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px;white-space:nowrap}
   .pill.good{background:var(--good-bg);color:var(--good)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.bad{background:var(--bad-bg);color:var(--bad)}
+
+  /* progress bar */
+  .prog{height:7px;background:var(--gray-bg);border-radius:999px;overflow:hidden;min-width:80px;margin-top:5px}
+  .prog .fill{height:100%;border-radius:999px}
+  .fill.good{background:var(--good)} .fill.warn{background:var(--warn)} .fill.bad{background:var(--bad)}
+  .progwrap{font-size:11px;font-family:var(--mono);color:var(--muted)}
 
   .cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
   .card{border:1px solid var(--line);border-radius:14px;overflow:hidden}
@@ -63,16 +71,53 @@
   .card .ch .nm{font-size:15px;font-weight:700;color:var(--accent-deep)} .card .ch .sp{font-family:var(--mono);font-size:12.5px;color:var(--navy)}
   .card .cb{padding:14px 18px;font-size:13.5px;line-height:1.55} .card .cb b{color:var(--navy)}
 
+  /* clean rundown list for working / not working */
+  .runcols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+  @media(max-width:820px){.runcols{grid-template-columns:1fr}}
+  .runbox{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .runbox .rh{padding:11px 16px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+  .runbox.win .rh{background:var(--good-bg);color:var(--good)}
+  .runbox.lose .rh{background:var(--bad-bg);color:var(--bad)}
+  .runbox ul{list-style:none;margin:0;padding:6px 0}
+  .runbox li{padding:9px 16px;border-top:1px solid var(--line);font-size:13px;line-height:1.5}
+  .runbox li:first-child{border-top:none}
+  .runbox li b{color:var(--navy);display:block;margin-bottom:1px}
+
   .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
   .dtable table{width:100%;border-collapse:collapse;font-size:13px}
   .dtable th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
   .dtable td{padding:10px 13px;border-top:1px solid var(--line)} .dtable td.num{font-family:var(--mono);text-align:right}
   .dtable tr:hover td{background:#fafbff}
+  .wowu{color:var(--good);font-weight:600} .wowd{color:var(--bad);font-weight:600} .wowf{color:var(--muted);font-weight:600}
+
+  /* chart kit */
+  .charts2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
+  @media(max-width:820px){.charts2{grid-template-columns:1fr}}
+  .chartbox{border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .chartbox .ct{font-size:12px;font-weight:700;color:var(--navy);letter-spacing:.02em;margin-bottom:4px}
+  .chartbox .cs{font-size:11.5px;color:var(--muted);margin-bottom:12px}
+  .donutrow{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .legend{font-size:12px;line-height:1.7;flex:1;min-width:150px}
+  .legend .lk{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:7px;vertical-align:middle}
+  .legend .lv{font-family:var(--mono);color:var(--muted);float:right}
+  .hbars{display:flex;flex-direction:column;gap:9px}
+  .hbar{display:grid;grid-template-columns:132px 1fr 42px;align-items:center;gap:9px;font-size:12px}
+  .hbar .lbl{color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hbar .track{background:var(--gray-bg);border-radius:6px;height:15px;overflow:hidden}
+  .hbar .track .fl{height:100%;border-radius:6px}
+  .hbar .v{font-family:var(--mono);color:var(--muted);text-align:right}
+  .fl.core{background:var(--accent)} .fl.warnb{background:#e6b25e} .fl.badb{background:#d98b89} .fl.peri{background:var(--peri)}
+  .colchart{display:flex;align-items:flex-end;gap:14px;height:150px;padding:6px 4px 0}
+  .colchart .col{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+  .colchart .bar{width:100%;max-width:56px;background:linear-gradient(180deg,var(--accent),var(--accent-deep));border-radius:6px 6px 0 0}
+  .colchart .cv{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--navy)}
+  .colchart .cx{font-size:11px;color:var(--muted)}
 
   .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
   .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
   .verdict p{font-size:15px;line-height:1.6;margin:0} .verdict b{color:var(--navy)}
   code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+  .note{font-size:11.5px;color:var(--muted);margin-top:9px;line-height:1.5}
 </style>
 </head>
 <body class="theme-reveal">
@@ -92,61 +137,105 @@
   <!-- ============ TAB 1: OVERVIEW ============ -->
   <section class="tabpanel" data-tab="overview" data-label="Overview">
 
-    <div class="sec"><span class="n">1</span> Executive summary</div>
+    <div class="sec"><span class="n">1</span> The read for leadership</div>
     <div class="lead">
-      LinkedIn is doing its <b>amplification job well but flying blind on outcomes</b>. Spend held at <b>$1,143</b> (+5%) and every efficiency metric improved WoW — clicks <b>+17%</b>, CTR up to <b>5.11%</b> (+0.7pp), CPC down to <b>$1.09</b> (–10%). Audience quality is genuinely strong: ~80% of impressions hit Owner/CXO/VP/Director seniorities and the top job titles are Founders, CEOs, CTOs and engineering leaders at mid-market tech companies — squarely Reveal's ICP.
-      <br><br>
-      But two things break the story. First, <b>zero leads and zero lead-form activity</b> — all three campaigns run WEBSITE_VISIT / WEBSITE_CONVERSION objectives, so there is no LinkedIn lead-gen form capturing anyone. Second, and more urgent: LinkedIn logged <b>1,051 clicks this week, yet GA4 saw only 8 LinkedIn sessions</b>. The paid clicks are not landing with a <code>linkedin / paid</code> source-medium, which means GA4 — and therefore Salesforce — cannot see this channel at all. We cannot currently tie a single dollar of LinkedIn spend to pipeline. Fix tracking before scaling.
+      <p><span class="q">Are we getting ROI, and is the channel healthy?</span> The honest answer: LinkedIn is buying us <b>high-quality attention from exactly the right people, very efficiently</b> — but we <b>can't yet prove it turns into pipeline</b>, and that gap is this week's priority.</p>
+      <p><span class="q">What we're achieving</span> For about <b>$1,150 a week</b> we put Reveal in front of ~3,900 senior decision-makers at mid-market tech companies — founders, CEOs, CTOs, and VPs of Engineering and Product. Engagement is strong and improving: more of them clicked this week than last (<b>+17%</b>), at a <b>lower cost per click</b> ($1.09, down 10%). The audience is on-target and getting tighter week over week. In plain terms, the top of the funnel is healthy and the money is working hard.</p>
+      <p><span class="q">Where we can't claim ROI yet — and I want to be straight</span> We cannot currently connect a single dollar of this spend to a lead or an opportunity. Two reasons: we aren't running a lead-capture form, so LinkedIn hands us no leads directly; and the tracking on our ad links is broken — of <b>1,051 clicks this week, our analytics saw 8</b>. Any pipeline LinkedIn is influencing is being quietly credited to other channels. The performance is almost certainly real — we just can't measure it, which for a spending decision is the same as not having it.</p>
+      <p><span class="q">The call</span> <b>Fix it, don't cut it.</b> The audience quality and efficiency have earned the right to be measured properly before we judge the channel. Turn on link tracking and a lead form, trim ~$450/week of clearly wasted spend, and within two weeks I can put a real cost-per-lead and ROI figure in front of you.</p>
     </div>
 
     <div class="sec"><span class="n">2</span> KPIs — week over week</div>
     <div class="kpigrid">
-      <div class="kpi"><span class="lab">Spend</span><span class="val">$1,143</span><span class="delta up">▲ 5.1%</span></div>
+      <div class="kpi"><span class="lab">Spend</span><span class="val">$1,143</span><span class="delta flat">▲ 5.1%</span></div>
       <div class="kpi"><span class="lab">Impressions</span><span class="val">20,561</span><span class="delta up">▲ 2.0%</span></div>
       <div class="kpi"><span class="lab">Clicks</span><span class="val">1,051</span><span class="delta up">▲ 17.2%</span></div>
       <div class="kpi"><span class="lab">CTR</span><span class="val">5.11%</span><span class="delta up">▲ 0.7pp</span></div>
       <div class="kpi"><span class="lab">CPC</span><span class="val">$1.09</span><span class="delta up">▼ 10.3%</span></div>
-      <div class="kpi"><span class="lab">CPM</span><span class="val">$55.59</span><span class="delta down">▲ 3.0%</span></div>
+      <div class="kpi"><span class="lab">CPM</span><span class="val">$55.59</span><span class="delta flat">▲ 3.0%</span></div>
       <div class="kpi"><span class="lab">Reach</span><span class="val">3,960</span><span class="delta flat">▲ 0.9%</span></div>
       <div class="kpi"><span class="lab">Frequency</span><span class="val">5.19x</span><span class="delta flat">▲ 1.1%</span></div>
       <div class="kpi"><span class="lab">Engagement rate</span><span class="val">5.16%</span><span class="delta up">▲ 0.7pp</span></div>
-      <div class="kpi"><span class="lab">Lead-gen leads</span><span class="val">0</span><span class="delta flat">— n/a</span></div>
+      <div class="kpi"><span class="lab">Attributable leads</span><span class="val">0</span><span class="delta down">— none</span></div>
     </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:9px">CPC down and CTR up are both <b>good</b> (green). CPM up 3% is a mild cost headwind. Frequency of ~5.2x on a 3,960-person reach base is getting heavy for a one-week window — the same people are seeing ads ~5 times.</p>
 
     <div class="sec"><span class="n">3</span> Goal scorecard</div>
     <div class="score">
       <table>
-        <thead><tr><th>Goal (LinkedIn = amplification channel)</th><th>This week</th><th>Status</th></tr></thead>
+        <thead><tr><th style="width:22%">Goal (what it means for the business)</th><th>Target</th><th>Actual</th><th>Status</th><th style="width:15%">Progress</th><th style="width:30%">Insight</th></tr></thead>
         <tbody>
-          <tr><td class="goal">Reach the right ICP (CTO / VP Eng / product leaders, mid-market SaaS/ISV)</td><td>~80% leadership seniority; tech-concentrated</td><td><span class="pill good">On track</span></td></tr>
-          <tr><td class="goal">Engagement health (CTR / engagement rate)</td><td>CTR 5.11%, eng rate 5.16%, both ▲</td><td><span class="pill good">On track</span></td></tr>
-          <tr><td class="goal">Cost efficiency (CPC / CPM)</td><td>CPC $1.09 ▼; CPM $55.59 ▲ slightly</td><td><span class="pill good">On track</span></td></tr>
-          <tr><td class="goal">Conversion / pipeline visibility (GA4 + SF attribution)</td><td>1,051 clicks → 8 GA4 sessions; 0 attributable</td><td><span class="pill bad">Behind</span></td></tr>
-          <tr><td class="goal">Retargeting efficiency</td><td>$202 spent → 4 clicks ($50/click), 0 conv.</td><td><span class="pill bad">Behind</span></td></tr>
-          <tr><td class="goal">Creative freshness / fatigue</td><td>Frequency ~5.2x; webinar creative dead post-event</td><td><span class="pill warn">At risk</span></td></tr>
+          <tr>
+            <td class="goal">Keep in-market buyers seeing us <span style="font-weight:400;color:var(--muted)">(Impressions)</span></td>
+            <td>≥20,000/wk</td><td>20,561</td><td><span class="pill good">On track</span></td>
+            <td><div class="progwrap">103%</div><div class="prog"><div class="fill good" style="width:100%"></div></div></td>
+            <td>Steady reach, but frequency ~5.2x means we're re-hitting the same 3,960 people. Widen the audience to keep it fresh.</td>
+          </tr>
+          <tr>
+            <td class="goal">Earn attention, not just impressions <span style="font-weight:400;color:var(--muted)">(CTR)</span></td>
+            <td>≥2.0%</td><td>5.11%</td><td><span class="pill good">Ahead</span></td>
+            <td><div class="progwrap">255%</div><div class="prog"><div class="fill good" style="width:100%"></div></div></td>
+            <td>Message–market fit is strong; the build-vs-buy and video units drive it. Up 0.7pp WoW as clicks rose 17%.</td>
+          </tr>
+          <tr>
+            <td class="goal">Content keeps resonating <span style="font-weight:400;color:var(--muted)">(Engagement rate)</span></td>
+            <td>≥3.0%</td><td>5.16%</td><td><span class="pill good">Ahead</span></td>
+            <td><div class="progwrap">172%</div><div class="prog"><div class="fill good" style="width:100%"></div></div></td>
+            <td>Rising WoW. Watch for fatigue as frequency climbs — plan a creative refresh before it dips.</td>
+          </tr>
+          <tr>
+            <td class="goal">Buy clicks at a sustainable price <span style="font-weight:400;color:var(--muted)">(CPC)</span></td>
+            <td>≤$3.50</td><td>$1.09</td><td><span class="pill good">Ahead</span></td>
+            <td><div class="progwrap">Well under</div><div class="prog"><div class="fill good" style="width:100%"></div></div></td>
+            <td>Far below LinkedIn norms. CPC fell 10% WoW <em>because</em> CTR rose — a healthy quality signal, not a bargain-hunting one.</td>
+          </tr>
+          <tr>
+            <td class="goal">Control the cost of reach <span style="font-weight:400;color:var(--muted)">(CPM)</span></td>
+            <td>≤$60</td><td>$55.59</td><td><span class="pill good">On track</span></td>
+            <td><div class="progwrap">93% of cap</div><div class="prog"><div class="fill good" style="width:93%"></div></div></td>
+            <td>Inside the band; ticked +3% WoW — routine auction movement, nothing to action.</td>
+          </tr>
+          <tr>
+            <td class="goal">Reach the right buyer, not just anyone <span style="font-weight:400;color:var(--muted)">(ICP seniority share)</span></td>
+            <td>≥70%</td><td>~80%</td><td><span class="pill good">On track</span></td>
+            <td><div class="progwrap">114%</div><div class="prog"><div class="fill good" style="width:100%"></div></div></td>
+            <td>Owner/CXO/VP/Director dominate. CXO &amp; VP share rose WoW; Entry-level and micro-companies fell — targeting is tightening on its own.</td>
+          </tr>
+          <tr>
+            <td class="goal">Turn spend into measurable leads <span style="font-weight:400;color:var(--muted)">(Attributable leads)</span></td>
+            <td>≥1/wk to start</td><td>0</td><td><span class="pill bad">Behind</span></td>
+            <td><div class="progwrap">0%</div><div class="prog"><div class="fill bad" style="width:4%"></div></div></td>
+            <td>No lead-gen form running and no UTM tracking. This is the single highest-leverage fix on the account.</td>
+          </tr>
+          <tr>
+            <td class="goal">Prove ROI to the business <span style="font-weight:400;color:var(--muted)">(Tracked pipeline / ROAS)</span></td>
+            <td>Any signal</td><td>0</td><td><span class="pill bad">Behind</span></td>
+            <td><div class="progwrap">0%</div><div class="prog"><div class="fill bad" style="width:4%"></div></div></td>
+            <td>Can't compute ROI until tracking is fixed — ~99% of clicks are invisible to GA4 and Salesforce today.</td>
+          </tr>
         </tbody>
       </table>
     </div>
+    <p class="note">Targets are analyst-set benchmarks for an amplification channel (LinkedIn's job is quality reach + influence, not last-click leads), pending confirmed internal goals. CTR/engagement run high because LinkedIn counts all chargeable clicks, not only landing-page clicks.</p>
 
     <div class="sec"><span class="n">4</span> What's working / what's not</div>
-    <div class="cards">
-      <div class="card">
-        <div class="ch"><span class="nm">Working</span><span class="sp">keep doing</span></div>
-        <div class="cb">
-          <b>Top-of-funnel efficiency is climbing.</b> The TOF ICP image and video campaigns pulled 1,047 of 1,051 clicks at ~$0.90 CPC and 4.9–6.7% CTR — well above LinkedIn norms.<br>
-          <b>Audience is on-target.</b> Founders, CEOs, CTOs, VPs of Engineering/Product dominate; company sizes cluster in the 201–1,000 mid-market band; industries skew Technology / IT Services. This is the buyer we want.<br>
-          <b>Video punches above its weight.</b> The "Embedded Analytics for SaaS Teams" video hit an <b>8.02% CTR</b> — the best unit in the account.
-        </div>
+    <div class="runcols">
+      <div class="runbox win">
+        <div class="rh">Working — keep doing</div>
+        <ul>
+          <li><b>Efficient top-of-funnel that's improving</b>+17% clicks at a 10%-lower CPC ($1.09); CTR up to 5.11%.</li>
+          <li><b>We're reaching the actual buyers</b>~80% of impressions hit founders, CTOs, VP Eng/Product; mid-market tech concentration.</li>
+          <li><b>Video over-delivers</b>The SaaS-teams video pulls an 8.0% CTR — the best unit in the account on a small budget.</li>
+          <li><b>The build-vs-buy message lands</b>The "cost of building in-house" angle is the top click-driver with technical buyers.</li>
+        </ul>
       </div>
-      <div class="card">
-        <div class="ch"><span class="nm">Not working</span><span class="sp">fix now</span></div>
-        <div class="cb">
-          <b>Tracking is broken.</b> 1,051 paid clicks, 8 GA4 sessions. No <code>linkedin / paid</code> medium exists in GA4 — UTMs are missing on the ad URLs, so GA4 and Salesforce are blind to the entire channel.<br>
-          <b>No lead capture.</b> Every campaign is WEBSITE_VISIT/CONVERSION; there is no lead-gen form. CPL is undefined because leads = 0.<br>
-          <b>Retargeting is bleeding.</b> The retargeting campaign spent <b>$202 for 4 clicks</b> (0.63% CTR, ~$50/click) on a 638-impression pool — tiny audience, likely because the pixel/audience isn't being fed.<br>
-          <b>Dead webinar creative still live.</b> "Your seat is still open — July 21" and "Book your demo" units sit at 0.6–0.7% CTR after the event date passed.
-        </div>
+      <div class="runbox lose">
+        <div class="rh">Not working — fix now</div>
+        <ul>
+          <li><b>We're flying blind</b>1,051 clicks, 8 sessions in GA4. No <code>linkedin / paid</code> tracking, so ROI is unmeasurable.</li>
+          <li><b>No lead capture</b>Every campaign is website-visit; there's no lead form, so leads = 0 by design.</li>
+          <li><b>~$450/wk of waste</b>Expired-webinar creative, a starved retargeting campaign ($50/click), and off-ICP audiences.</li>
+          <li><b>Stale dates in live copy</b>Even the #1 ad still says "July 21" — a date that has passed. Needs an evergreen rewrite.</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -156,10 +245,102 @@
 
     <div class="sec"><span class="n">1</span> ICP verdict — are we reaching the right people?</div>
     <div class="lead">
-      <b>Yes — this is the cleanest part of the account.</b> Reveal's ICP is CTOs, VPs of Engineering and product leaders at mid-market SaaS/ISVs. This week roughly <b>80% of impressions</b> landed on Owner, CXO, VP, Director and Partner seniorities; the leading job functions were Engineering, Product Management and IT; and company size concentrated in the <b>201–1,000</b> mid-market band. The main leakage: a large <b>Business Development</b> function share and a chunk of micro-companies (1–10 employees) that aren't buyers.
+      <b>Yes — and the mix is tightening toward ICP week over week.</b> Reveal's targets are CTOs, VPs of Engineering and product leaders at mid-market SaaS/ISVs. This week ~80% of impressions hit Owner/CXO/VP/Director seniorities, the leading functions were Engineering, Product and IT, and company size concentrated in the <b>201–1,000</b> sweet spot. WoW, CXO/VP share and the mid-market band both grew while Education, Higher-Ed and micro-companies shrank. Two things drifting the wrong way: <b>Business Development is the single largest function and unaudited</b>, and Media/Comms + Health Care ticked up.
     </div>
 
-    <div class="sec"><span class="n">2</span> By seniority</div>
+    <div class="sec"><span class="n">2</span> Audience mix — visual snapshot</div>
+    <div class="charts2">
+      <div class="chartbox">
+        <div class="ct">Seniority mix (share of impressions)</div>
+        <div class="cs">Leadership tiers in pink; individual contributors in blue</div>
+        <div class="donutrow">
+          <svg width="150" height="150" viewBox="0 0 150 150" role="img" aria-label="Seniority donut">
+            <g transform="rotate(-90 75 75)">
+              <circle cx="75" cy="75" r="60" fill="none" stroke="#C9367F" stroke-width="26" stroke-dasharray="119.9 377" stroke-dashoffset="0"></circle>
+              <circle cx="75" cy="75" r="60" fill="none" stroke="#EC417A" stroke-width="26" stroke-dasharray="72.0 377" stroke-dashoffset="-119.9"></circle>
+              <circle cx="75" cy="75" r="60" fill="none" stroke="#F26A97" stroke-width="26" stroke-dasharray="58.4 377" stroke-dashoffset="-191.9"></circle>
+              <circle cx="75" cy="75" r="60" fill="none" stroke="#F79CB9" stroke-width="26" stroke-dasharray="51.6 377" stroke-dashoffset="-250.3"></circle>
+              <circle cx="75" cy="75" r="60" fill="none" stroke="#6C8CFD" stroke-width="26" stroke-dasharray="30.9 377" stroke-dashoffset="-301.9"></circle>
+              <circle cx="75" cy="75" r="60" fill="none" stroke="#9DB2FE" stroke-width="26" stroke-dasharray="21.1 377" stroke-dashoffset="-332.8"></circle>
+              <circle cx="75" cy="75" r="60" fill="none" stroke="#C7D2FE" stroke-width="26" stroke-dasharray="14.7 377" stroke-dashoffset="-353.9"></circle>
+              <circle cx="75" cy="75" r="60" fill="none" stroke="#E2E8F5" stroke-width="26" stroke-dasharray="8.3 377" stroke-dashoffset="-368.6"></circle>
+            </g>
+          </svg>
+          <div class="legend">
+            <div><span class="lk" style="background:#C9367F"></span>Owner <span class="lv">31.8%</span></div>
+            <div><span class="lk" style="background:#EC417A"></span>Director <span class="lv">19.1%</span></div>
+            <div><span class="lk" style="background:#F26A97"></span>CXO <span class="lv">15.5%</span></div>
+            <div><span class="lk" style="background:#F79CB9"></span>Senior <span class="lv">13.7%</span></div>
+            <div><span class="lk" style="background:#6C8CFD"></span>VP <span class="lv">8.2%</span></div>
+            <div><span class="lk" style="background:#9DB2FE"></span>Partner <span class="lv">5.6%</span></div>
+            <div><span class="lk" style="background:#C7D2FE"></span>Manager <span class="lv">3.9%</span></div>
+            <div><span class="lk" style="background:#E2E8F5"></span>Entry <span class="lv">2.2%</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="chartbox">
+        <div class="ct">Company size (share of impressions)</div>
+        <div class="cs">Green = mid-market sweet spot · red = too small to embed an SDK</div>
+        <div class="hbars">
+          <div class="hbar"><span class="lbl">201–500</span><span class="track"><span class="fl core" style="width:100%"></span></span><span class="v">37.3%</span></div>
+          <div class="hbar"><span class="lbl">501–1,000</span><span class="track"><span class="fl core" style="width:71%"></span></span><span class="v">26.5%</span></div>
+          <div class="hbar"><span class="lbl">2–10</span><span class="track"><span class="fl badb" style="width:38%"></span></span><span class="v">14.1%</span></div>
+          <div class="hbar"><span class="lbl">11–50</span><span class="track"><span class="fl warnb" style="width:21%"></span></span><span class="v">7.9%</span></div>
+          <div class="hbar"><span class="lbl">51–200</span><span class="track"><span class="fl core" style="width:14%"></span></span><span class="v">5.0%</span></div>
+          <div class="hbar"><span class="lbl">1 (solo)</span><span class="track"><span class="fl badb" style="width:9%"></span></span><span class="v">3.2%</span></div>
+          <div class="hbar"><span class="lbl">10,001+</span><span class="track"><span class="fl warnb" style="width:6%"></span></span><span class="v">2.4%</span></div>
+          <div class="hbar"><span class="lbl">1,001–5,000</span><span class="track"><span class="fl core" style="width:6%"></span></span><span class="v">2.3%</span></div>
+        </div>
+      </div>
+      <div class="chartbox">
+        <div class="ct">Job function (share of impressions)</div>
+        <div class="cs">Green = technical buying committee · amber/red = review or off-ICP</div>
+        <div class="hbars">
+          <div class="hbar"><span class="lbl">Business Development</span><span class="track"><span class="fl warnb" style="width:100%"></span></span><span class="v">25.2%</span></div>
+          <div class="hbar"><span class="lbl">Engineering</span><span class="track"><span class="fl core" style="width:85%"></span></span><span class="v">21.4%</span></div>
+          <div class="hbar"><span class="lbl">Product Management</span><span class="track"><span class="fl core" style="width:41%"></span></span><span class="v">10.3%</span></div>
+          <div class="hbar"><span class="lbl">Information Technology</span><span class="track"><span class="fl core" style="width:31%"></span></span><span class="v">7.9%</span></div>
+          <div class="hbar"><span class="lbl">Operations</span><span class="track"><span class="fl warnb" style="width:18%"></span></span><span class="v">4.5%</span></div>
+          <div class="hbar"><span class="lbl">Media &amp; Comms</span><span class="track"><span class="fl badb" style="width:14%"></span></span><span class="v">3.6%</span></div>
+          <div class="hbar"><span class="lbl">Education</span><span class="track"><span class="fl badb" style="width:13%"></span></span><span class="v">3.2%</span></div>
+          <div class="hbar"><span class="lbl">Marketing</span><span class="track"><span class="fl warnb" style="width:13%"></span></span><span class="v">3.2%</span></div>
+        </div>
+      </div>
+      <div class="chartbox">
+        <div class="ct">Industry mix (share of impressions)</div>
+        <div class="cs">Tech + IT carry ~58% — the right neighborhood</div>
+        <div class="hbars">
+          <div class="hbar"><span class="lbl">Technology / Internet</span><span class="track"><span class="fl core" style="width:100%"></span></span><span class="v">43.1%</span></div>
+          <div class="hbar"><span class="lbl">IT Services</span><span class="track"><span class="fl core" style="width:35%"></span></span><span class="v">15.2%</span></div>
+          <div class="hbar"><span class="lbl">Business Consulting</span><span class="track"><span class="fl warnb" style="width:18%"></span></span><span class="v">7.7%</span></div>
+          <div class="hbar"><span class="lbl">Media &amp; Telecom</span><span class="track"><span class="fl warnb" style="width:10%"></span></span><span class="v">4.4%</span></div>
+          <div class="hbar"><span class="lbl">Hospitals / Health Care</span><span class="track"><span class="fl badb" style="width:10%"></span></span><span class="v">4.2%</span></div>
+          <div class="hbar"><span class="lbl">Higher Education</span><span class="track"><span class="fl badb" style="width:6%"></span></span><span class="v">2.5%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec"><span class="n">3</span> Mix shift — week over week</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Segment</th><th>Share now</th><th>WoW Δ</th><th>Direction</th><th>What we want</th><th>Read</th></tr></thead>
+        <tbody>
+          <tr><td>CXO seniority</td><td class="num">15.5%</td><td class="num">+0.3pp</td><td class="wowu">▲ up</td><td>Grow</td><td><span class="pill good">On plan</span></td></tr>
+          <tr><td>VP seniority</td><td class="num">8.2%</td><td class="num">+1.3pp</td><td class="wowu">▲ up</td><td>Grow</td><td><span class="pill good">On plan</span></td></tr>
+          <tr><td>Engineering function</td><td class="num">21.4%</td><td class="num">+2.0pp</td><td class="wowu">▲ up</td><td>Grow</td><td><span class="pill good">On plan</span></td></tr>
+          <tr><td>Mid-market 201–1,000</td><td class="num">63.8%</td><td class="num">+2.2pp</td><td class="wowu">▲ up</td><td>Grow</td><td><span class="pill good">On plan</span></td></tr>
+          <tr><td>Education function</td><td class="num">3.2%</td><td class="num">−0.5pp</td><td class="wowd">▼ down</td><td>Shrink</td><td><span class="pill good">On plan</span></td></tr>
+          <tr><td>Higher Education industry</td><td class="num">2.5%</td><td class="num">−1.0pp</td><td class="wowd">▼ down</td><td>Shrink</td><td><span class="pill good">On plan</span></td></tr>
+          <tr><td>Micro-companies 1–10</td><td class="num">17.3%</td><td class="num">−0.8pp</td><td class="wowd">▼ down</td><td>Shrink</td><td><span class="pill good">On plan</span></td></tr>
+          <tr><td>Health Care industry</td><td class="num">4.2%</td><td class="num">+0.6pp</td><td class="wowu">▲ up</td><td>Shrink</td><td><span class="pill warn">Wrong way</span></td></tr>
+          <tr><td>Media &amp; Comms function</td><td class="num">3.6%</td><td class="num">+0.6pp</td><td class="wowu">▲ up</td><td>Shrink</td><td><span class="pill warn">Wrong way</span></td></tr>
+          <tr><td>Business Development function</td><td class="num">25.2%</td><td class="num">±0.0pp</td><td class="wowf">— flat</td><td>Audit</td><td><span class="pill warn">Review</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">LinkedIn demographic data is modeled and doesn't reconcile to exact served totals, so WoW is compared as <b>share of mix</b> (percentage-point change), which is the reliable way to read audience drift.</p>
+
+    <div class="sec"><span class="n">4</span> Seniority detail</div>
     <div class="dtable">
       <table>
         <thead><tr><th>Seniority</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>Spend</th><th>ICP read</th></tr></thead>
@@ -175,73 +356,27 @@
         </tbody>
       </table>
     </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:9px">CXO + VP + Director + Owner = the decision unit, and it carries the account. Entry-level is the only clear waste (lowest CTR, off-ICP) — worth an exclusion.</p>
 
-    <div class="sec"><span class="n">3</span> By job function</div>
+    <div class="sec"><span class="n">5</span> Named companies reached</div>
     <div class="dtable">
       <table>
-        <thead><tr><th>Function</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>Spend</th><th>ICP read</th></tr></thead>
+        <thead><tr><th>Company</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>Fit</th></tr></thead>
         <tbody>
-          <tr><td>Business Development</td><td class="num">6,030</td><td class="num">324</td><td class="num">5.37%</td><td class="num">$342</td><td><span class="pill warn">Review</span></td></tr>
-          <tr><td>Engineering</td><td class="num">5,100</td><td class="num">276</td><td class="num">5.41%</td><td class="num">$244</td><td><span class="pill good">Core</span></td></tr>
-          <tr><td>Product Management</td><td class="num">2,464</td><td class="num">132</td><td class="num">5.36%</td><td class="num">$134</td><td><span class="pill good">Core</span></td></tr>
-          <tr><td>Information Technology</td><td class="num">1,887</td><td class="num">100</td><td class="num">5.30%</td><td class="num">$117</td><td><span class="pill good">Core</span></td></tr>
-          <tr><td>Operations</td><td class="num">1,064</td><td class="num">59</td><td class="num">5.55%</td><td class="num">$68</td><td><span class="pill warn">Mixed</span></td></tr>
-          <tr><td>Media & Communication</td><td class="num">848</td><td class="num">32</td><td class="num">3.77%</td><td class="num">$33</td><td><span class="pill bad">Off-ICP</span></td></tr>
-          <tr><td>Education</td><td class="num">754</td><td class="num">29</td><td class="num">3.85%</td><td class="num">$46</td><td><span class="pill bad">Off-ICP</span></td></tr>
-          <tr><td>Marketing</td><td class="num">754</td><td class="num">35</td><td class="num">4.64%</td><td class="num">$49</td><td><span class="pill warn">Mixed</span></td></tr>
+          <tr><td>Applied Research Solutions</td><td class="num">140</td><td class="num">13</td><td class="num">9.29%</td><td><span class="pill warn">Gov research</span></td></tr>
+          <tr><td>Acme Packet (Oracle)</td><td class="num">87</td><td class="num">11</td><td class="num">12.6%</td><td><span class="pill good">Tech/telecom</span></td></tr>
+          <tr><td>GeoComply</td><td class="num">93</td><td class="num">3</td><td class="num">3.23%</td><td><span class="pill good">SaaS/ISV</span></td></tr>
+          <tr><td>Navitaire (Amadeus)</td><td class="num">86</td><td class="num">5</td><td class="num">5.81%</td><td><span class="pill good">Travel SaaS</span></td></tr>
+          <tr><td>Unison</td><td class="num">88</td><td class="num">5</td><td class="num">5.68%</td><td><span class="pill good">SaaS</span></td></tr>
+          <tr><td>Handshake</td><td class="num">70</td><td class="num">0</td><td class="num">0%</td><td><span class="pill good">SaaS</span></td></tr>
+          <tr><td>Definitive Healthcare</td><td class="num">69</td><td class="num">0</td><td class="num">0%</td><td><span class="pill good">Health data SaaS</span></td></tr>
+          <tr><td>ChurnZero</td><td class="num">67</td><td class="num">0</td><td class="num">0%</td><td><span class="pill good">SaaS</span></td></tr>
+          <tr><td>eMoney Advisor</td><td class="num">130</td><td class="num">0</td><td class="num">0%</td><td><span class="pill good">Fintech SaaS</span></td></tr>
+          <tr><td>Custard Insurance Adjusters</td><td class="num">111</td><td class="num">0</td><td class="num">0%</td><td><span class="pill bad">Off-ICP</span></td></tr>
+          <tr><td>YPO / Forbes / USA Powerlifting</td><td class="num">~65 ea</td><td class="num">0</td><td class="num">0%</td><td><span class="pill bad">Off-ICP</span></td></tr>
         </tbody>
       </table>
     </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:9px">Engineering + Product + IT = the technical buying committee and all show healthy 5.3–5.4% CTR. <b>Business Development is the single biggest function and needs a look</b> — it's likely a mix of legitimate SaaS execs and sales prospectors; if the latter dominate, it's ~$340/wk of soft spend.</p>
-
-    <div class="sec"><span class="n">4</span> By company size</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Company size</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>Spend</th><th>ICP read</th></tr></thead>
-        <tbody>
-          <tr><td>201–500</td><td class="num">7,616</td><td class="num">396</td><td class="num">5.20%</td><td class="num">$379</td><td><span class="pill good">Sweet spot</span></td></tr>
-          <tr><td>501–1,000</td><td class="num">5,415</td><td class="num">301</td><td class="num">5.56%</td><td class="num">$282</td><td><span class="pill good">Sweet spot</span></td></tr>
-          <tr><td>2–10</td><td class="num">2,886</td><td class="num">148</td><td class="num">5.13%</td><td class="num">$182</td><td><span class="pill bad">Too small</span></td></tr>
-          <tr><td>11–50</td><td class="num">1,602</td><td class="num">82</td><td class="num">5.12%</td><td class="num">$117</td><td><span class="pill warn">Edge</span></td></tr>
-          <tr><td>51–200</td><td class="num">1,027</td><td class="num">39</td><td class="num">3.80%</td><td class="num">$79</td><td><span class="pill good">Fit</span></td></tr>
-          <tr><td>1 (solo)</td><td class="num">658</td><td class="num">41</td><td class="num">6.23%</td><td class="num">$36</td><td><span class="pill bad">Too small</span></td></tr>
-          <tr><td>10,001+</td><td class="num">483</td><td class="num">23</td><td class="num">4.76%</td><td class="num">$40</td><td><span class="pill warn">Enterprise</span></td></tr>
-          <tr><td>1,001–5,000</td><td class="num">477</td><td class="num">20</td><td class="num">4.19%</td><td class="num">$34</td><td><span class="pill good">Fit</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:9px">Mid-market (11–5,000) takes the majority of spend — right where embedded-analytics buyers live. <b>Solo + 2–10 employee firms burned ~$218 this week</b> and rarely have budget to embed an SDK; tighten the size floor to 11+.</p>
-
-    <div class="sec"><span class="n">5</span> Top job titles &amp; industries</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Top job titles (by impr.)</th><th>Impr.</th><th>CTR</th></tr></thead>
-        <tbody>
-          <tr><td>Founder</td><td class="num">3,768</td><td class="num">5.41%</td></tr>
-          <tr><td>Co-Founder</td><td class="num">2,002</td><td class="num">5.00%</td></tr>
-          <tr><td>Chief Executive Officer</td><td class="num">1,200</td><td class="num">5.25%</td></tr>
-          <tr><td>Lead Software Engineer</td><td class="num">1,079</td><td class="num">5.84%</td></tr>
-          <tr><td>Chief Technology Officer</td><td class="num">533</td><td class="num">6.00%</td></tr>
-          <tr><td>Director of Product Management</td><td class="num">416</td><td class="num">3.85%</td></tr>
-          <tr><td>VP of Engineering</td><td class="num">167</td><td class="num">5.99%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Top industries (by impr.)</th><th>Impr.</th><th>CTR</th><th>Read</th></tr></thead>
-        <tbody>
-          <tr><td>Technology, Information &amp; Internet</td><td class="num">12,902</td><td class="num">5.29%</td><td><span class="pill good">Core</span></td></tr>
-          <tr><td>IT Services &amp; IT Consulting</td><td class="num">4,536</td><td class="num">5.05%</td><td><span class="pill good">Core</span></td></tr>
-          <tr><td>Business Consulting &amp; Services</td><td class="num">2,316</td><td class="num">5.01%</td><td><span class="pill warn">Mixed</span></td></tr>
-          <tr><td>Media &amp; Telecommunications</td><td class="num">1,325</td><td class="num">3.77%</td><td><span class="pill warn">Mixed</span></td></tr>
-          <tr><td>Hospitals &amp; Health Care</td><td class="num">1,253</td><td class="num">3.43%</td><td><span class="pill bad">Off-ICP</span></td></tr>
-          <tr><td>Higher Education / Non-profit</td><td class="num">1,573</td><td class="num">~4.6%</td><td><span class="pill bad">Off-ICP</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:9px">CTOs and VPs of Engineering are the highest-CTR titles (6.0%) — the technical buyer leans in hardest. ~62% of impressions sit in Technology/IT industries. Health Care, Higher Ed and Non-profit are the lowest-CTR, off-ICP tails worth excluding.</p>
+    <p class="note"><b>Insight:</b> spend is spread thin — the top named account saw only 142 impressions, so we're not concentrating on a defined target list. The mix is real SaaS/ISVs (GeoComply, ChurnZero, Handshake, Navitaire, eMoney) alongside clear noise (insurance adjusters, an exec-networking org, a sports body). <b>Recommendation:</b> layer a named-account (ABM) company list of SaaS/ISV targets so budget concentrates on accounts we can actually sell to, rather than spraying across the open audience.</p>
   </section>
 
   <!-- ============ TAB 3: CREATIVE & MESSAGING ============ -->
@@ -249,80 +384,91 @@
 
     <div class="sec"><span class="n">1</span> Which angle lands</div>
     <div class="lead">
-      The <b>cost-of-building ("build vs. buy")</b> and <b>speed-to-ship ("weeks not quarters")</b> angles carry the account. The single biggest unit — <i>"What building your own analytics really costs in 2026"</i> — pulled 489 clicks at 5.49% CTR, and the SaaS-teams <b>video hit the account's best CTR at 8.02%</b>. Everything tied to the <b>July 21 webinar / demo push is dead weight now</b> that the event has passed (0.6–0.7% CTR). There's also a messaging inconsistency to resolve: two live variants promise "in Weeks" vs "in Days."
+      The <b>cost-and-risk-of-building-in-house</b> angle is the clear winner — it's the top click-driver and it maps directly to the pain our highest-CTR audience (CTOs, VP Eng) actually feels. The <b>speed-to-ship ("weeks/days, not quarters")</b> angle is a reliable workhorse. What drags: anything anchored to the <b>July 21 event</b> and the <b>hard "book a demo"</b> ask — both underperform, and the demo ad speaks to warm prospects while running to a cold audience. One urgent housekeeping item: <b>our best ad still references "July 21" in its body copy</b>, a date that has now passed.
     </div>
 
-    <div class="sec"><span class="n">2</span> Ad-level performance (current week)</div>
+    <div class="sec"><span class="n">2</span> Ad-level performance &amp; the call</div>
     <div class="dtable">
       <table>
-        <thead><tr><th>Creative</th><th>Format</th><th>Spend</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>Call</th></tr></thead>
+        <thead><tr><th>Creative</th><th>Format</th><th>Spend</th><th>CTR</th><th>Call</th><th>Why</th></tr></thead>
         <tbody>
-          <tr><td>What building your own analytics really costs in 2026</td><td>Single image</td><td class="num">$442</td><td class="num">8,908</td><td class="num">489</td><td class="num">5.49%</td><td><span class="pill good">Scale</span></td></tr>
-          <tr><td>Embedded Analytics for SaaS Teams — Dashboards, Reporting &amp; AI</td><td>Video</td><td class="num">$165</td><td class="num">2,333</td><td class="num">187</td><td class="num">8.02%</td><td><span class="pill good">Scale</span></td></tr>
-          <tr><td>Ship Embedded Analytics in Weeks — Not Quarters</td><td>Single image</td><td class="num">$213</td><td class="num">5,473</td><td class="num">248</td><td class="num">4.53%</td><td><span class="pill good">Keep</span></td></tr>
-          <tr><td>Ship Embedded Analytics in Days — Not Quarters</td><td>Video</td><td class="num">$82</td><td class="num">1,576</td><td class="num">76</td><td class="num">4.82%</td><td><span class="pill warn">Consolidate</span></td></tr>
-          <tr><td>Build vs. Buy in the Age of AI — Live July 21</td><td>Single image</td><td class="num">$39</td><td class="num">1,633</td><td class="num">47</td><td class="num">2.88%</td><td><span class="pill bad">Kill (expired)</span></td></tr>
-          <tr><td>Your seat is still open — July 21</td><td>Single image</td><td class="num">$125</td><td class="num">289</td><td class="num">2</td><td class="num">0.69%</td><td><span class="pill bad">Kill (expired)</span></td></tr>
-          <tr><td>Your Reveal demo is one click away — Book in minutes</td><td>Single image</td><td class="num">$77</td><td class="num">349</td><td class="num">2</td><td class="num">0.57%</td><td><span class="pill bad">Kill / rework</span></td></tr>
+          <tr><td>What building your own analytics really costs in 2026</td><td>Image</td><td class="num">$442</td><td class="num">5.49%</td><td><span class="pill good">Scale</span></td><td>Highest volume in the account and the winning angle — but strip the "July 21" line and make it evergreen first.</td></tr>
+          <tr><td>Embedded Analytics for SaaS Teams (video)</td><td>Video</td><td class="num">$165</td><td class="num">8.02%</td><td><span class="pill good">Scale</span></td><td>Best CTR in the account on a small budget; shift spend here — it's under-funded for how it performs.</td></tr>
+          <tr><td>Ship Embedded Analytics in Weeks — Not Quarters</td><td>Image</td><td class="num">$213</td><td class="num">4.53%</td><td><span class="pill good">Keep</span></td><td>Solid evergreen workhorse; strong problem-first hook ("Can we get analytics in the app?").</td></tr>
+          <tr><td>Ship Embedded Analytics in Days — Not Quarters</td><td>Video</td><td class="num">$82</td><td class="num">4.82%</td><td><span class="pill warn">Consolidate</span></td><td>Duplicates the "Weeks" claim with a different number. Pick one promise so we don't split learning or confuse the market.</td></tr>
+          <tr><td>Build vs. Buy in the Age of AI — Live July 21</td><td>Image</td><td class="num">$39</td><td class="num">2.88%</td><td><span class="pill bad">Kill</span></td><td>Event has passed; the live-webinar CTA is now dead. Repurpose into an on-demand recording ad.</td></tr>
+          <tr><td>Your seat is still open — July 21</td><td>Image</td><td class="num">$125</td><td class="num">0.69%</td><td><span class="pill bad">Kill</span></td><td>Expired urgency play; $125 spent for 2 clicks. Pause immediately.</td></tr>
+          <tr><td>Your Reveal demo is one click away</td><td>Image</td><td class="num">$77</td><td class="num">0.57%</td><td><span class="pill bad">Kill / rework</span></td><td>Bottom-funnel "book a demo" copy shown to a cold top-funnel audience — wrong ask, wrong stage.</td></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="sec"><span class="n">2</span> Format read</div>
+    <div class="sec"><span class="n">3</span> Messaging &amp; ad copy — what to keep, what to refresh</div>
     <div class="cards">
       <div class="card">
-        <div class="ch"><span class="nm">Video</span><span class="sp">2 units · 4.8–8.0% CTR</span></div>
-        <div class="cb"><b>Highest engagement per impression in the account.</b> The SaaS-teams video's 8.02% CTR is the standout. Video is under-funded relative to how it performs — it took ~22% of spend but delivers the top CTRs. Shift budget toward it.</div>
+        <div class="ch"><span class="nm">Keep — build-vs-buy cost/risk</span><span class="sp">5.5–8.0% CTR</span></div>
+        <div class="cb"><b>Copy:</b> <i>"Building embedded analytics in-house now runs into a multi-year, six-figure commitment — and the costs that actually kill you (tenancy, AI, compliance, maintenance) never show up in the prototype."</i><br><b>Why it works:</b> it names the exact hidden costs a CTO fears — multi-tenancy, AI grounding, compliance — so it reads as insider truth, not a pitch. This is our sharpest angle. <b>Refresh:</b> remove "See the real numbers, July 21"; point to an evergreen cost breakdown or ROI calculator.</div>
       </div>
       <div class="card">
-        <div class="ch"><span class="nm">Single image — evergreen</span><span class="sp">strong</span></div>
-        <div class="cb"><b>The "cost of building" and "weeks not quarters" images are the workhorses</b> — 737 combined clicks at ~5% CTR. These are safe to scale and to build fresh variants from before frequency (5.2x) fatigues them.</div>
+        <div class="ch"><span class="nm">Keep — engineer-opportunity-cost</span><span class="sp">4.5% CTR</span></div>
+        <div class="cb"><b>Copy:</b> <i>"Your users keep asking for dashboards. Your engineers keep getting pulled off core product to build them."</i><br><b>Why it works:</b> problem-first, ICP-specific, and speaks to the VP Eng / product-leader tension of protecting roadmap time. Strong opener worth reusing across formats.</div>
       </div>
       <div class="card">
-        <div class="ch"><span class="nm">Single image — webinar/demo</span><span class="sp">dead</span></div>
-        <div class="cb"><b>$241 of this week's spend went to expired-event and hard-demo creative</b> averaging under 1% CTR. Pause immediately — the July 21 date has passed and these units drag the account average.</div>
+        <div class="ch"><span class="nm">Refresh — event &amp; demo copy</span><span class="sp">0.6–2.9% CTR</span></div>
+        <div class="cb"><b>Copy:</b> <i>"Your seat is still open — July 21"</i> and <i>"You've seen what Reveal can do. Now see it running…"</i><br><b>Why it fails:</b> the first is an expired deadline; the second assumes prior awareness we don't have with a cold audience. <b>Refresh:</b> retire the event CTAs, and for cold traffic swap the demo ask for a lower-friction offer (the cost breakdown asset or a 15-min product tour).</div>
       </div>
-    </div>
-
-    <div class="sec"><span class="n">3</span> Keep / kill</div>
-    <div class="score">
-      <table>
-        <thead><tr><th>Action</th><th>Creative</th><th>Why</th></tr></thead>
-        <tbody>
-          <tr><td><span class="pill good">Scale</span></td><td>"What building your own analytics really costs in 2026" + SaaS-teams video</td><td>Top volume and top CTR (8.0%); the build-vs-buy cost narrative resonates with technical buyers</td></tr>
-          <tr><td><span class="pill warn">Consolidate</span></td><td>"Weeks" vs "Days — Not Quarters"</td><td>Two live variants of the same claim with different promises; pick one message, retire the other to concentrate learning</td></tr>
-          <tr><td><span class="pill bad">Kill</span></td><td>Both "July 21" webinar units + "Book a demo"</td><td>Event has passed; 0.6–0.7% CTR; ~$241/wk wasted</td></tr>
-        </tbody>
-      </table>
+      <div class="card">
+        <div class="ch"><span class="nm">Add — CTO proof point</span><span class="sp">opportunity</span></div>
+        <div class="cb"><b>Gap:</b> CTOs and VP Eng are our highest-CTR titles (6.0%), yet no single ad leads on the hardest technical objections — <b>security, multi-tenant data isolation, compliance</b>. <b>Why it matters:</b> a proof-led unit (e.g., "SOC 2, row-level multi-tenant security, out of the box") could convert our most valuable, most engaged segment. Worth a test.</div>
+      </div>
     </div>
   </section>
 
-  <!-- ============ TAB 4: JOURNEY & ROI ============ -->
-  <section class="tabpanel" data-tab="journey" data-label="Journey & ROI">
+  <!-- ============ TAB 4: WEBSITE PERFORMANCE ============ -->
+  <section class="tabpanel" data-tab="website" data-label="Website Performance">
 
-    <div class="sec"><span class="n">1</span> The GA4 story — and the hole in it</div>
+    <div class="sec"><span class="n">1</span> Does LinkedIn traffic show up on site?</div>
     <div class="lead">
-      This is where the channel breaks down. LinkedIn Ads reported <b>1,051 clicks</b> this week. GA4 (property 516472465) recorded just <b>8 LinkedIn sessions</b>, all tagged <code>linkedin.com / referral</code> — there is <b>no <code>linkedin / paid</code> or <code>cpc</code> medium in GA4 at all</b>. The paid ad URLs are not carrying UTM parameters, so GA4 either drops the visits into "direct/unassigned" or doesn't associate them with the campaign. <b>Effectively ~99% of paid LinkedIn traffic is invisible downstream.</b>
+      <b>Almost none of it does — and that's the headline.</b> Filtering GA4 (property 516472465) to sessions where the source contains <code>linkedin</code>, we see roughly <b>10 sessions a week</b>, all tagged <code>linkedin.com / referral</code> or <code>linkedin / organic_social</code>. Against <b>1,051 paid clicks</b> this week, that's a ~99% gap. The paid ads carry no UTM parameters, so GA4 can't recognize the traffic as LinkedIn paid — it lands as direct/unassigned. Everything below is the small slice GA4 <em>can</em> see; it's directionally encouraging, but the real story is that we're not measuring the channel yet.
     </div>
 
-    <div class="sec"><span class="n">2</span> Spend → site → lead → opp</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Funnel stage</th><th>This week</th><th>Source</th><th>Status</th></tr></thead>
-        <tbody>
-          <tr><td>Spend</td><td class="num">$1,142.94</td><td>LinkedIn Ads</td><td><span class="pill good">Tracked</span></td></tr>
-          <tr><td>Clicks</td><td class="num">1,051</td><td>LinkedIn Ads</td><td><span class="pill good">Tracked</span></td></tr>
-          <tr><td>GA4 sessions (LinkedIn)</td><td class="num">8</td><td>GA4</td><td><span class="pill bad">Broken (UTM)</span></td></tr>
-          <tr><td>Engaged sessions</td><td class="num">5</td><td>GA4</td><td><span class="pill bad">Not representative</span></td></tr>
-          <tr><td>Lead-gen leads</td><td class="num">0</td><td>LinkedIn</td><td><span class="pill bad">No form running</span></td></tr>
-          <tr><td>GA4 conversions (LinkedIn)</td><td class="num">0</td><td>GA4</td><td><span class="pill bad">Unmeasurable</span></td></tr>
-          <tr><td>Salesforce opps</td><td class="num">n/a</td><td>Salesforce</td><td><span class="pill bad">No attribution path</span></td></tr>
-        </tbody>
-      </table>
+    <div class="sec"><span class="n">2</span> LinkedIn sessions over time (GA4-visible)</div>
+    <div class="chartbox">
+      <div class="ct">Weekly LinkedIn sessions — last 4 weeks</div>
+      <div class="cs">Referral + organic social only; paid clicks are not captured here</div>
+      <div class="colchart">
+        <div class="col"><span class="cv">2</span><div class="bar" style="height:11%"></div><span class="cx">Jun 27–Jul 3</span></div>
+        <div class="col"><span class="cv">18</span><div class="bar" style="height:100%"></div><span class="cx">Jul 4–10</span></div>
+        <div class="col"><span class="cv">12</span><div class="bar" style="height:67%"></div><span class="cx">Jul 11–17</span></div>
+        <div class="col"><span class="cv">10</span><div class="bar" style="height:56%"></div><span class="cx">Jul 18–24</span></div>
+      </div>
+      <p class="note">The Jul 4–10 bar is inflated by a single 11-session day (Jul 10). Weekly volume this low can't support trend analysis — which is the point: with proper UTMs this chart would plot ~1,000 sessions/week and become the backbone of the report.</p>
     </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:9px"><b>Break point: the click → session handoff.</b> We are not losing people on the landing page — we're losing the ability to <i>see</i> them. Of the 8 sessions GA4 did capture, engagement was actually healthy (62.5% engagement rate, ~3.9 min average duration on the homepage), which hints the real paid traffic is probably fine — we just can't prove it.</p>
 
-    <div class="sec"><span class="n">3</span> Where the 8 visible sessions landed</div>
+    <div class="sec"><span class="n">3</span> Device &amp; engagement</div>
+    <div class="charts2">
+      <div class="chartbox">
+        <div class="ct">Sessions by device</div>
+        <div class="cs">Last 4 weeks · desktop skews as expected for a B2B dev tool</div>
+        <div class="hbars">
+          <div class="hbar"><span class="lbl">Desktop</span><span class="track"><span class="fl core" style="width:100%"></span></span><span class="v">26</span></div>
+          <div class="hbar"><span class="lbl">Mobile</span><span class="track"><span class="fl peri" style="width:62%"></span></span><span class="v">16</span></div>
+        </div>
+        <p class="note">Desktop engages far better — 73% engaged / 27% bounce vs mobile's 44% engaged / 56% bounce. For a technical evaluation, that's the expected and desirable pattern.</p>
+      </div>
+      <div class="chartbox">
+        <div class="ct">Engagement quality (the visible slice)</div>
+        <div class="cs">Small sample — read as a hint, not proof</div>
+        <div class="hbars">
+          <div class="hbar"><span class="lbl">Engaged sessions</span><span class="track"><span class="fl core" style="width:62%"></span></span><span class="v">62%</span></div>
+          <div class="hbar"><span class="lbl">Homepage dwell</span><span class="track"><span class="fl core" style="width:80%"></span></span><span class="v">6m10s</span></div>
+          <div class="hbar"><span class="lbl">Desktop engaged</span><span class="track"><span class="fl core" style="width:73%"></span></span><span class="v">73%</span></div>
+        </div>
+        <p class="note">Where GA4 can see LinkedIn visitors, they behave well — high engagement and multi-minute homepage dwell. That suggests the real paid traffic is likely fine; we just can't prove it at scale.</p>
+      </div>
+    </div>
+
+    <div class="sec"><span class="n">4</span> Landing pages (LinkedIn sessions)</div>
     <div class="dtable">
       <table>
         <thead><tr><th>Landing page</th><th>Sessions</th><th>Engaged</th><th>Eng. rate</th><th>Avg. duration</th></tr></thead>
@@ -334,30 +480,68 @@
         </tbody>
       </table>
     </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:9px">Sample too small to conclude anything — which is exactly the problem. With proper UTMs this table would show ~1,000 sessions and tell us which creative → page path actually converts.</p>
+    <p class="note">Most visible traffic lands on the homepage rather than a purpose-built embedded-analytics page. Once UTMs are live, pin each ad to a dedicated landing page so we can see which creative → page path actually converts — that's the report this tab is meant to become.</p>
 
-    <div class="sec"><span class="n">4</span> Salesforce attribution — honest note</div>
-    <div class="lead" style="border-left-color:var(--warn)">
-      <b>There is no reliable LinkedIn → Salesforce attribution path this week, and this is a known gap.</b> Salesforce has no clean LinkedIn LeadSource, so attribution depends on (a) GA4 <code>linkedin / paid</code> source-medium, (b) LinkedIn lead-gen form submissions, or (c) UTM parameters flowing into SF. Right now <b>all three are empty</b>: no paid medium reaches GA4, no lead-gen form is running, and UTMs aren't on the ad URLs. Any pipeline LinkedIn is influencing is currently being credited to Direct, Organic, or last-touch Brand search. <b>Do not read "0 leads / 0 opps" as "LinkedIn isn't working" — read it as "we can't see what LinkedIn is doing."</b>
+    <div class="sec"><span class="n">5</span> Spend → clicks → sessions, this week</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Stage</th><th>Value</th><th>Source</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Spend</td><td class="num">$1,142.94</td><td>LinkedIn Ads</td><td><span class="pill good">Tracked</span></td></tr>
+          <tr><td>Clicks</td><td class="num">1,051</td><td>LinkedIn Ads</td><td><span class="pill good">Tracked</span></td></tr>
+          <tr><td>GA4 sessions (LinkedIn)</td><td class="num">~10</td><td>GA4</td><td><span class="pill bad">~99% missing</span></td></tr>
+          <tr><td>Conversions (LinkedIn)</td><td class="num">0</td><td>GA4</td><td><span class="pill bad">Unmeasurable</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">The break is the click → session handoff (missing UTMs), not the landing page. Fix #1 on the account: append <code>?utm_source=linkedin&amp;utm_medium=paid-social&amp;utm_campaign=…</code> to every ad URL.</p>
+  </section>
+
+  <!-- ============ TAB 5: JOURNEY & ROI ============ -->
+  <section class="tabpanel" data-tab="journey" data-label="Journey & ROI">
+
+    <div class="sec"><span class="n">1</span> Can we tie spend to pipeline?</div>
+    <div class="lead">
+      <b>Not today — and it's a fixable plumbing problem, not a performance one.</b> To credit LinkedIn with pipeline we need one of three things: a <code>linkedin / paid</code> signal in GA4, LinkedIn lead-gen form submissions, or UTMs flowing through to Salesforce. Right now <b>all three are empty</b>. So the funnel is fully tracked up to the click and goes dark immediately after.
     </div>
 
-    <div class="sec"><span class="n">5</span> This week's fixes (highest leverage first)</div>
+    <div class="sec"><span class="n">2</span> Where the funnel goes dark</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Funnel stage</th><th>This week</th><th>Source</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Spend</td><td class="num">$1,142.94</td><td>LinkedIn Ads</td><td><span class="pill good">Tracked</span></td></tr>
+          <tr><td>Clicks</td><td class="num">1,051</td><td>LinkedIn Ads</td><td><span class="pill good">Tracked</span></td></tr>
+          <tr><td>GA4 sessions</td><td class="num">~10</td><td>GA4</td><td><span class="pill bad">Broken (UTM)</span></td></tr>
+          <tr><td>Lead-gen leads</td><td class="num">0</td><td>LinkedIn</td><td><span class="pill bad">No form running</span></td></tr>
+          <tr><td>GA4 conversions</td><td class="num">0</td><td>GA4</td><td><span class="pill bad">Unmeasurable</span></td></tr>
+          <tr><td>Salesforce opps</td><td class="num">n/a</td><td>Salesforce</td><td><span class="pill bad">No attribution path</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec"><span class="n">3</span> Salesforce attribution — honest note</div>
+    <div class="lead" style="border-left-color:var(--warn)">
+      Salesforce has no clean LinkedIn LeadSource, so attribution depends entirely on the three signals above — and they're all empty. Any pipeline LinkedIn influences is currently credited to Direct, Organic, or last-touch Brand search. <b>Read "0 leads / 0 opps" as "we can't see it," not "it isn't working."</b>
+    </div>
+
+    <div class="sec"><span class="n">4</span> This week's fixes (highest leverage first)</div>
     <div class="score">
       <table>
         <thead><tr><th>#</th><th>Fix</th><th>Why it matters</th><th>Owner</th></tr></thead>
         <tbody>
-          <tr><td>1</td><td>Add UTMs to every LinkedIn ad URL (<code>utm_source=linkedin&amp;utm_medium=paid-social&amp;utm_campaign=…</code>)</td><td>Restores GA4 + SF visibility for ~1,000 weekly clicks; unblocks all downstream ROI reporting</td><td>David</td></tr>
-          <tr><td>2</td><td>Pause the 3 expired webinar/demo creatives</td><td>Recovers ~$241/wk at sub-1% CTR</td><td>David</td></tr>
-          <tr><td>3</td><td>Launch a LinkedIn lead-gen form on the top TOF ad (gated build-vs-buy asset)</td><td>Creates a first-party, directly-attributable lead path that survives UTM gaps</td><td>David / Casey</td></tr>
-          <tr><td>4</td><td>Add exclusions: Entry seniority, 1–10 employee sizes, Health Care / Higher Ed / Non-profit</td><td>Redirects ~$400+/wk of off-ICP spend to the mid-market tech core</td><td>David</td></tr>
-          <tr><td>5</td><td>Rebuild the retargeting audience &amp; pixel feed</td><td>$202 for 4 clicks signals a starved/broken audience; either fix the pixel or reallocate</td><td>David</td></tr>
+          <tr><td>1</td><td>Add UTMs to every LinkedIn ad URL (<code>utm_source=linkedin&amp;utm_medium=paid-social</code>)</td><td>Restores GA4 + SF visibility for ~1,000 weekly clicks; unblocks all ROI reporting</td><td>David</td></tr>
+          <tr><td>2</td><td>Launch a LinkedIn lead-gen form on the top build-vs-buy ad</td><td>Creates a first-party, directly-attributable lead path that survives UTM gaps</td><td>David / Casey</td></tr>
+          <tr><td>3</td><td>Pause the 3 expired webinar/demo creatives + refresh the "July 21" line on the #1 ad</td><td>Recovers ~$241/wk and stops running a passed date in live copy</td><td>David</td></tr>
+          <tr><td>4</td><td>Add exclusions: Entry seniority, 1–10 employee sizes, Health Care / Higher Ed</td><td>Redirects ~$400+/wk of off-ICP spend to the mid-market tech core</td><td>David</td></tr>
+          <tr><td>5</td><td>Rebuild the retargeting audience &amp; pixel feed</td><td>$202 for 4 clicks signals a starved/broken audience; fix the pixel or reallocate</td><td>David</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="verdict">
       <div class="vh">Verdict</div>
-      <p><b>FIX — do not scale yet, do not cut.</b> The fundamentals are good: efficient and improving CPC/CTR, and an audience that is genuinely on-ICP (founders, CTOs, VP Eng/Product at mid-market tech). But the channel is <b>operationally blind</b> — broken UTM tracking hides ~99% of clicks from GA4 and Salesforce, no lead-gen form exists, and ~$450/wk leaks into expired creative, dead retargeting, and off-ICP audiences. Fix tracking (UTMs + a lead-gen form) and trim the waste over the next 1–2 weeks. Once we can actually see click → session → lead, re-evaluate for scale — the audience quality earns that second look. Cutting now would kill a channel that's working before we've ever measured it.</p>
+      <p><b>FIX — do not scale yet, do not cut.</b> The fundamentals are good and improving: efficient CPC/CTR and a genuinely on-ICP audience (founders, CTOs, VP Eng/Product at mid-market tech), tightening further week over week. But the channel is <b>operationally blind</b> — broken UTM tracking hides ~99% of clicks from GA4 and Salesforce, no lead-gen form exists, and ~$450/wk leaks into expired creative, dead retargeting and off-ICP audiences. Fix tracking (UTMs + a lead form) and trim the waste over the next 1–2 weeks, then re-evaluate for scale with real cost-per-lead in hand. Cutting now would kill a channel that's working before we've ever measured it.</p>
     </div>
   </section>
 
