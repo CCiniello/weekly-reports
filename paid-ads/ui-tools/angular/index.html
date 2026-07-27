@@ -58,8 +58,6 @@
   .pill.good{background:var(--good-bg);color:var(--good)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.bad{background:var(--bad-bg);color:var(--bad)}
 
   .cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
-  .cards.two{grid-template-columns:1fr 1fr}
-  @media(max-width:820px){.cards.two{grid-template-columns:1fr}}
   .card{border:1px solid var(--line);border-radius:14px;overflow:hidden}
   .card .ch{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:var(--accent-soft);border-bottom:1px solid var(--line)}
   .card .ch .nm{font-size:15px;font-weight:700;color:var(--accent-deep)} .card .ch .sp{font-family:var(--mono);font-size:12.5px;color:var(--navy)}
@@ -73,45 +71,50 @@
 
   .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
   .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
-  .verdict p{font-size:15px;line-height:1.6;margin:0 0 10px} .verdict p:last-child{margin:0} .verdict b{color:var(--navy)}
+  .verdict p{font-size:15px;line-height:1.6;margin:0} .verdict b{color:var(--navy)}
   code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
 
-  /* ===== supplementary chart/visual components (token-based, on-brand) ===== */
-  .wu{color:var(--good);font-weight:700;font-family:var(--mono)} .wd{color:var(--bad);font-weight:700;font-family:var(--mono)} .wf{color:var(--warn);font-weight:700;font-family:var(--mono)}
-  .prog{height:8px;border-radius:999px;background:var(--gray-bg);overflow:hidden;min-width:90px}
-  .prog>span{display:block;height:100%;border-radius:999px}
-  .pf-good{background:var(--good)} .pf-warn{background:var(--warn)} .pf-bad{background:var(--bad)}
-  .splitbar{display:flex;height:30px;border-radius:8px;overflow:hidden;border:1px solid var(--line);font-size:11px;font-weight:700;color:#fff}
-  .splitbar>div{display:flex;align-items:center;justify-content:center;white-space:nowrap}
-  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:12px;color:var(--muted)} .legend b{color:var(--ink)}
-  .legend i{width:11px;height:11px;border-radius:3px;display:inline-block;margin-right:5px;vertical-align:-1px}
-  .rank{display:grid;gap:8px;margin-top:6px}
-  .rank .row{display:grid;grid-template-columns:230px 1fr 62px;align-items:center;gap:10px;font-size:12.5px}
-  .rank .lp{color:var(--navy);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--mono);font-size:11.5px}
-  .rank .track{background:var(--gray-bg);border-radius:6px;height:20px;overflow:hidden}
-  .rank .fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:11px;font-weight:700}
-  .rank .v{text-align:right;font-family:var(--mono);font-weight:700}
-  .chartbox{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:6px;background:#fcfdff}
-  .chartbox .ct{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px}
-  .chartbox svg{width:100%;height:auto;display:block}
-  .donutwrap{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
-  .donut{width:150px;height:150px;border-radius:50%;flex:none}
-  .funnel{display:grid;gap:8px;margin-top:6px}
-  .fstage{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:center}
-  .fstage .fl{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
-  .fbar{height:38px;border-radius:8px;background:linear-gradient(90deg,var(--accent),var(--accent-deep));display:flex;align-items:center;padding:0 14px;color:#fff;font-weight:700;font-family:var(--mono);font-size:14px}
-  .fbar.alt{background:linear-gradient(90deg,#8a93a3,#5f6b7a)}
-  .fbar.good{background:linear-gradient(90deg,#12915b,#0c6b43)}
-  .fnote{font-size:11.5px;color:var(--bad);font-weight:700;margin:2px 0 2px 162px}
-  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
-  @media(max-width:820px){.gallery{grid-template-columns:1fr 1fr}}
-  .shot{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
-  .shot .im{height:120px;display:flex;align-items:center;justify-content:center;background:#f4f7fb;overflow:hidden}
-  .shot .im img{max-width:100%;max-height:120px;object-fit:contain}
-  .shot .cap{padding:9px 11px;font-size:11.5px}
-  .shot .cap .nm{font-weight:700;color:var(--navy);font-family:var(--mono);font-size:10.5px;word-break:break-all}
-  .shot .cap .mt{color:var(--muted);margin-top:3px}
-  .note{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.5} .note b{color:var(--navy)}
+  /* ===== supplementary (uses template vars only) ===== */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:820px){.twocol{grid-template-columns:1fr}}
+  .bartrack{background:var(--gray-bg);border-radius:999px;height:14px;position:relative;overflow:hidden;min-width:120px}
+  .barfill{height:100%;border-radius:999px}
+  .barfill.good{background:var(--good)} .barfill.warn{background:var(--warn)} .barfill.bad{background:var(--bad)} .barfill.acc{background:var(--accent)}
+  .goalcell{display:flex;align-items:center;gap:10px}
+  .goalcell .pct{font-family:var(--mono);font-size:12px;color:var(--navy);min-width:42px}
+  .wowc{font-family:var(--mono);text-align:right;font-weight:600}
+  .wowc.up{color:var(--good);background:var(--good-bg)} .wowc.down{color:var(--bad);background:var(--bad-bg)} .wowc.flat{color:var(--warn);background:var(--warn-bg)}
+  .splitbar{display:flex;height:34px;border-radius:9px;overflow:hidden;border:1px solid var(--line);font-size:12px;font-weight:700;color:#fff}
+  .splitbar .seg{display:flex;align-items:center;justify-content:center;white-space:nowrap}
+  .clsrow td{border-left:4px solid transparent}
+  .cls-keep td:first-child{border-left-color:var(--good)}
+  .cls-cut td:first-child{border-left-color:var(--bad)}
+  .cls-res td:first-child{border-left-color:var(--warn)}
+  .tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;text-transform:uppercase;letter-spacing:.03em}
+  .tag.keep{background:var(--good-bg);color:var(--good)} .tag.cut{background:var(--bad-bg);color:var(--bad)} .tag.res{background:var(--warn-bg);color:var(--warn)}
+  .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
+  @media(max-width:820px){.gal{grid-template-columns:1fr 1fr}}
+  .gcard{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fcfdff}
+  .gcard .gimg{width:100%;height:130px;object-fit:contain;background:#fff;border-bottom:1px solid var(--line)}
+  .gcard .gmeta{padding:9px 11px;font-size:11.5px}
+  .gcard .gmeta .gt{font-weight:700;color:var(--navy);font-family:var(--mono);font-size:11px;word-break:break-all}
+  .chartcard{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fcfdff}
+  .chartcard h4{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:10px;font-weight:600}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11.5px;color:var(--muted);margin-top:8px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .swatch{width:11px;height:11px;border-radius:3px;display:inline-block}
+  .funnel{display:flex;flex-direction:column;gap:4px;margin-top:6px}
+  .fstep{display:flex;align-items:center;gap:12px}
+  .fstep .fbar{height:44px;border-radius:8px;display:flex;align-items:center;padding-left:14px;color:#fff;font-weight:700;font-family:var(--mono);font-size:14px;min-width:90px}
+  .fstep .flab{font-size:12.5px;color:var(--navy);font-weight:600}
+  .fdrop{font-size:11.5px;color:var(--bad);font-weight:600;margin:0 0 2px 14px;border-left:2px dashed var(--bad);padding:2px 0 2px 12px}
+  .note{background:var(--warn-bg);border:1px solid #f0dcb0;border-radius:10px;padding:11px 14px;font-size:12.5px;color:#6b5417;margin-top:10px}
+  .note b{color:#5a4410}
+  .rankbar{display:flex;align-items:center;gap:9px;margin:5px 0;font-size:12px}
+  .rankbar .rl{width:230px;font-family:var(--mono);font-size:11px;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rankbar .rt{flex:1;background:var(--gray-bg);border-radius:5px;height:16px;overflow:hidden}
+  .rankbar .rf{height:100%;border-radius:5px}
+  .rankbar .rv{width:60px;text-align:right;font-family:var(--mono);font-size:11px;color:var(--muted)}
 </style>
 </head>
 <body class="theme-ui">
@@ -121,390 +124,417 @@
     <div class="logochip">Ignite UI</div>
     <div class="kick">UI Tools · Angular · Paid Media</div>
     <h1>Angular PPC Weekly / Ignite UI</h1>
-    <div class="meta"><span>Week of <b>Jul 26, 2026</b></span><span>Current <b>Jul 19&ndash;25</b> vs Prior <b>Jul 12&ndash;18</b></span><span>Account <b>UI Tools · 9179838229</b></span></div>
+    <div class="meta">
+      <span><b>Week of</b> Jul 27, 2026</span>
+      <span><b>Current</b> Jul 20–26</span>
+      <span><b>Prior</b> Jul 13–19</span>
+      <span><b>Account</b> 9179838229</span>
+    </div>
   </header>
 
   <div class="tabbar" id="tabbar"></div>
 
   <div id="panels">
 
-  <!-- ===================== TAB 1: OVERVIEW ===================== -->
+  <!-- ============ 1 · OVERVIEW ============ -->
   <section class="tabpanel" data-tab="overview" data-label="Overview">
 
-    <div class="sec"><span class="n">1</span>How healthy is Angular paid?</div>
+    <div class="sec"><span class="n">1</span> Executive read</div>
     <div class="lead">
-      Two truths this week. On the surface, spend rose to <b>$1,991.74</b> (<b>+21.4% WoW</b>) and the high-intent Search core is genuinely strong &mdash; <b>10.8% search CTR</b>, 90%+ impression share on our category terms. Underneath, the account is <b>running blind and shrinking</b>. Conversions are <b>zero</b> in Google Ads and GA4, so nothing downstream can be judged on paid&rsquo;s own numbers. Worse, paid volume to Angular pages has <b>collapsed</b>: GA4 shows ~17k cpc sessions/month in Apr&ndash;May, then <b>788 in June and 48 in July</b> &mdash; a spring Display/PMax/DemandGen program was switched off and only the ~$1.9k/wk Search lines remain. Attribution is broken too: <b>15,059 of ~20,000 paid sessions</b> carry a literal <code>{campaignname}</code> UTM placeholder that never resolved. Where do we focus this week? <b>Not on scaling.</b> Fix the two measurement breaks, cut competitor/Material leakage, and hold spend &mdash; then scale the budget-capped core. The one bright spot that needs no fixing: <b>npm installs of <code>igniteui-angular</code> are climbing</b> (35,516 in June, +10% MoM), so developer adoption is healthy even while paid is dark.
+      <p>Angular paid is <b>spending steadily but flying blind</b>. The account put <b>$1,961</b> to work this week (+13.3% WoW) across four Search themes and one DemandGen line, earned <b>103 clicks</b> at a <b>5.4% blended CTR</b> — and recorded <b>zero conversions</b>, because conversion tracking is not wired to Ads. That is the headline problem: we cannot judge ROI from the ad platform at all.</p>
+      <p style="margin-top:10px">What's working: <b>Grids and Charts own their real estate</b> (91.9% and 96.6% search impression share) and Grids doubled spend into strong 11.5% CTR demand. What's breaking: the <b>Compete campaign was throttled</b> — spend cut 30% and impression share collapsed from 96.7% to 66.2%, now losing <b>32% of impressions to budget</b>. And the GA4 paid picture cratered: cpc sessions to Angular pages fell from <b>17.7K in May to 49 so far in July</b> as a PMax/Display program wound down, leaving Search clicks landing under a broken <code>{campaignname}</code> tag.</p>
+      <p style="margin-top:10px">Focus this week: <b>(1) fix conversion tracking + auto-tagging</b> so the funnel is legible, <b>(2) restore Compete budget</b> to recapture the 32% we're forfeiting on competitor terms, and <b>(3) add negatives</b> to stop ~$505/mo bleeding into free-framework "angular material / angular library" queries. Adoption — the real endpoint — is healthy: <b>igniteui-angular npm installs hit 13,522 this week, +109% WoW</b>.</p>
     </div>
 
-    <div class="sec"><span class="n">2</span>Blended KPIs &middot; week over week</div>
+    <div class="sec"><span class="n">2</span> Blended KPIs · current vs prior week</div>
     <div class="kpigrid">
-      <div class="kpi"><div class="lab">Spend</div><div class="val">$1,991.74</div><span class="delta flat">&#9650; 21.4%</span></div>
-      <div class="kpi"><div class="lab">Search Impr. Share</div><div class="val">83.1%</div><span class="delta down">&#9660; 9.7pp</span></div>
-      <div class="kpi"><div class="lab">CTR (blended)</div><div class="val">5.15%</div><span class="delta down">&#9660; 1.53pp</span></div>
-      <div class="kpi"><div class="lab">CPC (blended)</div><div class="val">$19.15</div><span class="delta down">&#9650; 5.0% cost</span></div>
-      <div class="kpi"><div class="lab">Conversions</div><div class="val">0</div><span class="delta flat">&#9644; none tracked</span></div>
-      <div class="kpi"><div class="lab">CPL</div><div class="val">n/a</div><span class="delta flat">&#9644; no signal</span></div>
-      <div class="kpi"><div class="lab">Clicks</div><div class="val">104</div><span class="delta up">&#9650; 15.6%</span></div>
-      <div class="kpi"><div class="lab">Impressions</div><div class="val">2,021</div><span class="delta up">&#9650; 50.0%</span></div>
-      <div class="kpi"><div class="lab">npm installs / wk</div><div class="val">10,750</div><span class="delta up">&#9650; 85% WoW</span></div>
-      <div class="kpi"><div class="lab">Budget-lost IS</div><div class="val">14.7%</div><span class="delta down">&#9650; 13.8pp</span></div>
+      <div class="kpi"><div class="lab">Spend</div><div class="val">$1,961</div><div class="delta up">+13.3%</div></div>
+      <div class="kpi"><div class="lab">Search Impr. Share</div><div class="val">84.5%</div><div class="delta down">−10.5 pp</div></div>
+      <div class="kpi"><div class="lab">Blended CTR</div><div class="val">5.41%</div><div class="delta down">−0.67 pp</div></div>
+      <div class="kpi"><div class="lab">Avg CPC</div><div class="val">$19.04</div><div class="delta down">+3.4%</div></div>
+      <div class="kpi"><div class="lab">Conversions</div><div class="val">0</div><div class="delta flat">no tracking</div></div>
+      <div class="kpi"><div class="lab">Clicks</div><div class="val">103</div><div class="delta up">+9.6%</div></div>
+      <div class="kpi"><div class="lab">Impressions</div><div class="val">1,904</div><div class="delta up">+23.2%</div></div>
+      <div class="kpi"><div class="lab">Cost / Conv (CPL)</div><div class="val">n/a</div><div class="delta flat">0 conv</div></div>
+      <div class="kpi"><div class="lab">Budget-Lost Impr. Share</div><div class="val">13.0%</div><div class="delta down">+12.1 pp</div></div>
+      <div class="kpi"><div class="lab">npm Installs / wk</div><div class="val">13,522</div><div class="delta up">+109%</div></div>
     </div>
+    <div class="note">On the KPI cards, <b>green = good direction</b>, red = bad direction. Rising spend is flagged green only as a volume signal; with zero tracked conversions, efficiency cannot be confirmed. CTR/CPC are blended across Search + DemandGen — DemandGen's 1.7% CTR drags the blend; Search-only CTR is 11.0%.</div>
 
-    <div class="sec"><span class="n">3</span>Goal scoreboard &middot; one row per goal</div>
+    <div class="sec"><span class="n">3</span> Goal scoreboard · by campaign theme</div>
+    <div class="lead" style="margin-bottom:12px;font-size:13.5px">Angular is structured by <b>component category</b> (Grids / Components / Charts / Compete), not by region like Reveal. The objective for UI Tools is <b>owning the paid real estate</b> on buying terms, so goals are set as impression-share targets per theme (analyst benchmark: <b>≥90% search impression share</b>, secondary <b>≥10% CTR</b>).</div>
     <div class="score">
       <table>
-        <thead><tr><th>Goal</th><th>Target</th><th>Actual</th><th>% to goal</th><th>Status</th></tr></thead>
+        <thead><tr><th>Theme goal — own ≥90% search impr. share</th><th>Current</th><th style="width:230px">% to goal</th><th>CTR (≥10%)</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td class="goal">Impr. share &mdash; Grids</td><td>90%</td><td>92.6%</td><td><div class="prog"><span class="pf-good" style="width:100%"></span></div></td><td><span class="pill good">On track</span></td></tr>
-          <tr><td class="goal">Impr. share &mdash; Charts</td><td>90%</td><td>96.4%</td><td><div class="prog"><span class="pf-good" style="width:100%"></span></div></td><td><span class="pill good">On track</span></td></tr>
-          <tr><td class="goal">Impr. share &mdash; Components</td><td>90%</td><td>89.1%</td><td><div class="prog"><span class="pf-warn" style="width:99%"></span></div></td><td><span class="pill warn">At risk</span></td></tr>
-          <tr><td class="goal">Impr. share &mdash; Compete</td><td>90%</td><td>65.9%</td><td><div class="prog"><span class="pf-bad" style="width:73%"></span></div></td><td><span class="pill bad">Behind</span></td></tr>
-          <tr><td class="goal">Budget-lost IS under 5%</td><td>&le;5%</td><td>14.7%</td><td><div class="prog"><span class="pf-bad" style="width:34%"></span></div></td><td><span class="pill bad">Behind</span></td></tr>
-          <tr><td class="goal">Conversion tracking live</td><td>&gt;0 events</td><td>0</td><td><div class="prog"><span class="pf-bad" style="width:2%"></span></div></td><td><span class="pill bad">Broken</span></td></tr>
-          <tr><td class="goal">Paid&rarr;page attribution clean</td><td>UTMs resolve</td><td>25% resolve</td><td><div class="prog"><span class="pf-bad" style="width:25%"></span></div></td><td><span class="pill bad">Broken</span></td></tr>
-          <tr><td class="goal">Search CTR</td><td>&ge;8%</td><td>10.8%</td><td><div class="prog"><span class="pf-good" style="width:100%"></span></div></td><td><span class="pill good">On track</span></td></tr>
+          <tr><td class="goal">Charts — own charting terms</td><td>96.6%</td><td><div class="goalcell"><div class="bartrack"><div class="barfill good" style="width:97%"></div></div><span class="pct">107%</span></div></td><td>10.9%</td><td><span class="pill good">on-track</span></td></tr>
+          <tr><td class="goal">Grids — own grid/table terms</td><td>91.9%</td><td><div class="goalcell"><div class="bartrack"><div class="barfill good" style="width:92%"></div></div><span class="pct">102%</span></div></td><td>11.5%</td><td><span class="pill good">on-track</span></td></tr>
+          <tr><td class="goal">Components — own library terms</td><td>88.6%</td><td><div class="goalcell"><div class="bartrack"><div class="barfill warn" style="width:89%"></div></div><span class="pct">98%</span></div></td><td>13.6%</td><td><span class="pill warn">at-risk</span></td></tr>
+          <tr><td class="goal">Compete — own competitor terms</td><td>66.2%</td><td><div class="goalcell"><div class="bartrack"><div class="barfill bad" style="width:66%"></div></div><span class="pct">74%</span></div></td><td>7.7%</td><td><span class="pill bad">behind</span></td></tr>
         </tbody>
       </table>
     </div>
-    <div class="note">Angular is structured by <b>category</b> (Grids / Components / Charts / Compete), not by region like Reveal&rsquo;s US vs Intl split &mdash; so goals are broken out per campaign rather than US/Intl. Only DemandGen is geo-scoped (Americas / US).</div>
+    <div class="note"><b>Compete is the only theme behind</b> — and it went backwards this week. It's forfeiting 32.3% of available impressions to budget and its CTR (7.7%) is below the 10% bar. Everything else holds the real estate.</div>
 
-    <div class="sec"><span class="n">4</span>Lean in / fix</div>
-    <div class="cards two">
-      <div class="card">
-        <div class="ch"><span class="nm">Lean in</span><span class="sp">keep &amp; grow</span></div>
+    <div class="sec"><span class="n">4</span> Lean in / Fix</div>
+    <div class="twocol">
+      <div class="card"><div class="ch"><span class="nm">Lean in</span><span class="sp">scale winners</span></div>
         <div class="cb">
-          <b>The Search core.</b> Category terms (angular table, component library, ui components) run <b>90%+ impression share at 13&ndash;16% CTR</b> and are now budget-capped &mdash; real demand we&rsquo;re leaving on the table. <b>Developer adoption is rising</b>: <code>igniteui-angular</code> npm installs hit 35,516 in June (+10% MoM). The paid sessions that do land engage well (mobile 86% engagement over 90 days).
+          <b>Grids</b> — doubled spend to $636 and clicks jumped +60% at 11.5% CTR with 91.9% impression share. Demand is there; keep pressing.<br><br>
+          <b>Charts</b> — 96.6% impression share at $186 and CTR doubled clicks WoW. Cheapest Search CPC ($15.53). Room to add budget without losing efficiency.<br><br>
+          <b>Adoption</b> — npm installs +109% WoW / steady MoM growth (35.5K in June). The product is landing even if the ad funnel can't see it.
         </div>
       </div>
-      <div class="card">
-        <div class="ch"><span class="nm">Fix</span><span class="sp">before scale</span></div>
+      <div class="card"><div class="ch"><span class="nm">Fix</span><span class="sp">stop the leaks</span></div>
         <div class="cb">
-          <b>Measurement.</b> Zero conversions in both platforms; assets all &ldquo;Pending&rdquo; because Google has no signal to grade them. <b>Attribution:</b> 75% of paid sessions carry an unresolved <code>{campaignname}</code> UTM. <b>Volume collapse:</b> Angular paid traffic fell from ~17k/mo to ~48 &mdash; decide whether that wind-down was intended. <b>Leakage:</b> ~$300&ndash;$470/wk to competitor &amp; Angular Material close variants.
+          <b>Conversion tracking</b> — 0 conversions in Ads. No CPL, no ROAS, all assets stuck "Pending." Highest-priority fix.<br><br>
+          <b>Compete budget</b> — restore it; 32% of competitor-term impressions are being forfeited to budget caps.<br><br>
+          <b>Auto-tagging / UTM</b> — paid lands under literal <code>{campaignname}</code> in GA4 and cpc sessions collapsed to ~10/wk. Fix the tracking template.<br><br>
+          <b>Negatives</b> — "angular material" &amp; "angular library" bleed ≈ $505/mo into free-framework junk.
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== TAB 2: CAMPAIGNS & AD GROUPS ===================== -->
-  <section class="tabpanel" data-tab="campaigns" data-label="Campaigns &amp; Ad Groups">
+  <!-- ============ 2 · CAMPAIGNS ============ -->
+  <section class="tabpanel" data-tab="campaigns" data-label="Campaigns & Ad Groups">
 
-    <div class="sec"><span class="n">1</span>Where budget concentrates vs where it converts</div>
-    <div class="lead">
-      Budget swung hard into <b>Grids</b> ($277&rarr;$681, +146%) at a $27.25 CPC, funded partly by a 30% cut to <b>Compete</b> &mdash; which immediately lost visibility (IS 96.7%&rarr;65.9%). <b>Components</b> stays the efficiency leader (13.1% CTR). Because no campaign records a tracked conversion, &ldquo;where it converts&rdquo; can&rsquo;t be answered from Ads &mdash; concentration today is a bet on intent, not measured return.
-    </div>
-
-    <div class="sec"><span class="n">2</span>Campaign performance &middot; WoW (green up / red down)</div>
+    <div class="sec"><span class="n">1</span> Campaign performance · WoW</div>
     <div class="dtable">
       <table>
-        <thead><tr><th>Campaign</th><th>Type</th><th>Spend</th><th>WoW spend</th><th>Clicks</th><th>WoW clicks</th><th>CTR</th><th>CPC</th><th>Impr. share</th></tr></thead>
+        <thead><tr><th>Campaign</th><th>Type</th><th>Theme</th><th class="num">Spend</th><th class="num">WoW spend</th><th class="num">Clicks</th><th class="num">WoW clicks</th><th class="num">CTR</th><th class="num">CPC</th><th class="num">Impr. share</th></tr></thead>
         <tbody>
-          <tr><td>Search &mdash; Grids</td><td>Search</td><td class="num">$681.23</td><td class="num"><span class="wu">&#9650; 146%</span></td><td class="num">25</td><td class="num"><span class="wu">&#9650; 79%</span></td><td class="num">11.16%</td><td class="num">$27.25</td><td class="num">92.6%</td></tr>
-          <tr><td>Search &mdash; Components</td><td>Search</td><td class="num">$610.96</td><td class="num"><span class="wu">&#9650; 6%</span></td><td class="num">31</td><td class="num"><span class="wu">&#9650; 3%</span></td><td class="num">13.08%</td><td class="num">$19.71</td><td class="num">89.1%</td></tr>
-          <tr><td>Search &mdash; Compete</td><td>Search</td><td class="num">$424.38</td><td class="num"><span class="wd">&#9660; 30%</span></td><td class="num">16</td><td class="num"><span class="wd">&#9660; 36%</span></td><td class="num">7.73%</td><td class="num">$26.52</td><td class="num">65.9%</td></tr>
-          <tr><td>Search &mdash; Charts</td><td>Search</td><td class="num">$199.22</td><td class="num"><span class="wu">&#9650; 26%</span></td><td class="num">12</td><td class="num"><span class="wu">&#9650; 140%</span></td><td class="num">11.01%</td><td class="num">$16.60</td><td class="num">96.4%</td></tr>
-          <tr><td>DemandGen &mdash; Americas US</td><td>DemandGen</td><td class="num">$75.95</td><td class="num"><span class="wu">&#9650; 281%</span></td><td class="num">20</td><td class="num"><span class="wu">&#9650; 25%</span></td><td class="num">1.61%</td><td class="num">$3.80</td><td class="num">&mdash;</td></tr>
-          <tr><td><b>Total (Angular)</b></td><td>&mdash;</td><td class="num"><b>$1,991.74</b></td><td class="num"><span class="wu">&#9650; 21%</span></td><td class="num"><b>104</b></td><td class="num"><span class="wu">&#9650; 16%</span></td><td class="num"><b>5.15%</b></td><td class="num"><b>$19.15</b></td><td class="num"><b>83.1%</b></td></tr>
+          <tr><td>DT-Ignite-UI-Angular-Search-Components</td><td>Search</td><td>Components</td><td class="num">$639.64</td><td class="wowc up">+10.7%</td><td class="num">32</td><td class="wowc up">+6.7%</td><td class="num">13.6%</td><td class="num">$19.99</td><td class="num">88.6%</td></tr>
+          <tr><td>DT-Ignite-UI-Angular-Search-Grids</td><td>Search</td><td>Grids</td><td class="num">$636.43</td><td class="wowc up">+97.5%</td><td class="num">24</td><td class="wowc up">+60.0%</td><td class="num">11.5%</td><td class="num">$26.52</td><td class="num">91.9%</td></tr>
+          <tr><td>DT-Ignite-UI-Angular-Search-Compete</td><td>Search</td><td>Compete</td><td class="num">$424.38</td><td class="wowc down">−30.0%</td><td class="num">16</td><td class="wowc down">−36.0%</td><td class="num">7.7%</td><td class="num">$26.52</td><td class="num">66.2%</td></tr>
+          <tr><td>DT-Ignite-UI-Angular-Search-Charts</td><td>Search</td><td>Charts</td><td class="num">$186.32</td><td class="wowc down">−3.2%</td><td class="num">12</td><td class="wowc up">+100%</td><td class="num">10.9%</td><td class="num">$15.53</td><td class="num">96.6%</td></tr>
+          <tr><td>DT-DemandGen-Ignite-UI-Angular-Americas-US</td><td>DemandGen</td><td>Awareness</td><td class="num">$74.46</td><td class="wowc up">+140.7%</td><td class="num">19</td><td class="wowc up">+5.6%</td><td class="num">1.66%</td><td class="num">$3.92</td><td class="num">—</td></tr>
+          <tr style="font-weight:700;background:#f7f9ff"><td>Total</td><td>—</td><td>—</td><td class="num">$1,961.24</td><td class="wowc up">+13.3%</td><td class="num">103</td><td class="wowc up">+9.6%</td><td class="num">5.41%</td><td class="num">$19.04</td><td class="num">84.5%*</td></tr>
         </tbody>
       </table>
     </div>
+    <div class="note">Cross-foot: Search $1,886.78 + DemandGen $74.46 = <b>$1,961.24</b>; Search clicks 84 + DemandGen 19 = <b>103</b>. *Total impression share is impression-weighted across the four Search themes (DemandGen has no search impression share).</div>
 
-    <div class="sec"><span class="n">3</span>Brand vs non-brand spend split</div>
+    <div class="sec"><span class="n">2</span> Brand vs non-brand · &amp; competitor spend</div>
     <div class="splitbar">
-      <div style="width:0.5%;background:var(--gray)">&nbsp;</div>
-      <div style="width:78.7%;background:var(--accent)">Category / non-brand 78.7% · $1,567</div>
-      <div style="width:21.3%;background:var(--accent-deep)">Competitor 21.3% · $424</div>
+      <div class="seg" style="width:0.5%;background:var(--gray)"></div>
+      <div class="seg" style="width:78.4%;background:var(--accent)">Non-brand $1,536.86 · 78.4%</div>
+      <div class="seg" style="width:21.6%;background:var(--accent-deep)">Competitor (Compete) $424.38 · 21.6%</div>
     </div>
-    <div class="legend">
-      <span><i style="background:var(--gray)"></i>Brand <b>$0 (0%)</b></span>
-      <span><i style="background:var(--accent)"></i>Category / non-brand <b>$1,567 (78.7%)</b></span>
-      <span><i style="background:var(--accent-deep)"></i>Competitor <b>$424 (21.3%)</b></span>
-    </div>
-    <div class="note"><b>No brand-defense on Angular.</b> Zero spend on &ldquo;Ignite UI / Infragistics&rdquo; terms &mdash; the entire budget is prospecting. Competitor spend (21%) exactly equals the Compete campaign, so it&rsquo;s cleanly isolated; the leak is competitor <em>close variants</em> firing inside the category campaigns (see Search Terms).</div>
+    <div class="note"><b>Angular runs $0 brand defense</b> — there is no branded "Ignite UI Angular" campaign, so competitors can bid on our name unchallenged. Competitor-conquest spend ≈ the Compete campaign ($424.38, 21.6% of budget). Watch close-variant leakage: exact keywords are catching competitor and free-framework variants they weren't meant to (see Search Terms tab).</div>
 
-    <div class="sec"><span class="n">4</span>Ad group performance &middot; enriched</div>
+    <div class="sec"><span class="n">3</span> Ad groups</div>
     <div class="dtable">
       <table>
-        <thead><tr><th>Ad group</th><th>Campaign</th><th>Type</th><th>Region</th><th>Spend</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>CPC</th></tr></thead>
+        <thead><tr><th>Ad group</th><th>Campaign / theme</th><th>Type</th><th>Region</th><th class="num">Spend</th><th class="num">Impr.</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">CPC</th></tr></thead>
         <tbody>
-          <tr><td>Angular Grids</td><td>Grids</td><td>Search</td><td>Global</td><td class="num">$681.23</td><td class="num">224</td><td class="num">25</td><td class="num">11.16%</td><td class="num">$27.25</td></tr>
-          <tr><td>Angular Components</td><td>Components</td><td>Search</td><td>Global</td><td class="num">$610.96</td><td class="num">237</td><td class="num">31</td><td class="num">13.08%</td><td class="num">$19.71</td></tr>
-          <tr><td>Angular Compete</td><td>Compete</td><td>Search</td><td>Global</td><td class="num">$424.38</td><td class="num">207</td><td class="num">16</td><td class="num">7.73%</td><td class="num">$26.52</td></tr>
-          <tr><td>Angular Charts</td><td>Charts</td><td>Search</td><td>Global</td><td class="num">$199.22</td><td class="num">109</td><td class="num">12</td><td class="num">11.01%</td><td class="num">$16.60</td></tr>
-          <tr><td>Angular 15sec</td><td>DemandGen</td><td>DemandGen</td><td>Americas / US</td><td class="num">$48.05</td><td class="num">761</td><td class="num">13</td><td class="num">1.71%</td><td class="num">$3.70</td></tr>
-          <tr><td>Angular 30sec</td><td>DemandGen</td><td>DemandGen</td><td>Americas / US</td><td class="num">$27.90</td><td class="num">483</td><td class="num">7</td><td class="num">1.45%</td><td class="num">$3.99</td></tr>
+          <tr><td>Angular Components</td><td>Components</td><td>Search</td><td>US</td><td class="num">$639.64</td><td class="num">235</td><td class="num">32</td><td class="num">13.6%</td><td class="num">$19.99</td></tr>
+          <tr><td>Angular Grids</td><td>Grids</td><td>Search</td><td>US</td><td class="num">$636.43</td><td class="num">208</td><td class="num">24</td><td class="num">11.5%</td><td class="num">$26.52</td></tr>
+          <tr><td>Angular Compete</td><td>Compete</td><td>Search</td><td>US</td><td class="num">$424.38</td><td class="num">208</td><td class="num">16</td><td class="num">7.7%</td><td class="num">$26.52</td></tr>
+          <tr><td>Angular Charts</td><td>Charts</td><td>Search</td><td>US</td><td class="num">$186.32</td><td class="num">110</td><td class="num">12</td><td class="num">10.9%</td><td class="num">$15.53</td></tr>
+          <tr><td>Angular 15sec</td><td>DemandGen</td><td>DemandGen</td><td>Americas-US</td><td class="num">$43.71</td><td class="num">659</td><td class="num">12</td><td class="num">1.82%</td><td class="num">$3.64</td></tr>
+          <tr><td>Angular 30sec</td><td>DemandGen</td><td>DemandGen</td><td>Americas-US</td><td class="num">$30.76</td><td class="num">484</td><td class="num">7</td><td class="num">1.45%</td><td class="num">$4.39</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="note">Over the last 90 days GA4 also attributes paid Angular sessions to <b>PMax</b> (<code>DT-Ignite-UI-Angular-PMax-Compete</code>) and <b>Display</b> (<code>IgniteUI-Angular-Display-CustomIntent</code>) campaigns that show ~zero spend now &mdash; the wound-down spring program. Confirm they&rsquo;re intentionally paused.</div>
+    <div class="note"><b>Wound-down program flag.</b> GA4 still attributes 90-day sessions to <code>DT-Ignite-UI-Angular-PMax-Compete-Americas-US</code> and <code>IgniteUI-Angular-Display-CustomIntent-Americas-US</code>, but these show <b>~zero spend in the current Ads read</b> — a PMax + Display program that has been switched off. It is the source of the April–May traffic that has since evaporated (see Landing Pages &amp; Journey). Current active spend is 4 Search themes + 1 DemandGen line only.</div>
   </section>
 
-  <!-- ===================== TAB 3: SEARCH TERMS & KEYWORDS ===================== -->
-  <section class="tabpanel" data-tab="terms" data-label="Search Terms &amp; Keywords">
+  <!-- ============ 3 · SEARCH TERMS & KEYWORDS ============ -->
+  <section class="tabpanel" data-tab="terms" data-label="Search Terms & Keywords">
 
-    <div class="sec"><span class="n">1</span>Intent rules (keep expensive-but-qualified, cut broad/junk)</div>
-    <div class="lead">
-      <b>Keep even when pricey:</b> any query naming a component we sell (grid, table, chart, datagrid, pivot, tree grid), &ldquo;component library / ui components,&rdquo; or a competitor + angular (these belong in Compete). <b>Cut:</b> free-framework <code>angular material</code> queries and vague <code>angular library</code> / bare framework terms. With conversions at zero, ranking is by spend and click intent, not CPL.
-    </div>
-
-    <div class="sec"><span class="n">2</span>Top search terms &middot; keep / research / cut</div>
+    <div class="sec"><span class="n">1</span> Search terms · classified (last 30 days)</div>
+    <div class="lead" style="font-size:13.5px;margin-bottom:12px">Rules applied: <b class="tag keep">KEEP</b> any query for a component we sell (grid, table, chart, datagrid, component library, ui components) even when expensive; competitor+angular terms route to <b>Compete only</b> <b class="tag res">RESEARCH</b>; <b class="tag cut">CUT</b> free-framework ("angular material") and vague ("angular library") junk with a negative.</div>
     <div class="dtable">
       <table>
-        <thead><tr><th>Search term</th><th>Match</th><th>Spend</th><th>Clicks</th><th>CTR</th><th>Call</th></tr></thead>
+        <thead><tr><th>Search term</th><th class="num">Cost</th><th class="num">Clicks</th><th class="num">CTR</th><th>Class</th><th>Action</th></tr></thead>
         <tbody>
-          <tr><td>angular table</td><td>exact</td><td class="num">$208.74</td><td class="num">5</td><td class="num">15.6%</td><td><span class="pill good">Keep</span></td></tr>
-          <tr><td>ag grid angular</td><td>exact</td><td class="num">$166.91</td><td class="num">7</td><td class="num">9.6%</td><td><span class="pill warn">Compete only</span></td></tr>
-          <tr><td>angular components</td><td>close var.</td><td class="num">$122.25</td><td class="num">6</td><td class="num">15.8%</td><td><span class="pill good">Keep</span></td></tr>
-          <tr><td>angular ui</td><td>close var.</td><td class="num">$118.25</td><td class="num">4</td><td class="num">15.4%</td><td><span class="pill good">Keep &rarr; add</span></td></tr>
-          <tr><td>angular material table</td><td>close var.</td><td class="num">$115.72</td><td class="num">4</td><td class="num">7.6%</td><td><span class="pill bad">Negative</span></td></tr>
-          <tr><td>angular datatables</td><td>close var.</td><td class="num">$97.00</td><td class="num">4</td><td class="num">22.2%</td><td><span class="pill good">Keep</span></td></tr>
-          <tr><td>angular ui library</td><td>close var.</td><td class="num">$86.24</td><td class="num">4</td><td class="num">21.1%</td><td><span class="pill good">Keep &rarr; add</span></td></tr>
-          <tr><td>grid table angular</td><td>close var.</td><td class="num">$41.75</td><td class="num">4</td><td class="num">50.0%</td><td><span class="pill good">Keep &rarr; add</span></td></tr>
-          <tr><td>kendo / syncfusion / devextreme angular</td><td>mixed</td><td class="num">~$115</td><td class="num">5</td><td class="num">&mdash;</td><td><span class="pill warn">Compete only</span></td></tr>
-          <tr><td>angular library</td><td>close var.</td><td class="num">$63.07</td><td class="num">2</td><td class="num">13.3%</td><td><span class="pill bad">Too broad</span></td></tr>
+          <tr class="clsrow cls-keep"><td>angular components</td><td class="num">$635.01</td><td class="num">39</td><td class="num">14.6%</td><td><span class="tag keep">keep</span></td><td>Core intent — Components</td></tr>
+          <tr class="clsrow cls-res"><td>ag grid angular</td><td class="num">$403.50</td><td class="num">22</td><td class="num">7.1%</td><td><span class="tag res">research</span></td><td>Competitor — Compete only</td></tr>
+          <tr class="clsrow cls-cut"><td>angular material table</td><td class="num">$273.72</td><td class="num">13</td><td class="num">6.0%</td><td><span class="tag cut">cut</span></td><td>Add negative "angular material"</td></tr>
+          <tr class="clsrow cls-keep"><td>angular table</td><td class="num">$270.67</td><td class="num">9</td><td class="num">10.1%</td><td><span class="tag keep">keep</span></td><td>Core intent — Grids</td></tr>
+          <tr class="clsrow cls-keep"><td>angular grid</td><td class="num">$239.65</td><td class="num">13</td><td class="num">13.4%</td><td><span class="tag keep">keep</span></td><td>Core intent — Grids</td></tr>
+          <tr class="clsrow cls-keep"><td>angular component library</td><td class="num">$235.54</td><td class="num">15</td><td class="num">12.6%</td><td><span class="tag keep">keep</span></td><td>Core intent — Components</td></tr>
+          <tr class="clsrow cls-res"><td>kendo ui angular</td><td class="num">$216.75</td><td class="num">11</td><td class="num">9.6%</td><td><span class="tag res">research</span></td><td>Competitor — Compete only</td></tr>
+          <tr class="clsrow cls-keep"><td>angular charts</td><td class="num">$183.61</td><td class="num">7</td><td class="num">10.6%</td><td><span class="tag keep">keep</span></td><td>Core intent — Charts</td></tr>
+          <tr class="clsrow cls-res"><td>angular ui</td><td class="num">$183.22</td><td class="num">9</td><td class="num">17.7%</td><td><span class="tag res">research</span></td><td>Broad but strong CTR — gap candidate</td></tr>
+          <tr class="clsrow cls-res"><td>syncfusion angular</td><td class="num">$159.60</td><td class="num">7</td><td class="num">15.6%</td><td><span class="tag res">research</span></td><td>Competitor — Compete only</td></tr>
+          <tr class="clsrow cls-cut"><td>angular library</td><td class="num">$144.65</td><td class="num">7</td><td class="num">10.1%</td><td><span class="tag cut">cut</span></td><td>Vague — add negative "angular library"</td></tr>
+          <tr class="clsrow cls-keep"><td>angular ui library</td><td class="num">$122.79</td><td class="num">8</td><td class="num">21.6%</td><td><span class="tag keep">keep</span></td><td>Commercial — true gap (add exact)</td></tr>
+          <tr class="clsrow cls-keep"><td>ng grid</td><td class="num">$106.91</td><td class="num">5</td><td class="num">16.1%</td><td><span class="tag keep">keep</span></td><td>Grid intent — true gap (add exact)</td></tr>
+          <tr class="clsrow cls-keep"><td>angular datagrid</td><td class="num">$101.83</td><td class="num">3</td><td class="num">13.6%</td><td><span class="tag keep">keep</span></td><td>Core intent — Grids</td></tr>
+          <tr class="clsrow cls-res"><td>devextreme angular</td><td class="num">$91.09</td><td class="num">6</td><td class="num">8.8%</td><td><span class="tag res">research</span></td><td>Competitor — Compete only</td></tr>
+          <tr class="clsrow cls-keep"><td>angular graph library</td><td class="num">$49.30</td><td class="num">3</td><td class="num">20.0%</td><td><span class="tag keep">keep</span></td><td>Charts intent — true gap (add exact)</td></tr>
+          <tr class="clsrow cls-cut"><td>angular material tables</td><td class="num">$41.40</td><td class="num">1</td><td class="num">12.5%</td><td><span class="tag cut">cut</span></td><td>Covered by "angular material" negative</td></tr>
+          <tr class="clsrow cls-cut"><td>angular material libraries</td><td class="num">$28.42</td><td class="num">1</td><td class="num">100%</td><td><span class="tag cut">cut</span></td><td>Covered by "angular material" negative</td></tr>
+          <tr class="clsrow cls-res"><td>tablas en angular</td><td class="num">$18.89</td><td class="num">1</td><td class="num">50%</td><td><span class="tag res">research</span></td><td>Spanish — check geo/language targeting</td></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="sec"><span class="n">3</span>Keyword gaps &middot; deduped against the live book (add as EXACT)</div>
+    <div class="twocol" style="margin-top:14px">
+      <div class="card"><div class="ch"><span class="nm">Negatives to add</span><span class="sp">≈ $505 / mo saved</span></div>
+        <div class="cb">
+          <b>"angular material"</b> (phrase) — kills angular material table/tables/libraries/design components. Free Google framework, no purchase intent. Wasted ≈ <b>$343 / 30d</b>.<br><br>
+          <b>"angular library"</b> (exact-adjacent) &amp; <b>"angular libraries"</b> — vague discovery queries. Wasted ≈ <b>$162 / 30d</b>.<br><br>
+          Combined recovery ≈ <b>$505 / 30d</b> to redeploy into Grids/Charts/Compete.
+        </div>
+      </div>
+      <div class="card"><div class="ch"><span class="nm">True keyword gaps</span><span class="sp">add as EXACT</span></div>
+        <div class="cb">
+          Deduped against the live book (26 exact keywords). These drive spend via close-variant match but aren't bid directly — add as <b>exact</b>, never phrase:<br><br>
+          <b>angular ui library</b> · 21.6% CTR<br>
+          <b>ng grid</b> · 16.1% CTR<br>
+          <b>angular graph library</b> · 20.0% CTR<br>
+          <b>angular ui framework</b> · <b>best charting library for angular</b><br><br>
+          "angular ui" (17.7% CTR) is strong but broad — test as exact with tight negatives.
+        </div>
+      </div>
+    </div>
+
+    <div class="sec"><span class="n">2</span> Keyword performance &amp; match-type health (last 30 days)</div>
     <div class="dtable">
       <table>
-        <thead><tr><th>Gap term (high-intent, converting attention)</th><th>Already a keyword?</th><th>Spend</th><th>CTR</th><th>Action</th></tr></thead>
+        <thead><tr><th>Keyword</th><th>Match</th><th>Campaign</th><th class="num">Cost</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">CPC</th></tr></thead>
         <tbody>
-          <tr><td>[grid table angular]</td><td>No</td><td class="num">$41.75</td><td class="num">50.0%</td><td><span class="pill good">Add exact</span></td></tr>
-          <tr><td>[angular ui]</td><td>No (have &ldquo;angular ui components&rdquo;)</td><td class="num">$118.25</td><td class="num">15.4%</td><td><span class="pill good">Add exact</span></td></tr>
-          <tr><td>[angular ui library]</td><td>No (have &ldquo;angular component library&rdquo;)</td><td class="num">$86.24</td><td class="num">21.1%</td><td><span class="pill good">Add exact</span></td></tr>
-          <tr><td>[angular datatables]</td><td>No (have &ldquo;angular datatable&rdquo;)</td><td class="num">$97.00</td><td class="num">22.2%</td><td><span class="pill good">Add exact</span></td></tr>
-          <tr><td>angular table / component library / ui components</td><td>Yes &mdash; live</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td><span class="pill warn">Skip (dupe)</span></td></tr>
+          <tr><td>angular ui components</td><td>Exact</td><td>Components</td><td class="num">$1,003.77</td><td class="num">62</td><td class="num">13.8%</td><td class="num">$16.19</td></tr>
+          <tr><td>angular component library</td><td>Exact</td><td>Components</td><td class="num">$688.70</td><td class="num">45</td><td class="num">12.1%</td><td class="num">$15.30</td></tr>
+          <tr><td>angular table</td><td>Exact</td><td>Grids</td><td class="num">$686.42</td><td class="num">30</td><td class="num">7.5%</td><td class="num">$22.88</td></tr>
+          <tr><td>kendo ui angular</td><td>Exact</td><td>Compete</td><td class="num">$673.29</td><td class="num">36</td><td class="num">10.6%</td><td class="num">$18.70</td></tr>
+          <tr><td>ag grid angular</td><td>Exact</td><td>Compete</td><td class="num">$479.27</td><td class="num">25</td><td class="num">6.5%</td><td class="num">$19.17</td></tr>
+          <tr><td>angular grid</td><td>Exact</td><td>Grids</td><td class="num">$470.12</td><td class="num">23</td><td class="num">14.7%</td><td class="num">$20.44</td></tr>
+          <tr><td>angular chart</td><td>Exact</td><td>Charts</td><td class="num">$318.55</td><td class="num">14</td><td class="num">8.7%</td><td class="num">$22.75</td></tr>
+          <tr><td>best angular chart library</td><td>Exact</td><td>Charts</td><td class="num">$282.61</td><td class="num">13</td><td class="num">14.8%</td><td class="num">$21.74</td></tr>
+          <tr><td>syncfusion angular</td><td>Exact</td><td>Compete</td><td class="num">$181.26</td><td class="num">9</td><td class="num">15.0%</td><td class="num">$20.14</td></tr>
+          <tr><td>angular datatable</td><td>Exact</td><td>Grids</td><td class="num">$177.46</td><td class="num">9</td><td class="num">10.8%</td><td class="num">$19.72</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="note">Added as <b>exact</b>, never phrase &mdash; phrase would re-open the same competitor/Material close-variant leakage we&rsquo;re trying to close. All four gaps already show strong CTR as queries, so they&rsquo;re demand we&rsquo;re currently buying inefficiently through broad matches.</div>
-
-    <div class="sec"><span class="n">4</span>Wasted spend, negatives &amp; match-type health</div>
-    <div class="cards two">
-      <div class="card">
-        <div class="ch"><span class="nm">Add as negatives</span><span class="sp">~$300&ndash;$470/wk</span></div>
-        <div class="cb"><b>Outside Compete:</b> <code>material</code>, <code>angular material</code>, <code>ag grid</code>, <code>kendo</code>, <code>syncfusion</code>, <code>devextreme</code>, <code>telerik</code>. Angular Material queries are free-framework seekers who won&rsquo;t license. Competitor brands stay <b>only</b> in Compete so spend and IS are intentional.</div>
-      </div>
-      <div class="card">
-        <div class="ch"><span class="nm">Match-type health</span><span class="sp">exact + close variants</span></div>
-        <div class="cb">100% Exact keywords (correct), but <b>close-variant matching</b> is the leak &mdash; it&rsquo;s pulling competitor and Material queries into the category campaigns. Tighten with the negatives, add the four gaps as exact, and reclaim the 10&ndash;15pp of IS lost on <code>ag grid angular</code> and <code>kendo ui angular</code>.</div>
-      </div>
-    </div>
+    <div class="note"><b>Match-type health:</b> every keyword is <b>Exact</b>, yet close-variant matching is pulling in loosely-related queries — e.g. exact <code>angular table</code> is catching <b>"angular material table"</b> (a free-framework query) and exact <code>angular ui components</code> is catching "angular ui component libraries", "angular components ui", etc. Exact no longer means exact. The negatives above are the fix; without them, close-variant leakage keeps routing budget to junk.</div>
   </section>
 
-  <!-- ===================== TAB 4: AD COPY ===================== -->
+  <!-- ============ 4 · AD COPY ============ -->
   <section class="tabpanel" data-tab="adcopy" data-label="Ad Copy">
 
-    <div class="sec"><span class="n">1</span>RSA asset performance &middot; last 30 days</div>
-    <div class="lead">
-      Descriptions are pulling harder than headlines (<b>12.2% vs 10.1% CTR</b>), and DemandGen text is weak (business name 2.1%). But the headline finding is a blind spot: <b>every asset is graded &ldquo;Pending information.&rdquo;</b> Google can&rsquo;t score Best/Good/Low without a conversion signal &mdash; the same tracking gap flagged on Overview &mdash; so we&rsquo;re optimizing copy on CTR alone.
-    </div>
+    <div class="sec"><span class="n">1</span> RSA &amp; DemandGen assets by field type (last 30 days)</div>
     <div class="dtable">
       <table>
-        <thead><tr><th>Asset field</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>Google grade</th></tr></thead>
+        <thead><tr><th>Asset field type</th><th>Asset type</th><th class="num">Impr.</th><th class="num">Clicks</th><th class="num">CTR</th><th>Grade</th></tr></thead>
         <tbody>
-          <tr><td>Descriptions</td><td class="num">7,380</td><td class="num">900</td><td class="num">12.20%</td><td><span class="pill warn">Pending</span></td></tr>
-          <tr><td>Headlines</td><td class="num">10,608</td><td class="num">1,069</td><td class="num">10.08%</td><td><span class="pill warn">Pending</span></td></tr>
-          <tr><td>Long headline (DemandGen)</td><td class="num">118</td><td class="num">4</td><td class="num">3.39%</td><td><span class="pill warn">Pending</span></td></tr>
-          <tr><td>Business name (DemandGen)</td><td class="num">1,694</td><td class="num">36</td><td class="num">2.13%</td><td><span class="pill warn">Pending</span></td></tr>
+          <tr><td>Description</td><td>Text</td><td class="num">7,233</td><td class="num">880</td><td class="num">12.2%</td><td><span class="pill warn">Pending</span></td></tr>
+          <tr><td>Headline</td><td>Text</td><td class="num">10,484</td><td class="num">1,045</td><td class="num">10.0%</td><td><span class="pill warn">Pending</span></td></tr>
+          <tr><td>Long headline</td><td>Text</td><td class="num">132</td><td class="num">4</td><td class="num">3.0%</td><td><span class="pill warn">Pending</span></td></tr>
+          <tr><td>Business name</td><td>Text</td><td class="num">1,772</td><td class="num">37</td><td class="num">2.1%</td><td><span class="pill warn">Pending</span></td></tr>
+          <tr><td>YouTube video (DemandGen)</td><td>Video</td><td class="num">1,772</td><td class="num">37</td><td class="num">2.1%</td><td><span class="pill warn">Pending</span></td></tr>
+          <tr><td>Call to action (DemandGen)</td><td>CTA</td><td class="num">1,772</td><td class="num">37</td><td class="num">2.1%</td><td><span class="pill warn">Pending</span></td></tr>
         </tbody>
       </table>
     </div>
-    <div class="note"><b>Asset text is not exposed via the reporting API</b> (Google returns blank asset names for text), so headlines/descriptions can&rsquo;t be ranked line-by-line here &mdash; pull the exact winners from the Ads UI Asset report. What we can say: lead with descriptions, and rewrite DemandGen headline/business-name copy (both under 3.5% CTR).</div>
+    <div class="note"><b>Two blind spots, flagged.</b> (1) <b>Asset text is not exposed by the API</b> — every RSA headline/description comes back with a blank asset name, so we can rank field types by CTR but cannot see which specific copy lines win. Pull the per-asset text from the Google Ads UI → Assets report. (2) <b>All assets show "Pending information"</b> because there are <b>zero conversions</b> — Google will not grade Best/Good/Low until conversion data flows. Fix conversion tracking (see Overview) and grading unlocks.</div>
 
-    <div class="sec"><span class="n">2</span>Winning themes / where copy needs work</div>
-    <div class="cards two">
-      <div class="card">
-        <div class="ch"><span class="nm">Working</span><span class="sp">CTR signal</span></div>
-        <div class="cb">Search RSA copy is strong &mdash; blended 10&ndash;12% CTR on category terms. Descriptions out-earn headlines, so the value props (component breadth, grid/chart specifics) resonate more than the hooks.</div>
+    <div class="sec"><span class="n">2</span> What we can read</div>
+    <div class="twocol">
+      <div class="card"><div class="ch"><span class="nm">Winning themes</span></div>
+        <div class="cb"><b>Descriptions outperform headlines</b> on CTR (12.2% vs 10.0%) across 7.2K impressions — the longer-form value prop is landing. Headlines carry the volume (10.5K impr, 1,045 clicks) and hold a solid 10% CTR. Search RSA copy is healthy overall.</div>
       </div>
-      <div class="card">
-        <div class="ch"><span class="nm">Needs work</span><span class="sp">fix</span></div>
-        <div class="cb"><b>DemandGen copy is underpowered</b> (1.6% CTR) and its business-name/long-headline assets barely click. <b>Grading is blind</b> until conversion tracking is live &mdash; no Best/Good labels to prune on. No US-vs-Intl copy split exists to compare (Search is global).</div>
+      <div class="card"><div class="ch"><span class="nm">Where copy needs work</span></div>
+        <div class="cb"><b>Long headlines (3.0% CTR)</b> and <b>Business name (2.1%)</b> underperform — expected for those slots, but the Long-headline pool is thin (132 impr) and worth refreshing. <b>DemandGen (2.1% CTR)</b> is awareness-priced; judge it on assisted lift, not click-through, once tracking is live.</div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== TAB 5: CREATIVE ===================== -->
+  <!-- ============ 5 · CREATIVE ============ -->
   <section class="tabpanel" data-tab="creative" data-label="Creative">
 
-    <div class="sec"><span class="n">1</span>Creative in market &middot; last 90 days</div>
-    <div class="lead">
-      The Angular display/PMax creative is <b>almost entirely logos</b> &mdash; no product screenshots of the grid, charts, or components we&rsquo;re selling. Static logos carried 900k+ impressions, which is exactly where fatigue lives. There&rsquo;s also <b>cross-product bleed</b>: a Windows Forms chart video is serving inside an Angular-named campaign.
-    </div>
-    <div class="gallery">
-      <div class="shot"><div class="im"><img src="https://tpc.googlesyndication.com/simgad/9920886698988483481" alt="Infragistics logo"></div><div class="cap"><div class="nm">infragistics-logo-1200x1200.png</div><div class="mt">Image · 415,822 impr · 1.38% CTR</div></div></div>
-      <div class="shot"><div class="im"><img src="https://tpc.googlesyndication.com/simgad/5163778314514664867" alt="Ignite UI logo"></div><div class="cap"><div class="nm">ignite-ui-logo-1200x1200.png</div><div class="mt">Image · 288,846 impr · 0.51% CTR</div></div></div>
-      <div class="shot"><div class="im"><img src="https://tpc.googlesyndication.com/simgad/8381902925952385412" alt="Ignite UI logo v2"></div><div class="cap"><div class="nm">ignite-ui-logo-1200x1200 (2).png</div><div class="mt">Image · 219,343 impr · 0.35% CTR</div></div></div>
-      <div class="shot"><div class="im"><img src="https://tpc.googlesyndication.com/simgad/8600383182296332779" alt="PMax logo square"></div><div class="cap"><div class="nm">pmax-logo-square.jpg</div><div class="mt">Image · 4,731 impr · 0.49% CTR</div></div></div>
-      <div class="shot"><div class="im"><img src="https://tpc.googlesyndication.com/simgad/11931204970486097462" alt="Ultimate UI WinForms chart"></div><div class="cap"><div class="nm">ultimate-ui-windows-forms-chart&hellip;.jpg</div><div class="mt">Image · 255 impr · cross-product bleed</div></div></div>
+    <div class="sec"><span class="n">1</span> Creative gallery (actual served assets, last 30 days)</div>
+    <div class="gal">
+      <div class="gcard"><img class="gimg" src="https://tpc.googlesyndication.com/simgad/10716377948089888363" alt="Angular display creative" loading="lazy"><div class="gmeta"><div class="gt">simgad/1071637794…</div>Image · 1,861 impr · <b>11.3% CTR</b> — top image</div></div>
+      <div class="gcard"><img class="gimg" src="https://tpc.googlesyndication.com/simgad/9920886698988483481" alt="Infragistics logo creative" loading="lazy"><div class="gmeta"><div class="gt">infragistics-logo-1200x1200.png</div>Image (logo) · 1,043 impr · 9.7% CTR</div></div>
+      <div class="gcard"><img class="gimg" src="https://tpc.googlesyndication.com/simgad/11931204970486097462" alt="Windows Forms chart creative" loading="lazy"><div class="gmeta"><div class="gt" style="color:var(--bad)">ultimate-ui-windows-forms-chart…jpg</div>Image · 191 impr · 4.2% CTR — <b style="color:var(--bad)">cross-product bleed</b></div></div>
     </div>
 
-    <div class="sec"><span class="n">2</span>Format performance</div>
+    <div class="sec"><span class="n">2</span> Format performance</div>
     <div class="dtable">
       <table>
-        <thead><tr><th>Format</th><th>Impr.</th><th>Clicks</th><th>CTR</th></tr></thead>
+        <thead><tr><th>Format</th><th class="num">Impr.</th><th class="num">Clicks</th><th class="num">CTR</th><th>Read</th></tr></thead>
         <tbody>
-          <tr><td>Callout (extension)</td><td class="num">51,761</td><td class="num">2,373</td><td class="num">4.58%</td></tr>
-          <tr><td>Sitelink (extension)</td><td class="num">230,354</td><td class="num">6,663</td><td class="num">2.89%</td></tr>
-          <tr><td>Image &mdash; Infragistics logo</td><td class="num">415,822</td><td class="num">5,737</td><td class="num">1.38%</td></tr>
-          <tr><td>Text (RSA/DemandGen)</td><td class="num">1,184,975</td><td class="num">11,591</td><td class="num">0.98%</td></tr>
-          <tr><td>Image &mdash; Ignite UI logo</td><td class="num">288,846</td><td class="num">1,485</td><td class="num">0.51%</td></tr>
+          <tr><td>Image — display creative</td><td class="num">1,861</td><td class="num">211</td><td class="num">11.3%</td><td>Best performer</td></tr>
+          <tr><td>Text</td><td class="num">2,978</td><td class="num">317</td><td class="num">10.6%</td><td>Strong</td></tr>
+          <tr><td>Image — logo</td><td class="num">1,043</td><td class="num">101</td><td class="num">9.7%</td><td>Logo-only, watch fatigue</td></tr>
+          <tr><td>Callout</td><td class="num">906</td><td class="num">71</td><td class="num">7.8%</td><td>OK</td></tr>
+          <tr><td>Sitelink</td><td class="num">11,351</td><td class="num">832</td><td class="num">7.3%</td><td>Highest volume, lowest per-format CTR</td></tr>
+          <tr><td>Price</td><td class="num">295</td><td class="num">12</td><td class="num">4.1%</td><td>Weak</td></tr>
+          <tr><td>Image — Windows Forms</td><td class="num">191</td><td class="num">8</td><td class="num">4.2%</td><td>Wrong product</td></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="sec"><span class="n">3</span>Fatigue / refresh map</div>
-    <div class="cards two">
-      <div class="card">
-        <div class="ch"><span class="nm">Working</span><span class="sp">keep</span></div>
-        <div class="cb">Extensions punch above weight &mdash; <b>Callout 4.6% CTR, Sitelinks 2.9%</b>, far above image/text. The Infragistics logo (1.38%) beats the Ignite UI logo variants (0.5%).</div>
-      </div>
-      <div class="card">
-        <div class="ch"><span class="nm">Fatigue / needs new</span><span class="sp">refresh</span></div>
-        <div class="cb"><b>Logo-only creative at 900k+ impressions</b> is fatigued and off-brief &mdash; no grid/chart product shots. Retire the weak Ignite UI logo variants, remove the <b>Windows Forms</b> asset from Angular campaigns, and build real component/grid screenshots + a short demo video.</div>
-      </div>
+    <div class="sec"><span class="n">3</span> Fatigue &amp; refresh map</div>
+    <div class="twocol">
+      <div class="card"><div class="ch"><span class="nm">Working</span></div><div class="cb"><b>The unbranded display image (11.3% CTR)</b> is the creative to scale in DemandGen. <b>Text + sitelinks</b> carry Search volume and hold up.</div></div>
+      <div class="card"><div class="ch"><span class="nm">Fatigue / needs new creative</span></div><div class="cb"><b>Logo-only image</b> (9.7%) is a placeholder, not a message — replace with a product-in-context frame (grid/chart screenshot). <b>Price</b> asset (4.1%) is dead weight. Long-headline pool is thin. Refresh DemandGen imagery to sustain the 11% winner.</div></div>
     </div>
-    <div class="note"><b>Grading blind spot:</b> like ad copy, all creative assets are &ldquo;Pending&rdquo; &mdash; Google can&rsquo;t rank creative without conversions, so fatigue calls here are CTR- and impression-based only.</div>
+    <div class="note"><b>Cross-product creative bleed — flagged.</b> A <code>ultimate-ui-windows-forms-chart</code> image is serving inside the Angular campaigns (191 impr, 4.2% CTR). A Windows Forms asset has no business in an Angular buy; it dilutes relevance. Remove it from the Angular asset group. <b>Asset-grading blind spot repeats:</b> with 0 conversions, Google leaves creative "Pending," so CTR is the only available signal here.</div>
   </section>
 
-  <!-- ===================== TAB 6: LANDING PAGES ===================== -->
+  <!-- ============ 6 · LANDING PAGES ============ -->
   <section class="tabpanel" data-tab="landing" data-label="Landing Pages">
 
-    <div class="sec"><span class="n">1</span>Paid (google/cpc) on Angular pages &middot; WoW</div>
+    <div class="sec"><span class="n">1</span> GA4 google/cpc on Angular pages · current vs prior week</div>
     <div class="kpigrid">
-      <div class="kpi"><div class="lab">CPC sessions</div><div class="val">11</div><span class="delta down">&#9660; 15%</span></div>
-      <div class="kpi"><div class="lab">Engagement rate</div><div class="val">54.5%</div><span class="delta down">&#9660; 38pp</span></div>
-      <div class="kpi"><div class="lab">Bounce rate</div><div class="val">45.5%</div><span class="delta down">&#9650; 38pp</span></div>
-      <div class="kpi"><div class="lab">Avg session</div><div class="val">125s</div><span class="delta up">&#9650; 10&times;</span></div>
-      <div class="kpi"><div class="lab">Key events</div><div class="val">0</div><span class="delta flat">&#9644; none</span></div>
+      <div class="kpi"><div class="lab">Paid sessions</div><div class="val">10</div><div class="delta down">−23%</div></div>
+      <div class="kpi"><div class="lab">Engagement rate</div><div class="val">80.0%</div><div class="delta down">−4.6 pp</div></div>
+      <div class="kpi"><div class="lab">Bounce rate</div><div class="val">20.0%</div><div class="delta down">+4.6 pp</div></div>
+      <div class="kpi"><div class="lab">Avg session</div><div class="val">10.5s</div><div class="delta down">−90%</div></div>
+      <div class="kpi"><div class="lab">Key events</div><div class="val">0</div><div class="delta flat">flat</div></div>
     </div>
-    <div class="note">Weekly paid volume is tiny (11 vs 13 sessions) so rates swing hard &mdash; the real story is the 12-month trend below. Filter: <code>landingPage contains &ldquo;angular&rdquo;</code> AND <code>medium = cpc</code>.</div>
+    <div class="note"><b>Paid sessions have collapsed to single digits.</b> 10 cpc sessions this week vs 13 last week — against ~103 ad clicks. This is not a demand problem; it's a <b>tracking problem</b> (see §5 and Journey). The 90-day tables below are dominated by the April–May PMax/Display era and should be read as historical, not current.</div>
 
-    <div class="sec"><span class="n">2</span>Trend &middot; paid sessions/month &amp; engagement (as far back as GA4 holds)</div>
-    <div class="chartbox">
-      <div class="ct">Paid (cpc) sessions per month &mdash; Angular pages</div>
-      <svg viewBox="0 0 720 200" role="img" aria-label="Paid sessions per month line chart">
-        <line x1="40" y1="180" x2="710" y2="180" stroke="#E9E9F4"/>
-        <line x1="40" y1="105" x2="710" y2="105" stroke="#F0F2F7"/>
-        <line x1="40" y1="30" x2="710" y2="30" stroke="#F0F2F7"/>
-        <polyline fill="none" stroke="#FF6B2C" stroke-width="3" points="40,179.2 134.3,143.9 228.6,139.1 322.9,98.8 417.1,34 511.4,30 605.7,173.3 700,179.6"/>
-        <g font-family="Roboto Mono, monospace" font-size="10.5" fill="#5f6b7a">
-          <text x="40" y="196">Dec</text><text x="120" y="196">Jan</text><text x="214" y="196">Feb</text><text x="309" y="196">Mar</text><text x="403" y="196">Apr</text><text x="497" y="196">May</text><text x="592" y="196">Jun</text><text x="688" y="196">Jul</text>
-        </g>
-        <g font-family="Roboto Mono, monospace" font-size="10" fill="#0F172A" font-weight="700">
-          <text x="399" y="26">17,189</text><text x="493" y="22">17,665</text><text x="585" y="168">788</text><text x="686" y="174">48</text>
-        </g>
-      </svg>
-      <div class="note"><b>The collapse in one line.</b> Paid Angular traffic peaked at ~17.7k sessions in May, then dropped to 788 (Jun) and 48 (Jul) as the Display/PMax/DemandGen program wound down.</div>
-    </div>
-    <div class="chartbox">
-      <div class="ct">Engagement rate (green) vs bounce rate (red) &mdash; %</div>
-      <svg viewBox="0 0 720 180" role="img" aria-label="Engagement vs bounce line chart">
-        <line x1="40" y1="160" x2="710" y2="160" stroke="#E9E9F4"/>
-        <polyline fill="none" stroke="#12915b" stroke-width="2.5" points="40,69 134.3,77 228.6,78 322.9,59 417.1,41 511.4,44 605.7,44 700,54"/>
-        <polyline fill="none" stroke="#c23b39" stroke-width="2.5" points="40,101 134.3,93 228.6,92 322.9,111 417.1,129 511.4,126 605.7,126 700,116"/>
-        <g font-family="Roboto Mono, monospace" font-size="10.5" fill="#5f6b7a">
-          <text x="40" y="176">Dec</text><text x="120" y="176">Jan</text><text x="214" y="176">Feb</text><text x="309" y="176">Mar</text><text x="403" y="176">Apr</text><text x="497" y="176">May</text><text x="592" y="176">Jun</text><text x="688" y="176">Jul</text>
-        </g>
-      </svg>
-      <div class="note">Quality actually <b>improved</b> as volume fell &mdash; engagement rose to ~78% in spring and bounce dropped, i.e. the traffic that remained was better-qualified (Search) rather than broad Display.</div>
-    </div>
-
-    <div class="sec"><span class="n">3</span>Where paid traffic lands &middot; last 90 days</div>
-    <div class="splitbar">
-      <div style="width:48.7%;background:var(--accent-deep)">Product home 48.7%</div>
-      <div style="width:51.3%;background:var(--accent)">Intent / deep pages 51.3%</div>
-    </div>
-    <div class="legend">
-      <span><i style="background:var(--accent-deep)"></i>/products/ignite-ui-angular <b>10,060 (48.7%)</b></span>
-      <span><i style="background:var(--accent)"></i>Grid examples, chart, compare &amp; docs <b>10,605 (51.3%)</b></span>
-    </div>
-    <div class="ct" style="margin-top:14px;font-size:12px;font-weight:700;color:var(--navy)">Top non-home paid pages &mdash; bar length = sessions, color = bounce health</div>
-    <div class="rank">
-      <div class="row"><span class="lp">/angular-grid-examples&hellip;/column-chart</span><div class="track"><div class="fill" style="width:100%;background:var(--good)">5,597 · 2.6% bounce</div></div><span class="v">5,597</span></div>
-      <div class="row"><span class="lp">/products/ignite-ui-angular/chart</span><div class="track"><div class="fill" style="width:59.8%;background:var(--warn)">3,346 · 47% bounce</div></div><span class="v">3,346</span></div>
-      <div class="row"><span class="lp">/angular-compare</span><div class="track"><div class="fill" style="width:18.7%;background:var(--bad)">1,044 · 59%</div></div><span class="v">1,044</span></div>
-      <div class="row"><span class="lp">&hellip;/general/getting-started</span><div class="track"><div class="fill" style="width:2%;background:var(--warn)">111</div></div><span class="v">111</span></div>
-      <div class="row"><span class="lp">/angular-compare/deu</span><div class="track"><div class="fill" style="width:1.4%;background:var(--good)">80</div></div><span class="v">80</span></div>
-    </div>
-    <div class="note">The grid-examples demo page is the star (<b>97% engaged, 2.6% bounce</b>). But <code>/products/ignite-ui-angular/chart</code> (47% bounce) and <code>/angular-compare</code> (59% bounce) leak qualified paid clicks &mdash; priority CRO targets.</div>
-
-    <div class="sec"><span class="n">4</span>Device split &amp; engagement by campaign &middot; last 90 days</div>
-    <div class="donutwrap">
-      <div class="donut" style="background:conic-gradient(var(--accent) 0 75%, var(--accent-deep) 75% 99.2%, var(--gray) 99.2% 100%)"></div>
-      <div>
-        <div class="legend" style="flex-direction:column;gap:7px;margin-top:0">
-          <span><i style="background:var(--accent)"></i>Mobile <b>15,504 (75.0%)</b> &middot; 86.6% engaged</span>
-          <span><i style="background:var(--accent-deep)"></i>Desktop <b>5,004 (24.2%)</b> &middot; 53.4% engaged</span>
-          <span><i style="background:var(--gray)"></i>Tablet + Smart TV <b>157 (0.8%)</b></span>
-        </div>
-        <div class="note" style="max-width:360px"><b>Mobile-heavy for a developer tool</b> &mdash; 75% of paid sessions are mobile, driven by the spring Display/DemandGen push. Developers evaluate and install on desktop, so mobile volume rarely converts to adoption. Weight future spend toward desktop-qualified Search.</div>
+    <div class="sec"><span class="n">2</span> Paid sessions / month &amp; engagement trend (GA4 cpc, as far back as held)</div>
+    <div class="twocol">
+      <div class="chartcard">
+        <h4>Paid cpc sessions / month → Angular pages</h4>
+        <svg viewBox="0 0 460 200" width="100%" height="200" font-family="Roboto,sans-serif">
+          <line x1="40" y1="170" x2="450" y2="170" stroke="var(--line)"/>
+          <line x1="40" y1="20" x2="40" y2="170" stroke="var(--line)"/>
+          <polyline fill="none" stroke="var(--accent)" stroke-width="2.5"
+            points="55,169 112,134 169,129 226,89 283,24 340,20 397,163 447,169"/>
+          <g fill="var(--accent-deep)">
+            <circle cx="55" cy="169" r="3"/><circle cx="112" cy="134" r="3"/><circle cx="169" cy="129" r="3"/>
+            <circle cx="226" cy="89" r="3"/><circle cx="283" cy="24" r="3"/><circle cx="340" cy="20" r="3"/>
+            <circle cx="397" cy="163" r="3"/><circle cx="447" cy="169" r="3"/>
+          </g>
+          <g font-size="9" fill="var(--muted)" text-anchor="middle">
+            <text x="55" y="185">Dec</text><text x="112" y="185">Jan</text><text x="169" y="185">Feb</text>
+            <text x="226" y="185">Mar</text><text x="283" y="185">Apr</text><text x="340" y="185">May</text>
+            <text x="397" y="185">Jun</text><text x="447" y="185">Jul</text>
+          </g>
+          <g font-size="8.5" fill="var(--navy)" text-anchor="middle" font-family="var(--mono)">
+            <text x="283" y="16">17.2K</text><text x="340" y="13">17.7K</text><text x="397" y="157">788</text><text x="447" y="163">49</text>
+          </g>
+        </svg>
+        <div class="note" style="margin-top:6px"><b>The cliff:</b> 17.7K (May) → 788 (Jun) → 49 (Jul). PMax/Display wind-down + broken Search tagging.</div>
+      </div>
+      <div class="chartcard">
+        <h4>Engagement rate vs bounce rate</h4>
+        <svg viewBox="0 0 460 200" width="100%" height="200" font-family="Roboto,sans-serif">
+          <line x1="40" y1="170" x2="450" y2="170" stroke="var(--line)"/>
+          <line x1="40" y1="20" x2="40" y2="170" stroke="var(--line)"/>
+          <polyline fill="none" stroke="var(--good)" stroke-width="2.5"
+            points="55,79 112,87 169,89 226,69 283,51 340,54 397,54 447,57"/>
+          <polyline fill="none" stroke="var(--bad)" stroke-width="2.5" stroke-dasharray="4 3"
+            points="55,111 112,103 169,101 226,121 283,139 340,136 397,136 447,133"/>
+          <g font-size="9" fill="var(--muted)" text-anchor="middle">
+            <text x="55" y="185">Dec</text><text x="112" y="185">Jan</text><text x="169" y="185">Feb</text>
+            <text x="226" y="185">Mar</text><text x="283" y="185">Apr</text><text x="340" y="185">May</text>
+            <text x="397" y="185">Jun</text><text x="447" y="185">Jul</text>
+          </g>
+        </svg>
+        <div class="legend"><span><i class="swatch" style="background:var(--good)"></i>Engagement rate</span><span><i class="swatch" style="background:var(--bad)"></i>Bounce rate</span></div>
+        <div class="note" style="margin-top:6px">Engagement <b>improved</b> as volume fell — the trickle that still lands is higher-intent (peaked ~79% in Apr).</div>
       </div>
     </div>
+
+    <div class="sec"><span class="n">3</span> Where paid traffic lands (90-day share)</div>
+    <div class="splitbar" style="height:30px">
+      <div class="seg" style="width:41.4%;background:var(--accent)">Home /ignite-ui-angular · 41%</div>
+      <div class="seg" style="width:58.6%;background:var(--accent-deep)">Intent pages (charts, chart, compare, grid) · 59%</div>
+    </div>
+    <div style="margin-top:14px">
+      <div class="rankbar"><span class="rl">/products/ignite-ui-angular (home)</span><span class="rt"><span class="rf" style="width:100%;background:var(--good)"></span></span><span class="rv">9,752</span></div>
+      <div class="rankbar"><span class="rl">/angular-grid-examples/…/column-chart</span><span class="rt"><span class="rf" style="width:55%;background:var(--good)"></span></span><span class="rv">5,406</span></div>
+      <div class="rankbar"><span class="rl">/products/ignite-ui-angular/chart</span><span class="rt"><span class="rf" style="width:33%;background:var(--warn)"></span></span><span class="rv">3,237</span></div>
+      <div class="rankbar"><span class="rl">/angular-compare</span><span class="rt"><span class="rf" style="width:10%;background:var(--bad)"></span></span><span class="rv">987</span></div>
+      <div class="rankbar"><span class="rl">/…/getting-started</span><span class="rt"><span class="rf" style="width:3%;background:var(--good)"></span></span><span class="rv">110</span></div>
+      <div class="legend"><span><i class="swatch" style="background:var(--good)"></i>Healthy bounce (&lt;30%)</span><span><i class="swatch" style="background:var(--warn)"></i>Watch (30–50%)</span><span><i class="swatch" style="background:var(--bad)"></i>High bounce (&gt;50%)</span></div>
+    </div>
+    <div class="note">The <b>/angular-grid-examples column-chart demo</b> is the engagement star — 97.4% engaged, 2.6% bounce. The <b>/products/ignite-ui-angular/chart</b> page (47.6% bounce) and <b>/angular-compare</b> (59.2% bounce) are the weak landers; compare-page traffic is the least engaged intent destination and needs a UX/message look.</div>
+
+    <div class="sec"><span class="n">4</span> Device split (90-day paid)</div>
+    <div class="twocol">
+      <div class="chartcard" style="display:flex;gap:18px;align-items:center">
+        <svg viewBox="0 0 120 120" width="120" height="120">
+          <circle cx="60" cy="60" r="45" fill="none" stroke="var(--gray-bg)" stroke-width="18"/>
+          <circle cx="60" cy="60" r="45" fill="none" stroke="var(--accent)" stroke-width="18" stroke-dasharray="212 283" transform="rotate(-90 60 60)"/>
+          <circle cx="60" cy="60" r="45" fill="none" stroke="var(--accent-deep)" stroke-width="18" stroke-dasharray="68 283" stroke-dashoffset="-212" transform="rotate(-90 60 60)"/>
+          <text x="60" y="57" text-anchor="middle" font-size="15" font-weight="700" fill="var(--navy)" font-family="var(--mono)">75%</text>
+          <text x="60" y="72" text-anchor="middle" font-size="8" fill="var(--muted)">mobile</text>
+        </svg>
+        <div style="font-size:12.5px">
+          <div class="legend" style="flex-direction:column;gap:7px">
+            <span><i class="swatch" style="background:var(--accent)"></i><b>Mobile</b> — 14,964 sess · 86.5% eng · 0 conv</span>
+            <span><i class="swatch" style="background:var(--accent-deep)"></i><b>Desktop</b> — 4,816 sess · 53.4% eng · <b>3 conv</b></span>
+            <span><i class="swatch" style="background:var(--gray)"></i>Tablet 107 · Smart TV 46</span>
+          </div>
+        </div>
+      </div>
+      <div class="card"><div class="ch"><span class="nm">Read the split</span></div><div class="cb"><b>75% mobile is a Display/PMax signature</b>, not developer-search behaviour — devs evaluate component libraries on desktop. It confirms the April–May volume came from the now-off display program. Note the inversion: <b>mobile engages more (86.5%) but converts nothing; desktop engages less (53.4%) but owns all 3 conversions.</b> Real buying evaluation is a desktop, lower-funnel act.</div></div>
+    </div>
+
+    <div class="sec"><span class="n">5</span> Engagement by campaign — the tagging problem</div>
     <div class="dtable">
       <table>
-        <thead><tr><th>Session campaign (attributed)</th><th>Sessions</th><th>Engaged</th><th>Eng. rate</th><th>Avg dur.</th></tr></thead>
+        <thead><tr><th>Session campaign name</th><th class="num">Sessions</th><th class="num">Eng. rate</th><th class="num">Bounce</th><th class="num">Conv.</th></tr></thead>
         <tbody>
-          <tr><td><code>{campaignname}</code> &mdash; unresolved UTM</td><td class="num">15,059</td><td class="num">13,131</td><td class="num">87.2%</td><td class="num">82.9s</td></tr>
-          <tr><td>ignite-ui-angular (manual tag)</td><td class="num">4,927</td><td class="num">2,553</td><td class="num">51.8%</td><td class="num">87.6s</td></tr>
-          <tr><td>(referral / organic / other)</td><td class="num">~680</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td></tr>
+          <tr><td style="color:var(--bad);font-weight:600">{campaignname} — unresolved UTM</td><td class="num">14,535</td><td class="num">87.1%</td><td class="num">12.9%</td><td class="num">0</td></tr>
+          <tr><td>ignite-ui-angular</td><td class="num">4,752</td><td class="num">51.6%</td><td class="num">48.4%</td><td class="num">3</td></tr>
+          <tr><td>(referral)</td><td class="num">333</td><td class="num">84.1%</td><td class="num">15.9%</td><td class="num">0</td></tr>
+          <tr><td>(not set)</td><td class="num">245</td><td class="num">76.7%</td><td class="num">23.3%</td><td class="num">0</td></tr>
+          <tr><td>ignite-ui-react / blazor / ultimate (bleed)</td><td class="num">28</td><td class="num">~55%</td><td class="num">~45%</td><td class="num">0</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="note"><b>75% of paid sessions can&rsquo;t be tied to a campaign</b> &mdash; they land under the literal string <code>{campaignname}</code>, meaning a manual tracking template never populated. Fix auto-tagging (GCLID) or the UTM template before trusting any campaign-level GA4 read.</div>
+    <div class="note"><b>Unresolved <code>{campaignname}</code> — flagged.</b> 14,535 paid sessions (the largest bucket) land under the literal merge field <code>{campaignname}</code>, meaning the final-URL/UTM template is mis-templated or auto-tagging (GCLID) is off. Attribution to specific Angular campaigns is impossible while this persists — and it's why the cpc session count now reads near-zero as the old PMax volume rolled off. Cross-product bleed (react/blazor/ultimate) also appears in the Angular page set. <b>Fix: switch to auto-tagging (GCLID) or correct the UTM template to emit real campaign names.</b></div>
   </section>
 
-  <!-- ===================== TAB 7: JOURNEY & ROI ===================== -->
-  <section class="tabpanel" data-tab="journey" data-label="Journey &amp; ROI">
+  <!-- ============ 7 · JOURNEY & ROI ============ -->
+  <section class="tabpanel" data-tab="journey" data-label="Journey & ROI">
 
-    <div class="sec"><span class="n">1</span>The funnel, traced &middot; spend &rarr; clicks &rarr; sessions &rarr; installs</div>
-    <div class="lead">
-      With no lead/pipeline object wired to Angular paid, the honest ROI endpoint is <b>developer adoption &mdash; npm installs of <code>igniteui-angular</code></b>. The funnel is clean at the top and breaks in the middle: spend and clicks are real, but only a fraction of clicks reconcile to tracked sessions, and <b>zero</b> convert in-platform. Installs, the actual outcome, are healthy and rising &mdash; but they can&rsquo;t currently be attributed to paid because the measurement layer is broken.
-    </div>
+    <div class="sec"><span class="n">1</span> The funnel · spend → clicks → sessions → adoption (current week)</div>
     <div class="funnel">
-      <div class="fstage"><div class="fl">Spend / wk</div><div class="fbar" style="width:100%">$1,991.74</div></div>
-      <div class="fstage"><div class="fl">Clicks / wk</div><div class="fbar" style="width:70%">104 clicks</div></div>
-      <div class="fnote">&#9660; attribution gap &mdash; 75% of paid sessions carry an unresolved <code>{campaignname}</code> UTM</div>
-      <div class="fstage"><div class="fl">CPC sessions / wk</div><div class="fbar alt" style="width:42%">11 tracked on Angular pages</div></div>
-      <div class="fnote">&#9660; conversion tracking dark &mdash; 0 key events in Ads &amp; GA4</div>
-      <div class="fstage"><div class="fl">Conversions</div><div class="fbar alt" style="width:20%">0 tracked</div></div>
-      <div class="fstage"><div class="fl">npm installs / wk</div><div class="fbar good" style="width:88%">10,750 &nbsp;(&#9650; 85% WoW)</div></div>
+      <div class="fstep"><div class="fbar" style="width:70%;background:var(--accent)">$1,961</div><span class="flab">Spend (Search + DemandGen)</span></div>
+      <div class="fstep"><div class="fbar" style="width:40%;background:var(--accent-deep)">103</div><span class="flab">Clicks (Google Ads)</span></div>
+      <div class="fdrop">Attribution gap ≈ 90% — only 10 of ~103 paid clicks register as GA4 cpc sessions (broken tagging)</div>
+      <div class="fstep"><div class="fbar" style="width:14%;background:var(--warn)">10</div><span class="flab">GA4 cpc sessions → Angular pages</span></div>
+      <div class="fdrop">Conversion tracking not wired — 0 Ads conversions, so the funnel goes dark here</div>
+      <div class="fstep"><div class="fbar" style="width:10%;background:var(--bad)">0</div><span class="flab">Tracked conversions / key events</span></div>
+      <div class="fstep"><div class="fbar" style="width:100%;background:var(--good)">13,522</div><span class="flab">npm installs / wk (igniteui-angular) — adoption endpoint</span></div>
     </div>
-    <div class="note">npm installs are a package-download proxy for adoption, not a paid-attributed conversion &mdash; treat the last bar as the outcome we want paid to influence, once tracking connects clicks to it.</div>
+    <div class="note"><b>The funnel breaks in two places.</b> (1) <b>Ad click → GA4 session</b>: ~90% of paid clicks don't surface as cpc sessions because of the <code>{campaignname}</code> / auto-tagging failure. (2) <b>Session → conversion</b>: there is no conversion tracking, so Ads reports 0 and cannot optimize. Adoption (npm) is the true ROI endpoint for UI Tools, but with the two breaks above we <b>cannot attribute installs to paid</b> — we can only observe that adoption is strong while paid runs.</div>
 
-    <div class="sec"><span class="n">2</span>Adoption trend &middot; igniteui-angular installs / month</div>
-    <div class="chartbox">
-      <div class="ct">npm downloads per month (Jul = partial, 25 days)</div>
-      <svg viewBox="0 0 720 200" role="img" aria-label="npm installs per month">
-        <line x1="40" y1="180" x2="710" y2="180" stroke="#E9E9F4"/>
-        <line x1="40" y1="105" x2="710" y2="105" stroke="#F0F2F7"/>
-        <polyline fill="none" stroke="#12915b" stroke-width="3" points="40,73.2 150,57.9 260,56 370,41.3 480,43.8 590,30"/>
-        <polyline fill="none" stroke="#12915b" stroke-width="3" stroke-dasharray="5 4" points="590,30 700,54.8"/>
-        <g font-family="Roboto Mono, monospace" font-size="10.5" fill="#5f6b7a">
-          <text x="28" y="196">Jan</text><text x="138" y="196">Feb</text><text x="248" y="196">Mar</text><text x="358" y="196">Apr</text><text x="468" y="196">May</text><text x="576" y="196">Jun</text><text x="682" y="196">Jul*</text>
+    <div class="sec"><span class="n">2</span> igniteui-angular npm installs — adoption trend</div>
+    <div class="chartcard">
+      <h4>Monthly installs (2026) · Jul is partial through the 26th</h4>
+      <svg viewBox="0 0 640 200" width="100%" height="200" font-family="Roboto,sans-serif">
+        <line x1="40" y1="170" x2="630" y2="170" stroke="var(--line)"/>
+        <g>
+          <rect x="60" y="70" width="55" height="100" fill="var(--accent)" opacity="0.85"/>
+          <rect x="140" y="56" width="55" height="114" fill="var(--accent)" opacity="0.85"/>
+          <rect x="220" y="54" width="55" height="116" fill="var(--accent)" opacity="0.85"/>
+          <rect x="300" y="40" width="55" height="130" fill="var(--accent)" opacity="0.85"/>
+          <rect x="380" y="43" width="55" height="127" fill="var(--accent)" opacity="0.85"/>
+          <rect x="460" y="30" width="55" height="140" fill="var(--accent-deep)"/>
+          <rect x="540" y="40" width="55" height="130" fill="var(--accent)" opacity="0.5"/>
         </g>
-        <g font-family="Roboto Mono, monospace" font-size="10" fill="#0F172A" font-weight="700">
-          <text x="20" y="68">25.3k</text><text x="566" y="24">35.5k</text>
+        <g font-size="9.5" fill="var(--navy)" text-anchor="middle" font-family="var(--mono)">
+          <text x="87" y="63">25.3K</text><text x="167" y="49">28.9K</text><text x="247" y="47">29.4K</text>
+          <text x="327" y="33">32.8K</text><text x="407" y="36">32.2K</text><text x="487" y="23">35.5K</text><text x="567" y="33">33.1K*</text>
+        </g>
+        <g font-size="10" fill="var(--muted)" text-anchor="middle">
+          <text x="87" y="185">Jan</text><text x="167" y="185">Feb</text><text x="247" y="185">Mar</text>
+          <text x="327" y="185">Apr</text><text x="407" y="185">May</text><text x="487" y="185">Jun</text><text x="567" y="185">Jul*</text>
         </g>
       </svg>
-      <div class="note">Installs grew from <b>25.3k (Jan) to 35.5k (Jun)</b> &mdash; roughly <b>+40% over six months, +10% MoM</b> into June. Adoption momentum is the strongest signal in the account and it is <b>independent of the paid slowdown</b>.</div>
+      <div class="note" style="margin-top:6px">Steady MoM climb — <b>June 35.5K, an all-time monthly high</b>; July is on pace to match (33.1K through 26 days ≈ 39K run-rate). <b>This week 13,522 installs vs 6,467 prior (+109% WoW)</b>, inflated by CI/mirror spikes on Jul 23 (2,956) and Jul 26 (3,437) — real underlying demand is healthy and rising, not doubling.</div>
     </div>
 
     <div class="verdict">
-      <div class="vh">Verdict &middot; Fix &amp; reallocate &mdash; do not scale yet</div>
-      <p>
-        <b>FIX, then reallocate.</b> The Angular account is spending <b>~$2k/week at a $19 CPC into a measurement black box</b> &mdash; zero tracked conversions, 75% of sessions untagged, and every ad/creative asset ungraded because Google has no signal. You cannot scale what you cannot see. <b>Step one (this week):</b> stand up conversion tracking (fire &amp; import trial-start / docs / SDK-install key events) and fix auto-tagging so <code>{campaignname}</code> resolves &mdash; this alone unblocks Ad Copy grading, Creative grading, and the whole funnel.
-      </p>
-      <p>
-        <b>Step two:</b> cut the ~$300&ndash;$470/wk of competitor &amp; Angular-Material close-variant leakage, add the four exact-match gaps, and restore Compete&rsquo;s budget to recover its lost 30pp of impression share. <b>Step three:</b> decide on the wound-down Display/PMax program &mdash; it drove 17k mobile sessions/month that never showed adoption, so reallocating that budget into the budget-capped desktop Search core is the higher-ROI move. <b>Hold total spend flat this week.</b> Adoption (npm +40% since Jan) proves the product is winning developers; the job now is to make paid <em>provably</em> contribute to it. <b>Scale next week, on real signal.</b>
-      </p>
+      <div class="vh">Verdict — Fix before scale</div>
+      <p><b>Keep the campaigns running — but do not scale a funnel you can't measure.</b> The demand is real: Grids and Charts own their real estate, Search CTR is a strong 11%, and igniteui-angular adoption is at record highs. But Angular paid is <b>measurement-blind</b> — 0 conversion tracking and a <code>{campaignname}</code> tagging break that hides ~90% of paid sessions — so no ROI claim is defensible today. Three fixes, in order: <b>(1) wire conversion tracking</b> (trial starts / SDK signups) so Ads can optimize and asset grading unlocks; <b>(2) repair auto-tagging/UTM</b> to make the funnel legible; <b>(3) restore Compete budget</b> and <b>add the "angular material" / "angular library" negatives</b> to reclaim ~$505/mo and stop forfeiting 32% of competitor-term impressions. Re-evaluate for scale-up in 2 weeks once conversions are flowing. <b>Reallocate now:</b> shift the ~$505/mo of junk spend into Grids and Charts, the two themes already converting attention into engaged sessions.</p>
     </div>
   </section>
 
   </div>
-
 </div>
 
 <script>
