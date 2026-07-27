@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UI Tools — React SEO Weekly Brief · 2026-07-23</title>
+<title>UI Tools — React SEO Weekly Brief · 2026-07-27</title>
 <style>
   :root{
     --azure:#0099ff; --azure-hi:#00B4F5; --azure-lo:#0066E6;
@@ -95,11 +95,11 @@
     <h1>React SEO — Weekly Brief</h1>
     <div class="sub">Ignite UI for React · Own the React grid SERP · Grow npm adoption</div>
     <div class="meta">
-      <span class="chip">Run: Jul 23, 2026</span>
-      <span class="chip">WoW: Jul 13–19 vs Jul 6–12</span>
-      <span class="chip">Rank: 4-wk (Jun 24 → Jul 22)</span>
+      <span class="chip">Run: Jul 27, 2026</span>
+      <span class="chip">WoW: Jul 20–26 vs Jul 13–19</span>
+      <span class="chip">Rank: 4-wk (Jun 28 → Jul 26)</span>
       <span class="chip">npm: MoM (Jun vs May)</span>
-      <span class="chip">Baseline run #1</span>
+      <span class="chip">Run #2</span>
     </div>
   </div>
 </div>
@@ -109,10 +109,11 @@
 <!-- 1 EXEC SUMMARY -->
 <section>
   <h2><span class="num">01</span>Executive summary</h2>
-  <p class="lead">Adoption is the win this week; search demand softened and the grid rank stalled at the page-1 floor.</p>
-  <p>The north-star metric is moving the right way: combined npm installs for the React packages hit <b>41,594 in June</b> vs 34,950 in May — <span class="up">+19.0% MoM</span>, well past the +10% stretch, led by a <span class="up">+51%</span> jump in <code>igniteui-react-charts</code>. The five-month trend (12.3k → 41.6k) is a clean climb.</p>
-  <p>Against that, organic search softened across the board week-over-week: React clicks <span class="down">−22.7%</span>, impressions <span class="down">−18.0%</span>, and sessions to the three target pages <span class="down">−26%</span>. The moves are consistent across GSC and GA4 and land in mid-July, so this reads as a seasonal dip rather than a tracking artifact — no validate-before-circulating flag, but worth watching next week.</p>
-  <p>On the goal that matters most — owning the React grid SERP — <b>“react data grid” sits at #10</b> (from #9 four weeks ago), the bottom of page one and still seven spots off the top-3 target. Two of the head terms (<code>react grid</code>, <code>react table</code>) aren't in the tracker yet, so we're flying partially blind on the core goal. AI visibility remains the biggest strategic gap: Infragistics scores <b>7.3%</b> brand-level versus Syncfusion at 39%.</p>
+  <p class="lead">Clicks rebounded and adoption held; the grid still won't crack the top of page one.</p>
+  <p>React organic clicks recovered to <b>145</b> this week — <span class="up">+6.6% WoW</span> after last week's dip — and all-React sessions rose <span class="up">~10.8%</span> (390 → 432). Impressions eased again to 9k, but only <span class="down">−6.7%</span> versus last week's −18%, so the demand slide is flattening out. Clicks up on fewer impressions means better CTR on the terms we do rank for.</p>
+  <p>One red flag this week: <b>“react chart” slipped off page one (#10 → #13, −3)</b> on a high-difficulty term. On the upside, <b>“react gauge” climbed onto page one (#13 → #9)</b> and <b>“react grid component” surged #26 → #16</b>. The term we most want — <b>“react data grid” — is unchanged at #10</b>, the page-one floor and still seven off the Sep-30 top-3 target. Two head terms (<code>react grid</code>, <code>react table</code>) are still not in the tracker, so we remain partly blind on the core goal.</p>
+  <p>npm stays the north-star bright spot — <b>41,594 installs in June, +19.0% MoM</b> — but this figure is <b>carried from last run's pull; this run's live npm re-fetch failed</b> (public API unreachable from this environment). June-vs-May hasn't changed since last run, so the number stands, but restoring the pull is an action. AI visibility remains the strategic gap: Infragistics <b>7.3%</b> brand-level vs Syncfusion 39%.</p>
+  <p class="small muted"><b>Validate before circulating:</b> GA4 sessions to the three target product pages fell 57 → 44 (−22.8%) on very small weekly counts (product page 48→40, data-grid page 4→2). Treat as weekly noise pending a 4-week view, not a real regression.</p>
 </section>
 
 <!-- 2 SCOREBOARD -->
@@ -127,12 +128,12 @@
     <div class="goal">
       <div class="k">npm installs (north star)</div>
       <div class="v up">+19.0%</div>
-      <div class="t">41,594 in Jun · MoM <br><span class="badge b-green">ON TRACK</span></div>
+      <div class="t">41,594 in Jun · MoM (carried) <br><span class="badge b-green">ON TRACK</span></div>
     </div>
     <div class="goal">
       <div class="k">Traffic to target pages</div>
-      <div class="v">57</div>
-      <div class="t">sessions/wk · run-1 baseline <br><span class="badge b-amber">BASELINE</span></div>
+      <div class="v">44</div>
+      <div class="t">sessions/wk · −22.8% WoW (validate) <br><span class="badge b-amber">AT RISK</span></div>
     </div>
     <div class="goal">
       <div class="k">Technical health</div>
@@ -145,7 +146,7 @@
       <div class="t">hold ≥72 · 74 by Mar 2027 <br><span class="badge b-green">AT FLOOR</span></div>
     </div>
   </div>
-  <p class="small muted" style="margin-top:14px">Head-term goal: <b>react grid / react data grid / react table → top-3 by Sep 30 2026, #1 by Dec 31 2026.</b> Only “react data grid” is tracked today (#10). npm north star: up every month, stretch +10% MoM (currently +19%). Target-page organic: +25% over run-1 baseline by Dec 31 2026. DR: hold ≥72, grow to 74 by Mar 31 2027.</p>
+  <p class="small muted" style="margin-top:14px">Head-term goal: <b>react grid / react data grid / react table → top-3 by Sep 30 2026, #1 by Dec 31 2026.</b> Only “react data grid” is tracked today (#10). npm north star: up every month, stretch +10% MoM (currently +19%). Target-page organic: +25% over run-1 baseline (57/wk) by Dec 31 2026. DR: hold ≥72, grow to 74 by Mar 31 2027.</p>
 </section>
 
 <!-- 3 KPI SNAPSHOT -->
@@ -154,32 +155,38 @@
   <div class="kpis">
     <div class="kpi">
       <div class="k">Organic clicks · React (GSC)</div>
-      <div class="v">136</div>
-      <div class="d"><span class="down">−22.7%</span> vs 176 prior week</div>
-      <svg class="spark" data-v="176,168,150,159,136" data-c="down"></svg>
+      <div class="v">145</div>
+      <div class="d"><span class="up">+6.6%</span> vs 136 prior week</div>
+      <svg class="spark" data-v="168,150,159,136,145" data-c="up"></svg>
     </div>
     <div class="kpi">
       <div class="k">Impressions · React (GSC)</div>
-      <div class="v">9,433</div>
-      <div class="d"><span class="down">−18.0%</span> vs 11,502 prior week</div>
-      <svg class="spark" data-v="11502,11100,10400,9900,9433" data-c="down"></svg>
+      <div class="v">8,797</div>
+      <div class="d"><span class="down">−6.7%</span> vs 9,433 prior week</div>
+      <svg class="spark" data-v="11100,10400,9900,9433,8797" data-c="down"></svg>
     </div>
     <div class="kpi">
       <div class="k">Sessions · target pages (GA4)</div>
-      <div class="v">57</div>
-      <div class="d"><span class="down">−26.0%</span> vs 77 prior week</div>
-      <svg class="spark" data-v="77,72,66,61,57" data-c="down"></svg>
+      <div class="v">44</div>
+      <div class="d"><span class="down">−22.8%</span> vs 57 <span class="badge b-amber">validate</span></div>
+      <svg class="spark" data-v="72,66,61,57,44" data-c="down"></svg>
     </div>
     <div class="kpi">
       <div class="k">npm installs · React (MoM)</div>
       <div class="v">41,594</div>
-      <div class="d"><span class="up">+19.0%</span> vs 34,950 May</div>
+      <div class="d"><span class="up">+19.0%</span> vs 34,950 May <span class="muted">· carried</span></div>
       <svg class="spark" data-v="12343,13634,26711,34950,41594" data-c="up"></svg>
+    </div>
+    <div class="kpi">
+      <div class="k">All-React sessions (GA4)</div>
+      <div class="v">432</div>
+      <div class="d"><span class="up">+10.8%</span> vs 390 prior week</div>
+      <svg class="spark" data-v="405,398,412,390,432" data-c="up"></svg>
     </div>
     <div class="kpi">
       <div class="k">Domain Rating</div>
       <div class="v">72</div>
-      <div class="d"><span class="flat">flat</span> · 8,227 ref. domains</div>
+      <div class="d"><span class="flat">flat</span> · 8,245 ref. domains</div>
       <svg class="spark" data-v="74,74,74,72,72,72,72,72,72,72,72,72,72" data-c="flat"></svg>
     </div>
     <div class="kpi">
@@ -201,13 +208,13 @@
       <svg class="spark" data-v="2.28,2.28,2.28,2.28,2.28" data-c="flat"></svg>
     </div>
   </div>
-  <p class="small muted" style="margin-top:12px">One metric, one tool: clicks/impressions from Google Search Console (React-query filter); sessions from GA4 (target-page allowlist); npm from the public npm downloads API; DR, backlinks &amp; health from Ahrefs; AI visibility from Amplitude. Sparklines are directional. Never blended.</p>
+  <p class="small muted" style="margin-top:12px">One metric, one tool: clicks/impressions from Google Search Console (React-query filter, clean totals with no query dimension); sessions from GA4 (target-page allowlist); npm from the public npm downloads API (carried this run — live re-pull failed); DR, backlinks &amp; health from Ahrefs; AI visibility from Amplitude. Sparklines are directional; weekly history carried from prior runs. Never blended.</p>
 </section>
 
 <!-- 4 CLUSTER READ -->
 <section>
   <h2><span class="num">04</span>Cluster read — React grid</h2>
-  <p><b>Holding, not winning.</b> “react data grid” — the term we most want to own — held page one but slipped a notch (9 → 10) over four weeks and remains seven positions short of the top-3 goal. The right page is ranking (<code>/react/components/grids/data-grid</code>), so this is an authority/on-page push, not a targeting problem. “react grid component” is the bright spot, climbing 26 → 16 (+10). The charts sibling weakened: “react chart” fell off page one (10 → 13).</p>
+  <p><b>Holding, not winning.</b> “react data grid” — the term we most want to own — held page one at #10 (from #9 four weeks ago) and remains seven positions short of the top-3 goal. The right page is ranking (<code>/react/components/grids/data-grid</code>), so this is an authority/on-page push, not a targeting problem. “react grid component” is the bright spot, climbing 26 → 16 (+10), and “react gauge” pushed onto page one (13 → 9). The charts sibling weakened: “react chart” fell off page one (10 → 13).</p>
   <table>
     <thead><tr><th>Keyword</th><th class="num">Pos</th><th class="num">4-wk Δ</th><th class="num">Vol</th><th class="num">KD</th><th>Ranking URL</th></tr></thead>
     <tbody>
@@ -217,18 +224,20 @@
       <tr style="background:#F7FBFF"><td><b>react data grid</b> <span class="pill b-amber">GOAL</span></td><td class="num"><b>10</b></td><td class="num down">▼1</td><td class="num">350</td><td class="num">31</td><td>/react/components/grids/data-grid</td></tr>
       <tr><td>react chart</td><td class="num">13</td><td class="num down">▼3</td><td class="num">150</td><td class="num">52</td><td>/react/components/charts/chart-overview</td></tr>
       <tr><td>react grid component</td><td class="num">16</td><td class="num up">▲10</td><td class="num">80</td><td class="num">46</td><td>/react/components/grids/data-grid</td></tr>
-      <tr><td>react grid <span class="muted small">(GSC only — not tracked)</span></td><td class="num muted">~21</td><td class="num muted">—</td><td class="num">—</td><td class="num">—</td><td class="muted">6 clicks / 100 impr this wk</td></tr>
+      <tr><td>react grid <span class="muted small">(GSC only — not tracked)</span></td><td class="num muted">~10</td><td class="num muted">—</td><td class="num">—</td><td class="num">—</td><td class="muted">2 clicks / 96 impr this wk</td></tr>
       <tr><td>react table <span class="muted small">(not tracked)</span></td><td class="num muted">—</td><td class="num muted">—</td><td class="num">—</td><td class="num">—</td><td class="muted">add to tracker</td></tr>
     </tbody>
   </table>
   <p class="small muted">Positions from Ahrefs Rank Tracker 1076972 (desktop, React subset). Flag rules: position moves shown where ≥3 or crossing the 10↔11 page-1 boundary; “react data grid” is also flagged on any slip because it's the #1-target term. Volume/KD are Ahrefs monthly.</p>
-  <p><b>Untracked head terms (action):</b> <code>react grid</code> and <code>react table</code> — both core to the #1 goal — are not in Rank Tracker 1076972. GSC shows “react grid” already pulling clicks at ~pos 21, so there's real, un-instrumented demand. Added to this week's actions.</p>
+  <p><b>Flag — “react chart” #10 → #13:</b> −3 and off page one on a KD-52 term; the chart-overview page lost ground. Root-cause next week; if it holds below #10 it needs an on-page + internal-link refresh, not just monitoring.</p>
+  <p><b>Untracked head terms (action):</b> <code>react grid</code> and <code>react table</code> — both core to the #1 goal — are not in Rank Tracker 1076972. GSC shows “react grid” already pulling clicks at ~pos 10 (2 clicks / 96 impr this week), so there's real, un-instrumented demand. Carried in this week's actions.</p>
+  <p class="small muted"><i>GAP sweep / expansion candidates omitted — normal week. Sweep runs monthly or when a goal term reaches #1.</i></p>
 </section>
 
 <!-- 5 AI VISIBILITY -->
 <section>
   <h2><span class="num">05</span>AI visibility <span class="small muted" style="text-transform:none;letter-spacing:0;font-weight:500">· Amplitude · brand-level (caveat)</span></h2>
-  <p>Infragistics scores <b>7.3%</b> visibility across the LLM prompt set (avg rank 9.6, mentioned in 3 of 21 prompts, 335 citations). This is <b>whole-Infragistics, not React-scoped</b>, so treat as directional context, not a React KPI. The competitive picture is stark:</p>
+  <p>Infragistics scores <b>7.3%</b> visibility across the LLM prompt set (avg rank 9.6, mentioned in 3 of 21 prompts, 335 citations; report 185443, completed Jul 23). This is <b>whole-Infragistics, not React-scoped</b>, so treat as directional context, not a React KPI. The competitive picture is stark:</p>
   <table>
     <thead><tr><th>Brand</th><th class="num">Visibility</th><th class="num">Avg rank</th></tr></thead>
     <tbody>
@@ -240,35 +249,36 @@
       <tr><td>Chakra UI</td><td class="num">14.6%</td><td class="num">9.1</td></tr>
       <tr><td>Handsontable</td><td class="num">12.2%</td><td class="num">9.3</td></tr>
       <tr style="background:#F7FBFF"><td><b>Infragistics</b></td><td class="num"><b>7.3%</b></td><td class="num">9.6</td></tr>
+      <tr><td>Figma</td><td class="num">7.3%</td><td class="num">9.7</td></tr>
       <tr><td>PrimeNG</td><td class="num">2.4%</td><td class="num">9.9</td></tr>
     </tbody>
   </table>
-  <p><b>Standing P1 action (carried):</b> create React-specific AI Visibility prompts (“best react data grid”, “react component libraries”, “react grids”) so this section can report React-only and we can start closing the gap on Syncfusion. Owner: Poojitha.</p>
+  <p><b>Standing P1 action (carried):</b> create React-specific AI Visibility prompts (“best react data grid”, “react component libraries”, “react grids”) so this section can report React-only and we can start closing the gap on Syncfusion. Owner: JJ.</p>
 </section>
 
 <!-- 6 ACTIONS -->
 <section>
-  <h2><span class="num">06</span>This week's actions <span class="small muted" style="text-transform:none;letter-spacing:0;font-weight:500">· owner: Poojitha</span></h2>
+  <h2><span class="num">06</span>This week's actions <span class="small muted" style="text-transform:none;letter-spacing:0;font-weight:500">· owner: JJ McGuigan</span></h2>
 
   <div class="action">
-    <div class="h">1 · Add “react grid” &amp; “react table” to Rank Tracker 1076972</div>
-    <div class="m"><b>Why:</b> they're core #1-goal terms but untracked — we can't measure the goal. GSC already shows “react grid” demand at ~pos 21. <b>Expected:</b> both terms reporting positions by next run (Jul 30). <b>Est:</b> 15 min.</div>
+    <div class="h">1 · Investigate the “react chart” slip (#10 → #13)</div>
+    <div class="m"><b>Why:</b> only red position flag this week; crossed off page one on a KD-52 term. <b>Do:</b> check SERP change vs on-page decay on <code>/react/components/charts/chart-overview</code>; scope a fix. <b>Expected:</b> root cause + fix scoped by next run. <b>Est:</b> 1 hr.</div>
   </div>
   <div class="action">
     <div class="h">2 · Push “react data grid” from #10 → top-3</div>
     <div class="m"><b>Why:</b> the money term is stuck at the page-1 floor. Refresh <code>/react/components/grids/data-grid</code> title/H1/intro for “react data grid” intent, add a comparison block, and pass internal links from the ranking “best-react-data-grid” blog. <b>Expected:</b> #10 → ≤#7 in 4 weeks. <b>Est:</b> 3–4 hrs.</div>
   </div>
   <div class="action">
-    <div class="h">3 · Right-traffic-right-page: route blog demand to product pages</div>
-    <div class="m"><b>Why:</b> React blogs (best-react-ui-library 79, react-app-examples 71) pull 5–10× more sessions than the product/grid pages (48 / 5 / 4). Add prominent CTAs + contextual links from the top React blogs into <code>/products/ignite-ui-react</code> and the data-grid page. <b>Expected:</b> target-page sessions +15% in 2 weeks. <b>Est:</b> 2 hrs.</div>
+    <div class="h">3 · Add “react grid” &amp; “react table” to Rank Tracker 1076972</div>
+    <div class="m"><b>Why:</b> core #1-goal terms, still untracked — we can't measure the goal. GSC shows “react grid” demand at ~pos 10. <b>Expected:</b> both terms reporting positions by Jul 30. <b>Est:</b> 15 min.</div>
   </div>
   <div class="action">
-    <div class="h">4 · Create React-specific Amplitude AI Visibility prompts (standing P1)</div>
-    <div class="m"><b>Why:</b> today's 7.3% is brand-level; we need React-only prompts to measure and improve where it counts vs Syncfusion (39%). <b>Expected:</b> React prompt set live, first React-scoped read next run. <b>Est:</b> 1 hr.</div>
+    <div class="h">4 · Right-traffic-right-page: route blog demand to product pages</div>
+    <div class="m"><b>Why:</b> React blogs (best-react-ui-library 110, react-app-examples 76) pull far more sessions than the product/grid pages (40 / 2 / 2); target-page sessions dipped WoW. Add prominent CTAs + contextual links from the top React blogs into <code>/products/ignite-ui-react</code> and the data-grid page. <b>Expected:</b> target-page sessions +15% in 2 weeks. <b>Est:</b> 2 hrs.</div>
   </div>
   <div class="action">
-    <div class="h">5 · Stand up a React-prefix Ahrefs Site Audit project</div>
-    <div class="m"><b>Why:</b> whole-site health (45/100) isn't actionable for React. A React-scoped crawl gives a clean score and a real target; hand crawl fixes to the UI Tools web dev team <span class="muted">[CONFIRM name]</span>. <b>Expected:</b> React audit project created, baseline score set. <b>Est:</b> 45 min.</div>
+    <div class="h">5 · Restore npm live pull + create React AI-Visibility prompts (standing P1)</div>
+    <div class="m"><b>Why:</b> npm MoM had to be carried this run (public API unreachable); AI visibility is whole-brand, not React. Both block clean goal tracking. <b>Expected:</b> reliable npm pull path confirmed for next run; React prompt set live in Amplitude. <b>Est:</b> 1 hr.</div>
   </div>
 </section>
 
@@ -295,13 +305,13 @@
 <!-- 8 TRACKER DELTA -->
 <section>
   <h2><span class="num">08</span>Tracker delta</h2>
-  <p><b>Done:</b> none — this is run #1; the tracker had no prior React tasks or parked candidates.</p>
-  <p><b>Carried:</b> none.</p>
-  <p><b>New this run (5, prefix “React SEO:”, owner Poojitha):</b> add react grid / react table to tracker · push react data grid to top-3 · route blog traffic to product pages · create React AI-visibility prompts (standing P1) · stand up React-prefix site audit project. Written to the shared tracker after publish.</p>
+  <p><b>Done / verified:</b> none — the 5 React tasks from run #1 are all still open; no past-due completions to re-check this run.</p>
+  <p><b>Carried (open, owner JJ):</b> add react grid / react table to tracker (due Jul 30) · create React AI-visibility prompts, standing P1 (due Jul 30) · push react data grid to top-3 (due Aug 20) · route blog traffic to product pages (due Aug 6) · stand up React-prefix site audit (due Aug 6).</p>
+  <p><b>New this run (prefix “React SEO:”, owner JJ, added after publish):</b> investigate the “react chart” slip (#10→#13) · restore the npm live-pull path for the north-star metric.</p>
 </section>
 
 <div class="foot">
-  Ignite UI for React · SEO weekly brief · generated 2026-07-23 · data windows as noted per metric · published to CCiniello/weekly-reports
+  Ignite UI for React · SEO weekly brief · generated 2026-07-27 · data windows as noted per metric · published to CCiniello/weekly-reports
 </div>
 
 </div>
