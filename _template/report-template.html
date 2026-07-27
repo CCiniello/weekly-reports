@@ -72,11 +72,17 @@
   #tasks .todo{background:var(--gray-bg);color:#566} #tasks .todo::before{background:var(--gray)}
   #tasks .prog{background:var(--peri-soft);color:var(--cobalt)} #tasks .prog::before{background:var(--cobalt)}
   #tasks .done{background:var(--good-bg);color:var(--good)} #tasks .done::before{background:var(--good)}
+  #tasks .review{background:#e7ecff;color:#3E5BD0} #tasks .review::before{background:#6C8CFD}
+  #tasks .deferred{background:#fbf1dd;color:#8a6412} #tasks .deferred::before{background:#b7791f}
+  #tasks .blocked{background:#fbe4e3;color:#c23b39} #tasks .blocked::before{background:#c23b39}
+  #tasks .stat[title]{cursor:help}
+  #tasks .whymark{font-size:10px;opacity:.7}
   #tasks td.due{font-family:var(--mono);font-size:12px;color:var(--muted)}
   #tasks .donedate{font-family:var(--mono);font-size:11px;color:var(--good);white-space:nowrap}
   #tasks .donedate::before{content:"\2713 "}
-  #tasks .board{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  @media(max-width:820px){#tasks .board{grid-template-columns:1fr}}
+  #tasks .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px}
+  @media(max-width:820px){#tasks .board{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){#tasks .board{grid-template-columns:1fr}}
   #tasks .col{background:#f7f8fc;border:1px solid var(--line);border-radius:14px;padding:12px}
   #tasks .col-h{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;margin-bottom:11px;padding:0 4px}
   #tasks .col-h .cc{font-family:var(--mono);font-size:11px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:0 8px;color:var(--muted)}
@@ -156,28 +162,34 @@
 
 <script>
   /* ============================================================
-     AGENT: replace the TASKS array below with live Slingshot data.
-     Leave the rendering code untouched.
-     TASK shape: {name, channel, owner, initials, color, priority:"P1|P2|P3", status:"todo|prog|done", due:"YYYY-MM-DD", start:"YYYY-MM-DD"(optional), completed:"YYYY-MM-DD"(optional, Slingshot date completed for done tasks)}
+     Tasks are a LIVE snapshot of the Slingshot list (PARENT tasks only).
+     status / due / completed / deferred come straight from Slingshot — never hand-assigned.
+     TASK shape: {name, channel, owner, initials, color, priority:"P1|P2|P3",
+       status:"todo|prog|review|deferred|blocked|done", due:"YYYY-MM-DD",
+       start?, completed?:"YYYY-MM-DD" (date completed), deferred?:"<Deferred Reason text>",
+       lever?, result?}
      ============================================================ */
   const TASKS = {{TASKS_JSON}};
 
   var accentDeep = getComputedStyle(document.body).getPropertyValue('--accent-deep').trim() || '#333';
-  function esc(s){return (s==null?'':String(s)).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
-  var STAT={todo:'To do',prog:'In progress',done:'Done'};
+  function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  var STAT={todo:'To do',prog:'In progress',review:'In review',deferred:'Deferred',blocked:'Blocked',done:'Done'};
 
   // counts + summary
   document.getElementById('taskCount').textContent = TASKS.length;
   var prog = TASKS.filter(function(t){return t.status==='prog';}).length;
+  var review = TASKS.filter(function(t){return t.status==='review';}).length;
+  var deferred = TASKS.filter(function(t){return t.status==='deferred';}).length;
   var done = TASKS.filter(function(t){return t.status==='done';}).length;
-  document.getElementById('taskSummary').innerHTML = '<b>'+TASKS.length+' tasks</b> · live from Slingshot · <b>'+prog+'</b> in progress, <b>'+done+'</b> done';
+  var bits=[]; if(prog)bits.push('<b>'+prog+'</b> in progress'); if(review)bits.push('<b>'+review+'</b> in review'); if(deferred)bits.push('<b>'+deferred+'</b> deferred'); if(done)bits.push('<b>'+done+'</b> done');
+  document.getElementById('taskSummary').innerHTML = '<b>'+TASKS.length+' tasks</b> · live from Slingshot · '+bits.join(' · ');
 
   // TABLE
   document.getElementById('tblBody').innerHTML = TASKS.length ? TASKS.map(function(t){
     return '<tr><td class="tname">'+esc(t.name)+'</td><td>'+esc(t.channel||'')+'</td>'+
       '<td><span class="who"><span class="av" style="background:'+(t.color||accentDeep)+'">'+esc(t.initials||'')+'</span> '+esc(t.owner||'')+'</span></td>'+
       '<td><span class="pri '+t.priority+'">'+esc(t.priority)+'</span></td>'+
-      '<td><span class="stat '+t.status+'">'+STAT[t.status]+'</span>'+(t.completed?' <span class="donedate">'+esc(t.completed)+'</span>':'')+'</td>'+
+      '<td><span class="stat '+t.status+'"'+(t.deferred?' title="'+esc(t.deferred)+'"':'')+'>'+STAT[t.status]+(t.deferred?' <span class="whymark">&#9432;</span>':'')+'</span>'+(t.completed?' <span class="donedate">'+esc(t.completed)+'</span>':'')+'</td>'+
       '<td class="due">'+esc(t.due||'')+'</td></tr>';
   }).join('') : '<tr><td colspan="6" class="empty">No tasks yet for this report.</td></tr>';
 
@@ -187,7 +199,8 @@
     return '<div class="col"><div class="col-h"><span class="dt" style="background:'+dot+'"></span> '+label+' <span class="cc">'+items.length+'</span></div>'+
       items.map(function(t){return '<div class="tcard"><div class="tt">'+esc(t.name)+'</div><div class="tm"><span class="plt">'+esc(t.channel||'')+(t.completed?' · <span class="donedate">'+esc(t.completed)+'</span>':'')+'</span><span class="pri '+t.priority+'">'+esc(t.priority)+'</span></div></div>';}).join('')+'</div>';
   }
-  document.getElementById('boardWrap').innerHTML = col('todo','To do','#8a93a3')+col('prog','In progress','#2A41A2')+col('done','Done','#12915b');
+  var STATUS_COLS=[['todo','To do','#8a93a3'],['prog','In progress','#2A41A2'],['review','In review','#6C8CFD'],['deferred','Deferred','#b7791f'],['done','Done','#12915b']];
+  document.getElementById('boardWrap').innerHTML = STATUS_COLS.filter(function(c){return TASKS.some(function(t){return t.status===c[0];});}).map(function(c){return col(c[0],c[1],c[2]);}).join('');
 
   // TIMELINE
   (function(){
