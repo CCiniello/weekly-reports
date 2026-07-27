@@ -40,6 +40,7 @@
   .sec:first-child{margin-top:2px}
   .sec .n{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
   .lead{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:16px 20px;font-size:14.5px;line-height:1.6} .lead b{color:var(--navy)}
+  .lead p{margin-bottom:10px} .lead p:last-child{margin-bottom:0}
 
   .kpigrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
   @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}}
@@ -57,67 +58,68 @@
   .pill{font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px;white-space:nowrap}
   .pill.good{background:var(--good-bg);color:var(--good)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.bad{background:var(--bad-bg);color:var(--bad)}
 
-  .prog{display:flex;align-items:center;gap:9px;min-width:150px}
-  .ptrack{flex:1;height:8px;border-radius:999px;background:#e9edf5;overflow:hidden}
-  .pfill{height:100%;border-radius:999px}
-  .pfill.good{background:var(--good)} .pfill.warn{background:var(--warn)} .pfill.bad{background:var(--bad)}
-  .pnum{font-family:var(--mono);font-size:11.5px;color:var(--navy);min-width:34px;text-align:right}
-
   .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
   @media(max-width:820px){.cards{grid-template-columns:1fr}}
   .card{border:1px solid var(--line);border-radius:14px;overflow:hidden}
-  .card.wide{grid-column:1/-1}
   .card .ch{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:var(--accent-soft);border-bottom:1px solid var(--line)}
   .card .ch .nm{font-size:15px;font-weight:700;color:var(--accent-deep)} .card .ch .sp{font-family:var(--mono);font-size:12.5px;color:var(--navy)}
   .card .cb{padding:14px 18px;font-size:13.5px;line-height:1.55} .card .cb b{color:var(--navy)}
-  .card .cb p{margin:0 0 9px} .card .cb p:last-child{margin-bottom:0}
+  .card .cb ul{margin:0;padding-left:18px} .card .cb li{margin-bottom:6px}
 
-  .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
-  .dtable table{width:100%;border-collapse:collapse;font-size:13px}
-  .dtable th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
-  .dtable td{padding:10px 13px;border-top:1px solid var(--line)} .dtable td.num{font-family:var(--mono);text-align:right}
+  .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px;overflow-x:auto}
+  .dtable table{width:100%;border-collapse:collapse;font-size:12.5px}
+  .dtable th{background:#eef2fa;font-size:10px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:9px 11px;text-align:left;white-space:nowrap}
+  .dtable td{padding:9px 11px;border-top:1px solid var(--line);vertical-align:middle} .dtable td.num{font-family:var(--mono);text-align:right}
   .dtable tr:hover td{background:#fafbff}
-  .wg{color:var(--good);font-weight:600} .wr{color:var(--bad);font-weight:600} .wn{color:var(--muted);font-weight:600}
-  .tag{font-size:10.5px;font-weight:600;padding:1px 7px;border-radius:5px;background:var(--gray-bg);color:#41506b;white-space:nowrap}
-  .tag.keep{background:var(--good-bg);color:var(--good)} .tag.watch{background:var(--warn-bg);color:var(--warn)} .tag.cut{background:var(--bad-bg);color:var(--bad)} .tag.add{background:var(--peri-soft);color:var(--cobalt)}
-  .shbar{display:inline-block;height:8px;border-radius:999px;vertical-align:middle;margin-right:7px}
-
-  /* charts */
-  .bars{display:flex;flex-direction:column;gap:7px;margin-top:8px}
-  .barrow{display:grid;grid-template-columns:210px 1fr 58px;align-items:center;gap:10px;font-size:12.5px}
-  .barrow .lp{color:var(--navy);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--mono);font-size:12px}
-  .bartrack{background:#eef1f7;border-radius:6px;height:18px;overflow:hidden}
-  .barfill{height:100%;border-radius:6px;background:var(--peri);min-width:2px}
-  .barfill.g{background:var(--good)} .barfill.w{background:var(--warn)} .barfill.r{background:var(--bad)}
-  .barval{font-family:var(--mono);font-size:11.5px;text-align:right;color:var(--navy)}
-  .donutwrap{display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin-top:8px;padding:6px 4px}
-  .donut{width:150px;height:150px;border-radius:50%;flex-shrink:0;position:relative}
-  .donut .hole{width:88px;height:88px;background:#fff;border-radius:50%;position:absolute;top:31px;left:31px;display:flex;align-items:center;justify-content:center;flex-direction:column}
-  .donut .hole b{font-size:19px;font-family:var(--mono);color:var(--navy)} .donut .hole span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
-  .legend{display:flex;flex-direction:column;gap:10px;font-size:13px}
-  .legend .li{display:flex;align-items:center;gap:9px} .legend .sw{width:12px;height:12px;border-radius:3px;flex-shrink:0} .legend b{font-family:var(--mono)}
-  .stack{display:flex;height:28px;border-radius:8px;overflow:hidden;border:1px solid var(--line);margin-top:8px}
-  .stack div{display:flex;align-items:center;color:#fff;font-size:11.5px;font-weight:600;padding:0 10px;white-space:nowrap}
-  .rank{display:flex;flex-direction:column;gap:7px;margin-top:12px}
-  .rankrow{display:grid;grid-template-columns:190px 1fr 46px;align-items:center;gap:10px;font-size:12.5px}
-  .rankrow .lp{font-family:var(--mono);font-size:12px;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .rankrow .tk{background:#eef1f7;border-radius:6px;height:17px;overflow:hidden}
-  .rankrow .fl{height:100%;border-radius:6px}
-  .rankrow .vv{font-family:var(--mono);font-size:11.5px;text-align:right;color:var(--navy)}
-  .gal{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:8px}
-  @media(max-width:820px){.gal{grid-template-columns:repeat(2,1fr)}}
-  .gal .it{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fcfdff}
-  .gal .it img{width:100%;height:118px;object-fit:contain;background:#f2f4f8;display:block}
-  .gal .it .cap{padding:8px 10px;font-size:11.5px;color:var(--muted)} .gal .it .cap b{color:var(--navy)}
-  .chartcard{border:1px solid var(--line);border-radius:12px;padding:14px 16px 10px;margin-top:10px;background:#fcfdff}
-  .chartcard .ct{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;margin-bottom:6px}
-  .chartcard svg{width:100%;height:auto;display:block}
-  .clg{display:flex;gap:16px;margin-top:4px;font-size:12px;color:var(--muted)} .clg .li{display:flex;align-items:center;gap:6px} .clg .sw{width:13px;height:3px;border-radius:2px}
+  .up-c{color:var(--good);font-weight:600} .down-c{color:var(--bad);font-weight:600}
+  .tag{font-size:10px;font-weight:600;padding:1px 7px;border-radius:5px;background:var(--gray-bg);color:var(--muted)}
+  .tag.keep{background:var(--good-bg);color:var(--good)} .tag.cut{background:var(--bad-bg);color:var(--bad)} .tag.watch{background:var(--warn-bg);color:var(--warn)}
 
   .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
   .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
-  .verdict p{font-size:15px;line-height:1.6;margin:0 0 10px} .verdict p:last-child{margin-bottom:0} .verdict b{color:var(--navy)}
+  .verdict p{font-size:15px;line-height:1.6;margin:0 0 10px} .verdict b{color:var(--navy)}
+  .verdict p:last-child{margin-bottom:0}
   code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+  .note{font-size:12px;color:var(--muted);margin-top:8px;font-style:italic}
+
+  /* ===== chart helpers ===== */
+  .prog{position:relative;background:var(--gray-bg);border-radius:999px;height:9px;width:100%;overflow:hidden}
+  .prog > i{position:absolute;left:0;top:0;bottom:0;border-radius:999px;display:block}
+  .prog i.g{background:var(--good)} .prog i.w{background:var(--warn)} .prog i.b{background:var(--bad)}
+  .pcell{min-width:150px} .pcell .lab{font-size:11px;color:var(--muted);font-family:var(--mono);margin-bottom:3px}
+
+  .splitbar{display:flex;height:34px;border-radius:9px;overflow:hidden;border:1px solid var(--line);margin-top:6px;font-size:12px;font-weight:700;color:#fff}
+  .splitbar > span{display:flex;align-items:center;justify-content:center;white-space:nowrap}
+
+  .bars{display:flex;flex-direction:column;gap:7px;margin-top:6px}
+  .bars .row{display:grid;grid-template-columns:210px 1fr 74px;align-items:center;gap:10px;font-size:12.5px}
+  .bars .row .nm{color:var(--navy);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bars .track{background:var(--gray-bg);border-radius:6px;height:20px;position:relative;overflow:hidden}
+  .bars .track > i{position:absolute;left:0;top:0;bottom:0;border-radius:6px}
+  .bars .track i.hi{background:var(--good)} .bars .track i.mid{background:var(--warn)} .bars .track i.lo{background:var(--bad)} .bars .track i.neu{background:var(--peri)}
+  .bars .val{font-family:var(--mono);text-align:right;color:var(--muted)}
+
+  .donutwrap{display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-top:8px}
+  .legend{font-size:12.5px} .legend .li{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+  .legend .sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+
+  .gal{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:8px}
+  @media(max-width:820px){.gal{grid-template-columns:repeat(2,1fr)}}
+  .gal .item{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:#fcfdff}
+  .gal .item img{width:100%;height:120px;object-fit:cover;background:#f0f2f7;display:block}
+  .gal .item .cap{padding:8px 10px;font-size:11px;color:var(--muted);line-height:1.4}
+  .gal .item .cap b{color:var(--navy);font-size:11px;font-family:var(--mono)}
+
+  .chartcard{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:6px;background:#fcfdff}
+  .chartcard .ct{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px}
+  .chartcard svg{width:100%;height:auto;display:block}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:820px){.grid2{grid-template-columns:1fr}}
+  .funnel{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+  .funnel .frow{display:grid;grid-template-columns:200px 1fr;gap:12px;align-items:center}
+  .funnel .fbar{height:30px;border-radius:7px;background:linear-gradient(90deg,var(--accent),var(--accent-deep));display:flex;align-items:center;padding-left:12px;color:#fff;font-weight:700;font-size:12.5px;font-family:var(--mono)}
+  .funnel .flab{font-size:12.5px;color:var(--navy);font-weight:600}
+  .funnel .fmeta{font-size:11px;color:var(--muted)}
 </style>
 </head>
 <body class="theme-reveal">
@@ -127,531 +129,437 @@
     <div class="logochip">Reveal</div>
     <div class="kick">revealbi.io · Google Ads</div>
     <h1>Google Ads Weekly / Reveal</h1>
-    <div class="meta"><span>Week of <b>Jul 18&ndash;24, 2026</b></span><span>vs <b>Jul 11&ndash;17</b></span><span>Generated <b>Jul 25, 2026</b></span><span>Account <b>7045143107</b></span></div>
+    <div class="meta">
+      <span>Week of <b>Jul 20–26, 2026</b></span>
+      <span>vs prior <b>Jul 13–19</b></span>
+      <span>Account <b>704-514-3107</b></span>
+      <span>Generated <b>Mon Jul 27, 2026</b></span>
+    </div>
   </header>
 
   <div class="tabbar" id="tabbar"></div>
 
   <div id="panels">
 
-  <!-- ================= OVERVIEW ================= -->
+  <!-- ============ TAB 1: OVERVIEW ============ -->
   <section class="tabpanel" data-tab="overview" data-label="Overview">
 
-    <div class="sec"><span class="n">1</span>The story this week</div>
     <div class="lead">
-      Google Ads is <b>healthy and measurable end to end</b>. Traffic grew and got cheaper, and paid now traces all the way to revenue: Google/PPC has influenced <b>~$821K of 2026 Reveal pipeline</b> across <b>20 opportunities</b> &mdash; roughly <b>2&times; return on a ~$35K/mo run-rate</b> &mdash; with <b>branded and competitor search doing the heavy lifting</b>. That&rsquo;s what&rsquo;s working: high-intent search converts, remarketing keeps prior visitors warm, and messaging around affordability, &ldquo;true embedded SDK,&rdquo; and multi-tenant/white-label is landing. Where to focus this week: paid <b>lead volume dropped sharply (20 &rarr; 7)</b> even as spend and clicks rose &mdash; top of funnel is fine, something downstream needs eyes; <b>brand defense is leaking</b> (~58% IS on our own name); and while keyword coverage is strong, <b>creative optimization is flying blind</b> (Google can&rsquo;t grade our assets without a conversion signal). Net: <b>keep investing, defend the brand, fix conversion import, and refresh tired creative</b>.
+      <p>A <b>healthy operating week</b> with one clear structural signal: <b>visibility jumped without spending more</b>. Search impression share climbed from 64% to 75% and budget-lost share collapsed to near zero (0.3%) — meaning budget is no longer the constraint. Where we still lose impressions, we lose them to <b>Ad Rank, not money</b>. That reframes the whole growth question: throwing dollars at the US head terms won't move the needle; bids, Quality Score and ad relevance will.</p>
+      <p><b>What's working best:</b> the demand engine is efficient — CPC fell 14% to $3.51 and clicks rose 16% on flat spend. Brand and compete search remain the highest-quality traffic on site (Brand engagement 56%, 6+ min sessions). International capture (India, Brazil) is dominating its auctions at 87–93% IS.</p>
+      <p><b>Where to focus:</b> three things. (1) <b>Brand defense is leaking</b> — we hold only 62% IS on our own name, losing 38% to rank. (2) <b>85% of paid clicks land on the homepage</b>, including high-intent compete and non-brand searches that should hit dedicated pages. (3) <b>Lead capture is under-instrumented</b> — the Google Ads conversion import is still not firing (column reads 0), so we are flying on Salesforce Lead Events and GA4 alone. Fix the import before trusting any CPL number.</p>
     </div>
 
-    <div class="sec"><span class="n">2</span>Scorecard</div>
+    <div class="sec"><span class="n">1</span>Blended scorecard — this week vs prior</div>
     <div class="kpigrid">
-      <div class="kpi"><span class="lab">Spend</span><span class="val">$8,231</span><span class="delta flat">+2% WoW</span></div>
-      <div class="kpi"><span class="lab">Clicks</span><span class="val">2,241</span><span class="delta up">&#9650; 19%</span></div>
-      <div class="kpi"><span class="lab">Avg CPC</span><span class="val">$3.67</span><span class="delta up">&#9660; 14% cheaper</span></div>
-      <div class="kpi"><span class="lab">Paid leads (SF)</span><span class="val">7</span><span class="delta down">&#9660; from 20</span></div>
-      <div class="kpi"><span class="lab">Influenced pipeline &rsquo;26</span><span class="val">$821K</span><span class="delta up">20 opps &middot; ~2&times;</span></div>
+      <div class="kpi"><span class="lab">Spend</span><span class="val">$8,135</span><span class="delta flat">−0.4% WoW</span></div>
+      <div class="kpi"><span class="lab">Clicks</span><span class="val">2,320</span><span class="delta up">▲ 15.8%</span></div>
+      <div class="kpi"><span class="lab">Avg CPC</span><span class="val">$3.51</span><span class="delta up">▼ 14.0%</span></div>
+      <div class="kpi"><span class="lab">Search Impr. Share</span><span class="val">75.0%</span><span class="delta up">▲ 10.5pt</span></div>
+      <div class="kpi"><span class="lab">Impressions</span><span class="val">207.9k</span><span class="delta up">▲ 30.8%</span></div>
+      <div class="kpi"><span class="lab">Paid leads (SF, wk)</span><span class="val">7</span><span class="delta down">▼ vs 19</span></div>
+      <div class="kpi"><span class="lab">Leads MTD (Jul)</span><span class="val">52</span><span class="delta flat">vs 100 floor</span></div>
+      <div class="kpi"><span class="lab">GA4 sessions g/cpc</span><span class="val">1,180</span><span class="delta down">▼ 10.8%</span></div>
+      <div class="kpi"><span class="lab">Budget-lost IS</span><span class="val">0.3%</span><span class="delta up">▼ from 5.3%</span></div>
+      <div class="kpi"><span class="lab">In-platform conv.</span><span class="val">n/a</span><span class="delta flat">import off</span></div>
     </div>
+    <p class="note">CPL intentionally omitted from the headline: with the conversion import down and Lead Events lagging click by weeks, a weekly last-touch CPL (~$1,160 raw) is not a real number. See the honest read on the goal scoreboard.</p>
 
-    <div class="sec"><span class="n">3</span>Goal scoreboard</div>
-    <div class="score">
-      <table>
-        <thead><tr><th>Goal</th><th>Target</th><th>This week</th><th style="width:170px">% to goal</th><th>Status</th></tr></thead>
-        <tbody>
-          <tr><td class="goal">Quality paid leads</td><td>&ge; 100 / mo</td><td>~58 / mo pace</td>
-            <td><div class="prog"><div class="ptrack"><div class="pfill warn" style="width:58%"></div></div><span class="pnum">58%</span></div></td>
-            <td><span class="pill warn">Behind</span></td></tr>
-          <tr><td class="goal">CPL &mdash; blended</td><td>&le; $75</td><td>$1,176 <span style="color:var(--muted)">(awareness-loaded)</span></td>
-            <td><div class="prog"><div class="ptrack"><div class="pfill bad" style="width:6%"></div></div><span class="pnum">6%</span></div></td>
-            <td><span class="pill bad">Behind</span></td></tr>
-          <tr><td class="goal">Top IS &mdash; Non-Brand US</td><td>&ge; 80%</td><td>64%</td>
-            <td><div class="prog"><div class="ptrack"><div class="pfill warn" style="width:80%"></div></div><span class="pnum">80%</span></div></td>
-            <td><span class="pill warn">At risk</span></td></tr>
-          <tr><td class="goal">Top IS &mdash; Non-Brand India</td><td>&ge; 80%</td><td>88%</td>
-            <td><div class="prog"><div class="ptrack"><div class="pfill good" style="width:100%"></div></div><span class="pnum">110%</span></div></td>
-            <td><span class="pill good">On track</span></td></tr>
-          <tr><td class="goal">Brand defense IS</td><td>~100%</td><td>57.6%</td>
-            <td><div class="prog"><div class="ptrack"><div class="pfill bad" style="width:58%"></div></div><span class="pnum">58%</span></div></td>
-            <td><span class="pill bad">Behind</span></td></tr>
-          <tr><td class="goal">Conquest &mdash; Compete US IS</td><td>&ge; 80%</td><td>57%</td>
-            <td><div class="prog"><div class="ptrack"><div class="pfill warn" style="width:71%"></div></div><span class="pnum">71%</span></div></td>
-            <td><span class="pill warn">At risk</span></td></tr>
-          <tr><td class="goal">Conquest &mdash; Compete Intl IS</td><td>&ge; 80%</td><td>73%</td>
-            <td><div class="prog"><div class="ptrack"><div class="pfill warn" style="width:91%"></div></div><span class="pnum">91%</span></div></td>
-            <td><span class="pill warn">At risk</span></td></tr>
-          <tr><td class="goal">Budget pace</td><td>&le; $68K / mo</td><td>~$35K / mo</td>
-            <td><div class="prog"><div class="ptrack"><div class="pfill good" style="width:52%"></div></div><span class="pnum">ok</span></div></td>
-            <td><span class="pill good">On track</span></td></tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="sec"><span class="n">2</span>Goal scoreboard — one row per goal (US &amp; Intl separated)</div>
+    <div class="score"><table>
+      <thead><tr><th>Goal</th><th>Target</th><th>Current</th><th class="pcell">Pace</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="goal">Quality paid leads / month</td><td>≥ 100 floor</td><td>52 MTD (~62 run-rate)</td><td class="pcell"><div class="prog"><i class="w" style="width:52%"></i></div></td><td><span class="pill bad">Behind</span></td></tr>
+        <tr><td class="goal">Blended CPL (quality)</td><td>≤ $75</td><td>Not measurable*</td><td class="pcell"><div class="prog"><i class="w" style="width:35%"></i></div></td><td><span class="pill warn">Flag</span></td></tr>
+        <tr><td class="goal">Top IS non-brand — US</td><td>≥ 80%</td><td>62% (Non-Brand-US top IS)</td><td class="pcell"><div class="prog"><i class="b" style="width:78%"></i></div></td><td><span class="pill bad">Behind</span></td></tr>
+        <tr><td class="goal">Top IS non-brand — Intl</td><td>≥ 80%</td><td>88% (India), 53% (Eng-Intl)</td><td class="pcell"><div class="prog"><i class="w" style="width:71%"></i></div></td><td><span class="pill warn">Mixed</span></td></tr>
+        <tr><td class="goal">Brand defense IS</td><td>~100%</td><td>62.4% (37.6% lost to rank)</td><td class="pcell"><div class="prog"><i class="b" style="width:62%"></i></div></td><td><span class="pill bad">Miss</span></td></tr>
+        <tr><td class="goal">Conquest IS — US</td><td>Top-3 / high IS</td><td>56.6% (Compete-US)</td><td class="pcell"><div class="prog"><i class="w" style="width:57%"></i></div></td><td><span class="pill warn">At risk</span></td></tr>
+        <tr><td class="goal">Conquest IS — Intl</td><td>Top-3 / high IS</td><td>87–87% (India, Brazil)</td><td class="pcell"><div class="prog"><i class="g" style="width:87%"></i></div></td><td><span class="pill good">On track</span></td></tr>
+        <tr><td class="goal">Monthly budget</td><td>~$68k guardrail</td><td>~$35k run-rate ($8.1k/wk)</td><td class="pcell"><div class="prog"><i class="g" style="width:52%"></i></div></td><td><span class="pill good">Headroom</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">*CPL: conversion import not firing + last-touch lag make a trustworthy weekly CPL impossible right now. Fix the import, then judge CPL. Budget "headroom" is real — but the binding constraint on visibility is rank, not budget, so scaling spend alone won't lift US IS.</p>
 
-    <div class="sec"><span class="n">4</span>Where to lean in / what to fix</div>
+    <div class="sec"><span class="n">3</span>Where to lean in · where to fix</div>
     <div class="cards">
       <div class="card">
-        <div class="ch"><span class="nm">Lean in</span><span class="sp">converting</span></div>
-        <div class="cb">
-          <p><b>Branded &amp; competitor search.</b> 13 of 20 Google/PPC opportunities came from Branded and Compete campaigns &mdash; our pipeline engine.</p>
-          <p><b>Cheaper reach.</b> Clicks +19% and CPC &minus;14% at flat spend &mdash; room to scale the winners.</p>
-          <p><b>Winning messaging.</b> Affordability / fixed-price, &ldquo;true embedded SDK,&rdquo; and multi-tenant/white-label angles carry the highest CTR (see Ad Copy).</p>
-        </div>
+        <div class="ch"><span class="nm">Lean in</span><span class="sp">scale what's earning</span></div>
+        <div class="cb"><ul>
+          <li><b>Compete + International search</b> — India/Brazil holding 87–93% IS at low CPC; add budget headroom here.</li>
+          <li><b>Underserved high-CTR copy</b> — "Trusted by SaaS teams…" (6.5% CTR) and "Looking for an alternative?" (6.2%) barely served. Promote them.</li>
+          <li><b>Theming creative</b> — the theming image runs 1.15% CTR vs 0.38% for control-message; feed budget to the winner.</li>
+        </ul></div>
       </div>
       <div class="card">
-        <div class="ch"><span class="nm">Fix</span><span class="sp">watch closely</span></div>
-        <div class="cb">
-          <p><b>Lead volume dip.</b> Paid leads fell 20 &rarr; 7 WoW at flat spend &mdash; watch the offer/form and next week&rsquo;s trend.</p>
-          <p><b>Brand defense.</b> 57.6% IS on <code>reveal bi</code> at ~$24 CPC &mdash; a competitor is likely bidding on our name.</p>
-          <p><b>Blind creative + tired assets.</b> Google can&rsquo;t grade assets (no conversion signal), and carousel + several videos are fatiguing (see Creative).</p>
-        </div>
+        <div class="ch"><span class="nm">Fix</span><span class="sp">stop the leaks</span></div>
+        <div class="cb"><ul>
+          <li><b>Brand defense</b> — 38% of brand impressions lost to rank. Raise brand bids / tighten brand ad relevance to reclaim ~100%.</li>
+          <li><b>Homepage dumping</b> — route compete &amp; non-brand clicks to <code>/reveal-vs-*</code> and <code>/embedded-analytics</code>, not <code>/</code>.</li>
+          <li><b>Broken UTMs</b> — GA4 shows literal <code>{campaignname}</code> / "(not set)" sessions; a tracking template is misconfigured.</li>
+          <li><b>Conversion import</b> — re-enable so Google can optimize on real leads.</li>
+        </ul></div>
       </div>
     </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:12px">Note: Google Ads&rsquo; in-platform conversion column reads 0 (conversion import not firing) &mdash; this also blocks asset performance grading. Lead &amp; pipeline figures come from Salesforce (Lead Event) and the Slingshot 2026 Opportunities list.</p>
   </section>
 
-  <!-- ================= CAMPAIGNS ================= -->
+  <!-- ============ TAB 2: CAMPAIGNS ============ -->
   <section class="tabpanel" data-tab="campaigns" data-label="Campaigns &amp; Ad Groups">
 
-    <div class="sec"><span class="n">1</span>Where the money goes vs where it converts</div>
-    <div class="lead">
-      Two-thirds of spend sits in <b>DemandGen ($4,027)</b> and <b>PMax remarketing ($1,237)</b> &mdash; awareness and re-engagement. Core <b>Search is $2,676</b>, and that&rsquo;s where pipeline comes from: of the 20 Google/PPC opportunities this year, <b>Branded (7) and Compete (6)</b> search campaigns drove the majority. Awareness fills the top, but <b>Search converts</b> &mdash; protect and grow it.
+    <div class="sec"><span class="n">1</span>Campaign performance — WoW</div>
+    <div class="dtable"><table>
+      <thead><tr><th>Campaign</th><th>Type</th><th class="num">Spend</th><th class="num">WoW $</th><th class="num">Clicks</th><th class="num">WoW clk</th><th class="num">Impr.</th><th class="num">CPC</th></tr></thead>
+      <tbody>
+        <tr><td>DemandGen-Compete-Intl</td><td>Demand Gen</td><td class="num">$1,126</td><td class="num up-c">+19.8%</td><td class="num">571</td><td class="num up-c">+17.7%</td><td class="num">60,877</td><td class="num">$1.97</td></tr>
+        <tr><td>PMAX-Remarketing-WW</td><td>Perf. Max</td><td class="num">$1,237</td><td class="num up-c">+6.7%</td><td class="num">635</td><td class="num up-c">+18.2%</td><td class="num">37,056</td><td class="num">$1.95</td></tr>
+        <tr><td>DemandGen-Compete-US</td><td>Demand Gen</td><td class="num">$1,526</td><td class="num up-c">+12.8%</td><td class="num">399</td><td class="num up-c">+114.5%</td><td class="num">26,973</td><td class="num">$3.82</td></tr>
+        <tr><td>DemandGen-Non-Brand-US</td><td>Demand Gen</td><td class="num">$917</td><td class="num down-c">−3.9%</td><td class="num">222</td><td class="num up-c">+2.8%</td><td class="num">37,121</td><td class="num">$4.13</td></tr>
+        <tr><td>Search-Brand-Terms-WW</td><td>Search</td><td class="num">$796</td><td class="num down-c">−15.3%</td><td class="num">39</td><td class="num down-c">−15.2%</td><td class="num">288</td><td class="num">$20.41</td></tr>
+        <tr><td>DemandGen-Non-Brand-Intl</td><td>Demand Gen</td><td class="num">$496</td><td class="num down-c">−2.3%</td><td class="num">301</td><td class="num up-c">+56.0%</td><td class="num">42,518</td><td class="num">$1.65</td></tr>
+        <tr><td>Search-Compete-Brazil</td><td>Search</td><td class="num">$257</td><td class="num up-c">+42.7%</td><td class="num">20</td><td class="num up-c">+42.9%</td><td class="num">386</td><td class="num">$12.85</td></tr>
+        <tr><td>Search-Compete-India</td><td>Search</td><td class="num">$243</td><td class="num up-c">+8.1%</td><td class="num">28</td><td class="num flat">0%</td><td class="num">543</td><td class="num">$8.69</td></tr>
+        <tr><td>Search-Compete-Eng-Intl</td><td>Search</td><td class="num">$425</td><td class="num up-c">+3.3%</td><td class="num">15</td><td class="num down-c">−6.3%</td><td class="num">361</td><td class="num">$28.35</td></tr>
+        <tr><td>Search-Compete-US</td><td>Search</td><td class="num">$203</td><td class="num down-c">−70.5%</td><td class="num">7</td><td class="num down-c">−46.2%</td><td class="num">407</td><td class="num">$29.00</td></tr>
+        <tr><td>Search-Non-Brand-US</td><td>Search</td><td class="num">$388</td><td class="num up-c">+362%</td><td class="num">4</td><td class="num up-c">+300%</td><td class="num">122</td><td class="num">$96.93</td></tr>
+        <tr><td>Search-Non-Brand-India</td><td>Search</td><td class="num">$190</td><td class="num up-c">+155%</td><td class="num">31</td><td class="num up-c">+182%</td><td class="num">613</td><td class="num">$6.14</td></tr>
+        <tr><td>Search-Compete-Core-US</td><td>Search</td><td class="num">$147</td><td class="num up-c">new</td><td class="num">5</td><td class="num up-c">new</td><td class="num">146</td><td class="num">$29.33</td></tr>
+        <tr><td>Display-Webinars-US</td><td>Display</td><td class="num">$74</td><td class="num down-c">−88.1%</td><td class="num">40</td><td class="num down-c">−84.4%</td><td class="num">354</td><td class="num">$1.85</td></tr>
+        <tr><td>Search-Non-Brand-Eng-Intl</td><td>Search</td><td class="num">$65</td><td class="num up-c">+159%</td><td class="num">2</td><td class="num up-c">+100%</td><td class="num">76</td><td class="num">$32.49</td></tr>
+        <tr><td>Search-Non-Brand-Brazil</td><td>Search</td><td class="num">$43</td><td class="num up-c">new</td><td class="num">1</td><td class="num up-c">new</td><td class="num">30</td><td class="num">$43.33</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Green = up WoW, red = down. Search-Non-Brand-US CPC ($96.93) is inflated by a handful of expensive clicks on tiny volume — expected in a high-cost space; not a waste flag on its own. Display collapsed because the Jul 21 webinar push ended (intentional).</p>
+
+    <div class="sec"><span class="n">2</span>Brand vs non-brand spend split</div>
+    <div class="splitbar">
+      <span style="width:9.8%;background:var(--accent-deep)">9.8%</span>
+      <span style="width:90.2%;background:var(--peri)">Non-brand 90.2%</span>
+    </div>
+    <p class="note">Brand $796 (9.8%) · Non-brand $7,339 (90.2%) of $8,135. Split sums to 100%. Healthy prospecting-weighted mix; nearly all spend is working new demand, not defending the name — which is why the brand-IS leak (Tab 1) matters.</p>
+
+    <div class="sec"><span class="n">3</span>Spend by campaign type</div>
+    <div class="bars">
+      <div class="row"><span class="nm">Demand Gen</span><div class="track"><i class="neu" style="width:100%"></i></div><span class="val">$4,066 · 50%</span></div>
+      <div class="row"><span class="nm">Search</span><div class="track"><i class="neu" style="width:68%"></i></div><span class="val">$2,758 · 34%</span></div>
+      <div class="row"><span class="nm">Performance Max</span><div class="track"><i class="neu" style="width:30%"></i></div><span class="val">$1,237 · 15%</span></div>
+      <div class="row"><span class="nm">Display</span><div class="track"><i class="neu" style="width:2%"></i></div><span class="val">$74 · 1%</span></div>
     </div>
 
-    <div class="sec"><span class="n">2</span>Campaign performance &mdash; week over week</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Campaign</th><th>Type</th><th>Spend</th><th>WoW Spend</th><th>Clicks</th><th>WoW Clicks</th></tr></thead>
-        <tbody>
-          <tr><td>DemandGen-Compete-US</td><td>DemandGen</td><td class="num">$1,510</td><td class="num"><span class="wg">&#9650; 13%</span></td><td class="num">305</td><td class="num"><span class="wg">&#9650; 55%</span></td></tr>
-          <tr><td>PMAX-Remarketing-WW</td><td>PMax</td><td class="num">$1,237</td><td class="num"><span class="wg">&#9650; 4%</span></td><td class="num">617</td><td class="num"><span class="wg">&#9650; 6%</span></td></tr>
-          <tr><td>DemandGen-Compete-International</td><td>DemandGen</td><td class="num">$1,089</td><td class="num"><span class="wg">&#9650; 14%</span></td><td class="num">469</td><td class="num"><span class="wr">&#9660; 15%</span></td></tr>
-          <tr><td>DemandGen-Non-Brand-US</td><td>DemandGen</td><td class="num">$931</td><td class="num"><span class="wr">&#9660; 4%</span></td><td class="num">235</td><td class="num"><span class="wg">&#9650; 37%</span></td></tr>
-          <tr><td>Search-Brand-Terms-WW</td><td>Search &middot; Brand</td><td class="num">$761</td><td class="num"><span class="wr">&#9660; 16%</span></td><td class="num">32</td><td class="num"><span class="wr">&#9660; 30%</span></td></tr>
-          <tr><td>DemandGen-Non-Brand-International</td><td>DemandGen</td><td class="num">$497</td><td class="num"><span class="wg">&#9650; 4%</span></td><td class="num">300</td><td class="num"><span class="wg">&#9650; 133%</span></td></tr>
-          <tr><td>Search-Non-Brand-US</td><td>Search &middot; NB</td><td class="num">$388</td><td class="num"><span class="wg">&#9650; 132%</span></td><td class="num">4</td><td class="num"><span class="wg">&#9650; 100%</span></td></tr>
-          <tr><td>Search-Compete-English-Intl</td><td>Search &middot; Compete</td><td class="num">$380</td><td class="num"><span class="wr">&#9660; 17%</span></td><td class="num">13</td><td class="num"><span class="wr">&#9660; 24%</span></td></tr>
-          <tr><td>Display-Webinars-Americas-US</td><td>Display</td><td class="num">$288</td><td class="num"><span class="wr">&#9660; 30%</span></td><td class="num">171</td><td class="num"><span class="wg">&#9650; 37%</span></td></tr>
-          <tr><td>Search-Compete-Brazil</td><td>Search &middot; Compete</td><td class="num">$266</td><td class="num"><span class="wg">&#9650; 52%</span></td><td class="num">23</td><td class="num"><span class="wg">&#9650; 92%</span></td></tr>
-          <tr><td>Search-Compete-India</td><td>Search &middot; Compete</td><td class="num">$247</td><td class="num"><span class="wg">&#9650; 22%</span></td><td class="num">30</td><td class="num"><span class="wg">&#9650; 25%</span></td></tr>
-          <tr><td>Search-Compete-US</td><td>Search &middot; Compete</td><td class="num">$192</td><td class="num"><span class="wr">&#9660; 74%</span></td><td class="num">5</td><td class="num"><span class="wr">&#9660; 67%</span></td></tr>
-          <tr><td>Search-Non-Brand-India</td><td>Search &middot; NB</td><td class="num">$188</td><td class="num"><span class="wg">&#9650; 217%</span></td><td class="num">29</td><td class="num"><span class="wg">&#9650; 222%</span></td></tr>
-          <tr><td>Search-Compete-Core-Terms-US</td><td>Search &middot; Compete</td><td class="num">$147</td><td class="num"><span class="wn">new</span></td><td class="num">5</td><td class="num"><span class="wn">new</span></td></tr>
-          <tr><td>Search-Non-Brand-English-Intl</td><td>Search &middot; NB</td><td class="num">$65</td><td class="num"><span class="wg">&#9650; 159%</span></td><td class="num">2</td><td class="num"><span class="wg">&#9650; 100%</span></td></tr>
-          <tr><td>Search-Non-Brand-Brazil</td><td>Search &middot; NB</td><td class="num">$43</td><td class="num"><span class="wn">new</span></td><td class="num">1</td><td class="num"><span class="wn">new</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:8px">WoW color: <span class="wg">green = up</span> (scaling / more investment), <span class="wr">red = down</span>. Conversions tracked in Salesforce/Slingshot (Journey &amp; ROI), not the Google Ads column.</p>
-
-    <div class="sec"><span class="n">3</span>Brand vs non-brand split</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Segment</th><th>Spend</th><th style="width:220px">Share of spend</th><th>Read</th></tr></thead>
-        <tbody>
-          <tr><td>Non-brand &mdash; DemandGen</td><td class="num">$4,027</td>
-            <td><span class="shbar" style="width:98px;background:var(--peri)"></span>49%</td><td>Awareness volume engine</td></tr>
-          <tr><td>Non-brand &mdash; Search (Compete + NB)</td><td class="num">$1,916</td>
-            <td><span class="shbar" style="width:46px;background:var(--good)"></span>23%</td><td>Highest-intent &mdash; our converter, still under-fed</td></tr>
-          <tr><td>Non-brand &mdash; PMax / Display</td><td class="num">$1,526</td>
-            <td><span class="shbar" style="width:38px;background:var(--peri)"></span>19%</td><td>Remarketing + webinar promo</td></tr>
-          <tr><td>Brand</td><td class="num">$761</td>
-            <td><span class="shbar" style="width:18px;background:var(--warn)"></span>9%</td><td>Only 57.6% IS &mdash; defend harder</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="sec"><span class="n">4</span>Ad groups &mdash; with campaign, type &amp; region</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Ad group</th><th>Campaign / type</th><th>Region</th><th>Spend</th><th>Clicks</th><th>CPC</th></tr></thead>
-        <tbody>
-          <tr><td>Compete-Generic</td><td>DemandGen-Compete</td><td>US + Intl</td><td class="num">$2,599</td><td class="num">774</td><td class="num">$3.36</td></tr>
-          <tr><td>Embedded-Analytics</td><td>DemandGen-Non-Brand</td><td>US + Intl</td><td class="num">$1,428</td><td class="num">535</td><td class="num">$2.67</td></tr>
-          <tr><td>RevealBI-BrandTerms</td><td>Search &middot; Brand</td><td>WW</td><td class="num">$761</td><td class="num">32</td><td class="num">$23.79</td></tr>
-          <tr><td>Compete - PowerBI</td><td>Search &middot; Compete</td><td>US / Intl / India / BR</td><td class="num">$623</td><td class="num">48</td><td class="num">$12.97</td></tr>
-          <tr><td>Embedded Analytics - Core</td><td>Search &middot; Non-Brand</td><td>US / India / Intl / BR</td><td class="num">$374</td><td class="num">25</td><td class="num">$14.97</td></tr>
-          <tr><td>Webinar July 21, 2026</td><td>Display &middot; Webinars</td><td>Americas / US</td><td class="num">$288</td><td class="num">171</td><td class="num">$1.69</td></tr>
-          <tr><td>Compete - Tableau</td><td>Search &middot; Compete</td><td>US / Intl / India / BR</td><td class="num">$235</td><td class="num">6</td><td class="num">$39.16</td></tr>
-          <tr><td>Compete - Luzmo</td><td>Search &middot; Compete</td><td>Core-US / India</td><td class="num">$125</td><td class="num">4</td><td class="num">$31.16</td></tr>
-          <tr><td>Compete - Metabase</td><td>Search &middot; Compete</td><td>Intl / India / BR</td><td class="num">$124</td><td class="num">10</td><td class="num">$12.38</td></tr>
-          <tr><td>White Label Analytics - Core</td><td>Search &middot; Non-Brand</td><td>US / India / Intl / BR</td><td class="num">$123</td><td class="num">8</td><td class="num">$15.38</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="sec"><span class="n">4</span>Ad groups — top by spend (this week)</div>
+    <div class="dtable"><table>
+      <thead><tr><th>Ad group</th><th>Campaign</th><th>Type</th><th>Region</th><th class="num">Spend</th><th class="num">Clicks</th><th class="num">Impr.</th></tr></thead>
+      <tbody>
+        <tr><td>Compete-Generic</td><td>DemandGen-Compete-Intl</td><td>Demand Gen</td><td>Intl</td><td class="num">$1,126</td><td class="num">571</td><td class="num">60,877</td></tr>
+        <tr><td>Compete-Generic</td><td>DemandGen-Compete-US</td><td>Demand Gen</td><td>US</td><td class="num">$1,526</td><td class="num">399</td><td class="num">26,973</td></tr>
+        <tr><td>Embedded-Analytics</td><td>DemandGen-Non-Brand-US</td><td>Demand Gen</td><td>US</td><td class="num">$917</td><td class="num">222</td><td class="num">37,121</td></tr>
+        <tr><td>Embedded-Analytics</td><td>DemandGen-Non-Brand-Intl</td><td>Demand Gen</td><td>Intl</td><td class="num">$496</td><td class="num">301</td><td class="num">42,518</td></tr>
+        <tr><td>RevealBI-BrandTerms</td><td>Search-Brand-Terms-WW</td><td>Search</td><td>WW</td><td class="num">$796</td><td class="num">39</td><td class="num">288</td></tr>
+        <tr><td>Compete - PowerBI</td><td>Search-Compete-Brazil</td><td>Search</td><td>Brazil</td><td class="num">$239</td><td class="num">18</td><td class="num">345</td></tr>
+        <tr><td>Embedded Analytics - Core</td><td>Search-Non-Brand-India</td><td>Search</td><td>India</td><td class="num">$149</td><td class="num">24</td><td class="num">570</td></tr>
+        <tr><td>Compete - PowerBI</td><td>Search-Compete-India</td><td>Search</td><td>India</td><td class="num">$146</td><td class="num">17</td><td class="num">302</td></tr>
+        <tr><td>Embedded BI - Core</td><td>Search-Non-Brand-US</td><td>Search</td><td>US</td><td class="num">$138</td><td class="num">1</td><td class="num">25</td></tr>
+        <tr><td>Compete - Tableau</td><td>Search-Compete-US</td><td>Search</td><td>US</td><td class="num">$101</td><td class="num">2</td><td class="num">83</td></tr>
+        <tr><td>Webinar July 21, 2026</td><td>Display-Webinars-US</td><td>Display</td><td>US</td><td class="num">$74</td><td class="num">40</td><td class="num">354</td></tr>
+      </tbody>
+    </table></div>
   </section>
 
-  <!-- ================= SEARCH TERMS ================= -->
+  <!-- ============ TAB 3: SEARCH TERMS & KEYWORDS ============ -->
   <section class="tabpanel" data-tab="terms" data-label="Search Terms &amp; Keywords">
 
-    <div class="sec"><span class="n">1</span>How to read this</div>
-    <div class="lead">
-      Reveal plays in an <b>expensive, high-intent space</b> &mdash; a high CPC is <b>not</b> a reason to cut. If a query contains <b>embedded analytics, embedded BI, white-label, OEM analytics, or a competitor + embed/pricing/alternative</b>, it&rsquo;s on-strategy and we keep it. We only trim genuinely broad or junk queries. The keyword book is already deep (256 terms), so growth is about the <b>few real gaps</b> &mdash; not loosening match type (phrase brought noise before).
+    <div class="lead" style="border-left-color:var(--good)">
+      <p><b>Intent rules applied:</b> keep high-intent even when expensive (embedded analytics/BI, white-label, OEM, competitor + embed/pricing/alternative); cut only broad or junk; yellow = legacy-tool research that may be low-fit. This week's search terms are <b>overwhelmingly on-intent</b> — the account is spending on the right queries. India drives the most non-brand volume ("oem analytics", "power bi embedded"), Brazil/US carry the compete queries.</p>
     </div>
 
-    <div class="sec"><span class="n">2</span>Negatives &amp; watch list <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">&mdash; only the real wasters</span></div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Query</th><th>Spend</th><th>Call</th><th>Why</th></tr></thead>
-        <tbody>
-          <tr><td>tableau integration</td><td class="num">$11</td><td><span class="tag cut">Add negative</span></td><td>Generic integration intent, not embedded analytics</td></tr>
-          <tr><td>ribenlvyou / yorbe ai / reveai / emdadman</td><td class="num">&mdash;</td><td><span class="tag cut">Add negative</span></td><td>Junk / misspelled / irrelevant queries</td></tr>
-          <tr><td>jasper reporting tool / jaspersoft</td><td class="num">$2</td><td><span class="tag watch">Research</span></td><td>Legacy reporting &mdash; likely off-ICP, confirm before cutting</td></tr>
-          <tr><td>embedded analytics white label, best embedded bi tools, tableau embedded pricing, power bi embedded, luzmo</td><td class="num">high</td><td><span class="tag keep">Keep</span></td><td><b>High intent &mdash; do not touch.</b> Expensive but exactly our buyer</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="sec"><span class="n">1</span>Top search terms this week — triage</div>
+    <div class="dtable"><table>
+      <thead><tr><th>Search term</th><th>Campaign</th><th class="num">Impr.</th><th class="num">Clicks</th><th class="num">Cost</th><th>Call</th></tr></thead>
+      <tbody>
+        <tr><td>oem analytics</td><td>Non-Brand-India</td><td class="num">531</td><td class="num">22</td><td class="num">$128.60</td><td><span class="tag keep">Keep</span></td></tr>
+        <tr><td>power bi embedded</td><td>Compete-Brazil</td><td class="num">125</td><td class="num">9</td><td class="num">$100.13</td><td><span class="tag keep">Keep</span></td></tr>
+        <tr><td>power bi embedded pricing</td><td>Compete-Eng-Intl</td><td class="num">27</td><td class="num">2</td><td class="num">$46.15</td><td><span class="tag keep">Keep</span></td></tr>
+        <tr><td>reveal bi</td><td>Brand-Terms-WW</td><td class="num">61</td><td class="num">16</td><td class="num">$153.47</td><td><span class="tag keep">Brand</span></td></tr>
+        <tr><td>embedded analytics</td><td>Non-Brand-US / India</td><td class="num">29</td><td class="num">1</td><td class="num">$14.42</td><td><span class="tag keep">Keep</span></td></tr>
+        <tr><td>white label analytics</td><td>Non-Brand-India / US</td><td class="num">23</td><td class="num">0</td><td class="num">$0.00</td><td><span class="tag keep">Keep</span></td></tr>
+        <tr><td>metabase alternative(s)</td><td>Compete-Eng-Intl / India</td><td class="num">77</td><td class="num">3</td><td class="num">$16.78</td><td><span class="tag watch">Yellow</span></td></tr>
+        <tr><td>thoughtspot embedded / pricing</td><td>Compete-US / Eng-Intl</td><td class="num">40</td><td class="num">2</td><td class="num">$22.72</td><td><span class="tag keep">Keep</span></td></tr>
+        <tr><td>tableau embedded analytics</td><td>Compete-US / India</td><td class="num">26</td><td class="num">0</td><td class="num">$0.00</td><td><span class="tag keep">Keep</span></td></tr>
+        <tr><td>quicksight embedding</td><td>Compete-Core-US</td><td class="num">3</td><td class="num">1</td><td class="num">$17.99</td><td><span class="tag keep">Keep→gap</span></td></tr>
+        <tr><td>emdadman dashboard</td><td>Non-Brand-US / Eng-Intl</td><td class="num">3</td><td class="num">0</td><td class="num">$0.00</td><td><span class="tag cut">Cut (junk)</span></td></tr>
+        <tr><td>ribenlvyou / revibeai</td><td>Brand-Terms-WW</td><td class="num">4</td><td class="num">0</td><td class="num">$0.00</td><td><span class="tag cut">Cut (junk)</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">No material budget waste in the term stream this week — the few junk queries ("emdadman dashboard", misspells like "revibeai/ribenlvyou") drew 0 clicks / $0. Add as negatives to keep the stream clean. "metabase alternative" family is yellow: legacy free-tool research, lower ICP fit, but cheap.</p>
 
-    <div class="sec"><span class="n">3</span>True coverage gaps to add as <span style="color:var(--accent-deep)">exact match</span> <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">&mdash; on-criteria &amp; NOT already in the account</span></div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Keyword</th><th>Cluster</th><th>US vol / mo</th><th>Est. CPC</th><th>KD</th><th>Gap</th></tr></thead>
-        <tbody>
-          <tr><td>sap embedded analytics</td><td>conquest &middot; SAP</td><td class="num">200</td><td class="num">$4.50</td><td class="num">0</td><td><span class="tag add">No SAP terms live</span></td></tr>
-          <tr><td>looker embedded analytics</td><td>conquest &middot; Looker</td><td class="num">150</td><td class="num">$7.00</td><td class="num">3</td><td><span class="tag add">No Looker terms live</span></td></tr>
-          <tr><td>quicksight embedded analytics</td><td>conquest &middot; QuickSight</td><td class="num">150</td><td class="num">$5.00</td><td class="num">0</td><td><span class="tag add">Variant missing</span></td></tr>
-          <tr><td>looker embedded</td><td>conquest &middot; Looker</td><td class="num">90</td><td class="num">$7.00</td><td class="num">2</td><td><span class="tag add">No Looker terms live</span></td></tr>
-          <tr><td>quicksight embedded dashboard</td><td>conquest &middot; QuickSight</td><td class="num">100</td><td class="num">$5.00</td><td class="num">&mdash;</td><td><span class="tag add">Variant missing</span></td></tr>
-          <tr><td>sap hana embedded analytics</td><td>conquest &middot; SAP</td><td class="num">60</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td><span class="tag add">No SAP terms live</span></td></tr>
-          <tr><td>sap s/4hana embedded analytics</td><td>conquest &middot; SAP</td><td class="num">50</td><td class="num">$3.50</td><td class="num">0</td><td><span class="tag add">No SAP terms live</span></td></tr>
-          <tr><td>looker embedded alternatives</td><td>conquest &middot; Looker</td><td class="num">50</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td><span class="tag add">No Looker terms live</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:8px">Checked every suggestion against the live 256-keyword book. The account already covers embedded analytics / embedded BI / white-label and most rivals (Power BI, Tableau, Metabase, Sisense, Domo, ThoughtSpot, Luzmo, Qlik, Sigma, GoodData&hellip;). The real openings are <b>Looker</b> and <b>SAP</b> (no terms live at all) plus a couple of QuickSight exact-phrase variants. Add as Exact only.</p>
+    <div class="sec"><span class="n">2</span>Live keyword book — top performers (30-day)</div>
+    <div class="dtable"><table>
+      <thead><tr><th>Keyword</th><th>Match</th><th>Campaign</th><th class="num">Impr.</th><th class="num">Clicks</th><th class="num">Cost</th></tr></thead>
+      <tbody>
+        <tr><td>embed power bi</td><td>Exact</td><td>Compete-Brazil</td><td class="num">1,201</td><td class="num">45</td><td class="num">$559.24</td></tr>
+        <tr><td>reveal bi</td><td>Exact</td><td>Brand-Terms-WW</td><td class="num">317</td><td class="num">83</td><td class="num">$867.25</td></tr>
+        <tr><td>OEM embedded analytics</td><td>Exact</td><td>Non-Brand-India</td><td class="num">582</td><td class="num">25</td><td class="num">$161.48</td></tr>
+        <tr><td>luzmo</td><td>Exact</td><td>Compete-US</td><td class="num">353</td><td class="num">9</td><td class="num">$491.94</td></tr>
+        <tr><td>power bi embedded pricing</td><td>Exact</td><td>Compete (3 regions)</td><td class="num">430</td><td class="num">26</td><td class="num">$329.99</td></tr>
+        <tr><td>metabase alternative</td><td>Exact</td><td>Compete-Eng-Intl / India</td><td class="num">308</td><td class="num">15</td><td class="num">$185.82</td></tr>
+        <tr><td>reveal embedded analytics</td><td>Phrase</td><td>Brand-Terms-WW</td><td class="num">129</td><td class="num">13</td><td class="num">$233.84</td></tr>
+        <tr><td>toucan toco</td><td>Exact</td><td>Compete-Eng-Intl</td><td class="num">129</td><td class="num">4</td><td class="num">$167.13</td></tr>
+        <tr><td>white label analytics</td><td>Exact</td><td>Non-Brand (multi)</td><td class="num">57</td><td class="num">3</td><td class="num">$137.56</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Full book pulled including zero-impression rows (~430 keywords). Book is deep and on-strategy across brand, compete (Power BI, Metabase, Luzmo, Tableau, ThoughtSpot, Domo, Sisense, GoodData, Bold BI, Logi), and non-brand (embedded analytics/BI, white-label, OEM). Note a live Japanese APAC campaign (BI 無料, データ分析 ツール) running broad match.</p>
 
-    <div class="sec"><span class="n">4</span>Top converting-intent terms we already run</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Search term</th><th>Cluster</th><th>Clicks</th><th>Cost</th><th>Call</th></tr></thead>
-        <tbody>
-          <tr><td>embed power bi</td><td>competitor-embed</td><td class="num">31</td><td class="num">$375</td><td><span class="tag keep">Keep</span></td></tr>
-          <tr><td>oem analytics</td><td>embedded-analytics</td><td class="num">21</td><td class="num">$134</td><td><span class="tag keep">Keep</span></td></tr>
-          <tr><td>power bi embedded pricing</td><td>competitor-embed</td><td class="num">12</td><td class="num">$169</td><td><span class="tag keep">Keep</span></td></tr>
-          <tr><td>reveal bi (brand)</td><td>brand</td><td class="num">12</td><td class="num">$130</td><td><span class="tag keep">Keep &middot; defend</span></td></tr>
-          <tr><td>luzmo</td><td>conquest</td><td class="num">4</td><td class="num">$125</td><td><span class="tag keep">Keep</span></td></tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="sec"><span class="n">3</span>True coverage gaps — add as EXACT (not in live book)</div>
+    <div class="dtable"><table>
+      <thead><tr><th>Keyword (add EXACT)</th><th>Cluster</th><th class="num">US vol</th><th class="num">CPC</th><th class="num">KD</th><th>Priority</th></tr></thead>
+      <tbody>
+        <tr><td>sap embedded analytics</td><td>SAP</td><td class="num">200</td><td class="num">$4.50</td><td class="num">0</td><td><span class="pill good">High</span></td></tr>
+        <tr><td>quicksight embedded analytics</td><td>QuickSight</td><td class="num">150</td><td class="num">$5.00</td><td class="num">0</td><td><span class="pill good">High</span></td></tr>
+        <tr><td>quicksight embedding</td><td>QuickSight</td><td class="num">150</td><td class="num">$6.00</td><td class="num">0</td><td><span class="pill good">High</span></td></tr>
+        <tr><td>looker embedded analytics</td><td>Looker</td><td class="num">150</td><td class="num">$7.00</td><td class="num">3</td><td><span class="pill good">High</span></td></tr>
+        <tr><td>looker embedded</td><td>Looker</td><td class="num">90</td><td class="num">$7.00</td><td class="num">2</td><td><span class="pill warn">Med</span></td></tr>
+        <tr><td>sisense alternative</td><td>Compete</td><td class="num">150</td><td class="num">$12.00</td><td class="num">0</td><td><span class="pill warn">Med (generic)</span></td></tr>
+        <tr><td>looker alternative</td><td>Compete</td><td class="num">80</td><td class="num">$11.00</td><td class="num">2</td><td><span class="pill warn">Med (generic)</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Deduped against the live book (Ahrefs vol, US). SAP + QuickSight-exact + Looker clusters confirmed as standing gaps — all commercial, low difficulty, embed-intent. Add EXACT only, never phrase. Zero-volume candidates dropped (embed looker, sap analytics cloud embedded, amazon quicksight embedded). "looker/sisense alternative" flagged Med: dual BI+embed rivals — pair with embed-intent ad copy so we don't buy generic BI shoppers.</p>
   </section>
 
-  <!-- ================= AD COPY ================= -->
-  <section class="tabpanel" data-tab="copy" data-label="Ad Copy">
+  <!-- ============ TAB 4: AD COPY ============ -->
+  <section class="tabpanel" data-tab="adcopy" data-label="Ad Copy">
 
-    <div class="sec"><span class="n">1</span>What&rsquo;s resonating <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">&mdash; last 30 days, asset-level</span></div>
-    <div class="lead">
-      Google can&rsquo;t grade most assets (labels read &ldquo;Pending&rdquo; without a conversion signal), so we rank by <b>how often each asset is served</b> (Google&rsquo;s rotation preference) and its <b>CTR</b>. The clear winners are <b>affordability / fixed-price</b>, <b>&ldquo;true embedded SDK&rdquo;</b>, <b>multi-tenant / white-label</b>, and <b>conquest (&ldquo;compare side-by-side&rdquo;)</b> angles. Brand copy converts attention as expected (15&ndash;24% CTR).
-    </div>
+    <div class="sec"><span class="n">1</span>RSA headlines — served vs CTR (30-day)</div>
+    <div class="dtable"><table>
+      <thead><tr><th>Headline</th><th class="num">Impr.</th><th class="num">Clicks</th><th class="num">CTR</th><th>Read</th></tr></thead>
+      <tbody>
+        <tr><td>Embed Analytics Anywhere</td><td class="num">443,789</td><td class="num">3,421</td><td class="num">0.77%</td><td><span class="tag">Most-served, avg</span></td></tr>
+        <tr><td>#1 Most Affordable BI for SaaS</td><td class="num">315,065</td><td class="num">3,211</td><td class="num">1.02%</td><td><span class="tag keep">Workhorse</span></td></tr>
+        <tr><td>Reveal Embedded Analytics</td><td class="num">101,284</td><td class="num">1,288</td><td class="num">1.27%</td><td><span class="tag keep">Winner</span></td></tr>
+        <tr><td>#1 Best Embedded BI for SaaS</td><td class="num">67,054</td><td class="num">848</td><td class="num">1.26%</td><td><span class="tag keep">Winner</span></td></tr>
+        <tr><td>Embedded Analytics SDK</td><td class="num">47,203</td><td class="num">572</td><td class="num">1.21%</td><td><span class="tag keep">Winner</span></td></tr>
+        <tr><td>#1 Embedded Analytics Platform</td><td class="num">83,741</td><td class="num">885</td><td class="num">1.06%</td><td><span class="tag keep">Solid</span></td></tr>
+        <tr><td>#1 Most Affordable Embedded BI</td><td class="num">31,466</td><td class="num">227</td><td class="num">0.72%</td><td><span class="tag watch">Laggard</span></td></tr>
+      </tbody>
+    </table></div>
 
-    <div class="sec"><span class="n">2</span>Search headlines &mdash; highest CTR (meaningful volume)</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Headline</th><th>Campaign</th><th>Impr</th><th>CTR</th></tr></thead>
-        <tbody>
-          <tr><td>Get Fixed Cost with Reveal®</td><td>Brand</td><td class="num">50</td><td class="num">24.0%</td></tr>
-          <tr><td>Reveal® Embedded BI</td><td>Brand</td><td class="num">174</td><td class="num">20.7%</td></tr>
-          <tr><td>White Label Ready</td><td>Brand</td><td class="num">164</td><td class="num">20.1%</td></tr>
-          <tr><td>Reveal®</td><td>Brand</td><td class="num">756</td><td class="num">19.8%</td></tr>
-          <tr><td>AI Powered Embedded Analytics</td><td>Compete India</td><td class="num">688</td><td class="num">8.3%</td></tr>
-          <tr><td>Compare Side-By-Side</td><td>Compete India</td><td class="num">613</td><td class="num">8.2%</td></tr>
-          <tr><td>Multi-Tenant Embedded BI</td><td>Compete India</td><td class="num">701</td><td class="num">7.6%</td></tr>
-          <tr><td>Embedded BI Solution</td><td>Compete India</td><td class="num">992</td><td class="num">6.4%</td></tr>
-          <tr><td>Embedded BI Faster</td><td>Compete India</td><td class="num">472</td><td class="num">5.5%</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="sec"><span class="n">2</span>Descriptions — the underserved winners</div>
+    <div class="dtable"><table>
+      <thead><tr><th>Description</th><th class="num">Impr.</th><th class="num">Clicks</th><th class="num">CTR</th><th>Read</th></tr></thead>
+      <tbody>
+        <tr><td>Trusted by SaaS teams in production. Book a personalized demo…</td><td class="num">2,341</td><td class="num">152</td><td class="num">6.49%</td><td><span class="tag keep">Scale</span></td></tr>
+        <tr><td>Looking for an alternative? See how Reveal compares side-by-side.</td><td class="num">2,740</td><td class="num">170</td><td class="num">6.20%</td><td><span class="tag keep">Scale</span></td></tr>
+        <tr><td>SDK-first analytics platform. Embed dashboards and AI insights…</td><td class="num">5,222</td><td class="num">211</td><td class="num">4.04%</td><td><span class="tag keep">Scale</span></td></tr>
+        <tr><td>White-label, multi-tenant, fully customizable embedded bi…</td><td class="num">6,429</td><td class="num">256</td><td class="num">3.98%</td><td><span class="tag keep">Scale</span></td></tr>
+        <tr><td>Gain complete control over your analytics with a flexible…</td><td class="num">229,845</td><td class="num">2,360</td><td class="num">1.03%</td><td><span class="tag">Workhorse</span></td></tr>
+        <tr><td>Experience powerful, fast embedded analytics deployment…fixed-price.</td><td class="num">240,197</td><td class="num">1,798</td><td class="num">0.75%</td><td><span class="tag watch">Over-served</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="note"><b>Winning themes:</b> social proof ("Trusted by SaaS teams"), direct compete framing ("Looking for an alternative?"), SDK-first + white-label. These pull 4–6.5% CTR but are barely in rotation, while generic "affordable/fixed-price" copy is over-served at &lt;1%. Rebalance the RSA asset mix toward the proof/compete/SDK angle.</p>
 
-    <div class="sec"><span class="n">3</span>DemandGen headlines &amp; descriptions</div>
+    <div class="sec"><span class="n">3</span>US vs International copy</div>
     <div class="cards">
-      <div class="card">
-        <div class="ch"><span class="nm">Most-served (workhorses)</span><span class="sp">volume</span></div>
-        <div class="cb">
-          <p><b>Headlines:</b> &ldquo;Embed Analytics Anywhere&rdquo; (300K impr), &ldquo;#1 Most Affordable BI for SaaS&rdquo; (262K), &ldquo;Reveal Embedded Analytics&rdquo;, &ldquo;#1 Embedded Analytics Platform&rdquo;.</p>
-          <p><b>Descriptions:</b> &ldquo;Gain complete control&hellip; flexible seamless experience&rdquo; (190K), &ldquo;&hellip;one affordable, fixed-price&rdquo; (159K), &ldquo;&hellip;true embedded SDK&rdquo; (116K).</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="ch"><span class="nm">Highest CTR (punch above weight)</span><span class="sp">efficiency</span></div>
-        <div class="cb">
-          <p><b>Headlines:</b> &ldquo;Effortless Embedded Analytics&rdquo; 3.1%, &ldquo;Embedded Analytics Solution&rdquo; 2.5%, &ldquo;Elevate Your Embedded BI&rdquo; 2.1% &mdash; all beat the workhorses (~0.8%). Consider promoting/expanding these angles.</p>
-          <p><b>Descriptions:</b> &ldquo;Embedded Analytics You Can Count On. No User &amp; Usage Tiers&hellip;&rdquo; 2.4%, &ldquo;Save time getting to market&hellip;&rdquo; 2.0%.</p>
-        </div>
-      </div>
+      <div class="card"><div class="ch"><span class="nm">US / English</span><span class="sp">strong volume</span></div><div class="cb">Deep RSA set, but skewed to "affordable / fixed price". The high-CTR proof and compete lines are underweight. <b>Gap:</b> add more compete-specific headlines ("See Why SaaS Teams Switch" already at 4.7% — scale it).</div></div>
+      <div class="card"><div class="ch"><span class="nm">Japan / APAC</span><span class="sp">only graded set</span></div><div class="cb">Japanese assets ("アプリに直接組み込むBI機能", "「作るBI」から「組み込むBI」へ") are the <b>only</b> assets Google has graded "Good". Localized message is landing — consider extending the localized playbook to other non-EN regions (Brazil PT).</div></div>
     </div>
-
-    <div class="sec"><span class="n">4</span>Messaging read &amp; copy actions</div>
-    <div class="cards">
-      <div class="card">
-        <div class="ch"><span class="nm">Angles that win</span><span class="sp">keep &amp; expand</span></div>
-        <div class="cb">
-          Affordability / fixed-price &middot; no per-user fees &middot; &ldquo;true embedded SDK / no iFrame&rdquo; &middot; multi-tenant &amp; white-label &middot; AI-powered &middot; speed (&ldquo;days, not months&rdquo;) &middot; conquest (&ldquo;compare side-by-side,&rdquo; &ldquo;see why SaaS teams switch&rdquo;). These recur across the top performers.
-        </div>
-      </div>
-      <div class="card">
-        <div class="ch"><span class="nm">Where copy needs work</span><span class="sp">refresh</span></div>
-        <div class="cb">
-          <b>US compete headlines underperform India</b> (2&ndash;3% vs 6&ndash;8%) &mdash; test the winning India angles (AI-powered, multi-tenant, compare) in US. Only the <b>Japan</b> campaign has graded (&ldquo;Good&rdquo;) assets; elsewhere grading is blocked by the conversion gap &mdash; fix that to unlock RSA optimization.
-        </div>
-      </div>
-    </div>
+    <p class="note"><b>Grading blind spot:</b> nearly every English asset shows "Pending information" — Google has not yet graded the bulk of the RSA library, so lean on served-impression + CTR (above) to judge, not the Ad Strength label.</p>
   </section>
 
-  <!-- ================= CREATIVE ================= -->
+  <!-- ============ TAB 5: CREATIVE ============ -->
   <section class="tabpanel" data-tab="creative" data-label="Creative">
 
-    <div class="sec"><span class="n">1</span>Creative health <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">&mdash; last 30 days</span></div>
-    <div class="lead">
-      Creative lives almost entirely in the <b>DemandGen / PMax</b> campaigns (images, video, carousel) plus responsive search text. The headline issue: <b>Google has not graded a single non-Japan asset</b> (&ldquo;Pending information&rdquo;) &mdash; because asset performance labels need conversion data, and our import isn&rsquo;t firing. So the engine is <b>rotating creative blind</b>. Ranking by CTR, <b>portrait/marketing images and the Compete-Intl video are the standouts</b>, while <b>carousel cards and several videos are fatiguing</b>.
-    </div>
-
-    <div class="sec"><span class="n">2</span>The actual creative <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">&mdash; live image assets pulled from the account</span></div>
+    <div class="sec"><span class="n">1</span>Live creative — actual assets (30-day)</div>
     <div class="gal">
-      <div class="it"><img src="https://tpc.googlesyndication.com/simgad/9672679339688012062" alt="PMax logo" loading="lazy"><div class="cap"><b>Logo</b> · PMax · 62.9K impr</div></div>
-      <div class="it"><img src="https://tpc.googlesyndication.com/simgad/2383149930152822424" alt="Reveal business logo" loading="lazy"><div class="cap"><b>Business logo</b> · Search · ~24K impr</div></div>
-      <div class="it"><img src="https://tpc.googlesyndication.com/simgad/3127727231810535400" alt="Ad image" loading="lazy"><div class="cap"><b>Ad image</b> · Compete search · top-served</div></div>
-      <div class="it"><img src="https://tpc.googlesyndication.com/simgad/14645863122699124145" alt="Ad image" loading="lazy"><div class="cap"><b>Ad image</b> · Brand / Japan · ~505 impr</div></div>
-      <div class="it"><img src="https://tpc.googlesyndication.com/simgad/13827008254389160225" alt="Ad image" loading="lazy"><div class="cap"><b>Ad image</b> · Compete Intl</div></div>
-      <div class="it"><img src="https://tpc.googlesyndication.com/simgad/3969583626365133399" alt="Ad image" loading="lazy"><div class="cap"><b>Ad image</b> · Non-Brand</div></div>
-      <div class="it"><img src="https://tpc.googlesyndication.com/simgad/8739430711695992205" alt="Ad image" loading="lazy"><div class="cap"><b>Ad image</b> · Brand / Compete</div></div>
-      <div class="it"><img src="https://tpc.googlesyndication.com/simgad/1546767478817635639" alt="Ad image" loading="lazy"><div class="cap"><b>Ad image</b> · Brand</div></div>
-    </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:8px">These are the live logo and search/display image assets, pulled straight from the account via the connector. The richer DemandGen marketing images and YouTube videos aren&rsquo;t exposed as URLs by Supermetrics, so their thumbnails can&rsquo;t be embedded here &mdash; their <i>performance</i> is in the format table below. (If a thumbnail is blank, Google&rsquo;s ad CDN is blocking the hotlink &mdash; open it in the account.)</p>
-
-    <div class="sec"><span class="n">3</span>Format performance</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Format</th><th>Role</th><th>Read</th><th>Best CTR seen</th></tr></thead>
-        <tbody>
-          <tr><td>Marketing / portrait images</td><td>DemandGen</td><td>Strongest visual format &mdash; scale these</td><td class="num"><span class="wg">2.2&ndash;2.5%</span></td></tr>
-          <tr><td>YouTube video</td><td>DemandGen</td><td>One strong performer (Compete-Intl); rest weak</td><td class="num"><span class="wg">3.6%</span> / <span class="wr">0.3%</span></td></tr>
-          <tr><td>Square images / logo</td><td>DemandGen</td><td>Solid, high-volume base</td><td class="num">0.7&ndash;1.1%</td></tr>
-          <tr><td>Responsive search text</td><td>Search</td><td>Healthy; brand + India compete strongest</td><td class="num">up to 20%+</td></tr>
-          <tr><td>Demand Gen carousel cards</td><td>DemandGen</td><td>Weakest format &mdash; low engagement</td><td class="num"><span class="wr">0.3&ndash;0.6%</span></td></tr>
-          <tr><td>Tall-portrait images</td><td>DemandGen</td><td>Barely serving (&lt;100 impr) &mdash; upload/fix</td><td class="num"><span class="wr">~0%</span></td></tr>
-        </tbody>
-      </table>
+      <div class="item"><img src="https://tpc.googlesyndication.com/simgad/9672679339688012062" alt="Reveal logo square" loading="lazy"><div class="cap"><b>Logo — square</b><br>546k impr · 5,297 clk · 0.97%</div></div>
+      <div class="item"><img src="https://tpc.googlesyndication.com/simgad/1332486347453723894" alt="Theming feature 1200x1200" loading="lazy"><div class="cap"><b>Theming 1:1</b><br>104k impr · 1,199 clk · <span class="up-c">1.15%</span></div></div>
+      <div class="item"><img src="https://tpc.googlesyndication.com/simgad/5015482204191944044" alt="Complete control feature" loading="lazy"><div class="cap"><b>Complete Control 1:1</b><br>122k impr · 468 clk · 0.38%</div></div>
+      <div class="item"><img src="https://tpc.googlesyndication.com/simgad/12366106378577708627" alt="Theming 1200x628" loading="lazy"><div class="cap"><b>Theming 1.91:1</b><br>40k impr · 558 clk · <span class="up-c">1.39%</span></div></div>
+      <div class="item"><img src="https://tpc.googlesyndication.com/simgad/11047036333219168424" alt="Drill downs feature" loading="lazy"><div class="cap"><b>Drill-downs 1:1</b><br>75k impr · 443 clk · 0.59%</div></div>
+      <div class="item"><img src="https://tpc.googlesyndication.com/simgad/9992168666430605452" alt="Complete control 1200x628" loading="lazy"><div class="cap"><b>Complete Control 1.91:1</b><br>30k impr · 553 clk · <span class="up-c">1.83%</span></div></div>
+      <div class="item"><img src="https://tpc.googlesyndication.com/simgad/8597717355428617972" alt="Retail dashboard" loading="lazy"><div class="cap"><b>Retail dashboard 1:1</b><br>23k impr · 257 clk · 1.14%</div></div>
+      <div class="item"><img src="https://tpc.googlesyndication.com/simgad/7541330117426025426" alt="Banking risk dashboard" loading="lazy"><div class="cap"><b>Banking dashboard 1.91:1</b><br>33k impr · 290 clk · 0.89%</div></div>
     </div>
 
-    <div class="sec"><span class="n">4</span>Fatigue &amp; refresh map</div>
+    <div class="sec"><span class="n">2</span>Format performance (30-day)</div>
+    <div class="dtable"><table>
+      <thead><tr><th>Asset format</th><th class="num">Impr.</th><th class="num">Clicks</th><th class="num">CTR</th></tr></thead>
+      <tbody>
+        <tr><td>Text — Headlines</td><td class="num">1,213,538</td><td class="num">12,957</td><td class="num">1.07%</td></tr>
+        <tr><td>Text — Descriptions</td><td class="num">1,121,559</td><td class="num">11,832</td><td class="num">1.06%</td></tr>
+        <tr><td>Marketing image (1.91:1)</td><td class="num">258,589</td><td class="num">2,887</td><td class="num">1.12%</td></tr>
+        <tr><td>Portrait marketing image</td><td class="num">140,888</td><td class="num">1,583</td><td class="num">1.12%</td></tr>
+        <tr><td>Square marketing image</td><td class="num">464,885</td><td class="num">3,541</td><td class="num">0.76%</td></tr>
+        <tr><td>Logo</td><td class="num">1,032,306</td><td class="num">9,519</td><td class="num">0.92%</td></tr>
+        <tr><td>YouTube video</td><td class="num">113,482</td><td class="num">1,066</td><td class="num">0.94%</td></tr>
+        <tr><td>Demand Gen carousel card</td><td class="num">145,620</td><td class="num">900</td><td class="num">0.62%</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="sec"><span class="n">3</span>Fatigue &amp; refresh map</div>
     <div class="cards">
-      <div class="card">
-        <div class="ch"><span class="nm">Performing &mdash; scale</span><span class="sp">keep</span></div>
-        <div class="cb">
-          <p><b>Compete-Intl YouTube video</b> &mdash; 3.6% CTR, the best asset in the account; produce more in this style.</p>
-          <p><b>Marketing &amp; portrait images</b> &mdash; 2.2&ndash;2.5% CTR; the visual workhorses.</p>
-          <p><b>Brand + India compete RSAs</b> &mdash; strong CTR; the copy engine is healthy.</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="ch"><span class="nm">Fatigued / weak &mdash; refresh</span><span class="sp">act</span></div>
-        <div class="cb">
-          <p><b>Low-CTR YouTube variants</b> (0.3&ndash;0.7%, ungraded) &mdash; retire and replace; video clearly can work when it&rsquo;s right.</p>
-          <p><b>Carousel cards</b> (0.3&ndash;0.6%) &mdash; rework the format or pull budget from it.</p>
-          <p><b>Tall-portrait images</b> not serving &mdash; assets missing/rejected; upload fresh sizes.</p>
-          <p><b>US DemandGen &amp; compete visuals</b> trail Intl &mdash; localize/refresh for the US audience.</p>
-        </div>
-      </div>
+      <div class="card"><div class="ch"><span class="nm">Scale</span><span class="sp">winners</span></div><div class="cb"><b>Theming</b> and <b>Complete Control (1.91:1)</b> creatives run 1.15–1.83% CTR — well above the 0.6–0.9% pack. Push more budget/impressions to these; build variants on the theming concept.</div></div>
+      <div class="card"><div class="ch"><span class="nm">Refresh</span><span class="sp">tiring / weak</span></div><div class="cb"><b>Demand Gen carousel</b> (0.62%) and <b>square marketing images</b> (0.76%) lag. The carousel is the weakest format and is heavily served in DemandGen — refresh with the theming/dashboard concept that's winning elsewhere.</div></div>
     </div>
-
-    <div class="sec"><span class="n">5</span>The blind-spot to fix</div>
-    <div class="lead">
-      <b>Restore conversion import so Google can grade assets.</b> Right now every non-Japan asset is &ldquo;Pending,&rdquo; which means Smart Bidding and asset rotation are optimizing without a quality signal &mdash; we&rsquo;re paying to serve creative Google can&rsquo;t learn from. Fixing the conversion feed (same root cause as the 0 in the Google Ads conversion column) unlocks asset grading, better rotation, and real creative A/B reads.
+    <div class="cards" style="margin-top:12px">
+      <div class="card"><div class="ch"><span class="nm">New creative needed</span><span class="sp">gap</span></div><div class="cb">Compete-specific creative is thin — most images are generic feature shots. Build side-by-side "vs" visuals to match the high-CTR compete copy on Tab 4.</div></div>
+      <div class="card"><div class="ch"><span class="nm">Blind spot</span><span class="sp">measurement</span></div><div class="cb">Google has graded almost nothing ("Pending information"), and <b>DemandGen marketing images + YouTube aren't URL-exposed</b> in the feed — their thumbnails can't be shown here; performance is covered in the format table only.</div></div>
     </div>
   </section>
 
-  <!-- ================= LANDING PAGES ================= -->
-  <section class="tabpanel" data-tab="lp" data-label="Landing Pages">
+  <!-- ============ TAB 6: LANDING PAGES ============ -->
+  <section class="tabpanel" data-tab="landing" data-label="Landing Pages">
 
-    <div class="sec"><span class="n">1</span>Paid traffic on site <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">&mdash; GA4, session source/medium = google/cpc, Jul 18&ndash;24</span></div>
-    <div class="lead">
-      Two things jump out. <b>82% of paid traffic lands on the homepage</b>, which bounces <b>66%</b> &mdash; while the intent-matched pages (vs-competitor, pricing, platform) engage <b>~2&times; better</b> but get almost no traffic. And <b>76% of paid sessions are mobile</b>, which engages worse and stays a third as long as desktop. The near-term wins are the same both ways: <b>route campaign traffic to intent pages</b> instead of the homepage, and <b>tighten the mobile experience</b>.
-    </div>
+    <div class="sec"><span class="n">1</span>GA4 google/cpc — this week</div>
     <div class="kpigrid">
-      <div class="kpi"><span class="lab">Paid sessions</span><span class="val">1,296</span><span class="delta flat">~flat WoW</span></div>
-      <div class="kpi"><span class="lab">Engagement rate</span><span class="val">35%</span><span class="delta flat">flat</span></div>
-      <div class="kpi"><span class="lab">Bounce rate</span><span class="val">65%</span><span class="delta down">home-driven</span></div>
-      <div class="kpi"><span class="lab">Avg duration</span><span class="val">2:01</span><span class="delta flat">min:sec</span></div>
-      <div class="kpi"><span class="lab">Mobile share</span><span class="val">76%</span><span class="delta down">weak engage</span></div>
+      <div class="kpi"><span class="lab">Sessions</span><span class="val">1,180</span><span class="delta down">▼ 10.8%</span></div>
+      <div class="kpi"><span class="lab">Engaged sessions</span><span class="val">415</span><span class="delta down">▼ 11.9%</span></div>
+      <div class="kpi"><span class="lab">Engagement rate</span><span class="val">35.2%</span><span class="delta flat">−0.4pt</span></div>
+      <div class="kpi"><span class="lab">Bounce rate</span><span class="val">64.8%</span><span class="delta flat">+0.4pt</span></div>
+      <div class="kpi"><span class="lab">Views / session</span><span class="val">1.35</span><span class="delta flat">+0.02</span></div>
+    </div>
+    <p class="note">GA4 matures ~48h, so the last two days of this week (Jul 25–26) are still filling in — treat the −10.8% session dip as partly stale, not a true collapse. Engagement quality held flat WoW. (Avg session duration is volatile on this small base — 123s this week vs an outlier-inflated 626s prior week — so it's excluded from the KPI row.)</p>
+
+    <div class="sec"><span class="n">2</span>Trend since GA4 property start (~Dec 2025)</div>
+    <div class="grid2">
+      <div class="chartcard"><div class="ct">Sessions / month — google/cpc</div>
+        <svg viewBox="0 0 460 170" role="img" aria-label="Monthly sessions line chart">
+          <line x1="40" y1="140" x2="450" y2="140" stroke="#E9E9F4"/>
+          <line x1="40" y1="90" x2="450" y2="90" stroke="#F2F3F8"/>
+          <line x1="40" y1="40" x2="450" y2="40" stroke="#F2F3F8"/>
+          <text x="4" y="143" font-size="9" fill="#8a93a3">0</text>
+          <text x="0" y="43" font-size="9" fill="#8a93a3">20k</text>
+          <polyline fill="none" stroke="#EC417A" stroke-width="2.5"
+            points="55,139 111,130 167,119 223,42 279,111 335,126 391,108 447,127"/>
+          <g fill="#C9367F">
+            <circle cx="55" cy="139" r="3"/><circle cx="111" cy="130" r="3"/><circle cx="167" cy="119" r="3"/><circle cx="223" cy="42" r="3"/><circle cx="279" cy="111" r="3"/><circle cx="335" cy="126" r="3"/><circle cx="391" cy="108" r="3"/><circle cx="447" cy="127" r="3"/>
+          </g>
+          <g font-size="8.5" fill="#5f6b7a" text-anchor="middle">
+            <text x="55" y="155">Dec</text><text x="111" y="155">Jan</text><text x="167" y="155">Feb</text><text x="223" y="155">Mar</text><text x="279" y="155">Apr</text><text x="335" y="155">May</text><text x="391" y="155">Jun</text><text x="447" y="155">Jul*</text>
+          </g>
+        </svg>
+        <p class="note">Peaked in Mar (19.9k). Jul (5.1k) is month-to-date/partial.</p>
+      </div>
+      <div class="chartcard"><div class="ct">Engagement vs bounce — google/cpc</div>
+        <svg viewBox="0 0 460 170" role="img" aria-label="Engagement and bounce line chart">
+          <line x1="40" y1="140" x2="450" y2="140" stroke="#E9E9F4"/>
+          <line x1="40" y1="90" x2="450" y2="90" stroke="#F2F3F8"/>
+          <line x1="40" y1="40" x2="450" y2="40" stroke="#F2F3F8"/>
+          <text x="8" y="43" font-size="9" fill="#8a93a3">80%</text>
+          <text x="8" y="143" font-size="9" fill="#8a93a3">0%</text>
+          <polyline fill="none" stroke="#12915b" stroke-width="2.5" points="55,89 111,96 167,97 223,100 279,111 335,101 391,94 447,116"/>
+          <polyline fill="none" stroke="#c23b39" stroke-width="2.5" stroke-dasharray="4 3" points="55,91 111,84 167,83 223,80 279,69 335,79 391,86 447,64"/>
+          <g font-size="8.5" fill="#5f6b7a" text-anchor="middle">
+            <text x="55" y="155">Dec</text><text x="111" y="155">Jan</text><text x="167" y="155">Feb</text><text x="223" y="155">Mar</text><text x="279" y="155">Apr</text><text x="335" y="155">May</text><text x="391" y="155">Jun</text><text x="447" y="155">Jul*</text>
+          </g>
+          <text x="60" y="30" font-size="9" fill="#12915b">— engagement</text>
+          <text x="180" y="30" font-size="9" fill="#c23b39">- - bounce</text>
+        </svg>
+        <p class="note">Engagement dipped to 31.8% in Jul (partial); bounce rose to 68%. Consistent with more DemandGen/mobile traffic.</p>
+      </div>
     </div>
 
-    <div class="sec"><span class="n">2</span>Trend since the property went live <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">&mdash; google/cpc, monthly (GA4 for revealbi.io started Dec 2025)</span></div>
-    <div class="lead" style="font-size:13.5px">
-      Volume scaled hard in Q1 &mdash; peaking near <b>20K sessions in March</b> &mdash; then pulled back. As we scaled cold DemandGen volume, <b>bounce rose and engagement fell</b>, hitting the worst point in April (~64% bounce / 36% engagement). Since then, tighter targeting has <b>recovered quality</b>: June posted the best average duration (3:19) and engagement is climbing back toward 46%. A full 12-month trail isn&rsquo;t available yet &mdash; GA4 on the site only started tracking in December.
+    <div class="sec"><span class="n">3</span>Where paid traffic lands</div>
+    <div class="splitbar">
+      <span style="width:85.3%;background:var(--bad)">Homepage 85.3%</span>
+      <span style="width:14.7%;background:var(--good)">Intent pages 14.7%</span>
     </div>
-    <div class="chartcard">
-      <div class="ct">Sessions per month</div>
-      <svg viewBox="0 0 660 200" role="img" aria-label="Sessions per month trend">
-        <line x1="40" y1="155" x2="640" y2="155" stroke="#e3e7f0" stroke-width="1"/>
-        <line x1="40" y1="88" x2="640" y2="88" stroke="#eef1f7" stroke-width="1"/>
-        <line x1="40" y1="21" x2="640" y2="21" stroke="#eef1f7" stroke-width="1"/>
-        <text x="34" y="158" font-size="9" fill="#8a93a3" text-anchor="end">0</text>
-        <text x="34" y="91" font-size="9" fill="#8a93a3" text-anchor="end">10K</text>
-        <text x="34" y="24" font-size="9" fill="#8a93a3" text-anchor="end">20K</text>
-        <path d="M40,155 L40,154.6 L137,127.9 L233,97.6 L330,21 L427,77.5 L523,117.6 L620,68.7 L620,155 Z" fill="#6C8CFD" fill-opacity="0.16"/>
-        <polyline points="40,154.6 137,127.9 233,97.6 330,21 427,77.5 523,117.6 620,68.7" fill="none" stroke="#2A41A2" stroke-width="2.5"/>
-        <g fill="#2A41A2"><circle cx="40" cy="154.6" r="3"/><circle cx="137" cy="127.9" r="3"/><circle cx="233" cy="97.6" r="3"/><circle cx="330" cy="21" r="3.5"/><circle cx="427" cy="77.5" r="3"/><circle cx="523" cy="117.6" r="3"/><circle cx="620" cy="68.7" r="3"/></g>
-        <text x="330" y="14" font-size="10" font-weight="700" fill="#2A41A2" text-anchor="middle">19.8K</text>
-        <g font-size="10" fill="#5f6b7a" text-anchor="middle"><text x="40" y="175">Dec</text><text x="137" y="175">Jan</text><text x="233" y="175">Feb</text><text x="330" y="175">Mar</text><text x="427" y="175">Apr</text><text x="523" y="175">May</text><text x="620" y="175">Jun</text></g>
-      </svg>
+    <p class="note">1,007 of 1,180 sessions land on <code>/</code>. High-intent compete &amp; non-brand clicks are being dumped on the homepage instead of dedicated pages — the single biggest on-site fix.</p>
+    <div class="bars" style="margin-top:12px">
+      <div class="row"><span class="nm">/reveal-vs-power-bi</span><div class="track"><i class="hi" style="width:100%"></i></div><span class="val">35 · 40% bnc</span></div>
+      <div class="row"><span class="nm">/webinars/build-vs-buy…</span><div class="track"><i class="mid" style="width:54%"></i></div><span class="val">19 · 58% bnc</span></div>
+      <div class="row"><span class="nm">/embedded-analytics-platform</span><div class="track"><i class="hi" style="width:31%"></i></div><span class="val">11 · 36% bnc</span></div>
+      <div class="row"><span class="nm">/embedded-bi</span><div class="track"><i class="lo" style="width:31%"></i></div><span class="val">11 · 73% bnc</span></div>
+      <div class="row"><span class="nm">/pricing/embedded-analytics</span><div class="track"><i class="mid" style="width:29%"></i></div><span class="val">10 · 60% bnc</span></div>
+      <div class="row"><span class="nm">/request-demo</span><div class="track"><i class="mid" style="width:26%"></i></div><span class="val">9 · 56% bnc</span></div>
+      <div class="row"><span class="nm">/reveal-vs-metabase</span><div class="track"><i class="hi" style="width:17%"></i></div><span class="val">6 · 33% bnc</span></div>
+      <div class="row"><span class="nm">/chart-types</span><div class="track"><i class="mid" style="width:14%"></i></div><span class="val">5 · 60% bnc</span></div>
     </div>
-    <div class="chartcard">
-      <div class="ct">Bounce rate vs engagement rate</div>
-      <svg viewBox="0 0 660 200" role="img" aria-label="Bounce vs engagement trend">
-        <line x1="40" y1="155" x2="640" y2="155" stroke="#eef1f7" stroke-width="1"/>
-        <line x1="40" y1="88" x2="640" y2="88" stroke="#eef1f7" stroke-width="1"/>
-        <line x1="40" y1="21" x2="640" y2="21" stroke="#eef1f7" stroke-width="1"/>
-        <text x="34" y="158" font-size="9" fill="#8a93a3" text-anchor="end">30%</text>
-        <text x="34" y="91" font-size="9" fill="#8a93a3" text-anchor="end">50%</text>
-        <text x="34" y="24" font-size="9" fill="#8a93a3" text-anchor="end">70%</text>
-        <polyline points="40,92.6 137,69.95 233,66.6 330,55.4 427,39.2 523,59.5 620,72.3" fill="none" stroke="#c23b39" stroke-width="2.5"/>
-        <polyline points="40,82.4 137,105.05 233,108.4 330,119.6 427,135.8 523,115.6 620,102.7" fill="none" stroke="#12915b" stroke-width="2.5"/>
-        <g fill="#c23b39"><circle cx="40" cy="92.6" r="2.6"/><circle cx="137" cy="69.95" r="2.6"/><circle cx="233" cy="66.6" r="2.6"/><circle cx="330" cy="55.4" r="2.6"/><circle cx="427" cy="39.2" r="3.4"/><circle cx="523" cy="59.5" r="2.6"/><circle cx="620" cy="72.3" r="2.6"/></g>
-        <g fill="#12915b"><circle cx="40" cy="82.4" r="2.6"/><circle cx="137" cy="105.05" r="2.6"/><circle cx="233" cy="108.4" r="2.6"/><circle cx="330" cy="119.6" r="2.6"/><circle cx="427" cy="135.8" r="3.4"/><circle cx="523" cy="115.6" r="2.6"/><circle cx="620" cy="102.7" r="2.6"/></g>
-        <text x="427" y="33" font-size="9.5" font-weight="700" fill="#c23b39" text-anchor="middle">64%</text>
-        <text x="427" y="148" font-size="9.5" font-weight="700" fill="#12915b" text-anchor="middle">36%</text>
-        <g font-size="10" fill="#5f6b7a" text-anchor="middle"><text x="40" y="175">Dec</text><text x="137" y="175">Jan</text><text x="233" y="175">Feb</text><text x="330" y="175">Mar</text><text x="427" y="175">Apr</text><text x="523" y="175">May</text><text x="620" y="175">Jun</text></g>
-      </svg>
-      <div class="clg"><div class="li"><span class="sw" style="background:#c23b39"></span>Bounce rate</div><div class="li"><span class="sw" style="background:#12915b"></span>Engagement rate</div></div>
-    </div>
+    <p class="note">Non-home pages only (homepage excluded so bars stay readable). Bar color = bounce health (green &lt;50%, amber 50–70%, red &gt;70%). The <code>/reveal-vs-*</code> pages are the healthiest landing spots — more reason to route compete traffic there.</p>
 
-    <div class="sec"><span class="n">3</span>Where paid traffic lands <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">&mdash; this week (Jul 18&ndash;24)</span></div>
-    <div class="stack">
-      <div style="width:82%;background:var(--bad)">Homepage &mdash; 82%</div>
-      <div style="width:18%;background:var(--good)">Intent pages &mdash; 18%</div>
-    </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:8px"><b>82% of paid sessions land on the homepage</b>; only 18% reach a more specific page. Below is where that other 18% goes (bar color = bounce health, homepage excluded so the rest is visible):</p>
-    <div class="rank">
-      <div class="rankrow"><span class="lp">/webinars/build-vs-buy</span><span class="tk"><span class="fl" style="width:100%;background:var(--bad)"></span></span><span class="vv">77</span></div>
-      <div class="rankrow"><span class="lp">/reveal-vs-power-bi</span><span class="tk"><span class="fl" style="width:47%;background:var(--good)"></span></span><span class="vv">36</span></div>
-      <div class="rankrow"><span class="lp">/pricing/embedded-analytics</span><span class="tk"><span class="fl" style="width:17%;background:var(--warn)"></span></span><span class="vv">13</span></div>
-      <div class="rankrow"><span class="lp">/embedded-analytics-platform</span><span class="tk"><span class="fl" style="width:14%;background:var(--good)"></span></span><span class="vv">11</span></div>
-      <div class="rankrow"><span class="lp">/embedded-bi</span><span class="tk"><span class="fl" style="width:14%;background:var(--bad)"></span></span><span class="vv">11</span></div>
-      <div class="rankrow"><span class="lp">/reveal-vs-metabase</span><span class="tk"><span class="fl" style="width:6.5%;background:var(--good)"></span></span><span class="vv">5</span></div>
-      <div class="rankrow"><span class="lp">/request-demo</span><span class="tk"><span class="fl" style="width:6.5%;background:var(--good)"></span></span><span class="vv">5</span></div>
-      <div class="rankrow"><span class="lp">/chart-types</span><span class="tk"><span class="fl" style="width:6.5%;background:var(--good)"></span></span><span class="vv">5</span></div>
-    </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:8px">The intent pages that engage best (vs-power-bi, pricing, platform) get a handful of sessions each &mdash; a <b>routing problem, not a page-quality problem</b>. Point DemandGen and compete campaigns at these pages instead of the homepage.</p>
-
-    <div class="sec"><span class="n">4</span>Device split &amp; behavior</div>
+    <div class="sec"><span class="n">4</span>Device split &amp; per-device quality</div>
     <div class="donutwrap">
-      <div class="donut" style="background:conic-gradient(var(--peri) 0 76.4%, var(--cobalt) 76.4% 97.5%, var(--warn) 97.5% 100%)">
-        <div class="hole"><b>76%</b><span>mobile</span></div>
-      </div>
+      <svg viewBox="0 0 42 42" width="150" height="150" role="img" aria-label="Device split donut">
+        <circle cx="21" cy="21" r="15.9" fill="none" stroke="#eef0f5" stroke-width="6"/>
+        <circle cx="21" cy="21" r="15.9" fill="none" stroke="#EC417A" stroke-width="6" stroke-dasharray="74.5 25.5" stroke-dashoffset="25" transform="rotate(-90 21 21)"/>
+        <circle cx="21" cy="21" r="15.9" fill="none" stroke="#2A41A2" stroke-width="6" stroke-dasharray="22.4 77.6" stroke-dashoffset="-49.5" transform="rotate(-90 21 21)"/>
+        <circle cx="21" cy="21" r="15.9" fill="none" stroke="#6C8CFD" stroke-width="6" stroke-dasharray="3.1 96.9" stroke-dashoffset="-71.9" transform="rotate(-90 21 21)"/>
+        <text x="21" y="20" text-anchor="middle" font-size="5" font-weight="700" fill="#0F172A">1,180</text>
+        <text x="21" y="25" text-anchor="middle" font-size="2.6" fill="#5f6b7a">sessions</text>
+      </svg>
       <div class="legend">
-        <div class="li"><span class="sw" style="background:var(--peri)"></span>Mobile &mdash; <b>990</b> sess &middot; 33% eng &middot; 67% bounce &middot; 1:27</div>
-        <div class="li"><span class="sw" style="background:var(--cobalt)"></span>Desktop &mdash; <b>274</b> sess &middot; 43% eng &middot; 57% bounce &middot; 4:15</div>
-        <div class="li"><span class="sw" style="background:var(--warn)"></span>Tablet &mdash; <b>32</b> sess &middot; 38% eng &middot; 63% bounce &middot; 0:25</div>
+        <div class="li"><span class="sw" style="background:#EC417A"></span> <b>Mobile</b> — 879 (74.5%) · eng 33.2% · 83s</div>
+        <div class="li"><span class="sw" style="background:#2A41A2"></span> <b>Desktop</b> — 264 (22.4%) · eng 40.5% · 269s</div>
+        <div class="li"><span class="sw" style="background:#6C8CFD"></span> <b>Tablet</b> — 37 (3.1%) · eng 40.5% · 30s</div>
       </div>
     </div>
-    <p style="font-size:13px;color:var(--muted);margin-top:10px"><b>Desktop engages far better than mobile</b> (43% vs 33%, and 4:15 vs 1:27 on site) &mdash; expected for a technical/developer buyer who evaluates an SDK on a laptop. Yet three-quarters of paid traffic is mobile. Worth testing device bid adjustments toward desktop and hardening the mobile LP experience.</p>
+    <p class="note">Traffic is mobile-heavy (74.5%), but <b>desktop engages better and stays 3x longer</b> (269s vs 83s). Our buyers (CTO/dev) evaluate on desktop — the mobile skew comes from DemandGen/PMax and is lower-quality. Consider device bid adjustments favoring desktop for capture campaigns.</p>
 
-    <div class="sec"><span class="n">5</span>Page-by-page &mdash; what&rsquo;s working, what&rsquo;s not</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Landing page</th><th>Sessions</th><th>Engaged</th><th>Bounce</th><th>Avg dur</th><th>Verdict</th></tr></thead>
-        <tbody>
-          <tr><td>/ (home)</td><td class="num">1,057</td><td class="num">33.6%</td><td class="num">66.4%</td><td class="num">1:30</td><td><span class="pill bad">Weak &middot; over-fed</span></td></tr>
-          <tr><td>/reveal-vs-power-bi</td><td class="num">36</td><td class="num">66.7%</td><td class="num">33.3%</td><td class="num">10:39</td><td><span class="pill good">Strong</span></td></tr>
-          <tr><td>/reveal-vs-metabase</td><td class="num">5</td><td class="num">80.0%</td><td class="num">20.0%</td><td class="num">0:39</td><td><span class="pill good">Strong</span></td></tr>
-          <tr><td>/embedded-analytics-platform</td><td class="num">11</td><td class="num">63.6%</td><td class="num">36.4%</td><td class="num">0:18</td><td><span class="pill good">Strong</span></td></tr>
-          <tr><td>/pricing/embedded-analytics</td><td class="num">13</td><td class="num">53.8%</td><td class="num">46.2%</td><td class="num">0:38</td><td><span class="pill good">Strong intent</span></td></tr>
-          <tr><td>/request-demo</td><td class="num">5</td><td class="num">60.0%</td><td class="num">40.0%</td><td class="num">9:28</td><td><span class="pill good">Bottom-funnel</span></td></tr>
-          <tr><td>/chart-types</td><td class="num">5</td><td class="num">60.0%</td><td class="num">40.0%</td><td class="num">12:09</td><td><span class="pill good">Strong</span></td></tr>
-          <tr><td>/webinars/build-vs-buy</td><td class="num">77</td><td class="num">37.7%</td><td class="num">62.3%</td><td class="num">1:15</td><td><span class="pill warn">OK</span></td></tr>
-          <tr><td>/embedded-bi</td><td class="num">11</td><td class="num">27.3%</td><td class="num">72.7%</td><td class="num">0:30</td><td><span class="pill bad">Weak</span></td></tr>
-          <tr><td>/about-us, /whitepapers, /ai, /isv-analytics, /stories</td><td class="num">2&ndash;5</td><td class="num">0%</td><td class="num">100%</td><td class="num">&lt;0:06</td><td><span class="pill bad">Bounce &mdash; wrong match</span></td></tr>
-          <tr><td>(not set)</td><td class="num">29</td><td class="num">6.9%</td><td class="num">93.1%</td><td class="num">1:06</td><td><span class="pill bad">Tracking noise</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:8px">Pattern: <b>vs-competitor, pricing, platform and demo pages engage 55&ndash;80%</b> with low bounce &mdash; that&rsquo;s where high-intent search lands. The homepage and generic pages bounce hardest. Route DemandGen/compete traffic to the matching intent page.</p>
-
-    <div class="sec"><span class="n">6</span>Engagement by campaign <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">&mdash; who sends quality traffic</span></div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Campaign</th><th>Sessions</th><th>Engagement</th><th>Bounce</th><th>Avg dur</th></tr></thead>
-        <tbody>
-          <tr><td>Search-Compete-English-Intl</td><td class="num">8</td><td class="num"><span class="wg">87.5%</span></td><td class="num">12.5%</td><td class="num">3:18</td></tr>
-          <tr><td>Search-Compete-Brazil</td><td class="num">17</td><td class="num"><span class="wg">76.5%</span></td><td class="num">23.5%</td><td class="num">21:01</td></tr>
-          <tr><td>Search-Non-Brand-India</td><td class="num">12</td><td class="num"><span class="wg">58.3%</span></td><td class="num">41.7%</td><td class="num">0:15</td></tr>
-          <tr><td>Search-Compete-India</td><td class="num">27</td><td class="num"><span class="wg">55.6%</span></td><td class="num">44.4%</td><td class="num">2:09</td></tr>
-          <tr><td>Search-Brand-Terms-WW</td><td class="num">30</td><td class="num"><span class="wg">53.3%</span></td><td class="num">46.7%</td><td class="num">7:05</td></tr>
-          <tr><td>PMAX-Remarketing-WW</td><td class="num">449</td><td class="num">42.5%</td><td class="num">57.5%</td><td class="num">1:26</td></tr>
-          <tr><td>Display-Webinars-Americas-US</td><td class="num">82</td><td class="num">34.2%</td><td class="num">65.9%</td><td class="num">1:45</td></tr>
-          <tr><td>DemandGen-Compete-US</td><td class="num">149</td><td class="num">32.9%</td><td class="num">67.1%</td><td class="num">1:34</td></tr>
-          <tr><td>DemandGen-Non-Brand-US</td><td class="num">106</td><td class="num"><span class="wr">28.3%</span></td><td class="num">71.7%</td><td class="num">1:03</td></tr>
-          <tr><td>DemandGen-Compete-International</td><td class="num">228</td><td class="num"><span class="wr">23.3%</span></td><td class="num">76.8%</td><td class="num">1:52</td></tr>
-          <tr><td>DemandGen-Non-Brand-International</td><td class="num">124</td><td class="num"><span class="wr">23.4%</span></td><td class="num">76.6%</td><td class="num">1:17</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:8px"><b>Search sessions engage 2&ndash;3&times; better than DemandGen</b> (53&ndash;88% vs 23&ndash;33% engagement). DemandGen buys cheap, cold, high-bounce volume; PMax remarketing sits in the middle (warm). The engagement data says the same thing the pipeline data does: Search is the quality channel.</p>
+    <div class="sec"><span class="n">5</span>Engagement by campaign — Search vs DemandGen quality</div>
+    <div class="dtable"><table>
+      <thead><tr><th>Campaign</th><th class="num">Sessions</th><th class="num">Engagement</th><th class="num">Bounce</th><th class="num">Avg dur</th></tr></thead>
+      <tbody>
+        <tr><td>Search-Brand-Terms-WW</td><td class="num">39</td><td class="num up-c">56.4%</td><td class="num">43.6%</td><td class="num">381s</td></tr>
+        <tr><td>Search-Non-Brand-India</td><td class="num">13</td><td class="num up-c">61.5%</td><td class="num">38.5%</td><td class="num">21s</td></tr>
+        <tr><td>Search-Compete-Eng-Intl</td><td class="num">8</td><td class="num up-c">87.5%</td><td class="num">12.5%</td><td class="num">198s</td></tr>
+        <tr><td>PMAX-Remarketing-WW</td><td class="num">430</td><td class="num">41.9%</td><td class="num">58.1%</td><td class="num">88s</td></tr>
+        <tr><td>DemandGen-Compete-US</td><td class="num">157</td><td class="num down-c">29.9%</td><td class="num">70.1%</td><td class="num">114s</td></tr>
+        <tr><td>DemandGen-Compete-Intl</td><td class="num">216</td><td class="num down-c">25.0%</td><td class="num">75.0%</td><td class="num">94s</td></tr>
+        <tr><td>DemandGen-Non-Brand-US</td><td class="num">91</td><td class="num down-c">27.5%</td><td class="num">72.5%</td><td class="num">68s</td></tr>
+        <tr><td>(not set) / {campaignname}</td><td class="num">26</td><td class="num down-c">~4%</td><td class="num">~95%</td><td class="num">~4s</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note"><b>Search &gt; DemandGen on quality, by a wide margin.</b> Search/Brand sessions engage 2x better than DemandGen. DemandGen buys cheap reach but 70–75% bounce — fine as top-funnel, but don't credit it with capture-quality. The <code>(not set)</code> / literal <code>{campaignname}</code> rows are a <b>UTM template misconfiguration</b> to fix.</p>
   </section>
 
-  <!-- ================= JOURNEY & ROI ================= -->
+  <!-- ============ TAB 7: JOURNEY & ROI ============ -->
   <section class="tabpanel" data-tab="journey" data-label="Journey &amp; ROI">
 
-    <div class="sec"><span class="n">1</span>The funnel, traced</div>
-    <div class="lead">
-      Spend <b>$8,231</b> &rarr; <b>2,241 clicks</b> &rarr; <b>1,296 paid sessions</b> (GA4) &rarr; <b>35% engaged</b> &rarr; <b>7 paid leads</b> (Salesforce Lead Event, <code>google / cpc</code>, Reveal) &rarr; <b>0 new opportunities this week</b>, adding to <b>$821K of 2026 influenced pipeline</b> (Slingshot). Traffic and engagement are healthy; the watch-point is the <b>lead-volume step</b>, which halved week over week.
+    <div class="sec"><span class="n">1</span>The funnel — spend → clicks → sessions → leads → opps → pipeline</div>
+    <div class="funnel">
+      <div class="frow"><div><div class="flab">Spend (Google Ads)</div><div class="fmeta">AW · this week</div></div><div class="fbar" style="width:100%">$8,135</div></div>
+      <div class="frow"><div><div class="flab">Clicks</div><div class="fmeta">AW</div></div><div class="fbar" style="width:70%">2,320</div></div>
+      <div class="frow"><div><div class="flab">Sessions (g/cpc)</div><div class="fmeta">GA4 · matures ~48h</div></div><div class="fbar" style="width:52%">1,180</div></div>
+      <div class="frow"><div><div class="flab">Paid leads (this week)</div><div class="fmeta">SF Lead_Event__c</div></div><div class="fbar" style="width:20%">7</div></div>
+      <div class="frow"><div><div class="flab">New paid opps (this week)</div><div class="fmeta">Slingshot · lag</div></div><div class="fbar" style="width:8%">0</div></div>
+      <div class="frow"><div><div class="flab">Paid pipeline (2026, cumulative)</div><div class="fmeta">Slingshot · PPC+Google</div></div><div class="fbar" style="width:60%">$541k</div></div>
     </div>
+    <p class="note"><b>Where it breaks:</b> click→session drop (2,320→1,180) is ~half — partly GA4 lag/mobile bounce-before-load, partly homepage mismatch (Tab 6). The click→lead step can't be trusted yet because the <b>Google Ads conversion import is off</b> and Lead Events lag the click by weeks. Read discovery (first-touch, non-brand search) separately from conversion (last-touch, brand) — capture terms shouldn't be judged on last-click leads.</p>
 
-    <div class="sec"><span class="n">2</span>Paid leads &mdash; Salesforce Lead Event <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">(product = Reveal · medium = cpc · source = google)</span></div>
-    <div class="kpigrid" style="grid-template-columns:repeat(4,1fr)">
-      <div class="kpi"><span class="lab">Paid leads this wk</span><span class="val">7</span><span class="delta down">&#9660; from 20</span></div>
-      <div class="kpi"><span class="lab">Top campaign</span><span class="val" style="font-size:15px">Brand Terms</span><span class="delta flat">3 of 7</span></div>
-      <div class="kpi"><span class="lab">US / India</span><span class="val" style="font-size:17px">5 / 2</span><span class="delta flat">US-led</span></div>
-      <div class="kpi"><span class="lab">Blended CPL</span><span class="val">$1,176</span><span class="delta down">vs $75 target</span></div>
-    </div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>This week&rsquo;s paid leads by campaign</th><th>Leads</th><th>Country</th><th>Leads</th></tr></thead>
-        <tbody>
-          <tr><td>Reveal-Search-Brand-Terms-WW</td><td class="num">3</td><td>United States</td><td class="num">5</td></tr>
-          <tr><td>Reveal-Display-Webinars-Americas-US</td><td class="num">2</td><td>India</td><td class="num">2</td></tr>
-          <tr><td>reveal (brand / direct-paid)</td><td class="num">2</td><td></td><td class="num"></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:8px">Lead Event carries tracking campaign / term / content / details / ID + country, so every paid lead is attributable to the exact campaign. Brand + webinar drove this week&rsquo;s leads.</p>
+    <div class="sec"><span class="n">2</span>Paid leads — Lead Event, by campaign &amp; country</div>
+    <div class="dtable"><table>
+      <thead><tr><th>Window</th><th class="num">Leads</th><th>Top campaigns</th><th>Countries</th></tr></thead>
+      <tbody>
+        <tr><td>Prior week (Jul 13–19)</td><td class="num">19</td><td>Display-Webinars (8), Brand (5), DemandGen-Compete (2)</td><td>US (16), India (2), NZ (1)</td></tr>
+        <tr><td>This week (Jul 20–26)</td><td class="num">7</td><td>Brand (3), DemandGen-Compete (1)</td><td>US (3), India (2), Germany (2)</td></tr>
+        <tr><td>July MTD (to Jul 26)</td><td class="num">52</td><td>Brand + Webinar + DemandGen</td><td>US-led</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">The WoW lead drop (19→7) is mostly the <b>Jul 21 webinar push ending</b> — 8 of prior week's leads were webinar-display signups, a one-time spike. Underlying brand + compete lead flow is steady. MTD 52 puts us on a ~62/mo run-rate, <b>below the 100/mo floor</b>.</p>
 
-    <div class="sec"><span class="n">3</span>Pipeline influenced &mdash; Slingshot 2026 Opportunities <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">(acquisition medium = PPC · source = Google)</span></div>
-    <div class="kpigrid" style="grid-template-columns:repeat(4,1fr)">
-      <div class="kpi"><span class="lab">Influenced pipeline &rsquo;26</span><span class="val">$821K</span><span class="delta up">20 opps</span></div>
-      <div class="kpi"><span class="lab">New opps this wk</span><span class="val">0</span><span class="delta down">prior wk: 2 &middot; $100K</span></div>
-      <div class="kpi"><span class="lab">Avg deal</span><span class="val">$41K</span><span class="delta flat">new-logo</span></div>
-      <div class="kpi"><span class="lab">Return on spend</span><span class="val">~2&times;</span><span class="delta up">pipeline : spend</span></div>
-    </div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>PPC / Google opportunities by campaign type</th><th>Opps</th><th>Read</th></tr></thead>
-        <tbody>
-          <tr><td>Branded</td><td class="num">7</td><td>Brand search converts best &mdash; reinforces defending brand IS</td></tr>
-          <tr><td>Compete</td><td class="num">6</td><td>Competitor-conquest is a genuine pipeline source</td></tr>
-          <tr><td>Non-Branded</td><td class="num">3</td><td>Embedded-analytics head terms</td></tr>
-          <tr><td>Generic</td><td class="num">2</td><td>Older / mixed intent</td></tr>
-          <tr><td>Remarketing (PMax)</td><td class="num">1</td><td>Re-engagement assist</td></tr>
-          <tr><td>Unspecified</td><td class="num">1</td><td>&mdash;</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:8px">Prior week added 2 new PPC/Google opps ($50K each: TeamSideline, Kastle). This week added 0 &mdash; watch alongside the lead dip.</p>
-
-    <div class="sec"><span class="n">4</span>GA4 &mdash; what the clicks do on site</div>
-    <div class="kpigrid">
-      <div class="kpi"><span class="lab">Sessions (cpc)</span><span class="val">1,296</span><span class="delta flat">~flat</span></div>
-      <div class="kpi"><span class="lab">Engagement rate</span><span class="val">35.5%</span><span class="delta flat">flat</span></div>
-      <div class="kpi"><span class="lab">New vs returning</span><span class="val" style="font-size:17px">82% new</span><span class="delta flat">top-of-funnel</span></div>
-      <div class="kpi"><span class="lab">Best LP engagement</span><span class="val" style="font-size:14px">vs-metabase</span><span class="delta up">80%</span></div>
-      <div class="kpi"><span class="lab">Home LP share</span><span class="val">82%</span><span class="delta flat">1,057 sessions</span></div>
-    </div>
-    <p style="font-size:13px;color:var(--muted);margin-top:10px">DemandGen dumps most traffic on the homepage (weakest intent match), while the vs-pages and pricing page engage far better (<code>/reveal-vs-power-bi</code> 66%, <code>/reveal-vs-metabase</code> 80%, <code>/pricing/embedded-analytics</code> 43%). Feeding more spend to those pages is the near-term lever &mdash; see the Landing Pages tab.</p>
+    <div class="sec"><span class="n">3</span>Paid pipeline — Slingshot (PPC + Google), 2026</div>
+    <div class="dtable"><table>
+      <thead><tr><th>Campaign type</th><th class="num">Opps</th><th class="num">Pipeline $</th><th>Territory mix</th></tr></thead>
+      <tbody>
+        <tr><td>Branded (Search)</td><td class="num">4</td><td class="num">$178,602</td><td>Americas</td></tr>
+        <tr><td>Compete</td><td class="num">4</td><td class="num">$112,500</td><td>Americas, AUS</td></tr>
+        <tr><td>Generic</td><td class="num">1</td><td class="num">$94,595</td><td>Japan</td></tr>
+        <tr><td>Non Branded</td><td class="num">2</td><td class="num">$70,000</td><td>AUS, India</td></tr>
+        <tr><td>Remarketing (PMax)</td><td class="num">1</td><td class="num">$47,500</td><td>India</td></tr>
+        <tr><td>Unspecified</td><td class="num">1</td><td class="num">$37,500</td><td>Americas</td></tr>
+        <tr><td><b>Total paid-Google</b></td><td class="num"><b>13</b></td><td class="num"><b>$540,696</b></td><td>Americas-led</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">New paid-Google opps: <b>1 in the prior week</b> ($50k, US, branded search); <b>0 net-new in this week</b> — consistent with the multi-week lead→opp lag, not a demand problem. Against a ~$35k/mo Google run-rate (~$245k over 7 months of 2026), ~$541k in paid-sourced pipeline is a healthy ≈2.2x pipeline-to-spend. Figures are the trailing 2026 paid-Google set extracted from the "2026 Opportunities" list; ABM/Organic/Referral and non-Google paid excluded.</p>
 
     <div class="verdict">
-      <div class="vh">Verdict &mdash; KEEP &amp; optimize</div>
-      <p>
-        Paid is <b>provably tied to pipeline</b> &mdash; ~$821K influenced across 20 Google/PPC opportunities (~2&times; return), led by branded and competitor search &mdash; so this is a <b>keep-and-optimize</b>, not a cut. Economics are improving (CPC &minus;14%, clicks +19% at flat spend).
-      </p>
-      <p>
-        Priorities: <b>(1) Fix conversion import</b> &mdash; it&rsquo;s the root cause behind the 0 conversion column <i>and</i> the ungraded creative; fixing it restores bidding + asset optimization. <b>(2) Investigate the lead dip</b> (20 &rarr; 7 WoW) &mdash; check form/offer. <b>(3) Defend brand</b> &mdash; 57.6% IS at ~$24 CPC signals a competitor on <code>reveal bi</code>. <b>(4) Route &amp; grow</b> &mdash; send campaign traffic to intent pages (not the homepage), add the Looker/SAP/QuickSight exact gaps, port winning India ad copy to the US, and refresh fatigued creative.
-      </p>
+      <div class="vh">Verdict — this week</div>
+      <p><b>KEEP &amp; SCALE.</b> The engine is efficient and visibility is climbing on flat spend. The story of the week is that <b>budget is no longer the constraint — rank is</b> — so the growth levers are quality/bid, not dollars.</p>
+      <p><b>Priorities (highest leverage first):</b></p>
+      <p>1. <b>Reclaim brand defense</b> — we hold only 62% IS on our own name (38% lost to rank). Raise brand bids + tighten brand ad relevance to get back toward 100%. Cheapest, highest-return fix.<br>
+      2. <b>Route traffic off the homepage</b> — 85% of paid clicks hit <code>/</code>. Point compete → <code>/reveal-vs-*</code>, non-brand → <code>/embedded-analytics</code>. The vs-pages already show the lowest bounce.<br>
+      3. <b>Fix the conversion import + broken UTMs</b> — until Google can optimize on real leads, we're under-instrumented and CPL is unmeasurable.<br>
+      4. <b>Lift US non-brand &amp; compete IS via rank</b> (not budget) — improve QS/ad relevance on <code>/embedded-analytics</code> and vs-pages; scale the underserved high-CTR proof/compete copy.<br>
+      5. <b>Add the SAP / QuickSight / Looker exact keywords</b> — confirmed gaps, commercial intent, low difficulty.</p>
     </div>
+    <p class="note">Source-of-truth: Google Ads perf/IS = Supermetrics AW (704-514-3107). On-site = GA4 google/cpc (516472465). Leads = SF Lead_Event__c. Pipeline = Slingshot "2026 Opportunities". Keyword gaps = Ahrefs (US). In-platform conversions read 0 (import not firing) and are excluded, not treated as real.</p>
   </section>
 
   </div>
