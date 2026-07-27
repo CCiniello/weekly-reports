@@ -17,32 +17,25 @@
   body.theme-slingshot{--accent:#4B45C6;--accent-deep:#2D2A90;--accent-soft:#ECEBFB;--hero:linear-gradient(120deg,#6C5CE7,#4B45C6 55%,#2D2A90)}
   body.theme-ui       {--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
   body.theme-all      {--accent:#2563EB;--accent-deep:#7C3AED;--accent-soft:#EEF1FF;--hero:linear-gradient(120deg,#2563EB,#7C3AED)}
-
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
   .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 80px}
-
   header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
   header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
   .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
   .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
   header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
   .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)} .meta b{color:#fff;font-weight:700}
-
-  /* dynamic tab bar (built from panels) */
   .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03);overflow-x:auto}
   .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;white-space:nowrap}
   .tab:hover{color:var(--ink)}
   .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
   .tabpanel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
   .tabpanel.on{display:block}
-
-  /* ===== SHARED CONTENT VOCABULARY (agents use these classes) ===== */
   .sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:26px 2px 13px;display:flex;align-items:center;gap:10px}
   .sec:first-child{margin-top:2px}
   .sec .n{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
   .lead{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:16px 20px;font-size:14.5px;line-height:1.6} .lead b{color:var(--navy)}
-
   .kpigrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
   @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}}
   .kpi{background:#fcfdff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column}
@@ -50,7 +43,6 @@
   .kpi .val{font-size:22px;font-weight:700;margin:2px 0 8px;font-family:var(--mono)}
   .kpi .delta{align-self:flex-start;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
   .delta.up{background:var(--good-bg);color:var(--good)} .delta.down{background:var(--bad-bg);color:var(--bad)} .delta.flat{background:var(--warn-bg);color:var(--warn)}
-
   .score{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
   .score table{width:100%;border-collapse:collapse;font-size:13px}
   .score th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
@@ -58,520 +50,209 @@
   .score .goal{font-weight:600;color:var(--navy)}
   .pill{font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px}
   .pill.good{background:var(--good-bg);color:var(--good)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.bad{background:var(--bad-bg);color:var(--bad)}
-
   .cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
   .card{border:1px solid var(--line);border-radius:14px;overflow:hidden}
   .card .ch{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:var(--accent-soft);border-bottom:1px solid var(--line)}
   .card .ch .nm{font-size:15px;font-weight:700;color:var(--accent-deep)} .card .ch .sp{font-family:var(--mono);font-size:12.5px;color:var(--navy)}
   .card .cb{padding:14px 18px;font-size:13.5px;line-height:1.55} .card .cb b{color:var(--navy)}
-
   .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
   .dtable table{width:100%;border-collapse:collapse;font-size:13px}
   .dtable th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
   .dtable td{padding:10px 13px;border-top:1px solid var(--line)} .dtable td.num{font-family:var(--mono);text-align:right}
   .dtable tr:hover td{background:#fafbff}
-
   .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
   .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
   .verdict p{font-size:15px;line-height:1.6;margin:0} .verdict b{color:var(--navy)}
   code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
 </style>
 </head>
-<!-- AGENT: set theme class (theme-reveal for all Reveal channels) -->
 <body class="theme-reveal">
 <div class="wrap">
-
   <header class="top">
     <div class="logochip">Reveal</div>
-    <div class="kick">revealbi.io · Microsoft (Bing) Ads</div>
+    <div class="kick">revealbi.io &middot; Microsoft (Bing) Ads</div>
     <h1>Bing Ads Weekly / Reveal</h1>
-    <div class="meta"><span>Week of <b>Jul 25, 2026</b></span></div>
+    <div class="meta"><span>Week of <b>Jul 27, 2026</b></span><span>This week <b>Jul 18&ndash;24</b> vs prior <b>Jul 11&ndash;17</b></span></div>
   </header>
-
   <div class="tabbar" id="tabbar"></div>
-
   <div id="panels">
-
-    <!-- ============ TAB 1: OVERVIEW ============ -->
-    <section class="tabpanel" data-tab="overview" data-label="Overview">
-
-      <div class="sec"><span class="n">1</span>Executive summary</div>
-      <div class="lead">
-        <b>Bing is our newest and smallest paid channel for Reveal — and this week it turned a corner.</b> For the same weekly budget as last week, it delivered meaningfully more traffic at a lower cost, and for the first time since we restarted it, that traffic began to convert. Just as important, it's buying the <b>right</b> audience: people actively comparing Reveal against Power BI, Tableau and Logi Analytics, who then spend real time on our comparison pages instead of bouncing.
-        <br><br>
-        The honest caveat is <b>measurement</b>. Our systems don't yet agree on how many leads Bing produced — the ad platform sees one, Google Analytics sees four, and Salesforce can't confirm any because Bing isn't set up as a lead source. So the signal is encouraging but not yet bankable.
-        <br><br>
-        <b>Recommendation: keep Bing on and let it keep proving itself, but hold spend flat until we can trust the conversion numbers.</b> It's too early to invest more and too promising to cut. The highest-value move this week isn't a bigger budget — it's fixing the tracking so next week's report can tell you, with confidence, exactly how much pipeline Bing is creating.
-      </div>
-
-      <div class="sec"><span class="n">2</span>KPIs · week over week</div>
-      <div class="kpigrid">
-        <div class="kpi"><div class="lab">Spend</div><div class="val">$703</div><span class="delta flat">▲ 2% · flat</span></div>
-        <div class="kpi"><div class="lab">Clicks</div><div class="val">416</div><span class="delta up">▲ 31%</span></div>
-        <div class="kpi"><div class="lab">Avg CPC</div><div class="val">$1.69</div><span class="delta up">▼ 22% cheaper</span></div>
-        <div class="kpi"><div class="lab">CTR</div><div class="val">1.59%</div><span class="delta up">▲ 0.5 pt</span></div>
-        <div class="kpi"><div class="lab">Conv · Bing pixel</div><div class="val">1</div><span class="delta up">▲ from 0</span></div>
-      </div>
-      <div class="kpigrid" style="margin-top:11px">
-        <div class="kpi"><div class="lab">Impressions</div><div class="val">26.1K</div><span class="delta flat">▼ 12%</span></div>
-        <div class="kpi"><div class="lab">CPL · Bing pixel</div><div class="val">$703</div><span class="delta down">1 conv only</span></div>
-        <div class="kpi"><div class="lab">CPL · GA4 view</div><div class="val">$176</div><span class="delta flat">4 GA4 conv</span></div>
-        <div class="kpi"><div class="lab">GA4 conv · bing/cpc</div><div class="val">4</div><span class="delta up">▲ from 0</span></div>
-        <div class="kpi"><div class="lab">Engagement rate</div><div class="val">73%</div><span class="delta up">▲ 12 pt</span></div>
-      </div>
-
-      <div class="sec"><span class="n">3</span>Goal scoreboard</div>
-      <div class="score">
-        <table>
-          <thead><tr><th>Goal</th><th>Current</th><th>Target</th><th>Status</th><th>Progress vs goal</th></tr></thead>
-          <tbody>
-            <tr><td class="goal">Quality-lead CPL</td><td>$176 (GA4) · $703 (pixel)</td><td>&le; $75</td><td><span class="pill bad">Behind</span></td><td>2.3&times; over target (best case)</td></tr>
-            <tr><td class="goal">Conversion trend</td><td>0 &rarr; 4 GA4 key events</td><td>Growing</td><td><span class="pill good">On track</span></td><td>+4 vs prior week</td></tr>
-            <tr><td class="goal">Brand defense IS</td><td>79%</td><td>~100%</td><td><span class="pill warn">At risk</span></td><td>21 pts short (losing to rank)</td></tr>
-            <tr><td class="goal">Non-brand head IS (Compete-US)</td><td>83%</td><td>&ge; 80%</td><td><span class="pill good">Ahead</span></td><td>+3 pts over target</td></tr>
-            <tr><td class="goal">Conversion tracking integrity</td><td>Pixel 1 vs GA4 4</td><td>Aligned + SF-traceable</td><td><span class="pill bad">Broken</span></td><td>3-event gap · SF blind</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="sec"><span class="n">4</span>What's working / what's not</div>
-      <div class="cards">
-        <div class="card">
-          <div class="ch"><span class="nm">Working</span><span class="sp">efficiency + engagement</span></div>
-          <div class="cb">
-            More clicks for the same money — CPC fell 22% while clicks rose 31%. The traffic is high-quality: <b>73% engagement rate</b> and ~3 minutes on page, landing on competitor-comparison pages that are clearly doing their job. Brand search finally got funded and produced the week's one confirmed conversion.
-          </div>
-        </div>
-        <div class="card">
-          <div class="ch"><span class="nm">Not working</span><span class="sp">attribution + concentration</span></div>
-          <div class="cb">
-            <b>We can't trust the conversion count</b> — pixel, GA4 and Salesforce all disagree. <b>One campaign (Compete-US) is 70% of spend</b> with no pixel conversions of its own. Bing's <b>close-variant</b> keyword expansion is leaking budget to off-target searches, and we're ceding 21% of our own brand impressions to rank.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ TAB 2: CAMPAIGNS ============ -->
-    <section class="tabpanel" data-tab="campaigns" data-label="Campaigns">
-
-      <div class="sec"><span class="n">1</span>Budget pacing</div>
-      <div class="lead">
-        <b><span class="pill good">Within budget</span></b> &nbsp;All Reveal campaigns lost <b>0% of impressions to budget</b> this week — none is capped or throttled by spend. Where campaigns miss impressions, it's to <b>rank</b>, not money (see impression share below). No over-pacing to flag; the ~$703 weekly run-rate is holding steady.
-      </div>
-
-      <div class="sec"><span class="n">2</span>Spend &amp; performance by campaign · WoW indicators</div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Campaign</th><th>Spend&nbsp;/&nbsp;WoW</th><th>Clicks&nbsp;/&nbsp;WoW</th><th>CTR&nbsp;/&nbsp;WoW</th><th>Impr share&nbsp;/&nbsp;WoW</th><th>Conv</th></tr></thead>
-          <tbody>
-            <tr>
-              <td>Compete-US</td>
-              <td class="num">$489.51 <span class="pill warn">▲21%</span></td>
-              <td class="num">360 <span class="pill good">▲25%</span></td>
-              <td class="num">1.54% <span class="pill good">▲0.5pt</span></td>
-              <td class="num">83% <span class="pill good">▲13pt</span></td>
-              <td class="num">0</td>
-            </tr>
-            <tr>
-              <td>Compete-English-International</td>
-              <td class="num">$78.76 <span class="pill warn">▼61%</span></td>
-              <td class="num">18 <span class="pill bad">▼22%</span></td>
-              <td class="num">2.67% <span class="pill good">▲0.9pt</span></td>
-              <td class="num">96% <span class="pill warn">▼3pt</span></td>
-              <td class="num">0</td>
-            </tr>
-            <tr>
-              <td>Non-Brand-US</td>
-              <td class="num">$50.86 <span class="pill warn">▲202%</span></td>
-              <td class="num">2 <span class="pill warn">flat</span></td>
-              <td class="num">2.94% <span class="pill good">▲0.5pt</span></td>
-              <td class="num">— </td>
-              <td class="num">0</td>
-            </tr>
-            <tr>
-              <td>Brand-Terms-WW</td>
-              <td class="num">$46.70 <span class="pill warn">▲1320%</span></td>
-              <td class="num">9 <span class="pill good">▲350%</span></td>
-              <td class="num">11.84% <span class="pill good">▲8.9pt</span></td>
-              <td class="num">79% <span class="pill good">▲3pt</span></td>
-              <td class="num">1</td>
-            </tr>
-            <tr>
-              <td>Compete-Core-Terms-US <span class="pill good">new</span></td>
-              <td class="num">$25.72 <span class="pill warn">new</span></td>
-              <td class="num">15 <span class="pill warn">new</span></td>
-              <td class="num">1.09% <span class="pill warn">new</span></td>
-              <td class="num">0% <span class="pill warn">new</span></td>
-              <td class="num">0</td>
-            </tr>
-            <tr>
-              <td>Non-Brand-English-International</td>
-              <td class="num">$7.60 <span class="pill warn">▼88%</span></td>
-              <td class="num">2 <span class="pill bad">▼33%</span></td>
-              <td class="num">4.44% <span class="pill bad">▼0.8pt</span></td>
-              <td class="num">— </td>
-              <td class="num">0</td>
-            </tr>
-            <tr>
-              <td>Compete-India <span class="pill good">new</span></td>
-              <td class="num">$3.78 <span class="pill warn">new</span></td>
-              <td class="num">10 <span class="pill warn">new</span></td>
-              <td class="num">2.19% <span class="pill warn">new</span></td>
-              <td class="num">— </td>
-              <td class="num">0</td>
-            </tr>
-            <tr>
-              <td>Non-Brand-India <span class="pill good">new</span></td>
-              <td class="num">$0.00 <span class="pill warn">new</span></td>
-              <td class="num">0 <span class="pill warn">new</span></td>
-              <td class="num">0% <span class="pill warn">new</span></td>
-              <td class="num">— </td>
-              <td class="num">0</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="lead" style="margin-top:14px">
-        <b>Green = improving, red = declining, amber = spend move or new campaign (judge on budget, not direction).</b> The healthy story is <b>Compete-US</b>: more spend, but more clicks, higher CTR and +13 pts of impression share to show for it. <b>Compete-English-International</b> was deliberately cut 61% and got more efficient (CTR up), though at fewer clicks. The concern is <b>Non-Brand-US — spend tripled to $51 for 2 clicks and zero conversions</b> ($25 CPC); that's the least defensible dollar in the account. Three new campaigns launched this week; keep <b>India capped and spam-gated</b> — it's the noise region we watch.
-      </div>
-
-      <div class="sec"><span class="n">3</span>Match-type health</div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Bidded match type</th><th>Delivered</th><th>Clicks</th><th>Spend</th><th>Share of spend</th></tr></thead>
-          <tbody>
-            <tr><td>Exact</td><td>Exact</td><td class="num">415</td><td class="num">$702.61</td><td class="num">99.9%</td></tr>
-            <tr><td>Phrase</td><td>Phrase</td><td class="num">1</td><td class="num">$0.32</td><td class="num">0.1%</td></tr>
-            <tr><td>Phrase</td><td>Exact</td><td class="num">0</td><td class="num">$0.00</td><td class="num">0%</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="lead" style="margin-top:14px">
-        <b>The classic Bing broad-match leak does not exist here</b> — 99.9% of spend runs on <b>Exact</b> match. But don't declare victory: the search-term report shows Bing serving heavily under <b>"Exact (close variant)"</b>, quietly expanding Exact keywords to loose variants. On Bing, <b>close-variant expansion is the real leak vector</b>, not broad match. The fix is aggressive negatives (see Search Terms), not match-type changes.
-      </div>
-    </section>
-
-    <!-- ============ TAB 3: COPY ============ -->
-    <section class="tabpanel" data-tab="copy" data-label="Copy">
-
-      <div class="sec"><span class="n">1</span>How to read this</div>
-      <div class="lead">
-        Every Reveal Bing ad is a <b>Responsive Search Ad (RSA)</b> — Bing assembles headlines and descriptions on the fly. The connector reports <b>performance per ad</b> (impressions, CTR, conversions) but <b>does not expose the headline/description text</b>, so ads are identified by their Ad ID. <b>To review the literal wording, open these Ad IDs in the Microsoft Ads UI.</b> What we <em>can</em> answer here: which ads Bing is showing most, and which are earning the clicks.
-      </div>
-
-      <div class="sec"><span class="n">2</span>Compete-US · the engine (13 RSAs live)</div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Ad ID</th><th>Impressions</th><th>Share of shown</th><th>Clicks</th><th>CTR</th><th>Read</th></tr></thead>
-          <tbody>
-            <tr><td>…59154</td><td class="num">10,249</td><td class="num">44%</td><td class="num">151</td><td class="num">1.47%</td><td>Most-shown · avg CTR</td></tr>
-            <tr><td>…46869</td><td class="num">4,655</td><td class="num">20%</td><td class="num">74</td><td class="num">1.59%</td><td>2nd-most shown · avg</td></tr>
-            <tr><td>…30446</td><td class="num">2,019</td><td class="num">9%</td><td class="num">17</td><td class="num">0.84%</td><td><b>Over-served, weak</b></td></tr>
-            <tr><td>…52345</td><td class="num">1,977</td><td class="num">8%</td><td class="num">36</td><td class="num">1.82%</td><td>Solid</td></tr>
-            <tr><td>…42311</td><td class="num">1,231</td><td class="num">5%</td><td class="num">14</td><td class="num">1.14%</td><td>Below avg</td></tr>
-            <tr><td>…60364</td><td class="num">709</td><td class="num">3%</td><td class="num">18</td><td class="num">2.54%</td><td><b>Best CTR at volume</b></td></tr>
-            <tr><td>…08982</td><td class="num">558</td><td class="num">2%</td><td class="num">14</td><td class="num">2.51%</td><td><b>High CTR, starved</b></td></tr>
-            <tr><td>…85377</td><td class="num">551</td><td class="num">2%</td><td class="num">3</td><td class="num">0.54%</td><td><b>Worst CTR — prune</b></td></tr>
-            <tr><td>…06823</td><td class="num">277</td><td class="num">1%</td><td class="num">8</td><td class="num">2.89%</td><td><b>Best CTR, starved</b></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="lead" style="margin-top:14px">
-        <b>Bing is over-serving mediocre creative and starving the winners.</b> The top two ads take <b>64% of impressions at ~1.5% CTR</b>, while the three highest-CTR ads (…06823 at 2.89%, …60364 at 2.54%, …08982 at 2.51%) split barely 6% of delivery. Two ads (…30446 at 0.84%, …85377 at 0.54%) are burning ~2,570 impressions at half the campaign's CTR. <b>Action:</b> pause the two laggards, and rebuild the winning headlines into fresh RSAs so Bing's optimizer pushes delivery toward the 2.5%+ creative. Pull the actual copy for …06823 / …60364 from the Bing UI — those are the messages resonating.
-      </div>
-
-      <div class="sec"><span class="n">3</span>Other campaigns · copy read</div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Campaign</th><th>Live RSAs</th><th>Top ad</th><th>Impr</th><th>CTR</th><th>Note</th></tr></thead>
-          <tbody>
-            <tr><td>Brand-Terms-WW</td><td class="num">1</td><td>…50419</td><td class="num">76</td><td class="num">11.84%</td><td>Single RSA, the only converter</td></tr>
-            <tr><td>Compete-English-Intl</td><td class="num">12</td><td>…88241</td><td class="num">593</td><td class="num">3.04%</td><td>1 ad does ~90% of the work; 11 near-zero</td></tr>
-            <tr><td>Compete-Core-Terms-US</td><td class="num">2</td><td>…22688</td><td class="num">1,068</td><td class="num">1.40%</td><td>2nd ad (…37671) got 311 impr, <b>0 clicks — prune</b></td></tr>
-            <tr><td>Non-Brand-US</td><td class="num">8</td><td>…46868</td><td class="num">19</td><td class="num">10.53%</td><td>Only 1 ad served; rest starved</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="lead" style="margin-top:14px">
-        Pattern across the account: <b>ad rotation is lopsided</b> — most campaigns lean on a single RSA while the rest collect impressions with no clicks. Brand's lone ad is efficient (11.84% CTR) but is a single point of failure — <b>add a second brand RSA</b>. Prune the dead ads (Compete-Core …37671, the idle Compete-Intl variants) so quality signals aren't diluted.
-      </div>
-    </section>
-
-    <!-- ============ TAB 4: SEARCH TERMS & KEYWORDS ============ -->
-    <section class="tabpanel" data-tab="terms" data-label="Search Terms &amp; Keywords">
-
-      <div class="sec"><span class="n">1</span>Converting &amp; on-ICP queries</div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Search term</th><th>Match</th><th>Clicks</th><th>Cost</th><th>Conv</th><th>Read</th></tr></thead>
-          <tbody>
-            <tr><td>reveal dashboard</td><td>Exact</td><td class="num">1</td><td class="num">$8.06</td><td class="num">1</td><td>Brand — only converter</td></tr>
-            <tr><td>reveal bi</td><td>Exact</td><td class="num">5</td><td class="num">$14.62</td><td class="num">0</td><td>Brand, high CTR (56%)</td></tr>
-            <tr><td>power bi embedded analytics</td><td>Exact (CV)</td><td class="num">13</td><td class="num">$34.00</td><td class="num">0</td><td>Head term — most volume</td></tr>
-            <tr><td>competitors metabase</td><td>Exact (CV)</td><td class="num">1</td><td class="num">$41.43</td><td class="num">0</td><td>Legit compete intent</td></tr>
-            <tr><td>alternatives to lookerstudio</td><td>Exact (CV)</td><td class="num">1</td><td class="num">$36.93</td><td class="num">0</td><td>Legit compete intent</td></tr>
-            <tr><td>embedded reporting solution</td><td>Exact (CV)</td><td class="num">1</td><td class="num">$25.48</td><td class="num">0</td><td>On-ICP non-brand</td></tr>
-            <tr><td>embedded website reporting tools</td><td>Exact (CV)</td><td class="num">1</td><td class="num">$25.38</td><td class="num">0</td><td>On-ICP non-brand</td></tr>
-            <tr><td>more like luzmo.com</td><td>Exact (CV)</td><td class="num">1</td><td class="num">$22.91</td><td class="num">0</td><td>Embed-only rival intent</td></tr>
-            <tr><td>white label reporting dashboard</td><td>Exact</td><td class="num">2</td><td class="num">$7.60</td><td class="num">0</td><td>On-ICP non-brand</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="sec"><span class="n">2</span>Wasted queries · negatives to add</div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Search term</th><th>Cost</th><th>Why it's waste</th><th>Action</th></tr></thead>
-          <tbody>
-            <tr><td>who is bi worldwide's biggest competitor</td><td class="num">$28.44</td><td>"BI Worldwide" = employee-recognition firm, not analytics</td><td>Negative: <code>bi worldwide</code></td></tr>
-            <tr><td>grok build competitors</td><td class="num">$7.92</td><td>AI-chatbot query, zero embed intent</td><td>Negative: <code>grok</code></td></tr>
-            <tr><td>how i csn add power bi on my website</td><td class="num">$1.44</td><td>DIY/typo, low commercial intent</td><td>Monitor / negative</td></tr>
-            <tr><td>private equity deal flow management software</td><td class="num">$0.32</td><td>Off-category (the lone Phrase leak)</td><td>Negative: <code>deal flow</code>, <code>private equity</code></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="lead" style="margin-top:14px">
-        Waste this week is small in dollars (~<b>$38</b>) but it's a leading indicator: every one came through <b>"Exact (close variant)"</b> expansion. Add the four negatives now and stand up a recurring negative-list review — on a restarted, expensive account, close variants drift fast. The high-value story is that <b>volume is landing on the right compete terms</b> (Metabase, Looker Studio, Luzmo, Power BI embedded) — they just haven't converted <em>in-pixel</em> yet, which loops back to the tracking gap.
-      </div>
-    </section>
-
-    <!-- ============ TAB 5: LANDING PAGES ============ -->
-    <section class="tabpanel" data-tab="landing" data-label="Landing Pages">
-
-      <div class="lead">
-        Source <code>bing</code> / medium <code>cpc</code> in GA4 (property 516472465). Bing sent <b>416 ad clicks &rarr; ~360 sessions</b> this week (a healthy ~13% click-to-session drop). The charts track the trend; the tables beneath show this week's detail.
-      </div>
-
-      <div class="sec"><span class="n">1</span>Trends · sessions, bounce &amp; engagement (last 5 weeks)</div>
-      <div style="border:1px solid var(--line);border-radius:12px;padding:16px 14px 8px;margin-top:6px;background:#fcfdff">
-        <svg viewBox="0 0 720 300" width="100%" role="img" aria-label="Weekly sessions, bounce rate and engagement rate">
-          <!-- legend -->
-          <rect x="60" y="8" width="12" height="12" rx="2" fill="#EC417A"></rect><text x="77" y="18" font-family="Roboto,sans-serif" font-size="12" fill="#5f6b7a">Sessions</text>
-          <line x1="160" y1="14" x2="184" y2="14" stroke="#c23b39" stroke-width="3"></line><text x="190" y="18" font-family="Roboto,sans-serif" font-size="12" fill="#5f6b7a">Bounce rate</text>
-          <line x1="290" y1="14" x2="314" y2="14" stroke="#12915b" stroke-width="3"></line><text x="320" y="18" font-family="Roboto,sans-serif" font-size="12" fill="#5f6b7a">Engagement rate</text>
-          <!-- gridlines -->
-          <line x1="60" y1="30" x2="680" y2="30" stroke="#E9E9F4"></line>
-          <line x1="60" y1="85" x2="680" y2="85" stroke="#E9E9F4"></line>
-          <line x1="60" y1="140" x2="680" y2="140" stroke="#E9E9F4"></line>
-          <line x1="60" y1="195" x2="680" y2="195" stroke="#E9E9F4"></line>
-          <line x1="60" y1="250" x2="680" y2="250" stroke="#c9cede"></line>
-          <!-- left axis: sessions -->
-          <text x="52" y="34" text-anchor="end" font-family="Roboto Mono,monospace" font-size="10" fill="#8a93a3">520</text>
-          <text x="52" y="89" text-anchor="end" font-family="Roboto Mono,monospace" font-size="10" fill="#8a93a3">390</text>
-          <text x="52" y="144" text-anchor="end" font-family="Roboto Mono,monospace" font-size="10" fill="#8a93a3">260</text>
-          <text x="52" y="199" text-anchor="end" font-family="Roboto Mono,monospace" font-size="10" fill="#8a93a3">130</text>
-          <text x="52" y="254" text-anchor="end" font-family="Roboto Mono,monospace" font-size="10" fill="#8a93a3">0</text>
-          <!-- right axis: percent -->
-          <text x="688" y="34" font-family="Roboto Mono,monospace" font-size="10" fill="#8a93a3">100%</text>
-          <text x="688" y="89" font-family="Roboto Mono,monospace" font-size="10" fill="#8a93a3">75%</text>
-          <text x="688" y="144" font-family="Roboto Mono,monospace" font-size="10" fill="#8a93a3">50%</text>
-          <text x="688" y="199" font-family="Roboto Mono,monospace" font-size="10" fill="#8a93a3">25%</text>
-          <text x="688" y="254" font-family="Roboto Mono,monospace" font-size="10" fill="#8a93a3">0</text>
-          <!-- bars (sessions) -->
-          <rect x="100" y="221" width="44" height="29" rx="3" fill="#EC417A" opacity="0.85"></rect><text x="122" y="216" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="10" fill="#5f6b7a">69</text>
-          <rect x="224" y="35" width="44" height="215" rx="3" fill="#EC417A" opacity="0.85"></rect><text x="246" y="30" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="10" fill="#5f6b7a">507</text>
-          <rect x="348" y="101" width="44" height="149" rx="3" fill="#EC417A" opacity="0.85"></rect><text x="370" y="96" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="10" fill="#5f6b7a">353</text>
-          <rect x="472" y="131" width="44" height="119" rx="3" fill="#EC417A" opacity="0.85"></rect><text x="494" y="126" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="10" fill="#5f6b7a">280</text>
-          <rect x="596" y="98" width="44" height="152" rx="3" fill="#EC417A" opacity="0.85"></rect><text x="618" y="93" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="10" fill="#5f6b7a">360</text>
-          <!-- bounce line -->
-          <polyline points="122,196 246,187 370,178 494,164 618,190" fill="none" stroke="#c23b39" stroke-width="2.5"></polyline>
-          <circle cx="122" cy="196" r="3.5" fill="#c23b39"></circle><circle cx="246" cy="187" r="3.5" fill="#c23b39"></circle><circle cx="370" cy="178" r="3.5" fill="#c23b39"></circle><circle cx="494" cy="164" r="3.5" fill="#c23b39"></circle><circle cx="618" cy="190" r="3.5" fill="#c23b39"></circle>
-          <!-- engagement line -->
-          <polyline points="122,84 246,93 370,102 494,116 618,90" fill="none" stroke="#12915b" stroke-width="2.5"></polyline>
-          <circle cx="122" cy="84" r="3.5" fill="#12915b"></circle><circle cx="246" cy="93" r="3.5" fill="#12915b"></circle><circle cx="370" cy="102" r="3.5" fill="#12915b"></circle><circle cx="494" cy="116" r="3.5" fill="#12915b"></circle><circle cx="618" cy="90" r="3.5" fill="#12915b"></circle>
-          <!-- week labels -->
-          <text x="122" y="270" text-anchor="middle" font-family="Roboto,sans-serif" font-size="11" fill="#5f6b7a">Jun 20–26</text>
-          <text x="246" y="270" text-anchor="middle" font-family="Roboto,sans-serif" font-size="11" fill="#5f6b7a">Jun 27–Jul 3</text>
-          <text x="370" y="270" text-anchor="middle" font-family="Roboto,sans-serif" font-size="11" fill="#5f6b7a">Jul 4–10</text>
-          <text x="494" y="270" text-anchor="middle" font-family="Roboto,sans-serif" font-size="11" fill="#5f6b7a">Jul 11–17</text>
-          <text x="618" y="270" text-anchor="middle" font-family="Roboto,sans-serif" font-size="11" fill="#5f6b7a">Jul 18–24</text>
-        </svg>
-      </div>
-      <div class="lead" style="margin-top:14px">
-        <b>Two stories in one chart.</b> Sessions spiked in the launch burst — week of Jun 27 hit ~500 sessions with an outlier 21 conversions — then settled into a steady 280–360/week. The more useful signal is the <b>inverse dance between bounce and engagement</b>: bounce climbed to a <b>39% high the week of Jul 11</b> as engagement dipped to 61%, then this week <b>snapped back — bounce down to 27%, engagement up to 73%</b>, the best in a month. The traffic Bing is buying is getting <em>stickier</em>, not just cheaper.
-      </div>
-
-      <div class="sec"><span class="n">2</span>Where Bing clicks land &amp; how they behave</div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Landing page</th><th>Sessions</th><th>Bounce</th><th>Avg time (s)</th><th>Engagement</th><th>Conv</th></tr></thead>
-          <tbody>
-            <tr><td>/reveal-vs-logi-analytics</td><td class="num">119</td><td class="num">27%</td><td class="num">146</td><td class="num">73%</td><td class="num">0</td></tr>
-            <tr><td>/reveal-vs-power-bi</td><td class="num">70</td><td class="num">27%</td><td class="num">398</td><td class="num">73%</td><td class="num">0</td></tr>
-            <tr><td>/reveal-vs-tableau</td><td class="num">58</td><td class="num">26%</td><td class="num">118</td><td class="num">74%</td><td class="num">2</td></tr>
-            <tr><td>/reveal-vs-luzmo</td><td class="num">18</td><td class="num">28%</td><td class="num">23</td><td class="num">72%</td><td class="num">0</td></tr>
-            <tr><td>/ (home)</td><td class="num">14</td><td class="num">29%</td><td class="num">411</td><td class="num">71%</td><td class="num">2</td></tr>
-            <tr><td>/reveal-vs-looker</td><td class="num">14</td><td class="num">14%</td><td class="num">114</td><td class="num">86%</td><td class="num">0</td></tr>
-            <tr><td>/compare</td><td class="num">13</td><td class="num">38%</td><td class="num">40</td><td class="num">62%</td><td class="num">0</td></tr>
-            <tr><td>/reveal-vs-bold-bi</td><td class="num">13</td><td class="num">15%</td><td class="num">46</td><td class="num">85%</td><td class="num">0</td></tr>
-            <tr><td>/reveal-vs-metabase</td><td class="num">11</td><td class="num">27%</td><td class="num">50</td><td class="num">73%</td><td class="num">0</td></tr>
-            <tr><td>/reveal-vs-sisense</td><td class="num">7</td><td class="num">14%</td><td class="num">70</td><td class="num">86%</td><td class="num">0</td></tr>
-            <tr><td>/embedded-bi</td><td class="num">6</td><td class="num">50%</td><td class="num">234</td><td class="num">50%</td><td class="num">0</td></tr>
-            <tr><td>/reveal-vs-domo</td><td class="num">4</td><td class="num">50%</td><td class="num">11</td><td class="num">50%</td><td class="num">0</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="lead" style="margin-top:14px">
-        <b>The vs-competitor pages are the whole engine</b> — Logi Analytics, Power BI and Tableau comparisons pull the bulk of Bing traffic, all at ~73% engagement and low-to-mid 20s% bounce. Visitors are genuinely reading: the <b>Power BI</b> and <b>home</b> pages hold sessions for 6–7 minutes. All <b>4 tracked conversions came from just two pages — /reveal-vs-tableau (2) and home (2).</b> Weak spots: <code>/compare</code> and <code>/embedded-bi</code> bounce far higher (38–50%) — either a message-match problem with the ad or thin content; worth a look since <code>/embedded-bi</code> is a known SEO page gap too.
-      </div>
-
-      <div class="sec"><span class="n">3</span>Device</div>
-      <div style="display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:6px;background:#fcfdff">
-        <div style="text-align:center">
-          <svg viewBox="0 0 180 180" width="150" height="150" role="img" aria-label="Device split donut, this week">
-            <circle cx="90" cy="90" r="60" fill="none" stroke="#C9367F" stroke-width="26" stroke-dasharray="251.7 377" stroke-dashoffset="0" transform="rotate(-90 90 90)"></circle>
-            <circle cx="90" cy="90" r="60" fill="none" stroke="#EC417A" stroke-width="26" stroke-dasharray="115.9 377" stroke-dashoffset="-251.7" transform="rotate(-90 90 90)"></circle>
-            <circle cx="90" cy="90" r="60" fill="none" stroke="#FBB764" stroke-width="26" stroke-dasharray="9.4 377" stroke-dashoffset="-367.6" transform="rotate(-90 90 90)"></circle>
-            <text x="90" y="86" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="22" font-weight="700" fill="#0F172A">361</text>
-            <text x="90" y="104" text-anchor="middle" font-family="Roboto,sans-serif" font-size="11" fill="#5f6b7a">this week</text>
-          </svg>
-        </div>
-        <div style="flex:1;min-width:320px">
-          <div style="font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:#5f6b7a;font-weight:600;margin-bottom:2px">Sessions by device · by week</div>
-          <svg viewBox="0 0 380 210" width="100%" role="img" aria-label="Device sessions by week stacked columns">
-            <line x1="40" y1="180" x2="366" y2="180" stroke="#c9cede"></line>
-            <!-- Jun 20-26 -->
-            <rect x="52" y="163.7" width="40" height="16.3" fill="#C9367F"></rect><rect x="52" y="158.8" width="40" height="4.9" fill="#EC417A"></rect><text x="72" y="154" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">69</text>
-            <!-- Jun 27-Jul 3 -->
-            <rect x="116" y="108.9" width="40" height="71.1" fill="#C9367F"></rect><rect x="116" y="29.2" width="40" height="79.7" fill="#EC417A"></rect><rect x="116" y="23.7" width="40" height="5.5" fill="#FBB764"></rect><text x="136" y="19" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">508</text>
-            <!-- Jul 4-10 -->
-            <rect x="180" y="136.0" width="40" height="44.0" fill="#C9367F"></rect><rect x="180" y="72.6" width="40" height="63.4" fill="#EC417A"></rect><rect x="180" y="71.4" width="40" height="1.2" fill="#FBB764"></rect><text x="200" y="67" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">353</text>
-            <!-- Jul 11-17 -->
-            <rect x="244" y="126.5" width="40" height="53.5" fill="#C9367F"></rect><rect x="244" y="97.0" width="40" height="29.5" fill="#EC417A"></rect><rect x="244" y="93.9" width="40" height="3.1" fill="#FBB764"></rect><text x="264" y="90" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">280</text>
-            <!-- Jul 18-24 -->
-            <rect x="308" y="105.8" width="40" height="74.2" fill="#C9367F"></rect><rect x="308" y="71.6" width="40" height="34.2" fill="#EC417A"></rect><rect x="308" y="68.8" width="40" height="2.8" fill="#FBB764"></rect><text x="328" y="65" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">361</text>
-            <!-- week labels -->
-            <text x="72" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">6/20</text>
-            <text x="136" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">6/27</text>
-            <text x="200" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">7/4</text>
-            <text x="264" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">7/11</text>
-            <text x="328" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">7/18</text>
-          </svg>
-        </div>
-        <div style="font-family:Roboto,sans-serif;font-size:13px;color:#212529;line-height:2">
-          <div><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:#C9367F;margin-right:8px"></span><b>Desktop</b> — 241 · 67% · <span style="color:#12915b">4 conv</span></div>
-          <div><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:#EC417A;margin-right:8px"></span><b>Mobile</b> — 111 · 31% · 0 conv</div>
-          <div><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:#FBB764;margin-right:8px"></span><b>Tablet</b> — 9 · 2% · 0 conv</div>
-        </div>
-      </div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Device</th><th>Sessions&nbsp;/&nbsp;WoW</th><th>Bounce</th><th>Avg time (s)</th><th>Engagement</th><th>Conv</th></tr></thead>
-          <tbody>
-            <tr><td>Desktop</td><td class="num">241 <span class="pill good">▲39%</span></td><td class="num">29%</td><td class="num">209</td><td class="num">71%</td><td class="num">4</td></tr>
-            <tr><td>Mobile</td><td class="num">111 <span class="pill good">▲16%</span></td><td class="num">23%</td><td class="num">115</td><td class="num">77%</td><td class="num">0</td></tr>
-            <tr><td>Tablet</td><td class="num">9 <span class="pill bad">▼10%</span></td><td class="num">22%</td><td class="num">102</td><td class="num">78%</td><td class="num">0</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="lead" style="margin-top:14px">
-        <b>Desktop is the buyer.</b> It's two-thirds of sessions and <b>100% of conversions</b> — expected for a B2B embedded-analytics decision. The weekly trend adds nuance: the launch weeks were <b>mobile-heavy</b> (mobile outran desktop the weeks of Jun 27 and Jul 4), then the mix <b>shifted decisively to desktop</b> — a healthy sign the channel is maturing from casual mobile browsing toward desktop evaluation. Mobile still engages well (77%) but doesn't convert; it's a research surface. Reasonable to <b>bid desktop up</b> and keep mobile as low-cost awareness.
-      </div>
-
-      <div class="sec"><span class="n">4</span>New vs returning &amp; source campaign</div>
-      <div style="display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:6px;background:#fcfdff">
-        <div style="text-align:center">
-          <svg viewBox="0 0 180 180" width="150" height="150" role="img" aria-label="New vs returning donut, this week">
-            <circle cx="90" cy="90" r="60" fill="none" stroke="#C9367F" stroke-width="26" stroke-dasharray="358.1 377" stroke-dashoffset="0" transform="rotate(-90 90 90)"></circle>
-            <circle cx="90" cy="90" r="60" fill="none" stroke="#6C8CFD" stroke-width="26" stroke-dasharray="13.6 377" stroke-dashoffset="-358.1" transform="rotate(-90 90 90)"></circle>
-            <circle cx="90" cy="90" r="60" fill="none" stroke="#cbd2e0" stroke-width="26" stroke-dasharray="5.2 377" stroke-dashoffset="-371.7" transform="rotate(-90 90 90)"></circle>
-            <text x="90" y="86" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="20" font-weight="700" fill="#0F172A">95%</text>
-            <text x="90" y="104" text-anchor="middle" font-family="Roboto,sans-serif" font-size="11" fill="#5f6b7a">new</text>
-          </svg>
-          <div style="font-size:11px;color:#5f6b7a;margin-top:2px">this week</div>
-        </div>
-        <div style="flex:1;min-width:320px">
-          <div style="font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:#5f6b7a;font-weight:600;margin-bottom:2px">New vs returning · by week</div>
-          <svg viewBox="0 0 380 210" width="100%" role="img" aria-label="New vs returning sessions by week stacked columns">
-            <line x1="40" y1="180" x2="366" y2="180" stroke="#c9cede"></line>
-            <!-- Jun 20-26 -->
-            <rect x="52" y="160.6" width="40" height="19.4" fill="#C9367F"></rect><rect x="52" y="158.8" width="40" height="1.8" fill="#6C8CFD"></rect><text x="72" y="154" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">69</text>
-            <!-- Jun 27-Jul 3 -->
-            <rect x="116" y="28.6" width="40" height="151.4" fill="#C9367F"></rect><rect x="116" y="25.5" width="40" height="3.1" fill="#6C8CFD"></rect><rect x="116" y="24.0" width="40" height="1.5" fill="#cbd2e0"></rect><text x="136" y="19" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">507</text>
-            <!-- Jul 4-10 -->
-            <rect x="180" y="75.1" width="40" height="104.9" fill="#C9367F"></rect><rect x="180" y="71.7" width="40" height="3.4" fill="#6C8CFD"></rect><rect x="180" y="71.4" width="40" height="0.3" fill="#cbd2e0"></rect><text x="200" y="67" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">353</text>
-            <!-- Jul 11-17 -->
-            <rect x="244" y="98.8" width="40" height="81.2" fill="#C9367F"></rect><rect x="244" y="94.8" width="40" height="4.0" fill="#6C8CFD"></rect><rect x="244" y="93.9" width="40" height="0.9" fill="#cbd2e0"></rect><text x="264" y="90" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">280</text>
-            <!-- Jul 18-24 -->
-            <rect x="308" y="74.8" width="40" height="105.2" fill="#C9367F"></rect><rect x="308" y="70.8" width="40" height="4.0" fill="#6C8CFD"></rect><rect x="308" y="69.3" width="40" height="1.5" fill="#cbd2e0"></rect><text x="328" y="65" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="9.5" fill="#5f6b7a">360</text>
-            <!-- week labels -->
-            <text x="72" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">6/20</text>
-            <text x="136" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">6/27</text>
-            <text x="200" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">7/4</text>
-            <text x="264" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">7/11</text>
-            <text x="328" y="195" text-anchor="middle" font-family="Roboto,sans-serif" font-size="10" fill="#8a93a3">7/18</text>
-          </svg>
-        </div>
-        <div style="font-family:Roboto,sans-serif;font-size:13px;color:#212529;line-height:2">
-          <div><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:#C9367F;margin-right:8px"></span><b>New</b> — 342 · 95%</div>
-          <div><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:#6C8CFD;margin-right:8px"></span><b>Returning</b> — 13 · 4%</div>
-          <div><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:#cbd2e0;margin-right:8px"></span><b>(not set)</b> — 5 · 1%</div>
-          <div style="font-size:11.5px;color:#5f6b7a;line-height:1.4;margin-top:6px;max-width:230px">Returning share never topped ~6% in any of the last 5 weeks — Bing is a steady net-new engine.</div>
-        </div>
-      </div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Visitor type</th><th>Sessions</th><th>Avg time (s)</th><th>Engagement</th><th>Conv</th></tr></thead>
-          <tbody>
-            <tr><td>New</td><td class="num">342</td><td class="num">184</td><td class="num">74%</td><td class="num">4</td></tr>
-            <tr><td>Returning</td><td class="num">13</td><td class="num">83</td><td class="num">69%</td><td class="num">0</td></tr>
-            <tr><td>(not set)</td><td class="num">5</td><td class="num">1</td><td class="num">0%</td><td class="num">0</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="lead" style="margin-top:14px">
-        Bing is almost entirely a <b>net-new audience</b> (95% new visitors) — good for top-of-funnel discovery, but it means conversion depends on a first-visit decision or a later return via another channel. Only 13 returning sessions came back through Bing itself, which is why last-click attribution understates it. On tagging: <b>356 of 360 sessions carry the lowercase <code>reveal</code> campaign</b>; a stray <b>4 sessions land under capitalized <code>Reveal</code></b> — a UTM casing inconsistency to standardize so reporting doesn't fragment.
-      </div>
-    </section>
-
-    <!-- ============ TAB 6: JOURNEY & ROI ============ -->
-    <section class="tabpanel" data-tab="journey" data-label="Journey &amp; ROI">
-
-      <div class="sec"><span class="n">1</span>GA4 story · bing/cpc sessions (WoW)</div>
-      <div class="kpigrid">
-        <div class="kpi"><div class="lab">Sessions</div><div class="val">361</div><span class="delta up">▲ 29%</span></div>
-        <div class="kpi"><div class="lab">Engaged sessions</div><div class="val">263</div><span class="delta up">▲ 54%</span></div>
-        <div class="kpi"><div class="lab">Engagement rate</div><div class="val">73%</div><span class="delta up">▲ 12 pt</span></div>
-        <div class="kpi"><div class="lab">Avg session (sec)</div><div class="val">178</div><span class="delta up">▲ 30%</span></div>
-        <div class="kpi"><div class="lab">GA4 key events</div><div class="val">4</div><span class="delta up">▲ from 0</span></div>
-      </div>
-      <div class="lead" style="margin-top:14px">
-        The behavior signal is <b>strong and improving on every axis</b>: more sessions, more of them engaged, longer visits, and the first key events since restart. This is not junk traffic — Bing is buying engaged, on-ICP visitors who read the comparison pages. The question isn't whether they engage; it's whether we can <b>see</b> the resulting leads in our revenue systems.
-      </div>
-
-      <div class="sec"><span class="n">2</span>Funnel · spend &rarr; site &rarr; lead</div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Stage</th><th>This week</th><th>Source</th><th>Read</th></tr></thead>
-          <tbody>
-            <tr><td>Spend</td><td class="num">$703</td><td>Bing Ads</td><td>Flat WoW</td></tr>
-            <tr><td>Clicks</td><td class="num">416</td><td>Bing Ads</td><td>+31%</td></tr>
-            <tr><td>Sessions</td><td class="num">361</td><td>GA4</td><td>Healthy 13% click-loss</td></tr>
-            <tr><td>Engaged sessions</td><td class="num">263</td><td>GA4</td><td>73% — quality holds</td></tr>
-            <tr><td>Conversions (pixel)</td><td class="num">1</td><td>Bing Ads</td><td>Brand only</td></tr>
-            <tr><td>Conversions (GA4)</td><td class="num">4</td><td>GA4</td><td>Tableau ×2, home ×2</td></tr>
-            <tr><td>Leads / pipeline</td><td class="num">?</td><td>Salesforce</td><td><b>Unverifiable — no Bing LeadSource</b></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="sec"><span class="n">3</span>Salesforce attribution gap</div>
-      <div class="lead" style="border-left-color:var(--bad)">
-        <b>Read this before trusting any CPL number.</b> Salesforce has <b>no clean Bing LeadSource</b>, so we cannot confirm a single Bing-sourced lead or dollar of pipeline in the CRM. We're triangulating three disagreeing sources: <b>Bing pixel = 1</b>, <b>GA4 bing/cpc = 4</b> (last-click key events, not confirmed MQLs), <b>Salesforce = blind</b>. Because Bing is 95% net-new traffic, most conversions happen on a <em>later</em> visit through another channel — so last-click badly understates it. Honest picture: Bing is buying engaged, on-ICP traffic and <em>some</em> conversion signal is appearing, but <b>we cannot yet tie it to revenue.</b>
-      </div>
-
-      <div class="verdict">
-        <div class="vh">Verdict — Fix</div>
-        <p><b>Keep the channel on, but fix before you scale.</b> The fundamentals moved the right way — CPC down 22%, clicks up 31%, engagement up to 73%, first conversions appearing on the Tableau comparison page and home. The blockers aren't media, they're <b>measurement and concentration</b>: (1) <b>close the tracking gap</b> — reconcile the Bing pixel (1) against GA4 (4) and stand up a Bing LeadSource in Salesforce so we see pipeline, not guesses; (2) <b>de-risk Compete-US</b> (70% of spend) — hold flat until tracking is trustworthy; (3) <b>fix the creative rotation</b> — pause the two lagging Compete-US ads and feed delivery to the 2.5%+ CTR winners, and add a second Brand RSA; (4) <b>add the four negatives</b> to stop close-variant drift; (5) <b>lift Brand IS from 79% toward 100%</b> — cheap, defensive, and where the only confirmed conversion came from. <b>Do not scale spend until we can answer "how many Bing leads reached Salesforce."</b></p>
-      </div>
-    </section>
-
+<section class="tabpanel" data-tab="overview" data-label="Overview">
+  <div class="sec"><span class="n">1</span>Executive summary</div>
+  <div class="lead">
+    <p><b>Bing is working better this week than it has all month &mdash; but it is still not paying for itself on trackable leads.</b> Spend held flat at ~$700 while clicks jumped 31% and cost-per-click fell to $1.69, its lowest in the trend. The competitor-conquest engine (Compete-US) is doing the heavy lifting: it drove 360 of 416 clicks and pushed site engagement back up to 73% after a soft prior week.</p>
+    <p>Is it worth the money? On the numbers we can trust, not yet. Bing's own pixel logged just <b>one</b> conversion; GA4 attributes <b>four</b> key events to bing/cpc, all from desktop and all net-new visitors landing on the vs-competitor pages. Even taking the generous GA4 count, cost-per-lead is ~$176 &mdash; well above our $75 ceiling &mdash; and we still cannot confirm a single Bing lead in Salesforce because there is no clean Bing LeadSource.</p>
+    <p><b>Recommendation: HOLD and fix, do not scale.</b> The channel is finally cheap and engaging, so this is the week to fix tracking (UTM casing + SF attribution), plug the close-variant spend leaks, and give the brand campaign a second RSA and a rank bump. Prove a real lead lands in the CRM before adding budget.</p>
   </div>
 
-</div>
+  <div class="sec"><span class="n">2</span>Week-over-week KPIs</div>
+  <div class="kpigrid"><div class="kpi"><div class="lab">Spend</div><div class="val">$703</div><div class="delta flat">+1% WoW</div></div><div class="kpi"><div class="lab">Clicks</div><div class="val">416</div><div class="delta up">+31% WoW</div></div><div class="kpi"><div class="lab">Avg CPC</div><div class="val">$1.69</div><div class="delta up">&darr; 22% (better)</div></div><div class="kpi"><div class="lab">CTR</div><div class="val">1.59%</div><div class="delta up">+0.51 pts</div></div><div class="kpi"><div class="lab">Bing-pixel conv</div><div class="val">1</div><div class="delta up">+1 vs 0</div></div></div>
+  <div class="kpigrid" style="margin-top:11px"><div class="kpi"><div class="lab">Impressions</div><div class="val">26,135</div><div class="delta down">&minus;12% WoW</div></div><div class="kpi"><div class="lab">CPL (Bing pixel)</div><div class="val">$703</div><div class="delta down">1 conversion</div></div><div class="kpi"><div class="lab">CPL (GA4)</div><div class="val">$176</div><div class="delta up">4 key events</div></div><div class="kpi"><div class="lab">GA4 conv (bing/cpc)</div><div class="val">4</div><div class="delta up">+4 vs 0</div></div><div class="kpi"><div class="lab">Engagement rate</div><div class="val">73%</div><div class="delta up">+11 pts</div></div></div>
 
+  <div class="sec"><span class="n">3</span>Goal scoreboard</div>
+  <div class="score"><table>
+    <tr><th>Goal</th><th>Current</th><th>Target</th><th>Status</th><th>Progress vs goal</th></tr>
+    <tr><td class="goal">Quality-lead CPL</td><td>$176 (GA4) &middot; $703 (pixel)</td><td>&le; $75</td><td><span class="pill bad">Behind</span></td><td>2.3&times; over on the generous count; volume too thin to trust either</td></tr>
+    <tr><td class="goal">Conversion trend</td><td>0 &rarr; 4 GA4 key events</td><td>Growing</td><td><span class="pill warn">At risk</span></td><td>Recovered from a zero week, but 1&ndash;4/wk is noise-level</td></tr>
+    <tr><td class="goal">Brand-defense IS</td><td>79% (21% lost to rank)</td><td>~100%</td><td><span class="pill warn">At risk</span></td><td>Losing 1 in 5 brand impressions to rank &mdash; bid/QS fix</td></tr>
+    <tr><td class="goal">Non-brand head IS (Compete-US)</td><td>83%</td><td>&ge; 80%</td><td><span class="pill good">On track</span></td><td>Just above floor; new Compete-Core-Terms-US sits at 0%</td></tr>
+    <tr><td class="goal">Conversion-tracking integrity</td><td>Pixel 1 vs GA4 4; no SF LeadSource</td><td>Aligned + SF-traceable</td><td><span class="pill bad">Behind</span></td><td>4&times; mismatch + UTM casing split (<code>cpc</code> vs <code>CPC</code>)</td></tr>
+  </table></div>
+
+  <div class="sec"><span class="n">4</span>Working / not working</div>
+  <div class="cards">
+    <div class="card"><div class="ch"><span class="nm">What's working</span><span class="sp">momentum</span></div>
+      <div class="cb">CPC fell to <b>$1.69</b> (&minus;22%) while clicks rose <b>+31%</b> &mdash; more traffic for the same money. Engagement rebounded to <b>73%</b> and bounce dropped to 27%. The <b>vs-competitor pages convert</b>: /reveal-vs-tableau and the homepage produced all 4 GA4 events, and the one brand query (&ldquo;reveal dashboard&rdquo;) fired the Bing pixel. Desktop + net-new visitors carry the quality.</div></div>
+    <div class="card"><div class="ch"><span class="nm">What's not working</span><span class="sp">leaks &amp; blind spots</span></div>
+      <div class="cb"><b>Tracking is not trustworthy:</b> pixel says 1, GA4 says 4, Salesforce says nothing. A <code>CPC</code>-vs-<code>cpc</code> UTM split is scattering sessions. <b>Close-variant expansion is leaking spend</b> &mdash; ~$36 on &ldquo;who is bi worldwide's biggest competitor&rdquo; and $8 on &ldquo;grok build competitors,&rdquo; both off-ICP. <b>Non-Brand-US</b> burned $51 for 2 clicks ($25 CPC). Brand loses 21% of impressions to rank.</div></div>
+  </div>
+</section><section class="tabpanel" data-tab="campaigns" data-label="Campaigns">
+  <div class="sec"><span class="n">1</span>Budget pacing</div>
+  <div class="lead"><p><b>No campaign is capped by budget this week &mdash; every campaign shows 0% impressions lost to budget.</b> The visibility we're missing is a <b>rank</b> problem, not a spend problem, so more budget is not the lever right now. Compete-US absorbs the majority of spend ($490 of $703) and still holds 83% impression share. The three newly launched campaigns (Compete-Core-Terms-US, Compete-India, Non-Brand-India) are in learning and should be judged on a 4-week horizon, not today.</p></div>
+
+  <div class="sec"><span class="n">2</span>Per-campaign performance <span style="text-transform:none;letter-spacing:0;font-weight:400;color:var(--muted)">&mdash; pills = WoW</span></div>
+  <div class="dtable"><table>
+    <tr><th>Campaign</th><th>Spend</th><th>Clicks</th><th>CTR</th><th>Impr share</th><th>Conv</th></tr>
+    <tr><td>Compete-US</td><td class="num">$489.51 <span class="pill flat">+21%</span></td><td class="num">360 <span class="pill good">+25%</span></td><td class="num">1.54% <span class="pill good">+0.5</span></td><td class="num">83% <span class="pill good">+13</span></td><td class="num">0</td></tr>
+    <tr><td>Compete-English-International</td><td class="num">$78.76 <span class="pill good">&minus;61%</span></td><td class="num">18 <span class="pill bad">&minus;22%</span></td><td class="num">2.67% <span class="pill good">+0.96</span></td><td class="num">96% <span class="pill bad">&minus;3</span></td><td class="num">0</td></tr>
+    <tr><td>Non-Brand-US</td><td class="num">$50.86 <span class="pill flat">+202%</span></td><td class="num">2 <span class="pill flat">0%</span></td><td class="num">2.94% <span class="pill good">+0.47</span></td><td class="num">100% <span class="pill good">+8</span></td><td class="num">0</td></tr>
+    <tr><td>Brand-Terms-WW</td><td class="num">$46.70 <span class="pill flat">+14&times;</span></td><td class="num">9 <span class="pill good">+350%</span></td><td class="num">11.84% <span class="pill good">+8.9</span></td><td class="num">79% <span class="pill good">+3</span></td><td class="num">1 <span class="pill good">+1</span></td></tr>
+    <tr><td>Compete-Core-Terms-US <span class="pill warn">NEW</span></td><td class="num">$25.72 <span class="pill warn">new</span></td><td class="num">15 <span class="pill warn">new</span></td><td class="num">1.09% <span class="pill warn">new</span></td><td class="num">0% <span class="pill bad">rank</span></td><td class="num">0</td></tr>
+    <tr><td>Non-Brand-English-International</td><td class="num">$7.60 <span class="pill good">&minus;88%</span></td><td class="num">2 <span class="pill bad">&minus;33%</span></td><td class="num">4.44% <span class="pill bad">&minus;0.8</span></td><td class="num">100% <span class="pill flat">0</span></td><td class="num">0</td></tr>
+    <tr><td>Compete-India <span class="pill warn">NEW</span></td><td class="num">$3.78 <span class="pill warn">new</span></td><td class="num">10 <span class="pill warn">new</span></td><td class="num">2.19% <span class="pill warn">new</span></td><td class="num">&mdash;</td><td class="num">0</td></tr>
+    <tr><td>Non-Brand-India <span class="pill warn">NEW</span></td><td class="num">$0.00 <span class="pill warn">new</span></td><td class="num">0 <span class="pill warn">new</span></td><td class="num">0% <span class="pill warn">new</span></td><td class="num">&mdash;</td><td class="num">0</td></tr>
+  </table></div>
+  <p style="font-size:12.5px;color:var(--muted);margin-top:8px">Prior-week baselines exist only for the 5 established campaigns; the 3 tagged NEW launched inside this window. Brand's "+14&times;" spend is off a tiny $3.29 base &mdash; real dollars are trivial, the story is that brand finally got clicks (9) and the week's only pixel conversion.</p>
+
+  <div class="sec"><span class="n">3</span>Match-type health</div>
+  <div class="dtable"><table>
+    <tr><th>Bidded &rarr; Delivered</th><th>Impr</th><th>Clicks</th><th>Cost</th><th>CTR</th><th>Conv</th></tr>
+    <tr><td>Exact &rarr; Exact</td><td class="num">26,113</td><td class="num">415</td><td class="num">$702.61</td><td class="num">1.59%</td><td class="num">1</td></tr>
+    <tr><td>Phrase &rarr; Exact</td><td class="num">6</td><td class="num">0</td><td class="num">$0.00</td><td class="num">0%</td><td class="num">0</td></tr>
+    <tr><td>Phrase &rarr; Phrase</td><td class="num">16</td><td class="num">1</td><td class="num">$0.32</td><td class="num">6.25%</td><td class="num">0</td></tr>
+  </table></div>
+  <p style="font-size:13px;color:var(--muted);margin-top:8px">Broad match is <b>not</b> the leak &mdash; the account is essentially 100% Exact bidded. The leak vector on Bing is <b>&ldquo;Exact (close variant)&rdquo; expansion</b>: Microsoft delivers Exact keywords against loosely-related queries. That's how off-ICP searches like &ldquo;who is bi worldwide's biggest competitor&rdquo; and &ldquo;grok build competitors&rdquo; billed us despite tight keywords. Tighten with negatives (see Search Terms tab), not match-type changes.</p>
+</section><section class="tabpanel" data-tab="copy" data-label="Copy">
+  <div class="sec"><span class="n">1</span>Ad-level delivery &amp; CTR (top campaigns)</div>
+  <div class="lead"><p>The Adzviser connector returns RSA performance by <b>Ad ID</b> but not the headline/description text &mdash; open each Ad ID in the Microsoft Ads UI to read wording. Below are the ads carrying (or wasting) delivery this week. All ads are Responsive Search Ads.</p></div>
+  <div class="dtable"><table>
+    <tr><th>Ad ID</th><th>Campaign</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>Cost</th><th>Read</th></tr>
+    <tr><td>82257647659154</td><td>Compete-US</td><td class="num">10,249</td><td class="num">151</td><td class="num">1.47%</td><td class="num">$157.66</td><td>Over-served workhorse &mdash; most spend, 0 conv</td></tr>
+    <tr><td>82738683446869</td><td>Compete-US</td><td class="num">4,655</td><td class="num">74</td><td class="num">1.59%</td><td class="num">$73.52</td><td>Solid volume, holding CTR</td></tr>
+    <tr><td>82326365952345</td><td>Compete-US</td><td class="num">1,977</td><td class="num">36</td><td class="num">1.82%</td><td class="num">$47.97</td><td>Best CTR of the high-volume set &mdash; scale learnings</td></tr>
+    <tr><td>82944844437671</td><td>Compete-Core-Terms-US</td><td class="num">311</td><td class="num">0</td><td class="num">0%</td><td class="num">$0.00</td><td>New, no traction yet &mdash; watch, don't cut</td></tr>
+    <tr><td>82463805788241</td><td>Compete-English-Intl</td><td class="num">593</td><td class="num">18</td><td class="num">3.04%</td><td class="num">$78.76</td><td>Strongest CTR overall &mdash; but pricey clicks</td></tr>
+    <tr><td>82738683446868</td><td>Non-Brand-US</td><td class="num">19</td><td class="num">2</td><td class="num">10.53%</td><td class="num">$50.86</td><td>High CTR but $25 CPC &mdash; starved &amp; expensive</td></tr>
+    <tr><td>82051437750419</td><td>Brand-Terms-WW</td><td class="num">76</td><td class="num">9</td><td class="num">11.84%</td><td class="num">$46.70</td><td>Only brand RSA &mdash; drove the week's 1 conversion</td></tr>
+  </table></div>
+
+  <div class="sec"><span class="n">2</span>Actions on copy</div>
+  <div class="cards">
+    <div class="card"><div class="ch"><span class="nm">Prune / rebalance</span><span class="sp">Compete-US</span></div>
+      <div class="cb">Ad <b>82257647659154</b> soaked up <b>$158</b> and 10.2k impressions at a middling 1.47% CTR with zero conversions &mdash; it's over-served but weak. Shift impression weight toward <b>82326365952345</b> (1.82% CTR) and pause the lowest-CTR variant in the ad group to stop subsidizing the laggard.</div></div>
+    <div class="card"><div class="ch"><span class="nm">Add a 2nd Brand RSA</span><span class="sp">Brand-Terms-WW</span></div>
+      <div class="cb">Brand runs on a <b>single RSA</b> (82051437750419). It's our best converter, so it's a single point of failure with no A/B signal. Ship a second brand RSA this week so Microsoft can optimize and we protect the term that actually produces leads.</div></div>
+  </div>
+</section><section class="tabpanel" data-tab="terms" data-label="Search Terms">
+  <div class="sec"><span class="n">1</span>Converting / on-ICP queries</div>
+  <div class="dtable"><table>
+    <tr><th>Query</th><th>Match</th><th>Clicks</th><th>Conv</th><th>Cost</th><th>Read</th></tr>
+    <tr><td>reveal dashboard</td><td>Exact</td><td class="num">1</td><td class="num">1</td><td class="num">$8.06</td><td>The week's only pixel conversion &mdash; brand</td></tr>
+    <tr><td>power bi embedded analytics</td><td>Exact (cv)</td><td class="num">13</td><td class="num">0</td><td class="num">$34.00</td><td>Highest-volume ICP query &mdash; embed intent</td></tr>
+    <tr><td>reveal bi / revealbi</td><td>Exact</td><td class="num">6</td><td class="num">0</td><td class="num">$21.62</td><td>Brand defense</td></tr>
+    <tr><td>white label reporting dashboard</td><td>Exact</td><td class="num">2</td><td class="num">0</td><td class="num">$7.60</td><td>On-ICP white-label intent</td></tr>
+    <tr><td>embedded reporting solution</td><td>Exact (cv)</td><td class="num">1</td><td class="num">0</td><td class="num">$25.48</td><td>On-ICP but pricey</td></tr>
+    <tr><td>reveal pricing</td><td>Exact</td><td class="num">1</td><td class="num">0</td><td class="num">$7.62</td><td>High-intent brand</td></tr>
+  </table></div>
+
+  <div class="sec"><span class="n">2</span>Wasted queries &mdash; negatives to add</div>
+  <div class="dtable"><table>
+    <tr><th>Query</th><th>Clicks</th><th>Cost</th><th>Why it's waste</th><th>Add negative</th></tr>
+    <tr><td>who is bi worldwide's biggest competitor</td><td class="num">1</td><td class="num">$28.44</td><td>BI Worldwide = employee-engagement firm, not BI software</td><td><code>bi worldwide</code></td></tr>
+    <tr><td>competitors metabase</td><td class="num">1</td><td class="num">$41.43</td><td>Generic competitor-of query, not embed intent; most expensive click of the week</td><td><code>competitors metabase</code></td></tr>
+    <tr><td>alternatives to lookerstudio</td><td class="num">1</td><td class="num">$36.93</td><td>Looker Studio is free/self-serve BI, not an embed-ISP buyer</td><td><code>looker studio</code></td></tr>
+    <tr><td>grok build competitors</td><td class="num">1</td><td class="num">$7.92</td><td>AI-chatbot query &mdash; off-ICP</td><td><code>grok</code></td></tr>
+    <tr><td>private equity deal flow management software</td><td class="num">1</td><td class="num">$0.32</td><td>Vertical SaaS, unrelated to embedded analytics</td><td><code>deal flow</code></td></tr>
+  </table></div>
+  <p style="font-size:13px;color:var(--muted);margin-top:8px">Every wasted query above was served through <b>&ldquo;Exact (close variant)&rdquo;</b> expansion &mdash; the keyword was tight, Microsoft matched loosely. Roughly <b>$115</b> of this week's $703 went to close-variant queries with no ICP fit and zero conversions. Adding the five negatives recovers most of it and sharpens the account for next week.</p>
+</section><section class="tabpanel" data-tab="landing" data-label="Landing Pages">
+  <div class="lead"><p>Bing traffic lands overwhelmingly on the <b>vs-competitor comparison pages</b> &mdash; the right destination for conquest intent. Engagement is strong and both conversions-worthy pages (/reveal-vs-tableau and the homepage) did the converting. Below: the 5-week trend, then page, device, and audience detail.</p></div>
+
+  <div class="sec"><span class="n">1</span>Trends &mdash; sessions, bounce &amp; engagement</div>
+  <div style="border:1px solid var(--line);border-radius:12px;padding:14px 16px 6px"><svg viewBox="0 0 680 300" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Roboto,sans-serif"><line x1="48" y1="254.0" x2="636" y2="254.0" stroke="#E9E9F4"/><text x="42" y="257.0" font-size="9" fill="#8a93a3" text-anchor="end">0</text><line x1="48" y1="195.5" x2="636" y2="195.5" stroke="#E9E9F4"/><text x="42" y="198.5" font-size="9" fill="#8a93a3" text-anchor="end">140</text><line x1="48" y1="137.0" x2="636" y2="137.0" stroke="#E9E9F4"/><text x="42" y="140.0" font-size="9" fill="#8a93a3" text-anchor="end">280</text><line x1="48" y1="78.5" x2="636" y2="78.5" stroke="#E9E9F4"/><text x="42" y="81.5" font-size="9" fill="#8a93a3" text-anchor="end">420</text><line x1="48" y1="20.0" x2="636" y2="20.0" stroke="#E9E9F4"/><text x="42" y="23.0" font-size="9" fill="#8a93a3" text-anchor="end">560</text><text x="642" y="257.0" font-size="9" fill="#8a93a3" text-anchor="start">0%</text><text x="642" y="198.5" font-size="9" fill="#8a93a3" text-anchor="start">25%</text><text x="642" y="140.0" font-size="9" fill="#8a93a3" text-anchor="start">50%</text><text x="642" y="81.5" font-size="9" fill="#8a93a3" text-anchor="start">75%</text><text x="642" y="23.0" font-size="9" fill="#8a93a3" text-anchor="start">100%</text><rect x="77.4" y="225.2" width="58.8" height="28.8" rx="3" fill="#6C8CFD" opacity="0.85"/><text x="106.8" y="221.2" font-size="9.5" fill="#41506b" text-anchor="middle" font-weight="600">69</text><text x="106.8" y="270.0" font-size="10" fill="#5f6b7a" text-anchor="middle">Jun20</text><rect x="195.0" y="42.1" width="58.8" height="211.9" rx="3" fill="#6C8CFD" opacity="0.85"/><text x="224.4" y="38.1" font-size="9.5" fill="#41506b" text-anchor="middle" font-weight="600">507</text><text x="224.4" y="270.0" font-size="10" fill="#5f6b7a" text-anchor="middle">Jun27</text><rect x="312.6" y="106.5" width="58.8" height="147.5" rx="3" fill="#6C8CFD" opacity="0.85"/><text x="342.0" y="102.5" font-size="9.5" fill="#41506b" text-anchor="middle" font-weight="600">353</text><text x="342.0" y="270.0" font-size="10" fill="#5f6b7a" text-anchor="middle">Jul4</text><rect x="430.2" y="137.0" width="58.8" height="117.0" rx="3" fill="#6C8CFD" opacity="0.85"/><text x="459.6" y="133.0" font-size="9.5" fill="#41506b" text-anchor="middle" font-weight="600">280</text><text x="459.6" y="270.0" font-size="10" fill="#5f6b7a" text-anchor="middle">Jul11</text><rect x="547.8" y="103.6" width="58.8" height="150.4" rx="3" fill="#6C8CFD" opacity="0.85"/><text x="577.2" y="99.6" font-size="9.5" fill="#41506b" text-anchor="middle" font-weight="600">360</text><text x="577.2" y="270.0" font-size="10" fill="#5f6b7a" text-anchor="middle">Jul18</text><polyline points="106.8,77.6 224.4,87.4 342.0,97.0 459.6,111.0 577.2,83.6" fill="none" stroke="#12915b" stroke-width="2.5"/><circle cx="106.8" cy="77.6" r="3.5" fill="#fff" stroke="#12915b" stroke-width="2"/><circle cx="224.4" cy="87.4" r="3.5" fill="#fff" stroke="#12915b" stroke-width="2"/><circle cx="342.0" cy="97.0" r="3.5" fill="#fff" stroke="#12915b" stroke-width="2"/><circle cx="459.6" cy="111.0" r="3.5" fill="#fff" stroke="#12915b" stroke-width="2"/><circle cx="577.2" cy="83.6" r="3.5" fill="#fff" stroke="#12915b" stroke-width="2"/><polyline points="106.8,196.4 224.4,186.6 342.0,177.0 459.6,163.0 577.2,190.4" fill="none" stroke="#c23b39" stroke-width="2.5"/><circle cx="106.8" cy="196.4" r="3.5" fill="#fff" stroke="#c23b39" stroke-width="2"/><circle cx="224.4" cy="186.6" r="3.5" fill="#fff" stroke="#c23b39" stroke-width="2"/><circle cx="342.0" cy="177.0" r="3.5" fill="#fff" stroke="#c23b39" stroke-width="2"/><circle cx="459.6" cy="163.0" r="3.5" fill="#fff" stroke="#c23b39" stroke-width="2"/><circle cx="577.2" cy="190.4" r="3.5" fill="#fff" stroke="#c23b39" stroke-width="2"/></svg><div style="display:flex;gap:16px;flex-wrap:wrap;margin:8px 2px 4px;font-size:12px;color:#5f6b7a"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#6C8CFD;display:inline-block"></span>Sessions (bars, left)</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#12915b;display:inline-block"></span>Engagement % (line, right)</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#c23b39;display:inline-block"></span>Bounce % (line, right)</span></div></div>
+  <p style="font-size:13px;color:var(--muted);margin-top:8px">Sessions recovered to <b>360</b> after a 280-session dip, and engagement climbed back to <b>73%</b> as bounce fell to <b>27%</b> &mdash; the healthiest engagement/bounce split in a month. The late-June spike (507 sessions) was a mobile-heavy burst that engaged less well; this week's traffic is smaller but higher quality.</p>
+
+  <div class="sec"><span class="n">2</span>Landing pages</div>
+  <div class="dtable"><table>
+    <tr><th>Landing page</th><th>Sessions</th><th>Bounce</th><th>Avg time</th><th>Engagement</th><th>Conv</th></tr>
+    <tr><td>/reveal-vs-logi-analytics</td><td class="num">119</td><td class="num">26.9%</td><td class="num">2:26</td><td class="num">73.1%</td><td class="num">0</td></tr>
+    <tr><td>/reveal-vs-power-bi</td><td class="num">70</td><td class="num">27.1%</td><td class="num">6:38</td><td class="num">72.9%</td><td class="num">0</td></tr>
+    <tr><td>/reveal-vs-tableau</td><td class="num">58</td><td class="num">25.9%</td><td class="num">1:58</td><td class="num">74.1%</td><td class="num">2</td></tr>
+    <tr><td>/reveal-vs-luzmo</td><td class="num">18</td><td class="num">27.8%</td><td class="num">0:23</td><td class="num">72.2%</td><td class="num">0</td></tr>
+    <tr><td>/ (homepage)</td><td class="num">14</td><td class="num">28.6%</td><td class="num">6:51</td><td class="num">71.4%</td><td class="num">2</td></tr>
+    <tr><td>/reveal-vs-looker</td><td class="num">14</td><td class="num">14.3%</td><td class="num">1:54</td><td class="num">85.7%</td><td class="num">0</td></tr>
+    <tr><td>/compare</td><td class="num">13</td><td class="num">38.5%</td><td class="num">0:40</td><td class="num">61.5%</td><td class="num">0</td></tr>
+    <tr><td>/reveal-vs-bold-bi</td><td class="num">13</td><td class="num">15.4%</td><td class="num">0:46</td><td class="num">84.6%</td><td class="num">0</td></tr>
+    <tr><td>/reveal-vs-metabase</td><td class="num">11</td><td class="num">27.3%</td><td class="num">0:50</td><td class="num">72.7%</td><td class="num">0</td></tr>
+    <tr><td>/embedded-bi</td><td class="num">6</td><td class="num">50.0%</td><td class="num">3:54</td><td class="num">50.0%</td><td class="num">0</td></tr>
+  </table></div>
+  <p style="font-size:13px;color:var(--muted);margin-top:8px">/reveal-vs-logi-analytics pulls the most Bing traffic but hasn't converted &mdash; worth a CTA/offer check. /reveal-vs-tableau and the homepage are the proven converters; keep conquest bids weighted toward Tableau, Power BI and Logi.</p>
+
+  <div class="sec"><span class="n">3</span>Device</div>
+  <div style="display:flex;gap:22px;flex-wrap:wrap;align-items:center;border:1px solid var(--line);border-radius:12px;padding:16px">
+    <div style="text-align:center"><div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">This week</div><svg viewBox="0 0 180 180" width="180" height="180" xmlns="http://www.w3.org/2000/svg"><circle cx="90" cy="90" r="62" fill="none" stroke="#6C8CFD" stroke-width="26" stroke-dasharray="260.06 129.49" stroke-dashoffset="0.00" transform="rotate(-90 90 90)"/><circle cx="90" cy="90" r="62" fill="none" stroke="#EC417A" stroke-width="26" stroke-dasharray="119.78 269.78" stroke-dashoffset="-260.06" transform="rotate(-90 90 90)"/><circle cx="90" cy="90" r="62" fill="none" stroke="#FBB764" stroke-width="26" stroke-dasharray="9.71 379.85" stroke-dashoffset="-379.85" transform="rotate(-90 90 90)"/><text x="90" y="88" font-size="26" font-weight="700" fill="#212529" text-anchor="middle" font-family="Roboto Mono,monospace">67%</text><text x="90" y="106" font-size="10" fill="#5f6b7a" text-anchor="middle">Desktop</text></svg></div>
+    <div style="flex:1;min-width:300px"><svg viewBox="0 0 440 230" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Roboto,sans-serif"><line x1="30" y1="190.0" x2="430" y2="190.0" stroke="#E9E9F4"/><text x="25" y="193.0" font-size="8.5" fill="#8a93a3" text-anchor="end">0</text><line x1="30" y1="146.0" x2="430" y2="146.0" stroke="#E9E9F4"/><text x="25" y="149.0" font-size="8.5" fill="#8a93a3" text-anchor="end">133</text><line x1="30" y1="102.0" x2="430" y2="102.0" stroke="#E9E9F4"/><text x="25" y="105.0" font-size="8.5" fill="#8a93a3" text-anchor="end">266</text><line x1="30" y1="58.0" x2="430" y2="58.0" stroke="#E9E9F4"/><text x="25" y="61.0" font-size="8.5" fill="#8a93a3" text-anchor="end">400</text><line x1="30" y1="14.0" x2="430" y2="14.0" stroke="#E9E9F4"/><text x="25" y="17.0" font-size="8.5" fill="#8a93a3" text-anchor="end">533</text><rect x="48.0" y="172.5" width="44.0" height="17.5" fill="#6C8CFD" opacity="0.9"/><rect x="48.0" y="167.2" width="44.0" height="5.3" fill="#EC417A" opacity="0.9"/><rect x="48.0" y="167.2" width="44.0" height="0.0" fill="#FBB764" opacity="0.9"/><text x="70.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jun20</text><text x="70.0" y="163.2" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">69</text><rect x="128.0" y="113.8" width="44.0" height="76.2" fill="#6C8CFD" opacity="0.9"/><rect x="128.0" y="28.3" width="44.0" height="85.5" fill="#EC417A" opacity="0.9"/><rect x="128.0" y="22.4" width="44.0" height="5.9" fill="#FBB764" opacity="0.9"/><text x="150.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jun27</text><text x="150.0" y="18.4" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">508</text><rect x="208.0" y="142.8" width="44.0" height="47.2" fill="#6C8CFD" opacity="0.9"/><rect x="208.0" y="74.8" width="44.0" height="68.0" fill="#EC417A" opacity="0.9"/><rect x="208.0" y="73.5" width="44.0" height="1.3" fill="#FBB764" opacity="0.9"/><text x="230.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jul4</text><text x="230.0" y="69.5" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">353</text><rect x="288.0" y="132.6" width="44.0" height="57.4" fill="#6C8CFD" opacity="0.9"/><rect x="288.0" y="100.9" width="44.0" height="31.7" fill="#EC417A" opacity="0.9"/><rect x="288.0" y="97.6" width="44.0" height="3.3" fill="#FBB764" opacity="0.9"/><text x="310.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jul11</text><text x="310.0" y="93.6" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">280</text><rect x="368.0" y="110.5" width="44.0" height="79.5" fill="#6C8CFD" opacity="0.9"/><rect x="368.0" y="73.9" width="44.0" height="36.6" fill="#EC417A" opacity="0.9"/><rect x="368.0" y="70.9" width="44.0" height="3.0" fill="#FBB764" opacity="0.9"/><text x="390.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jul18</text><text x="390.0" y="66.9" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">361</text></svg><div style="display:flex;gap:16px;flex-wrap:wrap;margin:8px 2px 4px;font-size:12px;color:#5f6b7a"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#6C8CFD;display:inline-block"></span>Desktop</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#EC417A;display:inline-block"></span>Mobile</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#FBB764;display:inline-block"></span>Tablet / other</span></div></div>
+  </div>
+  <p style="font-size:13px;color:var(--muted);margin-top:8px"><b>Desktop drives conversions &mdash; all 4 GA4 events came from desktop</b>, none from mobile or tablet. This week desktop reclaimed the majority (67%) after mobile-heavy late-June weeks; that shift toward desktop is exactly why engagement and conversions improved. Keep desktop bid adjustments positive.</p>
+
+  <div class="sec"><span class="n">4</span>New vs returning</div>
+  <div style="display:flex;gap:22px;flex-wrap:wrap;align-items:center;border:1px solid var(--line);border-radius:12px;padding:16px">
+    <div style="text-align:center"><div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">This week</div><svg viewBox="0 0 180 180" width="180" height="180" xmlns="http://www.w3.org/2000/svg"><circle cx="90" cy="90" r="62" fill="none" stroke="#C9367F" stroke-width="26" stroke-dasharray="375.29 14.27" stroke-dashoffset="0.00" transform="rotate(-90 90 90)"/><circle cx="90" cy="90" r="62" fill="none" stroke="#6C8CFD" stroke-width="26" stroke-dasharray="14.27 375.29" stroke-dashoffset="-375.29" transform="rotate(-90 90 90)"/><text x="90" y="88" font-size="26" font-weight="700" fill="#212529" text-anchor="middle" font-family="Roboto Mono,monospace">96%</text><text x="90" y="106" font-size="10" fill="#5f6b7a" text-anchor="middle">New</text></svg></div>
+    <div style="flex:1;min-width:300px"><svg viewBox="0 0 440 230" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Roboto,sans-serif"><line x1="30" y1="190.0" x2="430" y2="190.0" stroke="#E9E9F4"/><text x="25" y="193.0" font-size="8.5" fill="#8a93a3" text-anchor="end">0</text><line x1="30" y1="146.0" x2="430" y2="146.0" stroke="#E9E9F4"/><text x="25" y="149.0" font-size="8.5" fill="#8a93a3" text-anchor="end">131</text><line x1="30" y1="102.0" x2="430" y2="102.0" stroke="#E9E9F4"/><text x="25" y="105.0" font-size="8.5" fill="#8a93a3" text-anchor="end">263</text><line x1="30" y1="58.0" x2="430" y2="58.0" stroke="#E9E9F4"/><text x="25" y="61.0" font-size="8.5" fill="#8a93a3" text-anchor="end">395</text><line x1="30" y1="14.0" x2="430" y2="14.0" stroke="#E9E9F4"/><text x="25" y="17.0" font-size="8.5" fill="#8a93a3" text-anchor="end">527</text><rect x="48.0" y="169.0" width="44.0" height="21.0" fill="#C9367F" opacity="0.9"/><rect x="48.0" y="167.0" width="44.0" height="2.0" fill="#6C8CFD" opacity="0.9"/><text x="70.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jun20</text><text x="70.0" y="163.0" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">69</text><rect x="128.0" y="25.7" width="44.0" height="164.3" fill="#C9367F" opacity="0.9"/><rect x="128.0" y="22.4" width="44.0" height="3.3" fill="#6C8CFD" opacity="0.9"/><text x="150.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jun27</text><text x="150.0" y="18.4" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">502</text><rect x="208.0" y="76.1" width="44.0" height="113.9" fill="#C9367F" opacity="0.9"/><rect x="208.0" y="72.5" width="44.0" height="3.7" fill="#6C8CFD" opacity="0.9"/><text x="230.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jul4</text><text x="230.0" y="68.5" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">352</text><rect x="288.0" y="101.8" width="44.0" height="88.2" fill="#C9367F" opacity="0.9"/><rect x="288.0" y="97.5" width="44.0" height="4.3" fill="#6C8CFD" opacity="0.9"/><text x="310.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jul11</text><text x="310.0" y="93.5" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">277</text><rect x="368.0" y="75.8" width="44.0" height="114.2" fill="#C9367F" opacity="0.9"/><rect x="368.0" y="71.5" width="44.0" height="4.3" fill="#6C8CFD" opacity="0.9"/><text x="390.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jul18</text><text x="390.0" y="67.5" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">355</text></svg><div style="display:flex;gap:16px;flex-wrap:wrap;margin:8px 2px 4px;font-size:12px;color:#5f6b7a"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#C9367F;display:inline-block"></span>New</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#6C8CFD;display:inline-block"></span>Returning</span></div></div>
+  </div>
+  <div class="dtable" style="margin-top:12px"><table>
+    <tr><th>Audience</th><th>Sessions</th><th>Engagement</th><th>Avg time</th><th>Conv</th></tr>
+    <tr><td>New</td><td class="num">342</td><td class="num">74.0%</td><td class="num">3:04</td><td class="num">4</td></tr>
+    <tr><td>Returning</td><td class="num">13</td><td class="num">69.2%</td><td class="num">1:23</td><td class="num">0</td></tr>
+    <tr><td>(not set)</td><td class="num">5</td><td class="num">0%</td><td class="num">0:01</td><td class="num">0</td></tr>
+  </table></div>
+  <p style="font-size:13px;color:var(--muted);margin-top:8px"><b>Net-new dominates &mdash; 95% of sessions and all 4 conversions are first-time visitors</b>, consistent with a top-of-funnel conquest channel. Note the <b>UTM casing split</b>: GA4 shows a separate <code>bing / CPC</code> source (4 sessions) alongside the main <code>bing / cpc</code> (356). Standardize UTM medium to lowercase so sessions and any conversions stop fragmenting across two buckets.</p>
+</section><section class="tabpanel" data-tab="journey" data-label="Journey &amp; ROI">
+  <div class="sec"><span class="n">1</span>GA4 site engagement (WoW)</div>
+  <div class="kpigrid"><div class="kpi"><div class="lab">Sessions (bing/cpc)</div><div class="val">356</div><div class="delta up">+31% WoW</div></div><div class="kpi"><div class="lab">Engaged sessions</div><div class="val">260</div><div class="delta up">+56% WoW</div></div><div class="kpi"><div class="lab">Engagement rate</div><div class="val">73%</div><div class="delta up">+11 pts</div></div><div class="kpi"><div class="lab">Views</div><div class="val">564</div><div class="delta up">+42% WoW</div></div><div class="kpi"><div class="lab">GA4 conversions</div><div class="val">4</div><div class="delta up">+4 vs 0</div></div></div>
+
+  <div class="sec"><span class="n">2</span>Funnel: spend &rarr; click &rarr; session &rarr; engaged &rarr; conversion</div>
+  <div class="dtable"><table>
+    <tr><th>Stage</th><th>This week</th><th>Source</th><th>Read</th></tr>
+    <tr><td>Spend</td><td class="num">$702.93</td><td>Adzviser (Bing)</td><td>Flat WoW</td></tr>
+    <tr><td>Clicks</td><td class="num">416</td><td>Adzviser (Bing)</td><td>+31%; CPC $1.69</td></tr>
+    <tr><td>Sessions (bing/cpc)</td><td class="num">360</td><td>GA4</td><td>~87% of clicks land &amp; register &mdash; healthy</td></tr>
+    <tr><td>Engaged sessions</td><td class="num">262</td><td>GA4</td><td>73% engagement &mdash; message/landing match is good</td></tr>
+    <tr><td>Bing-pixel conversions</td><td class="num">1</td><td>Adzviser (Bing)</td><td>Brand query &ldquo;reveal dashboard&rdquo;</td></tr>
+    <tr><td>GA4 key events</td><td class="num">4</td><td>GA4</td><td>vs-Tableau (2) + homepage (2), all desktop/new</td></tr>
+    <tr><td>Salesforce leads / pipeline</td><td class="num">n/a</td><td>Salesforce</td><td><b>Unverifiable</b> &mdash; no clean Bing LeadSource</td></tr>
+  </table></div>
+  <p style="font-size:13px;color:var(--muted);margin-top:8px">The funnel doesn't break at the top &mdash; clicks convert to sessions and sessions engage. It breaks at the <b>measurement</b> of the bottom: we can see engaged intent but can't confirm a lead in the CRM.</p>
+
+  <div class="sec"><span class="n">3</span>The Salesforce attribution gap</div>
+  <div style="border:1px solid var(--bad);border-left:5px solid var(--bad);background:var(--bad-bg);border-radius:12px;padding:14px 18px;font-size:13.5px;line-height:1.55">
+    <b>We cannot confirm Bing pipeline in Salesforce.</b> There is no clean Bing <code>LeadSource</code>, so lead/opportunity attribution for this channel is traced only through GA4 <code>bing / cpc</code> + UTM &mdash; not the CRM. This week that trace shows 4 GA4 key events vs 1 Bing pixel conversion; the gap is definitional (GA4 counts multiple key-event types per session, the Bing pixel counts one primary action). Until a Bing LeadSource exists, treat all Bing &ldquo;conversion&rdquo; counts as <b>engagement proxies, not confirmed leads</b>, and do not scale budget on them.
+  </div>
+
+  <div class="verdict">
+    <div class="vh">Verdict &mdash; Hold &amp; Fix (do not scale)</div>
+    <p>Bing got <b>cheaper and more engaging</b> this week &mdash; $1.69 CPC, +31% clicks, 73% engagement &mdash; but it still can't prove a $75 lead, and tracking is too broken to trust a scale decision. Fix the plumbing and stop the leaks this week; revisit budget only once a real Bing lead lands in Salesforce.</p>
+    <div class="dtable" style="margin-top:12px;background:#fff"><table>
+      <tr><th>#</th><th>Action</th><th>Why (metric it moves)</th><th>Expected result</th><th>Owner</th></tr>
+      <tr><td class="num">1</td><td>Add 5 negatives (bi worldwide, competitors metabase, looker studio, grok, deal flow)</td><td>Kills ~$115/wk close-variant waste; lifts CPL &amp; CTR</td><td>~15% cheaper CPL next week</td><td>David</td></tr>
+      <tr><td class="num">2</td><td>Fix UTM casing &mdash; force <code>cpc</code> lowercase on all Bing final URLs</td><td>Stops session/conv fragmentation across cpc/CPC</td><td>Clean single source in GA4 by next run</td><td>David</td></tr>
+      <tr><td class="num">3</td><td>Stand up a Bing <code>LeadSource</code> in Salesforce</td><td>Makes pipeline verifiable &mdash; unblocks scale decision</td><td>SF-traceable leads within 2 weeks</td><td>Owner + RevOps</td></tr>
+      <tr><td class="num">4</td><td>Ship a 2nd Brand RSA + raise brand bid/QS</td><td>Brand IS 79% &rarr; ~100%; protects the one converter</td><td>Recover 21% lost-to-rank brand impressions</td><td>David</td></tr>
+      <tr><td class="num">5</td><td>Rebalance Compete-US ads &mdash; downweight 82257647659154, favor 82326365952345</td><td>Moves budget from 1.47% to 1.82% CTR ad</td><td>More clicks per dollar, same spend</td><td>David</td></tr>
+    </table></div>
+  </div>
+</section>  </div>
+</div>
 <script>
-  // Build the tab bar from whatever panels the agent injected.
   var panels = Array.prototype.slice.call(document.querySelectorAll('.tabpanel'));
   var bar = document.getElementById('tabbar');
   panels.forEach(function(p,i){
