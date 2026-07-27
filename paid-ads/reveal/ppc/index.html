@@ -3,10 +3,127 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reveal — Weekly Paid Media Brief · Jul 27 2026</title>
+<title>Paid Media Weekly / PPC analysis</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
+  :root{
+    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
+    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
+    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
+  }
+  /* ---- PER-PRODUCT THEME (agent sets one class on <body>) ---- */
+  body.theme-reveal   {--accent:#EC417A;--accent-deep:#C9367F;--accent-soft:#fde4ee;--hero:linear-gradient(120deg,#FBB764,#EC417A 62%,#d63384)}
+  body.theme-slingshot{--accent:#4B45C6;--accent-deep:#2D2A90;--accent-soft:#ECEBFB;--hero:linear-gradient(120deg,#6C5CE7,#4B45C6 55%,#2D2A90)}
+  body.theme-ui       {--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
+  body.theme-all      {--accent:#2563EB;--accent-deep:#7C3AED;--accent-soft:#EEF1FF;--hero:linear-gradient(120deg,#2563EB,#7C3AED)}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .hubnav{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:8px;background:#0B1220;color:#fff;font-weight:600;font-size:13px;padding:11px 20px;text-decoration:none}
+  .hubnav:hover{background:#111a2e}
+  .hubnav svg{width:14px;height:14px}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 80px}
+
+  header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
+  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
+  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
+  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)}
+  .meta b{color:#fff;font-weight:700}
+
+  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:42px;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03)}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;display:flex;align-items:center;gap:8px}
+  .tab .cbadge{font-family:var(--mono);font-size:11px;font-weight:600;background:var(--gray-bg);color:var(--muted);border-radius:999px;padding:1px 8px}
+  .tab:hover{color:var(--ink)}
+  .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+  .tab.on .cbadge{background:var(--accent-soft);color:var(--accent-deep)}
+
+  .panel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
+  .panel.on{display:block}
+
+  .slink{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:#fff;background:linear-gradient(120deg,var(--accent),var(--accent-deep));padding:9px 15px;border-radius:9px;white-space:nowrap;text-decoration:none}
+  .slink:hover{filter:brightness(1.05)}
+  .slink svg{width:13px;height:13px}
+
+  /* ===== TASKS (scoped) ===== */
+  #tasks .taskhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+  #tasks .viewtoggle{display:inline-flex;background:var(--gray-bg);border-radius:10px;padding:3px}
+  #tasks .vbtn{appearance:none;border:none;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:8px}
+  #tasks .vbtn.on{background:#fff;color:var(--accent-deep);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+  #tasks .tsum{font-size:12.5px;color:var(--muted)} #tasks .tsum b{color:var(--navy)}
+  #tasks .push{margin-left:auto}
+  #tasks .view{display:none} #tasks .view.on{display:block}
+  #tasks .tablewrap{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  #tasks table{width:100%;border-collapse:collapse;font-size:13px}
+  #tasks thead th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left;border-bottom:1px solid #dce3f0}
+  #tasks tbody td{padding:11px 13px;border-bottom:1px solid var(--line);vertical-align:middle}
+  #tasks tbody tr:last-child td{border-bottom:none}
+  #tasks tbody tr:hover{background:#fafbff}
+  #tasks .tname{font-weight:600;color:var(--navy)}
+  #tasks .who{display:inline-flex;align-items:center;gap:7px}
+  #tasks .av{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:700;color:#fff;font-family:var(--mono)}
+  #tasks .pri{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:.03em}
+  #tasks .P1{background:var(--bad-bg);color:var(--bad)} #tasks .P2{background:var(--warn-bg);color:var(--warn)} #tasks .P3{background:var(--gray-bg);color:var(--gray)}
+  #tasks .stat{font-size:11px;font-weight:600;padding:2px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:5px}
+  #tasks .stat::before{content:"";width:6px;height:6px;border-radius:50%}
+  #tasks .todo{background:var(--gray-bg);color:#566} #tasks .todo::before{background:var(--gray)}
+  #tasks .prog{background:var(--peri-soft);color:var(--cobalt)} #tasks .prog::before{background:var(--cobalt)}
+  #tasks .done{background:var(--good-bg);color:var(--good)} #tasks .done::before{background:var(--good)}
+  #tasks td.due{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  #tasks .board{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:820px){#tasks .board{grid-template-columns:1fr}}
+  #tasks .col{background:#f7f8fc;border:1px solid var(--line);border-radius:14px;padding:12px}
+  #tasks .col-h{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;margin-bottom:11px;padding:0 4px}
+  #tasks .col-h .cc{font-family:var(--mono);font-size:11px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:0 8px;color:var(--muted)}
+  #tasks .col-h .dt{width:8px;height:8px;border-radius:50%}
+  #tasks .tcard{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 13px;margin-bottom:9px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+  #tasks .tcard .tt{font-weight:600;font-size:13px;color:var(--navy);line-height:1.35}
+  #tasks .tcard .tm{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+  #tasks .tcard .plt{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+  #tasks .tl{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#fcfdff;overflow-x:auto}
+  #tasks .tlrow{display:grid;grid-template-columns:210px 1fr;gap:14px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
+  #tasks .tlrow:last-child{border-bottom:none}
+  #tasks .tlname{font-size:12.5px;font-weight:600;color:var(--navy)} #tasks .tlname .sub{font-size:10.5px;color:var(--muted);font-weight:400}
+  #tasks .tltrack{position:relative;height:26px;background:#f1f4fb;border-radius:7px}
+  #tasks .bar{position:absolute;top:4px;height:18px;border-radius:6px;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:700;color:#fff;font-family:var(--mono);white-space:nowrap;background:var(--accent-deep)}
+  #tasks .empty{font-size:13px;color:var(--muted);padding:30px;text-align:center}
+
+  /* ===== SUMMARY (scoped) ===== */
+  #summary .sumhead{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  #summary .dtitle{font-size:13px;font-weight:700;color:var(--navy)}
+  #summary .push{margin-left:auto;border:none;cursor:pointer;font-family:inherit}
+  #summary .copied{background:var(--good)!important;filter:none!important}
+  #summary .summary-card{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:22px 24px;background:#fff;font-size:14.5px;line-height:1.6;color:var(--ink)}
+  #summary .summary-card h1,#summary .summary-card h2,#summary .summary-card h3{color:var(--navy);font-weight:900;margin:0 0 10px}
+  #summary .summary-card h2{font-size:18px} #summary .summary-card h3{font-size:15px;margin-top:16px}
+  #summary .summary-card p{margin:0 0 12px} #summary .summary-card b,#summary .summary-card strong{color:var(--navy)}
+  #summary .summary-card ul{margin:0 0 12px;padding-left:20px} #summary .summary-card li{margin-bottom:6px}
+</style>
+</head>
+<!-- AGENT: set the theme class → theme-reveal | theme-slingshot | theme-ui | theme-all -->
+<body class="theme-reveal">
+<a class="hubnav" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg> All Reports</a>
+<div class="wrap">
+
+  <header class="top">
+    <div class="logochip">Reveal</div>
+    <div class="kick">revealbi.io · Paid Media</div>
+    <h1>Paid Media Weekly / PPC analysis</h1>
+    <div class="meta"><span>Week of <b>Jul 20-26, 2026</b></span> <span>vs <b>Jul 13-19</b></span> <span>Channels <b>Google · Bing · LinkedIn · Reddit · G2</b></span></div>
+  </header>
+
+  <div class="tabbar">
+    <button class="tab on" data-tab="report">Report</button>
+    <button class="tab" data-tab="tasks">Tasks <span class="cbadge" id="taskCount">0</span></button>
+    <button class="tab" data-tab="summary">Summary</button>
+  </div>
+
+  <!-- REPORT: agent injects its full analysis HTML here -->
+  <section class="panel on" id="report">
+    <style>
   :root{
     --navy:#0F172A; --navy2:#2A41A2; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
     --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#ffffff;
@@ -16,15 +133,6 @@
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:'Roboto',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1080px;margin:0 auto;padding:28px 22px 80px}
-  header.top{background:linear-gradient(120deg,var(--amber) 0%,var(--magenta) 62%,#d63384 100%);color:#fff;border-radius:16px;padding:22px 26px;position:relative;overflow:hidden}
-  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
-  header.top .logochip{display:inline-block;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14)}
-  header.top .logochip img{height:26px;display:block}
-  header.top .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
-  header.top h1{margin:5px 0 0;font-size:27px;font-weight:900}
-  header.top .meta{margin-top:14px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)}
-  header.top .meta b{color:#fff;font-weight:700}
   h2.sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:36px 4px 14px;display:flex;align-items:center;gap:10px}
   h2.sec .n{width:22px;height:22px;border-radius:6px;background:var(--peri-soft);color:var(--cobalt);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
 
@@ -141,21 +249,7 @@
   small.src{color:var(--gray);font-size:11px}
   .foot{margin-top:26px;font-size:11.5px;color:var(--gray);border-top:1px solid var(--line);padding-top:14px}
 </style>
-</head>
-<body>
-<div class="wrap">
 
-<header class="top">
-  <div class="logochip"><svg width="30" height="30" viewBox="0 0 22 22" style="vertical-align:middle" alt="Reveal"><rect x="1" y="12" width="4" height="9" rx="1" fill="#EC417A"/><rect x="7" y="7" width="4" height="14" rx="1" fill="#FBB764"/><rect x="13" y="3" width="4" height="18" rx="1" fill="#2A41A2"/></svg></div>
-  <div class="kick">revealbi.io · Paid Media</div>
-  <h1>Weekly Paid Media Brief</h1>
-  <div class="meta">
-    <span>Report date <b>Mon 27 Jul 2026</b></span>
-    <span>Window <b>Jul 20-26</b> vs <b>Jul 13-19</b></span>
-    <span>Owner <b>Poojitha</b> (driver)</span>
-    <span>Supporting <b>Sydney</b> — LinkedIn, Reddit &amp; channel growth</span>
-  </div>
-</header>
 
 <h2 class="sec"><span class="n">1</span> Executive summary</h2>
 <div class="kpigrid g5">
@@ -524,7 +618,7 @@
       <div class="legend"><span><span class="swatch" style="background:#2A41A2"></span> Sponsored impressions</span><span><span class="swatch" style="background:#c23b39"></span> Sponsored clicks (flat at 0)</span></div>
     </div>
 
-    <p class="keyfix"><b>This placement is underperforming, and it's a setup problem — not a channel problem.</b> Over the flight the sponsored ad drew 67 impressions and 0 clicks; the free organic listing outperformed it. Buyer-intent feed was gated this run (category-only), so the fix is unchanged and still owned. Three misconfigurations explain it:</p>
+    <p class="keyfix"><b>This placement is underperforming, and it's a setup problem — not a channel problem.</b> Over the flight the sponsored ad drew 67 impressions and 0 clicks; the free organic listing outperformed it. Buyer-intent feed was gated this run (category-only), so the fix below is unchanged and still owned. Three misconfigurations explain it:</p>
     <ul class="wl">
       <li class="con"><b>No competitors targeted.</b> The placement is category-only, so it never appears on the competitor and "alternatives" pages where buyers actually shortlist — the same Power BI / Tableau / Sisense comparisons where our search demand is surging.</li>
       <li class="con"><b>The CTA points to the homepage</b>, not a comparison or embedded-analytics page — the wrong destination for a shortlisting buyer.</li>
@@ -572,7 +666,7 @@
       </tbody>
     </table>
     </div>
-    <p style="font-size:12.5px;color:var(--muted);margin:10px 2px 0">Budget: ~$45k/mo vs the ~$68k cap = <b>~$23k/mo headroom</b>. Google is recovering but still QS-limited on the heads, so the headroom is free for G2-with-competitors and the 6sense&rarr;LinkedIn layer.</p>
+    <p style="font-size:12.5px;color:var(--muted);margin:10px 2px 0">Budget: ~$45k/mo vs the ~$68k cap = <b>~$23k/mo headroom</b>. Google can't absorb it yet (QS-limited), so it's free for G2-with-competitors and the 6sense&rarr;LinkedIn layer.</p>
   </div>
   <div class="card">
     <div style="font-weight:700;margin-bottom:8px">Where the next dollar goes</div>
@@ -670,7 +764,129 @@
   <svg width="30" height="30" viewBox="0 0 22 22" style="vertical-align:middle" alt="Reveal"><rect x="1" y="12" width="4" height="9" rx="1" fill="#EC417A"/><rect x="7" y="7" width="4" height="14" rx="1" fill="#FBB764"/><rect x="13" y="3" width="4" height="18" rx="1" fill="#2A41A2"/></svg>
   Weekly paid brief · v8 (Reveal brand style), generated 27 Jul 2026 · window Jul 20-26 vs Jul 13-19 · sources: Google Ads &amp; GA4 (Supermetrics); Bing &amp; Reddit (Adzviser); LinkedIn (Supermetrics); leads/opps/pipeline (Salesforce); G2 Advertising (buyer-intent gated this run — category-only). Quality-Score components from keyword-level Google Ads data (last 30d). Lead trend = weekly Mon-Sun paid Reveal leads; forecast is an illustrative scenario, not a guarantee. Not investment or financial advice.
 </div>
+  </section>
+
+  <!-- TASKS: rendered by JS from the TASKS array below -->
+  <section class="panel" id="tasks">
+    <div class="taskhead">
+      <div class="viewtoggle">
+        <button class="vbtn on" data-view="table">Table</button>
+        <button class="vbtn" data-view="board">Board</button>
+        <button class="vbtn" data-view="timeline">Timeline</button>
+      </div>
+      <span class="tsum" id="taskSummary"></span>
+      <a class="slink push" href="https://my.slingshotapp.io/openTaskList/e97e10ef_52b2bc22-d90d-4cd3-b1a7-8d48b05c2ee9_tg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg> Open this list in Slingshot</a>
+    </div>
+    <div class="view on" data-view="table"><div class="tablewrap"><table><thead><tr><th>Task</th><th>Channel</th><th>Owner</th><th>Priority</th><th>Status</th><th>Due</th></tr></thead><tbody id="tblBody"></tbody></table></div></div>
+    <div class="view" data-view="board"><div class="board" id="boardWrap"></div></div>
+    <div class="view" data-view="timeline"><div class="tl" id="tlWrap"></div></div>
+  </section>
+
+  <!-- SUMMARY: the exec summary, formatted, with a Copy button -->
+  <section class="panel" id="summary">
+    <div class="sumhead"><span class="dtitle">Executive summary</span><button class="slink push" id="copyBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg> <span id="copyLabel">Copy summary</span></button></div>
+    <div class="summary-card" id="summaryCard">
+      <h2>Leads dipped to 6 — a tracking artifact, not a demand drop</h2>
+<p>Paid spend held flat at <b>~$10.5k</b> and the structural fixes are landing: Non-Brand-US impression share more than doubled (<b>26% &rarr; 65%</b>), brand defense rose 58% &rarr; 62%, and last week's Bing spam sweep held. Salesforce logged <b>6 paid leads</b> vs 17 the week prior, and Google tracked only 2 — the July 16 GA4/goals re-import reset conversion memory and is still inside its 30-day relearning window. Don't read the 6 as a demand collapse.</p>
+<p><b>For sales leadership:</b> 90-day paid pipeline stands at <b>$382k across 9 opportunities</b> (~2.8x pipeline-to-spend), and Reveal's 30+ day research cycle means this week's clicks convert next month. The watch item is quality — <b>64% of paid leads are still Sales-Unqualified</b>, so the next dollar buys tighter targeting, not more volume.</p>
+<h3>What's holding leads down (both structural, both owned)</h3>
+<ul>
+<li><b>~50% of Google spend</b> sits in Demand Gen + PMAX at near-zero tracked conversions.</li>
+<li>Paid clicks still dump on the <b>homepage</b> — ~78% of paid sessions at 33% engagement, vs ~60%+ on the exact-match pages.</li>
+</ul>
+<h3>The priority this week</h3>
+<p>Fix <b>destinations and Quality Score</b>: repoint Non-Brand-US ads to exact-match pages, build the two missing pages (/embedded-bi, /embedded-dashboards), and refresh RSA copy. Capture the continuing <b>Power BI "embedded" surge</b>, and clean Bing (a new ~$90/wk junk cluster plus a 97%-rank-lost ad group).</p>
+<h3>This week by channel</h3>
+<ul>
+<li><b>Google</b> — the engine; show-up recovered to 65%, remaining loss is Quality Score (rank), not budget.</li>
+<li><b>Bing</b> — cheap coverage; new junk to negative out and one ad group near-invisible on rank.</li>
+<li><b>LinkedIn</b> — image ad scaling; video CTR recovered after refresh (4.16% &rarr; 7.53%); widen reach via 6sense.</li>
+<li><b>Reddit</b> — efficient developer reach, CTR up 4-week; raise frequency for recall.</li>
+<li><b>G2</b> — still 0 sponsored clicks; add competitors and repoint the CTA (buyer-intent feed gated this run).</li>
+</ul>
+<h3>What to expect</h3>
+<p>Impression share and engagement recover first; leads follow on the usual 30-day lag. Recent run-rate is ~45-50/mo; as the pages, Quality-Score and G2 fixes land we expect a ramp toward <b>~18 quality leads/week</b> — a sustainable build, not a one-week spike.</p>
+    </div>
+  </section>
 
 </div>
+
+<script>
+  /* ============================================================
+     AGENT: replace the TASKS array below with live Slingshot data.
+     Leave the rendering code untouched.
+     TASK shape: {name, channel, owner, initials, color, priority:"P1|P2|P3", status:"todo|prog|done", due:"YYYY-MM-DD", start:"YYYY-MM-DD"(optional)}
+     ============================================================ */
+  const TASKS = [{"name": "Fix Bing Compete-Core-Terms-US — 97% impressions lost to rank (bid + QS)", "channel": "Bing", "owner": "Poojitha", "initials": "PB", "color": "#2A41A2", "priority": "P1", "status": "todo", "due": "2026-07-30"}, {"name": "Bing spam sweep — add negatives for new junk (bi worldwide, private equity, deal flow, claudeai, reveal.us, lookerstudio)", "channel": "Bing", "owner": "Poojitha", "initials": "PB", "color": "#2A41A2", "priority": "P1", "status": "todo", "due": "2026-07-29"}, {"name": "Repoint Non-Brand-US ads to exact-match pages + refresh RSA copy (QS)", "channel": "Google", "owner": "Poojitha", "initials": "PB", "color": "#2A41A2", "priority": "P1", "status": "todo", "due": "2026-07-29"}, {"name": "Rebuild Demand Gen by intent tiers (T1→T2→T3); point T1-2 at comparison pages", "channel": "Google", "owner": "Poojitha", "initials": "PB", "color": "#2A41A2", "priority": "P1", "status": "todo", "due": "2026-07-29"}, {"name": "Build /embedded-bi + /embedded-dashboards landing pages (top QS lever)", "channel": "Pages / SEO", "owner": "Casey", "initials": "CC", "color": "#B7791F", "priority": "P1", "status": "todo", "due": "2026-08-05"}, {"name": "Tighten targeting to cut 67% unqualified + populate LeadQuality__c + agree one CPL definition", "channel": "Strategy", "owner": "Casey", "initials": "CC", "color": "#B7791F", "priority": "P1", "status": "todo", "due": "2026-07-31"}, {"name": "Verify 7/24 bid changes landed — brand IS still 62%, Compete-US IS fell", "channel": "Google", "owner": "Poojitha", "initials": "PB", "color": "#2A41A2", "priority": "P2", "status": "todo", "due": "2026-07-29"}, {"name": "Audit PMAX-Remarketing-WW — $1,160 spend / 0 conversions", "channel": "Google", "owner": "Poojitha", "initials": "PB", "color": "#2A41A2", "priority": "P2", "status": "todo", "due": "2026-07-28"}, {"name": "Pull LinkedIn demographic delivery report to verify CTO/VP reach", "channel": "LinkedIn", "owner": "Sydney", "initials": "SV", "color": "#C9367F", "priority": "P2", "status": "prog", "due": "2026-07-25"}, {"name": "G2 — add targeted competitors, repoint CTA to comparison pages, evaluate G2 Clicks (CPC)", "channel": "G2", "owner": "Casey", "initials": "CC", "color": "#B7791F", "priority": "P2", "status": "todo", "due": "2026-07-28"}, {"name": "New Ad copy for Search Ads", "channel": "Google", "owner": "Poojitha", "initials": "PB", "color": "#2A41A2", "priority": "P3", "status": "todo", "due": "2026-07-28"}, {"name": "Review new ad copy", "channel": "Google", "owner": "Casey", "initials": "CC", "color": "#B7791F", "priority": "P3", "status": "todo"}, {"name": "Set Live new ad copy", "channel": "Google", "owner": "Poojitha", "initials": "PB", "color": "#2A41A2", "priority": "P3", "status": "todo", "due": "2026-07-31"}, {"name": "Update bid strategy if needed", "channel": "Google", "owner": "Poojitha", "initials": "PB", "color": "#2A41A2", "priority": "P3", "status": "prog", "due": "2026-07-28"}, {"name": "New GA4 account / Goals / Conversion Actions", "channel": "Google", "owner": "Poojitha", "initials": "PB", "color": "#2A41A2", "priority": "P3", "status": "prog", "due": "2026-08-31"}, {"name": "Move new conversion actions to Primary", "channel": "Google", "owner": "Poojitha", "initials": "PB", "color": "#2A41A2", "priority": "P3", "status": "todo", "due": "2026-08-31"}, {"name": "30-day watch period (new conversions)", "channel": "Google", "owner": "Poojitha", "initials": "PB", "color": "#2A41A2", "priority": "P3", "status": "prog", "due": "2026-08-17"}, {"name": "MONTHLY — Request creative refresh (LinkedIn video, Reddit 2nd angle)", "channel": "LinkedIn / Reddit", "owner": "Sydney", "initials": "SV", "color": "#C9367F", "priority": "P3", "status": "prog", "due": "2026-08-03"}, {"name": "MONTHLY — Ad copy refresh (RSA headlines/descriptions)", "channel": "Google", "owner": "Poojitha", "initials": "PB", "color": "#2A41A2", "priority": "P3", "status": "todo", "due": "2026-08-03"}];
+
+  var accentDeep = getComputedStyle(document.body).getPropertyValue('--accent-deep').trim() || '#333';
+  function esc(s){return (s==null?'':String(s)).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+  var STAT={todo:'To do',prog:'In progress',done:'Done'};
+
+  // counts + summary
+  document.getElementById('taskCount').textContent = TASKS.length;
+  var prog = TASKS.filter(function(t){return t.status==='prog';}).length;
+  var done = TASKS.filter(function(t){return t.status==='done';}).length;
+  document.getElementById('taskSummary').innerHTML = '<b>'+TASKS.length+' tasks</b> · auto-created from this report · <b>'+prog+'</b> in progress, <b>'+done+'</b> done';
+
+  // TABLE
+  document.getElementById('tblBody').innerHTML = TASKS.length ? TASKS.map(function(t){
+    return '<tr><td class="tname">'+esc(t.name)+'</td><td>'+esc(t.channel||'')+'</td>'+
+      '<td><span class="who"><span class="av" style="background:'+(t.color||accentDeep)+'">'+esc(t.initials||'')+'</span> '+esc(t.owner||'')+'</span></td>'+
+      '<td><span class="pri '+t.priority+'">'+esc(t.priority)+'</span></td>'+
+      '<td><span class="stat '+t.status+'">'+STAT[t.status]+'</span></td>'+
+      '<td class="due">'+esc(t.due||'')+'</td></tr>';
+  }).join('') : '<tr><td colspan="6" class="empty">No tasks yet for this report.</td></tr>';
+
+  // BOARD
+  function col(key,label,dot){
+    var items = TASKS.filter(function(t){return t.status===key;});
+    return '<div class="col"><div class="col-h"><span class="dt" style="background:'+dot+'"></span> '+label+' <span class="cc">'+items.length+'</span></div>'+
+      items.map(function(t){return '<div class="tcard"><div class="tt">'+esc(t.name)+'</div><div class="tm"><span class="plt">'+esc(t.channel||'')+'</span><span class="pri '+t.priority+'">'+esc(t.priority)+'</span></div></div>';}).join('')+'</div>';
+  }
+  document.getElementById('boardWrap').innerHTML = col('todo','To do','#8a93a3')+col('prog','In progress','#2A41A2')+col('done','Done','#12915b');
+
+  // TIMELINE
+  (function(){
+    var wrap=document.getElementById('tlWrap');
+    var withDue = TASKS.filter(function(t){return t.due;});
+    if(!withDue.length){ wrap.innerHTML='<div class="empty">No dated tasks to plot.</div>'; return; }
+    var starts = withDue.map(function(t){return new Date(t.start||t.due).getTime();});
+    var ends = withDue.map(function(t){return new Date(t.due).getTime();});
+    var min=Math.min.apply(null,starts), max=Math.max.apply(null,ends), span=Math.max(1,max-min);
+    wrap.innerHTML = withDue.map(function(t){
+      var s=new Date(t.start||t.due).getTime(), e=new Date(t.due).getTime();
+      var left=((s-min)/span*100), width=Math.max(7,(e-s)/span*100);
+      if(left+width>100){width=100-left;}
+      return '<div class="tlrow"><div class="tlname">'+esc(t.name)+'<div class="sub">'+esc(t.owner||'')+' · '+esc(t.priority)+'</div></div>'+
+        '<div class="tltrack"><div class="bar" style="left:'+left+'%;width:'+width+'%">'+esc(t.due)+'</div></div></div>';
+    }).join('');
+  })();
+
+  // COPY SUMMARY — copies rich HTML + a plain-text fallback, so it pastes
+  // cleanly into Slingshot, email, docs, anywhere.
+  var copyBtn=document.getElementById('copyBtn'), copyLabel=document.getElementById('copyLabel'), card=document.getElementById('summaryCard');
+  copyBtn.addEventListener('click',function(){
+    var html=card.innerHTML.trim(), text=card.innerText.trim();
+    function done(){ copyBtn.classList.add('copied'); copyLabel.textContent='Copied!'; setTimeout(function(){copyBtn.classList.remove('copied');copyLabel.textContent='Copy summary';},1800); }
+    if(navigator.clipboard && window.ClipboardItem){
+      navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([text],{type:'text/plain'})})]).then(done).catch(function(){ navigator.clipboard.writeText(text).then(done); });
+    } else if(navigator.clipboard){ navigator.clipboard.writeText(text).then(done); }
+    else { var r=document.createRange(); r.selectNode(card); var s=getSelection(); s.removeAllRanges(); s.addRange(r); try{document.execCommand('copy');done();}catch(e){} s.removeAllRanges(); }
+  });
+
+  // TABS + VIEW TOGGLE
+  document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
+    t.classList.add('on'); document.getElementById(t.dataset.tab).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });});
+  document.querySelectorAll('.vbtn').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('.vbtn').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('#tasks .view').forEach(function(v){v.classList.remove('on');});
+    b.classList.add('on'); document.querySelector('#tasks .view[data-view="'+b.dataset.view+'"]').classList.add('on');
+  });});
+</script>
 </body>
 </html>
