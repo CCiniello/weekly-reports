@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technical SEO &amp; Cleanup / Slingshot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
+    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
+    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
+  }
+  /* ---- PER-PRODUCT THEME (agent sets one class on <body>) ---- */
+  body.theme-reveal   {--accent:#EC417A;--accent-deep:#C9367F;--accent-soft:#fde4ee;--hero:linear-gradient(120deg,#FBB764,#EC417A 62%,#d63384)}
+  body.theme-slingshot{--accent:#4B45C6;--accent-deep:#2D2A90;--accent-soft:#ECEBFB;--hero:linear-gradient(120deg,#6C5CE7,#4B45C6 55%,#2D2A90)}
+  body.theme-ui       {--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
+  body.theme-all      {--accent:#2563EB;--accent-deep:#7C3AED;--accent-soft:#EEF1FF;--hero:linear-gradient(120deg,#2563EB,#7C3AED)}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .hubnav{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:8px;background:#0B1220;color:#fff;font-weight:600;font-size:13px;padding:11px 20px;text-decoration:none}
+  .hubnav:hover{background:#111a2e}
+  .hubnav svg{width:14px;height:14px}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 80px}
+
+  header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
+  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
+  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
+  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)}
+  .meta b{color:#fff;font-weight:700}
+
+  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:42px;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03)}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;display:flex;align-items:center;gap:8px}
+  .tab .cbadge{font-family:var(--mono);font-size:11px;font-weight:600;background:var(--gray-bg);color:var(--muted);border-radius:999px;padding:1px 8px}
+  .tab:hover{color:var(--ink)}
+  .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+  .tab.on .cbadge{background:var(--accent-soft);color:var(--accent-deep)}
+
+  .panel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
+  .panel.on{display:block}
+
+  .slink{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:#fff;background:linear-gradient(120deg,var(--accent),var(--accent-deep));padding:9px 15px;border-radius:9px;white-space:nowrap;text-decoration:none}
+  .slink:hover{filter:brightness(1.05)}
+  .slink svg{width:13px;height:13px}
+
+  /* ===== REPORT (supplemental) ===== */
+  #report h2, #tasks h2{font-size:16px;color:var(--navy);font-weight:900;margin:26px 0 12px;padding-bottom:7px;border-bottom:2px solid var(--accent-soft)}
+  #report h2:first-child{margin-top:0}
+  #report .lead{font-size:15px;line-height:1.6;color:var(--ink);background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin-bottom:22px}
+  #report .lead b{color:var(--accent-deep)}
+  .scorewrap{display:flex;gap:16px;flex-wrap:wrap;align-items:stretch;margin-bottom:14px}
+  .score{display:flex;align-items:center;gap:16px;border:1px solid var(--line);border-radius:14px;padding:16px 20px;background:#fcfdff;min-width:240px}
+  .score .ring{width:74px;height:74px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:22px;color:#fff;background:conic-gradient(var(--warn) 0 46%, #e7e9f2 46% 100%);position:relative}
+  .score .ring span{position:absolute;inset:7px;background:#fff;border-radius:50%;display:grid;place-items:center;color:var(--warn);font-size:20px}
+  .score .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+  .score .sub{font-size:12.5px;color:var(--muted);margin-top:3px}
+  .score .sub b{color:var(--navy)}
+  .kpigrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:8px}
+  .kpi{border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:#fff}
+  .kpi .k{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600}
+  .kpi .v{font-size:23px;font-weight:900;color:var(--navy);margin-top:4px;font-family:var(--mono)}
+  .kpi .d{font-size:11.5px;font-weight:700;margin-top:3px;font-family:var(--mono)}
+  .d.good{color:var(--good)} .d.bad{color:var(--bad)} .d.flat{color:var(--gray)}
+  .note{font-size:12px;color:var(--muted);margin-top:6px}
+  .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:6px 0 4px}
+  table.dt{width:100%;border-collapse:collapse;font-size:13px}
+  table.dt thead th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 12px;text-align:left;border-bottom:1px solid #dce3f0}
+  table.dt tbody td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.dt tbody tr:last-child td{border-bottom:none}
+  table.dt tbody tr:hover{background:#fafbff}
+  table.dt .num{font-family:var(--mono);font-weight:700;color:var(--navy);white-space:nowrap}
+  .sev{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap}
+  .sev.err{background:var(--bad-bg);color:var(--bad)} .sev.warn{background:var(--warn-bg);color:var(--warn)} .sev.notice{background:var(--gray-bg);color:var(--gray)}
+  .wow{font-family:var(--mono);font-size:11.5px;font-weight:700}
+  .wow.good{color:var(--good)} .wow.bad{color:var(--bad)} .wow.flat{color:var(--gray)}
+  .flag{border:1px solid var(--bad);background:var(--bad-bg);border-radius:12px;padding:14px 16px;margin:8px 0;font-size:13.5px;color:#7a2321}
+  .flag b{color:var(--bad)}
+  .u{font-family:var(--mono);font-size:12px;color:var(--cobalt);word-break:break-all}
+
+  /* ===== ROADMAP & CLEANUP ===== */
+  #tasks .links{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+  #tasks .grp{border:1px solid var(--line);border-radius:14px;padding:4px 18px 14px;margin-bottom:16px;background:#fcfdff}
+  #tasks .grp>.gh{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--navy);margin:14px 0 10px}
+  #tasks .gh .dot{width:9px;height:9px;border-radius:50%}
+  #tasks .gh .cc{font-family:var(--mono);font-size:11px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:0 8px;color:var(--muted);font-weight:600}
+  .stat{font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+  .stat::before{content:"";width:6px;height:6px;border-radius:50%}
+  .stat.todo{background:var(--gray-bg);color:#566} .stat.todo::before{background:var(--gray)}
+  .stat.prog{background:var(--peri-soft);color:var(--cobalt)} .stat.prog::before{background:var(--cobalt)}
+  .stat.done{background:var(--good-bg);color:var(--good)} .stat.done::before{background:var(--good)}
+  .pill{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;text-transform:uppercase}
+  .pill.tech{background:#e7ecff;color:#3E5BD0} .pill.clean{background:#e3f5ec;color:var(--good)}
+  .pill.P1{background:var(--bad-bg);color:var(--bad)}
+  .verdict{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+  @media(max-width:760px){.verdict{grid-template-columns:1fr}}
+  .vcard{border:1px solid var(--line);border-radius:12px;padding:0 14px 12px;background:#fff}
+  .vcard .vh{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;padding:11px 0 8px;border-bottom:2px solid var(--line);margin-bottom:9px}
+  .vcard.build .vh{color:var(--cobalt)} .vcard.keep .vh{color:var(--good)} .vcard.kill .vh{color:var(--bad)}
+  .vcard ul{list-style:none;font-size:12.5px;line-height:1.5}
+  .vcard li{padding:6px 0;border-bottom:1px dashed var(--line);color:var(--ink)}
+  .vcard li:last-child{border-bottom:none}
+  .vcard li .m{display:block;font-size:11px;color:var(--muted);font-family:var(--mono)}
+  .sitemap{font-family:var(--mono);font-size:12.5px;line-height:1.85;background:#0f1424;color:#d7def0;border-radius:12px;padding:16px 18px;overflow-x:auto;white-space:pre}
+  .sitemap b{color:#8fa6ff;font-weight:700}
+  .sitemap i{color:#6b7690;font-style:normal}
+
+  /* ===== SUMMARY / DISCUSSION ===== */
+  #summary .sumhead{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  #summary .dtitle{font-size:13px;font-weight:700;color:var(--navy)}
+  #summary .push{margin-left:auto;border:none;cursor:pointer;font-family:inherit}
+  #summary .copied{background:var(--good)!important;filter:none!important}
+  #summary .summary-card{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:22px 24px;background:#fff;font-size:14.5px;line-height:1.6;color:var(--ink)}
+  #summary .summary-card h2,#summary .summary-card h3{color:var(--navy);font-weight:900;margin:0 0 10px}
+  #summary .summary-card h2{font-size:18px} #summary .summary-card h3{font-size:15px;margin-top:16px}
+  #summary .summary-card p{margin:0 0 12px} #summary .summary-card b,#summary .summary-card strong{color:var(--navy)}
+  #summary .summary-card ul{margin:0 0 12px;padding-left:20px} #summary .summary-card li{margin-bottom:6px}
+</style>
+</head>
+<body class="theme-slingshot">
+<a class="hubnav" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg> All Reports</a>
+<div class="wrap">
+
+  <header class="top">
+    <div class="logochip">Slingshot</div>
+    <div class="kick">slingshotapp.io · Technical SEO &amp; Cleanup</div>
+    <h1>Technical SEO &amp; Cleanup / Slingshot</h1>
+    <div class="meta"><span>Updated <b>Jul 28, 2026</b></span><span>Window <b>Jul 20–26</b> vs Jul 13–19</span><span>Health <b>46</b></span><span>Ahrefs Site Audit <b>8155906</b></span></div>
+  </header>
+
+  <div class="tabbar">
+    <button class="tab on" data-tab="report">Report</button>
+    <button class="tab" data-tab="tasks">Roadmap &amp; Cleanup <span class="cbadge">5</span></button>
+    <button class="tab" data-tab="summary">Discussion</button>
+  </div>
+
+  <!-- ============ TAB 1 — REPORT ============ -->
+  <section class="panel on" id="report">
+
+    <p class="lead"><b>Health holds at the 46 baseline — no regressions, small cleanup.</b> Week-over-week the crawl shed 44 error URLs and 287 notice URLs with the score flat, which is exactly what a pre-migration hygiene phase should look like: we're clearing surface debris while the equity-moving fixes (one slash convention, the redirect-map, the two consolidations) are still ahead. The dominant error mass is <b>indexability drag from broken/redirected URLs</b> — 1,428 pages returning 4xx/5xx, 568 broken redirects, 180 canonicals pointing at redirects, and ~1,600 3XX hops the site links into. None of it is catastrophic; all of it is exactly the debt the reset is scoped to retire. <b>GSC coverage did not return data this week</b> — flagged below, and worth fixing before the migration since daily 404/coverage monitoring is the safety net for the redirect push.</p>
+
+    <h2>Health scorecard &amp; KPI snapshot</h2>
+    <div class="scorewrap">
+      <div class="score">
+        <div class="ring"><span>46</span></div>
+        <div>
+          <div class="lbl">Domain health score</div>
+          <div class="sub"><b>46 / 100</b> · flat WoW · baseline 46</div>
+          <div class="sub">6,417 URLs crawled · last crawl Jul 22</div>
+        </div>
+      </div>
+    </div>
+    <div class="kpigrid">
+      <div class="kpi"><div class="k">Health score</div><div class="v">46</div><div class="d flat">±0 WoW</div></div>
+      <div class="kpi"><div class="k">Error URLs</div><div class="v">3,434</div><div class="d good">▼ 44 improved</div></div>
+      <div class="kpi"><div class="k">Warning URLs</div><div class="v">3,351</div><div class="d good">▼ 7</div></div>
+      <div class="kpi"><div class="k">Notice URLs</div><div class="v">1,507</div><div class="d good">▼ 287</div></div>
+      <div class="kpi"><div class="k">Broken pages (4xx/5xx)</div><div class="v">1,428</div><div class="d good">▼ 2</div></div>
+      <div class="kpi"><div class="k">Indexed pages (GSC)</div><div class="v">n/a</div><div class="d flat">no data</div></div>
+      <div class="kpi"><div class="k">404s (GSC)</div><div class="v">n/a</div><div class="d flat">no data</div></div>
+    </div>
+    <p class="note">WoW compares the Jul 22 crawl vs the prior Jul 8 crawl (nearest completed crawls to the Jul 20–26 / Jul 13–19 windows). For errors/warnings/notices a decrease is an improvement. GSC (indexed pages, 404 coverage) returned no data via the Ahrefs GSC tools on project 8155906 this week — see the flag at the bottom of this tab; the crawl's internal-4XX count (1,143, ▼35) is used as the broken-page proxy meanwhile.</p>
+
+    <h2>Critical issues — errors that hurt indexability</h2>
+    <div class="dtable">
+      <table class="dt">
+        <thead><tr><th>Issue</th><th>Severity</th><th>URLs</th><th>WoW</th><th>One-line fix</th></tr></thead>
+        <tbody>
+          <tr><td><b>Broken pages (4xx/5xx)</b><div class="note">1,143 internal 4XX · 4× 500 · 4× 5XX · 2× 404</div></td><td><span class="sev err">Error</span></td><td class="num">1,428</td><td><span class="wow good">▼ 2</span></td><td>301 each broken URL to its nearest relevant hub — never delete.</td></tr>
+          <tr><td><b>Broken redirects</b><div class="note">3XX resolving to 4xx/5xx</div></td><td><span class="sev err">Error</span></td><td class="num">568</td><td><span class="wow good">▼ 4</span></td><td>Repoint each redirect straight to its final 200 URL.</td></tr>
+          <tr><td><b>Canonical points to redirect</b></td><td><span class="sev err">Error</span></td><td class="num">180</td><td><span class="wow flat">±0</span></td><td>Set the canonical to the destination 200 URL, not the hop.</td></tr>
+          <tr><td><b>Redirect loops</b></td><td><span class="sev err">Error</span></td><td class="num">2</td><td><span class="wow flat">±0</span></td><td>Break the loop; single 301 to the canonical page.</td></tr>
+          <tr><td><b>Pages linking to a redirect</b></td><td><span class="sev warn">Warning</span></td><td class="num">1,185</td><td><span class="wow good">▼ 2</span></td><td>Update internal links to point at final URLs (part of the slash fix).</td></tr>
+          <tr><td><b>Hreflang → redirect or broken page</b><div class="note">/es/, /ko/, /pt-BR/ translation cluster</div></td><td><span class="sev err">Error</span></td><td class="num">1,131</td><td><span class="wow good">▼ 2</span></td><td>Fix hreflang targets to live 200s, or prune duplicate translations.</td></tr>
+          <tr><td><b>More than one page per language in hreflang</b></td><td><span class="sev err">Error</span></td><td class="num">950</td><td><span class="wow flat">±0</span></td><td>Dedupe the hreflang cluster to one URL per language.</td></tr>
+          <tr><td><b>Non-canonical page in sitemap</b></td><td><span class="sev err">Error</span></td><td class="num">354</td><td><span class="wow flat">±0</span></td><td>Regenerate clean sitemaps — 200 canonicals only (Wk 7).</td></tr>
+          <tr><td><b>Orphan pages (no incoming internal links)</b></td><td><span class="sev err">Error</span></td><td class="num">43</td><td><span class="wow good">▼ 1</span></td><td>Link from a relevant hub, or 301 if the page is dead.</td></tr>
+          <tr><td><b>4XX / 3XX pages in sitemap</b></td><td><span class="sev err">Error</span></td><td class="num">33</td><td><span class="wow flat">±0</span></td><td>26 are 4XX, 7 are 3XX — drop from sitemap; keep only live canonicals.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Also tracked, lower priority: 864 pages with schema.org structured-data validation errors (feeds the Wk 7 schema workstream + the AEO layer), 1,689 images missing alt text (Warning), and 1,610 raw 3XX redirects (the trailing-slash surface being retired this week).</p>
+
+    <h2>Cannibalization &amp; duplicates</h2>
+    <div class="dtable">
+      <table class="dt">
+        <thead><tr><th>Conflict today</th><th>Evidence</th><th>Resolution</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><b>Trailing-slash duplicates</b><div class="note">/blog/project-management-goals/ vs …-goals; same for best-data-analysis-tools, what-is-micromanagement</div></td><td>1,610 3XX redirects · 1,185 internal links to redirects</td><td>Pick ONE slash convention; 301 the non-canonical form site-wide; self-canonical to the chosen form.</td><td><span class="stat prog">This week</span></td></tr>
+          <tr><td><b>Two SEO solution pages</b></td><td>/seo-workflow-software/ (#8 · 169 visits) + /seo-management/ (#3 "slingshot seo")</td><td>Merge into /solutions/marketing/seo/; 301 both old URLs; keep the stronger page's content.</td><td><span class="stat todo">This week</span></td></tr>
+          <tr><td><b>Campaign management in 2–3 places</b></td><td>/solutions/campaign-management/ + /solutions/marketing/campaign-launch/ + homepage link to /solutions/marketing/campaign-management</td><td>Canonical hub /campaign-management/; 301 the /solutions/… variants in; fix the homepage link.</td><td><span class="stat todo">This week</span></td></tr>
+          <tr><td><b>Competitor-vs-competitor posts</b></td><td>trello-vs-asana, wrike-vs-asana — send buyers to weigh rivals, Slingshot absent</td><td>Re-angle to include Slingshot as the third option, or 301 into /compare/.</td><td><span class="stat todo">Upcoming</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Ahrefs flags <b>0</b> "duplicate pages without canonical," so these are not hard HTML duplicates — they're ranking-signal cannibalization from separate URLs each earning positions. The fix is taxonomy + 301 consolidation, not canonical tags alone.</p>
+
+    <h2>Open flag</h2>
+    <div class="flag"><b>revealbi.io form bug — still open (fix in progress this week).</b> The demo and contact forms reference <span class="u">support@revealbi.io</span> (the wrong product) and contain a broken internal link built from that email. On the primary conversion surface this is both a trust leak and evidence the templates were cloned from Reveal without cleanup. Ticketed in the Technical SEO list, in progress, due Jul 31.</div>
+
+  </section>
+
+  <!-- ============ TAB 2 — ROADMAP & CLEANUP ============ -->
+  <section class="panel" id="tasks">
+
+    <div class="links">
+      <a class="slink" href="https://my.slingshotapp.io/openTaskList/e97e10ef_7a4a66a0-fce0-4749-aaf6-a953a2af86b3_tg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg> Open Technical SEO list</a>
+      <a class="slink" href="https://my.slingshotapp.io/openTaskList/e97e10ef_f69337ff-65d8-49df-9558-49ff35101a75_tg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg> Open Website Cleanup list</a>
+    </div>
+    <p class="note">Lane 2 (Technical, IA &amp; Cleanup) of the SEO &amp; Content Reset. Only <b>this week's slice</b> lives in Slingshot at a time (WIP ≈ 5 combined); the full roadmap is held here and re-planned each Monday. Guardrail: rebuild on-domain, every removed URL gets a 301 — never a delete.</p>
+
+    <div class="grp">
+      <div class="gh"><span class="dot" style="background:var(--good)"></span> Completed to date <span class="cc">2</span></div>
+      <div class="dtable"><table class="dt"><tbody>
+        <tr><td><b>Full crawl + master URL inventory</b> — Ahrefs Site Audit 8155906 + Site Explorer top-pages / backlinks pulled; build/keep/kill sheet in hand.</td><td><span class="pill tech">Technical</span></td><td><span class="stat done">Done · Jul 22</span></td></tr>
+        <tr><td><b>Baseline health score set</b> — 46/100 locked as the Phase 0 before-picture.</td><td><span class="pill tech">Technical</span></td><td><span class="stat done">Done · Jul 22</span></td></tr>
+      </tbody></table></div>
+    </div>
+
+    <div class="grp">
+      <div class="gh"><span class="dot" style="background:var(--cobalt)"></span> This week — in Slingshot <span class="cc">5</span></div>
+      <div class="dtable"><table class="dt">
+        <thead><tr><th>Task</th><th>List</th><th>Priority</th><th>Status</th><th>Due</th></tr></thead>
+        <tbody>
+          <tr><td><b>Fix revealbi.io form references</b> on demo/contact surfaces</td><td><span class="pill tech">Technical</span></td><td><span class="pill P1">P1</span></td><td><span class="stat prog">In progress</span></td><td class="num">Jul 31</td></tr>
+          <tr><td><b>Pick slash convention + 301 all trailing-slash duplicates</b>; set canonicals</td><td><span class="pill tech">Technical</span></td><td><span class="pill P1">P1</span></td><td><span class="stat prog">In progress</span></td><td class="num">Jul 31</td></tr>
+          <tr><td><b>Repoint 568 broken redirects + 180 canonical-to-redirect</b> to final 200 targets</td><td><span class="pill tech">Technical</span></td><td><span class="pill P1">P1</span></td><td><span class="stat todo">To do</span></td><td class="num">Jul 31</td></tr>
+          <tr><td><b>Merge the two SEO pages → /solutions/marketing/seo/</b> (301 both old URLs)</td><td><span class="pill clean">Cleanup</span></td><td><span class="pill P1">P1</span></td><td><span class="stat todo">To do</span></td><td class="num">Jul 31</td></tr>
+          <tr><td><b>301 campaign-management duplicates</b> into canonical /campaign-management/ hub</td><td><span class="pill clean">Cleanup</span></td><td><span class="pill P1">P1</span></td><td><span class="stat todo">To do</span></td><td class="num">Jul 31</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="grp">
+      <div class="gh"><span class="dot" style="background:var(--gray)"></span> Upcoming — roadmap held, not yet in Slingshot <span class="cc">5</span></div>
+      <div class="dtable"><table class="dt">
+        <thead><tr><th>Wk</th><th>Focus</th><th>Work</th></tr></thead>
+        <tbody>
+          <tr><td class="num">4</td><td>Taxonomy hygiene</td><td>Convert /templates/?department= query strings → crawlable folders; flatten over-deep product URLs (e.g. /product-tour/data-analytics/dashboarding-software/).</td></tr>
+          <tr><td class="num">5</td><td>Redirect map</td><td>Build the full new-taxonomy 301 map (old → new, one-to-one where possible); test in staging.</td></tr>
+          <tr><td class="num">6</td><td>Migration</td><td>Launch the redirect map in one controlled push; monitor GSC coverage + 404s daily for two weeks.</td></tr>
+          <tr><td class="num">7</td><td>Schema + sitemaps</td><td>Organization + SoftwareApplication + FAQ schema on money pages (clears part of the 864 schema errors); clean XML sitemaps per section; submit in GSC.</td></tr>
+          <tr><td class="num">8</td><td>Prune + AEO tech</td><td>301 thin legacy blog posts into nearest hub; publish llms.txt; AI-bot crawlability audit.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <h2>Build / Keep / Kill inventory</h2>
+    <p class="note">Reference from the strategy doc, cross-checked against this week's live Site Explorer traffic. The IA the cleanup is driving toward.</p>
+    <div class="verdict">
+      <div class="vcard build">
+        <div class="vh">Build / rewrite</div>
+        <ul>
+          <li>/marketing-analytics/ hub<span class="m">P1 · no strong page today</span></li>
+          <li>/campaign-management/ hub<span class="m">P1 · consolidate scattered pages</span></li>
+          <li>/marketing-project-management/ hub<span class="m">P1 · the "work" half</span></li>
+          <li>/compare/ + competitor pages<span class="m">P1 · highest intent, lowest difficulty</span></li>
+          <li>/marketing-execution-platform/<span class="m">P2 · category-defining pillar</span></li>
+        </ul>
+      </div>
+      <div class="vcard keep">
+        <div class="vh">Keep &amp; optimize</div>
+        <ul>
+          <li>/solutions/marketing/seo-workflow-software/<span class="m">#8 · 169 visits · slipped from #3 — protect, becomes /seo/</span></li>
+          <li>/blog/top-35-marketing-kpis-to-track/<span class="m">on-ICP · ranks #1–3 · refresh, link to Pillar 1</span></li>
+          <li>/blog/content-marketing-kpis/<span class="m">#8 · 43 visits · good Pillar 5 spoke</span></li>
+          <li>/slingshot-vs-agency-analytics/<span class="m">#14 · transactional → move to /compare/</span></li>
+          <li>/blog/best-data-analysis-tools/<span class="m">123 visits · weak ICP · link up to hub</span></li>
+        </ul>
+      </div>
+      <div class="vcard kill">
+        <div class="vh">Prune / redirect / re-angle</div>
+        <ul>
+          <li>/blog/what-is-micromanagement/<span class="m">349 visits, zero ICP — keep live, deprioritize</span></li>
+          <li>/blog/top-12-slack-alternatives/<span class="m">off-ICP — re-angle or prune</span></li>
+          <li>trello-vs-asana / wrike-vs-asana<span class="m">re-angle to include Slingshot, or 301 → /compare/</span></li>
+          <li>/es/ /ko/ /pt-BR/ blog duplicates<span class="m">drive 1,131 hreflang + 950 dup-language errors — audit &amp; prune</span></li>
+          <li>Trailing-slash &amp; thin legacy URLs<span class="m">301 to nearest relevant hub</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Target sitemap — the clean taxonomy</h2>
+    <div class="sitemap"><b>/</b>                                  <i>Home — marketing execution platform</i>
+├─ <b>/marketing-analytics/</b>             <i>Pillar hub (P1)</i>
+├─ <b>/campaign-management/</b>             <i>Pillar hub (P1)</i>
+├─ <b>/marketing-project-management/</b>    <i>Pillar hub (P1)</i>
+├─ <b>/marketing-execution-platform/</b>    <i>Category pillar (P2)</i>
+├─ <b>/solutions/marketing/</b>            <i>Marketing overview + disciplines</i>
+│    ├─ /seo/    <i>(consolidated from 2 pages)</i>
+│    ├─ /ppc/   ·  /content/   ·  /social/
+├─ <b>/solutions/</b> executive · sales · product · operations   <i>satellites</i>
+├─ <b>/compare/</b>                         <i>Comparison hub</i>
+│    └─ /slingshot-vs-asana/ · …monday · …clickup · …agencyanalytics · …databox
+├─ <b>/product/</b>                         <i>Product tour hub (flattened)</i>
+│    └─ /analytics/ · /work/ · /ai-agents/ · /integrations/
+├─ <b>/templates/</b>                       <i>Hub + crawlable folders (replace ?department=)</i>
+│    └─ /marketing/ · /seo/ · /ppc/
+├─ <b>/blog/</b>                            <i>Editorial — reorganized into clusters</i>
+└─ <b>/pricing/</b> · /security/ · /about/  <i>commercial + trust</i>
+    </div>
+
+  </section>
+
+  <!-- ============ TAB 3 — DISCUSSION ============ -->
+  <section class="panel" id="summary">
+    <div class="sumhead"><span class="dtitle">Dean-level readout</span><button class="slink push" id="copyBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg> <span id="copyLabel">Copy summary</span></button></div>
+    <div class="summary-card" id="summaryCard">
+      <h2>Slingshot technical SEO &amp; cleanup — week of Jul 20–26</h2>
+      <p><b>Health is steady at 46/100, our baseline, with no regressions.</b> Week-over-week the crawl dropped 44 error URLs and 287 notice URLs while the score held — the expected shape of a pre-migration hygiene phase, where we clear surface debris before the equity-moving fixes land.</p>
+      <p><b>What we're fixing this week, and why.</b> Five things, all foundation-critical. We're picking a single URL/slash convention and 301-redirecting the trailing-slash duplicates that currently split ranking signals across ~1,600 redirect hops; repointing 568 broken redirects and 180 mis-set canonicals so link equity stops leaking; consolidating our two competing SEO pages into one and collapsing campaign-management from three URLs into one canonical hub; and fixing the revealbi.io references bleeding onto our own demo and contact forms. In short: stop the site competing with itself and stop equity draining out of broken plumbing — before we touch the taxonomy.</p>
+      <p><b>Migration status.</b> We're in Phase 0→1 (foundation and consolidation). The full new-taxonomy redirect map gets built and staged in ~2 weeks, then launched in one controlled push around week 6, with daily 404/coverage monitoring for two weeks after.</p>
+      <p><b>Please read this before the numbers wobble:</b> an IA migration of this kind normally produces a <b>4–8 week dip</b> in rankings and organic traffic as Google reprocesses the redirects, followed by recovery above baseline. That dip is planned and healthy — not a sign the program is failing. We'll report ICP-qualified traffic and demos separately from raw sessions so the real signal isn't lost in the noise.</p>
+      <p><b>One risk to close now:</b> Google Search Console returned no coverage/404 data through our tooling this week. Daily GSC monitoring is the safety net for the redirect launch, so we need the GSC connection confirmed and flowing before week 6 — otherwise we'd be migrating blind.</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // Tab switching
+  document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
+    t.classList.add('on'); document.getElementById(t.dataset.tab).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });});
+
+  // Copy summary — rich HTML + plain-text fallback
+  var copyBtn=document.getElementById('copyBtn'), copyLabel=document.getElementById('copyLabel'), card=document.getElementById('summaryCard');
+  copyBtn.addEventListener('click',function(){
+    var html=card.innerHTML.trim(), text=card.innerText.trim();
+    function done(){ copyBtn.classList.add('copied'); copyLabel.textContent='Copied!'; setTimeout(function(){copyBtn.classList.remove('copied');copyLabel.textContent='Copy summary';},1800); }
+    if(navigator.clipboard && window.ClipboardItem){
+      navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([text],{type:'text/plain'})})]).then(done).catch(function(){ navigator.clipboard.writeText(text).then(done); });
+    } else if(navigator.clipboard){ navigator.clipboard.writeText(text).then(done); }
+    else { var r=document.createRange(); r.selectNode(card); var s=getSelection(); s.removeAllRanges(); s.addRange(r); try{document.execCommand('copy');done();}catch(e){} s.removeAllRanges(); }
+  });
+</script>
+</body>
+</html>
