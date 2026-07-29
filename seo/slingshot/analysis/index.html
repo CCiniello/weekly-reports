@@ -59,6 +59,8 @@
   .icp.brand{background:#e9ecff;color:#3a41b5}.icp.icpf{background:var(--good-bg);color:var(--good)}.icp.stretch{background:var(--warn-bg);color:var(--warn)}.icp.off{background:var(--gray-bg);color:#6b7280}
   .callout{border-radius:12px;padding:13px 16px;font-size:13px;background:var(--accent-soft);border:1px solid #cdd4f7;color:#2a2c66;margin-top:14px}
   .callout b{color:var(--accent-deep)}
+
+  /* REPORT */
   #report .lead{font-size:15.5px;line-height:1.65;border-left:4px solid var(--accent);background:var(--accent-soft);padding:16px 20px;border-radius:0 12px 12px 0;margin-bottom:8px}
   #report .lead b{color:var(--accent-deep)}
   #report .score{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
@@ -68,7 +70,7 @@
   #report .goal .gv{font-family:var(--mono);font-size:20px;font-weight:600;color:var(--accent-deep);margin-top:8px}
   #report .goal .gtar{font-size:11.5px;color:var(--muted);margin-top:4px}
   #report .pill{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:2px 8px;border-radius:999px;margin-top:9px}
-  #report .pill.base{background:var(--good-bg);color:var(--good)}#report .pill.start{background:var(--accent-soft);color:var(--accent-deep)}#report .pill.wait{background:var(--warn-bg);color:var(--warn)}
+  #report .pill.base{background:var(--gray-bg);color:#566}#report .pill.start{background:var(--accent-soft);color:var(--accent-deep)}#report .pill.wait{background:var(--warn-bg);color:var(--warn)}
   #report .kpigrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
   @media(max-width:860px){#report .kpigrid{grid-template-columns:repeat(2,1fr)}}
   #report .kpi{border:1px solid var(--line);border-radius:14px;padding:14px 15px;background:#fff}
@@ -91,11 +93,15 @@
   #report .card code{font-family:var(--mono);font-size:11.5px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 6px;border-radius:5px}
   #report .maptbl td{padding:6px 10px;border-bottom:1px solid var(--line);font-size:12.5px}
   #report .maptbl td:first-child{font-family:var(--mono);font-size:11px;color:var(--accent);white-space:nowrap;width:46%}
+
+  /* TRAFFIC */
   #traffic .lead{font-size:14.5px;line-height:1.6;border-left:4px solid var(--accent);background:var(--accent-soft);padding:14px 18px;border-radius:0 12px 12px 0;margin-bottom:6px}
   #traffic .lead b{color:var(--accent-deep)}
   #traffic td.q{font-weight:600;color:var(--navy)}
   #traffic td.pg{font-family:var(--mono);font-size:10.5px;color:var(--accent);max-width:230px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   #traffic .num{font-family:var(--mono);text-align:right;white-space:nowrap}
+
+  /* ROADMAP */
   #tasks .execsnap{border:1px solid var(--line);border-radius:16px;padding:4px;background:linear-gradient(180deg,#f7f8ff,#fff);margin-bottom:8px}
   #tasks .phases{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:10px}
   @media(max-width:900px){#tasks .phases{grid-template-columns:1fr 1fr}}
@@ -158,6 +164,8 @@
   #tasks .tcard .tt{font-weight:600;font-size:13px;color:var(--navy);line-height:1.35}
   #tasks .tcard .tm{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
   #tasks .tcard .plt{font-size:10px;font-weight:700;text-transform:uppercase;color:var(--muted)}
+
+  /* SITEMAP */
   #sitemap .smhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
   #sitemap .viewtoggle{display:inline-flex;background:var(--gray-bg);border-radius:10px;padding:3px}
   #sitemap .vbtn{appearance:none;border:none;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:8px}
@@ -198,6 +206,8 @@
   #sitemap .tcount{font-family:var(--mono);font-size:10px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:999px;padding:0 6px}
   #sitemap .legend{font-size:11px;color:var(--muted);margin-top:12px;display:flex;gap:14px;flex-wrap:wrap}
   #sitemap .legend span{display:inline-flex;align-items:center;gap:5px}#sitemap .legend .d{width:8px;height:8px;border-radius:50%}
+
+  /* SUMMARY */
   #summary .sumhead{display:flex;align-items:center;gap:12px;margin-bottom:14px}
   #summary .dtitle{font-size:13px;font-weight:800;color:var(--navy)}
   #summary .push{margin-left:auto;border:none;cursor:pointer;font-family:inherit}
@@ -265,7 +275,7 @@
           <tr><td class="kwd">campaign management software</td><td class="vol">1,000</td><td class="vol">8</td><td class="url">/campaign-management/</td><td class="rank-none">none yet</td></tr>
           <tr><td class="kwd">marketing calendar software</td><td class="vol">600</td><td class="vol">2</td><td class="url">/campaign-management/</td><td class="rank-none">none yet</td></tr>
           <tr class="pillar-row"><td colspan="5">Pillar 3 · Marketing Project Management — P1</td></tr>
-          <tr><td class="kwd">marketing project management software</td><td class="vol">1,200</td><td class="vol">33</td><td class="url">/marketing-project-management/</td><td class="rank-none">none yet</td></tr>
+          <tr><td class="kwd">marketing project management software</td><td class="vol">1,200</td><td class="vol">33</td><td class="url">/marketing-project-management/</td><td class="rank-own">exists · optimize</td></tr>
           <tr><td class="kwd">marketing work management</td><td class="vol">200</td><td class="vol">1</td><td class="url">/marketing-project-management/</td><td class="rank-none">none yet</td></tr>
           <tr class="pillar-row"><td colspan="5">Pillar 4 · Combined Category (create demand) — P2</td></tr>
           <tr><td class="kwd">marketing execution platform</td><td class="vol">40</td><td class="vol">—</td><td class="url">/marketing-execution-platform/</td><td class="rank-none">none yet</td></tr>
@@ -275,12 +285,13 @@
           <tr><td class="kwd">social media reporting</td><td class="vol">800</td><td class="vol">50</td><td class="url">/solutions/marketing/social/</td><td class="rank-none">none yet</td></tr>
           <tr class="pillar-row"><td colspan="5">Pillar 6 · Comparisons &amp; Alternatives — P1 (start here)</td></tr>
           <tr><td class="kwd">agencyanalytics alternative</td><td class="vol">450</td><td class="vol">1</td><td class="url">/compare/agencyanalytics-alternative/</td><td class="rank-own">#14 · own already</td></tr>
-          <tr><td class="kwd">databox alternative</td><td class="vol">150</td><td class="vol">0</td><td class="url">/compare/databox-alternative/</td><td class="rank-none">none yet</td></tr>
+          <tr><td class="kwd">databox alternative</td><td class="vol">150</td><td class="vol">0</td><td class="url">/compare/databox-alternative/</td><td class="rank-own">page exists (flat)</td></tr>
           <tr><td class="kwd">slingshot vs asana</td><td class="vol">0</td><td class="vol">—</td><td class="url">/compare/slingshot-vs-asana/</td><td class="rank-none">exists (flat, #54)</td></tr>
-          <tr><td class="kwd">slingshot vs monday</td><td class="vol">0</td><td class="vol">—</td><td class="url">/compare/slingshot-vs-monday/</td><td class="rank-none">none yet</td></tr>
+          <tr><td class="kwd">slingshot vs monday</td><td class="vol">0</td><td class="vol">—</td><td class="url">/compare/slingshot-vs-monday/</td><td class="rank-none">exists (flat)</td></tr>
         </tbody>
       </table>
     </div>
+    <div class="note">Pillar 6 update from the crawl: <b>14 competitor pages already exist</b> as flat /slingshot-vs-*/ URLs — this pillar is a migrate-into-/compare/ + optimize play, not net-new builds. Full list + verdicts in the Sitemap tab.</div>
 
     <h2 class="sec">Cheat sheet &amp; flags</h2>
     <div class="twocol">
@@ -296,16 +307,16 @@
         <table class="maptbl">
           <tr><td>/marketing-analytics/</td><td>P1 Analytics hub</td></tr>
           <tr><td>/campaign-management/</td><td>P1 Campaign hub</td></tr>
-          <tr><td>/marketing-project-management/</td><td>P1 Work hub</td></tr>
-          <tr><td>/compare/ + competitors</td><td>P1 Comparisons</td></tr>
+          <tr><td>/marketing-project-management/</td><td>P1 Work hub (exists)</td></tr>
+          <tr><td>/compare/ + competitors</td><td>P1 Comparisons (14 exist)</td></tr>
         </table>
       </div>
       <div class="card" style="border-left-color:var(--warn)">
         <h3>Open flags</h3>
         <ul>
           <li><b>AI share-of-voice:</b> Brand Radar tracked (id 49405) but no report yet — confirm cadence.</li>
-          <li><b>Custom-field writes to Slingshot</b> error via the integration — task fields entered manually for now.</li>
-          <li><b>Full-domain crawl</b> now works (Ahrefs) — the Sitemap tab shows the curated canonical set; a raw dump is available on request.</li>
+          <li><b>Custom-field writes to Slingshot</b> error via the integration (all task types with special/blank-named fields) — task fields entered manually for now.</li>
+          <li><b>Cannibalization:</b> 3 marketing-analytics pages + 3 campaign pages + 2 SEO pages compete with each other — consolidation is the biggest technical win (Sitemap tab).</li>
         </ul>
       </div>
     </div>
@@ -397,7 +408,7 @@
         <span><span class="d" style="background:#7b5cf0"></span>build</span>
       </div>
     </div>
-    <div class="note" style="margin-top:14px"><b>Full-domain crawl now resolved</b> — pulled via Ahrefs (the live sitemap.xml still isn't machine-readable to the fetcher, so Ahrefs' crawl is the workaround). This view shows the curated canonical set + pillar plan with a build/keep/optimize/redirect/remove verdict and a plain-English <b>why</b> on every row. Help/docs excluded; blog hidden by default (toggle above). The raw crawl also surfaced ~250+ additional www URLs (anchor fragments, UTM variants, /blog/tag + /blog/category + pagination, locale copies) — noise to consolidate via 301, available as a full dump on request.</div>
+    <div class="note" style="margin-top:14px"><b>Full-domain crawl resolved.</b> The root <code>/sitemap.xml</code> returns AccessDenied — the real map is RankMath's <code>/sitemap_index.xml</code>, read via the browser: 6 sub-sitemaps · <b>446 page URLs, 144 solution URLs</b> (+ post/stories/templates/whitepapers). This view lists the canonical English set with a verdict + plain-English <b>why</b> per row. Headline finds: <b>all 14 competitor pages already exist</b> as flat <code>/slingshot-vs-*/</code> URLs (migrate → /compare/, don't build); <b>/marketing-project-management/ already exists</b> (optimize, don't build); and there are <b>3 duplicate marketing-analytics pages + 3 campaign pages</b> cannibalizing each other. Help/docs excluded; blog behind the toggle; ~5 locale copies (/es,/ja,/ko,/pt-BR) per URL rolled up for hreflang + 301 review.</div>
   </section>
 
   <!-- EXECUTIVE SUMMARY -->
@@ -407,7 +418,7 @@
       <h2>Slingshot SEO &amp; AI Visibility — where we are</h2>
       <p><b>The 60-second version.</b> We're rebuilding Slingshot's search presence on the site we already own rather than starting over — the domain has real authority (1,225 referring domains) that would take roughly two years to rebuild from scratch. The catch: that authority is pointed at the wrong pages. We get about 150,000 Google impressions a week, but we sit around position 33 and really only get clicked for our own brand name. None of the six pages we want to win on rank yet. For week one of a reset, that's exactly the expected starting line.</p>
       <h3>What we're doing about it</h3>
-      <p>We start with <b>comparison pages</b> — "Slingshot vs Asana," "AgencyAnalytics alternative" — because that's where a buyer is closest to choosing, and where we can win fastest (we already rank on page 2 for one of them). From there we build the three pages a marketing buyer cares about most — <b>analytics, campaign management, project management</b> — and then define the category itself so Slingshot gets named when someone asks ChatGPT or Perplexity for the best tool.</p>
+      <p>We start with <b>comparison pages</b> — "Slingshot vs Asana," "AgencyAnalytics alternative" — because that's where a buyer is closest to choosing, and where we can win fastest (we already rank on page 2 for one of them, and 14 of these pages already exist to consolidate). From there we build the three pages a marketing buyer cares about most — <b>analytics, campaign management, project management</b> — and then define the category itself so Slingshot gets named when someone asks ChatGPT or Perplexity for the best tool.</p>
       <h3>Where the numbers stand</h3>
       <p>Target-page rankings: <b>0 of 6</b> (expected this early). From organic search this week we drove <b>0 demo requests and 1 self-serve first login</b> for Slingshot — tiny, but now tracked live from Salesforce and separated the way our product-led model actually works. Referring domains are <b>up 56</b>. AI share-of-voice: baseline pending. The honest tension is lots of impressions but almost no clicks — we rank too deep, on the wrong queries. Moving our money pages up is the whole game.</p>
       <h3>What I need from you</h3>
@@ -424,6 +435,8 @@
   function icpTag(k){return '<span class="icp '+k+'">'+ICPL[k]+'</span>';}
   function pg(u){return u? '<span title="'+esc(u)+'">'+esc(u.replace('https://www.slingshotapp.io',''))+'</span>':'—';}
   function volf(v){return v? v.toLocaleString():'—';}
+
+  /* ---- Traffic (GSC 28d + Ahrefs volume) ---- rows: [query,clicks,impr,ctr%,pos,page,ahrefsVol,icp] */
   var CLK=[
     ["slingshot",14,1778,"0.8%","9.3","/","brand",null],
     ["slingshot app",11,289,"3.8%","4.7","/","brand",null],
@@ -463,18 +476,19 @@
   document.getElementById('clkBody').innerHTML=CLK.map(trow).join('');
   document.getElementById('imprBody').innerHTML=IMP.map(trow).join('');
 
+  /* ---- Content roadmap ---- */
   var PH={1:{n:"Comparisons",c:getComputedStyle(document.body).getPropertyValue('--p1').trim()},2:{n:"Marketing Analytics",c:getComputedStyle(document.body).getPropertyValue('--p2').trim()},3:{n:"Campaign + Project Mgmt",c:getComputedStyle(document.body).getPropertyValue('--p3').trim()},4:{n:"Category + AI",c:getComputedStyle(document.body).getPropertyValue('--p4').trim()}};
   var STc={done:"#1a9e63",now:ACC,next:"#c07d16",later:"#9aa2b1"};
   var ROADMAP=[
     {wk:"Wk 1",ph:1,t:"Baseline scoreboard",s:"done"},
     {wk:"Wk 1",ph:1,t:"Optimize the /compare/ hub",s:"now"},
     {wk:"Wk 1",ph:1,t:"Migrate + optimize vs-Asana → /compare/",s:"now"},
-    {wk:"Wk 1",ph:1,t:"Build /compare/slingshot-vs-monday/",s:"now"},
-    {wk:"Wk 2",ph:1,t:"Ship vs-ClickUp; consolidate AgencyAnalytics + Klipfolio; spec 3 P1 hubs",s:"next"},
-    {wk:"Wk 3",ph:1,t:"Ship vs-Databox; finalize P1 hub briefs",s:"next"},
-    {wk:"Wk 4",ph:2,t:"Build /marketing-analytics/ hub",s:"later"},
-    {wk:"Wk 5",ph:3,t:"Build /campaign-management/ hub",s:"later"},
-    {wk:"Wk 6",ph:3,t:"Build /marketing-project-management/ hub",s:"later"},
+    {wk:"Wk 1",ph:1,t:"Migrate + optimize vs-Monday → /compare/",s:"now"},
+    {wk:"Wk 2",ph:1,t:"Migrate remaining 12 vs-competitor pages into /compare/; spec 3 P1 hubs",s:"next"},
+    {wk:"Wk 3",ph:1,t:"Optimize agencyanalytics + databox + klipfolio comparisons; finalize P1 hub briefs",s:"next"},
+    {wk:"Wk 4",ph:2,t:"Build /marketing-analytics/ hub; consolidate 3 analytics dupes",s:"later"},
+    {wk:"Wk 5",ph:3,t:"Build /campaign-management/ hub; consolidate 3 campaign dupes",s:"later"},
+    {wk:"Wk 6",ph:3,t:"Optimize existing /marketing-project-management/ hub",s:"later"},
     {wk:"Wk 7",ph:3,t:"Consolidate 2 SEO pages; refresh KPI + content-KPI winners",s:"later"},
     {wk:"Wk 8",ph:4,t:"Launch /marketing-execution-platform/ + thought-leadership",s:"later"}
   ];
@@ -500,12 +514,13 @@
     b.classList.add('on');document.querySelector('#tasks .rmview[data-rm="'+b.dataset.rm+'"]').classList.add('on');
   });});
 
+  /* ---- Live Slingshot tasks ---- */
   var STAT={todo:'To do',done:'Done'};
   var TASKS=[
     {name:"Baseline SEO scoreboard",channel:"SEO Optimization",status:"done",due:"2026-08-02",completed:"2026-07-27"},
     {name:"Optimize the /compare/ hub for SEO",channel:"SEO Optimization",status:"todo",due:"2026-08-02"},
     {name:"Migrate + optimize /slingshot-vs-asana/ → /compare/",channel:"SEO Optimization",status:"todo",due:"2026-08-02"},
-    {name:"Build /compare/slingshot-vs-monday/ page",channel:"Website · Compete",status:"todo",due:"2026-08-02"}
+    {name:"Migrate + optimize /slingshot-vs-monday/ → /compare/",channel:"Website · Compete",status:"todo",due:"2026-08-02"}
   ];
   document.getElementById('taskCount').textContent=TASKS.length;
   var doneN=TASKS.filter(function(t){return t.status==='done';}).length;
@@ -527,45 +542,102 @@
     b.classList.add('on');document.querySelector('#tasks .view[data-view="'+b.dataset.view+'"]').classList.add('on');
   });});
 
+  /* ---- Sitemap ---- */
   var SITEMAP=[
+    /* ---- Money pages / hubs ---- */
     {url:"/",status:"optimize",why:"Only ranks for our own brand today; make it the clear front door for the marketing-execution story.",kw:"slingshot software",cl:"Brand / Home",vol:60,sec:"slingshot app",sv:170,seo:false,tech:false},
     {url:"/pricing/",status:"keep",why:"Converts branded/bottom-funnel traffic; no SEO change needed now.",kw:"slingshot pricing",cl:"Brand",vol:0,sec:"",sv:0,seo:false,tech:false},
-    {url:"/product-tour/data-analytics/",status:"optimize",why:"Real product proof for the analytics pillar — link it up to the /marketing-analytics/ hub.",kw:"marketing dashboards",cl:"Product",vol:350,sec:"",sv:0,seo:false,tech:false},
-    {url:"/2025-digital-work-trends-report/",status:"keep",why:"Quotable original data — a citation magnet for AI answers and PR.",kw:"digital work trends",cl:"GEO asset",vol:0,sec:"",sv:0,seo:false,tech:false},
-    {url:"/marketing-analytics/",status:"build",why:"Our #1 head-term demand (marketing analytics/reporting/dashboards) has no home page today.",kw:"marketing analytics platform",cl:"P1 Analytics hub",vol:900,sec:"marketing reporting software; marketing dashboard software",sv:1200,seo:false,tech:false},
-    {url:"/campaign-management/",status:"build",why:"1,000/mo commercial term, low difficulty (KD 8); consolidate the scattered campaign pages here.",kw:"campaign management software",cl:"P1 Campaign hub",vol:1000,sec:"marketing calendar software",sv:600,seo:false,tech:false},
-    {url:"/marketing-project-management/",status:"build",why:"Owns the 'work' half of the value prop; 1,200/mo and nothing ranks for us yet.",kw:"marketing project management software",cl:"P1 Work hub",vol:1200,sec:"marketing work management",sv:200,seo:false,tech:false},
+    {url:"/why-slingshot/",status:"optimize",why:"Positioning page — align to the marketing-execution narrative and link to the pillars.",kw:"why slingshot",cl:"Positioning",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/all-features/",status:"keep",why:"Feature index; keep, ensure it links up to the money pages.",kw:"slingshot features",cl:"Product",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/product-tour/",status:"keep",why:"Product-tour hub; keep as the product proof layer.",kw:"product tour",cl:"Product",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/product-tour/data-analytics/",status:"optimize",why:"Real analytics proof — link up to the /marketing-analytics/ hub.",kw:"marketing dashboards",cl:"Product · Analytics",vol:350,sec:"",sv:0,seo:false,tech:false},
+    {url:"/product-tour/project-management/",status:"keep",why:"Work-management proof; link to the marketing-PM hub.",kw:"work management",cl:"Product · Work",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/product-tour/data-catalog/",status:"keep",why:"Ranks for 'data catalog' (3.1k) — weak ICP but keep and link.",kw:"data catalog",cl:"Product",vol:3100,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-ai/",status:"keep",why:"AI product page; keep, part of the AI-visibility story.",kw:"slingshot ai",cl:"Product · AI",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/integrations/",status:"keep",why:"Integrations hub (+ facebook-ads, google-ads, teams children); keep for coverage.",kw:"slingshot integrations",cl:"Product",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/marketing-leaders/",status:"optimize",why:"On-ICP landing for marketing leaders — tie into the analytics + category story.",kw:"marketing leaders",cl:"ICP landing",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/marketing-project-management/",status:"optimize",why:"ALREADY EXISTS (Nov 2024) — this IS the P1 Work hub; optimize + consolidate /solutions/marketing/project-management/ into it, don't rebuild.",kw:"marketing project management software",cl:"P1 Work hub",vol:1200,sec:"marketing work management",sv:200,seo:false,tech:false},
+    {url:"/marketing-analytics/",status:"build",why:"P1 Analytics hub — doesn't exist top-level yet; build it and consolidate the 3 marketing-analytics solution pages into it.",kw:"marketing analytics platform",cl:"P1 Analytics hub",vol:900,sec:"marketing reporting software; marketing dashboard software",sv:1200,seo:false,tech:false},
+    {url:"/campaign-management/",status:"build",why:"P1 Campaign hub — 1,000/mo, KD 8; consolidate the 3 scattered campaign pages here.",kw:"campaign management software",cl:"P1 Campaign hub",vol:1000,sec:"marketing calendar software",sv:600,seo:false,tech:false},
     {url:"/marketing-execution-platform/",status:"build",why:"Category-defining pillar — seeds the demand we want to own and anchors the AI-citation play.",kw:"marketing execution platform",cl:"P2 Category",vol:40,sec:"",sv:0,seo:false,tech:false},
-    {url:"/solutions/marketing/",status:"optimize",why:"Marketing overview should funnel to the four discipline pages; tighten and interlink.",kw:"marketing work management",cl:"P2 overview",vol:200,sec:"",sv:0,seo:false,tech:false},
-    {url:"/solutions/marketing/seo/",status:"build",why:"Merge the two competing SEO pages into one strong page — we already rank #7–10 here.",kw:"seo workflow software",cl:"P2 SEO",vol:800,sec:"seo tasks & workflow",sv:200,seo:false,tech:false},
-    {url:"/solutions/marketing/seo-workflow-software/",status:"redirect",why:"Ranks #7–10 but competes with the other SEO page — 301 into /solutions/marketing/seo/ to consolidate signals.",kw:"seo workflow",cl:"P2 SEO",vol:800,sec:"",sv:0,seo:true,tech:false},
+    {url:"/content-seo/",status:"optimize",why:"Existing SEO-ish landing page — fold into the consolidated SEO discipline page.",kw:"content seo",cl:"P2 SEO",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/data-analytics/",status:"redirect",why:"Top-level data-analytics page overlapping the analytics hub — consolidate/301 into /marketing-analytics/.",kw:"data analytics",cl:"Dup / analytics",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/ppc-marketing-data-analytics/",status:"optimize",why:"PPC-analytics landing — align to the PPC discipline page.",kw:"ppc reporting dashboard",cl:"P2 PPC",vol:100,sec:"",sv:0,seo:false,tech:false},
+    {url:"/social-media-analytics/",status:"optimize",why:"Social-analytics landing — align to the social discipline page.",kw:"social media reporting",cl:"P2 Social",vol:800,sec:"",sv:0,seo:false,tech:false},
+    {url:"/ai-data-driven-growth/",status:"keep",why:"AI/GTM narrative page; keep, supports the category story.",kw:"ai data driven growth",cl:"Category",vol:0,sec:"",sv:0,seo:false,tech:false},
+
+    /* ---- Comparisons: 14 flat pages ALL EXIST → migrate under /compare/ + optimize ---- */
+    {url:"/compare/",status:"optimize",why:"Hub already exists but isn't optimized — make it the anchor all 14 competitor pages 301 into.",kw:"slingshot alternatives",cl:"P1 Compare hub",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-agency-analytics/",status:"redirect",why:"EXISTS · our best comparison asset (#14, 900/mo) — 301 to /compare/agencyanalytics-alternative/ and push to page 1.",kw:"agencyanalytics alternative",cl:"P1 Compare",vol:900,sec:"agencyanalytics alternatives",sv:600,seo:false,tech:false},
+    {url:"/slingshot-vs-asana/",status:"redirect",why:"EXISTS (flat, ~pos 54) — 301 into /compare/slingshot-vs-asana/. This week's task.",kw:"slingshot vs asana",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-monday/",status:"redirect",why:"EXISTS — 301 into /compare/slingshot-vs-monday/. This week's task (was mislabelled 'build').",kw:"slingshot vs monday",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-clickup/",status:"redirect",why:"EXISTS — 301 into /compare/slingshot-vs-clickup/ and optimize.",kw:"slingshot vs clickup",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-trello/",status:"redirect",why:"EXISTS — migrate into /compare/; also fold the /blog/trello-vs-asana/ post here.",kw:"slingshot vs trello",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-wrike/",status:"redirect",why:"EXISTS — migrate into /compare/; fold the /blog/wrike-vs-asana/ post here.",kw:"slingshot vs wrike",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-teamwork/",status:"redirect",why:"EXISTS — migrate into /compare/ and optimize.",kw:"slingshot vs teamwork",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-notion/",status:"redirect",why:"EXISTS — high-value (notion = 667k vol); migrate into /compare/ and optimize the answer-first intro.",kw:"slingshot vs notion",cl:"P1 Compare",vol:0,sec:"notion alternative",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-slack/",status:"redirect",why:"EXISTS — migrate into /compare/; align to collaboration-in-context angle.",kw:"slingshot vs slack",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-databox/",status:"redirect",why:"EXISTS — migrate into /compare/; pairs with 'databox alternative' (150).",kw:"slingshot vs databox",cl:"P1 Compare",vol:0,sec:"databox alternative",sv:150,seo:false,tech:false},
+    {url:"/slingshot-vs-dashthis/",status:"redirect",why:"EXISTS — migrate into /compare/ and optimize.",kw:"slingshot vs dashthis",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-funnel/",status:"redirect",why:"EXISTS — migrate into /compare/ and optimize.",kw:"slingshot vs funnel",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-klipfolio/",status:"redirect",why:"EXISTS · ranks #7–8 — migrate into /compare/ to consolidate the cluster.",kw:"klipfolio alternatives",cl:"P1 Compare",vol:200,sec:"",sv:150,seo:false,tech:false},
+    {url:"/slingshot-vs-looker-studio/",status:"redirect",why:"EXISTS — migrate into /compare/; 'looker studio alternative' is a strong BI-adjacent term.",kw:"slingshot vs looker studio",cl:"P1 Compare",vol:0,sec:"looker studio alternative",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-tableau/",status:"redirect",why:"EXISTS — migrate into /compare/ and optimize.",kw:"slingshot vs tableau",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+
+    /* ---- Solutions · marketing (heavy cannibalization to consolidate) ---- */
+    {url:"/solutions/marketing/",status:"optimize",why:"Marketing overview — funnel to the discipline pages; tighten and interlink.",kw:"marketing work management",cl:"P2 overview",vol:200,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/marketing-analytics/",status:"redirect",why:"1 of THREE competing marketing-analytics pages — 301 into the /marketing-analytics/ hub.",kw:"marketing analytics",cl:"Dup · analytics",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/analytics/",status:"redirect",why:"2 of 3 analytics dupes — consolidate into /marketing-analytics/.",kw:"marketing analytics",cl:"Dup · analytics",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/performance-tracking/",status:"redirect",why:"3 of 3 analytics dupes — consolidate into /marketing-analytics/.",kw:"marketing performance tracking",cl:"Dup · analytics",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/project-management/",status:"redirect",why:"Overlaps the existing /marketing-project-management/ hub — 301 into it.",kw:"marketing project management",cl:"Dup · work",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/campaign-launch/",status:"redirect",why:"Campaign dupe — 301 into /campaign-management/.",kw:"campaign launch",cl:"Dup · campaign",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/paid-campaign-management/",status:"redirect",why:"Campaign dupe — 301 into /campaign-management/.",kw:"paid campaign management",cl:"Dup · campaign",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/campaign-management/",status:"redirect",why:"Campaign dupe — 301 into /campaign-management/.",kw:"campaign management",cl:"Dup · campaign",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/seo/",status:"build",why:"Consolidated SEO discipline page — merge the two existing SEO pages here (we rank #7–10).",kw:"seo workflow software",cl:"P2 SEO",vol:800,sec:"seo tasks & workflow",sv:200,seo:false,tech:false},
+    {url:"/solutions/marketing/seo-workflow-software/",status:"redirect",why:"Ranks #7–10 but competes with the other SEO page — 301 into /solutions/marketing/seo/.",kw:"seo workflow",cl:"P2 SEO",vol:800,sec:"",sv:0,seo:true,tech:false},
     {url:"/solutions/marketing/seo-management/",status:"redirect",why:"Second SEO page splitting authority — 301 into the consolidated /seo/ page.",kw:"slingshot seo",cl:"P2 SEO",vol:60,sec:"",sv:0,seo:false,tech:false},
-    {url:"/solutions/marketing/ppc/",status:"build",why:"Low-difficulty PPC-reporting demand with a template already ranking #2 — give it a real page.",kw:"ppc reporting dashboard",cl:"P2 PPC",vol:100,sec:"",sv:0,seo:false,tech:false},
-    {url:"/solutions/marketing/content/",status:"build",why:"We already rank #9 for content-marketing KPIs — build the discipline page to capture the cluster.",kw:"content marketing workflow",cl:"P2 Content",vol:450,sec:"content marketing kpis",sv:500,seo:false,tech:false},
-    {url:"/solutions/marketing/social-media/",status:"optimize",why:"Rename to /social/ for taxonomy consistency and target social-reporting demand.",kw:"social media reporting",cl:"P2 Social",vol:800,sec:"",sv:0,seo:false,tech:false},
-    {url:"/solutions/campaign-management/",status:"redirect",why:"Duplicate of the campaign hub — 301 into /campaign-management/.",kw:"campaign management",cl:"Dup",vol:0,sec:"",sv:0,seo:false,tech:false},
-    {url:"/solutions/private-equity-analytics/",status:"keep",why:"Satellite audience page that earns some impressions; maintain, don't invest.",kw:"private equity analytics",cl:"Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/content-calendar/",status:"optimize",why:"Content discipline candidate — align to content-marketing-workflow cluster.",kw:"content calendar software",cl:"P2 Content",vol:450,sec:"content marketing kpis",sv:500,seo:false,tech:false},
+    {url:"/solutions/marketing/social-media/",status:"optimize",why:"Rename to /social/ for taxonomy consistency; target social-reporting demand.",kw:"social media reporting",cl:"P2 Social",vol:800,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/growth-marketing/",status:"keep",why:"Satellite marketing page; keep and interlink.",kw:"growth marketing",cl:"P2 Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/growth-hacking/",status:"keep",why:"Satellite; keep, low priority.",kw:"growth hacking",cl:"P2 Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/abm/",status:"keep",why:"ABM landing; keep for coverage, maintenance only.",kw:"abm software",cl:"P2 Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/design-management/",status:"keep",why:"Creative-ops satellite; keep, low priority.",kw:"design management",cl:"P2 Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/event-management/",status:"keep",why:"Event-marketing satellite; keep. Dedupe with top-level /event-management/.",kw:"event management",cl:"P2 Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/marketing-agency/",status:"keep",why:"Agency ICP satellite; keep, links to client-collaboration content.",kw:"marketing agency software",cl:"P2 Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+
+    /* ---- Solutions · satellite / maintenance ---- */
+    {url:"/solutions/executive-team/",status:"keep",why:"Executive satellite audience; maintain, feeds the marketing core.",kw:"executive dashboards",cl:"Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/product-development/",status:"keep",why:"Product satellite (+ bug-tracking, roadmap, sprint, user-testing children); maintain.",kw:"product development",cl:"Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/private-equity-analytics/",status:"keep",why:"Finance satellite that earns impressions; maintain, don't invest.",kw:"private equity analytics",cl:"Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/operations-management/",status:"keep",why:"Ops satellite; maintain.",kw:"operations management",cl:"Satellite",vol:8900,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/it-management/",status:"keep",why:"IT — maintenance-only per ICP rules.",kw:"it management",cl:"Maintenance",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/hr/",status:"keep",why:"HR — maintenance-only; keep what ranks.",kw:"hr software",cl:"Maintenance",vol:0,sec:"",sv:0,seo:false,tech:false},
     {url:"/solutions/construction/",status:"keep",why:"Off-ICP but earns impressions; keep as maintenance, do not build out.",kw:"construction management",cl:"Maintenance",vol:0,sec:"",sv:0,seo:false,tech:false},
-    {url:"/solutions/hr/",status:"keep",why:"Maintenance-only per ICP rules; keep what ranks.",kw:"hr software",cl:"Maintenance",vol:0,sec:"",sv:0,seo:false,tech:false},
-    {url:"/compare/",status:"optimize",why:"Hub already exists but isn't optimized — make it the anchor for every competitor page.",kw:"slingshot alternatives",cl:"P1 Compare hub",vol:0,sec:"",sv:0,seo:false,tech:false},
-    {url:"/slingshot-vs-asana/",status:"redirect",why:"Exists flat at pos ~54 — 301 into /compare/slingshot-vs-asana/ to fit the taxonomy and keep equity.",kw:"slingshot vs asana",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
-    {url:"/compare/slingshot-vs-asana/",status:"build",why:"Canonical home for the Asana comparison; branded + AI-citation value.",kw:"slingshot vs asana",cl:"P1 Compare spoke",vol:0,sec:"",sv:0,seo:false,tech:false},
-    {url:"/compare/slingshot-vs-monday/",status:"build",why:"No Monday comparison exists yet — build it as a Compete page.",kw:"slingshot vs monday",cl:"P1 Compare spoke",vol:0,sec:"",sv:0,seo:false,tech:false},
-    {url:"/compare/slingshot-vs-clickup/",status:"build",why:"Round out the top-3 PM competitors buyers weigh Slingshot against.",kw:"slingshot vs clickup",cl:"P1 Compare spoke",vol:0,sec:"",sv:0,seo:false,tech:false},
-    {url:"/slingshot-vs-agency-analytics/",status:"redirect",why:"Our best comparison asset (#14, 900/mo) — 301 into /compare/agencyanalytics-alternative/ and push to page 1.",kw:"agencyanalytics alternative",cl:"P1 Compare",vol:900,sec:"agencyanalytics alternatives",sv:600,seo:false,tech:false},
-    {url:"/compare/agencyanalytics-alternative/",status:"build",why:"Canonical target for the term we already rank #14 for — highest-intent quick win.",kw:"agencyanalytics alternative",cl:"P1 Compare spoke",vol:900,sec:"",sv:0,seo:false,tech:false},
-    {url:"/slingshot-vs-klipfolio/",status:"redirect",why:"Ranks #7–8 — migrate into /compare/ to consolidate the comparison cluster.",kw:"klipfolio alternatives",cl:"P1 Compare",vol:200,sec:"",sv:150,seo:false,tech:false},
-    {url:"/compare/databox-alternative/",status:"build",why:"Zero-difficulty alternative term (KD 0) — easy incremental comparison win.",kw:"databox alternative",cl:"P1 Compare spoke",vol:150,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/manufacturing-operations/",status:"keep",why:"Off-ICP satellite; maintenance only.",kw:"manufacturing operations",cl:"Maintenance",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/team-management/",status:"keep",why:"Generic PM satellite; maintenance only.",kw:"team management",cl:"Maintenance",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/remote-work-software/",status:"keep",why:"Off-ICP satellite; maintenance only.",kw:"remote work software",cl:"Maintenance",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/startups/",status:"keep",why:"Startup satellite; keep, low priority.",kw:"startup software",cl:"Maintenance",vol:0,sec:"",sv:0,seo:false,tech:false},
+
+    /* ---- Whitepapers (GEO / citation + PR assets) ---- */
+    {url:"/whitepapers/the-revenue-accountable-marketing-playbook-for-saas-teams/",status:"optimize",why:"Directly on-message for the reset — a prime AI-citation + gated-lead asset; surface it from the pillars.",kw:"revenue accountable marketing",cl:"GEO asset",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/whitepapers/signal-to-action-marketing-framework/",status:"optimize",why:"Category framework content — quotable for LLMs; link from the category pillar.",kw:"marketing execution framework",cl:"GEO asset",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/whitepapers/the-future-of-gtm/",status:"keep",why:"GTM thought-leadership; keep as a citation/PR asset.",kw:"future of gtm",cl:"GEO asset",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/2025-digital-work-trends-report/",status:"keep",why:"Quotable original data — a citation magnet for AI answers and PR.",kw:"digital work trends",cl:"GEO asset",vol:0,sec:"",sv:0,seo:false,tech:false},
+
+    /* ---- Templates (hub + top rankers; ~40 more not listed individually) ---- */
+    {url:"/templates/",status:"optimize",why:"Templates hub — strong long-tail engine; ensure it links up to the discipline pages.",kw:"dashboard templates",cl:"Templates hub",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/templates/ppc-google-analytics-4/",status:"keep",why:"Ranks #2 and supports the PPC discipline — keep and link up.",kw:"google analytics ppc dashboard",cl:"Template",vol:90,sec:"",sv:0,seo:true,tech:false},
+    {url:"/templates/seo-google-analytics-dashboard/",status:"keep",why:"Ranks #5, on-ICP — link into the SEO discipline page.",kw:"seo google analytics dashboard",cl:"Template",vol:350,sec:"",sv:0,seo:true,tech:false},
+
+    /* ---- Blog (toggle) ---- */
     {url:"/blog/dashboards-dont-improve-marketing-performance/",status:"optimize",blog:true,why:"On-message category thought-leadership — link into the analytics hub and the category pillar.",kw:"marketing execution",cl:"Category spoke",vol:0,sec:"",sv:0,seo:false,tech:false},
     {url:"/blog/top-35-marketing-kpis-to-track/",status:"optimize",blog:true,why:"On-ICP winner — refresh and internal-link up to the analytics hub.",kw:"marketing kpis",cl:"Analytics spoke",vol:1200,sec:"kpi in marketing",sv:400,seo:true,tech:false},
     {url:"/blog/content-marketing-kpis/",status:"optimize",blog:true,why:"Ranks #9 and on-ICP — feed it into the content discipline page.",kw:"content marketing kpis",cl:"Content spoke",vol:500,sec:"content marketing metrics",sv:1100,seo:false,tech:false},
     {url:"/blog/marketing-dashboard-tool/",status:"optimize",blog:true,why:"#14 for a commercial term — strengthen or fold into /marketing-analytics/.",kw:"marketing dashboard software",cl:"Analytics spoke",vol:350,sec:"",sv:0,seo:false,tech:false},
     {url:"/blog/what-is-micromanagement/",status:"keep",blog:true,why:"Our biggest traffic magnet but converts nobody — keep live (has links), stop treating as a win.",kw:"micromanagement",cl:"Off-ICP",vol:4400,sec:"",sv:0,seo:false,tech:false},
     {url:"/blog/top-12-slack-alternatives/",status:"remove",blog:true,why:"Off-ICP and sends buyers elsewhere — re-angle around collaboration-in-context or prune with a 301.",kw:"slack alternatives",cl:"Off-ICP",vol:1600,sec:"",sv:0,seo:false,tech:false},
-    {url:"/blog/trello-vs-asana/",status:"redirect",blog:true,why:"Actively unhelpful — sends buyers to weigh competitors with us absent; re-angle or 301 to /compare/.",kw:"trello vs asana",cl:"Compete",vol:1200,sec:"",sv:0,seo:false,tech:false},
-    {url:"/blog/wrike-vs-asana/",status:"redirect",blog:true,why:"Same problem as trello-vs-asana — fold into the /compare/ program.",kw:"wrike vs asana",cl:"Compete",vol:600,sec:"",sv:0,seo:false,tech:false},
-    {url:"/templates/ppc-google-analytics-4/",status:"keep",why:"Ranks #2 and supports the PPC discipline — keep and link up.",kw:"google analytics ppc dashboard",cl:"Template",vol:90,sec:"",sv:0,seo:true,tech:false},
-    {url:"/templates/seo-google-analytics-dashboard/",status:"keep",why:"Ranks #5, on-ICP — link into the SEO discipline page.",kw:"seo google analytics dashboard",cl:"Template",vol:350,sec:"",sv:0,seo:true,tech:false}
+    {url:"/blog/trello-vs-asana/",status:"redirect",blog:true,why:"Actively unhelpful — sends buyers to weigh competitors with us absent; 301 into /compare/slingshot-vs-trello/.",kw:"trello vs asana",cl:"Compete",vol:1200,sec:"",sv:0,seo:false,tech:false},
+    {url:"/blog/wrike-vs-asana/",status:"redirect",blog:true,why:"Same problem as trello-vs-asana — 301 into /compare/slingshot-vs-wrike/.",kw:"wrike vs asana",cl:"Compete",vol:600,sec:"",sv:0,seo:false,tech:false}
   ];
   var ST_ORDER=["build","optimize","redirect","keep","optimized","remove"];
   var ST_LABEL={keep:"Keep",optimize:"Optimize",optimized:"Optimized",redirect:"Redirect",remove:"Remove",build:"Build"};
@@ -621,6 +693,7 @@
     b.classList.add('on');document.querySelector('#sitemap .view[data-smview="'+b.dataset.smview+'"]').classList.add('on');
   });});
 
+  /* ---- copy ---- */
   var copyBtn=document.getElementById('copyBtn'),copyLabel=document.getElementById('copyLabel'),card=document.getElementById('summaryCard');
   copyBtn.addEventListener('click',function(){var html=card.innerHTML.trim(),text=card.innerText.trim();
     function fin(){copyBtn.classList.add('copied');copyLabel.textContent='Copied!';setTimeout(function(){copyBtn.classList.remove('copied');copyLabel.textContent='Copy';},1800);}
@@ -628,6 +701,8 @@
     else if(navigator.clipboard){navigator.clipboard.writeText(text).then(fin);}
     else{var r=document.createRange();r.selectNode(card);var s=getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy');fin();}catch(e){}s.removeAllRanges();}
   });
+
+  /* ---- tabs ---- */
   document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
     document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
     document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
