@@ -428,7 +428,7 @@
         <span><span class="d" style="background:#7b5cf0"></span>build</span>
       </div>
     </div>
-    <div class="note" style="margin-top:14px"><b>Full-domain crawl resolved.</b> The root <code>/sitemap.xml</code> returns AccessDenied — the real map is RankMath's <code>/sitemap_index.xml</code>, read via the browser: 6 sub-sitemaps · <b>446 page URLs, 144 solution URLs</b> (+ post/stories/templates/whitepapers). This view lists the canonical English set with a verdict + plain-English <b>why</b> per row. Headline finds: <b>all 14 competitor pages already exist</b> as flat <code>/slingshot-vs-*/</code> URLs (migrate → /compare/, don't build); <b>/marketing-project-management/ already exists</b> (optimize, don't build); and there are <b>3 duplicate marketing-analytics pages + 3 campaign pages</b> cannibalizing each other. Help/docs excluded; blog behind the toggle; ~5 locale copies (/es,/ja,/ko,/pt-BR) per URL rolled up for hreflang + 301 review. <b>This tab is a read-only snapshot</b> — the editable version (expand/collapse org-chart, click a node for its full rationale, paste a URL to auto-classify + add, saves as you go) lives as the "Slingshot — Ideal Sitemap" tool in Cowork.</div>
+    <div class="note" style="margin-top:14px"><b>Full-domain crawl resolved.</b> The root <code>/sitemap.xml</code> returns AccessDenied — the real map is RankMath's <code>/sitemap_index.xml</code>, read via the browser: 6 sub-sitemaps · <b>446 page URLs, 144 solution URLs</b> (+ post/stories/templates/whitepapers). This view lists the canonical English set with a verdict + plain-English <b>why</b> per row. Headline finds: <b>all 14 competitor pages already exist</b> as flat <code>/slingshot-vs-*/</code> URLs (migrate → /compare/, don't build); <b>/marketing-project-management/ already exists</b> (optimize, don't build); and there are <b>3 duplicate marketing-analytics pages + 3 campaign pages</b> cannibalizing each other. Help/docs excluded; blog behind the toggle; ~5 locale copies (/es,/ja,/ko,/pt-BR) per URL rolled up for hreflang + 301 review. <b>This tab reads live from <code>sitemap.json</code></b> in this repo (the "● live" badge above confirms it loaded; if the fetch fails it falls back to the embedded snapshot). That same file is the single source of truth edited in the "Slingshot — Ideal Sitemap" tool in Cowork — expand/collapse org-chart, click a node for its full rationale, paste a URL to auto-classify + add, then Publish to write changes back here.</div>
   </section>
 
   <!-- EXECUTIVE SUMMARY -->
@@ -567,8 +567,10 @@
     {url:"/",status:"optimize",why:"Only ranks for our own brand today; make it the clear front door for the marketing-execution story.",kw:"slingshot software",cl:"Brand / Home",vol:60,sec:"slingshot app",sv:170,seo:false,tech:false},
     {url:"/pricing/",status:"keep",why:"Converts branded/bottom-funnel traffic; no SEO change needed now.",kw:"slingshot pricing",cl:"Brand",vol:0,sec:"",sv:0,seo:false,tech:false},
     {url:"/why-slingshot/",status:"optimize",why:"Positioning page — align to the marketing-execution narrative and link to the pillars.",kw:"why slingshot",cl:"Positioning",vol:0,sec:"",sv:0,seo:false,tech:false},
-    {url:"/all-features/",status:"optimize",why:"Feature index with thin children — build out individual feature pages beneath it and link up.",kw:"slingshot features",cl:"Product",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/all-features/",status:"keep",why:"Feature index; keep, ensure it links up to the money pages.",kw:"slingshot features",cl:"Product",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/product-tour/",status:"keep",why:"Product-tour hub; keep as the product proof layer.",kw:"product tour",cl:"Product",vol:0,sec:"",sv:0,seo:false,tech:false},
     {url:"/product-tour/data-analytics/",status:"optimize",why:"Real analytics proof — link up to the /marketing-analytics/ hub.",kw:"marketing dashboards",cl:"Product · Analytics",vol:350,sec:"",sv:0,seo:false,tech:false},
+    {url:"/product-tour/project-management/",status:"keep",why:"Work-management proof; link to the marketing-PM hub.",kw:"work management",cl:"Product · Work",vol:0,sec:"",sv:0,seo:false,tech:false},
     {url:"/product-tour/data-catalog/",status:"keep",why:"Ranks for 'data catalog' (3.1k) — weak ICP but keep and link.",kw:"data catalog",cl:"Product",vol:3100,sec:"",sv:0,seo:false,tech:false},
     {url:"/slingshot-ai/",status:"keep",why:"AI product page; keep, part of the AI-visibility story.",kw:"slingshot ai",cl:"Product · AI",vol:0,sec:"",sv:0,seo:false,tech:false},
     {url:"/integrations/",status:"keep",why:"Integrations hub (+ facebook-ads, google-ads, teams children); keep for coverage.",kw:"slingshot integrations",cl:"Product",vol:0,sec:"",sv:0,seo:false,tech:false},
@@ -609,9 +611,7 @@
     {url:"/solutions/marketing/seo/",status:"build",why:"Consolidated SEO discipline page — merge the two existing SEO pages here (we rank #7–10).",kw:"seo workflow software",cl:"P2 SEO",vol:800,sec:"seo tasks & workflow",sv:200,seo:false,tech:false},
     {url:"/solutions/marketing/seo-workflow-software/",status:"redirect",why:"Ranks #7–10 but competes with the other SEO page — 301 into /solutions/marketing/seo/.",kw:"seo workflow",cl:"P2 SEO",vol:800,sec:"",sv:0,seo:true,tech:false},
     {url:"/solutions/marketing/seo-management/",status:"redirect",why:"Second SEO page splitting authority — 301 into the consolidated /seo/ page.",kw:"slingshot seo",cl:"P2 SEO",vol:60,sec:"",sv:0,seo:false,tech:false},
-    {url:"/solutions/marketing/ppc/",status:"build",why:"Low-difficulty PPC-reporting demand with a template already ranking #2 — give it a real page.",kw:"ppc reporting dashboard",cl:"P2 PPC",vol:100,sec:"",sv:0,seo:false,tech:false},
-    {url:"/solutions/marketing/content/",status:"build",why:"We already rank #9 for content-marketing KPIs — build the discipline page to capture the cluster.",kw:"content marketing workflow",cl:"P2 Content",vol:450,sec:"content marketing kpis",sv:500,seo:false,tech:false},
-    {url:"/solutions/marketing/content-calendar/",status:"optimize",why:"Content discipline candidate — align to content-marketing-workflow cluster.",kw:"content calendar software",cl:"P2 Content",vol:450,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/content-calendar/",status:"optimize",why:"Content discipline candidate — align to content-marketing-workflow cluster.",kw:"content calendar software",cl:"P2 Content",vol:450,sec:"content marketing kpis",sv:500,seo:false,tech:false},
     {url:"/solutions/marketing/social-media/",status:"optimize",why:"Rename to /social/ for taxonomy consistency; target social-reporting demand.",kw:"social media reporting",cl:"P2 Social",vol:800,sec:"",sv:0,seo:false,tech:false},
     {url:"/solutions/marketing/growth-marketing/",status:"keep",why:"Satellite marketing page; keep and interlink.",kw:"growth marketing",cl:"P2 Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
     {url:"/solutions/marketing/growth-hacking/",status:"keep",why:"Satellite; keep, low priority.",kw:"growth hacking",cl:"P2 Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
@@ -650,18 +650,17 @@
   var ST_LABEL={keep:"Keep",optimize:"Optimize",optimized:"Optimized",redirect:"Redirect",remove:"Remove",build:"Build"};
   var ST_DOT={keep:"#9aa2b1",optimize:ACC,optimized:"#1a9e63",redirect:"#c07d16",remove:"#d24b6f",build:"#7b5cf0"};
   var smFilter="all", showBlog=false;
-  document.getElementById('smCount').textContent=SITEMAP.length;
   function visible(){return SITEMAP.filter(function(p){return (showBlog||!p.blog)&&(smFilter==='all'||p.status===smFilter);});}
-  (function(){
+  function buildFilters(){
     var host=document.getElementById('smFilters'), c={}; SITEMAP.forEach(function(p){c[p.status]=(c[p.status]||0)+1;});
-    var html='<button class="fchip on" data-f="all">All</button>';
-    ST_ORDER.forEach(function(s){if(c[s])html+='<button class="fchip" data-f="'+s+'"><span class="d" style="background:'+ST_DOT[s]+'"></span>'+ST_LABEL[s]+' <span class="tcount">'+c[s]+'</span></button>';});
+    var html='<button class="fchip'+(smFilter==='all'?' on':'')+'" data-f="all">All</button>';
+    ST_ORDER.forEach(function(s){if(c[s])html+='<button class="fchip'+(smFilter===s?' on':'')+'" data-f="'+s+'"><span class="d" style="background:'+ST_DOT[s]+'"></span>'+ST_LABEL[s]+' <span class="tcount">'+c[s]+'</span></button>';});
     host.innerHTML=html;
-    host.querySelectorAll('.fchip').forEach(function(b){b.onclick=function(){
+    host.querySelectorAll('.fchip').forEach(function(b){b.addEventListener('click',function(){
       host.querySelectorAll('.fchip').forEach(function(x){x.classList.remove('on');});b.classList.add('on');
       smFilter=b.dataset.f;renderList();renderTree();
-    };});
-  })();
+    });});
+  }
   function renderList(){
     var data=visible();
     document.getElementById('smSummary').innerHTML='<b>'+data.length+'</b> URLs shown';
@@ -693,7 +692,21 @@
   }
   var bt=document.getElementById('blogToggle');
   bt.addEventListener('click',function(){showBlog=!showBlog;bt.classList.toggle('on',showBlog);renderList();renderTree();});
-  renderList();renderTree();
+  function initSitemap(){document.getElementById('smCount').textContent=SITEMAP.length;buildFilters();renderList();renderTree();}
+  initSitemap();
+  /* Upgrade to the live source of truth: sitemap.json sits next to this file in the repo and is
+     written by the editable Cowork sitemap tool. If it loads, render from it; otherwise keep the
+     embedded snapshot below. */
+  (function(){
+    try{fetch('sitemap.json',{cache:'no-store'})
+      .then(function(r){return r&&r.ok?r.json():null;})
+      .then(function(j){if(j&&Array.isArray(j.urls)&&j.urls.length){SITEMAP=j.urls;smFilter='all';initSitemap();
+        var head=document.querySelector('#sitemap .smhead');
+        if(head&&!document.getElementById('smLive')){var s=document.createElement('span');s.id='smLive';s.style.cssText='font-size:11px;font-weight:700;color:var(--good)';head.appendChild(s);}
+        var b=document.getElementById('smLive');if(b)b.textContent='● live from sitemap.json'+(j.updated?' · updated '+j.updated:'');
+      }})
+      .catch(function(){});}catch(e){}
+  })();
   document.querySelectorAll('#sitemap .vbtn').forEach(function(b){b.addEventListener('click',function(){
     document.querySelectorAll('#sitemap .vbtn').forEach(function(x){x.classList.remove('on');});
     document.querySelectorAll('#sitemap .view').forEach(function(v){v.classList.remove('on');});
