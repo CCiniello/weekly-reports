@@ -20,6 +20,9 @@
 
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .hubnav{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:8px;background:#0B1220;color:#fff;font-weight:600;font-size:13px;padding:11px 20px;text-decoration:none}
+  .hubnav:hover{background:#111a2e}
+  .hubnav svg{width:14px;height:14px}
   .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 80px}
 
   header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
@@ -27,288 +30,393 @@
   .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
   .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
   header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
-  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)} .meta b{color:#fff;font-weight:700}
+  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)}
+  .meta b{color:#fff;font-weight:700}
 
-  /* dynamic tab bar (built from panels) */
-  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03);overflow-x:auto}
-  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;white-space:nowrap}
+  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:42px;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03)}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;display:flex;align-items:center;gap:8px}
+  .tab .cbadge{font-family:var(--mono);font-size:11px;font-weight:600;background:var(--gray-bg);color:var(--muted);border-radius:999px;padding:1px 8px}
   .tab:hover{color:var(--ink)}
   .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
-  .tabpanel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
-  .tabpanel.on{display:block}
+  .tab.on .cbadge{background:var(--accent-soft);color:var(--accent-deep)}
 
-  /* ===== SHARED CONTENT VOCABULARY (agents use these classes) ===== */
-  .sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:26px 2px 13px;display:flex;align-items:center;gap:10px}
-  .sec:first-child{margin-top:2px}
-  .sec .n{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
-  .lead{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:16px 20px;font-size:14.5px;line-height:1.6} .lead b{color:var(--navy)}
+  .panel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
+  .panel.on{display:block}
 
-  .kpigrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
-  @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}}
-  .kpi{background:#fcfdff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column}
-  .kpi .lab{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;min-height:28px}
-  .kpi .val{font-size:22px;font-weight:700;margin:2px 0 8px;font-family:var(--mono)}
-  .kpi .delta{align-self:flex-start;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
-  .delta.up{background:var(--good-bg);color:var(--good)} .delta.down{background:var(--bad-bg);color:var(--bad)} .delta.flat{background:var(--warn-bg);color:var(--warn)}
+  .slink{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:#fff;background:linear-gradient(120deg,var(--accent),var(--accent-deep));padding:9px 15px;border-radius:9px;white-space:nowrap;text-decoration:none}
+  .slink:hover{filter:brightness(1.05)}
+  .slink svg{width:13px;height:13px}
 
-  .score{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
-  .score table{width:100%;border-collapse:collapse;font-size:13px}
-  .score th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
-  .score td{padding:11px 13px;border-top:1px solid var(--line);vertical-align:middle}
-  .score .goal{font-weight:600;color:var(--navy)}
-  .pill{font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px}
-  .pill.good{background:var(--good-bg);color:var(--good)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.bad{background:var(--bad-bg);color:var(--bad)}
+  /* ===== SHARED CONTENT VOCABULARY (report body) ===== */
+  #report .sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:26px 2px 13px;display:flex;align-items:center;gap:10px}
+  #report .sec:first-child{margin-top:2px}
+  #report .sec .n{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  #report .lead{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:16px 20px;font-size:14.5px;line-height:1.6} #report .lead b{color:var(--navy)}
+  #report .vpread{background:linear-gradient(120deg,var(--accent-soft),#fff);border:1px solid var(--accent-soft);border-left:5px solid var(--accent);border-radius:14px;padding:18px 22px;margin-bottom:6px}
+  #report .vpread .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:8px}
+  #report .vpread p{font-size:14.5px;line-height:1.6;margin:0 0 10px} #report .vpread p:last-child{margin-bottom:0} #report .vpread b{color:var(--navy)}
 
-  .cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
-  .card{border:1px solid var(--line);border-radius:14px;overflow:hidden}
-  .card .ch{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:var(--accent-soft);border-bottom:1px solid var(--line)}
-  .card .ch .nm{font-size:15px;font-weight:700;color:var(--accent-deep)} .card .ch .sp{font-family:var(--mono);font-size:12.5px;color:var(--navy)}
-  .card .cb{padding:14px 18px;font-size:13.5px;line-height:1.55} .card .cb b{color:var(--navy)}
+  #report .kpigrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
+  @media(max-width:820px){#report .kpigrid{grid-template-columns:repeat(2,1fr)}}
+  #report .kpi{background:#fcfdff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column}
+  #report .kpi .lab{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;min-height:28px}
+  #report .kpi .val{font-size:22px;font-weight:700;margin:2px 0 8px;font-family:var(--mono)}
+  #report .kpi .delta{align-self:flex-start;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
+  #report .delta.up{background:var(--good-bg);color:var(--good)} #report .delta.down{background:var(--bad-bg);color:var(--bad)} #report .delta.flat{background:var(--warn-bg);color:var(--warn)}
 
-  .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
-  .dtable table{width:100%;border-collapse:collapse;font-size:13px}
-  .dtable th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
-  .dtable td{padding:10px 13px;border-top:1px solid var(--line)} .dtable td.num{font-family:var(--mono);text-align:right}
-  .dtable tr:hover td{background:#fafbff}
+  #report .score{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  #report .score table{width:100%;border-collapse:collapse;font-size:13px}
+  #report .score th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  #report .score td{padding:11px 13px;border-top:1px solid var(--line);vertical-align:middle}
+  #report .score .goal{font-weight:600;color:var(--navy)}
+  #report .pill{font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px}
+  #report .pill.good{background:var(--good-bg);color:var(--good)} #report .pill.warn{background:var(--warn-bg);color:var(--warn)} #report .pill.bad{background:var(--bad-bg);color:var(--bad)}
 
-  .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
-  .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
-  .verdict p{font-size:15px;line-height:1.6;margin:0} .verdict b{color:var(--navy)}
-  code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+  #report .cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
+  #report .card{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  #report .card .ch{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:var(--accent-soft);border-bottom:1px solid var(--line);gap:10px}
+  #report .card .ch .nm{font-size:15px;font-weight:700;color:var(--accent-deep)} #report .card .ch .sp{font-family:var(--mono);font-size:12.5px;color:var(--navy);white-space:nowrap}
+  #report .card .cb{padding:14px 18px;font-size:13.5px;line-height:1.55} #report .card .cb b{color:var(--navy)}
+
+  #report .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  #report .dtable table{width:100%;border-collapse:collapse;font-size:13px}
+  #report .dtable th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  #report .dtable td{padding:10px 13px;border-top:1px solid var(--line)} #report .dtable td.num{font-family:var(--mono);text-align:right}
+  #report .dtable tr:hover td{background:#fafbff}
+  #report .dtable tr.us td{background:var(--accent-soft);font-weight:600}
+  #report .tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:2px 7px;border-radius:5px;margin-right:4px}
+  #report .tag.add{background:var(--good-bg);color:var(--good)} #report .tag.rem{background:var(--bad-bg);color:var(--bad)} #report .tag.gap{background:var(--warn-bg);color:var(--warn)}
+
+  #report .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
+  #report .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
+  #report .verdict p{font-size:15px;line-height:1.6;margin:0} #report .verdict b{color:var(--navy)}
+  #report code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+
+  /* ===== TASKS (scoped) ===== */
+  #tasks .taskhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+  #tasks .viewtoggle{display:inline-flex;background:var(--gray-bg);border-radius:10px;padding:3px}
+  #tasks .vbtn{appearance:none;border:none;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:8px}
+  #tasks .vbtn.on{background:#fff;color:var(--accent-deep);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+  #tasks .tsum{font-size:12.5px;color:var(--muted)} #tasks .tsum b{color:var(--navy)}
+  #tasks .push{margin-left:auto}
+  #tasks .view{display:none} #tasks .view.on{display:block}
+  #tasks .tablewrap{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  #tasks table{width:100%;border-collapse:collapse;font-size:13px}
+  #tasks thead th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left;border-bottom:1px solid #dce3f0}
+  #tasks tbody td{padding:11px 13px;border-bottom:1px solid var(--line);vertical-align:middle}
+  #tasks tbody tr:last-child td{border-bottom:none}
+  #tasks tbody tr:hover{background:#fafbff}
+  #tasks .tname{font-weight:600;color:var(--navy)}
+  #tasks .who{display:inline-flex;align-items:center;gap:7px}
+  #tasks .av{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:700;color:#fff;font-family:var(--mono)}
+  #tasks .pri{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:.03em}
+  #tasks .P1{background:var(--bad-bg);color:var(--bad)} #tasks .P2{background:var(--warn-bg);color:var(--warn)} #tasks .P3{background:var(--gray-bg);color:var(--gray)}
+  #tasks .stat{font-size:11px;font-weight:600;padding:2px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:5px}
+  #tasks .stat::before{content:"";width:6px;height:6px;border-radius:50%}
+  #tasks .todo{background:var(--gray-bg);color:#566} #tasks .todo::before{background:var(--gray)}
+  #tasks .prog{background:var(--peri-soft);color:var(--cobalt)} #tasks .prog::before{background:var(--cobalt)}
+  #tasks .done{background:var(--good-bg);color:var(--good)} #tasks .done::before{background:var(--good)}
+  #tasks .review{background:#e7ecff;color:#3E5BD0} #tasks .review::before{background:#6C8CFD}
+  #tasks .deferred{background:#fbf1dd;color:#8a6412} #tasks .deferred::before{background:#b7791f}
+  #tasks .blocked{background:#fbe4e3;color:#c23b39} #tasks .blocked::before{background:#c23b39}
+  #tasks td.due{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  #tasks .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px}
+  @media(max-width:820px){#tasks .board{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){#tasks .board{grid-template-columns:1fr}}
+  #tasks .col{background:#f7f8fc;border:1px solid var(--line);border-radius:14px;padding:12px}
+  #tasks .col-h{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;margin-bottom:11px;padding:0 4px}
+  #tasks .col-h .cc{font-family:var(--mono);font-size:11px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:0 8px;color:var(--muted)}
+  #tasks .col-h .dt{width:8px;height:8px;border-radius:50%}
+  #tasks .tcard{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 13px;margin-bottom:9px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+  #tasks .tcard .tt{font-weight:600;font-size:13px;color:var(--navy);line-height:1.35}
+  #tasks .tcard .tm{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+  #tasks .tcard .plt{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+  #tasks .tl{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#fcfdff;overflow-x:auto}
+  #tasks .tlrow{display:grid;grid-template-columns:260px 1fr;gap:14px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
+  #tasks .tlrow:last-child{border-bottom:none}
+  #tasks .tlname{font-size:12.5px;font-weight:600;color:var(--navy)} #tasks .tlname .sub{font-size:10.5px;color:var(--muted);font-weight:400}
+  #tasks .tltrack{position:relative;height:26px;background:#f1f4fb;border-radius:7px}
+  #tasks .bar{position:absolute;top:4px;height:18px;border-radius:6px;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:700;color:#fff;font-family:var(--mono);white-space:nowrap;background:var(--accent-deep)}
+  #tasks .empty{font-size:13px;color:var(--muted);padding:30px;text-align:center}
+
+  /* ===== SUMMARY (scoped) ===== */
+  #summary .sumhead{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  #summary .dtitle{font-size:13px;font-weight:700;color:var(--navy)}
+  #summary .push{margin-left:auto;border:none;cursor:pointer;font-family:inherit}
+  #summary .copied{background:var(--good)!important;filter:none!important}
+  #summary .summary-card{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:22px 24px;background:#fff;font-size:14.5px;line-height:1.6;color:var(--ink)}
+  #summary .summary-card h2,#summary .summary-card h3{color:var(--navy);font-weight:900;margin:0 0 10px}
+  #summary .summary-card h2{font-size:18px} #summary .summary-card h3{font-size:15px;margin-top:16px}
+  #summary .summary-card p{margin:0 0 12px} #summary .summary-card b,#summary .summary-card strong{color:var(--navy)}
+  #summary .summary-card ul{margin:0 0 12px;padding-left:20px} #summary .summary-card li{margin-bottom:6px}
 </style>
 </head>
 <body class="theme-ui">
+<a class="hubnav" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg> All Reports</a>
 <div class="wrap">
 
   <header class="top">
     <div class="logochip">Ignite UI</div>
     <div class="kick">UI Tools · AI Search Visibility</div>
     <h1>AI Search Visibility / Ignite UI</h1>
-    <div class="meta"><span>Week of <b>2026-07-26</b></span><span>Report <b>#185443</b> (Jul 23) vs <b>#181665</b> (Jul 16)</span><span>Source <b>Amplitude AI Visibility</b> · brand Infragistics</span></div>
+    <div class="meta"><span>Updated <b>Jul 29, 2026</b></span><span>Window <b>Jul 20–26</b> vs <b>Jul 13–19</b></span><span>Amplitude report <b>#185443</b> (Jul 23) vs <b>#181665</b> (Jul 16)</span><span>Source <b>Amplitude AI Visibility</b> · brand Infragistics (35242)</span></div>
   </header>
 
-  <div class="tabbar" id="tabbar"></div>
+  <div class="tabbar">
+    <button class="tab on" data-tab="report">Report</button>
+    <button class="tab" data-tab="tasks">Tasks <span class="cbadge" id="taskCount">0</span></button>
+    <button class="tab" data-tab="summary">Summary</button>
+  </div>
 
-  <div id="panels">
+  <!-- ============ TAB 1: REPORT ============ -->
+  <section class="panel on" id="report">
 
-  <!-- ============ TAB 1: OVERVIEW ============ -->
-  <section class="tabpanel" data-tab="overview" data-label="Overview">
-
-    <div class="lead">Ignite UI's parent brand <b>Infragistics</b> shows up in <b>7.3%</b> of consumer-LLM answers about UI component libraries this week — essentially flat WoW (7.1% → 7.3%) and roughly <b>5&times; behind category leader Syncfusion (39%)</b>. We rank near the bottom of the pack (<b>avg rank 9.6</b> out of ~10). The one bright spot: prompt coverage rose from 9.5% to 14.3% — we now surface on 3 of 21 tracked prompts, all of them narrow comparison/"alternatives" queries. We are invisible on every high-volume category prompt. Our own blog/product pages are the only source reliably citing us; the third-party listicles that LLMs cite most still leave Ignite UI out.</div>
-
-    <div class="sec"><span class="n">1</span> Top-line scorecard <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— delta vs report #181665 (Jul 16)</span></div>
-    <div class="kpigrid">
-      <div class="kpi"><div class="lab">Visibility Score</div><div class="val">7.3%</div><span class="delta up">&#9650; +0.2 pp</span></div>
-      <div class="kpi"><div class="lab">Avg Rank (of ~10)</div><div class="val">9.6</div><span class="delta flat">&#9660; 0.1 worse</span></div>
-      <div class="kpi"><div class="lab">Prompt Coverage</div><div class="val">14.3%</div><span class="delta up">&#9650; +4.8 pp</span></div>
-      <div class="kpi"><div class="lab">Answers Mentioning Us</div><div class="val">3 / 41</div><span class="delta flat">&#8213; flat (was 3/42)</span></div>
-      <div class="kpi"><div class="lab">Own-Site Citations</div><div class="val">7</div><span class="delta flat">6 pages · new baseline</span></div>
+    <div class="sec"><span class="n">0</span> VP readout</div>
+    <div class="vpread">
+      <div class="vh">The goal &amp; where we stand</div>
+      <p><b>Goal:</b> be present &amp; cited in AI answers on the dev/component topics developers actually ask about, and grow share-of-voice vs Telerik/KendoReact, DevExpress, Syncfusion and AG Grid — week over week.</p>
+      <p><b>Where we stand:</b> Ignite UI's parent brand <b>Infragistics sits at 6.1% AI visibility</b>, down from 7.1% last week, tied for <b>last with Figma</b> and roughly <b>5–7&times; behind</b> Material UI (40.8%), Syncfusion (32.7%) and Ant Design (30.6%). Even our direct paid-suite peers DevExpress and Kendo UI (22.4% each) out-appear us ~4&times;. Average answer rank is 9.6 of ~10. The one positive: prompt coverage rose 50% → 75%. When we do get named, it's almost always <b>our own comparison blogs</b> doing the work; the neutral third-party listicles LLMs trust still leave us out.</p>
+      <p><b>Read this cut with two caveats (both now action items for JJ):</b> (1) AI Visibility tracks only the parent <b>"Infragistics" brand — there is no Ignite UI / React / Angular / Blazor brand</b>, so nothing here isolates the product or a framework. (2) The account currently queries just <b>4 prompts in a single populated topic ("React – Best-of &amp; Discovery"), where we score 0%</b> — and <b>AG Grid, the most-cited grid in our own source data, isn't even a tracked competitor.</b> We are being measured on almost nothing, and losing what little we're measured on. Fixing measurement is this week's top lever.</p>
     </div>
 
-    <div class="sec"><span class="n">2</span> Health vs where we need to be</div>
+    <div class="sec"><span class="n">1</span> Executive summary</div>
+    <div class="lead">Flat-to-down week on a thin measurement base. Visibility 6.1% (&minus;1.0 pp WoW), dead last alongside Figma. The story isn't ranking finesse — it's <b>raw presence</b>: competitors get named in AI answers on enterprise, data-grid and comparison prompts; we don't. Our owned "best X" blogs are the only assets reliably surfacing Ignite (our data-grid performance guide cites us in 28.6% of answers where infragistics.com is the source) — proof the playbook works, but 10 self-citations can't move a 49-response denominator. The fastest gains this cycle are <b>infrastructural</b>: set up product/framework brands and a real prompt set in Amplitude, add AG Grid as a competitor, ship llms.txt, and scale the comparison content that already earns citations.</div>
+
+    <div class="sec"><span class="n">2</span> Goals scorecard &amp; KPI snapshot <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— vs report #181665 (Jul 16)</span></div>
+    <div class="kpigrid">
+      <div class="kpi"><div class="lab">Visibility Score</div><div class="val">6.1%</div><span class="delta down">&#9660; &minus;1.0 pp</span></div>
+      <div class="kpi"><div class="lab">Avg Rank (of ~10)</div><div class="val">9.6</div><span class="delta flat">&#9660; 0.1 worse</span></div>
+      <div class="kpi"><div class="lab">Prompt Coverage</div><div class="val">75%</div><span class="delta up">&#9650; +25 pp (3/4)</span></div>
+      <div class="kpi"><div class="lab">Answers Mentioning Us</div><div class="val">3 / 49</div><span class="delta flat">&#8213; flat (was 3/42)</span></div>
+      <div class="kpi"><div class="lab">Total Citations</div><div class="val">396</div><span class="delta down">&#9660; from 414</span></div>
+    </div>
     <div class="score">
       <table>
         <thead><tr><th>Metric</th><th>This week</th><th>Target / benchmark</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td class="goal">Visibility score</td><td>7.3%</td><td>Beat Figma (7.3%) &rarr; chase DevExpress/Kendo (26.8%)</td><td><span class="pill warn">Stalled</span></td></tr>
+          <tr><td class="goal">Visibility score</td><td>6.1%</td><td>Pass Chakra/Handsontable (14.3%) &rarr; chase DevExpress/Kendo (22.4%)</td><td><span class="pill bad">Behind</span></td></tr>
           <tr><td class="goal">Avg answer rank</td><td>9.6</td><td>&le; 8.0 (competitor band)</td><td><span class="pill bad">Behind</span></td></tr>
-          <tr><td class="goal">Prompt coverage</td><td>14.3% (3/21)</td><td>50%+</td><td><span class="pill warn">Improving</span></td></tr>
+          <tr><td class="goal">Prompt coverage</td><td>75% (3/4)</td><td>Broaden base to 20+ prompts, keep 50%+</td><td><span class="pill warn">Thin base</span></td></tr>
           <tr><td class="goal">Model coverage</td><td>2 of 4 engines</td><td>ChatGPT, Gemini, Claude, AI Overview</td><td><span class="pill warn">Partial</span></td></tr>
-          <tr><td class="goal">Own-site citations</td><td>7 cites / 6 pages</td><td>Maintain &amp; grow into gap prompts</td><td><span class="pill good">Holding</span></td></tr>
+          <tr><td class="goal">Own-site citations</td><td>10 cites / 7 pages</td><td>Maintain &amp; expand to gap prompts</td><td><span class="pill good">Holding</span></td></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="sec"><span class="n">3</span> Setup gap — read before trusting the cut</div>
+    <div class="sec"><span class="n">3</span> AI visibility deep-dive — competitors (share of voice)</div>
+    <div class="lead">On the identical prompt set, <b>Infragistics ties Figma for last at 6.1%.</b> The field is led by <b>Material UI (40.8%)</b>, <b>Syncfusion (32.7%)</b> and <b>Ant Design (30.6%)</b>. Our closest positioning peers — paid enterprise suites <b>DevExpress and Kendo UI (22.4% each)</b> — out-appear us nearly 4&times;. <b>AG Grid is missing from the tracked competitor set entirely</b>, despite being the single most-cited grid across our source data — a blind spot to fix.</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Brand</th><th class="num">Visibility</th><th class="num">Avg Rank</th><th class="num">Gap vs us</th></tr></thead>
+        <tbody>
+          <tr><td>Material UI</td><td class="num">40.8%</td><td class="num">7.3</td><td class="num">+34.7</td></tr>
+          <tr><td>Syncfusion</td><td class="num">32.7%</td><td class="num">8.0</td><td class="num">+26.6</td></tr>
+          <tr><td>Ant Design</td><td class="num">30.6%</td><td class="num">8.1</td><td class="num">+24.5</td></tr>
+          <tr><td>DevExpress</td><td class="num">22.4%</td><td class="num">8.8</td><td class="num">+16.3</td></tr>
+          <tr><td>Kendo UI</td><td class="num">22.4%</td><td class="num">8.5</td><td class="num">+16.3</td></tr>
+          <tr><td>Chakra UI</td><td class="num">14.3%</td><td class="num">9.1</td><td class="num">+8.2</td></tr>
+          <tr><td>Handsontable</td><td class="num">14.3%</td><td class="num">9.2</td><td class="num">+8.2</td></tr>
+          <tr><td>Figma</td><td class="num">6.1%</td><td class="num">9.7</td><td class="num">tie</td></tr>
+          <tr class="us"><td>Infragistics (Ignite UI)</td><td class="num">6.1%</td><td class="num">9.6</td><td class="num">&mdash;</td></tr>
+          <tr><td>PrimeNG</td><td class="num">2.0%</td><td class="num">9.9</td><td class="num">&minus;4.1</td></tr>
+          <tr><td>Telerik</td><td class="num">0%</td><td class="num">10.0</td><td class="num">&minus;6.1</td></tr>
+          <tr><td colspan="4" style="text-align:left;color:var(--bad)">AG Grid — <b>not tracked</b>. Add to competitor set (most-cited grid in source data).</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec"><span class="n">4</span> AI visibility deep-dive — topics &amp; models</div>
     <div class="cards">
       <div class="card">
-        <div class="ch"><span class="nm">Brand is tracked at Infragistics level only</span><span class="sp">action required</span></div>
-        <div class="cb">AI Visibility has <b>one brand set up: "Infragistics"</b> (orgBrandId 35242). There is <b>no Ignite UI, React, Angular, or Blazor brand</b>. Everything here is the parent-company read — it cannot isolate Ignite UI or per-framework presence. <b>Add component-library-specific brands</b> (Ignite UI, Ignite UI for React, Ignite UI for Angular, Ignite UI for Blazor) to get finer tracking.</div>
-      </div>
-      <div class="card">
-        <div class="ch"><span class="nm">14 of 15 topics have zero prompts</span><span class="sp">data gap</span></div>
-        <div class="cb">All 21 prompts sit under one topic, <b>"UI component libraries."</b> The framework topics — <b>React UI components, Angular UI controls, Blazor components, Data grid solutions, Data visualization</b> and 9 more — return <b>0 prompts / 0 responses</b>. They exist but are unpopulated, so per-framework visibility reads as zero everywhere but the umbrella topic. Populate these before drawing framework conclusions.</div>
+        <div class="ch"><span class="nm">Only one topic is populated — and we score 0 on it</span><span class="sp">React – Best-of &amp; Discovery</span></div>
+        <div class="cb">The single topic Amplitude is querying — <b>"React – Best-of &amp; Discovery"</b> (4 prompts, 8 responses) — returns <b>0% visibility, avg rank 10, 0 mentions</b> for Infragistics. Material UI (5 mentions), Ant Design, Handsontable and Chakra take the slots. Overall brand visibility (6.1%, 3/49) comes from mentions outside this one topic that the API isn't breaking out this run. <b>No Angular, Blazor, data-grid or comparison topic exists</b> — the money topics are entirely unmeasured.</div>
       </div>
     </div>
-  </section>
-
-  <!-- ============ TAB 2: TOPICS & PROMPTS ============ -->
-  <section class="tabpanel" data-tab="topics" data-label="Topics &amp; Prompts">
-
-    <div class="lead">Only one topic carries data this week — <b>UI component libraries</b> (7% visibility, 21 prompts, 41 responses, 3 mentions). We win only on <b>narrow, low-volume comparison prompts</b> ("alternatives to devexpress", "SLA comparison for UI suites", "grid for 1M+ rows") where we hit 50% visibility and a strong ~7 rank. On the <b>high-volume category prompts that actually matter</b> — enterprise UI libraries, react datagrid rankings, complex dashboards, excel-like grids — we score <b>zero</b>. That is the whole story: we're a footnote in the specific, invisible in the general.</div>
-
-    <div class="sec"><span class="n">1</span> Topic visibility (component / dev-tool topics)</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Topic</th><th class="num">Visibility</th><th class="num">Prompts</th><th class="num">Responses</th><th class="num">Mentions</th></tr></thead>
-        <tbody>
-          <tr><td>UI component libraries</td><td class="num">7.0%</td><td class="num">21</td><td class="num">41</td><td class="num">3</td></tr>
-          <tr><td>React UI components</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
-          <tr><td>Angular UI controls</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
-          <tr><td>Blazor components</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
-          <tr><td>Data grid solutions</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
-          <tr><td>Data visualization tools</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
-          <tr><td>JavaScript charting libraries</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
-          <tr><td>WPF and WinForms development</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
-          <tr><td>+ 7 more (all 0 prompts)</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card" style="margin-top:12px">
-      <div class="cb"><b>Caveat:</b> the 14 zero-rows are not "we lost" — they have <b>no prompts assigned</b>. Only the umbrella "UI component libraries" topic is being queried. Framework-level presence is currently unmeasured, not absent.</div>
-    </div>
-
-    <div class="sec"><span class="n">2</span> Prompts that surface Ignite UI / Infragistics</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Prompt</th><th class="num">Vis.</th><th class="num">Rank</th><th class="num">Mo. Vol</th></tr></thead>
-        <tbody>
-          <tr><td>alternatives to devexpress</td><td class="num">50%</td><td class="num">7.5</td><td class="num">10</td></tr>
-          <tr><td>global support and sla comparison for ui suites</td><td class="num">50%</td><td class="num">7.0</td><td class="num">0</td></tr>
-          <tr><td>how to choose a grid for 1m+ rows</td><td class="num">50%</td><td class="num">6.5</td><td class="num">10</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="sec"><span class="n">3</span> High-value prompts where we're invisible (0% visibility)</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Prompt</th><th class="num">Mo. Vol</th><th>Who wins instead</th></tr></thead>
-        <tbody>
-          <tr><td>design system tooling with figma support</td><td class="num">3,600</td><td>Figma</td></tr>
-          <tr><td>top web components for design systems</td><td class="num">3,600</td><td>&mdash;</td></tr>
-          <tr><td>tools to avoid for mission-critical grids</td><td class="num">2,900</td><td>&mdash;</td></tr>
-          <tr><td>which ui kit for complex dashboards</td><td class="num">2,400</td><td>Ant Design, Chakra UI, MUI</td></tr>
-          <tr><td>fastest data grid benchmarks</td><td class="num">2,400</td><td>DevExpress, Handsontable, Syncfusion</td></tr>
-          <tr><td>mobile-friendly react components for enterprise</td><td class="num">1,900</td><td>Ant Design, Chakra UI, MUI</td></tr>
-          <tr><td>alternatives to kendo ui</td><td class="num">1,300</td><td>Kendo UI, MUI, PrimeNG, Syncfusion</td></tr>
-          <tr><td>ui libraries with excel-like spreadsheets</td><td class="num">1,300</td><td>Handsontable, Syncfusion, DevExpress</td></tr>
-          <tr><td>ui libraries with accessibility aa compliance</td><td class="num">1,300</td><td>Chakra UI, Material UI, Ant Design</td></tr>
-          <tr><td>ui libraries with low code prototyping</td><td class="num">1,300</td><td>Ant Design, Chakra UI, Figma</td></tr>
-          <tr><td>best components for financial dashboards</td><td class="num">1,300</td><td>&mdash;</td></tr>
-          <tr><td>react datagrid libraries ranked</td><td class="num">590</td><td>Material UI, DevExpress, Kendo UI, Syncfusion</td></tr>
-          <tr><td>best ui component libraries for enterprise apps</td><td class="num">480</td><td>Ant Design, Chakra UI, Kendo UI, MUI</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card" style="margin-top:12px">
-      <div class="cb"><b>The pattern:</b> we own the <b>"vs / alternatives"</b> long tail (tiny volume) but forfeit the <b>"best / ranked / for enterprise"</b> head terms (hundreds–thousands of searches). Every high-volume prompt is a data-grid, dashboard, enterprise, or accessibility query — squarely Ignite UI's strengths — yet Syncfusion, DevExpress, Kendo, MUI and Ant Design take the slots.</div>
-    </div>
-  </section>
-
-  <!-- ============ TAB 3: COMPETITORS ============ -->
-  <section class="tabpanel" data-tab="competitors" data-label="Competitors">
-
-    <div class="lead">On the identical set of prompts, <b>Infragistics ties Figma dead last at 7.3%</b> among tracked brands. <b>Syncfusion (39%)</b> laps the field, followed by <b>Material UI (36.6%)</b> and <b>Ant Design (31.7%)</b>. Our closest paid, enterprise-suite competitors — <b>DevExpress and Kendo UI (both 26.8%)</b> — out-appear us by nearly 4&times;. The gap is not sentiment or ranking finesse; it's raw presence: they get named in answers, we don't.</div>
-
-    <div class="sec"><span class="n">1</span> Visibility vs competitors — same prompts</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Brand</th><th class="num">Visibility</th><th class="num">Avg Rank</th><th>Gap vs us</th></tr></thead>
-        <tbody>
-          <tr><td>Syncfusion</td><td class="num">39.0%</td><td class="num">7.6</td><td>+31.7 pp</td></tr>
-          <tr><td>Material UI</td><td class="num">36.6%</td><td class="num">7.7</td><td>+29.3 pp</td></tr>
-          <tr><td>Ant Design</td><td class="num">31.7%</td><td class="num">8.1</td><td>+24.4 pp</td></tr>
-          <tr><td>DevExpress</td><td class="num">26.8%</td><td class="num">8.6</td><td>+19.5 pp</td></tr>
-          <tr><td>Kendo UI</td><td class="num">26.8%</td><td class="num">8.2</td><td>+19.5 pp</td></tr>
-          <tr><td>Chakra UI</td><td class="num">14.6%</td><td class="num">9.1</td><td>+7.3 pp</td></tr>
-          <tr><td>Handsontable</td><td class="num">12.2%</td><td class="num">9.3</td><td>+4.9 pp</td></tr>
-          <tr><td>Figma</td><td class="num">7.3%</td><td class="num">9.7</td><td>tie</td></tr>
-          <tr><td><b>Infragistics (Ignite UI)</b></td><td class="num"><b>7.3%</b></td><td class="num"><b>9.6</b></td><td>&mdash;</td></tr>
-          <tr><td>PrimeNG</td><td class="num">2.4%</td><td class="num">9.9</td><td>&minus;4.9 pp</td></tr>
-          <tr><td>Telerik</td><td class="num">0%</td><td class="num">10.0</td><td>&minus;7.3 pp</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="sec"><span class="n">2</span> Who's out-citing us, and where</div>
-    <div class="cards">
-      <div class="card">
-        <div class="ch"><span class="nm">Syncfusion — the one to beat</span><span class="sp">39% · 16 mentions</span></div>
-        <div class="cb">Named in the <b>most answers of any brand</b> across the topic and cited on nearly every high-value prompt we miss: enterprise libraries, excel-like grids, blazor suites, financial dashboards, 1M-row grids. It appears on both third-party listicles <b>and</b> its own docs/blog. This is the direct enterprise-suite competitor and it is winning AI answers outright.</div>
-      </div>
-      <div class="card">
-        <div class="ch"><span class="nm">DevExpress &amp; Kendo UI — same tier, 4&times; ahead</span><span class="sp">26.8% · 11 mentions each</span></div>
-        <div class="cb">Our nearest positioning peers (paid enterprise component suites). Both surface on "alternatives", "enterprise", "accessibility" and grid-ranking prompts. Note we <b>do</b> beat them on the specific "alternatives to devexpress" prompt (we hit 50%) — proof that targeted comparison content works when it exists.</div>
-      </div>
-      <div class="card">
-        <div class="ch"><span class="nm">Material UI &amp; Ant Design — the open-source default</span><span class="sp">36.6% / 31.7%</span></div>
-        <div class="cb">LLMs reach for these first on generic React/enterprise/dashboard prompts because they saturate third-party listicles and community posts (Reddit, dev.to). Not our commercial buyer, but they consume the answer real estate we need for consideration-stage queries.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ TAB 4: SOURCES & MODELS ============ -->
-  <section class="tabpanel" data-tab="sources" data-label="Sources &amp; Models">
-
-    <div class="lead">When an LLM does mention us, it's overwhelmingly citing <b>our own pages</b>: <b>infragistics.com is the top source that mentions Infragistics</b> — 7 citations across 6 pages, 100% of them naming us. The problem is scale: those 7 sit inside <b>335 total citations</b> in the report, the vast majority going to third-party "best of" listicles (adminlte.io, builder.io, hashbyt.com, tailgrids, dev.to, Reddit) that mostly omit Ignite UI. By engine, we do better on <b>Google AI Overview (9.5%)</b> than <b>ChatGPT (5%)</b> — and <b>Gemini and Claude aren't in this report at all</b>.</div>
-
-    <div class="sec"><span class="n">1</span> Visibility by model / engine</div>
-    <div class="dtable">
+    <div class="dtable" style="margin-top:12px">
       <table>
         <thead><tr><th>Engine</th><th class="num">Visibility</th><th class="num">Avg Rank</th><th class="num">Responses</th><th class="num">Mentions</th></tr></thead>
         <tbody>
-          <tr><td>Google AI Overview</td><td class="num">9.5%</td><td class="num">9.4</td><td class="num">21</td><td class="num">2</td></tr>
-          <tr><td>ChatGPT (GPT)</td><td class="num">5.0%</td><td class="num">9.8</td><td class="num">20</td><td class="num">1</td></tr>
+          <tr><td>Google AI Overview</td><td class="num">8.0%</td><td class="num">9.5</td><td class="num">25</td><td class="num">2</td></tr>
+          <tr><td>ChatGPT (GPT)</td><td class="num">4.2%</td><td class="num">9.8</td><td class="num">24</td><td class="num">1</td></tr>
+          <tr><td>&nbsp;&nbsp;&mdash; GPT-5 specifically</td><td class="num">0%</td><td class="num">10.0</td><td class="num">4</td><td class="num">0</td></tr>
           <tr><td>Gemini</td><td class="num">n/a</td><td class="num">&mdash;</td><td class="num">0</td><td class="num">0</td></tr>
           <tr><td>Claude</td><td class="num">n/a</td><td class="num">&mdash;</td><td class="num">0</td><td class="num">0</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="card" style="margin-top:12px">
-      <div class="cb"><b>Caveat:</b> this report only ran <b>Google AI Overview and ChatGPT</b> — Gemini and Claude returned no responses. Read the model split as a two-engine picture, and add Gemini/Claude coverage to complete it.</div>
-    </div>
+    <div class="card" style="margin-top:12px"><div class="cb"><b>Caveat:</b> this report only ran <b>Google AI Overview and ChatGPT</b>; Gemini and Claude returned no responses. Our best surface is AI Overview (8%); we are absent on GPT-5. Read the model split as a two-engine picture and add Gemini/Claude to complete it.</div></div>
 
-    <div class="sec"><span class="n">2</span> Own pages vs third-party — who cites us</div>
+    <div class="sec"><span class="n">5</span> AI visibility deep-dive — who cites us</div>
     <div class="dtable">
       <table>
         <thead><tr><th>Our page (cited by LLMs)</th><th class="num">Cites</th><th class="num">Answers</th></tr></thead>
         <tbody>
+          <tr><td>blogs/best-react-data-grid-for-large-datasets-performance-guide</td><td class="num">3</td><td class="num">3</td></tr>
           <tr><td>blogs/best-react-ui-library — "Best React UI Library: Top 9"</td><td class="num">2</td><td class="num">2</td></tr>
-          <tr><td>blogs/best-react-data-grid</td><td class="num">1</td><td class="num">1</td></tr>
-          <tr><td>blogs/best-react-data-grid-for-large-datasets</td><td class="num">1</td><td class="num">1</td></tr>
-          <tr><td>blogs/blazor-component-libraries</td><td class="num">1</td><td class="num">1</td></tr>
-          <tr><td>blogs/the-best-angular-grid</td><td class="num">1</td><td class="num">1</td></tr>
-          <tr><td>products/react-data-grid</td><td class="num">1</td><td class="num">1</td></tr>
+          <tr><td>infragistics.com (other Ignite pages, incl. Angular grid via htmlelements)</td><td class="num">5</td><td class="num">2</td></tr>
         </tbody>
       </table>
     </div>
     <div class="cards" style="margin-top:12px">
       <div class="card">
-        <div class="ch"><span class="nm">Own-domain: our only reliable citation source</span><span class="sp">infragistics.com · 100% mention</span></div>
-        <div class="cb">Our owned "best X" comparison blogs are what LLMs pull us from — and they work. But 7 self-citations can't move a 41-response denominator. We're effectively <b>talking about ourselves</b> while the neutral third-party lists that models trust for category answers leave us out.</div>
+        <div class="ch"><span class="nm">Own-domain: our only reliable citation source</span><span class="sp">infragistics.com · 28.6% mention</span></div>
+        <div class="cb">When infragistics.com is the source, Ignite gets named in <b>28.6% of answers</b> — our best hit-rate anywhere. Our "best X" comparison blogs are what pull us in, and they work. But 10 self-citations sit inside <b>396 total</b>; self-citation caps out fast.</div>
       </div>
       <div class="card">
         <div class="ch"><span class="nm">Third-party listicles: cited heavily, rarely include us</span><span class="sp">the real gap</span></div>
-        <div class="cb">Top cited external pages (builder.io "15 Best React UI Libraries", hashbyt, adminlte.io, tailgrids, dev.to, Reddit) list MUI, Ant Design, Chakra, shadcn, Radix — <b>not Ignite UI</b>. A few enterprise-leaning lists that <b>do</b> include us — htmlelements.com (Best Angular Grid), gleexa.com (Best Blazor) — prove placement is winnable. faciletechnolab's "Top 10 Enterprise React" lists Syncfusion, DevExpress, KendoReact but drops us.</div>
+        <div class="cb">The most-cited external sources — <b>Reddit (37), Medium (29), YouTube (25), dev.to (15)</b> and listicles like builder.io, hashbyt.com, adminlte.io, tailgrids — list MUI, Ant Design, Chakra, shadcn, AG Grid — <b>not Ignite UI</b>. Enterprise-leaning lists that <b>do</b> include us (htmlelements.com "Best Angular Grid", gleexa.com "Best Blazor") prove placement is winnable; faciletechnolab's "Top 10 Enterprise React" lists Syncfusion/DevExpress/KendoReact but drops us.</div>
       </div>
     </div>
 
-    <div class="verdict">
-      <div class="vh">Verdict — the one move this week</div>
-      <p><b>Get Ignite UI into the high-volume third-party "best of" listicles that LLMs cite most — starting with the enterprise/data-grid lists that already rank our competitors.</b> Our own blogs are the only thing surfacing us, and self-citation caps out fast; the answer real estate on the head prompts (enterprise UI libraries, react datagrid rankings, excel-like grids, complex dashboards — 480–2,400 searches each) is decided by neutral listicles where we're absent but DevExpress/Kendo/Syncfusion are present. Prioritize outreach/placement on builder.io, hashbyt.com, adminlte.io, faciletechnolab and tailgrids, and in parallel expand our proven owned comparison pages to target the five highest-volume gap prompts. <b>Owner: Poojitha (content/SEO) with Beth on third-party placement/backlinks.</b></p>
+    <div class="sec"><span class="n">6</span> Prompt audit — ADD / REMOVE / GAP</div>
+    <div class="lead">The prompt set is the binding constraint. We track <b>4 prompts, one topic</b>, all React best-of/discovery — structurally the hardest place for a paid enterprise vendor to win (free/OSS libraries own it). We're leaving our real strengths — Angular, Blazor, data grids, and head-to-head comparisons — completely unmeasured.</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Change</th><th>Prompt / competitor</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag add">Add</span></td><td>best angular data grid · best angular component library</td><td>We rank organically for "angular datagrid" (pos 6) &amp; many Angular components — natural strength, untracked in AI</td></tr>
+          <tr><td><span class="tag add">Add</span></td><td>best react data grid for large datasets</td><td>Our top-cited asset already wins here — measure it</td></tr>
+          <tr><td><span class="tag add">Add</span></td><td>best blazor component library / UI controls</td><td>Ignite/Infragistics appears in Blazor listicles (gleexa) — winnable</td></tr>
+          <tr><td><span class="tag add">Add</span></td><td>enterprise react ui component library</td><td>Head term (480+/mo); our positioning, currently forfeited</td></tr>
+          <tr><td><span class="tag add">Add</span></td><td>KendoReact vs Ignite UI · Syncfusion vs DevExpress vs Infragistics · AG Grid alternatives</td><td>Comparison intent is where owned content converts to citations</td></tr>
+          <tr><td><span class="tag rem">Rethink</span></td><td>generic "best free / open-source React UI"</td><td>Structurally unwinnable for a paid suite (MUI/shadcn/Chakra own it) — deprioritize vs enterprise/grid intent</td></tr>
+          <tr><td><span class="tag gap">Gap</span></td><td>AG Grid missing from tracked competitors</td><td>Most-cited grid in our source data — add it or SoV is distorted</td></tr>
+          <tr><td><span class="tag gap">Gap</span></td><td>No Ignite UI / React / Angular / Blazor brand in Amplitude</td><td>All numbers are parent-company level; can't isolate product or framework</td></tr>
+        </tbody>
+      </table>
     </div>
+
+    <div class="sec"><span class="n">7</span> Website actions — LLM optimization</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Finding</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td><b>No llms.txt</b> — infragistics.com/llms.txt is empty/absent</td><td>Publish llms.txt mapping Ignite UI product hubs + top comparison blogs; confirm GPTBot/Google-Extended/ClaudeBot/PerplexityBot allowed</td></tr>
+          <tr><td>Our comparison blogs are the only assets earning citations</td><td>Scale answer-first, schema-marked comparison pages (Angular grid, Kendo vs Ignite, AG Grid alternatives, Best Blazor)</td></tr>
+          <tr><td>Top organic Ignite pages are Angular component docs (grid pos 6, charts pos 6, date pickers pos 2–3, form validation pos 4) but aren't structured for AI extraction</td><td>Add TL;DR answer blocks + FAQPage/HowTo schema + canonical entity naming to highest-traffic component docs</td></tr>
+          <tr><td>Ignite docs live under /ignite-ui-angular, -react, -web-components (not /products/ignite-ui)</td><td>Ensure internal linking + consistent entity naming across framework hubs so LLMs resolve "Ignite UI for React/Angular"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="verdict">
+      <div class="vh">Verdict — the moves this week</div>
+      <p><b>Fix measurement first, then feed the machine that already works.</b> (1) Stand up Ignite UI / React / Angular / Blazor brands in Amplitude and a real prompt set covering data-grid, Angular, Blazor and comparison intent — add AG Grid as a competitor. (2) Ship llms.txt. (3) Scale the owned comparison content that already earns our only citations, and add answer-first summaries + schema to the component docs that already rank. Our own blogs prove we can be cited; the head-term answer real estate (enterprise UI, react datagrid rankings, excel-like grids) is decided by neutral listicles where we're absent but DevExpress/Kendo/Syncfusion are present. <b>All actions assigned to JJ McGuigan — see the Tasks tab.</b></p>
+    </div>
+
   </section>
 
-  </div>
+  <!-- ============ TAB 2: TASKS ============ -->
+  <section class="panel" id="tasks">
+    <div class="taskhead">
+      <div class="viewtoggle">
+        <button class="vbtn on" data-view="table">Table</button>
+        <button class="vbtn" data-view="board">Board</button>
+        <button class="vbtn" data-view="timeline">Timeline</button>
+      </div>
+      <span class="tsum" id="taskSummary"></span>
+      <a class="slink push" href="https://my.slingshotapp.io/openTaskList/e97e10ef_5b6b4783-3ef3-4b34-ac52-95c1902a62a2_tg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg> Open this list in Slingshot</a>
+    </div>
+    <div class="view on" data-view="table"><div class="tablewrap"><table><thead><tr><th>Task</th><th>Channel</th><th>Owner</th><th>Priority</th><th>Status</th><th>Due</th></tr></thead><tbody id="tblBody"></tbody></table></div></div>
+    <div class="view" data-view="board"><div class="board" id="boardWrap"></div></div>
+    <div class="view" data-view="timeline"><div class="tl" id="tlWrap"></div></div>
+  </section>
+
+  <!-- ============ TAB 3: SUMMARY ============ -->
+  <section class="panel" id="summary">
+    <div class="sumhead"><span class="dtitle">Executive summary</span><button class="slink push" id="copyBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg> <span id="copyLabel">Copy summary</span></button></div>
+    <div class="summary-card" id="summaryCard">
+      <h2>AI Search Visibility / Ignite UI — week of Jul 20–26, 2026</h2>
+      <p><b>Headline:</b> Ignite UI's parent brand Infragistics sits at <b>6.1% AI visibility</b> (down from 7.1% WoW), <b>tied for last with Figma</b> and 5–7&times; behind Material UI (40.8%), Syncfusion (32.7%) and Ant Design (30.6%). Direct paid-suite peers DevExpress and Kendo UI (22.4% each) out-appear us ~4&times;. Avg answer rank 9.6/10. Bright spot: prompt coverage rose 50% → 75%.</p>
+      <h3>What / why</h3>
+      <p>The problem is <b>presence, not polish</b> — competitors get named in AI answers on enterprise, data-grid and comparison prompts; we don't. When we are named, it's almost entirely our own comparison blogs (our data-grid performance guide surfaces Ignite in 28.6% of answers where infragistics.com is the source). The neutral third-party listicles LLMs trust most — Reddit, Medium, builder.io, hashbyt — omit us while listing MUI, Ant Design and AG Grid.</p>
+      <p>Two measurement gaps make this cut thinner than it looks: Amplitude tracks only the parent <b>"Infragistics" brand</b> (no Ignite UI / framework brands), and it queries just <b>4 prompts in one topic</b> where we score 0% — with <b>AG Grid, the most-cited grid in our data, not even a tracked competitor</b>.</p>
+      <h3>Progress &amp; next moves</h3>
+      <ul>
+        <li><b>Fix measurement (top lever):</b> add Ignite UI / React / Angular / Blazor brands in Amplitude; expand the prompt set to data-grid, Angular, Blazor and comparison intent; add AG Grid as a competitor.</li>
+        <li><b>Ship llms.txt</b> — currently absent — mapping Ignite product hubs + comparison blogs.</li>
+        <li><b>Scale what works:</b> more answer-first, schema-marked comparison pages (Angular grid, Kendo vs Ignite, AG Grid alternatives, Best Blazor).</li>
+        <li><b>Make our ranking docs AI-legible:</b> TL;DR answer blocks + FAQ/HowTo schema on top Angular component docs.</li>
+      </ul>
+      <p>All five actions are assigned to <b>JJ McGuigan</b> and dated (start Jul 27; due Aug 3–17).</p>
+    </div>
+  </section>
 
 </div>
 
 <script>
-  var panels = Array.prototype.slice.call(document.querySelectorAll('.tabpanel'));
-  var bar = document.getElementById('tabbar');
-  panels.forEach(function(p,i){
-    var b=document.createElement('button');
-    b.className='tab'+(i===0?' on':''); b.textContent=p.dataset.label||('Tab '+(i+1));
-    b.addEventListener('click',function(){
-      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
-      panels.forEach(function(x){x.classList.remove('on');});
-      b.classList.add('on'); p.classList.add('on');
-      window.scrollTo({top:0,behavior:'smooth'});
-    });
-    bar.appendChild(b);
-    if(i===0) p.classList.add('on');
+  const TASKS = [
+    {name:"Add Ignite UI / React / Angular brands in Amplitude AI Visibility", channel:"AI Visibility setup", owner:"JJ McGuigan", initials:"JJ", color:"#E14E12", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-10"},
+    {name:"Expand AI Visibility prompt set + add AG Grid as tracked competitor", channel:"AI Visibility setup", owner:"JJ McGuigan", initials:"JJ", color:"#E14E12", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-03"},
+    {name:"Publish llms.txt for infragistics.com (+ Ignite UI sections)", channel:"Technical / crawlability", owner:"JJ McGuigan", initials:"JJ", color:"#E14E12", priority:"P2", status:"todo", start:"2026-07-27", due:"2026-08-03"},
+    {name:"Ship answer-first comparison pages (Angular grid, Kendo vs Ignite, AG Grid alternatives)", channel:"Content", owner:"JJ McGuigan", initials:"JJ", color:"#E14E12", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-17"},
+    {name:"Add answer-first summaries + FAQ/HowTo schema to top Ignite component docs", channel:"Technical / on-page", owner:"JJ McGuigan", initials:"JJ", color:"#E14E12", priority:"P2", status:"todo", start:"2026-07-27", due:"2026-08-10"}
+  ];
+
+  var accentDeep = getComputedStyle(document.body).getPropertyValue('--accent-deep').trim() || '#333';
+  function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  var STAT={todo:'To do',prog:'In progress',review:'In review',deferred:'Deferred',blocked:'Blocked',done:'Done'};
+
+  document.getElementById('taskCount').textContent = TASKS.length;
+  var prog = TASKS.filter(function(t){return t.status==='prog';}).length;
+  var review = TASKS.filter(function(t){return t.status==='review';}).length;
+  var done = TASKS.filter(function(t){return t.status==='done';}).length;
+  var bits=[]; if(prog)bits.push('<b>'+prog+'</b> in progress'); if(review)bits.push('<b>'+review+'</b> in review'); if(done)bits.push('<b>'+done+'</b> done');
+  document.getElementById('taskSummary').innerHTML = '<b>'+TASKS.length+' tasks</b> · live from Slingshot · '+(bits.length?bits.join(' · '):'<b>'+TASKS.length+'</b> to do');
+
+  document.getElementById('tblBody').innerHTML = TASKS.length ? TASKS.map(function(t){
+    return '<tr><td class="tname">'+esc(t.name)+'</td><td>'+esc(t.channel||'')+'</td>'+
+      '<td><span class="who"><span class="av" style="background:'+(t.color||accentDeep)+'">'+esc(t.initials||'')+'</span> '+esc(t.owner||'')+'</span></td>'+
+      '<td><span class="pri '+t.priority+'">'+esc(t.priority)+'</span></td>'+
+      '<td><span class="stat '+t.status+'">'+STAT[t.status]+'</span></td>'+
+      '<td class="due">'+esc(t.due||'')+'</td></tr>';
+  }).join('') : '<tr><td colspan="6" class="empty">No tasks yet for this report.</td></tr>';
+
+  function col(key,label,dot){
+    var items = TASKS.filter(function(t){return t.status===key;});
+    return '<div class="col"><div class="col-h"><span class="dt" style="background:'+dot+'"></span> '+label+' <span class="cc">'+items.length+'</span></div>'+
+      items.map(function(t){return '<div class="tcard"><div class="tt">'+esc(t.name)+'</div><div class="tm"><span class="plt">'+esc(t.channel||'')+'</span><span class="pri '+t.priority+'">'+esc(t.priority)+'</span></div></div>';}).join('')+'</div>';
+  }
+  var STATUS_COLS=[['todo','To do','#8a93a3'],['prog','In progress','#2A41A2'],['review','In review','#6C8CFD'],['deferred','Deferred','#b7791f'],['done','Done','#12915b']];
+  document.getElementById('boardWrap').innerHTML = STATUS_COLS.filter(function(c){return TASKS.some(function(t){return t.status===c[0];});}).map(function(c){return col(c[0],c[1],c[2]);}).join('');
+
+  (function(){
+    var wrap=document.getElementById('tlWrap');
+    var withDue = TASKS.filter(function(t){return t.due;});
+    if(!withDue.length){ wrap.innerHTML='<div class="empty">No dated tasks to plot.</div>'; return; }
+    var starts = withDue.map(function(t){return new Date(t.start||t.due).getTime();});
+    var ends = withDue.map(function(t){return new Date(t.due).getTime();});
+    var min=Math.min.apply(null,starts), max=Math.max.apply(null,ends), span=Math.max(1,max-min);
+    wrap.innerHTML = withDue.map(function(t){
+      var s=new Date(t.start||t.due).getTime(), e=new Date(t.due).getTime();
+      var left=((s-min)/span*100), width=Math.max(7,(e-s)/span*100);
+      if(left+width>100){width=100-left;}
+      return '<div class="tlrow"><div class="tlname">'+esc(t.name)+'<div class="sub">'+esc(t.owner||'')+' · '+esc(t.priority)+'</div></div>'+
+        '<div class="tltrack"><div class="bar" style="left:'+left+'%;width:'+width+'%">'+esc(t.due)+'</div></div></div>';
+    }).join('');
+  })();
+
+  var copyBtn=document.getElementById('copyBtn'), copyLabel=document.getElementById('copyLabel'), card=document.getElementById('summaryCard');
+  copyBtn.addEventListener('click',function(){
+    var html=card.innerHTML.trim(), text=card.innerText.trim();
+    function done(){ copyBtn.classList.add('copied'); copyLabel.textContent='Copied!'; setTimeout(function(){copyBtn.classList.remove('copied');copyLabel.textContent='Copy summary';},1800); }
+    if(navigator.clipboard && window.ClipboardItem){
+      navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([text],{type:'text/plain'})})]).then(done).catch(function(){ navigator.clipboard.writeText(text).then(done); });
+    } else if(navigator.clipboard){ navigator.clipboard.writeText(text).then(done); }
+    else { var r=document.createRange(); r.selectNode(card); var s=getSelection(); s.removeAllRanges(); s.addRange(r); try{document.execCommand('copy');done();}catch(e){} s.removeAllRanges(); }
   });
+
+  document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
+    t.classList.add('on'); document.getElementById(t.dataset.tab).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });});
+  document.querySelectorAll('.vbtn').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('.vbtn').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('#tasks .view').forEach(function(v){v.classList.remove('on');});
+    b.classList.add('on'); document.querySelector('#tasks .view[data-view="'+b.dataset.view+'"]').classList.add('on');
+  });});
 </script>
 </body>
 </html>
