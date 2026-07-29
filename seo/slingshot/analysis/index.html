@@ -93,6 +93,13 @@
   #report .card code{font-family:var(--mono);font-size:11.5px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 6px;border-radius:5px}
   #report .maptbl td{padding:6px 10px;border-bottom:1px solid var(--line);font-size:12.5px}
   #report .maptbl td:first-child{font-family:var(--mono);font-size:11px;color:var(--accent);white-space:nowrap;width:46%}
+  #report .card p code,#report .card li code{font-family:var(--mono);font-size:11px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+  #report .weekgrid{display:flex;flex-direction:column;gap:8px}
+  #report .wk{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fcfdff}
+  #report .wkn{flex:none;width:26px;height:26px;border-radius:50%;background:linear-gradient(120deg,var(--accent),var(--accent-deep));color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center}
+  #report .wkt{font-weight:700;color:var(--navy);font-size:13.5px;line-height:1.35}
+  #report .wkd{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+  #report .wtag{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:600;color:var(--accent-deep);background:var(--accent-soft);border-radius:5px;padding:1px 7px;margin-top:6px}
 
   /* TRAFFIC */
   #traffic .lead{font-size:14.5px;line-height:1.6;border-left:4px solid var(--accent);background:var(--accent-soft);padding:14px 18px;border-radius:0 12px 12px 0;margin-bottom:6px}
@@ -100,6 +107,22 @@
   #traffic td.q{font-weight:600;color:var(--navy)}
   #traffic td.pg{font-family:var(--mono);font-size:10.5px;color:var(--accent);max-width:230px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   #traffic .num{font-family:var(--mono);text-align:right;white-space:nowrap}
+  #traffic .gagrid{display:grid;grid-template-columns:280px 1fr;gap:14px;margin:2px 0 6px}
+  @media(max-width:760px){#traffic .gagrid{grid-template-columns:1fr}}
+  #traffic .gacard{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:#fcfdff}
+  #traffic .gah{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:10px}
+  #traffic .donutwrap{display:flex;align-items:center;gap:14px}
+  #traffic .donut{width:104px;height:104px;border-radius:50%;flex:none;display:grid;place-items:center}
+  #traffic .donuthole{width:64px;height:64px;border-radius:50%;background:#fcfdff;display:grid;place-items:center;text-align:center;line-height:1.05}
+  #traffic .donuthole b{font-family:var(--mono);font-size:18px;color:var(--navy);display:block}#traffic .donuthole span{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  #traffic .dleg{font-size:11.5px;color:var(--muted);line-height:1.8}
+  #traffic .dleg .d{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:middle}
+  #traffic .bars{display:flex;align-items:flex-end;gap:6px;height:118px;padding-top:4px}
+  #traffic .bar{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
+  #traffic .bar .bb{width:100%;border-radius:4px 4px 0 0;background:linear-gradient(180deg,var(--accent),var(--accent-deep));min-height:2px}
+  #traffic .bar .bl{font-size:9px;color:var(--muted);font-family:var(--mono)}
+  #traffic .bar .bv{font-size:9px;color:var(--navy);font-family:var(--mono);font-weight:600}
+  #traffic .gasub{font-size:11.5px;color:var(--muted);margin-top:9px;line-height:1.5}
 
   /* ROADMAP */
   #tasks .execsnap{border:1px solid var(--line);border-radius:16px;padding:4px;background:linear-gradient(180deg,#f7f8ff,#fff);margin-bottom:8px}
@@ -243,16 +266,16 @@
         <span style="font-weight:600;font-size:12px;opacity:.92">Goal: qualified organic demand + rankings on the money terms marketers search</span>
       </div>
       <div style="padding:4px 18px 12px">
-        <div style="display:flex;gap:12px;padding:13px 0;border-bottom:1px solid #f1f1f7;align-items:flex-start">
-          <span style="flex:none;margin-top:1px;font-weight:700;font-size:10.5px;letter-spacing:.04em;padding:3px 9px;border-radius:999px;background:#fbe4e3;color:#c23b39">FIX</span>
+        <div style="display:grid;grid-template-columns:82px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid #f1f1f7;align-items:start">
+          <span style="width:82px;text-align:center;margin-top:1px;font-weight:700;font-size:10.5px;letter-spacing:.04em;padding:4px 0;border-radius:999px;background:#fbe4e3;color:#c23b39">FIX</span>
           <div><div style="font-weight:700;color:#0F172A;font-size:14px;line-height:1.3">We rank for our own name — and almost nothing else</div><div style="color:#5f6b7a;font-size:13px;margin-top:2px;line-height:1.45">0 of 6 money pages rank, and of ~150k weekly impressions the clicks are essentially all brand. The single most important fix: ship the comparison + hub pages so we appear where buyers actually search — until they exist, organic can't produce pipeline.</div></div>
         </div>
-        <div style="display:flex;gap:12px;padding:13px 0;border-bottom:1px solid #f1f1f7;align-items:flex-start">
-          <span style="flex:none;margin-top:1px;font-weight:700;font-size:10.5px;letter-spacing:.04em;padding:3px 9px;border-radius:999px;background:#e3f5ec;color:#12915b">WORKING</span>
+        <div style="display:grid;grid-template-columns:82px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid #f1f1f7;align-items:start">
+          <span style="width:82px;text-align:center;margin-top:1px;font-weight:700;font-size:10.5px;letter-spacing:.04em;padding:4px 0;border-radius:999px;background:#e3f5ec;color:#12915b">WORKING</span>
           <div><div style="font-weight:700;color:#0F172A;font-size:14px;line-height:1.3">The comparison foothold is already ours — the shining light</div><div style="color:#5f6b7a;font-size:13px;margin-top:2px;line-height:1.45">We rank #14 for "agencyanalytics alternative" and 14 competitor pages already exist. Consolidating them under /compare/ is the fastest path to qualified traffic and the pages AI assistants cite for "X vs Y."</div></div>
         </div>
-        <div style="display:flex;gap:12px;padding:13px 0;align-items:flex-start">
-          <span style="flex:none;margin-top:1px;font-weight:700;font-size:10.5px;letter-spacing:.04em;padding:3px 9px;border-radius:999px;background:#fbf1dd;color:#b7791f">WATCH</span>
+        <div style="display:grid;grid-template-columns:82px 1fr;gap:14px;padding:13px 0;align-items:start">
+          <span style="width:82px;text-align:center;margin-top:1px;font-weight:700;font-size:10.5px;letter-spacing:.04em;padding:4px 0;border-radius:999px;background:#fbf1dd;color:#b7791f">WATCH</span>
           <div><div style="font-weight:700;color:#0F172A;font-size:14px;line-height:1.3">Huge generic demand we're invisible for — and shouldn't chase</div><div style="color:#5f6b7a;font-size:13px;margin-top:2px;line-height:1.45">"Task management" (44k impressions) and "data analysis" (41k) sit at position 36–88 with ~0 clicks. It's enormous but off-ICP — watch it, don't fund it; our effort goes to the marketing money terms.</div></div>
         </div>
       </div>
@@ -263,7 +286,7 @@
     <div class="score">
       <div class="goal"><div class="gt">Money-page rankings (top 10)</div><div class="gv">0 / 6</div><div class="gtar">Only the SEO discipline page ranks today (#3).</div><span class="pill start">Just starting</span></div>
       <div class="goal"><div class="gt">Organic → demos (Salesforce)</div><div class="gv">0 demos</div><div class="gtar">+1 self-serve first login. Product Family = Slingshot, medium = organic.</div><span class="pill base">Live</span></div>
-      <div class="goal"><div class="gt">AI citations / share of voice</div><div class="gv">—</div><div class="gtar">Baseline SoV vs Asana, Monday, ClickUp, AgencyAnalytics.</div><span class="pill wait">Pending</span></div>
+      <div class="goal"><div class="gt">AI share of voice (Amplitude)</div><div class="gv">3.1%</div><div class="gtar">vs Asana 47%, monday 41%, ClickUp 25%. We register only on comparison prompts.</div><span class="pill base">Live</span></div>
       <div class="goal"><div class="gt">Clean, crawlable site</div><div class="gv">Audit due</div><div class="gtar">Trailing-slash + locale duplication to 301 (Sitemap tab).</div><span class="pill wait">Lane 2 · Wk 1</span></div>
     </div>
 
@@ -278,7 +301,7 @@
       <div class="kpi"><div class="kl">Ranking keywords (Ahrefs)</div><div class="kv">461</div><div class="kd flat">baseline · 127 in top 3</div></div>
       <div class="kpi"><div class="kl">Organic sessions (GA4)</div><div class="kv">185</div><div class="kd down">▼ 3.1% WoW</div></div>
       <div class="kpi"><div class="kl">Referring domains</div><div class="kv">1,225</div><div class="kd up">▲ 56 WoW</div></div>
-      <div class="kpi"><div class="kl">AI share of voice</div><div class="kv">—</div><div class="kd pend">no report yet</div></div>
+      <div class="kpi sf" style="border-color:#d9c9f5;background:linear-gradient(180deg,#f4efff,#fff)"><div class="kl">AI share of voice <span class="srcpill" style="color:#5b3fc4;background:#efeafc">AMPLITUDE</span></div><div class="kv">3.1%</div><div class="kd pend">baseline · avg rank 9.7</div><div class="sub">seen in 1 of 32 AI answers</div></div>
     </div>
     <div class="note">Also organic + Slingshot this week: 1 trial, 2 onboarding-completed (context; not counted as demos). See the <b>Traffic</b> tab for what we're actually found for.</div>
 
@@ -305,61 +328,86 @@
           <tr><td class="kwd">social media reporting</td><td class="vol">800</td><td class="vol">50</td><td class="url">/solutions/marketing/social/</td><td class="rank-none">none yet</td></tr>
           <tr class="pillar-row"><td colspan="5">Pillar 6 · Comparisons &amp; Alternatives — P1 (start here)</td></tr>
           <tr><td class="kwd">agencyanalytics alternative</td><td class="vol">450</td><td class="vol">1</td><td class="url">/compare/agencyanalytics-alternative/</td><td class="rank-own">#14 · own already</td></tr>
-          <tr><td class="kwd">databox alternative</td><td class="vol">150</td><td class="vol">0</td><td class="url">/compare/databox-alternative/</td><td class="rank-own">page exists (flat)</td></tr>
+          <tr><td class="kwd">databox alternative</td><td class="vol">150</td><td class="vol">0</td><td class="url">/compare/databox-alternative/</td><td class="rank-none">none yet</td></tr>
           <tr><td class="kwd">slingshot vs asana</td><td class="vol">0</td><td class="vol">—</td><td class="url">/compare/slingshot-vs-asana/</td><td class="rank-none">exists (flat, #54)</td></tr>
           <tr><td class="kwd">slingshot vs monday</td><td class="vol">0</td><td class="vol">—</td><td class="url">/compare/slingshot-vs-monday/</td><td class="rank-none">exists (flat)</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="note">Pillar 6 update from the crawl: <b>14 competitor pages already exist</b> as flat /slingshot-vs-*/ URLs — this pillar is a migrate-into-/compare/ + optimize play, not net-new builds. Full list + verdicts in the Sitemap tab.</div>
 
-    <h2 class="sec">Cheat sheet &amp; flags</h2>
+    <h2 class="sec">Analysis — what the data is telling us</h2>
     <div class="twocol">
-      <div class="card">
-        <h3>URL naming law</h3>
-        <ul>
-          <li>Lowercase, hyphenated, one canonical form.</li>
-          <li>One slash convention, enforced with <code>301</code>s.</li>
-          <li>Max two levels deep for money pages.</li>
-          <li>Every removed URL gets a <code>301</code> — never a delete.</li>
-        </ul>
-        <h3>Pillar → URL</h3>
-        <table class="maptbl">
-          <tr><td>/marketing-analytics/</td><td>P1 Analytics hub</td></tr>
-          <tr><td>/campaign-management/</td><td>P1 Campaign hub</td></tr>
-          <tr><td>/marketing-project-management/</td><td>P1 Work hub (exists)</td></tr>
-          <tr><td>/compare/ + competitors</td><td>P1 Comparisons (14 exist)</td></tr>
-        </table>
+      <div class="card" style="border-left-color:var(--bad)">
+        <h3>1 · Cannibalization is the biggest self-inflicted wound</h3>
+        <p style="font-size:13px;margin:0">Three near-identical marketing-analytics pages (<code>/solutions/marketing/marketing-analytics/</code>, <code>/analytics/</code>, <code>/performance-tracking/</code>) and three campaign pages compete for the same terms, so none rank. Two SEO pages do it too. Collapsing each cluster into one canonical hub and 301-ing the rest is the fastest ranking win on the board — zero new content.</p>
+      </div>
+      <div class="card" style="border-left-color:#7b5cf0">
+        <h3>2 · AI / LLM visibility — invisible except on comparisons</h3>
+        <p style="font-size:13px;margin:0">Amplitude puts our AI share of voice at <b>3.1%</b> (1 of 32 answers). We only register on the <b>Comparisons</b> topic (10%); we're at <b>0%</b> for marketing analytics, campaign management and marketing PM, where Asana, monday, HubSpot and Databox get named. Same fix as SEO: ship <code>/compare/</code> and earn citations on the third-party lists LLMs quote. A faint "AI Assistant" referral channel is already showing in GA4 — real, but tiny.</p>
       </div>
       <div class="card" style="border-left-color:var(--warn)">
-        <h3>Open flags</h3>
-        <ul>
-          <li><b>AI share-of-voice:</b> Brand Radar tracked (id 49405) but no report yet — confirm cadence.</li>
-          <li><b>Custom-field writes to Slingshot</b> error via the integration (all task types with special/blank-named fields) — task fields entered manually for now.</li>
-          <li><b>Cannibalization:</b> 3 marketing-analytics pages + 3 campaign pages + 2 SEO pages compete with each other — consolidation is the biggest technical win (Sitemap tab).</li>
+        <h3>3 · Content cleanup — our magnets don't fit the ICP</h3>
+        <p style="font-size:13px;margin:0">Off-ICP posts pull impressions but don't convert and bounce hard — <b>"top task management tools"</b> 72% bounce / 1:07 avg, and <b>"micromanagement"</b>, our biggest magnet, converts nobody. On-ICP posts behave far better — <b>"types of data analysis"</b> holds 67% engagement / ~8 min. Prune or re-angle the off-ICP set; internal-link the on-ICP winners up to the money hubs.</p>
+      </div>
+      <div class="card">
+        <h3>Standing rules + open flag</h3>
+        <ul style="margin:0;font-size:13px;padding-left:18px">
+          <li>URL law: lowercase, hyphenated, one canonical form; every removed URL gets a <code>301</code>, never a delete; money pages max two levels deep.</li>
+          <li><b>Slingshot connector bug:</b> the integration errors on <code>list_tasks</code> / <code>list_custom_fields</code> and field writes for this org's task schema — so task metadata still lands in the description. Not a setup issue on your end; flagged for the dev team. This week's tasks are specified below, ready to push once it's fixed.</li>
         </ul>
       </div>
+    </div>
+
+    <h2 class="sec">This week — the 5 moves</h2>
+    <div class="note">The agent picks 3–5 highest-leverage actions each week (no more) and works them to done. This week goes aggressive on consolidation.</div>
+    <div class="weekgrid">
+      <div class="wk"><span class="wkn">1</span><div><div class="wkt">Migrate all 14 <code>/slingshot-vs-*/</code> pages into <code>/compare/</code></div><div class="wkd">301 + optimize every competitor page at once — not just Asana/Monday — so the whole cluster consolidates under one hub.<br><span class="wtag">SEO Optimization · P1</span></div></div></div>
+      <div class="wk"><span class="wkn">2</span><div><div class="wkt">Optimize the <code>/compare/</code> hub as the canonical anchor</div><div class="wkd">Answer-first intros, comparison tables, internal links down to each spoke — the page that wins both search and the AI "X vs Y" answer.<br><span class="wtag">SEO Optimization · P1</span></div></div></div>
+      <div class="wk"><span class="wkn">3</span><div><div class="wkt">Kill the marketing-analytics cannibalization</div><div class="wkd">Stand up <code>/marketing-analytics/</code> and 301 the three competing pages into it.<br><span class="wtag">Website · P1</span></div></div></div>
+      <div class="wk"><span class="wkn">4</span><div><div class="wkt">Kill the campaign cannibalization</div><div class="wkd">Stand up <code>/campaign-management/</code> and 301 the three scattered campaign pages into it.<br><span class="wtag">Website · P1</span></div></div></div>
+      <div class="wk"><span class="wkn">5</span><div><div class="wkt">Win "X vs Y" in AI answers</div><div class="wkd">Add comparison schema and pitch the review/listicle domains LLMs cite — attack the one topic (Comparisons, 10%) where we already register.<br><span class="wtag">SEO / GEO · P1</span></div></div></div>
     </div>
   </section>
 
   <!-- TRAFFIC -->
   <section class="panel" id="traffic">
-    <p class="lead">We don't rank for our goals yet — so this is the honest picture of <b>what Google actually finds us for today</b>, and how well it matches our ICP. Each row combines Search Console (clicks, impressions, CTR, position, landing page) with Ahrefs search volume. <b>Window: last 28 days.</b></p>
+    <p class="lead">We don't rank for our goals yet — so this is the honest picture of <b>what Google actually finds us for today</b>, and how well it matches our ICP. Each row combines Search Console (clicks, impressions, CTR, position, landing page) with Ahrefs search volume, plus GA4 engagement per landing page. <b>Window: last 28 days.</b></p>
+
+    <h2 class="sec">GA4 — engagement snapshot (last 30 days)</h2>
+    <div class="gagrid">
+      <div class="gacard">
+        <div class="gah">Sessions by device</div>
+        <div class="donutwrap">
+          <div class="donut" style="background:conic-gradient(var(--accent) 0 95.4%,var(--sl-pink) 95.4% 99.8%,var(--gray) 99.8% 100%)"><div class="donuthole"><b>95%</b><span>desktop</span></div></div>
+          <div class="dleg">
+            <div><span class="d" style="background:var(--accent)"></span>Desktop — 6,124 (95.4%)</div>
+            <div><span class="d" style="background:var(--sl-pink)"></span>Mobile — 282 (4.4%)</div>
+            <div><span class="d" style="background:var(--gray)"></span>Tablet — 12 (0.2%)</div>
+          </div>
+        </div>
+        <div class="gasub">Slingshot is a desktop work app — near-zero mobile. Mobile UX isn't the SEO lever here.</div>
+      </div>
+      <div class="gacard">
+        <div class="gah">Organic sessions by week</div>
+        <div class="bars" id="ogBars"></div>
+        <div class="gasub">Organic sessions sliding <b>418 → 185/wk</b> and bounce climbing <b>~39% → 54%</b> as brand/blog traffic tapers — the money pages need to start carrying traffic. <span style="color:#5b3fc4;font-weight:600">A small "AI Assistant" referral channel is now appearing in GA4.</span></div>
+      </div>
+    </div>
 
     <h2 class="sec">Top queries by clicks</h2>
     <div class="dtable"><table>
-      <thead><tr><th>Query</th><th class="num">Clicks</th><th class="num">Impr.</th><th class="num">CTR</th><th class="num">Pos</th><th>Top landing page</th><th class="num">Volume<span style="font-weight:400;text-transform:none"> (Ahrefs)</span></th><th>ICP fit</th></tr></thead>
+      <thead><tr><th>Query</th><th class="num">Clicks</th><th class="num">Impr.</th><th class="num">CTR</th><th class="num">Pos</th><th>Top landing page</th><th class="num">Volume<span style="font-weight:400;text-transform:none"> (Ahrefs)</span></th><th class="num">Engmt<span style="font-weight:400;text-transform:none"> (GA4)</span></th><th class="num">Avg time</th><th>ICP fit</th></tr></thead>
       <tbody id="clkBody"></tbody>
     </table></div>
 
     <h2 class="sec">Top queries by impressions</h2>
     <div class="dtable"><table>
-      <thead><tr><th>Query</th><th class="num">Clicks</th><th class="num">Impr.</th><th class="num">CTR</th><th class="num">Pos</th><th>Top landing page</th><th class="num">Volume<span style="font-weight:400;text-transform:none"> (Ahrefs)</span></th><th>ICP fit</th></tr></thead>
+      <thead><tr><th>Query</th><th class="num">Clicks</th><th class="num">Impr.</th><th class="num">CTR</th><th class="num">Pos</th><th>Top landing page</th><th class="num">Volume<span style="font-weight:400;text-transform:none"> (Ahrefs)</span></th><th class="num">Engmt<span style="font-weight:400;text-transform:none"> (GA4)</span></th><th class="num">Avg time</th><th>ICP fit</th></tr></thead>
       <tbody id="imprBody"></tbody>
     </table></div>
 
     <div class="callout"><b>The read:</b> clicks are almost entirely our <b>own brand</b> ("slingshot", misspellings like "singshort") — we earn next to nothing for non-branded terms. Where we get big impressions — <b>task management (44k impr / 15k vol), data analysis (41k / 147k), project management software (19k / 142k), notion, trello</b> — we sit at position 36–88 with ~0 clicks: enormous generic demand we're invisible for, and mostly <b>off-ICP</b>. The only non-brand terms where we rank respectably (pos 7–10) <b>and</b> are on-ICP are the SEO / content-marketing cluster — <b>seo workflow, seo tasks & workflow, content marketing kpis, ctor, seo analytics dashboard</b>. That cluster is the toehold the marketing pillars build on; everything else is demand to earn, not demand we're missing by inches.</div>
-    <div class="note" style="margin-top:12px">GSC also anonymizes a large block of long-tail queries (~742 clicks / 179k impressions over the window) that Google won't attribute to a specific term — excluded above.</div>
+    <div class="note" style="margin-top:12px">GSC also anonymizes a large block of long-tail queries (~742 clicks / 179k impressions over the window) that Google won't attribute to a specific term — excluded above. GA4 engagement shown per landing page (last 30d); blank where organic sessions were too few to report.</div>
   </section>
 
   <!-- ROADMAP -->
@@ -438,9 +486,9 @@
       <h2>Slingshot SEO &amp; AI Visibility — where we are</h2>
       <p><b>The 60-second version.</b> We're rebuilding Slingshot's search presence on the site we already own rather than starting over — the domain has real authority (1,225 referring domains) that would take roughly two years to rebuild from scratch. The catch: that authority is pointed at the wrong pages. We get about 150,000 Google impressions a week, but we sit around position 33 and really only get clicked for our own brand name. None of the six pages we want to win on rank yet. For week one of a reset, that's exactly the expected starting line.</p>
       <h3>What we're doing about it</h3>
-      <p>We start with <b>comparison pages</b> — "Slingshot vs Asana," "AgencyAnalytics alternative" — because that's where a buyer is closest to choosing, and where we can win fastest (we already rank on page 2 for one of them, and 14 of these pages already exist to consolidate). From there we build the three pages a marketing buyer cares about most — <b>analytics, campaign management, project management</b> — and then define the category itself so Slingshot gets named when someone asks ChatGPT or Perplexity for the best tool.</p>
+      <p>We start with <b>comparison pages</b> — "Slingshot vs Asana," "AgencyAnalytics alternative" — because that's where a buyer is closest to choosing, and where we can win fastest (we already rank on page 2 for one of them). From there we build the three pages a marketing buyer cares about most — <b>analytics, campaign management, project management</b> — and then define the category itself so Slingshot gets named when someone asks ChatGPT or Perplexity for the best tool.</p>
       <h3>Where the numbers stand</h3>
-      <p>Target-page rankings: <b>0 of 6</b> (expected this early). From organic search this week we drove <b>0 demo requests and 1 self-serve first login</b> for Slingshot — tiny, but now tracked live from Salesforce and separated the way our product-led model actually works. Referring domains are <b>up 56</b>. AI share-of-voice: baseline pending. The honest tension is lots of impressions but almost no clicks — we rank too deep, on the wrong queries. Moving our money pages up is the whole game.</p>
+      <p>Target-page rankings: <b>0 of 6</b> (expected this early). From organic search this week we drove <b>0 demo requests and 1 self-serve first login</b> for Slingshot — tiny, but now tracked live from Salesforce and separated the way our product-led model actually works. Referring domains are <b>up 56</b>. AI share of voice is <b>3.1%</b> (Amplitude) vs Asana ~47% and monday ~41% — we only show up in AI answers on comparison questions. The honest tension is lots of impressions but almost no clicks — we rank too deep, on the wrong queries. Moving our money pages up is the whole game.</p>
       <h3>What I need from you</h3>
       <p>Nothing this week. One heads-up: when we restructure the URLs in a few weeks, rankings typically dip for 4–8 weeks before recovering higher — that's normal for this kind of rebuild, and I'll flag it in advance so a temporary dip isn't misread as the program failing.</p>
     </div>
@@ -456,7 +504,7 @@
   function pg(u){return u? '<span title="'+esc(u)+'">'+esc(u.replace('https://www.slingshotapp.io',''))+'</span>':'—';}
   function volf(v){return v? v.toLocaleString():'—';}
 
-  /* ---- Traffic (GSC 28d + Ahrefs volume) ---- rows: [query,clicks,impr,ctr%,pos,page,ahrefsVol,icp] */
+  /* ---- Traffic (GSC 28d + Ahrefs volume) ---- rows: [query,clicks,impr,ctr%,pos,page,icp,ahrefsVol] */
   var CLK=[
     ["slingshot",14,1778,"0.8%","9.3","/","brand",null],
     ["slingshot app",11,289,"3.8%","4.7","/","brand",null],
@@ -492,22 +540,27 @@
     ["seo analytics dashboard",0,1128,"0%","53","/templates/seo-google-analytics-dashboard/","icpf",1300],
     ["predictive analytics",1,1100,"0.09%","22","/blog/predictive-analytics/","off",7400]
   ];
-  function trow(r){return '<tr><td class="q">'+esc(r[0])+'</td><td class="num">'+r[1]+'</td><td class="num">'+r[2].toLocaleString()+'</td><td class="num">'+r[3]+'</td><td class="num">'+r[4]+'</td><td class="pg">'+pg(r[5])+'</td><td class="num">'+volf(r[7])+'</td><td>'+icpTag(r[6])+'</td></tr>';}
+  var GAENG={"/":[85,819],"/en/help/docs/slingshot-subscription":[44,40],"/blog/data-catalog":[100,1333],"/blog/types-of-data-analysis":[67,476],"/blog/9-best-data-visualization-examples":[64,573],"/blog/project-management-goals":[32,318],"/blog/top-task-management-tools":[28,67],"/blog/best-data-analysis-tools":[47,271]};
+  function fmtDur(s){var m=Math.floor(s/60),ss=s%60;return m+':'+(ss<10?'0':'')+ss;}
+  function engFor(pageStr){if(!pageStr)return null;var k=String(pageStr).replace(/\/$/,'');if(k==='')k='/';return GAENG[k]||null;}
+  function trow(r){var e=engFor(r[5]);return '<tr><td class="q">'+esc(r[0])+'</td><td class="num">'+r[1]+'</td><td class="num">'+r[2].toLocaleString()+'</td><td class="num">'+r[3]+'</td><td class="num">'+r[4]+'</td><td class="pg">'+pg(r[5])+'</td><td class="num">'+volf(r[7])+'</td><td class="num">'+(e?e[0]+'%':'—')+'</td><td class="num">'+(e?fmtDur(e[1]):'—')+'</td><td>'+icpTag(r[6])+'</td></tr>';}
   document.getElementById('clkBody').innerHTML=CLK.map(trow).join('');
   document.getElementById('imprBody').innerHTML=IMP.map(trow).join('');
+  var OG=[["W22",418],["W23",483],["W24",386],["W25",242],["W26",230],["W27",224],["W28",248],["W29",191],["W30",185]];
+  var ogMax=Math.max.apply(null,OG.map(function(r){return r[1];}));
+  document.getElementById('ogBars').innerHTML=OG.map(function(r){var h=Math.round(r[1]/ogMax*100);return '<div class="bar"><span class="bv">'+r[1]+'</span><div class="bb" style="height:'+h+'%"></div><span class="bl">'+r[0]+'</span></div>';}).join('');
 
   /* ---- Content roadmap ---- */
   var PH={1:{n:"Comparisons",c:getComputedStyle(document.body).getPropertyValue('--p1').trim()},2:{n:"Marketing Analytics",c:getComputedStyle(document.body).getPropertyValue('--p2').trim()},3:{n:"Campaign + Project Mgmt",c:getComputedStyle(document.body).getPropertyValue('--p3').trim()},4:{n:"Category + AI",c:getComputedStyle(document.body).getPropertyValue('--p4').trim()}};
   var STc={done:"#1a9e63",now:ACC,next:"#c07d16",later:"#9aa2b1"};
   var ROADMAP=[
-    {wk:"Wk 1",ph:1,t:"Baseline scoreboard",s:"done"},
-    {wk:"Wk 1",ph:1,t:"Optimize the /compare/ hub",s:"now"},
-    {wk:"Wk 1",ph:1,t:"Migrate + optimize vs-Asana → /compare/",s:"now"},
-    {wk:"Wk 1",ph:1,t:"Migrate + optimize vs-Monday → /compare/",s:"now"},
-    {wk:"Wk 2",ph:1,t:"Migrate remaining 12 vs-competitor pages into /compare/; spec 3 P1 hubs",s:"next"},
-    {wk:"Wk 3",ph:1,t:"Optimize agencyanalytics + databox + klipfolio comparisons; finalize P1 hub briefs",s:"next"},
-    {wk:"Wk 4",ph:2,t:"Build /marketing-analytics/ hub; consolidate 3 analytics dupes",s:"later"},
-    {wk:"Wk 5",ph:3,t:"Build /campaign-management/ hub; consolidate 3 campaign dupes",s:"later"},
+    {wk:"Wk 1",ph:1,t:"Migrate all 14 vs-* pages → /compare/ + optimize the hub",s:"now"},
+    {wk:"Wk 1",ph:1,t:"Kill analytics + campaign cannibalization (301 the dupes)",s:"now"},
+    {wk:"Wk 1",ph:1,t:"Comparison schema + AI-citation outreach",s:"now"},
+    {wk:"Wk 2",ph:1,t:"Finalize the 3 P1 hub briefs; interlink compare cluster",s:"next"},
+    {wk:"Wk 3",ph:1,t:"Optimize AgencyAnalytics + Databox + Klipfolio comparisons",s:"next"},
+    {wk:"Wk 4",ph:2,t:"Build /marketing-analytics/ hub (consolidation target)",s:"later"},
+    {wk:"Wk 5",ph:3,t:"Build /campaign-management/ hub (consolidation target)",s:"later"},
     {wk:"Wk 6",ph:3,t:"Optimize existing /marketing-project-management/ hub",s:"later"},
     {wk:"Wk 7",ph:3,t:"Consolidate 2 SEO pages; refresh KPI + content-KPI winners",s:"later"},
     {wk:"Wk 8",ph:4,t:"Launch /marketing-execution-platform/ + thought-leadership",s:"later"}
@@ -537,14 +590,15 @@
   /* ---- Live Slingshot tasks ---- */
   var STAT={todo:'To do',done:'Done'};
   var TASKS=[
-    {name:"Baseline SEO scoreboard",channel:"SEO Optimization",status:"done",due:"2026-08-02",completed:"2026-07-27"},
-    {name:"Optimize the /compare/ hub for SEO",channel:"SEO Optimization",status:"todo",due:"2026-08-02"},
-    {name:"Migrate + optimize /slingshot-vs-asana/ → /compare/",channel:"SEO Optimization",status:"todo",due:"2026-08-02"},
-    {name:"Migrate + optimize /slingshot-vs-monday/ → /compare/",channel:"SEO Optimization",status:"todo",due:"2026-08-02"}
+    {name:"Migrate all 14 /slingshot-vs-*/ pages into /compare/ (301 + optimize)",channel:"SEO Optimization",status:"todo",due:"2026-08-02"},
+    {name:"Optimize the /compare/ hub as the canonical anchor",channel:"SEO Optimization",status:"todo",due:"2026-08-02"},
+    {name:"Kill marketing-analytics cannibalization: stand up /marketing-analytics/, 301 the 3 dupes",channel:"Website",status:"todo",due:"2026-08-02"},
+    {name:"Kill campaign cannibalization: stand up /campaign-management/, 301 the 3 dupes",channel:"Website",status:"todo",due:"2026-08-02"},
+    {name:"Win \"X vs Y\" in AI answers: comparison schema + pitch the review domains LLMs cite",channel:"SEO / GEO",status:"todo",due:"2026-08-02"}
   ];
   document.getElementById('taskCount').textContent=TASKS.length;
   var doneN=TASKS.filter(function(t){return t.status==='done';}).length;
-  document.getElementById('taskSummary').innerHTML='<b>'+TASKS.length+' tasks</b> · live from Slingshot · <b>'+doneN+'</b> done';
+  document.getElementById('taskSummary').innerHTML='<b>'+TASKS.length+' tasks</b> · this week · <b>'+doneN+'</b> done';
   document.getElementById('tblBody').innerHTML=TASKS.map(function(t){
     return '<tr><td class="tname">'+esc(t.name)+'</td><td>'+esc(t.channel)+'</td>'+
       '<td><span class="who"><span class="av" style="background:'+accentDeep+'">CC</span> Casey Ciniello</span></td>'+
