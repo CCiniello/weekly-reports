@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "product": "Ignite UI",
+    "program": "Influencer & Community",
+    "owner": "Casey Ciniello",
+    "updated": "2026-07-30",
+    "window": { "current": "2026-07-20/2026-07-26", "prior": "2026-07-13/2026-07-19" },
+    "source_of_truth": "Influencer Strategy deck (pending sync) + this tracker; bootstrapped from live research on first run 2026-07-30",
+    "note": "First-run seed. Follower/engagement figures are search-based estimates pending deck reconciliation. Reach signals use Ahrefs referring-domain + domain-rating data where available.",
+    "slingshot": {
+      "influencer_list": "https://my.slingshotapp.io/openTaskList/e97e10ef_b20d6d82-8e16-4c2d-a61a-0ad302d11a21_tg",
+      "placement_list": "https://my.slingshotapp.io/openTaskList/e97e10ef_f74d1bcd-a158-4493-8e39-105fe6da9d21_tg"
+    }
+  },
+  "scoring_model": {
+    "scale": "0-100 composite Priority Score",
+    "factors": {
+      "icp_fit": "framework match (Angular/React/WC/Blazor) + enterprise/ISV dev audience",
+      "reach": "audience size (followers / domain traffic)",
+      "engagement": "responsiveness of a small on-ICP audience > passive reach",
+      "ai_leverage": "is the surface already cited by LLMs for our category (from Amplitude sources)",
+      "narrative_alignment": "willingness/fit to carry 'generate against Ignite UI'; competitive lock-in is a penalty"
+    },
+    "status_values": ["identified", "reached_out", "responded", "negotiating", "live", "declined"]
+  },
+  "Influencers": [
+    { "name": "Joshua Morony", "framework": "Angular", "role": "Google Developer Expert / YouTube educator", "followers_est": "210k YouTube", "icp_fit": 9, "reach": 8, "engagement": 8, "ai_leverage": 5, "narrative_alignment": 8, "priority": 86, "status": "identified", "owner": "Facundo", "note": "Strong agentic/modern-Angular angle. Ideal for 'generate an Angular grid against Ignite UI (now open source)' sponsored tutorial." },
+    { "name": "Deborah Kurata", "framework": "Angular", "role": "Google Developer Expert / Pluralsight author / YouTube", "followers_est": "60k YouTube", "icp_fit": 9, "reach": 6, "engagement": 8, "ai_leverage": 4, "narrative_alignment": 7, "priority": 78, "status": "identified", "owner": "Facundo", "note": "Trusted teaching voice; good for open-source Ignite UI Angular getting-started seeding." },
+    { "name": "Dany Paredes", "framework": "Angular", "role": "Angular GDE / Progress Champion", "followers_est": "25k+", "icp_fit": 8, "reach": 5, "engagement": 7, "ai_leverage": 4, "narrative_alignment": 3, "priority": 62, "status": "identified", "owner": "Facundo", "note": "COMPETITIVE RISK: already a Progress/Telerik Champion. Approach as awareness only, not paid co-build." },
+    { "name": "Chris Sainty", "framework": "Blazor", "role": "Author 'Blazor in Action' / ex-Microsoft MVP", "followers_est": "20k+", "icp_fit": 9, "reach": 5, "engagement": 7, "ai_leverage": 4, "narrative_alignment": 7, "priority": 74, "status": "identified", "owner": "Facundo", "note": "Credible independent Blazor voice; open-source Ignite UI Blazor components are an easy seed." },
+    { "name": "Shaun Walker", "framework": "Blazor", "role": "Oqtane founder / 16x Microsoft MVP", "followers_est": "OSS reach", "icp_fit": 7, "reach": 5, "engagement": 6, "ai_leverage": 3, "narrative_alignment": 6, "priority": 63, "status": "identified", "owner": "JJ", "note": "Framework-owner credibility; potential MCP/AI advocate." },
+    { "name": "Ed Charbeneau", "framework": "Blazor", "role": "Microsoft MVP / 'Blazor Power Hour'", "followers_est": "live audience", "icp_fit": 8, "reach": 6, "engagement": 8, "ai_leverage": 4, "narrative_alignment": 2, "priority": 55, "status": "identified", "owner": "Facundo", "note": "COMPETITIVE RISK: Progress/Telerik DevRel. Monitor, do not fund." },
+    { "name": "Web Components creator (TBD)", "framework": "Web Components", "role": "Lit / WC advocate", "followers_est": "n/a", "icp_fit": 9, "reach": 0, "engagement": 0, "ai_leverage": 0, "narrative_alignment": 0, "priority": 0, "status": "identified", "owner": "Facundo", "note": "COVERAGE GAP: no credible WC creator identified. Ignite UI is now open-source WC - biggest differentiator vs Telerik/DevExpress, zero creator coverage. Recruit this week." }
+  ],
+  "Placements": [
+    { "publication": "Visual Studio Magazine", "type": "editorial (buyer newsletter)", "domain_rating": 78, "ai_leverage": 5, "priority": 84, "status": "identified", "owner": "Beth", "note": "Already covered Ultimate 25.1 AI. Pitch 'Ignite UI open source across 4 frameworks + AI' follow-up." },
+    { "publication": "SD Times", "type": "editorial", "domain_rating": 80, "ai_leverage": 5, "priority": 82, "status": "identified", "owner": "Beth", "note": "Ran the open-source-50-components story. Warm for an AI/agentic angle follow-up." },
+    { "publication": "DEVOPSdigest", "type": "editorial", "domain_rating": 62, "ai_leverage": 4, "priority": 70, "status": "identified", "owner": "Beth", "note": "Covered open-source launch; keep warm." },
+    { "publication": "InfoQ", "type": "editorial", "domain_rating": 88, "ai_leverage": 6, "priority": 80, "status": "identified", "owner": "Beth", "note": "High-authority; target an agentic-codegen + battle-tested-components angle." },
+    { "publication": "dev.to listicle authors (Hadil; Prashant Ardeshana)", "type": "comparison surface (AI-cited)", "domain_rating": 90, "ai_leverage": 9, "priority": 88, "status": "identified", "owner": "Shared", "note": "AI-CITED: '10 Most Feature-Rich React Data Grid Libraries 2026' & 'Top 10 React component libraries' are cited by LLMs but omit Ignite UI. Get added." },
+    { "publication": "Shanika Wickramasinghe (Medium)", "type": "comparison surface (AI-cited)", "domain_rating": 96, "ai_leverage": 9, "priority": 85, "status": "identified", "owner": "Shared", "note": "AI-CITED: 'Top Free Open-Source React Data Grid Libraries' (Jul 2026). Ignite UI is now open source - natural inclusion pitch." },
+    { "publication": "LogRocket Blog", "type": "contributed comparison", "domain_rating": 92, "ai_leverage": 8, "priority": 83, "status": "identified", "owner": "Shared", "note": "AI-CITED for 'best React chart libraries 2026'. Pitch contributed grid/chart comparison including Ignite UI." },
+    { "publication": "builder.io Blog", "type": "comparison surface (AI-cited)", "domain_rating": 85, "ai_leverage": 8, "priority": 79, "status": "identified", "owner": "Shared", "note": "AI-CITED '15 Best React UI Libraries 2026' omits Ignite UI." }
+  ],
+  "MVPs_Partners": [
+    { "name": "Jason Beres", "program": "Infragistics (internal byline)", "framework": "All", "status": "active", "owner": "Jason", "note": "Internal senior leader / byline author for editorial + narrative anchoring." },
+    { "name": "Microsoft MVP (Blazor) - recruit", "program": "Microsoft MVP", "framework": "Blazor", "status": "identified", "owner": "JJ", "note": "Recruit 1 independent Blazor MVP advocate for open-source Ignite UI + MCP story." },
+    { "name": "Google GDE (Angular) - recruit", "program": "Google GDE", "framework": "Angular", "status": "identified", "owner": "Facundo", "note": "Convert Morony/Kurata conversation into ongoing GDE advocacy." }
+  ],
+  "signals": {
+    "ai_sov": {
+      "source": "Amplitude AI Visibility orgBrandId 35242, report 188594 (2026-07-30)",
+      "infragistics_visibility_pct": 0,
+      "infragistics_avg_rank": 10,
+      "prompt_coverage_pct": 0,
+      "citation_count": 55,
+      "sample": "4 prompts / 8 responses (starter plan - small sample)",
+      "competitors": [
+        { "brand": "Material UI", "visibility": 75, "avg_rank": 5.3 },
+        { "brand": "Ant Design", "visibility": 37.5, "avg_rank": 7.6 },
+        { "brand": "Handsontable", "visibility": 25, "avg_rank": 9 },
+        { "brand": "Chakra UI", "visibility": 12.5, "avg_rank": 9.1 },
+        { "brand": "Syncfusion", "visibility": 12.5, "avg_rank": 9.4 },
+        { "brand": "DevExpress", "visibility": 0, "avg_rank": 10 },
+        { "brand": "Kendo UI / Telerik", "visibility": 0, "avg_rank": 10 },
+        { "brand": "PrimeNG", "visibility": 0, "avg_rank": 10 }
+      ],
+      "read": "Open-source (MUI/AntD/Chakra) dominate LLM recommendations; the commercial-vendor tier (Ignite UI, Telerik, DevExpress, PrimeNG) is at ~0% and wide open. Winning the AI-cited comparison surfaces is the fastest lever."
+    },
+    "narrative_propagation": {
+      "target_line": "Agentic code generation works best with battle-tested frameworks & components - don't waste tokens reinventing a data grid; generate against Ignite UI.",
+      "creators_echoing": 0,
+      "writers_echoing": 0,
+      "status": "not yet propagating - no external voice carrying the line this window"
+    },
+    "telerik_ai_mcp_gap": {
+      "finding": "Telerik/Kendo shipped 2026 Q1 + Q2 AI releases: MCP servers for Angular, React, jQuery, ASP.NET Core; Agentic UI Generator; hallucination-reducing validator; CLI auto-setup of MCP servers.",
+      "gap": "Ignite UI has no standalone AI/MCP creator content, no MCP product page, no AI Early Access program. Telerik currently owns the 'agentic UI generation' narrative.",
+      "counter_plan": ["standalone AI/MCP YouTube content", "MCP product pages", "AI Early Access program", "48h newsjack of Telerik Q2 release", "external advocates carrying the AI story"]
+    },
+    "earned_links_window": {
+      "source": "Ahrefs referring domains -> infragistics.com/products/ignite-ui (prefix)",
+      "new_editorial_placements": 0,
+      "note": "Most recent new referring domains are low-value/SEO-tool domains (parse.gl DR38, pr-cy.ru, hunter.io, serendeputy). No genuine earned editorial placement landed on the Ignite UI product path this window."
+    },
+    "product_news": {
+      "open_source": "Ignite UI open-sourced 50+ components across Angular, Blazor, React, Web Components (SD Times, DEVOPSdigest, 2026).",
+      "ai": "Ultimate 25.1 added AI features to App Builder + Ignite UI (Visual Studio Magazine)."
+    }
+  }
+}
