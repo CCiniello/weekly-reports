@@ -52,7 +52,7 @@
   .workspace{max-width:1160px;margin:22px auto 0;padding:0 26px 90px;display:grid;grid-template-columns:236px 1fr;gap:28px;align-items:start}
   @media(max-width:860px){.workspace{grid-template-columns:1fr;gap:16px}.rail{position:static}.raillist{flex-direction:row;overflow-x:auto;padding-bottom:4px}}
 
-  .rail{position:sticky;top:16px}
+  .rail{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}
   .searchbox{display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:10px 13px;margin-bottom:12px}
   .searchbox input{border:none;background:none;outline:none;font-family:inherit;font-size:13.5px;color:var(--ink);width:100%}
   .searchbox svg{width:15px;height:15px;color:var(--muted);flex:none}
@@ -121,7 +121,6 @@
 
 <nav>
   <div class="brand"><svg class="iglogo" viewBox="0 0 199.7 182.9" xmlns="http://www.w3.org/2000/svg" aria-label="Infragistics"><rect width="199.7" height="182.9" fill="#0099FF"/><rect x="31" y="31.1" width="31.9" height="31.5" fill="#fff"/><path fill="#fff" d="M148.4,31.1h-74v63h30.1V62.3h32.3v31.9v24.4v2.5H74.4h-7.9H62v-47H31v57.7c0,11,8.9,19.9,19.9,19.9h68.2h29.3h19.9v-19.9v-28.4V51.1C168.3,40.1,159.4,31.1,148.4,31.1z"/></svg> Infragistics</div>
-  <div class="navr"><span class="dot"></span> Marketing Intelligence · Internal</div>
 </nav>
 
 <header class="hero">
@@ -144,15 +143,14 @@
       <input id="search" type="text" placeholder="Search reports…" autocomplete="off">
     </div>
     <div class="raillist">
-      <div class="railitem on" data-target="team">Weekly Team <span class="rlive"></span><span class="rc"></span></div>
-      <div class="railitem" data-target="paid">Paid Media <span class="rlive"></span><span class="rc"></span></div>
-      <div class="railitem" data-target="seo">SEO &amp; Organic <span class="rlive"></span><span class="rc"></span></div>
-      <div class="railitem" data-target="demand">Demand &amp; ABM <span class="rlive"></span><span class="rc"></span></div>
-      <div class="railitem" data-target="content">Content &amp; Community <span class="rlive"></span><span class="rc"></span></div>
-      <div class="railitem" data-target="competitive">Competitive &amp; Market <span class="rlive"></span><span class="rc"></span></div>
-      <div class="railitem" data-target="pipeline">Pipeline &amp; Revenue <span class="rlive"></span><span class="rc"></span></div>
+      <div class="railitem on" data-target="team">Weekly Team <span class="rc"></span></div>
+      <div class="railitem" data-target="paid">Paid Media <span class="rc"></span></div>
+      <div class="railitem" data-target="seo">SEO &amp; Organic <span class="rc"></span></div>
+      <div class="railitem" data-target="demand">Demand &amp; ABM <span class="rc"></span></div>
+      <div class="railitem" data-target="content">Content &amp; Community <span class="rc"></span></div>
+      <div class="railitem" data-target="competitive">Competitive &amp; Market <span class="rc"></span></div>
+      <div class="railitem" data-target="pipeline">Pipeline &amp; Revenue <span class="rc"></span></div>
     </div>
-    <p class="railtip">Green counts show what's already publishing. Pick a category to focus, or search across everything.</p>
   </aside>
 
   <!-- CONTENT -->
@@ -271,7 +269,8 @@
       <div class="band rev-band">
         <div class="band-h"><span class="logo"><span class="glyph">◆</span> Reveal</span><span class="tagline">revealbi.io</span></div>
         <div class="btns">
-          <a class="rbtn" href="#"><span class="ic">WEB</span><div><div class="nm">Webinars <span class="star">★</span></div><div class="st"><span class="sd dot-planned"></span> Planned</div></div><span class="arw">→</span></a>
+          <a class="rbtn" data-path="content/reveal/influencer/index.html" href="./content/reveal/influencer/"><span class="ic">INF</span><div><div class="nm">Influencer &amp; Discovery <span class="star">★</span></div><div class="st"><span class="sd dot-ready"></span> Ready</div></div><span class="arw">→</span></a>
+          <a class="rbtn" href="#"><span class="ic">WEB</span><div><div class="nm">Webinars</div><div class="st"><span class="sd dot-planned"></span> Planned</div></div><span class="arw">→</span></a>
           <a class="rbtn" href="#"><span class="ic">COM</span><div><div class="nm">Community</div><div class="st"><span class="sd dot-planned"></span> Planned</div></div><span class="arw">→</span></a>
           <a class="rbtn" href="#"><span class="ic">SOC</span><div><div class="nm">Social Organic</div><div class="st"><span class="sd dot-planned"></span> Planned</div></div><span class="arw">→</span></a>
         </div>
@@ -279,6 +278,7 @@
       <div class="band sling-band">
         <div class="band-h"><span class="logo"><span class="glyph">◗</span> Slingshot</span><span class="tagline">slingshotapp.io</span></div>
         <div class="btns">
+          <a class="rbtn" data-path="content/slingshot/influencer/index.html" href="./content/slingshot/influencer/"><span class="ic">INF</span><div><div class="nm">Influencer, Partnership &amp; Community <span class="star">★</span></div><div class="st"><span class="sd dot-ready"></span> Ready</div></div><span class="arw">→</span></a>
           <a class="rbtn" href="#"><span class="ic">WEB</span><div><div class="nm">Webinars</div><div class="st"><span class="sd dot-planned"></span> Planned</div></div><span class="arw">→</span></a>
           <a class="rbtn" href="#"><span class="ic">SOC</span><div><div class="nm">Social Organic</div><div class="st"><span class="sd dot-planned"></span> Planned</div></div><span class="arw">→</span></a>
         </div>
@@ -286,6 +286,7 @@
       <div class="band ui-band">
         <div class="band-h"><span class="logo"><span class="glyph">▲</span> Ignite UI</span><span class="tagline">UI Tools</span></div>
         <div class="btns">
+          <a class="rbtn" data-path="content/ui-tools/influencer/index.html" href="./content/ui-tools/influencer/"><span class="ic">INF</span><div><div class="nm">Influencer &amp; Community <span class="star">★</span></div><div class="st"><span class="sd dot-ready"></span> Ready</div></div><span class="arw">→</span></a>
           <a class="rbtn" href="#"><span class="ic">COM</span><div><div class="nm">Community</div><div class="st"><span class="sd dot-planned"></span> Planned</div></div><span class="arw">→</span></a>
           <a class="rbtn" href="#"><span class="ic">SOC</span><div><div class="nm">Social Organic</div><div class="st"><span class="sd dot-planned"></span> Planned</div></div><span class="arw">→</span></a>
         </div>
@@ -350,73 +351,82 @@
   </div>
 </div>
 
-<footer>
-  <span>Infragistics · Marketing Intelligence — internal, password-protected</span>
-  <span>Reports refresh automatically every Monday. Live status is auto-detected.</span>
-</footer>
-
 <script>
   var cats = document.querySelectorAll('.cat');
   var rail = document.querySelectorAll('.railitem');
   var search = document.getElementById('search');
   var empty = document.getElementById('empty');
+  var isHosted = location.protocol.indexOf('http') === 0;
+  var allCards = document.querySelectorAll('.rbtn,.pcard');
 
-  // fill rail counts
-  var totalAll = 0, liveAll = 0;
-  cats.forEach(function(c){
-    var total = c.querySelectorAll('.rbtn,.pcard').length;
-    var live = c.querySelectorAll('.dot-live').length;
-    totalAll += total; liveAll += live;
-    var item = document.querySelector('.railitem[data-target="'+c.dataset.cat+'"]');
-    if(item){ item.querySelector('.rc').textContent = total;
-      if(live>0){ var lb=item.querySelector('.rlive'); lb.textContent=live; lb.style.display='inline-flex'; } }
+  // Only cards with a real link (data-path) can show. Unlinked (href="#") stay hidden — not deleted.
+  // On the hosted site, verify each linked report actually exists (HEAD) and hide 404s.
+  allCards.forEach(function(el){
+    el.dataset.avail = el.getAttribute('data-path') ? (isHosted ? 'pending' : '1') : '0';
+    if(el.dataset.avail !== '1') el.style.display = 'none';
   });
-  function currentKey(){ var on=document.querySelector('.railitem.on'); return on?on.dataset.target:'all'; }
+
   function applyFilter(key){
-    cats.forEach(function(c){ c.style.display = (key==='all'||c.dataset.cat===key)?'':'none'; });
+    cats.forEach(function(c){ c.style.display = (c.dataset.cat===key) ? '' : 'none'; });
     rail.forEach(function(r){ r.classList.toggle('on', r.dataset.target===key); });
-    empty.style.display='none';
+    if(empty) empty.style.display='none';
   }
-  function resetItems(){ document.querySelectorAll('.rbtn,.pcard,.band').forEach(function(x){ x.style.display=''; }); }
+
+  function refreshLayout(){
+    allCards.forEach(function(el){ el.style.display = (el.dataset.avail==='1') ? '' : 'none'; });
+    document.querySelectorAll('.band').forEach(function(b){
+      var any = Array.prototype.some.call(b.querySelectorAll('.rbtn'), function(x){ return x.dataset.avail==='1'; });
+      b.style.display = any ? '' : 'none';
+    });
+    cats.forEach(function(c){
+      var vis = Array.prototype.filter.call(c.querySelectorAll('.rbtn,.pcard'), function(x){ return x.dataset.avail==='1'; }).length;
+      var item = document.querySelector('.railitem[data-target="'+c.dataset.cat+'"]');
+      if(item){ var rc=item.querySelector('.rc'); if(rc) rc.textContent = vis || ''; item.style.display = vis ? '' : 'none'; }
+    });
+    var on = document.querySelector('.railitem.on');
+    if(!on || on.style.display==='none'){
+      var fv = Array.prototype.filter.call(rail, function(r){ return r.style.display!=='none'; })[0];
+      applyFilter(fv ? fv.dataset.target : 'team');
+    } else { applyFilter(on.dataset.target); }
+  }
 
   rail.forEach(function(r){ r.addEventListener('click', function(){
-    search.value=''; resetItems(); applyFilter(r.dataset.target);
+    if(r.style.display==='none') return;
+    search.value='';
+    allCards.forEach(function(el){ el.style.display = (el.dataset.avail==='1') ? '' : 'none'; });
+    document.querySelectorAll('.band').forEach(function(b){ var any=Array.prototype.some.call(b.querySelectorAll('.rbtn'),function(x){return x.dataset.avail==='1';}); b.style.display=any?'':'none'; });
+    applyFilter(r.dataset.target);
     document.querySelector('.workspace').scrollIntoView({behavior:'smooth',block:'start'});
   }); });
 
   search.addEventListener('input', function(){
     var q = search.value.trim().toLowerCase();
-    resetItems();
-    if(!q){ applyFilter(currentKey()); return; }
+    if(!q){ refreshLayout(); return; }
     cats.forEach(function(c){ c.style.display=''; });
-    var shown = 0;
-    document.querySelectorAll('.rbtn,.pcard').forEach(function(x){
-      var hit = x.textContent.toLowerCase().indexOf(q) !== -1;
+    var shown=0;
+    allCards.forEach(function(x){
+      if(x.dataset.avail!=='1'){ x.style.display='none'; return; }
+      var hit = x.textContent.toLowerCase().indexOf(q)!==-1;
       x.style.display = hit ? '' : 'none'; if(hit) shown++;
     });
-    document.querySelectorAll('.band').forEach(function(b){
-      var any = Array.prototype.some.call(b.querySelectorAll('.rbtn'), function(x){ return x.style.display!=='none'; });
-      b.style.display = any ? '' : 'none';
-    });
-    cats.forEach(function(c){
-      var any = Array.prototype.some.call(c.querySelectorAll('.rbtn,.pcard'), function(x){ return x.style.display!=='none'; });
-      c.style.display = any ? '' : 'none';
-    });
-    empty.style.display = shown ? 'none' : 'block';
+    document.querySelectorAll('.band').forEach(function(b){ var any=Array.prototype.some.call(b.querySelectorAll('.rbtn'),function(x){return x.style.display!=='none';}); b.style.display=any?'':'none'; });
+    cats.forEach(function(c){ var any=Array.prototype.some.call(c.querySelectorAll('.rbtn,.pcard'),function(x){return x.style.display!=='none';}); c.style.display=any?'':'none'; });
+    if(empty) empty.style.display = shown ? 'none':'block';
   });
 
-  applyFilter('team');
-
-  // AUTO-DETECT "LIVE" on hosted site (dormant in local preview)
-  if (location.protocol.indexOf('http') === 0) {
+  // Hosted: verify linked reports; reveal the ones that exist, hide 404s, then lay out.
+  if(isHosted){
+    var checks=[];
     document.querySelectorAll('[data-path]').forEach(function(el){
-      fetch(el.dataset.path, {method:'HEAD'}).then(function(r){
-        var st = el.querySelector('.st');
-        st.innerHTML = r.ok ? '<span class="sd dot-live"></span> Live · updated Mon'
-                            : '<span class="sd dot-ready"></span> Ready';
-      }).catch(function(){});
+      checks.push(fetch(el.dataset.path,{method:'HEAD'}).then(function(r){
+        el.dataset.avail = r.ok ? '1' : '0';
+        if(r.ok){ var st=el.querySelector('.st'); if(st) st.innerHTML='<span class="sd dot-live"></span> Live · updated Mon'; }
+      }).catch(function(){ el.dataset.avail='0'; }));
     });
+    Promise.allSettled(checks).then(refreshLayout);
   }
+
+  refreshLayout();
 </script>
 </body>
 </html>
