@@ -1,412 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Influencer &amp; Community / Ignite UI</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
-    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
-    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
-    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
-  }
-  body.theme-reveal   {--accent:#EC417A;--accent-deep:#C9367F;--accent-soft:#fde4ee;--hero:linear-gradient(120deg,#FBB764,#EC417A 62%,#d63384)}
-  body.theme-slingshot{--accent:#4B45C6;--accent-deep:#2D2A90;--accent-soft:#ECEBFB;--hero:linear-gradient(120deg,#6C5CE7,#4B45C6 55%,#2D2A90)}
-  body.theme-ui       {--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
-  body.theme-all      {--accent:#2563EB;--accent-deep:#7C3AED;--accent-soft:#EEF1FF;--hero:linear-gradient(120deg,#2563EB,#7C3AED)}
-
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 80px}
-
-  header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
-  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
-  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
-  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
-  header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
-  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)} .meta b{color:#fff;font-weight:700}
-
-  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03);overflow-x:auto}
-  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;white-space:nowrap}
-  .tab:hover{color:var(--ink)}
-  .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
-  .tabpanel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
-  .tabpanel.on{display:block}
-
-  .sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:26px 2px 13px;display:flex;align-items:center;gap:10px}
-  .sec:first-child{margin-top:2px}
-  .sec .n{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
-  .lead{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:16px 20px;font-size:14.5px;line-height:1.6} .lead b{color:var(--navy)}
-
-  .kpigrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
-  @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}}
-  .kpi{background:#fcfdff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column}
-  .kpi .lab{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;min-height:28px}
-  .kpi .val{font-size:22px;font-weight:700;margin:2px 0 8px;font-family:var(--mono)}
-  .kpi .delta{align-self:flex-start;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
-  .delta.up{background:var(--good-bg);color:var(--good)} .delta.down{background:var(--bad-bg);color:var(--bad)} .delta.flat{background:var(--warn-bg);color:var(--warn)}
-
-  .score{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
-  .score table{width:100%;border-collapse:collapse;font-size:13px}
-  .score th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
-  .score td{padding:11px 13px;border-top:1px solid var(--line);vertical-align:middle}
-  .score .goal{font-weight:600;color:var(--navy)}
-  .pill{font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px}
-  .pill.good{background:var(--good-bg);color:var(--good)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.bad{background:var(--bad-bg);color:var(--bad)}
-  .pill.gray{background:var(--gray-bg);color:var(--gray)}
-
-  .cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
-  .card{border:1px solid var(--line);border-radius:14px;overflow:hidden}
-  .card .ch{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:var(--accent-soft);border-bottom:1px solid var(--line)}
-  .card .ch .nm{font-size:15px;font-weight:700;color:var(--accent-deep)} .card .ch .sp{font-family:var(--mono);font-size:12.5px;color:var(--navy)}
-  .card .cb{padding:14px 18px;font-size:13.5px;line-height:1.55} .card .cb b{color:var(--navy)}
-
-  .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
-  .dtable table{width:100%;border-collapse:collapse;font-size:13px}
-  .dtable th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
-  .dtable td{padding:10px 13px;border-top:1px solid var(--line)} .dtable td.num{font-family:var(--mono);text-align:right}
-  .dtable tr:hover td{background:#fafbff}
-
-  .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
-  .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
-  .verdict p{font-size:15px;line-height:1.6;margin:0} .verdict b{color:var(--navy)}
-  code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
-
-  .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-  .btn{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-size:12.5px;font-weight:600;padding:8px 14px;border-radius:9px;border:1px solid var(--line);background:#fff;color:var(--accent-deep);cursor:pointer}
-  .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
-  .draft{border:1px solid var(--line);border-radius:14px;margin-top:14px;overflow:hidden}
-  .draft .dh{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;background:var(--accent-soft);border-bottom:1px solid var(--line)}
-  .draft .dh .t{font-size:14px;font-weight:700;color:var(--accent-deep)}
-  .draft .db{padding:14px 16px;font-size:13.5px;line-height:1.6;white-space:pre-wrap}
-  .copybtn{appearance:none;border:1px solid var(--accent);background:#fff;color:var(--accent-deep);font-family:inherit;font-size:12px;font-weight:600;padding:6px 12px;border-radius:8px;cursor:pointer;white-space:nowrap}
-  .copybtn.done{background:var(--good);border-color:var(--good);color:#fff}
-  .muted{color:var(--muted)} .small{font-size:12px}
-  ul.tight{margin:8px 0 0 18px} ul.tight li{margin:5px 0;font-size:13.5px;line-height:1.5}
-</style>
-</head>
-<body class="theme-ui">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ignite UI &mdash; Influencer &amp; Community Program</title><style>:root{--bg:#f6f7f9;--card:#fff;--ink:#14181f;--muted:#6b7280;--line:#e5e7eb;--accent:#0b5cff;--accent2:#0a2540;--on:#0f9d58;--risk:#f2a516;--behind:#e5484d}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px 80px}
+header.top{background:linear-gradient(135deg,#0a2540,#0b3a6b 60%,#0b5cff);color:#fff;padding:34px 0 30px}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:12px;opacity:.8;font-weight:600}
+header.top h1{margin:6px 0;font-size:30px;letter-spacing:-.02em}header.top .sub{opacity:.85;font-size:15px}
+.meta-row{display:flex;flex-wrap:wrap;gap:18px;margin-top:16px;font-size:13px;opacity:.9}
+nav.tabs{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
+nav.tabs .wrap{display:flex;gap:2px;overflow-x:auto}
+nav.tabs button{border:0;background:none;padding:15px 16px;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap;border-bottom:2.5px solid transparent}
+nav.tabs button.active{color:var(--accent);border-bottom-color:var(--accent)}
+section.tab{display:none;padding-top:26px}section.tab.active{display:block}
+h2.sech{font-size:22px;margin:0 0 4px}.secsub{color:var(--muted);margin:0 0 20px;font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;margin-bottom:20px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:10px 12px;border-bottom:2px solid var(--line);white-space:nowrap;background:#fafbfc}
+td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}tr:hover td{background:#fafbff}
+.sb td.out{font-weight:600}.sb td{font-size:14px}
+.bar{display:inline-block;width:96px;height:8px;border-radius:6px;background:#eef0f3;vertical-align:middle;overflow:hidden}
+.bar-fill{height:100%}.bar-on{background:var(--on)}.bar-risk{background:var(--risk)}.bar-behind{background:var(--behind)}
+.bar-num{font-size:12px;color:var(--muted);margin-left:8px}
+.pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600}
+.pill-on{background:#e6f6ee;color:#0f7a44}.pill-risk{background:#fdf3e0;color:#a86a05}.pill-behind{background:#fdeaea;color:#c02a2f}.pill-neutral{background:#eef0f3;color:#555}
+.insight{border:1px solid #f2c8c9;background:#fdf3f3;border-radius:12px;padding:20px 22px}.insight h3{margin:0 0 8px;color:#b02328;font-size:16px}.insight ol{margin:10px 0 0;padding-left:20px}.insight li{margin-bottom:6px}
+.reframe{background:#0a2540;color:#fff;border-radius:12px;padding:22px 24px;margin-bottom:22px}.reframe .lab{color:#7fb0ff}.reframe p{margin:6px 0 0;font-size:16px}
+.narr{border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:14px}.narr-flag{border-color:#0b5cff;box-shadow:0 0 0 2px #0b5cff22}
+.narr-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}.narr-num{width:26px;height:26px;border-radius:7px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.narr-h h4{margin:0;font-size:16px}.flag{margin-left:auto;background:#0b5cff;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px}
+.narr-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 22px}.narr-grid .lab{font-size:11px;text-transform:uppercase;color:var(--muted);font-weight:700}.narr-grid p{margin:3px 0 0;font-size:14px}.hook{font-style:italic;color:var(--accent2)}
+.owner-tag{display:inline-block;background:#eef2ff;color:#3949c9;font-weight:600;font-size:12px;padding:2px 9px;border-radius:6px}
+.mnum,.gnum{font-weight:700;color:var(--accent)}td.fix{color:#0f7a44}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:#fff}.tablewrap table{min-width:1300px}
+.rank{color:var(--muted);font-weight:600}.cname{font-weight:600;white-space:nowrap}.clong{min-width:240px;max-width:320px;font-size:12.5px;color:#333}.cnum{text-align:right;font-variant-numeric:tabular-nums}
+.sc{display:inline-block;min-width:30px;text-align:center;font-weight:700;padding:3px 8px;border-radius:7px;font-size:13px}.sc-hi{background:#e6f6ee;color:#0f7a44}.sc-md{background:#fdf3e0;color:#a86a05}.sc-lo{background:#f1f2f4;color:#777}
+.act{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px}.act-h{display:flex;align-items:center;gap:10px}.act-h h4{margin:0;font-size:15px}.act-h .pill{margin-left:auto}.act-meta{margin:6px 0}.act p{margin:6px 0 0;font-size:14px;color:#333}
+.rescard{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px}.rescard h4{margin:0 0 6px;font-size:14px}.rescard p{margin:0;font-size:14px;color:#333}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.foot{color:var(--muted);font-size:12px;margin-top:28px;text-align:center}
+@media(max-width:800px){.narr-grid,.grid2{grid-template-columns:1fr}}</style></head><body>
+<header class="top"><div class="wrap"><div class="eyebrow">Ignite UI &middot; Influencer &amp; Community Program</div>
+<h1>Program Readout &amp; Roster</h1><div class="sub">Getting credible third-party voices recommending Ignite UI &mdash; where developers and buyers actually decide.</div>
+<div class="meta-row"><span><b>Owner</b> &nbsp;JJ McGuigan</span><span><b>Motions</b> &nbsp;Creator (Facundo) &middot; Earned/PR (Beth) &middot; Comparison (Shared) &middot; Paid (JJ)</span>
+<span><b>Roster</b> &nbsp;39 creators &middot; 24 placements &middot; 18 MVPs/partners</span><span><b>Updated</b> &nbsp;2026-08-01</span></div></div></header>
+<nav class="tabs"><div class="wrap">
+<button class="active" data-t="vp">VP Readout</button><button data-t="strategy">Strategy &amp; Narrative</button>
+<button data-t="influencers">Influencers</button><button data-t="placements">Placements</button>
+<button data-t="mvps">MVPs &amp; Partners</button><button data-t="actions">Actions &amp; Research</button></div></nav>
 <div class="wrap">
-
-  <header class="top">
-    <div class="logochip">Ignite UI</div>
-    <div class="kick">UI Tools · Influencer &amp; Community</div>
-    <h1>Influencer &amp; Community / Ignite UI</h1>
-    <div class="meta">
-      <span><b>Updated</b> Jul 30, 2026</span>
-      <span><b>Window</b> Jul 20–26 vs Jul 13–19</span>
-      <span><b>Owner</b> Casey Ciniello</span>
-      <span><b>Run</b> First run (seed)</span>
-    </div>
-  </header>
-
-  <div class="tabbar" id="tabbar"></div>
-
-  <div id="panels">
-
-    <!-- ============ TAB 1: REPORT (VP READOUT) ============ -->
-    <section class="tabpanel" data-tab="report" data-label="Report">
-      <div class="sec"><span class="n">1</span> VP Readout</div>
-      <div class="lead">
-        <b>Goal:</b> get credible developer voices recommending Ignite UI in the places devs actually decide — YouTube, GitHub, Reddit, dev.to, and the newsletters buyers read — and grow earned mentions &amp; AI citations.
-        <br><br>
-        <b>Where we stand (first run):</b> Ignite UI is at <b>0% AI share of voice</b> on tracked component-library prompts, and no genuine earned editorial placement landed on the Ignite UI product page this window. But two things break in our favor: (1) the commercial-vendor tier — Telerik/Kendo, DevExpress, PrimeNG — is <b>also at ~0%</b>, so the enterprise slot in AI answers is unclaimed; and (2) Ignite UI just went <b>open source across all four frameworks</b>, which turns seeding and "free inclusion" pitches from a hard sell into an easy yes.
-        <br><br>
-        <b>The play:</b> stop chasing raw reach. The fastest lever is getting Ignite UI onto the <b>AI-cited comparison surfaces</b> (dev.to grid listicles, LogRocket, Medium roundups) that LLMs already quote, and pairing that with a small set of on-ICP creators carrying one line: <i>don't waste tokens reinventing a data grid — generate against Ignite UI.</i>
-      </div>
-
-      <div class="sec"><span class="n">2</span> KPIs</div>
-      <div class="kpigrid">
-        <div class="kpi"><div class="lab">Creators engaged</div><div class="val">0 / 7</div><span class="delta flat">baseline</span></div>
-        <div class="kpi"><div class="lab">Placements landed (wk)</div><div class="val">0</div><span class="delta flat">baseline</span></div>
-        <div class="kpi"><div class="lab">MVPs / partners active</div><div class="val">1</div><span class="delta flat">Jason (internal)</span></div>
-        <div class="kpi"><div class="lab">Earned mentions (wk)</div><div class="val">0</div><span class="delta flat">baseline</span></div>
-        <div class="kpi"><div class="lab">AI Share of Voice</div><div class="val">0%</div><span class="delta down">vs MUI 75%</span></div>
-      </div>
-
-      <div class="sec"><span class="n">3</span> Goals Scorecard</div>
-      <div class="score">
-        <table>
-          <thead><tr><th>Goal</th><th>Target</th><th>Now</th><th>Status</th></tr></thead>
-          <tbody>
-            <tr><td class="goal">Credible dev voices recommending Ignite UI</td><td>Roster live &amp; producing</td><td>7 identified, 0 live</td><td><span class="pill bad">Off target</span></td></tr>
-            <tr><td class="goal">Earned mentions in buyer newsletters</td><td>Steady editorial cadence</td><td>0 this window</td><td><span class="pill bad">Off target</span></td></tr>
-            <tr><td class="goal">AI citations / share of voice</td><td>Break above 0%; contest the vendor tier</td><td>0% (vendor tier all ~0)</td><td><span class="pill warn">Open field</span></td></tr>
-            <tr><td class="goal">Web Components coverage</td><td>≥1 credible WC creator</td><td>0 identified</td><td><span class="pill bad">Gap</span></td></tr>
-            <tr><td class="goal">Control the "generate against Ignite UI" narrative</td><td>Creators/writers echoing</td><td>0 echoing; Telerik leads AI story</td><td><span class="pill bad">Not propagating</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="verdict">
-        <div class="vh">Bottom line</div>
-        <p>This is a <b>land-grab moment, not a catch-up one.</b> Open source removes the friction from seeding, and the enterprise slot in AI answers is empty. Win the AI-cited comparison surfaces first (cheap, fast, compounding), recruit 1–2 on-ICP creators per framework, and close the two gaps that will otherwise define us: <b>zero Web Components coverage</b> and <b>Telerik owning the agentic/MCP story.</b></p>
-      </div>
-    </section>
-
-    <!-- ============ TAB 2: STRATEGY & NARRATIVE ============ -->
-    <section class="tabpanel" data-tab="strategy" data-label="Strategy &amp; Narrative">
-      <div class="sec"><span class="n">1</span> The Four Motions</div>
-      <div class="cards">
-        <div class="card"><div class="ch"><span class="nm">1 · Creator / Influencer</span><span class="sp">Owner: Facundo</span></div><div class="cb">Sponsored tutorials, seeding, co-builds with real developer creators. The truest "influencer" motion — earned credibility with mid/senior Angular, React, WC and Blazor engineers on YouTube / GitHub / Reddit / X / Discord.</div></div>
-        <div class="card"><div class="ch"><span class="nm">2 · Earned Placement / PR</span><span class="sp">Owner: Beth</span></div><div class="cb">Editorial in the newsletters and outlets buyers (VP Eng, CTO, dir eng) read — Visual Studio Magazine, SD Times, InfoQ, DEVOPSdigest.</div></div>
-        <div class="card"><div class="ch"><span class="nm">3 · Comparison &amp; Answer Surfaces</span><span class="sp">Owner: Shared</span></div><div class="cb">Buyer's guides + the AI-cited comparison sites (dev.to, LogRocket, Medium roundups, builder.io). These feed both human buyers and the LLMs devs now ask.</div></div>
-        <div class="card"><div class="ch"><span class="nm">4 · Paid Placement</span><span class="sp">Owner: JJ</span></div><div class="cb">Labelled sponsor slots — separate budget. Used to accelerate, not substitute for, earned credibility.</div></div>
-      </div>
-      <p class="small muted" style="margin-top:10px">MVPs / Partners (Microsoft MVP, Google GDE) → JJ / Facundo / Jason.</p>
-
-      <div class="sec"><span class="n">2</span> Narrative to Control</div>
-      <div class="lead">
-        "<b>Agentic code generation is powerful — and it works best with battle-tested frameworks &amp; components. Don't waste tokens reinventing a data grid; generate against Ignite UI.</b>"
-        <br><br>
-        <b>Propagation signal this window:</b> <span class="pill bad">Not propagating</span> — 0 creators and 0 writers echoing the line. Meanwhile Telerik/Kendo is actively seeding the opposite framing (agentic UI generation as <i>their</i> territory).
-      </div>
-
-      <div class="sec"><span class="n">3</span> Telerik AI / MCP Gap Plan</div>
-      <div class="lead">
-        <b>What Telerik shipped:</b> 2026 Q1 + Q2 releases with MCP servers for Angular, React, jQuery and ASP.NET Core; an Agentic UI Generator; a hallucination-reducing validator; and a CLI that auto-sets-up MCP servers. They currently <b>own the "agentic UI generation" narrative.</b>
-        <br><br>
-        <b>Our counter-plan:</b>
-        <ul class="tight">
-          <li>Standalone <b>AI/MCP YouTube content</b> — "generate a production grid against Ignite UI".</li>
-          <li>Stand up <b>MCP product pages</b> for Ignite UI (per framework).</li>
-          <li>Launch an <b>AI Early Access program</b> for creators/MVPs.</li>
-          <li><b>48-hour newsjacking</b> of competitor AI releases (Telerik Q2 is live now).</li>
-          <li>Recruit <b>external advocates</b> to carry the AI story — not just first-party posts.</li>
-        </ul>
-      </div>
-
-      <div class="sec"><span class="n">4</span> Audiences</div>
-      <div class="dtable"><table>
-        <thead><tr><th>Audience</th><th>Who</th><th>Where they live</th></tr></thead>
-        <tbody>
-          <tr><td><b>Developers</b> (primary — they choose the library)</td><td>Mid/senior Angular · React · WC · Blazor engineers, tech leads, OSS devs</td><td>YouTube, GitHub, Reddit, X, Discord</td></tr>
-          <tr><td><b>Buyers</b></td><td>VP Eng, CTO, dir eng — fin-services, insurance, healthcare, gov, manufacturing, ISV</td><td>Dev newsletters + LinkedIn</td></tr>
-        </tbody>
-      </table></div>
-    </section>
-
-    <!-- ============ TAB 3: TRACKER ============ -->
-    <section class="tabpanel" data-tab="tracker" data-label="Tracker">
-      <div class="sec"><span class="n">1</span> Influencers <span class="pill gray" style="margin-left:6px">scored 0–100</span></div>
-      <div class="dtable"><table>
-        <thead><tr><th>Creator</th><th>Framework</th><th>Profile</th><th class="num">Priority</th><th>Status</th><th>Owner</th></tr></thead>
-        <tbody>
-          <tr><td><b>Joshua Morony</b></td><td>Angular</td><td>GDE · ~210k YT</td><td class="num">86</td><td><span class="pill gray">Identified</span></td><td>Facundo</td></tr>
-          <tr><td><b>Deborah Kurata</b></td><td>Angular</td><td>GDE · Pluralsight · YT</td><td class="num">78</td><td><span class="pill gray">Identified</span></td><td>Facundo</td></tr>
-          <tr><td><b>Chris Sainty</b></td><td>Blazor</td><td>"Blazor in Action" · ex-MVP</td><td class="num">74</td><td><span class="pill gray">Identified</span></td><td>Facundo</td></tr>
-          <tr><td><b>Shaun Walker</b></td><td>Blazor</td><td>Oqtane · 16× MVP</td><td class="num">63</td><td><span class="pill gray">Identified</span></td><td>JJ</td></tr>
-          <tr><td><b>Dany Paredes</b></td><td>Angular</td><td>GDE · <span class="muted">Progress Champion ⚠</span></td><td class="num">62</td><td><span class="pill warn">Comp. risk</span></td><td>Facundo</td></tr>
-          <tr><td><b>Ed Charbeneau</b></td><td>Blazor</td><td><span class="muted">Telerik DevRel ⚠</span></td><td class="num">55</td><td><span class="pill warn">Monitor only</span></td><td>Facundo</td></tr>
-          <tr><td><b>Web Components creator</b></td><td>WC</td><td><span class="muted">none identified</span></td><td class="num">—</td><td><span class="pill bad">GAP</span></td><td>Facundo</td></tr>
-        </tbody>
-      </table></div>
-
-      <div class="sec"><span class="n">2</span> Placements &amp; Answer Surfaces</div>
-      <div class="dtable"><table>
-        <thead><tr><th>Surface</th><th>Type</th><th class="num">DR</th><th class="num">Priority</th><th>Status</th><th>Owner</th></tr></thead>
-        <tbody>
-          <tr><td><b>dev.to grid listicles</b> (Hadil; Ardeshana)</td><td>AI-cited comparison</td><td class="num">90</td><td class="num">88</td><td><span class="pill gray">Identified</span></td><td>Shared</td></tr>
-          <tr><td><b>Shanika Wickramasinghe</b> (Medium)</td><td>AI-cited comparison</td><td class="num">96</td><td class="num">85</td><td><span class="pill gray">Identified</span></td><td>Beth</td></tr>
-          <tr><td><b>Visual Studio Magazine</b></td><td>Editorial (buyer)</td><td class="num">78</td><td class="num">84</td><td><span class="pill gray">Identified</span></td><td>Beth</td></tr>
-          <tr><td><b>LogRocket Blog</b></td><td>Contributed comparison</td><td class="num">92</td><td class="num">83</td><td><span class="pill gray">Identified</span></td><td>Shared</td></tr>
-          <tr><td><b>SD Times</b></td><td>Editorial</td><td class="num">80</td><td class="num">82</td><td><span class="pill gray">Identified</span></td><td>Beth</td></tr>
-          <tr><td><b>InfoQ</b></td><td>Editorial</td><td class="num">88</td><td class="num">80</td><td><span class="pill gray">Identified</span></td><td>Beth</td></tr>
-          <tr><td><b>builder.io Blog</b></td><td>AI-cited comparison</td><td class="num">85</td><td class="num">79</td><td><span class="pill gray">Identified</span></td><td>Shared</td></tr>
-          <tr><td><b>DEVOPSdigest</b></td><td>Editorial</td><td class="num">62</td><td class="num">70</td><td><span class="pill gray">Identified</span></td><td>Beth</td></tr>
-        </tbody>
-      </table></div>
-
-      <div class="sec"><span class="n">3</span> MVPs &amp; Partners</div>
-      <div class="dtable"><table>
-        <thead><tr><th>Name</th><th>Program</th><th>Framework</th><th>Status</th><th>Owner</th></tr></thead>
-        <tbody>
-          <tr><td><b>Jason Beres</b></td><td>Infragistics (byline)</td><td>All</td><td><span class="pill good">Active</span></td><td>Jason</td></tr>
-          <tr><td>Microsoft MVP (Blazor) — recruit</td><td>Microsoft MVP</td><td>Blazor</td><td><span class="pill gray">Identified</span></td><td>JJ</td></tr>
-          <tr><td>Google GDE (Angular) — recruit</td><td>Google GDE</td><td>Angular</td><td><span class="pill gray">Identified</span></td><td>Facundo</td></tr>
-        </tbody>
-      </table></div>
-      <p class="small muted" style="margin-top:12px">First-run seed, bootstrapped from live research (Ahrefs referring domains, Amplitude AI Visibility, web search). Follower figures are estimates pending reconciliation with the Influencer Strategy deck. Scoring: ICP fit · reach · engagement · AI-citation leverage · narrative alignment (competitive lock-in penalised).</p>
-    </section>
-
-    <!-- ============ TAB 4: ACTIONS ============ -->
-    <section class="tabpanel" data-tab="actions" data-label="Actions">
-      <div class="sec"><span class="n">1</span> This Week's Tasks <span class="pill gray" style="margin-left:6px">start Mon Aug 3</span></div>
-      <div class="lead">8 tasks created in Slingshot across the two tracker lists, assigned and dated. Owners tagged in each title (Facundo &amp; Beth are routed via Casey; they are not members of this workspace).</div>
-
-      <div class="dtable"><table>
-        <thead><tr><th>Task</th><th>Motion / Owner</th><th>Due</th><th>Priority</th></tr></thead>
-        <tbody>
-          <tr><td>Joshua Morony — sponsored "generate an Angular grid against Ignite UI" tutorial</td><td>Creator / Facundo</td><td>Aug 14</td><td><span class="pill bad">High</span></td></tr>
-          <tr><td>Recruit a Web Components creator — coverage gap</td><td>Creator / Facundo</td><td>Aug 10</td><td><span class="pill bad">High</span></td></tr>
-          <tr><td>Seed Deborah Kurata — open-source Angular getting-started</td><td>Creator / Facundo</td><td>Aug 21</td><td><span class="pill warn">Med</span></td></tr>
-          <tr><td>Recruit 1 Microsoft MVP (Blazor) for AI/MCP advocacy</td><td>MVP / JJ</td><td>Aug 17</td><td><span class="pill bad">High</span></td></tr>
-          <tr><td>Get Ignite UI into AI-cited dev.to data-grid listicles</td><td>Comparison / Shared</td><td>Aug 12</td><td><span class="pill bad">High</span></td></tr>
-          <tr><td>Shanika Wickramasinghe (Medium) — add to React grid roundup</td><td>Placement / Beth</td><td>Aug 12</td><td><span class="pill bad">High</span></td></tr>
-          <tr><td>Visual Studio Magazine — "open source + AI" editorial pitch</td><td>Placement / Beth</td><td>Aug 14</td><td><span class="pill bad">High</span></td></tr>
-          <tr><td>48h newsjack: Telerik Q2 AI/MCP → counter-content + MCP page</td><td>Narrative / Shared</td><td>Aug 5</td><td><span class="pill bad">High</span></td></tr>
-        </tbody>
-      </table></div>
-
-      <div class="btnrow">
-        <a class="btn primary" href="https://app.slingshotapp.io/openTaskList/e97e10ef_b20d6d82-8e16-4c2d-a61a-0ad302d11a21_tg" target="_blank" rel="noopener">Open Influencer Tracker in Slingshot ↗</a>
-        <a class="btn" href="https://app.slingshotapp.io/openTaskList/e97e10ef_f74d1bcd-a158-4493-8e39-105fe6da9d21_tg" target="_blank" rel="noopener">Open Placement Tracker in Slingshot ↗</a>
-      </div>
-    </section>
-
-    <!-- ============ TAB 5: OUTREACH DRAFTS ============ -->
-    <section class="tabpanel" data-tab="outreach" data-label="Outreach Drafts">
-      <div class="sec"><span class="n">1</span> Value-First Drafts <span class="pill gray" style="margin-left:6px">copy &amp; send</span></div>
-      <div class="lead">Each draft leads with value to the creator/writer, not the ask. Personalise the bracketed lines before sending.</div>
-
-      <div class="draft">
-        <div class="dh"><span class="t">Joshua Morony — sponsored Angular tutorial</span><button class="copybtn" data-copy="d1">Copy</button></div>
-        <div class="db" id="d1">Hi Joshua,
-
-I've been following your Angular content — [reference a recent video]. Quick, no-strings idea.
-
-Ignite UI just went fully open source (Angular included) — the grid, charts and 50+ components. With everyone generating UI from prompts now, we think the interesting story isn't "another component library," it's this: agentic code-gen works far better when it targets battle-tested components instead of reinventing a data grid from scratch.
-
-Would you be open to a sponsored tutorial showing exactly that — generating a production Angular grid against Ignite UI? We'd give you full creative control, the code, and co-promotion to our audience. Happy to share a rate card and a couple of angle options.
-
-Worth a 20-min call?
-
-— Casey, Infragistics</div>
-      </div>
-
-      <div class="draft">
-        <div class="dh"><span class="t">Deborah Kurata — seeding (no paid ask)</span><button class="copybtn" data-copy="d2">Copy</button></div>
-        <div class="db" id="d2">Hi Deborah,
-
-Long-time admirer of how you teach Angular — clarity first, hype never.
-
-Not a pitch, just a heads-up you might find useful for your audience: Ignite UI is now open source across Angular, so the grid and 50+ components are free to use with no license gate. I'd love to get you early access and a clean getting-started path in case it's ever useful for a lesson or a comparison.
-
-No obligation at all — just want the best-in-class option in front of the people who teach it well. Want me to send access?
-
-— Casey, Infragistics</div>
-      </div>
-
-      <div class="draft">
-        <div class="dh"><span class="t">Web Components creator — recruit (coverage gap)</span><button class="copybtn" data-copy="d3">Copy</button></div>
-        <div class="db" id="d3">Hi [Name],
-
-I'm building out a small group of Web Components / Lit voices we work with, and your [talk/post on WC] stood out.
-
-Here's why I'm reaching out specifically to the WC community: Ignite UI now ships open-source Web Components — a genuinely rare thing for an enterprise-grade grid/chart suite. Most vendors only do the framework wrappers. I think there's a strong "the platform is enough, here's a production-grade WC grid to prove it" story to tell.
-
-Would you be up for a co-build or a short piece? We'll bring the components, early access, and promotion — you bring the honest take.
-
-— Casey, Infragistics</div>
-      </div>
-
-      <div class="draft">
-        <div class="dh"><span class="t">dev.to listicle authors — inclusion (AI-cited surface)</span><button class="copybtn" data-copy="d4">Copy</button></div>
-        <div class="db" id="d4">Hi [Name],
-
-Your "[10 Most Feature-Rich React Data Grid Libraries in 2026]" is one of the pieces that actually gets cited when people (and AI assistants) ask what to use — nicely done.
-
-One addition worth considering: Ignite UI for React is now open source, with a virtualized grid built for 100k+ rows, Excel-style filtering and export. Given the list already covers the commercial + OSS spread, it feels like a natural fit. Happy to send a benchmark, a live demo, and a short spec blurb you can lift or ignore — zero obligation to include it.
-
-Either way, thanks for keeping the roundup current.
-
-— Casey, Infragistics</div>
-      </div>
-
-      <div class="draft">
-        <div class="dh"><span class="t">Shanika Wickramasinghe (Medium) — open-source roundup</span><button class="copybtn" data-copy="d5">Copy</button></div>
-        <div class="db" id="d5">Hi Shanika,
-
-Your "Top Free Open-Source React Data Grid Libraries" piece is exactly the kind of guide developers trust — and it's timely for us.
-
-Ignite UI for React just became open source, so it now qualifies for a "free / open-source" roundup for the first time. It's a virtualized, enterprise-grade grid (100k+ rows, Excel-style filtering, export) with decades of use in finance and insurance behind it. If you're ever updating the list, I'd love to send you access, a quick feature matrix, and a demo repo so you can evaluate it fairly.
-
-No strings — just want it on your radar now that the license barrier is gone.
-
-— Casey, Infragistics</div>
-      </div>
-
-      <div class="draft">
-        <div class="dh"><span class="t">Visual Studio Magazine — editorial pitch (Beth)</span><button class="copybtn" data-copy="d6">Copy</button></div>
-        <div class="db" id="d6">Hi [Editor],
-
-Following your coverage of Infragistics' Ultimate 25.1 AI features — there's a bigger follow-up story now.
-
-Infragistics has open-sourced 50+ Ignite UI components across Angular, Blazor, React and Web Components. The angle we think your readers care about: as teams lean on agentic code generation, the smart move is generating against battle-tested, open components rather than hand-rolling grids and charts — and now that tier is free. Jason Beres can speak to the strategy and the enterprise track record.
-
-Happy to provide an exclusive, data, and a byline/quote. Interested?
-
-— [Beth], Infragistics PR</div>
-      </div>
-
-      <div class="draft">
-        <div class="dh"><span class="t">Microsoft MVP (Blazor) — advocate recruit (JJ)</span><button class="copybtn" data-copy="d7">Copy</button></div>
-        <div class="db" id="d7">Hi [Name],
-
-Your independent Blazor work — [book/blog/talk] — is exactly the credibility we'd want to earn, not buy.
-
-Ignite UI is now open source for Blazor, and we're standing up an AI/MCP story around it: generating and validating production components straight from your assistant. We're forming a small AI Early Access group of Blazor MVPs to pressure-test it and tell the honest story — good and bad. Comp'd access, direct line to the product team, and freedom to say what you actually think.
-
-Would you want in on the early cohort?
-
-— JJ, Infragistics</div>
-      </div>
-    </section>
-
-    <!-- ============ TAB 6: BUDGET ============ -->
-    <section class="tabpanel" data-tab="budget" data-label="Budget">
-      <div class="sec"><span class="n">1</span> Paid Placement / Sponsorship Spend</div>
-      <div class="lead">Paid placement is a separate budget owned by <b>JJ</b>. No spend committed this window (first run). The table below is the tracking scaffold — <b>figures need finance/JJ input</b> to populate the budget column.</div>
-
-      <div class="dtable"><table>
-        <thead><tr><th>Line item</th><th>Motion</th><th class="num">Committed</th><th class="num">Spent (wk)</th><th class="num">Budget</th><th>Status</th></tr></thead>
-        <tbody>
-          <tr><td>Sponsored creator tutorials (Morony etc.)</td><td>Creator (paid)</td><td class="num">$0</td><td class="num">$0</td><td class="num">TBD</td><td><span class="pill gray">Not started</span></td></tr>
-          <tr><td>Paid newsletter / labelled sponsor slots</td><td>Paid placement</td><td class="num">$0</td><td class="num">$0</td><td class="num">TBD</td><td><span class="pill gray">Not started</span></td></tr>
-          <tr><td>AI Early Access program (creator comps)</td><td>MVP / AI</td><td class="num">$0</td><td class="num">$0</td><td class="num">TBD</td><td><span class="pill gray">Not started</span></td></tr>
-          <tr><td>Seeding (open-source, non-paid)</td><td>Creator (earned)</td><td class="num">$0</td><td class="num">$0</td><td class="num">$0</td><td><span class="pill good">No cost</span></td></tr>
-          <tr><td><b>Total</b></td><td></td><td class="num"><b>$0</b></td><td class="num"><b>$0</b></td><td class="num"><b>TBD</b></td><td></td></tr>
-        </tbody>
-      </table></div>
-
-      <div class="verdict">
-        <div class="vh">Note</div>
-        <p>Most of this week's plan is <b>earned, not paid</b> — open source makes seeding and inclusion pitches free. Recommend reserving paid budget for (1) one flagship sponsored creator tutorial and (2) the AI Early Access comps, where paid acceleration has the clearest payoff. <b>Send JJ the confirmed quarterly paid figure so this tab can track spend vs budget next run.</b></p>
-      </div>
-    </section>
-
-  </div>
+<section class="tab active" id="vp"><h2 class="sech">VP Readout</h2><p class="secsub">Where the program stands against target &mdash; and the one thing to fix.</p>
+<div class="card"><table class="sb"><thead><tr><th>Outcome</th><th>Current</th><th>Target</th><th>Progress</th><th>Status</th></tr></thead><tbody><tr><td class='out'>Roster built &amp; scored</td><td>81 targets</td><td>81 targets</td><td><div class="bar"><div class="bar-fill bar-on" style="width:100%"></div></div><span class="bar-num">100%</span></td><td><span class="pill pill-on">On track</span></td></tr>
+<tr><td class='out'>Program live in Slingshot</td><td>Syncing now</td><td>4 lists live</td><td><div class="bar"><div class="bar-fill bar-on" style="width:90%"></div></div><span class="bar-num">90%</span></td><td><span class="pill pill-on">On track</span></td></tr>
+<tr><td class='out'>AI Share of Voice (Ignite UI)</td><td>0%</td><td>15%</td><td><div class="bar"><div class="bar-fill bar-behind" style="width:3%"></div></div><span class="bar-num">3%</span></td><td><span class="pill pill-behind">Behind</span></td></tr>
+<tr><td class='out'>AI-cited surfaces incl. Ignite UI</td><td>0</td><td>6</td><td><div class="bar"><div class="bar-fill bar-behind" style="width:5%"></div></div><span class="bar-num">5%</span></td><td><span class="pill pill-behind">Behind</span></td></tr>
+<tr><td class='out'>External voices carrying the narrative</td><td>0</td><td>3</td><td><div class="bar"><div class="bar-fill bar-behind" style="width:0%"></div></div><span class="bar-num">0%</span></td><td><span class="pill pill-behind">Behind</span></td></tr>
+<tr><td class='out'>Earned editorial placements (window)</td><td>0</td><td>4</td><td><div class="bar"><div class="bar-fill bar-behind" style="width:0%"></div></div><span class="bar-num">0%</span></td><td><span class="pill pill-behind">Behind</span></td></tr>
+<tr><td class='out'>Web Components creator coverage</td><td>0</td><td>1</td><td><div class="bar"><div class="bar-fill bar-behind" style="width:0%"></div></div><span class="bar-num">0%</span></td><td><span class="pill pill-behind">Behind</span></td></tr>
+<tr><td class='out'>Ignite UI MCP product page</td><td>In docs only</td><td>1 live page</td><td><div class="bar"><div class="bar-fill bar-behind" style="width:20%"></div></div><span class="bar-num">20%</span></td><td><span class="pill pill-behind">Behind</span></td></tr></tbody></table></div>
+<div class="insight"><h3>Why we&rsquo;re behind &mdash; and what to do</h3>
+<p>The program has done the hard research &mdash; 81 targets scored and routed &mdash; but activation is at zero: no external voice, no AI citations, no earned placements this window. In our category the LLMs already recommend open-source rivals (Material UI 75%, Ant 37.5%) while the entire commercial-vendor tier sits near 0%. That tier is wide open, and Telerik is the only one treating AI/MCP as an ongoing editorial beat &mdash; we treat it as a product launch. That framing gap is why we&rsquo;re behind.</p>
+<ol><li><strong>Ship the Ignite UI MCP product page</strong> and framework AI pages &mdash; stop hiding the strongest toolchain inside docs.</li>
+<li><strong>Stand up owned publishing</strong> (dev.to Organization + Hashnode) to seed the AI-cited comparison surfaces that omit us.</li>
+<li><strong>Recruit a Web Components creator</strong> &mdash; our single biggest differentiator has zero coverage.</li>
+<li><strong>Newsjack Telerik&rsquo;s Q2 AI/MCP release within 48 hours</strong> with &lsquo;generate against Ignite UI&rsquo; counter-content.</li>
+<li><strong>Convert the scored roster into live outreach now</strong> &mdash; the research is done; the value is in contact.</li></ol></div></section>
+<section class="tab" id="strategy"><h2 class="sech">Strategy &amp; Narrative</h2><p class="secsub">Jason&rsquo;s reframe, the four narratives, the four motions, and the Telerik AI/MCP gap.</p>
+<div class="reframe"><span class="lab">Jason&rsquo;s core reframe</span><p>Stop selling components as a feature list. In an agentic world, battle-tested components are the trusted substrate AI builds on &mdash; &ldquo;don&rsquo;t waste tokens reinventing a data grid; generate against Ignite UI.&rdquo; Telerik treats AI/MCP as an ongoing editorial beat; Ignite UI treats it as a launch. Closing that gap is the whole play.</p></div>
+<h3 style="font-size:16px;margin:22px 0 12px">The four narratives</h3><div class="narr"><div class="narr-h"><span class="narr-num">1</span><h4>The Hidden Tax on AI Coding</h4></div>
+<div class="narr-grid"><div><span class="lab">Angle</span><p>AI assistants confidently hallucinate component APIs &mdash; wrong grid props, invented chart options &mdash; and every hallucination is re-prompting, debugging and wasted tokens.</p></div><div><span class="lab">Hook</span><p class="hook">&ldquo;Every hallucinated grid prop is a tax on your sprint.&rdquo;</p></div>
+<div><span class="lab">Proof</span><p>Published Ignite UI benchmark: API compliance 0&rarr;5/5 and task completion 71%&rarr;100% once Agent Skills / MCP ground the model.</p></div><div><span class="lab">Target outlets</span><p>TLDR Web Dev, JavaScript Weekly, The New Stack, InfoQ</p></div></div></div>
+<div class="narr"><div class="narr-h"><span class="narr-num">2</span><h4>Components Are the Cache Layer for AI</h4></div>
+<div class="narr-grid"><div><span class="lab">Angle</span><p>Don&rsquo;t make the model reinvent a data grid on every prompt. Battle-tested components are a reusable cache the agent calls instead of regenerating brittle code.</p></div><div><span class="lab">Hook</span><p class="hook">&ldquo;Don&rsquo;t make the model reinvent the data grid &mdash; cache it.&rdquo;</p></div>
+<div><span class="lab">Proof</span><p>MCP toolchain (Agent Skills, CLI MCP, Theming MCP, App Builder), generate-from-image, measurable token/time savings.</p></div><div><span class="lab">Target outlets</span><p>ByteByteGo, The Pragmatic Engineer (topic), Matt Pocock / Theo commentary</p></div></div></div>
+<div class="narr"><div class="narr-h"><span class="narr-num">3</span><h4>The MVP Trap</h4></div>
+<div class="narr-grid"><div><span class="lab">Angle</span><p>AI gets a team to a minimum-viable grid demo fast &mdash; then they drown in the edge cases battle-tested components already solved: accessibility, virtualization, 100K-row performance.</p></div><div><span class="lab">Hook</span><p class="hook">&ldquo;AI got you to a demo. It won&rsquo;t get you to accessibility at 100K rows.&rdquo;</p></div>
+<div><span class="lab">Proof</span><p>Enterprise requirements + total-cost-of-ownership vs. build-it-yourself &mdash; the story buyers already believe.</p></div><div><span class="lab">Target outlets</span><p>The Pragmatic Engineer, InfoQ, ByteByteGo, LeadDev</p></div></div></div>
+<div class="narr narr-flag"><div class="narr-h"><span class="narr-num">4</span><h4>MCP Made It Load-Bearing</h4><span class="flag">FLAGSHIP</span></div>
+<div class="narr-grid"><div><span class="lab">Angle</span><p>MCP turned the component library from a convenience into load-bearing infrastructure for agentic development. Whichever library the agent trusts is the one that gets built with.</p></div><div><span class="lab">Hook</span><p class="hook">&ldquo;When the agent builds, your component library becomes load-bearing infrastructure.&rdquo;</p></div>
+<div><span class="lab">Proof</span><p>Ignite UI&rsquo;s stronger MCP toolchain, local privacy, generate-from-image and published benchmarks &mdash; we have the toolchain and the proof.</p></div><div><span class="lab">Target outlets</span><p>TLDR AI, The New Stack, InfoQ, awareness via Fireship / Theo</p></div></div></div>
+<div class="card" style="margin-top:22px"><h3 style="font-size:16px;margin:0 0 12px">The four motions</h3><table><thead><tr><th>#</th><th>Motion</th><th>Owner</th><th>What it is</th></tr></thead><tbody><tr><td class='mnum'>1</td><td><strong>Creator / influencer</strong></td><td><span class='owner-tag'>Facundo</span></td><td>Independent developers making content about us &mdash; sponsored tutorials, product seeding, co-created builds.</td></tr>
+<tr><td class='mnum'>2</td><td><strong>Earned placement / PR</strong></td><td><span class='owner-tag'>Beth</span></td><td>Getting into the editorial section of the newsletters and publications our buyers read &mdash; won with a novel story, not bought.</td></tr>
+<tr><td class='mnum'>3</td><td><strong>Comparison &amp; answer surfaces</strong></td><td><span class='owner-tag'>Shared</span></td><td>Being included and well-positioned in buyer&rsquo;s guides and the comparison sites that get cited in AI answers.</td></tr>
+<tr><td class='mnum'>4</td><td><strong>Paid placement</strong></td><td><span class='owner-tag'>JJ</span></td><td>Clearly-labelled sponsor slots in those same newsletters &mdash; a separate budget and motion from earned.</td></tr></tbody></table></div>
+<div class="card"><h3 style="font-size:16px;margin:0 0 6px">Ignite UI vs. Telerik &mdash; AI &amp; MCP gap</h3><p class="secsub" style="margin-bottom:14px">Seven gaps, each with the fix.</p><table><thead><tr><th>#</th><th>Gap</th><th>Evidence</th><th>Fix</th></tr></thead><tbody><tr><td class='gnum'>01</td><td><strong>Dedicated MCP product page</strong></td><td>telerik.com/mcp-servers is a full product page; ours lives inside docs.</td><td class='fix'>Build a standalone Ignite UI MCP product page.</td></tr>
+<tr><td class='gnum'>02</td><td><strong>Systematic AI/MCP YouTube series</strong></td><td>Six standalone AI/MCP videos since Jul 2025; we ship release videos only.</td><td class='fix'>One standalone AI video every 3 weeks; start with the Copilot head-to-head.</td></tr>
+<tr><td class='gnum'>03</td><td><strong>External advocates on the AI story</strong></td><td>Dany Paredes &amp; Sam Basu carry Telerik&rsquo;s AI editorial &mdash; neither works there.</td><td class='fix'>Recruit two Angular/React GDEs or MVPs to co-create on Agent Skills.</td></tr>
+<tr><td class='gnum'>04</td><td><strong>Early-access program as capture</strong></td><td>A Progress Agent Harness Early Access CTA sits on every AI post.</td><td class='fix'>Launch an &lsquo;Ignite UI AI Early Access&rsquo; page + email list.</td></tr>
+<tr><td class='gnum'>05</td><td><strong>Framework-specific MCP pages</strong></td><td>telerik.com/angular-mcp-servers intercepts &lsquo;Angular MCP server&rsquo; search.</td><td class='fix'>Ship /ignite-ui/react/ai and /ignite-ui/angular/ai.</td></tr>
+<tr><td class='gnum'>06</td><td><strong>Newsjacking AI moments</strong></td><td>Telerik posted a Google I/O 2026 tie-in within 48h; we have no playbook.</td><td class='fix'>Stand up a 48-hour response playbook for major AI news.</td></tr>
+<tr><td class='gnum'>07</td><td><strong>Release comms lead with AI outcomes</strong></td><td>Telerik: &lsquo;Context-Aware AI Where You Build.&rsquo; We lead with feature lists.</td><td class='fix'>Reframe the next release blog around AI outcomes.</td></tr></tbody></table></div></section>
+<section class="tab" id="influencers"><h2 class="sech">Influencers</h2><p class="secsub">39 developer creators, ranked by Influencer Score /30. Owner: Facundo.</p><div class="tablewrap"><table id="tbl-inf"></table></div></section>
+<section class="tab" id="placements"><h2 class="sech">Placements</h2><p class="secsub">24 newsletters, publications and comparison surfaces, ranked by Placement Score /30. Owner: Beth.</p><div class="tablewrap"><table id="tbl-plc"></table></div></section>
+<section class="tab" id="mvps"><h2 class="sech">MVPs &amp; Partners</h2><p class="secsub">18 Microsoft MVPs and Google GDEs, ranked by Partner Score /30 &mdash; a relationship play. Owner: JJ.</p><div class="tablewrap"><table id="tbl-mvp"></table></div></section>
+<section class="tab" id="actions"><h2 class="sech">Actions &amp; Research</h2><p class="secsub">The action items driving the program forward, plus the research signals behind them.</p>
+<h3 style="font-size:16px;margin:18px 0 12px">Action items</h3><div class="act"><div class="act-h"><h4>Recruit a Web Components creator</h4><span class="pill pill-behind">High</span></div><div class="act-meta"><span class="owner-tag">Facundo</span></div><p>Coverage gap: open-source Ignite UI Web Components is our biggest differentiator vs Telerik/DevExpress and has zero creator coverage. Identify and seed one credible WC/Lit voice.</p></div>
+<div class="act"><div class="act-h"><h4>Stand up dev.to + Hashnode owned publishing</h4><span class="pill pill-behind">High</span></div><div class="act-meta"><span class="owner-tag">Beth</span></div><p>Build an Infragistics DEV Organization + branded Hashnode publication for canonical-first tutorials, benchmarks and migration guides &mdash; the fastest route into AI-cited surfaces.</p></div>
+<div class="act"><div class="act-h"><h4>Telerik Q2 AI/MCP newsjack + Ignite UI MCP page</h4><span class="pill pill-behind">High</span></div><div class="act-meta"><span class="owner-tag">Beth</span></div><p>48-hour counter-content on Telerik&rsquo;s Q2 AI/MCP release, plus ship the standalone Ignite UI MCP product page.</p></div>
+<div class="act"><div class="act-h"><h4>Map the Nick Chapsas / Telerik conflict</h4><span class="pill pill-behind">High</span></div><div class="act-meta"><span class="owner-tag">Facundo</span></div><p>High-value .NET voice with a potential Telerik conflict. Map the relationship before any outreach; engage only with a clear performance differentiator.</p></div>
+<div class="act"><div class="act-h"><h4>Confirm the paid-placement budget</h4><span class="pill pill-risk">Medium</span></div><div class="act-meta"><span class="owner-tag">JJ</span></div><p>Motion 4 (paid newsletter slots) needs a confirmed budget before booking TLDR Dev / JS Weekly / Milan&rsquo;s .NET pilots.</p></div>
+<h3 style="font-size:16px;margin:24px 0 12px">Research signals</h3><div class="grid2"><div class="rescard"><h4>AI Share-of-Voice signal</h4><p>Sampled LLM answers put Ignite UI at <strong>0% visibility</strong>. Open-source libraries dominate (Material UI 75%, Ant Design 37.5%, Chakra 12.5%); the commercial-vendor tier &mdash; Ignite UI, Telerik, DevExpress, PrimeNG &mdash; all sit at ~0%. The AI-cited comparison surfaces are the fastest, most winnable lever.</p></div>
+<div class="rescard"><h4>Narrative propagation</h4><p>Zero creators and zero writers are echoing the &lsquo;generate against Ignite UI&rsquo; line. The narratives above exist to change that number.</p></div>
+<div class="rescard"><h4>Competitor paid-influence read</h4><p>Of the four, only <strong>AG Grid</strong> pays creators. Telerik sponsors developer podcasts. DevExpress and Syncfusion rely on unpaid MVP / community-license advocates. The independent-creator lane is open.</p></div>
+<div class="rescard"><h4>Earned-links window</h4><p>No genuine earned editorial placement landed on the Ignite UI product path this window; recent referring domains are low-value SEO-tool domains. Earned PR (Beth) is the gap to close.</p></div></div></section>
+<div class="foot">Ignite UI Influencer &amp; Community &mdash; generated from the Infragistics Influencer &amp; Discovery Tracker. Owner JJ McGuigan &middot; 2026-08-01</div>
 </div>
-
 <script>
-  var panels = Array.prototype.slice.call(document.querySelectorAll('.tabpanel'));
-  var bar = document.getElementById('tabbar');
-  panels.forEach(function(p,i){
-    var b=document.createElement('button');
-    b.className='tab'+(i===0?' on':''); b.textContent=p.dataset.label||('Tab '+(i+1));
-    b.addEventListener('click',function(){
-      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
-      panels.forEach(function(x){x.classList.remove('on');});
-      b.classList.add('on'); p.classList.add('on');
-      window.scrollTo({top:0,behavior:'smooth'});
-    });
-    bar.appendChild(b);
-    if(i===0) p.classList.add('on');
-  });
-  document.querySelectorAll('.copybtn').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      var el=document.getElementById(btn.dataset.copy);
-      if(!el) return;
-      var txt=el.innerText;
-      navigator.clipboard.writeText(txt).then(function(){
-        var old=btn.textContent; btn.textContent='Copied ✓'; btn.classList.add('done');
-        setTimeout(function(){btn.textContent=old; btn.classList.remove('done');},1600);
-      });
-    });
-  });
-</script>
-</body>
-</html>
+const tabs=document.querySelectorAll('nav.tabs button'),secs=document.querySelectorAll('section.tab');
+tabs.forEach(b=>b.addEventListener('click',()=>{tabs.forEach(x=>x.classList.remove('active'));secs.forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.t).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}));
+const esc=s=>s==null?'':String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const numf=v=>{const n=parseFloat(v);return isNaN(n)?'':(n===Math.round(n)?n:Math.round(n*10000)/10000);};
+const scb=v=>{const n=parseFloat(v);if(isNaN(n))return "<span class='sc sc-lo'>&mdash;</span>";const c=n>=22?'sc-hi':(n>=15?'sc-md':'sc-lo');return "<span class='sc "+c+"'>"+Math.round(n)+"</span>";};
+function build(id,rows,cols,sk){
+ rows=rows.slice().sort((a,b)=>(parseFloat(b[sk])||-1)-(parseFloat(a[sk])||-1));
+ let h="<thead><tr><th>#</th>"+cols.map(c=>"<th>"+c[1]+"</th>").join("")+"</tr></thead><tbody>";
+ rows.forEach((r,i)=>{h+="<tr><td class='rank'>"+(i+1)+"</td>"+cols.map(c=>{
+   const v=r[c[0]];
+   if(c[2]==='score')return "<td>"+scb(v)+"</td>";
+   if(c[2]==='name')return "<td class='cname'>"+esc(v)+"</td>";
+   if(c[2]==='num')return "<td class='cnum'>"+numf(v)+"</td>";
+   if(c[2]==='long')return "<td class='clong'>"+esc(v)+"</td>";
+   return "<td>"+esc(v)+"</td>";
+ }).join("")+"</tr>";});
+ document.getElementById(id).innerHTML=h+"</tbody>";
+}
+const INFC=[["INFLUENCER SCORE /30","Score /30","score"],["Name","Name","name"],["Platform","Platform","t"],["Framework / focus","Framework / focus","t"],["Handle / link (confirm)","Handle","t"],["Also on","Also on","t"],["Affiliation / conflict","Affiliation / conflict","t"],["Fit notes","Fit notes","long"],["Followers (verify)","Followers","num"],["30d Views","30d Views","num"],["30d Eng %","30d Eng %","num"],["Audience fit (1-10)","Aud fit","num"],["Recommended motion","Recommended motion","t"],["Priority","Priority","t"],["Owner","Owner","t"],["Status","Outreach status","t"],["Recommended Next action","Recommended next action","long"]];
+const PLCC=[["PLACEMENT SCORE /30","Score /30","score"],["Publication / surface","Publication / surface","name"],["Type","Type","t"],["Link","Link","t"],["Audience","Audience","t"],["Reach (est)","Reach (est)","t"],["Motion","Motion","t"],["Angle / who to pitch","Angle / who to pitch","long"],["Audience fit (1-10)","Aud fit","num"],["Reach (1-10)","Reach","num"],["Attainability (1-10)","Attainability","num"],["Owner","Owner","t"],["Status","Outreach status","t"],["Recommendation","Recommendation","long"]];
+const MVPC=[["PARTNER SCORE /30","Score /30","score"],["Name","Name","name"],["Role / company","Role / company","t"],["Program","Program","t"],["Profile / link (confirm)","Profile","t"],["LinkedIn / social","LinkedIn / social","t"],["Focus","Focus","t"],["Angle & play","Angle & play","long"],["Fit (1-10)","Fit","num"],["Influence (1-10)","Influence","num"],["Relationship (1-10)","Relationship","num"],["Owner","Owner","t"],["Status","Outreach status","t"],["Best use","Best use","long"]];
+fetch('./tracker.json').then(r=>r.json()).then(d=>{
+ build('tbl-inf',d.UITools_Influencers,INFC,'INFLUENCER SCORE /30');
+ build('tbl-plc',d.UITools_Placements,PLCC,'PLACEMENT SCORE /30');
+ build('tbl-mvp',d.UITools_MVPs_Partners,MVPC,'PARTNER SCORE /30');
+}).catch(e=>{document.getElementById('tbl-inf').innerHTML='<tbody><tr><td>Could not load tracker.json: '+e+'</td></tr></tbody>';});
+</script></body></html>
