@@ -144,28 +144,59 @@
   <!-- ============ TAB 1: OVERVIEW ============ -->
   <section class="tabpanel" data-tab="overview" data-label="Overview">
 
+    <style>
+      .vpbanner{border:1px solid #E9E9F4;border-radius:16px;overflow:hidden;margin:0 0 24px;box-shadow:0 1px 3px rgba(15,23,42,.05);font-family:'Roboto',system-ui,sans-serif}
+      .vpbanner .vbar{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+      .vpbanner .vbar .t{font-size:18px;font-weight:800}
+      .vpbanner .vbar .g{font-size:12.5px;color:#cdd6f7;font-weight:600;text-align:right}
+      .vpbanner .vrow{display:flex;gap:18px;align-items:flex-start;padding:16px 22px;border-top:1px solid #E9E9F4}
+      .vpbanner .vrow:first-of-type{border-top:none}
+      .pill2{flex:none;width:92px;text-align:center;font-size:11px;font-weight:800;letter-spacing:.05em;padding:5px 0;border-radius:16px;text-transform:uppercase;margin-top:2px}
+      .pill2.fix{background:#fde8ec;color:#c62a4f}.pill2.work{background:#e3f5ec;color:#127a45}.pill2.watch{background:#fdf0d6;color:#8a6412}
+      .vrow .rtx h4{margin:0 0 4px;font-size:15px;color:#0F172A;font-weight:800}
+      .vrow .rtx p{margin:0;font-size:13.5px;color:#5f6b7a;line-height:1.55}
+    </style>
+    <div class="vpbanner">
+      <div class="vbar">
+        <div class="t">VP Readout &mdash; 30-second view</div>
+        <div class="g">Goal: qualified demand on the terms buyers search &mdash; efficient CPL &amp; pipeline</div>
+      </div>
+      <div class="vrow fbx">
+        <div class="pill2 fix">Fix</div>
+        <div class="rtx"><h4>Brand defense is leaking</h4><p>We hold just <b>62% impression share on our own name</b> — 38% lost to rank, not budget. Raise brand bids + tighten brand ad relevance to reclaim ~100%. Cheapest, highest-return move.</p></div>
+      </div>
+      <div class="vrow fbx">
+        <div class="pill2 work">Working</div>
+        <div class="rtx"><h4>Visibility is climbing on flat spend</h4><p>Search impression share rose <b>64% → 75%</b> with budget-lost share near zero and CPC down 14% — the demand engine got more efficient without spending more.</p></div>
+      </div>
+      <div class="vrow fbx">
+        <div class="pill2 watch">Watch</div>
+        <div class="rtx"><h4>Lead capture is under-instrumented</h4><p>The conversion import is still off and <b>85% of paid clicks land on the homepage</b> — fix both before trusting any CPL number or scaling budget.</p></div>
+      </div>
+    </div>
+
     <div class="lead">
       <p>A <b>healthy operating week</b> with one clear structural signal: <b>visibility jumped without spending more</b>. Search impression share climbed from 64% to 75% and budget-lost share collapsed to near zero (0.3%) — meaning budget is no longer the constraint. Where we still lose impressions, we lose them to <b>Ad Rank, not money</b>. That reframes the whole growth question: throwing dollars at the US head terms won't move the needle; bids, Quality Score and ad relevance will.</p>
       <p><b>What's working best:</b> the demand engine is efficient — CPC fell 14% to $3.51 and clicks rose 16% on flat spend. Brand and compete search remain the highest-quality traffic on site (Brand engagement 56%, 6+ min sessions). International capture (India, Brazil) is dominating its auctions at 87–93% IS.</p>
       <p><b>Where to focus:</b> three things. (1) <b>Brand defense is leaking</b> — we hold only 62% IS on our own name, losing 38% to rank. (2) <b>85% of paid clicks land on the homepage</b>, including high-intent compete and non-brand searches that should hit dedicated pages. (3) <b>Lead capture is under-instrumented</b> — the Google Ads conversion import is still not firing (column reads 0), so we are flying on Salesforce Lead Events and GA4 alone. Fix the import before trusting any CPL number.</p>
     </div>
 
-    <div class="sec"><span class="n">1</span>Blended scorecard — this week vs prior</div>
+    <div class="sec fbx"><span class="n">1</span>Blended scorecard — this week vs prior</div>
     <div class="kpigrid">
-      <div class="kpi"><span class="lab">Spend</span><span class="val">$8,135</span><span class="delta flat">−0.4% WoW</span></div>
-      <div class="kpi"><span class="lab">Clicks</span><span class="val">2,320</span><span class="delta up">▲ 15.8%</span></div>
-      <div class="kpi"><span class="lab">Avg CPC</span><span class="val">$3.51</span><span class="delta up">▼ 14.0%</span></div>
-      <div class="kpi"><span class="lab">Search Impr. Share</span><span class="val">75.0%</span><span class="delta up">▲ 10.5pt</span></div>
-      <div class="kpi"><span class="lab">Impressions</span><span class="val">207.9k</span><span class="delta up">▲ 30.8%</span></div>
-      <div class="kpi"><span class="lab">Paid leads (SF, wk)</span><span class="val">7</span><span class="delta down">▼ vs 19</span></div>
-      <div class="kpi"><span class="lab">Leads MTD (Jul)</span><span class="val">52</span><span class="delta flat">vs 100 floor</span></div>
-      <div class="kpi"><span class="lab">GA4 sessions g/cpc</span><span class="val">1,180</span><span class="delta down">▼ 10.8%</span></div>
-      <div class="kpi"><span class="lab">Budget-lost IS</span><span class="val">0.3%</span><span class="delta up">▼ from 5.3%</span></div>
-      <div class="kpi"><span class="lab">In-platform conv.</span><span class="val">n/a</span><span class="delta flat">import off</span></div>
+      <div class="kpi fbx"><span class="lab">Spend</span><span class="val">$8,135</span><span class="delta flat">−0.4% WoW</span></div>
+      <div class="kpi fbx"><span class="lab">Clicks</span><span class="val">2,320</span><span class="delta up">▲ 15.8%</span></div>
+      <div class="kpi fbx"><span class="lab">Avg CPC</span><span class="val">$3.51</span><span class="delta up">▼ 14.0%</span></div>
+      <div class="kpi fbx"><span class="lab">Search Impr. Share</span><span class="val">75.0%</span><span class="delta up">▲ 10.5pt</span></div>
+      <div class="kpi fbx"><span class="lab">Impressions</span><span class="val">207.9k</span><span class="delta up">▲ 30.8%</span></div>
+      <div class="kpi fbx"><span class="lab">Paid leads (SF, wk)</span><span class="val">7</span><span class="delta down">▼ vs 19</span></div>
+      <div class="kpi fbx"><span class="lab">Leads MTD (Jul)</span><span class="val">52</span><span class="delta flat">vs 100 floor</span></div>
+      <div class="kpi fbx"><span class="lab">GA4 sessions g/cpc</span><span class="val">1,180</span><span class="delta down">▼ 10.8%</span></div>
+      <div class="kpi fbx"><span class="lab">Budget-lost IS</span><span class="val">0.3%</span><span class="delta up">▼ from 5.3%</span></div>
+      <div class="kpi fbx"><span class="lab">In-platform conv.</span><span class="val">n/a</span><span class="delta flat">import off</span></div>
     </div>
     <p class="note">CPL intentionally omitted from the headline: with the conversion import down and Lead Events lagging click by weeks, a weekly last-touch CPL (~$1,160 raw) is not a real number. See the honest read on the goal scoreboard.</p>
 
-    <div class="sec"><span class="n">2</span>Goal scoreboard — one row per goal (US &amp; Intl separated)</div>
+    <div class="sec fbx"><span class="n">2</span>Goal scoreboard — one row per goal (US &amp; Intl separated)</div>
     <div class="score"><table>
       <thead><tr><th>Goal</th><th>Target</th><th>Current</th><th class="pcell">Pace</th><th>Status</th></tr></thead>
       <tbody>
@@ -181,9 +212,9 @@
     </table></div>
     <p class="note">*CPL: conversion import not firing + last-touch lag make a trustworthy weekly CPL impossible right now. Fix the import, then judge CPL. Budget "headroom" is real — but the binding constraint on visibility is rank, not budget, so scaling spend alone won't lift US IS.</p>
 
-    <div class="sec"><span class="n">3</span>Where to lean in · where to fix</div>
+    <div class="sec fbx"><span class="n">3</span>Where to lean in · where to fix</div>
     <div class="cards">
-      <div class="card">
+      <div class="card fbx">
         <div class="ch"><span class="nm">Lean in</span><span class="sp">scale what's earning</span></div>
         <div class="cb"><ul>
           <li><b>Compete + International search</b> — India/Brazil holding 87–93% IS at low CPC; add budget headroom here.</li>
@@ -191,7 +222,7 @@
           <li><b>Theming creative</b> — the theming image runs 1.15% CTR vs 0.38% for control-message; feed budget to the winner.</li>
         </ul></div>
       </div>
-      <div class="card">
+      <div class="card fbx">
         <div class="ch"><span class="nm">Fix</span><span class="sp">stop the leaks</span></div>
         <div class="cb"><ul>
           <li><b>Brand defense</b> — 38% of brand impressions lost to rank. Raise brand bids / tighten brand ad relevance to reclaim ~100%.</li>
@@ -206,7 +237,7 @@
   <!-- ============ TAB 2: CAMPAIGNS ============ -->
   <section class="tabpanel" data-tab="campaigns" data-label="Campaigns &amp; Ad Groups">
 
-    <div class="sec"><span class="n">1</span>Campaign performance — WoW</div>
+    <div class="sec fbx"><span class="n">1</span>Campaign performance — WoW</div>
     <div class="dtable"><table>
       <thead><tr><th>Campaign</th><th>Type</th><th class="num">Spend</th><th class="num">WoW $</th><th class="num">Clicks</th><th class="num">WoW clk</th><th class="num">Impr.</th><th class="num">CPC</th></tr></thead>
       <tbody>
@@ -230,14 +261,14 @@
     </table></div>
     <p class="note">Green = up WoW, red = down. Search-Non-Brand-US CPC ($96.93) is inflated by a handful of expensive clicks on tiny volume — expected in a high-cost space; not a waste flag on its own. Display collapsed because the Jul 21 webinar push ended (intentional).</p>
 
-    <div class="sec"><span class="n">2</span>Brand vs non-brand spend split</div>
+    <div class="sec fbx"><span class="n">2</span>Brand vs non-brand spend split</div>
     <div class="splitbar">
       <span style="width:9.8%;background:var(--accent-deep)">9.8%</span>
       <span style="width:90.2%;background:var(--peri)">Non-brand 90.2%</span>
     </div>
     <p class="note">Brand $796 (9.8%) · Non-brand $7,339 (90.2%) of $8,135. Split sums to 100%. Healthy prospecting-weighted mix; nearly all spend is working new demand, not defending the name — which is why the brand-IS leak (Tab 1) matters.</p>
 
-    <div class="sec"><span class="n">3</span>Spend by campaign type</div>
+    <div class="sec fbx"><span class="n">3</span>Spend by campaign type</div>
     <div class="bars">
       <div class="row"><span class="nm">Demand Gen</span><div class="track"><i class="neu" style="width:100%"></i></div><span class="val">$4,066 · 50%</span></div>
       <div class="row"><span class="nm">Search</span><div class="track"><i class="neu" style="width:68%"></i></div><span class="val">$2,758 · 34%</span></div>
@@ -245,7 +276,7 @@
       <div class="row"><span class="nm">Display</span><div class="track"><i class="neu" style="width:2%"></i></div><span class="val">$74 · 1%</span></div>
     </div>
 
-    <div class="sec"><span class="n">4</span>Ad groups — top by spend (this week)</div>
+    <div class="sec fbx"><span class="n">4</span>Ad groups — top by spend (this week)</div>
     <div class="dtable"><table>
       <thead><tr><th>Ad group</th><th>Campaign</th><th>Type</th><th>Region</th><th class="num">Spend</th><th class="num">Clicks</th><th class="num">Impr.</th></tr></thead>
       <tbody>
@@ -271,7 +302,7 @@
       <p><b>Intent rules applied:</b> keep high-intent even when expensive (embedded analytics/BI, white-label, OEM, competitor + embed/pricing/alternative); cut only broad or junk; yellow = legacy-tool research that may be low-fit. This week's search terms are <b>overwhelmingly on-intent</b> — the account is spending on the right queries. India drives the most non-brand volume ("oem analytics", "power bi embedded"), Brazil/US carry the compete queries.</p>
     </div>
 
-    <div class="sec"><span class="n">1</span>Top search terms this week — triage</div>
+    <div class="sec fbx"><span class="n">1</span>Top search terms this week — triage</div>
     <div class="dtable"><table>
       <thead><tr><th>Search term</th><th>Campaign</th><th class="num">Impr.</th><th class="num">Clicks</th><th class="num">Cost</th><th>Call</th></tr></thead>
       <tbody>
@@ -291,7 +322,7 @@
     </table></div>
     <p class="note">No material budget waste in the term stream this week — the few junk queries ("emdadman dashboard", misspells like "revibeai/ribenlvyou") drew 0 clicks / $0. Add as negatives to keep the stream clean. "metabase alternative" family is yellow: legacy free-tool research, lower ICP fit, but cheap.</p>
 
-    <div class="sec"><span class="n">2</span>Live keyword book — top performers (30-day)</div>
+    <div class="sec fbx"><span class="n">2</span>Live keyword book — top performers (30-day)</div>
     <div class="dtable"><table>
       <thead><tr><th>Keyword</th><th>Match</th><th>Campaign</th><th class="num">Impr.</th><th class="num">Clicks</th><th class="num">Cost</th></tr></thead>
       <tbody>
@@ -308,7 +339,7 @@
     </table></div>
     <p class="note">Full book pulled including zero-impression rows (~430 keywords). Book is deep and on-strategy across brand, compete (Power BI, Metabase, Luzmo, Tableau, ThoughtSpot, Domo, Sisense, GoodData, Bold BI, Logi), and non-brand (embedded analytics/BI, white-label, OEM). Note a live Japanese APAC campaign (BI 無料, データ分析 ツール) running broad match.</p>
 
-    <div class="sec"><span class="n">3</span>True coverage gaps — add as EXACT (not in live book)</div>
+    <div class="sec fbx"><span class="n">3</span>True coverage gaps — add as EXACT (not in live book)</div>
     <div class="dtable"><table>
       <thead><tr><th>Keyword (add EXACT)</th><th>Cluster</th><th class="num">US vol</th><th class="num">CPC</th><th class="num">KD</th><th>Priority</th></tr></thead>
       <tbody>
@@ -327,7 +358,7 @@
   <!-- ============ TAB 4: AD COPY ============ -->
   <section class="tabpanel" data-tab="adcopy" data-label="Ad Copy">
 
-    <div class="sec"><span class="n">1</span>RSA headlines — served vs CTR (30-day)</div>
+    <div class="sec fbx"><span class="n">1</span>RSA headlines — served vs CTR (30-day)</div>
     <div class="dtable"><table>
       <thead><tr><th>Headline</th><th class="num">Impr.</th><th class="num">Clicks</th><th class="num">CTR</th><th>Read</th></tr></thead>
       <tbody>
@@ -341,7 +372,7 @@
       </tbody>
     </table></div>
 
-    <div class="sec"><span class="n">2</span>Descriptions — the underserved winners</div>
+    <div class="sec fbx"><span class="n">2</span>Descriptions — the underserved winners</div>
     <div class="dtable"><table>
       <thead><tr><th>Description</th><th class="num">Impr.</th><th class="num">Clicks</th><th class="num">CTR</th><th>Read</th></tr></thead>
       <tbody>
@@ -355,10 +386,10 @@
     </table></div>
     <p class="note"><b>Winning themes:</b> social proof ("Trusted by SaaS teams"), direct compete framing ("Looking for an alternative?"), SDK-first + white-label. These pull 4–6.5% CTR but are barely in rotation, while generic "affordable/fixed-price" copy is over-served at &lt;1%. Rebalance the RSA asset mix toward the proof/compete/SDK angle.</p>
 
-    <div class="sec"><span class="n">3</span>US vs International copy</div>
+    <div class="sec fbx"><span class="n">3</span>US vs International copy</div>
     <div class="cards">
-      <div class="card"><div class="ch"><span class="nm">US / English</span><span class="sp">strong volume</span></div><div class="cb">Deep RSA set, but skewed to "affordable / fixed price". The high-CTR proof and compete lines are underweight. <b>Gap:</b> add more compete-specific headlines ("See Why SaaS Teams Switch" already at 4.7% — scale it).</div></div>
-      <div class="card"><div class="ch"><span class="nm">Japan / APAC</span><span class="sp">only graded set</span></div><div class="cb">Japanese assets ("アプリに直接組み込むBI機能", "「作るBI」から「組み込むBI」へ") are the <b>only</b> assets Google has graded "Good". Localized message is landing — consider extending the localized playbook to other non-EN regions (Brazil PT).</div></div>
+      <div class="card fbx"><div class="ch"><span class="nm">US / English</span><span class="sp">strong volume</span></div><div class="cb">Deep RSA set, but skewed to "affordable / fixed price". The high-CTR proof and compete lines are underweight. <b>Gap:</b> add more compete-specific headlines ("See Why SaaS Teams Switch" already at 4.7% — scale it).</div></div>
+      <div class="card fbx"><div class="ch"><span class="nm">Japan / APAC</span><span class="sp">only graded set</span></div><div class="cb">Japanese assets ("アプリに直接組み込むBI機能", "「作るBI」から「組み込むBI」へ") are the <b>only</b> assets Google has graded "Good". Localized message is landing — consider extending the localized playbook to other non-EN regions (Brazil PT).</div></div>
     </div>
     <p class="note"><b>Grading blind spot:</b> nearly every English asset shows "Pending information" — Google has not yet graded the bulk of the RSA library, so lean on served-impression + CTR (above) to judge, not the Ad Strength label.</p>
   </section>
@@ -366,7 +397,7 @@
   <!-- ============ TAB 5: CREATIVE ============ -->
   <section class="tabpanel" data-tab="creative" data-label="Creative">
 
-    <div class="sec"><span class="n">1</span>Live creative — actual assets (30-day)</div>
+    <div class="sec fbx"><span class="n">1</span>Live creative — actual assets (30-day)</div>
     <div class="gal">
       <div class="item"><img src="https://tpc.googlesyndication.com/simgad/9672679339688012062" alt="Reveal logo square" loading="lazy"><div class="cap"><b>Logo — square</b><br>546k impr · 5,297 clk · 0.97%</div></div>
       <div class="item"><img src="https://tpc.googlesyndication.com/simgad/1332486347453723894" alt="Theming feature 1200x1200" loading="lazy"><div class="cap"><b>Theming 1:1</b><br>104k impr · 1,199 clk · <span class="up-c">1.15%</span></div></div>
@@ -378,7 +409,7 @@
       <div class="item"><img src="https://tpc.googlesyndication.com/simgad/7541330117426025426" alt="Banking risk dashboard" loading="lazy"><div class="cap"><b>Banking dashboard 1.91:1</b><br>33k impr · 290 clk · 0.89%</div></div>
     </div>
 
-    <div class="sec"><span class="n">2</span>Format performance (30-day)</div>
+    <div class="sec fbx"><span class="n">2</span>Format performance (30-day)</div>
     <div class="dtable"><table>
       <thead><tr><th>Asset format</th><th class="num">Impr.</th><th class="num">Clicks</th><th class="num">CTR</th></tr></thead>
       <tbody>
@@ -393,31 +424,31 @@
       </tbody>
     </table></div>
 
-    <div class="sec"><span class="n">3</span>Fatigue &amp; refresh map</div>
+    <div class="sec fbx"><span class="n">3</span>Fatigue &amp; refresh map</div>
     <div class="cards">
-      <div class="card"><div class="ch"><span class="nm">Scale</span><span class="sp">winners</span></div><div class="cb"><b>Theming</b> and <b>Complete Control (1.91:1)</b> creatives run 1.15–1.83% CTR — well above the 0.6–0.9% pack. Push more budget/impressions to these; build variants on the theming concept.</div></div>
-      <div class="card"><div class="ch"><span class="nm">Refresh</span><span class="sp">tiring / weak</span></div><div class="cb"><b>Demand Gen carousel</b> (0.62%) and <b>square marketing images</b> (0.76%) lag. The carousel is the weakest format and is heavily served in DemandGen — refresh with the theming/dashboard concept that's winning elsewhere.</div></div>
+      <div class="card fbx"><div class="ch"><span class="nm">Scale</span><span class="sp">winners</span></div><div class="cb"><b>Theming</b> and <b>Complete Control (1.91:1)</b> creatives run 1.15–1.83% CTR — well above the 0.6–0.9% pack. Push more budget/impressions to these; build variants on the theming concept.</div></div>
+      <div class="card fbx"><div class="ch"><span class="nm">Refresh</span><span class="sp">tiring / weak</span></div><div class="cb"><b>Demand Gen carousel</b> (0.62%) and <b>square marketing images</b> (0.76%) lag. The carousel is the weakest format and is heavily served in DemandGen — refresh with the theming/dashboard concept that's winning elsewhere.</div></div>
     </div>
     <div class="cards" style="margin-top:12px">
-      <div class="card"><div class="ch"><span class="nm">New creative needed</span><span class="sp">gap</span></div><div class="cb">Compete-specific creative is thin — most images are generic feature shots. Build side-by-side "vs" visuals to match the high-CTR compete copy on Tab 4.</div></div>
-      <div class="card"><div class="ch"><span class="nm">Blind spot</span><span class="sp">measurement</span></div><div class="cb">Google has graded almost nothing ("Pending information"), and <b>DemandGen marketing images + YouTube aren't URL-exposed</b> in the feed — their thumbnails can't be shown here; performance is covered in the format table only.</div></div>
+      <div class="card fbx"><div class="ch"><span class="nm">New creative needed</span><span class="sp">gap</span></div><div class="cb">Compete-specific creative is thin — most images are generic feature shots. Build side-by-side "vs" visuals to match the high-CTR compete copy on Tab 4.</div></div>
+      <div class="card fbx"><div class="ch"><span class="nm">Blind spot</span><span class="sp">measurement</span></div><div class="cb">Google has graded almost nothing ("Pending information"), and <b>DemandGen marketing images + YouTube aren't URL-exposed</b> in the feed — their thumbnails can't be shown here; performance is covered in the format table only.</div></div>
     </div>
   </section>
 
   <!-- ============ TAB 6: LANDING PAGES ============ -->
   <section class="tabpanel" data-tab="landing" data-label="Landing Pages">
 
-    <div class="sec"><span class="n">1</span>GA4 google/cpc — this week</div>
+    <div class="sec fbx"><span class="n">1</span>GA4 google/cpc — this week</div>
     <div class="kpigrid">
-      <div class="kpi"><span class="lab">Sessions</span><span class="val">1,180</span><span class="delta down">▼ 10.8%</span></div>
-      <div class="kpi"><span class="lab">Engaged sessions</span><span class="val">415</span><span class="delta down">▼ 11.9%</span></div>
-      <div class="kpi"><span class="lab">Engagement rate</span><span class="val">35.2%</span><span class="delta flat">−0.4pt</span></div>
-      <div class="kpi"><span class="lab">Bounce rate</span><span class="val">64.8%</span><span class="delta flat">+0.4pt</span></div>
-      <div class="kpi"><span class="lab">Views / session</span><span class="val">1.35</span><span class="delta flat">+0.02</span></div>
+      <div class="kpi fbx"><span class="lab">Sessions</span><span class="val">1,180</span><span class="delta down">▼ 10.8%</span></div>
+      <div class="kpi fbx"><span class="lab">Engaged sessions</span><span class="val">415</span><span class="delta down">▼ 11.9%</span></div>
+      <div class="kpi fbx"><span class="lab">Engagement rate</span><span class="val">35.2%</span><span class="delta flat">−0.4pt</span></div>
+      <div class="kpi fbx"><span class="lab">Bounce rate</span><span class="val">64.8%</span><span class="delta flat">+0.4pt</span></div>
+      <div class="kpi fbx"><span class="lab">Views / session</span><span class="val">1.35</span><span class="delta flat">+0.02</span></div>
     </div>
     <p class="note">GA4 matures ~48h, so the last two days of this week (Jul 25–26) are still filling in — treat the −10.8% session dip as partly stale, not a true collapse. Engagement quality held flat WoW. (Avg session duration is volatile on this small base — 123s this week vs an outlier-inflated 626s prior week — so it's excluded from the KPI row.)</p>
 
-    <div class="sec"><span class="n">2</span>Trend since GA4 property start (~Dec 2025)</div>
+    <div class="sec fbx"><span class="n">2</span>Trend since GA4 property start (~Dec 2025)</div>
     <div class="grid2">
       <div class="chartcard"><div class="ct">Sessions / month — google/cpc</div>
         <svg viewBox="0 0 460 170" role="img" aria-label="Monthly sessions line chart">
@@ -456,7 +487,7 @@
       </div>
     </div>
 
-    <div class="sec"><span class="n">3</span>Where paid traffic lands</div>
+    <div class="sec fbx"><span class="n">3</span>Where paid traffic lands</div>
     <div class="splitbar">
       <span style="width:85.3%;background:var(--bad)">Homepage 85.3%</span>
       <span style="width:14.7%;background:var(--good)">Intent pages 14.7%</span>
@@ -474,7 +505,7 @@
     </div>
     <p class="note">Non-home pages only (homepage excluded so bars stay readable). Bar color = bounce health (green &lt;50%, amber 50–70%, red &gt;70%). The <code>/reveal-vs-*</code> pages are the healthiest landing spots — more reason to route compete traffic there.</p>
 
-    <div class="sec"><span class="n">4</span>Device split &amp; per-device quality</div>
+    <div class="sec fbx"><span class="n">4</span>Device split &amp; per-device quality</div>
     <div class="donutwrap">
       <svg viewBox="0 0 42 42" width="150" height="150" role="img" aria-label="Device split donut">
         <circle cx="21" cy="21" r="15.9" fill="none" stroke="#eef0f5" stroke-width="6"/>
@@ -492,7 +523,7 @@
     </div>
     <p class="note">Traffic is mobile-heavy (74.5%), but <b>desktop engages better and stays 3x longer</b> (269s vs 83s). Our buyers (CTO/dev) evaluate on desktop — the mobile skew comes from DemandGen/PMax and is lower-quality. Consider device bid adjustments favoring desktop for capture campaigns.</p>
 
-    <div class="sec"><span class="n">5</span>Engagement by campaign — Search vs DemandGen quality</div>
+    <div class="sec fbx"><span class="n">5</span>Engagement by campaign — Search vs DemandGen quality</div>
     <div class="dtable"><table>
       <thead><tr><th>Campaign</th><th class="num">Sessions</th><th class="num">Engagement</th><th class="num">Bounce</th><th class="num">Avg dur</th></tr></thead>
       <tbody>
@@ -512,7 +543,7 @@
   <!-- ============ TAB 7: JOURNEY & ROI ============ -->
   <section class="tabpanel" data-tab="journey" data-label="Journey &amp; ROI">
 
-    <div class="sec"><span class="n">1</span>The funnel — spend → clicks → sessions → leads → opps → pipeline</div>
+    <div class="sec fbx"><span class="n">1</span>The funnel — spend → clicks → sessions → leads → opps → pipeline</div>
     <div class="funnel">
       <div class="frow"><div><div class="flab">Spend (Google Ads)</div><div class="fmeta">AW · this week</div></div><div class="fbar" style="width:100%">$8,135</div></div>
       <div class="frow"><div><div class="flab">Clicks</div><div class="fmeta">AW</div></div><div class="fbar" style="width:70%">2,320</div></div>
@@ -523,7 +554,7 @@
     </div>
     <p class="note"><b>Where it breaks:</b> click→session drop (2,320→1,180) is ~half — partly GA4 lag/mobile bounce-before-load, partly homepage mismatch (Tab 6). The click→lead step can't be trusted yet because the <b>Google Ads conversion import is off</b> and Lead Events lag the click by weeks. Read discovery (first-touch, non-brand search) separately from conversion (last-touch, brand) — capture terms shouldn't be judged on last-click leads.</p>
 
-    <div class="sec"><span class="n">2</span>Paid leads — Lead Event, by campaign &amp; country</div>
+    <div class="sec fbx"><span class="n">2</span>Paid leads — Lead Event, by campaign &amp; country</div>
     <div class="dtable"><table>
       <thead><tr><th>Window</th><th class="num">Leads</th><th>Top campaigns</th><th>Countries</th></tr></thead>
       <tbody>
@@ -534,7 +565,7 @@
     </table></div>
     <p class="note">The WoW lead drop (19→7) is mostly the <b>Jul 21 webinar push ending</b> — 8 of prior week's leads were webinar-display signups, a one-time spike. Underlying brand + compete lead flow is steady. MTD 52 puts us on a ~62/mo run-rate, <b>below the 100/mo floor</b>.</p>
 
-    <div class="sec"><span class="n">3</span>Paid pipeline — Slingshot (PPC + Google), 2026</div>
+    <div class="sec fbx"><span class="n">3</span>Paid pipeline — Slingshot (PPC + Google), 2026</div>
     <div class="dtable"><table>
       <thead><tr><th>Campaign type</th><th class="num">Opps</th><th class="num">Pipeline $</th><th>Territory mix</th></tr></thead>
       <tbody>
@@ -549,7 +580,7 @@
     </table></div>
     <p class="note">New paid-Google opps: <b>1 in the prior week</b> ($50k, US, branded search); <b>0 net-new in this week</b> — consistent with the multi-week lead→opp lag, not a demand problem. Against a ~$35k/mo Google run-rate (~$245k over 7 months of 2026), ~$541k in paid-sourced pipeline is a healthy ≈2.2x pipeline-to-spend. Figures are the trailing 2026 paid-Google set extracted from the "2026 Opportunities" list; ABM/Organic/Referral and non-Google paid excluded.</p>
 
-    <div class="verdict">
+    <div class="verdict fbx">
       <div class="vh">Verdict — this week</div>
       <p><b>KEEP &amp; SCALE.</b> The engine is efficient and visibility is climbing on flat spend. The story of the week is that <b>budget is no longer the constraint — rank is</b> — so the growth levers are quality/bid, not dollars.</p>
       <p><b>Priorities (highest leverage first):</b></p>
@@ -580,6 +611,79 @@
     bar.appendChild(b);
     if(i===0) p.classList.add('on');
   });
+</script>
+
+<!-- ===== FEEDBACK LOOP (teaches the agent) ===== -->
+<style>
+  .fbx{position:relative}
+  .fbtn{position:absolute;top:6px;right:6px;z-index:3;width:22px;height:22px;border:none;border-radius:7px;background:#eef1fb;color:#2A41A2;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .12s;padding:0;box-shadow:0 1px 2px rgba(15,23,42,.14)}
+  .fbtn:hover{background:#2A41A2;color:#fff}
+  .fbtn svg{width:13px;height:13px}
+  .fbx:hover>.fbtn,.fbtn:focus-visible{opacity:1}
+  li.fbx>.fbtn{top:-1px;right:0;width:20px;height:20px}
+  .fbmodal{position:fixed;inset:0;background:rgba(15,23,42,.5);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
+  .fbmodal.on{display:flex}
+  .fbcard{background:#fff;border-radius:16px;max-width:470px;width:100%;box-shadow:0 20px 60px rgba(15,23,42,.32);overflow:hidden;font-family:'Roboto',system-ui,sans-serif}
+  .fbhd{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 20px}
+  .fbhd .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.85;font-weight:600}
+  .fbhd .l{font-size:15px;font-weight:800;margin-top:3px;line-height:1.3}
+  .fbbd{padding:16px 20px}
+  .fbbd label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#5f6b7a;display:block;margin:0 0 7px}
+  .fbcats{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+  .fbcat{font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;border:1.5px solid #e3e7f2;background:#fff;color:#41506b;cursor:pointer;font-family:inherit}
+  .fbcat.sel{border-color:#2A41A2;background:#eef1fb;color:#2A41A2}
+  .fbbd textarea{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13.5px;resize:vertical;min-height:74px;box-sizing:border-box}
+  .fbbd textarea:focus,.fbval:focus{outline:none;border-color:#2A41A2}
+  .fbvalwrap{display:none;margin-top:12px}.fbvalwrap.on{display:block}
+  .fbval{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:9px 12px;font-family:inherit;font-size:13.5px;box-sizing:border-box}
+  .fbft{display:flex;gap:10px;justify-content:flex-end;padding:14px 20px;border-top:1px solid #eef1f7;background:#fbfcff}
+  .fbbtn{font-family:inherit;font-size:13px;font-weight:600;padding:9px 15px;border-radius:9px;cursor:pointer;border:none}
+  .fbbtn.sec{background:#eef0f5;color:#41506b}
+  .fbbtn.pri{background:linear-gradient(120deg,#2A41A2,#3a54cf);color:#fff}
+  .fbbtn.pri:disabled{opacity:.5;cursor:not-allowed}
+  .fbtoast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0F172A;color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:300;opacity:0;transition:opacity .2s;box-shadow:0 8px 30px rgba(0,0,0,.3);max-width:90%;text-align:center;pointer-events:none}
+  .fbtoast.on{opacity:1}
+</style>
+<div class="fbmodal" id="fbModal" role="dialog" aria-modal="true" aria-label="Send feedback to the agent">
+  <div class="fbcard">
+    <div class="fbhd"><div class="k">Feedback to the agent</div><div class="l" id="fbLabel">—</div></div>
+    <div class="fbbd">
+      <label>What kind of feedback?</label>
+      <div class="fbcats" id="fbCats">
+        <button type="button" class="fbcat" data-cat="Won't do — strategic">Won't do — strategic</button>
+        <button type="button" class="fbcat" data-cat="Disagree">Disagree</button>
+        <button type="button" class="fbcat" data-cat="Wrong number">Wrong number</button>
+        <button type="button" class="fbcat" data-cat="Add context">Add context</button>
+        <button type="button" class="fbcat" data-cat="Approve">Approve</button>
+      </div>
+      <label>Why / details</label>
+      <textarea id="fbReason" placeholder="e.g. Hold this recommendation — we're deliberately doing X because Y."></textarea>
+      <div class="fbvalwrap" id="fbValWrap"><label>Correct value</label><input class="fbval" id="fbVal" placeholder="e.g. 168"></div>
+    </div>
+    <div class="fbft">
+      <button type="button" class="fbbtn sec" id="fbCancel">Cancel</button>
+      <button type="button" class="fbbtn pri" id="fbSend" disabled>Copy &amp; open Slingshot</button>
+    </div>
+  </div>
+</div>
+<div class="fbtoast" id="fbToast"></div>
+<script>
+(function(){
+  var FEEDBACK_URL="https://app.slingshotapp.io/openDiscussion/e97e10ef_b4c1ff6c-3dc7-47c1-909d-aaff8dcfb922";
+  var CHANNEL="Google Ads";
+  var SCOPE="body";
+  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+  var secs=[],modal,curLabel="",curSection="",cat=null;
+  function labelFor(el){var t=(el.getAttribute('data-fb-label')||el.textContent||'').replace(/\s+/g,' ').trim();return t.length>90?t.slice(0,88)+'…':t;}
+  function sectionFor(el){var best="";for(var i=0;i<secs.length;i++){if(secs[i].compareDocumentPosition(el)&Node.DOCUMENT_POSITION_FOLLOWING){best=secs[i].textContent.replace(/\s+/g,' ').trim();}}return best;}
+  function addIcons(){document.querySelectorAll(SCOPE+' .fbx').forEach(function(el){if(el.querySelector(':scope > .fbtn'))return;var b=document.createElement('button');b.className='fbtn';b.type='button';b.title='Send feedback to the agent';b.innerHTML=ICON;b.addEventListener('click',function(ev){ev.stopPropagation();ev.preventDefault();openModal(el);});el.appendChild(b);});}
+  function openModal(el){curLabel=labelFor(el);curSection=sectionFor(el);cat=null;document.getElementById('fbLabel').textContent=(curSection?curSection+' › ':'')+curLabel;document.getElementById('fbReason').value='';document.getElementById('fbVal').value='';document.getElementById('fbValWrap').classList.remove('on');document.querySelectorAll('.fbcat').forEach(function(c){c.classList.remove('sel');});document.getElementById('fbSend').disabled=true;modal.classList.add('on');setTimeout(function(){document.getElementById('fbReason').focus();},60);}
+  function closeModal(){modal.classList.remove('on');}
+  function refreshSend(){var r=document.getElementById('fbReason').value.trim();document.getElementById('fbSend').disabled=!(cat&&r);}
+  function toast(m){var t=document.getElementById('fbToast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on');},3600);}
+  function send(){var reason=document.getElementById('fbReason').value.trim();var val=document.getElementById('fbVal').value.trim();var d=new Date().toISOString().slice(0,10);var lines=['📋 *Agent feedback — Reveal '+CHANNEL+'*','Element: '+(curSection?curSection+' › ':'')+curLabel,'Category: '+cat,'Reason: '+reason];if(cat==='Wrong number'&&val)lines.push('Correct value: '+val);lines.push('Submitted: '+d);var payload=lines.join('\n');var done=function(){toast('Feedback copied — paste (⌘/Ctrl+V) into the Slingshot thread');window.open(FEEDBACK_URL,'_blank');closeModal();};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(payload).then(done,done);}else{var ta=document.createElement('textarea');ta.value=payload;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}}
+  document.addEventListener('DOMContentLoaded',function(){modal=document.getElementById('fbModal');secs=[].slice.call(document.querySelectorAll(SCOPE+' .sec, '+SCOPE+' h2, '+SCOPE+' h3'));addIcons();document.getElementById('fbCats').addEventListener('click',function(e){var b=e.target.closest('.fbcat');if(!b)return;cat=b.dataset.cat;document.querySelectorAll('.fbcat').forEach(function(c){c.classList.toggle('sel',c===b);});document.getElementById('fbValWrap').classList.toggle('on',cat==='Wrong number');refreshSend();});document.getElementById('fbReason').addEventListener('input',refreshSend);document.getElementById('fbCancel').addEventListener('click',closeModal);document.getElementById('fbSend').addEventListener('click',send);modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});});
+})();
 </script>
 </body>
 </html>
