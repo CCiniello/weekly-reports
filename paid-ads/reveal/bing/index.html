@@ -64,6 +64,18 @@
   .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
   .verdict p{font-size:15px;line-height:1.6;margin:0} .verdict b{color:var(--navy)}
   code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+
+  /* ===== VP READOUT ===== */
+  .vpbanner{border:1px solid #E9E9F4;border-radius:16px;overflow:hidden;margin:0 0 20px;box-shadow:0 1px 3px rgba(15,23,42,.05);font-family:'Roboto',system-ui,sans-serif}
+  .vpbanner .vbar{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .vpbanner .vbar .t{font-size:18px;font-weight:800}
+  .vpbanner .vbar .g{font-size:12.5px;color:#cdd6f7;font-weight:600;text-align:right}
+  .vpbanner .vrow{display:flex;gap:18px;align-items:flex-start;padding:16px 22px;border-top:1px solid #E9E9F4}
+  .vpbanner .vrow:first-of-type{border-top:none}
+  .pill2{flex:none;width:92px;text-align:center;font-size:11px;font-weight:800;letter-spacing:.05em;padding:5px 0;border-radius:16px;text-transform:uppercase;margin-top:2px}
+  .pill2.fix{background:#fde8ec;color:#c62a4f}.pill2.work{background:#e3f5ec;color:#127a45}.pill2.watch{background:#fdf0d6;color:#8a6412}
+  .vrow .rtx h4{margin:0 0 4px;font-size:15px;color:#0F172A;font-weight:800}
+  .vrow .rtx p{margin:0;font-size:13.5px;color:#5f6b7a;line-height:1.55}
 </style>
 </head>
 <body class="theme-reveal">
@@ -74,21 +86,39 @@
     <h1>Bing Ads Weekly / Reveal</h1>
     <div class="meta"><span>Week of <b>Jul 27, 2026</b></span><span>This week <b>Jul 18&ndash;24</b> vs prior <b>Jul 11&ndash;17</b></span></div>
   </header>
+  <div class="vpbanner">
+    <div class="vbar">
+      <div class="t">VP Readout &mdash; 30-second view</div>
+      <div class="g">Goal: qualified demand on the terms buyers actually search</div>
+    </div>
+    <div class="vrow fbx">
+      <div class="pill2 fix">Fix</div>
+      <div class="rtx"><h4>Close-variant matching leaked ~$115 on off-ICP searches</h4><p>Bing's &ldquo;Exact (close variant)&rdquo; expansion billed us for junk like &ldquo;bi worldwide&rdquo; and &ldquo;grok&rdquo; despite tight keywords &mdash; add 5 negatives to recover it.</p></div>
+    </div>
+    <div class="vrow fbx">
+      <div class="pill2 work">Working</div>
+      <div class="rtx"><h4>Same spend bought more &mdash; and better &mdash; traffic</h4><p>CPC fell 22% to $1.69, clicks rose 31%, and site engagement rebounded to 73% with bounce down to 27%.</p></div>
+    </div>
+    <div class="vrow fbx">
+      <div class="pill2 watch">Watch</div>
+      <div class="rtx"><h4>We still can't prove a lead</h4><p>The Bing pixel logged 1 conversion, GA4 attributes 4, and there's no Bing LeadSource in Salesforce &mdash; CPL sits ~$176 vs the $75 target.</p></div>
+    </div>
+  </div>
   <div class="tabbar" id="tabbar"></div>
   <div id="panels">
 <section class="tabpanel" data-tab="overview" data-label="Overview">
-  <div class="sec"><span class="n">1</span>Executive summary</div>
-  <div class="lead">
+  <div class="sec fbx"><span class="n">1</span>Executive summary</div>
+  <div class="lead fbx">
     <p><b>Bing is working better this week than it has all month &mdash; but it is still not paying for itself on trackable leads.</b> Spend held flat at ~$700 while clicks jumped 31% and cost-per-click fell to $1.69, its lowest in the trend. The competitor-conquest engine (Compete-US) is doing the heavy lifting: it drove 360 of 416 clicks and pushed site engagement back up to 73% after a soft prior week.</p>
     <p>Is it worth the money? On the numbers we can trust, not yet. Bing's own pixel logged just <b>one</b> conversion; GA4 attributes <b>four</b> key events to bing/cpc, all from desktop and all net-new visitors landing on the vs-competitor pages. Even taking the generous GA4 count, cost-per-lead is ~$176 &mdash; well above our $75 ceiling &mdash; and we still cannot confirm a single Bing lead in Salesforce because there is no clean Bing LeadSource.</p>
     <p><b>Recommendation: HOLD and fix, do not scale.</b> The channel is finally cheap and engaging, so this is the week to fix tracking (UTM casing + SF attribution), plug the close-variant spend leaks, and give the brand campaign a second RSA and a rank bump. Prove a real lead lands in the CRM before adding budget.</p>
   </div>
 
-  <div class="sec"><span class="n">2</span>Week-over-week KPIs</div>
-  <div class="kpigrid"><div class="kpi"><div class="lab">Spend</div><div class="val">$703</div><div class="delta flat">+1% WoW</div></div><div class="kpi"><div class="lab">Clicks</div><div class="val">416</div><div class="delta up">+31% WoW</div></div><div class="kpi"><div class="lab">Avg CPC</div><div class="val">$1.69</div><div class="delta up">&darr; 22% (better)</div></div><div class="kpi"><div class="lab">CTR</div><div class="val">1.59%</div><div class="delta up">+0.51 pts</div></div><div class="kpi"><div class="lab">Bing-pixel conv</div><div class="val">1</div><div class="delta up">+1 vs 0</div></div></div>
-  <div class="kpigrid" style="margin-top:11px"><div class="kpi"><div class="lab">Impressions</div><div class="val">26,135</div><div class="delta down">&minus;12% WoW</div></div><div class="kpi"><div class="lab">CPL (Bing pixel)</div><div class="val">$703</div><div class="delta down">1 conversion</div></div><div class="kpi"><div class="lab">CPL (GA4)</div><div class="val">$176</div><div class="delta up">4 key events</div></div><div class="kpi"><div class="lab">GA4 conv (bing/cpc)</div><div class="val">4</div><div class="delta up">+4 vs 0</div></div><div class="kpi"><div class="lab">Engagement rate</div><div class="val">73%</div><div class="delta up">+11 pts</div></div></div>
+  <div class="sec fbx"><span class="n">2</span>Week-over-week KPIs</div>
+  <div class="kpigrid"><div class="kpi fbx"><div class="lab">Spend</div><div class="val">$703</div><div class="delta flat">+1% WoW</div></div><div class="kpi fbx"><div class="lab">Clicks</div><div class="val">416</div><div class="delta up">+31% WoW</div></div><div class="kpi fbx"><div class="lab">Avg CPC</div><div class="val">$1.69</div><div class="delta up">&darr; 22% (better)</div></div><div class="kpi fbx"><div class="lab">CTR</div><div class="val">1.59%</div><div class="delta up">+0.51 pts</div></div><div class="kpi fbx"><div class="lab">Bing-pixel conv</div><div class="val">1</div><div class="delta up">+1 vs 0</div></div></div>
+  <div class="kpigrid" style="margin-top:11px"><div class="kpi fbx"><div class="lab">Impressions</div><div class="val">26,135</div><div class="delta down">&minus;12% WoW</div></div><div class="kpi fbx"><div class="lab">CPL (Bing pixel)</div><div class="val">$703</div><div class="delta down">1 conversion</div></div><div class="kpi fbx"><div class="lab">CPL (GA4)</div><div class="val">$176</div><div class="delta up">4 key events</div></div><div class="kpi fbx"><div class="lab">GA4 conv (bing/cpc)</div><div class="val">4</div><div class="delta up">+4 vs 0</div></div><div class="kpi fbx"><div class="lab">Engagement rate</div><div class="val">73%</div><div class="delta up">+11 pts</div></div></div>
 
-  <div class="sec"><span class="n">3</span>Goal scoreboard</div>
+  <div class="sec fbx"><span class="n">3</span>Goal scoreboard</div>
   <div class="score"><table>
     <tr><th>Goal</th><th>Current</th><th>Target</th><th>Status</th><th>Progress vs goal</th></tr>
     <tr><td class="goal">Quality-lead CPL</td><td>$176 (GA4) &middot; $703 (pixel)</td><td>&le; $75</td><td><span class="pill bad">Behind</span></td><td>2.3&times; over on the generous count; volume too thin to trust either</td></tr>
@@ -98,18 +128,18 @@
     <tr><td class="goal">Conversion-tracking integrity</td><td>Pixel 1 vs GA4 4; no SF LeadSource</td><td>Aligned + SF-traceable</td><td><span class="pill bad">Behind</span></td><td>4&times; mismatch + UTM casing split (<code>cpc</code> vs <code>CPC</code>)</td></tr>
   </table></div>
 
-  <div class="sec"><span class="n">4</span>Working / not working</div>
+  <div class="sec fbx"><span class="n">4</span>Working / not working</div>
   <div class="cards">
-    <div class="card"><div class="ch"><span class="nm">What's working</span><span class="sp">momentum</span></div>
+    <div class="card fbx"><div class="ch"><span class="nm">What's working</span><span class="sp">momentum</span></div>
       <div class="cb">CPC fell to <b>$1.69</b> (&minus;22%) while clicks rose <b>+31%</b> &mdash; more traffic for the same money. Engagement rebounded to <b>73%</b> and bounce dropped to 27%. The <b>vs-competitor pages convert</b>: /reveal-vs-tableau and the homepage produced all 4 GA4 events, and the one brand query (&ldquo;reveal dashboard&rdquo;) fired the Bing pixel. Desktop + net-new visitors carry the quality.</div></div>
-    <div class="card"><div class="ch"><span class="nm">What's not working</span><span class="sp">leaks &amp; blind spots</span></div>
+    <div class="card fbx"><div class="ch"><span class="nm">What's not working</span><span class="sp">leaks &amp; blind spots</span></div>
       <div class="cb"><b>Tracking is not trustworthy:</b> pixel says 1, GA4 says 4, Salesforce says nothing. A <code>CPC</code>-vs-<code>cpc</code> UTM split is scattering sessions. <b>Close-variant expansion is leaking spend</b> &mdash; ~$36 on &ldquo;who is bi worldwide's biggest competitor&rdquo; and $8 on &ldquo;grok build competitors,&rdquo; both off-ICP. <b>Non-Brand-US</b> burned $51 for 2 clicks ($25 CPC). Brand loses 21% of impressions to rank.</div></div>
   </div>
 </section><section class="tabpanel" data-tab="campaigns" data-label="Campaigns">
-  <div class="sec"><span class="n">1</span>Budget pacing</div>
-  <div class="lead"><p><b>No campaign is capped by budget this week &mdash; every campaign shows 0% impressions lost to budget.</b> The visibility we're missing is a <b>rank</b> problem, not a spend problem, so more budget is not the lever right now. Compete-US absorbs the majority of spend ($490 of $703) and still holds 83% impression share. The three newly launched campaigns (Compete-Core-Terms-US, Compete-India, Non-Brand-India) are in learning and should be judged on a 4-week horizon, not today.</p></div>
+  <div class="sec fbx"><span class="n">1</span>Budget pacing</div>
+  <div class="lead fbx"><p><b>No campaign is capped by budget this week &mdash; every campaign shows 0% impressions lost to budget.</b> The visibility we're missing is a <b>rank</b> problem, not a spend problem, so more budget is not the lever right now. Compete-US absorbs the majority of spend ($490 of $703) and still holds 83% impression share. The three newly launched campaigns (Compete-Core-Terms-US, Compete-India, Non-Brand-India) are in learning and should be judged on a 4-week horizon, not today.</p></div>
 
-  <div class="sec"><span class="n">2</span>Per-campaign performance <span style="text-transform:none;letter-spacing:0;font-weight:400;color:var(--muted)">&mdash; pills = WoW</span></div>
+  <div class="sec fbx"><span class="n">2</span>Per-campaign performance <span style="text-transform:none;letter-spacing:0;font-weight:400;color:var(--muted)">&mdash; pills = WoW</span></div>
   <div class="dtable"><table>
     <tr><th>Campaign</th><th>Spend</th><th>Clicks</th><th>CTR</th><th>Impr share</th><th>Conv</th></tr>
     <tr><td>Compete-US</td><td class="num">$489.51 <span class="pill flat">+21%</span></td><td class="num">360 <span class="pill good">+25%</span></td><td class="num">1.54% <span class="pill good">+0.5</span></td><td class="num">83% <span class="pill good">+13</span></td><td class="num">0</td></tr>
@@ -123,7 +153,7 @@
   </table></div>
   <p style="font-size:12.5px;color:var(--muted);margin-top:8px">Prior-week baselines exist only for the 5 established campaigns; the 3 tagged NEW launched inside this window. Brand's "+14&times;" spend is off a tiny $3.29 base &mdash; real dollars are trivial, the story is that brand finally got clicks (9) and the week's only pixel conversion.</p>
 
-  <div class="sec"><span class="n">3</span>Match-type health</div>
+  <div class="sec fbx"><span class="n">3</span>Match-type health</div>
   <div class="dtable"><table>
     <tr><th>Bidded &rarr; Delivered</th><th>Impr</th><th>Clicks</th><th>Cost</th><th>CTR</th><th>Conv</th></tr>
     <tr><td>Exact &rarr; Exact</td><td class="num">26,113</td><td class="num">415</td><td class="num">$702.61</td><td class="num">1.59%</td><td class="num">1</td></tr>
@@ -132,28 +162,28 @@
   </table></div>
   <p style="font-size:13px;color:var(--muted);margin-top:8px">Broad match is <b>not</b> the leak &mdash; the account is essentially 100% Exact bidded. The leak vector on Bing is <b>&ldquo;Exact (close variant)&rdquo; expansion</b>: Microsoft delivers Exact keywords against loosely-related queries. That's how off-ICP searches like &ldquo;who is bi worldwide's biggest competitor&rdquo; and &ldquo;grok build competitors&rdquo; billed us despite tight keywords. Tighten with negatives (see Search Terms tab), not match-type changes.</p>
 </section><section class="tabpanel" data-tab="copy" data-label="Copy">
-  <div class="sec"><span class="n">1</span>Ad-level delivery &amp; CTR (top campaigns)</div>
-  <div class="lead"><p>The Adzviser connector returns RSA performance by <b>Ad ID</b> but not the headline/description text &mdash; open each Ad ID in the Microsoft Ads UI to read wording. Below are the ads carrying (or wasting) delivery this week. All ads are Responsive Search Ads.</p></div>
+  <div class="sec fbx"><span class="n">1</span>Ad-level delivery &amp; CTR (top campaigns)</div>
+  <div class="lead fbx"><p>The Adzviser connector returns RSA performance by <b>Ad ID</b> but not the headline/description text &mdash; open each Ad ID in the Microsoft Ads UI to read wording. Below are the ads carrying (or wasting) delivery this week. All ads are Responsive Search Ads.</p></div>
   <div class="dtable"><table>
     <tr><th>Ad ID</th><th>Campaign</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>Cost</th><th>Read</th></tr>
     <tr><td>82257647659154</td><td>Compete-US</td><td class="num">10,249</td><td class="num">151</td><td class="num">1.47%</td><td class="num">$157.66</td><td>Over-served workhorse &mdash; most spend, 0 conv</td></tr>
     <tr><td>82738683446869</td><td>Compete-US</td><td class="num">4,655</td><td class="num">74</td><td class="num">1.59%</td><td class="num">$73.52</td><td>Solid volume, holding CTR</td></tr>
     <tr><td>82326365952345</td><td>Compete-US</td><td class="num">1,977</td><td class="num">36</td><td class="num">1.82%</td><td class="num">$47.97</td><td>Best CTR of the high-volume set &mdash; scale learnings</td></tr>
-    <tr><td>82944844437671</td><td>Compete-Core-Terms-US</td><td class="num">311</td><td class="num">0</td><td class="num">0%</td><td class="num">$0.00</td><td>New, no traction yet &mdash; watch, don't cut</td></tr>
+    <tr><td>82082... 82944844437671</td><td>Compete-Core-Terms-US</td><td class="num">311</td><td class="num">0</td><td class="num">0%</td><td class="num">$0.00</td><td>New, no traction yet &mdash; watch, don't cut</td></tr>
     <tr><td>82463805788241</td><td>Compete-English-Intl</td><td class="num">593</td><td class="num">18</td><td class="num">3.04%</td><td class="num">$78.76</td><td>Strongest CTR overall &mdash; but pricey clicks</td></tr>
     <tr><td>82738683446868</td><td>Non-Brand-US</td><td class="num">19</td><td class="num">2</td><td class="num">10.53%</td><td class="num">$50.86</td><td>High CTR but $25 CPC &mdash; starved &amp; expensive</td></tr>
     <tr><td>82051437750419</td><td>Brand-Terms-WW</td><td class="num">76</td><td class="num">9</td><td class="num">11.84%</td><td class="num">$46.70</td><td>Only brand RSA &mdash; drove the week's 1 conversion</td></tr>
   </table></div>
 
-  <div class="sec"><span class="n">2</span>Actions on copy</div>
+  <div class="sec fbx"><span class="n">2</span>Actions on copy</div>
   <div class="cards">
-    <div class="card"><div class="ch"><span class="nm">Prune / rebalance</span><span class="sp">Compete-US</span></div>
+    <div class="card fbx"><div class="ch"><span class="nm">Prune / rebalance</span><span class="sp">Compete-US</span></div>
       <div class="cb">Ad <b>82257647659154</b> soaked up <b>$158</b> and 10.2k impressions at a middling 1.47% CTR with zero conversions &mdash; it's over-served but weak. Shift impression weight toward <b>82326365952345</b> (1.82% CTR) and pause the lowest-CTR variant in the ad group to stop subsidizing the laggard.</div></div>
-    <div class="card"><div class="ch"><span class="nm">Add a 2nd Brand RSA</span><span class="sp">Brand-Terms-WW</span></div>
+    <div class="card fbx"><div class="ch"><span class="nm">Add a 2nd Brand RSA</span><span class="sp">Brand-Terms-WW</span></div>
       <div class="cb">Brand runs on a <b>single RSA</b> (82051437750419). It's our best converter, so it's a single point of failure with no A/B signal. Ship a second brand RSA this week so Microsoft can optimize and we protect the term that actually produces leads.</div></div>
   </div>
 </section><section class="tabpanel" data-tab="terms" data-label="Search Terms">
-  <div class="sec"><span class="n">1</span>Converting / on-ICP queries</div>
+  <div class="sec fbx"><span class="n">1</span>Converting / on-ICP queries</div>
   <div class="dtable"><table>
     <tr><th>Query</th><th>Match</th><th>Clicks</th><th>Conv</th><th>Cost</th><th>Read</th></tr>
     <tr><td>reveal dashboard</td><td>Exact</td><td class="num">1</td><td class="num">1</td><td class="num">$8.06</td><td>The week's only pixel conversion &mdash; brand</td></tr>
@@ -164,7 +194,7 @@
     <tr><td>reveal pricing</td><td>Exact</td><td class="num">1</td><td class="num">0</td><td class="num">$7.62</td><td>High-intent brand</td></tr>
   </table></div>
 
-  <div class="sec"><span class="n">2</span>Wasted queries &mdash; negatives to add</div>
+  <div class="sec fbx"><span class="n">2</span>Wasted queries &mdash; negatives to add</div>
   <div class="dtable"><table>
     <tr><th>Query</th><th>Clicks</th><th>Cost</th><th>Why it's waste</th><th>Add negative</th></tr>
     <tr><td>who is bi worldwide's biggest competitor</td><td class="num">1</td><td class="num">$28.44</td><td>BI Worldwide = employee-engagement firm, not BI software</td><td><code>bi worldwide</code></td></tr>
@@ -175,13 +205,13 @@
   </table></div>
   <p style="font-size:13px;color:var(--muted);margin-top:8px">Every wasted query above was served through <b>&ldquo;Exact (close variant)&rdquo;</b> expansion &mdash; the keyword was tight, Microsoft matched loosely. Roughly <b>$115</b> of this week's $703 went to close-variant queries with no ICP fit and zero conversions. Adding the five negatives recovers most of it and sharpens the account for next week.</p>
 </section><section class="tabpanel" data-tab="landing" data-label="Landing Pages">
-  <div class="lead"><p>Bing traffic lands overwhelmingly on the <b>vs-competitor comparison pages</b> &mdash; the right destination for conquest intent. Engagement is strong and both conversions-worthy pages (/reveal-vs-tableau and the homepage) did the converting. Below: the 5-week trend, then page, device, and audience detail.</p></div>
+  <div class="lead fbx"><p>Bing traffic lands overwhelmingly on the <b>vs-competitor comparison pages</b> &mdash; the right destination for conquest intent. Engagement is strong and both conversions-worthy pages (/reveal-vs-tableau and the homepage) did the converting. Below: the 5-week trend, then page, device, and audience detail.</p></div>
 
-  <div class="sec"><span class="n">1</span>Trends &mdash; sessions, bounce &amp; engagement</div>
+  <div class="sec fbx"><span class="n">1</span>Trends &mdash; sessions, bounce &amp; engagement</div>
   <div style="border:1px solid var(--line);border-radius:12px;padding:14px 16px 6px"><svg viewBox="0 0 680 300" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Roboto,sans-serif"><line x1="48" y1="254.0" x2="636" y2="254.0" stroke="#E9E9F4"/><text x="42" y="257.0" font-size="9" fill="#8a93a3" text-anchor="end">0</text><line x1="48" y1="195.5" x2="636" y2="195.5" stroke="#E9E9F4"/><text x="42" y="198.5" font-size="9" fill="#8a93a3" text-anchor="end">140</text><line x1="48" y1="137.0" x2="636" y2="137.0" stroke="#E9E9F4"/><text x="42" y="140.0" font-size="9" fill="#8a93a3" text-anchor="end">280</text><line x1="48" y1="78.5" x2="636" y2="78.5" stroke="#E9E9F4"/><text x="42" y="81.5" font-size="9" fill="#8a93a3" text-anchor="end">420</text><line x1="48" y1="20.0" x2="636" y2="20.0" stroke="#E9E9F4"/><text x="42" y="23.0" font-size="9" fill="#8a93a3" text-anchor="end">560</text><text x="642" y="257.0" font-size="9" fill="#8a93a3" text-anchor="start">0%</text><text x="642" y="198.5" font-size="9" fill="#8a93a3" text-anchor="start">25%</text><text x="642" y="140.0" font-size="9" fill="#8a93a3" text-anchor="start">50%</text><text x="642" y="81.5" font-size="9" fill="#8a93a3" text-anchor="start">75%</text><text x="642" y="23.0" font-size="9" fill="#8a93a3" text-anchor="start">100%</text><rect x="77.4" y="225.2" width="58.8" height="28.8" rx="3" fill="#6C8CFD" opacity="0.85"/><text x="106.8" y="221.2" font-size="9.5" fill="#41506b" text-anchor="middle" font-weight="600">69</text><text x="106.8" y="270.0" font-size="10" fill="#5f6b7a" text-anchor="middle">Jun20</text><rect x="195.0" y="42.1" width="58.8" height="211.9" rx="3" fill="#6C8CFD" opacity="0.85"/><text x="224.4" y="38.1" font-size="9.5" fill="#41506b" text-anchor="middle" font-weight="600">507</text><text x="224.4" y="270.0" font-size="10" fill="#5f6b7a" text-anchor="middle">Jun27</text><rect x="312.6" y="106.5" width="58.8" height="147.5" rx="3" fill="#6C8CFD" opacity="0.85"/><text x="342.0" y="102.5" font-size="9.5" fill="#41506b" text-anchor="middle" font-weight="600">353</text><text x="342.0" y="270.0" font-size="10" fill="#5f6b7a" text-anchor="middle">Jul4</text><rect x="430.2" y="137.0" width="58.8" height="117.0" rx="3" fill="#6C8CFD" opacity="0.85"/><text x="459.6" y="133.0" font-size="9.5" fill="#41506b" text-anchor="middle" font-weight="600">280</text><text x="459.6" y="270.0" font-size="10" fill="#5f6b7a" text-anchor="middle">Jul11</text><rect x="547.8" y="103.6" width="58.8" height="150.4" rx="3" fill="#6C8CFD" opacity="0.85"/><text x="577.2" y="99.6" font-size="9.5" fill="#41506b" text-anchor="middle" font-weight="600">360</text><text x="577.2" y="270.0" font-size="10" fill="#5f6b7a" text-anchor="middle">Jul18</text><polyline points="106.8,77.6 224.4,87.4 342.0,97.0 459.6,111.0 577.2,83.6" fill="none" stroke="#12915b" stroke-width="2.5"/><circle cx="106.8" cy="77.6" r="3.5" fill="#fff" stroke="#12915b" stroke-width="2"/><circle cx="224.4" cy="87.4" r="3.5" fill="#fff" stroke="#12915b" stroke-width="2"/><circle cx="342.0" cy="97.0" r="3.5" fill="#fff" stroke="#12915b" stroke-width="2"/><circle cx="459.6" cy="111.0" r="3.5" fill="#fff" stroke="#12915b" stroke-width="2"/><circle cx="577.2" cy="83.6" r="3.5" fill="#fff" stroke="#12915b" stroke-width="2"/><polyline points="106.8,196.4 224.4,186.6 342.0,177.0 459.6,163.0 577.2,190.4" fill="none" stroke="#c23b39" stroke-width="2.5"/><circle cx="106.8" cy="196.4" r="3.5" fill="#fff" stroke="#c23b39" stroke-width="2"/><circle cx="224.4" cy="186.6" r="3.5" fill="#fff" stroke="#c23b39" stroke-width="2"/><circle cx="342.0" cy="177.0" r="3.5" fill="#fff" stroke="#c23b39" stroke-width="2"/><circle cx="459.6" cy="163.0" r="3.5" fill="#fff" stroke="#c23b39" stroke-width="2"/><circle cx="577.2" cy="190.4" r="3.5" fill="#fff" stroke="#c23b39" stroke-width="2"/></svg><div style="display:flex;gap:16px;flex-wrap:wrap;margin:8px 2px 4px;font-size:12px;color:#5f6b7a"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#6C8CFD;display:inline-block"></span>Sessions (bars, left)</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#12915b;display:inline-block"></span>Engagement % (line, right)</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#c23b39;display:inline-block"></span>Bounce % (line, right)</span></div></div>
   <p style="font-size:13px;color:var(--muted);margin-top:8px">Sessions recovered to <b>360</b> after a 280-session dip, and engagement climbed back to <b>73%</b> as bounce fell to <b>27%</b> &mdash; the healthiest engagement/bounce split in a month. The late-June spike (507 sessions) was a mobile-heavy burst that engaged less well; this week's traffic is smaller but higher quality.</p>
 
-  <div class="sec"><span class="n">2</span>Landing pages</div>
+  <div class="sec fbx"><span class="n">2</span>Landing pages</div>
   <div class="dtable"><table>
     <tr><th>Landing page</th><th>Sessions</th><th>Bounce</th><th>Avg time</th><th>Engagement</th><th>Conv</th></tr>
     <tr><td>/reveal-vs-logi-analytics</td><td class="num">119</td><td class="num">26.9%</td><td class="num">2:26</td><td class="num">73.1%</td><td class="num">0</td></tr>
@@ -197,17 +227,17 @@
   </table></div>
   <p style="font-size:13px;color:var(--muted);margin-top:8px">/reveal-vs-logi-analytics pulls the most Bing traffic but hasn't converted &mdash; worth a CTA/offer check. /reveal-vs-tableau and the homepage are the proven converters; keep conquest bids weighted toward Tableau, Power BI and Logi.</p>
 
-  <div class="sec"><span class="n">3</span>Device</div>
+  <div class="sec fbx"><span class="n">3</span>Device</div>
   <div style="display:flex;gap:22px;flex-wrap:wrap;align-items:center;border:1px solid var(--line);border-radius:12px;padding:16px">
     <div style="text-align:center"><div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">This week</div><svg viewBox="0 0 180 180" width="180" height="180" xmlns="http://www.w3.org/2000/svg"><circle cx="90" cy="90" r="62" fill="none" stroke="#6C8CFD" stroke-width="26" stroke-dasharray="260.06 129.49" stroke-dashoffset="0.00" transform="rotate(-90 90 90)"/><circle cx="90" cy="90" r="62" fill="none" stroke="#EC417A" stroke-width="26" stroke-dasharray="119.78 269.78" stroke-dashoffset="-260.06" transform="rotate(-90 90 90)"/><circle cx="90" cy="90" r="62" fill="none" stroke="#FBB764" stroke-width="26" stroke-dasharray="9.71 379.85" stroke-dashoffset="-379.85" transform="rotate(-90 90 90)"/><text x="90" y="88" font-size="26" font-weight="700" fill="#212529" text-anchor="middle" font-family="Roboto Mono,monospace">67%</text><text x="90" y="106" font-size="10" fill="#5f6b7a" text-anchor="middle">Desktop</text></svg></div>
     <div style="flex:1;min-width:300px"><svg viewBox="0 0 440 230" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Roboto,sans-serif"><line x1="30" y1="190.0" x2="430" y2="190.0" stroke="#E9E9F4"/><text x="25" y="193.0" font-size="8.5" fill="#8a93a3" text-anchor="end">0</text><line x1="30" y1="146.0" x2="430" y2="146.0" stroke="#E9E9F4"/><text x="25" y="149.0" font-size="8.5" fill="#8a93a3" text-anchor="end">133</text><line x1="30" y1="102.0" x2="430" y2="102.0" stroke="#E9E9F4"/><text x="25" y="105.0" font-size="8.5" fill="#8a93a3" text-anchor="end">266</text><line x1="30" y1="58.0" x2="430" y2="58.0" stroke="#E9E9F4"/><text x="25" y="61.0" font-size="8.5" fill="#8a93a3" text-anchor="end">400</text><line x1="30" y1="14.0" x2="430" y2="14.0" stroke="#E9E9F4"/><text x="25" y="17.0" font-size="8.5" fill="#8a93a3" text-anchor="end">533</text><rect x="48.0" y="172.5" width="44.0" height="17.5" fill="#6C8CFD" opacity="0.9"/><rect x="48.0" y="167.2" width="44.0" height="5.3" fill="#EC417A" opacity="0.9"/><rect x="48.0" y="167.2" width="44.0" height="0.0" fill="#FBB764" opacity="0.9"/><text x="70.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jun20</text><text x="70.0" y="163.2" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">69</text><rect x="128.0" y="113.8" width="44.0" height="76.2" fill="#6C8CFD" opacity="0.9"/><rect x="128.0" y="28.3" width="44.0" height="85.5" fill="#EC417A" opacity="0.9"/><rect x="128.0" y="22.4" width="44.0" height="5.9" fill="#FBB764" opacity="0.9"/><text x="150.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jun27</text><text x="150.0" y="18.4" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">508</text><rect x="208.0" y="142.8" width="44.0" height="47.2" fill="#6C8CFD" opacity="0.9"/><rect x="208.0" y="74.8" width="44.0" height="68.0" fill="#EC417A" opacity="0.9"/><rect x="208.0" y="73.5" width="44.0" height="1.3" fill="#FBB764" opacity="0.9"/><text x="230.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jul4</text><text x="230.0" y="69.5" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">353</text><rect x="288.0" y="132.6" width="44.0" height="57.4" fill="#6C8CFD" opacity="0.9"/><rect x="288.0" y="100.9" width="44.0" height="31.7" fill="#EC417A" opacity="0.9"/><rect x="288.0" y="97.6" width="44.0" height="3.3" fill="#FBB764" opacity="0.9"/><text x="310.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jul11</text><text x="310.0" y="93.6" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">280</text><rect x="368.0" y="110.5" width="44.0" height="79.5" fill="#6C8CFD" opacity="0.9"/><rect x="368.0" y="73.9" width="44.0" height="36.6" fill="#EC417A" opacity="0.9"/><rect x="368.0" y="70.9" width="44.0" height="3.0" fill="#FBB764" opacity="0.9"/><text x="390.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jul18</text><text x="390.0" y="66.9" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">361</text></svg><div style="display:flex;gap:16px;flex-wrap:wrap;margin:8px 2px 4px;font-size:12px;color:#5f6b7a"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#6C8CFD;display:inline-block"></span>Desktop</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#EC417A;display:inline-block"></span>Mobile</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#FBB764;display:inline-block"></span>Tablet / other</span></div></div>
   </div>
   <p style="font-size:13px;color:var(--muted);margin-top:8px"><b>Desktop drives conversions &mdash; all 4 GA4 events came from desktop</b>, none from mobile or tablet. This week desktop reclaimed the majority (67%) after mobile-heavy late-June weeks; that shift toward desktop is exactly why engagement and conversions improved. Keep desktop bid adjustments positive.</p>
 
-  <div class="sec"><span class="n">4</span>New vs returning</div>
+  <div class="sec fbx"><span class="n">4</span>New vs returning</div>
   <div style="display:flex;gap:22px;flex-wrap:wrap;align-items:center;border:1px solid var(--line);border-radius:12px;padding:16px">
     <div style="text-align:center"><div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">This week</div><svg viewBox="0 0 180 180" width="180" height="180" xmlns="http://www.w3.org/2000/svg"><circle cx="90" cy="90" r="62" fill="none" stroke="#C9367F" stroke-width="26" stroke-dasharray="375.29 14.27" stroke-dashoffset="0.00" transform="rotate(-90 90 90)"/><circle cx="90" cy="90" r="62" fill="none" stroke="#6C8CFD" stroke-width="26" stroke-dasharray="14.27 375.29" stroke-dashoffset="-375.29" transform="rotate(-90 90 90)"/><text x="90" y="88" font-size="26" font-weight="700" fill="#212529" text-anchor="middle" font-family="Roboto Mono,monospace">96%</text><text x="90" y="106" font-size="10" fill="#5f6b7a" text-anchor="middle">New</text></svg></div>
-    <div style="flex:1;min-width:300px"><svg viewBox="0 0 440 230" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Roboto,sans-serif"><line x1="30" y1="190.0" x2="430" y2="190.0" stroke="#E9E9F4"/><text x="25" y="193.0" font-size="8.5" fill="#8a93a3" text-anchor="end">0</text><line x1="30" y1="146.0" x2="430" y2="146.0" stroke="#E9E9F4"/><text x="25" y="149.0" font-size="8.5" fill="#8a93a3" text-anchor="end">131</text><line x1="30" y1="102.0" x2="430" y2="102.0" stroke="#E9E9F4"/><text x="25" y="105.0" font-size="8.5" fill="#8a93a3" text-anchor="end">263</text><line x1="30" y1="58.0" x2="430" y2="58.0" stroke="#E9E9F4"/><text x="25" y="61.0" font-size="8.5" fill="#8a93a3" text-anchor="end">395</text><line x1="30" y1="14.0" x2="430" y2="14.0" stroke="#E9E9F4"/><text x="25" y="17.0" font-size="8.5" fill="#8a93a3" text-anchor="end">527</text><rect x="48.0" y="169.0" width="44.0" height="21.0" fill="#C9367F" opacity="0.9"/><rect x="48.0" y="167.0" width="44.0" height="2.0" fill="#6C8CFD" opacity="0.9"/><text x="70.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jun20</text><text x="70.0" y="163.0" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">69</text><rect x="128.0" y="25.7" width="44.0" height="164.3" fill="#C9367F" opacity="0.9"/><rect x="128.0" y="22.4" width="44.0" height="3.3" fill="#6C8CFD" opacity="0.9"/><text x="150.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jun27</text><text x="150.0" y="18.4" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">502</text><rect x="208.0" y="76.1" width="44.0" height="113.9" fill="#C9367F" opacity="0.9"/><rect x="208.0" y="72.5" width="44.0" height="3.7" fill="#6C8CFD" opacity="0.9"/><text x="230.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jul4</text><text x="230.0" y="68.5" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">352</text><rect x="288.0" y="101.8" width="44.0" height="88.2" fill="#C9367F" opacity="0.9"/><rect x="288.0" y="97.5" width="44.0" height="4.3" fill="#6C8CFD" opacity="0.9"/><text x="310.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jul11</text><text x="310.0" y="93.5" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">277</text><rect x="368.0" y="75.8" width="44.0" height="114.2" fill="#C9367F" opacity="0.9"/><rect x="368.0" y="71.5" width="44.0" height="4.3" fill="#6C8CFD" opacity="0.9"/><text x="390.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jul18</text><text x="390.0" y="67.5" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">355</text></svg><div style="display:flex;gap:16px;flex-wrap:wrap;margin:8px 2px 4px;font-size:12px;color:#5f6b7a"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#C9367F;display:inline-block"></span>New</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#6C8CFD;display:inline-block"></span>Returning</span></div></div>
+    <div style="flex:1;min-width:300px"><svg viewBox="0 0 440 230" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Roboto,sans-serif"><line x1="30" y1="190.0" x2="430" y2="190.0" stroke="#E9E9F4"/><text x="25" y="193.0" font-size="8.5" fill="#8a93a3" text-anchor="end">0</text><line x1="30" y1="146.0" x2="430" y2="146.0" stroke="#E9E9F4"/><text x="25" y="149.0" font-size="8.5" fill="#8a93a3" text-anchor="end">131</text><line x1="30" y1="102.0" x2="430" y2="102.0" stroke="#E9E9F4"/><text x="25" y="105.0" font-size="8.5" fill="#8a93a3" text-anchor="end">263</text><line x1="30" y1="58.0" x2="430" y2="58.0" stroke="#E9E9F4"/><text x="25" y="61.0" font-size="8.5" fill="#8a93a3" text-anchor="end">395</text><line x1="30" y1="14.0" x2="430" y2="14.0" stroke="#E9E9F4"/><text x="25" y="17.0" font-size="8.5" fill="#8a93a3" text-anchor="end">527</text><rect x="48.0" y="169.0" width="44.0" height="21.0" fill="#C9367F" opacity="0.9"/><rect x="48.0" y="167.0" width="44.0" height="2.0" fill="#6C8CFD" opacity="0.9"/><text x="70.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jun20</text><text x="70.0" y="163.0" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">69</text><rect x="128.0" y="25.7" width="44.0" height="164.3" fill="#C9367F" opacity="0.9"/><rect x="128.0" y="22.4" width="44.0" height="3.3" fill="#6C8CFD" opacity="0.9"/><text x="150.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jun27</text><text x="150.0" y="18.4" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">502</text><rect x="208.0" y="76.1" width="44.0" height="113.9" fill="#C9367F" opacity="0.9"/><rect x="208.0" y="72.5" width="44.0" height="3.7" fill="#6C8CFD" opacity="0.9"/><text x="230.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jul4</text><text x="230.0" y="68.5" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">352</text><rect x="288.0" y="101.8" width="44.0" height="88.2" fill="#C9367F" opacity="0.9"/><rect x="288.0" y="97.5" width="44.0" height="4.3" fill="#6C8CFD" opacity="0.9"/><text x="310.0" y="205.0" font-size="9.5" fill="#5f6b7a" text-anchor="middle">Jul11</text><text x="310.0" y="93.5" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">277</text><rect x="368.0" y="75.8" width="44.0" height="114.2" fill="#C9367F" opacity="0.9"/><rect x="368.0" y="71.5" width="44.0" height="4.3" fill="#6C8CFD" opacity="0.9"/><text x="390.0" y="205.0" font-size="9" fill="#41506b" text-anchor="middle" font-weight="600">355</text></svg><div style="display:flex;gap:16px;flex-wrap:wrap;margin:8px 2px 4px;font-size:12px;color:#5f6b7a"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#C9367F;display:inline-block"></span>New</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#6C8CFD;display:inline-block"></span>Returning</span></div></div>
   </div>
   <div class="dtable" style="margin-top:12px"><table>
     <tr><th>Audience</th><th>Sessions</th><th>Engagement</th><th>Avg time</th><th>Conv</th></tr>
@@ -217,10 +247,10 @@
   </table></div>
   <p style="font-size:13px;color:var(--muted);margin-top:8px"><b>Net-new dominates &mdash; 95% of sessions and all 4 conversions are first-time visitors</b>, consistent with a top-of-funnel conquest channel. Note the <b>UTM casing split</b>: GA4 shows a separate <code>bing / CPC</code> source (4 sessions) alongside the main <code>bing / cpc</code> (356). Standardize UTM medium to lowercase so sessions and any conversions stop fragmenting across two buckets.</p>
 </section><section class="tabpanel" data-tab="journey" data-label="Journey &amp; ROI">
-  <div class="sec"><span class="n">1</span>GA4 site engagement (WoW)</div>
-  <div class="kpigrid"><div class="kpi"><div class="lab">Sessions (bing/cpc)</div><div class="val">356</div><div class="delta up">+31% WoW</div></div><div class="kpi"><div class="lab">Engaged sessions</div><div class="val">260</div><div class="delta up">+56% WoW</div></div><div class="kpi"><div class="lab">Engagement rate</div><div class="val">73%</div><div class="delta up">+11 pts</div></div><div class="kpi"><div class="lab">Views</div><div class="val">564</div><div class="delta up">+42% WoW</div></div><div class="kpi"><div class="lab">GA4 conversions</div><div class="val">4</div><div class="delta up">+4 vs 0</div></div></div>
+  <div class="sec fbx"><span class="n">1</span>GA4 site engagement (WoW)</div>
+  <div class="kpigrid"><div class="kpi fbx"><div class="lab">Sessions (bing/cpc)</div><div class="val">356</div><div class="delta up">+31% WoW</div></div><div class="kpi fbx"><div class="lab">Engaged sessions</div><div class="val">260</div><div class="delta up">+56% WoW</div></div><div class="kpi fbx"><div class="lab">Engagement rate</div><div class="val">73%</div><div class="delta up">+11 pts</div></div><div class="kpi fbx"><div class="lab">Views</div><div class="val">564</div><div class="delta up">+42% WoW</div></div><div class="kpi fbx"><div class="lab">GA4 conversions</div><div class="val">4</div><div class="delta up">+4 vs 0</div></div></div>
 
-  <div class="sec"><span class="n">2</span>Funnel: spend &rarr; click &rarr; session &rarr; engaged &rarr; conversion</div>
+  <div class="sec fbx"><span class="n">2</span>Funnel: spend &rarr; click &rarr; session &rarr; engaged &rarr; conversion</div>
   <div class="dtable"><table>
     <tr><th>Stage</th><th>This week</th><th>Source</th><th>Read</th></tr>
     <tr><td>Spend</td><td class="num">$702.93</td><td>Adzviser (Bing)</td><td>Flat WoW</td></tr>
@@ -233,12 +263,12 @@
   </table></div>
   <p style="font-size:13px;color:var(--muted);margin-top:8px">The funnel doesn't break at the top &mdash; clicks convert to sessions and sessions engage. It breaks at the <b>measurement</b> of the bottom: we can see engaged intent but can't confirm a lead in the CRM.</p>
 
-  <div class="sec"><span class="n">3</span>The Salesforce attribution gap</div>
-  <div style="border:1px solid var(--bad);border-left:5px solid var(--bad);background:var(--bad-bg);border-radius:12px;padding:14px 18px;font-size:13.5px;line-height:1.55">
+  <div class="sec fbx"><span class="n">3</span>The Salesforce attribution gap</div>
+  <div class="fbx" style="border:1px solid var(--bad);border-left:5px solid var(--bad);background:var(--bad-bg);border-radius:12px;padding:14px 18px;font-size:13.5px;line-height:1.55">
     <b>We cannot confirm Bing pipeline in Salesforce.</b> There is no clean Bing <code>LeadSource</code>, so lead/opportunity attribution for this channel is traced only through GA4 <code>bing / cpc</code> + UTM &mdash; not the CRM. This week that trace shows 4 GA4 key events vs 1 Bing pixel conversion; the gap is definitional (GA4 counts multiple key-event types per session, the Bing pixel counts one primary action). Until a Bing LeadSource exists, treat all Bing &ldquo;conversion&rdquo; counts as <b>engagement proxies, not confirmed leads</b>, and do not scale budget on them.
   </div>
 
-  <div class="verdict">
+  <div class="verdict fbx">
     <div class="vh">Verdict &mdash; Hold &amp; Fix (do not scale)</div>
     <p>Bing got <b>cheaper and more engaging</b> this week &mdash; $1.69 CPC, +31% clicks, 73% engagement &mdash; but it still can't prove a $75 lead, and tracking is too broken to trust a scale decision. Fix the plumbing and stop the leaks this week; revisit budget only once a real Bing lead lands in Salesforce.</p>
     <div class="dtable" style="margin-top:12px;background:#fff"><table>
@@ -267,6 +297,88 @@
     bar.appendChild(b);
     if(i===0) p.classList.add('on');
   });
+</script>
+
+<!-- ===== FEEDBACK LOOP (teaches the agent) ===== -->
+<style>
+  .fbx{position:relative}
+  .fbtn{position:absolute;top:6px;right:6px;z-index:3;width:22px;height:22px;border:none;border-radius:7px;background:#eef1fb;color:#2A41A2;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .12s;padding:0;box-shadow:0 1px 2px rgba(15,23,42,.14)}
+  .fbtn:hover{background:#2A41A2;color:#fff}
+  .fbtn svg{width:13px;height:13px}
+  .fbx:hover>.fbtn,.fbtn:focus-visible{opacity:1}
+  .fbmodal{position:fixed;inset:0;background:rgba(15,23,42,.5);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
+  .fbmodal.on{display:flex}
+  .fbcard{background:#fff;border-radius:16px;max-width:470px;width:100%;box-shadow:0 20px 60px rgba(15,23,42,.32);overflow:hidden;font-family:'Roboto',system-ui,sans-serif}
+  .fbhd{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 20px}
+  .fbhd .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.85;font-weight:600}
+  .fbhd .l{font-size:15px;font-weight:800;margin-top:3px;line-height:1.3}
+  .fbbd{padding:16px 20px}
+  .fbbd label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#5f6b7a;display:block;margin:0 0 7px}
+  .fbcats{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+  .fbcat{font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;border:1.5px solid #e3e7f2;background:#fff;color:#41506b;cursor:pointer;font-family:inherit}
+  .fbcat.sel{border-color:#2A41A2;background:#eef1fb;color:#2A41A2}
+  .fbbd textarea{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13.5px;resize:vertical;min-height:74px;box-sizing:border-box}
+  .fbbd textarea:focus,.fbval:focus{outline:none;border-color:#2A41A2}
+  .fbvalwrap{display:none;margin-top:12px}.fbvalwrap.on{display:block}
+  .fbval{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:9px 12px;font-family:inherit;font-size:13.5px;box-sizing:border-box}
+  .fbft{display:flex;gap:10px;justify-content:flex-end;padding:14px 20px;border-top:1px solid #eef1f7;background:#fbfcff}
+  .fbbtn{font-family:inherit;font-size:13px;font-weight:600;padding:9px 15px;border-radius:9px;cursor:pointer;border:none}
+  .fbbtn.sec{background:#eef0f5;color:#41506b}
+  .fbbtn.pri{background:linear-gradient(120deg,#2A41A2,#3a54cf);color:#fff}
+  .fbbtn.pri:disabled{opacity:.5;cursor:not-allowed}
+  .fbtoast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0F172A;color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:300;opacity:0;transition:opacity .2s;box-shadow:0 8px 30px rgba(0,0,0,.3);max-width:90%;text-align:center;pointer-events:none}
+  .fbtoast.on{opacity:1}
+</style>
+<div class="fbmodal" id="fbModal" role="dialog" aria-modal="true" aria-label="Send feedback to the agent">
+  <div class="fbcard">
+    <div class="fbhd"><div class="k">Feedback to the agent</div><div class="l" id="fbLabel">&mdash;</div></div>
+    <div class="fbbd">
+      <label>What kind of feedback?</label>
+      <div class="fbcats" id="fbCats">
+        <button type="button" class="fbcat" data-cat="Won't do — strategic">Won't do — strategic</button>
+        <button type="button" class="fbcat" data-cat="Disagree">Disagree</button>
+        <button type="button" class="fbcat" data-cat="Wrong number">Wrong number</button>
+        <button type="button" class="fbcat" data-cat="Add context">Add context</button>
+        <button type="button" class="fbcat" data-cat="Approve">Approve</button>
+      </div>
+      <label>Why / details</label>
+      <textarea id="fbReason" placeholder="e.g. Hold this recommendation — we're deliberately doing X because Y."></textarea>
+      <div class="fbvalwrap" id="fbValWrap"><label>Correct value</label><input class="fbval" id="fbVal" placeholder="e.g. 168"></div>
+    </div>
+    <div class="fbft">
+      <button type="button" class="fbbtn sec" id="fbCancel">Cancel</button>
+      <button type="button" class="fbbtn pri" id="fbSend" disabled>Copy &amp; open Slingshot</button>
+    </div>
+  </div>
+</div>
+<div class="fbtoast" id="fbToast"></div>
+<script>
+(function(){
+  var FEEDBACK_URL="https://app.slingshotapp.io/openDiscussion/e97e10ef_b4c1ff6c-3dc7-47c1-909d-aaff8dcfb922";
+  var CHANNEL="Bing";
+  var SCOPE="body";
+  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+  var secs=[],modal,curLabel="",curSection="",cat=null;
+  function clean(t){return (t||'').replace(/\s+/g,' ').replace(/^\d+\s+/,'').trim();}
+  function labelFor(el){var t=clean(el.getAttribute('data-fb-label')||el.textContent||'');return t.length>90?t.slice(0,88)+'…':t;}
+  function sectionFor(el){
+    var panel=el.closest?el.closest('.tabpanel'):null;
+    var tab=panel?clean(panel.getAttribute('data-label')||''):'';
+    var best='';
+    for(var i=0;i<secs.length;i++){
+      if(panel&&!panel.contains(secs[i]))continue;
+      if(secs[i]===el||(secs[i].compareDocumentPosition(el)&Node.DOCUMENT_POSITION_FOLLOWING)){best=clean(secs[i].textContent);}
+    }
+    return tab?(best?tab+' › '+best:tab):best;
+  }
+  function addIcons(){document.querySelectorAll(SCOPE+' .fbx').forEach(function(el){if(el.querySelector(':scope > .fbtn'))return;var b=document.createElement('button');b.className='fbtn';b.type='button';b.title='Send feedback to the agent';b.innerHTML=ICON;b.addEventListener('click',function(ev){ev.stopPropagation();ev.preventDefault();openModal(el);});el.appendChild(b);});}
+  function openModal(el){curLabel=labelFor(el);curSection=sectionFor(el);cat=null;document.getElementById('fbLabel').textContent=(curSection?curSection+' › ':'')+curLabel;document.getElementById('fbReason').value='';document.getElementById('fbVal').value='';document.getElementById('fbValWrap').classList.remove('on');document.querySelectorAll('.fbcat').forEach(function(c){c.classList.remove('sel');});document.getElementById('fbSend').disabled=true;modal.classList.add('on');setTimeout(function(){document.getElementById('fbReason').focus();},60);}
+  function closeModal(){modal.classList.remove('on');}
+  function refreshSend(){var r=document.getElementById('fbReason').value.trim();document.getElementById('fbSend').disabled=!(cat&&r);}
+  function toast(m){var t=document.getElementById('fbToast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on');},3600);}
+  function send(){var reason=document.getElementById('fbReason').value.trim();var val=document.getElementById('fbVal').value.trim();var d=new Date().toISOString().slice(0,10);var lines=['📋 *Agent feedback — Reveal '+CHANNEL+'*','Element: '+(curSection?curSection+' › ':'')+curLabel,'Category: '+cat,'Reason: '+reason];if(cat==='Wrong number'&&val)lines.push('Correct value: '+val);lines.push('Submitted: '+d);var payload=lines.join('\n');var done=function(){toast('Feedback copied — paste (⌘/Ctrl+V) into the Slingshot thread');window.open(FEEDBACK_URL,'_blank');closeModal();};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(payload).then(done,done);}else{var ta=document.createElement('textarea');ta.value=payload;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}}
+  document.addEventListener('DOMContentLoaded',function(){modal=document.getElementById('fbModal');secs=[].slice.call(document.querySelectorAll(SCOPE+' .sec'));addIcons();document.getElementById('fbCats').addEventListener('click',function(e){var b=e.target.closest('.fbcat');if(!b)return;cat=b.dataset.cat;document.querySelectorAll('.fbcat').forEach(function(c){c.classList.toggle('sel',c===b);});document.getElementById('fbValWrap').classList.toggle('on',cat==='Wrong number');refreshSend();});document.getElementById('fbReason').addEventListener('input',refreshSend);document.getElementById('fbCancel').addEventListener('click',closeModal);document.getElementById('fbSend').addEventListener('click',send);modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});});
+})();
 </script>
 </body>
 </html>
