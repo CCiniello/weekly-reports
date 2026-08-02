@@ -74,6 +74,48 @@
   .verdict p{font-size:15px;line-height:1.6;margin:0} .verdict b{color:var(--navy)}
   code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
   a{color:var(--accent-deep)}
+
+  /* ===== VP READOUT BANNER (universal across Reveal reports) ===== */
+  .vpbanner{border:1px solid #E9E9F4;border-radius:16px;overflow:hidden;margin:0 0 18px;box-shadow:0 1px 3px rgba(15,23,42,.05);font-family:'Roboto',system-ui,sans-serif}
+  .vpbanner .vbar{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .vpbanner .vbar .t{font-size:18px;font-weight:800}
+  .vpbanner .vbar .g{font-size:12.5px;color:#cdd6f7;font-weight:600;text-align:right}
+  .vpbanner .vrow{display:flex;gap:18px;align-items:flex-start;padding:16px 22px;border-top:1px solid #E9E9F4}
+  .vpbanner .vrow:first-of-type{border-top:none}
+  .pill2{flex:none;width:92px;text-align:center;font-size:11px;font-weight:800;letter-spacing:.05em;padding:5px 0;border-radius:16px;text-transform:uppercase;margin-top:2px}
+  .pill2.fix{background:#fde8ec;color:#c62a4f}.pill2.work{background:#e3f5ec;color:#127a45}.pill2.watch{background:#fdf0d6;color:#8a6412}
+  .vrow .rtx h4{margin:0 0 4px;font-size:15px;color:#0F172A;font-weight:800}
+  .vrow .rtx p{margin:0;font-size:13.5px;color:#5f6b7a;line-height:1.55}
+
+  /* ===== FEEDBACK LOOP (universal across Reveal reports) ===== */
+  .fbx{position:relative}
+  .fbtn{position:absolute;top:6px;right:6px;z-index:3;width:22px;height:22px;border:none;border-radius:7px;background:#eef1fb;color:#2A41A2;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .12s;padding:0;box-shadow:0 1px 2px rgba(15,23,42,.14)}
+  .fbtn:hover{background:#2A41A2;color:#fff}
+  .fbtn svg{width:13px;height:13px}
+  .fbx:hover>.fbtn,.fbtn:focus-visible{opacity:1}
+  li.fbx>.fbtn{top:-1px;right:0;width:20px;height:20px}
+  .fbmodal{position:fixed;inset:0;background:rgba(15,23,42,.5);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
+  .fbmodal.on{display:flex}
+  .fbcard{background:#fff;border-radius:16px;max-width:470px;width:100%;box-shadow:0 20px 60px rgba(15,23,42,.32);overflow:hidden;font-family:'Roboto',system-ui,sans-serif}
+  .fbhd{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 20px}
+  .fbhd .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.85;font-weight:600}
+  .fbhd .l{font-size:15px;font-weight:800;margin-top:3px;line-height:1.3}
+  .fbbd{padding:16px 20px}
+  .fbbd label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#5f6b7a;display:block;margin:0 0 7px}
+  .fbcats{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+  .fbcat{font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;border:1.5px solid #e3e7f2;background:#fff;color:#41506b;cursor:pointer;font-family:inherit}
+  .fbcat.sel{border-color:#2A41A2;background:#eef1fb;color:#2A41A2}
+  .fbbd textarea{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13.5px;resize:vertical;min-height:74px;box-sizing:border-box}
+  .fbbd textarea:focus,.fbval:focus{outline:none;border-color:#2A41A2}
+  .fbvalwrap{display:none;margin-top:12px}.fbvalwrap.on{display:block}
+  .fbval{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:9px 12px;font-family:inherit;font-size:13.5px;box-sizing:border-box}
+  .fbft{display:flex;gap:10px;justify-content:flex-end;padding:14px 20px;border-top:1px solid #eef1f7;background:#fbfcff}
+  .fbbtn{font-family:inherit;font-size:13px;font-weight:600;padding:9px 15px;border-radius:9px;cursor:pointer;border:none}
+  .fbbtn.sec{background:#eef0f5;color:#41506b}
+  .fbbtn.pri{background:linear-gradient(120deg,#2A41A2,#3a54cf);color:#fff}
+  .fbbtn.pri:disabled{opacity:.5;cursor:not-allowed}
+  .fbtoast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0F172A;color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:300;opacity:0;transition:opacity .2s;box-shadow:0 8px 30px rgba(0,0,0,.3);max-width:90%;text-align:center;pointer-events:none}
+  .fbtoast.on{opacity:1}
 </style>
 </head>
 <body class="theme-reveal">
@@ -86,21 +128,40 @@
     <div class="meta"><span>Week of <b>July 27, 2026</b></span> <span>vs Luzmo · Explo · Qrvey · Domo</span></div>
   </header>
 
+  <div class="vpbanner">
+    <div class="vbar">
+      <div class="t">VP Readout &mdash; 30-second view</div>
+      <div class="g">Goal: win embedded-analytics deals vs Luzmo · Explo · Qrvey · Domo</div>
+    </div>
+    <div class="vrow fbx">
+      <div class="pill2 fix">Fix</div>
+      <div class="rtx"><h4>AI-answer visibility is stuck at the bottom</h4><p>Reveal shows in just 4.7% of LLM answers — last of the tracked set. Make comparison pages + listicle seeding the priority now, not a backlog item.</p></div>
+    </div>
+    <div class="vrow fbx">
+      <div class="pill2 work">Working</div>
+      <div class="rtx"><h4>Reveal is now the #1 organic pure-play</h4><p>Overtook Explo (~8.7K vs ~6.1K est. traffic/mo) as Explo's content decays; our pure-play organic SoV jumped ~25% → ~43% week-over-week.</p></div>
+    </div>
+    <div class="vrow fbx">
+      <div class="pill2 watch">Watch</div>
+      <div class="rtx"><h4>The Domo displacement window</h4><p>Domo→Progress closes by Nov 30 — a ~4-month window to take Domo Everywhere accounts before roadmap certainty returns. Keep the battlecard warm.</p></div>
+    </div>
+  </div>
+
   <div class="tabbar" id="tabbar"></div>
 
   <div id="panels">
 
   <!-- ============ OVERVIEW ============ -->
   <section class="tabpanel" data-tab="overview" data-label="Overview">
-    <div class="sec"><span class="n">1</span>What changed since last week</div>
-    <div class="lead">
+    <div class="sec fbx"><span class="n">1</span>What changed since last week</div>
+    <div class="lead fbx">
       <b>A quiet news week with one loud data signal: the SEO leaderboard among the embedded pure-plays just flipped.</b>
       Reveal's estimated organic traffic jumped to <b>~8,700/mo</b> while <b>Explo's collapsed ~38% to ~6,100/mo</b> — so <b>Reveal is now the #1 organic-traffic pure-play, overtaking Explo</b> for the first time. This is exactly the decay we predicted last week as Explo's roadmap freezes into the Omni sunset; it's now visible in the numbers. (Caveat: part of Reveal's jump looks like an Ahrefs model refresh — treat the <em>direction</em> as solid, the <em>magnitude</em> as directional.)
       <br><br>
       On the competitor side, <b>nothing net-new shipped</b>: Domo→Progress is still pending (unchanged, closes by Nov 30), and the Qrvey 9.4 / Luzmo MCP-server releases are now <b>standing facts, not news</b>. Our <b>AI-answer share of voice did not recover — it sits flat at 4.7%</b> because Amplitude has not run a new report since 7/21; we're still bottom of the tracked set. Net: this is an <b>execution week for us</b>, not a reaction week. The competitive field paused; we should sprint on the Explo displacement and AI-visibility gaps already on the board.
     </div>
 
-    <div class="sec"><span class="n">2</span>Biggest moves &amp; why they matter</div>
+    <div class="sec fbx"><span class="n">2</span>Biggest moves &amp; why they matter</div>
     <div class="dtable">
       <table>
         <thead><tr><th>Move (this week)</th><th>Who</th><th>Why it matters</th></tr></thead>
@@ -113,17 +174,17 @@
       </table>
     </div>
 
-    <div class="sec"><span class="n">3</span>KPIs — Reveal vs the field (WoW vs 7/26 report)</div>
+    <div class="sec fbx"><span class="n">3</span>KPIs — Reveal vs the field (WoW vs 7/26 report)</div>
     <div class="kpigrid">
-      <div class="kpi"><div class="lab">Genuinely new moves this week</div><div class="val">2</div><span class="delta down">▼ from 4 (quieter week)</span></div>
-      <div class="kpi"><div class="lab">Our organic SoV (pure-play set)</div><div class="val">~43%</div><span class="delta up">▲ from ~25%</span></div>
-      <div class="kpi"><div class="lab">Our AI-answer SoV</div><div class="val">4.7%</div><span class="delta flat">flat — no new run</span></div>
-      <div class="kpi"><div class="lab">Our G2 rating</div><div class="val">4.6★</div><span class="delta flat">60 reviews, flat</span></div>
-      <div class="kpi"><div class="lab">vs peer G2 avg</div><div class="val">+0.05</div><span class="delta flat">above avg 4.55</span></div>
+      <div class="kpi fbx"><div class="lab">Genuinely new moves this week</div><div class="val">2</div><span class="delta down">▼ from 4 (quieter week)</span></div>
+      <div class="kpi fbx"><div class="lab">Our organic SoV (pure-play set)</div><div class="val">~43%</div><span class="delta up">▲ from ~25%</span></div>
+      <div class="kpi fbx"><div class="lab">Our AI-answer SoV</div><div class="val">4.7%</div><span class="delta flat">flat — no new run</span></div>
+      <div class="kpi fbx"><div class="lab">Our G2 rating</div><div class="val">4.6★</div><span class="delta flat">60 reviews, flat</span></div>
+      <div class="kpi fbx"><div class="lab">vs peer G2 avg</div><div class="val">+0.05</div><span class="delta flat">above avg 4.55</span></div>
     </div>
     <p style="font-size:11.5px;color:var(--muted);margin-top:8px">Organic SoV = Reveal's share of combined pure-play organic traffic (Reveal + Luzmo + Explo + Qrvey), Ahrefs monthly mode, snapshot 2026-07-27. The jump is driven by both Explo's decay and an apparent Reveal traffic re-estimate — read as strong momentum, not a precise +18pt.</p>
 
-    <div class="sec"><span class="n">4</span>Scorecard — competitive threat from Reveal's seat</div>
+    <div class="sec fbx"><span class="n">4</span>Scorecard — competitive threat from Reveal's seat</div>
     <div class="score">
       <table>
         <thead><tr><th>Competitor</th><th>SEO</th><th>Product velocity</th><th>Paid</th><th>Reputation</th></tr></thead>
@@ -137,16 +198,16 @@
     </div>
     <p style="font-size:11.5px;color:var(--muted);margin-top:8px">Pills read as threat level from Reveal's seat: <span class="pill bad">red</span> = pressure on us, <span class="pill warn">amber</span> = watch, <span class="pill good">green</span> = opening for us. Change this week: Explo SEO moves from red (strong traffic) to green (decaying).</p>
 
-    <div class="sec"><span class="n">5</span>Recommended responses — summary</div>
-    <div class="lead">
+    <div class="sec fbx"><span class="n">5</span>Recommended responses — summary</div>
+    <div class="lead fbx">
       <b>1. Press the Explo advantage now</b> — their traffic is decaying in real time; ship the Explo→Reveal migration page and "Explo alternative" content this week while their SERP positions slide. <b>2. Attack the AI-answer gap</b> — it did not move; make comparison-page + listicle seeding the priority, not a backlog item. <b>3. Keep the Domo-displacement play warm</b> — no change to the deal, but the 4-month window keeps ticking toward Nov 30. <b>4. Use the competitor pause</b> — publish the Reveal MCP/agent POV while Luzmo and Qrvey have gone quiet. Full actions in <b>Our Moves</b>.
     </div>
   </section>
 
   <!-- ============ SEO FOCUS ============ -->
   <section class="tabpanel" data-tab="seo" data-label="SEO Focus">
-    <div class="sec"><span class="n">1</span>Organic footprint — the leaderboard flipped</div>
-    <div class="lead"><b>The headline change: Reveal (~8.7K/mo) has overtaken Explo (~6.1K/mo) for the #1 organic-traffic spot among the pure-plays.</b> Explo lost roughly a third of its estimated traffic week-over-week as its frozen (Omni-bound) content decays — the moat we flagged as "contestable" last week is now actively eroding. Reveal's own figure jumped sharply; some of that is likely an Ahrefs re-estimate, but the competitive ordering is the real signal. Luzmo and Qrvey are essentially flat. Domo remains a different weight class (167K organic) and not a like-for-like SEO peer.</div>
+    <div class="sec fbx"><span class="n">1</span>Organic footprint — the leaderboard flipped</div>
+    <div class="lead fbx"><b>The headline change: Reveal (~8.7K/mo) has overtaken Explo (~6.1K/mo) for the #1 organic-traffic spot among the pure-plays.</b> Explo lost roughly a third of its estimated traffic week-over-week as its frozen (Omni-bound) content decays — the moat we flagged as "contestable" last week is now actively eroding. Reveal's own figure jumped sharply; some of that is likely an Ahrefs re-estimate, but the competitive ordering is the real signal. Luzmo and Qrvey are essentially flat. Domo remains a different weight class (167K organic) and not a like-for-like SEO peer.</div>
     <div class="dtable">
       <table>
         <thead><tr><th>Domain</th><th class="num">Org KW</th><th class="num">Org traffic/mo</th><th class="num">Δ traffic WoW</th><th class="num">KW top 3</th></tr></thead>
@@ -161,21 +222,21 @@
     </div>
     <p style="font-size:11.5px;color:var(--muted);margin-top:8px">Source: Ahrefs Site Explorer, mode=subdomains, monthly volume, snapshot 2026-07-27. WoW vs prior report snapshot 2026-07-24.</p>
 
-    <div class="sec"><span class="n">2</span>Read on each competitor</div>
+    <div class="sec fbx"><span class="n">2</span>Read on each competitor</div>
     <div class="cards">
-      <div class="card">
+      <div class="card fbx">
         <div class="ch"><span class="nm">Explo</span><span class="sp">decaying — the opening</span></div>
         <div class="cb">
           Still holds the most top-3 keywords (444) but traffic dropped ~38% in a week and keyword count is slipping (805→779). <b>Read:</b> unmaintained pages are starting to lose position — expected behaviour for a product mid-sunset into Omni. <b>Action:</b> this is the moment to build "Explo alternative" and migration content; their ranking equity is now transferable to whoever moves first.
         </div>
       </div>
-      <div class="card">
+      <div class="card fbx">
         <div class="ch"><span class="nm">Luzmo</span><span class="sp">flat this week</span></div>
         <div class="cb">
           Widest keyword spread (610) but traffic essentially flat WoW (+146). No new rising-page surge this week after the June AI push. <b>Read:</b> Luzmo paused its content sprint; still outranks us on generic "embedded analytics" / "white label" terms, so the overlap threat is unchanged, not growing.
         </div>
       </div>
-      <div class="card">
+      <div class="card fbx">
         <div class="ch"><span class="nm">Qrvey</span><span class="sp">flat, OEM-focused</span></div>
         <div class="cb">
           Smallest pure-play traffic (1,682) and flat WoW. Continues to target OEM/ISV and regulated-vertical terms — our buyers — but is not gaining ground on us organically this week. Picked up two legit new backlinks (convin.ai DR72, rfp.wiki) vs a wave of low-quality links.
@@ -183,15 +244,15 @@
       </div>
     </div>
 
-    <div class="sec"><span class="n">3</span>Where we still lose — unchanged</div>
-    <div class="lead">The flip is a traffic-estimate story, not a content-depth story. <b>Luzmo and Qrvey still outrank us on educational/comparison terms</b> because they publish weekly and we don't. The cheapest durable win is still the same: ship comparison pages (Reveal vs Luzmo, Reveal vs Domo) and an Explo-alternative page. With Explo's positions now sliding, that Explo page has the highest expected return of the set — capture the demand as it orphans.</div>
+    <div class="sec fbx"><span class="n">3</span>Where we still lose — unchanged</div>
+    <div class="lead fbx">The flip is a traffic-estimate story, not a content-depth story. <b>Luzmo and Qrvey still outrank us on educational/comparison terms</b> because they publish weekly and we don't. The cheapest durable win is still the same: ship comparison pages (Reveal vs Luzmo, Reveal vs Domo) and an Explo-alternative page. With Explo's positions now sliding, that Explo page has the highest expected return of the set — capture the demand as it orphans.</div>
     <p style="font-size:11.5px;color:var(--muted);margin-top:8px">Note: new referring domains this week were dominated by spam/PBN link-farm domains across all four vendors (e.g. <code>searchrankpipeline.shop</code>, <code>siterankbuilders.shop</code>) — no genuine PR or partnership backlinks detected. Treat backlink deltas with caution this week.</p>
   </section>
 
   <!-- ============ PRODUCT & RELEASES ============ -->
   <section class="tabpanel" data-tab="product" data-label="Product &amp; Releases">
-    <div class="sec"><span class="n">1</span>What shipped this week — nothing net-new</div>
-    <div class="lead"><b>No new competitor releases landed this week.</b> The category's two recent moves — Qrvey 9.4 (Sidekick + AI agents + MCP Server, GA July) and Luzmo's June release (Embedded MCP Server + unified Agent API) — are now <b>standing facts</b>, not news. They still define the current gap against us, but nothing changed in the last 7 days. This is a pause in an otherwise fast cycle.</div>
+    <div class="sec fbx"><span class="n">1</span>What shipped this week — nothing net-new</div>
+    <div class="lead fbx"><b>No new competitor releases landed this week.</b> The category's two recent moves — Qrvey 9.4 (Sidekick + AI agents + MCP Server, GA July) and Luzmo's June release (Embedded MCP Server + unified Agent API) — are now <b>standing facts</b>, not news. They still define the current gap against us, but nothing changed in the last 7 days. This is a pause in an otherwise fast cycle.</div>
     <div class="dtable">
       <table>
         <thead><tr><th>Competitor</th><th>Latest (standing)</th><th>What's in it</th><th>Gap for us?</th></tr></thead>
@@ -205,8 +266,8 @@
       </table>
     </div>
 
-    <div class="sec"><span class="n">2</span>Cadence read</div>
-    <div class="lead">
+    <div class="sec fbx"><span class="n">2</span>Cadence read</div>
+    <div class="lead fbx">
       <b>The fast shippers (Qrvey, Luzmo) took a breath this week</b> — no releases, no changelog updates. That does not change the standing strategic picture: the category narrative has moved to "embedded MCP servers + agent APIs," and Reveal still answers with conversational AI but no <em>published</em> MCP server or agent endpoint. <b>What did change is the timing opportunity:</b> with competitors quiet, publishing Reveal's MCP/agent POV this week would land in clear air rather than under a competitor's launch. Our "True SDK, native, no-iFrame" embedding depth remains untouched by anything shipped — still our strongest differentiator.
     </div>
     <p style="font-size:11.5px;color:var(--muted)">Sources: <a href="https://www.luzmo.com/blog/product-release-update-june-2026">Luzmo June release</a> · <a href="https://www.luzmo.com/blog/introducing-agent-apis">Luzmo Agent APIs</a> · <a href="https://finance.yahoo.com/technology/ai/articles/qrvey-9-4-brings-ai-120000225.html">Qrvey 9.4</a>. No releases published 7/21–7/27.</p>
@@ -214,8 +275,8 @@
 
   <!-- ============ PAID & PLATFORMS ============ -->
   <section class="tabpanel" data-tab="paid" data-label="Paid &amp; Platforms">
-    <div class="sec"><span class="n">1</span>Paid search presence — Reveal still leads the pure-plays</div>
-    <div class="lead"><b>Reveal remains the most active paid bidder among the pure-plays</b> (120 paid keywords / 80 paid pages / ~1,300 paid visits/mo), well ahead of Luzmo (41) and Qrvey (38). Reveal trimmed its paid footprint slightly WoW (131→120 keywords) — worth confirming with David whether that's intentional pacing or campaign expiry. <b>Explo still runs zero paid.</b> Domo remains uncatchable on volume (1,622 paid keywords, ~142K paid visits) — we compete on precision, not spend.</div>
+    <div class="sec fbx"><span class="n">1</span>Paid search presence — Reveal still leads the pure-plays</div>
+    <div class="lead fbx"><b>Reveal remains the most active paid bidder among the pure-plays</b> (120 paid keywords / 80 paid pages / ~1,300 paid visits/mo), well ahead of Luzmo (41) and Qrvey (38). Reveal trimmed its paid footprint slightly WoW (131→120 keywords) — worth confirming with David whether that's intentional pacing or campaign expiry. <b>Explo still runs zero paid.</b> Domo remains uncatchable on volume (1,622 paid keywords, ~142K paid visits) — we compete on precision, not spend.</div>
     <div class="dtable">
       <table>
         <thead><tr><th>Domain</th><th class="num">Paid KW</th><th class="num">Δ WoW</th><th class="num">Paid pages</th><th class="num">Est. paid traffic/mo</th></tr></thead>
@@ -228,13 +289,13 @@
         </tbody>
       </table>
     </div>
-    <div class="sec"><span class="n">2</span>Direction &amp; opportunity</div>
-    <div class="lead">Paid intensity ticked down slightly across the board — a seasonal/summer lull, not a strategic shift. The opportunity is unchanged and now more urgent: with Explo's organic positions decaying, <b>stand up an <code>explo alternative</code> paid campaign now</b> to catch demand as their free rankings slip — low competition, high intent, and the organic tailwind is moving our way. Keep the defensive <code>domo everywhere alternative</code> bid live through the Progress-deal window. <b>Flag for David:</b> confirm the −11 keyword drop on our side is intentional.</div>
+    <div class="sec fbx"><span class="n">2</span>Direction &amp; opportunity</div>
+    <div class="lead fbx">Paid intensity ticked down slightly across the board — a seasonal/summer lull, not a strategic shift. The opportunity is unchanged and now more urgent: with Explo's organic positions decaying, <b>stand up an <code>explo alternative</code> paid campaign now</b> to catch demand as their free rankings slip — low competition, high intent, and the organic tailwind is moving our way. Keep the defensive <code>domo everywhere alternative</code> bid live through the Progress-deal window. <b>Flag for David:</b> confirm the −11 keyword drop on our side is intentional.</div>
   </section>
 
   <!-- ============ REPUTATION & MARKET ============ -->
   <section class="tabpanel" data-tab="reputation" data-label="Reputation &amp; Market">
-    <div class="sec"><span class="n">1</span>G2 ratings — no change this week</div>
+    <div class="sec fbx"><span class="n">1</span>G2 ratings — no change this week</div>
     <div class="dtable">
       <table>
         <thead><tr><th>Product</th><th class="num">Rating</th><th class="num">Reviews</th><th>Read</th></tr></thead>
@@ -249,27 +310,27 @@
     </div>
     <p style="font-size:11.5px;color:var(--muted);margin-top:8px">Ratings carried from last week; no material G2 movement in the 7-day window.</p>
 
-    <div class="sec"><span class="n">2</span>Their weaknesses = our openings (unchanged)</div>
+    <div class="sec fbx"><span class="n">2</span>Their weaknesses = our openings (unchanged)</div>
     <div class="cards">
-      <div class="card"><div class="ch"><span class="nm">Domo / consumption pricing</span><span class="sp">cost unpredictability</span></div><div class="cb">Recurring complaints: usage-based costs that balloon, hard-to-estimate TCO. <b>Our opening:</b> lead with Reveal's <b>flat-rate, no-usage-penalty</b> pricing — a customer who scaled usage ~3000% reported zero price increase. Sharpest wedge, especially into anxious Domo Everywhere accounts.</div></div>
-      <div class="card"><div class="ch"><span class="nm">Explo</span><span class="sp">sunset + now decaying SEO</span></div><div class="cb">Frozen roadmap, Omni migration underway, and now visibly losing organic traffic. <b>Our opening:</b> "roadmap certainty" + a concrete Explo→Reveal migration path. Their 4.9 rating means high-satisfaction accounts that suddenly have a reason to look — and their content is no longer defending its rankings.</div></div>
-      <div class="card"><div class="ch"><span class="nm">iFrame-based tools</span><span class="sp">shallow embedding</span></div><div class="cb">Buyers cite off-brand, "bolted-on" analytics. <b>Our opening:</b> Reveal's <b>True SDK / no-iFrame</b> native embedding — reviewers name this as why they chose us. Keep front-and-center vs Explo/Domo Everywhere.</div></div>
+      <div class="card fbx"><div class="ch"><span class="nm">Domo / consumption pricing</span><span class="sp">cost unpredictability</span></div><div class="cb">Recurring complaints: usage-based costs that balloon, hard-to-estimate TCO. <b>Our opening:</b> lead with Reveal's <b>flat-rate, no-usage-penalty</b> pricing — a customer who scaled usage ~3000% reported zero price increase. Sharpest wedge, especially into anxious Domo Everywhere accounts.</div></div>
+      <div class="card fbx"><div class="ch"><span class="nm">Explo</span><span class="sp">sunset + now decaying SEO</span></div><div class="cb">Frozen roadmap, Omni migration underway, and now visibly losing organic traffic. <b>Our opening:</b> "roadmap certainty" + a concrete Explo→Reveal migration path. Their 4.9 rating means high-satisfaction accounts that suddenly have a reason to look — and their content is no longer defending its rankings.</div></div>
+      <div class="card fbx"><div class="ch"><span class="nm">iFrame-based tools</span><span class="sp">shallow embedding</span></div><div class="cb">Buyers cite off-brand, "bolted-on" analytics. <b>Our opening:</b> Reveal's <b>True SDK / no-iFrame</b> native embedding — reviewers name this as why they chose us. Keep front-and-center vs Explo/Domo Everywhere.</div></div>
     </div>
 
-    <div class="sec"><span class="n">3</span>PR / M&amp;A / market — no new events</div>
-    <div class="lead">
+    <div class="sec fbx"><span class="n">3</span>PR / M&amp;A / market — no new events</div>
+    <div class="lead fbx">
       <b>No new M&amp;A, funding, or pricing changes this week.</b> Standing items: <b>Domo → Progress Software (~$400M)</b> remains a signed-but-pending asset sale, closing by <b>Nov 30</b> subject to regulatory approval — no closing update this week. <b>Explo → Omni</b> (closed Sept 30, 2025) continues its ~12-month sunset toward Oct 2026; Omni's April Series C ($1.5B valuation) is also standing, not new. Net market signal is unchanged: consolidation at the top, pure-plays quiet this week.
     </div>
     <p style="font-size:11.5px;color:var(--muted)">Sources: <a href="https://www.domo.com/news/press/domo-announces-agreement-to-sell-substantially-all-assets-and-certain-liabilities-to-progress-software-for-400-million">Domo/Progress deal</a> · <a href="https://investors.progress.com/news-releases/news-release-details/progress-software-acquire-domos-ai-and-data-platform-business">Progress release</a> · <a href="https://omni.co/blog/omni-accelerates-growth-with-acquisition-of-explo">Omni acquires Explo</a>.</p>
 
-    <div class="sec"><span class="n">4</span>Our AI-answer visibility — stalled at 4.7%</div>
-    <div class="lead"><b>Reveal BI's AI-answer share of voice is flat at 4.7%</b> — Amplitude has not run a new report since 7/21 (report #184661), so this is the same read as last week, not a fresh decline. In that report Reveal was mentioned in just 12 of 253 LLM responses (avg rank 9.8) and remains bottom of the tracked set: Microsoft 70%, Looker 67%, Salesforce 59%, Metabase 35%, Qlik 29%, Sisense 23%. The 8-week trend is volatile (9.3 → 10.7 → 6.5 → 10.2 → 6.2 → 9.1 → 4.7) so 4.7% may be a low print, but the direction of travel is not up. <b>Implication:</b> the AI-visibility gap flagged last week is unaddressed. This ties directly to the comparison-content gap in SEO.</div>
+    <div class="sec fbx"><span class="n">4</span>Our AI-answer visibility — stalled at 4.7%</div>
+    <div class="lead fbx"><b>Reveal BI's AI-answer share of voice is flat at 4.7%</b> — Amplitude has not run a new report since 7/21 (report #184661), so this is the same read as last week, not a fresh decline. In that report Reveal was mentioned in just 12 of 253 LLM responses (avg rank 9.8) and remains bottom of the tracked set: Microsoft 70%, Looker 67%, Salesforce 59%, Metabase 35%, Qlik 29%, Sisense 23%. The 8-week trend is volatile (9.3 → 10.7 → 6.5 → 10.2 → 6.2 → 9.1 → 4.7) so 4.7% may be a low print, but the direction of travel is not up. <b>Implication:</b> the AI-visibility gap flagged last week is unaddressed. This ties directly to the comparison-content gap in SEO.</div>
     <p style="font-size:11.5px;color:var(--muted)">Data-quality caveat: AI-answer SoV is volatile week to week and the metric did not refresh this cycle; treat 4.7% as "not improved," not "further declined."</p>
   </section>
 
   <!-- ============ COMPETITIVE MATRIX ============ -->
   <section class="tabpanel" data-tab="matrix" data-label="Competitive Matrix">
-    <div class="sec"><span class="n">1</span>Reveal vs the field — ICP: CTO / VP Eng, midmarket SaaS &amp; ISV</div>
+    <div class="sec fbx"><span class="n">1</span>Reveal vs the field — ICP: CTO / VP Eng, midmarket SaaS &amp; ISV</div>
     <div class="dtable">
       <table>
         <thead><tr><th>Dimension</th><th>Reveal</th><th>Luzmo</th><th>Qrvey</th><th>Explo</th><th>Domo</th></tr></thead>
@@ -285,15 +346,15 @@
         </tbody>
       </table>
     </div>
-    <div class="sec"><span class="n">2</span>Honest read — unchanged this week</div>
-    <div class="lead">
+    <div class="sec fbx"><span class="n">2</span>Honest read — unchanged this week</div>
+    <div class="lead fbx">
       No shipped feature this week moved any cell. <b>We still win decisively on embedding depth, white-label, deployment flexibility, and pricing</b> — the pillars our regulated, on-prem-capable SaaS/ISV ICP buys on, and the ones our own G2 reviews echo. <b>Two real gaps persist:</b> (1) <b>modern lakehouse connectors</b> — no Iceberg/Delta yet; and (2) <b>the AI-agent surface</b> — competitors publish MCP servers and agent APIs while we lead with conversational AI only. Both will surface in technical RFPs this quarter. The competitor pause this week is the cheapest chance we'll get to publish a credible answer to (2) before the next launch cycle reopens the pressure.
     </div>
   </section>
 
   <!-- ============ OUR MOVES ============ -->
   <section class="tabpanel" data-tab="moves" data-label="Our Moves">
-    <div class="sec"><span class="n">1</span>This week — specific actions</div>
+    <div class="sec fbx"><span class="n">1</span>This week — specific actions</div>
     <div class="dtable">
       <table>
         <thead><tr><th>#</th><th>Action</th><th>Owner</th><th>Tied to</th></tr></thead>
@@ -309,7 +370,7 @@
       </table>
     </div>
 
-    <div class="verdict">
+    <div class="verdict fbx">
       <div class="vh">Verdict — the one response that matters this week</div>
       <p><b>Press the Explo advantage immediately — ship the Explo→Reveal migration page and "Explo alternative" content this week.</b> The data just handed us a rare, time-sensitive opening: Explo's organic traffic dropped ~38% in a week as its content freezes into the Omni sunset, and Reveal has overtaken it as the #1 pure-play. Ranking equity is transferring right now to whoever publishes first, and Explo's 4.9-rated, high-satisfaction accounts have a fresh reason to look. The Domo window stays important, but Explo is the move where our effort compounds with a tailwind that is actively blowing this week. Everything else can wait a cycle; this cannot.</p>
     </div>
@@ -333,6 +394,49 @@
     bar.appendChild(b);
     if(i===0) p.classList.add('on');
   });
+</script>
+
+<!-- ===== FEEDBACK LOOP (teaches the agent) ===== -->
+<div class="fbmodal" id="fbModal" role="dialog" aria-modal="true" aria-label="Send feedback to the agent">
+  <div class="fbcard">
+    <div class="fbhd"><div class="k">Feedback to the agent</div><div class="l" id="fbLabel">—</div></div>
+    <div class="fbbd">
+      <label>What kind of feedback?</label>
+      <div class="fbcats" id="fbCats">
+        <button type="button" class="fbcat" data-cat="Won't do — strategic">Won't do — strategic</button>
+        <button type="button" class="fbcat" data-cat="Disagree">Disagree</button>
+        <button type="button" class="fbcat" data-cat="Wrong number">Wrong number</button>
+        <button type="button" class="fbcat" data-cat="Add context">Add context</button>
+        <button type="button" class="fbcat" data-cat="Approve">Approve</button>
+      </div>
+      <label>Why / details</label>
+      <textarea id="fbReason" placeholder="e.g. Hold this recommendation — we're deliberately doing X because Y."></textarea>
+      <div class="fbvalwrap" id="fbValWrap"><label>Correct value</label><input class="fbval" id="fbVal" placeholder="e.g. 168"></div>
+    </div>
+    <div class="fbft">
+      <button type="button" class="fbbtn sec" id="fbCancel">Cancel</button>
+      <button type="button" class="fbbtn pri" id="fbSend" disabled>Copy &amp; open Slingshot</button>
+    </div>
+  </div>
+</div>
+<div class="fbtoast" id="fbToast"></div>
+<script>
+(function(){
+  var FEEDBACK_URL="https://app.slingshotapp.io/openDiscussion/e97e10ef_b4c1ff6c-3dc7-47c1-909d-aaff8dcfb922";
+  var CHANNEL="Competitive";                                 /* label added to every submission */
+  var SCOPE="body";                                          /* report container selector */
+  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+  var secs=[],modal,curLabel="",curSection="",cat=null;
+  function labelFor(el){var t=(el.getAttribute('data-fb-label')||el.textContent||'').replace(/\s+/g,' ').trim();return t.length>90?t.slice(0,88)+'…':t;}
+  function sectionFor(el){var best="";for(var i=0;i<secs.length;i++){if(secs[i].compareDocumentPosition(el)&Node.DOCUMENT_POSITION_FOLLOWING){best=secs[i].textContent.replace(/\s+/g,' ').trim();}}return best;}
+  function addIcons(){document.querySelectorAll(SCOPE+' .fbx').forEach(function(el){if(el.querySelector(':scope > .fbtn'))return;var b=document.createElement('button');b.className='fbtn';b.type='button';b.title='Send feedback to the agent';b.innerHTML=ICON;b.addEventListener('click',function(ev){ev.stopPropagation();ev.preventDefault();openModal(el);});el.appendChild(b);});}
+  function openModal(el){curLabel=labelFor(el);curSection=sectionFor(el);cat=null;document.getElementById('fbLabel').textContent=(curSection?curSection+' › ':'')+curLabel;document.getElementById('fbReason').value='';document.getElementById('fbVal').value='';document.getElementById('fbValWrap').classList.remove('on');document.querySelectorAll('.fbcat').forEach(function(c){c.classList.remove('sel');});document.getElementById('fbSend').disabled=true;modal.classList.add('on');setTimeout(function(){document.getElementById('fbReason').focus();},60);}
+  function closeModal(){modal.classList.remove('on');}
+  function refreshSend(){var r=document.getElementById('fbReason').value.trim();document.getElementById('fbSend').disabled=!(cat&&r);}
+  function toast(m){var t=document.getElementById('fbToast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on');},3600);}
+  function send(){var reason=document.getElementById('fbReason').value.trim();var val=document.getElementById('fbVal').value.trim();var d=new Date().toISOString().slice(0,10);var lines=['📋 *Agent feedback — Reveal '+CHANNEL+'*','Element: '+(curSection?curSection+' › ':'')+curLabel,'Category: '+cat,'Reason: '+reason];if(cat==='Wrong number'&&val)lines.push('Correct value: '+val);lines.push('Submitted: '+d);var payload=lines.join('\n');var done=function(){toast('Feedback copied — paste (⌘/Ctrl+V) into the Slingshot thread');window.open(FEEDBACK_URL,'_blank');closeModal();};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(payload).then(done,done);}else{var ta=document.createElement('textarea');ta.value=payload;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}}
+  document.addEventListener('DOMContentLoaded',function(){modal=document.getElementById('fbModal');secs=[].slice.call(document.querySelectorAll('.sec'));addIcons();document.getElementById('fbCats').addEventListener('click',function(e){var b=e.target.closest('.fbcat');if(!b)return;cat=b.dataset.cat;document.querySelectorAll('.fbcat').forEach(function(c){c.classList.toggle('sel',c===b);});document.getElementById('fbValWrap').classList.toggle('on',cat==='Wrong number');refreshSend();});document.getElementById('fbReason').addEventListener('input',refreshSend);document.getElementById('fbCancel').addEventListener('click',closeModal);document.getElementById('fbSend').addEventListener('click',send);modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});});
+})();
 </script>
 </body>
 </html>
