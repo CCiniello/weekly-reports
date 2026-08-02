@@ -73,6 +73,18 @@
   .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
   .verdict p{font-size:15px;line-height:1.6;margin:0} .verdict b{color:var(--navy)}
   code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+
+  /* ===== VP READOUT (universal cobalt banner) ===== */
+  .vpbanner{border:1px solid #E9E9F4;border-radius:16px;overflow:hidden;margin:18px 0 0;box-shadow:0 1px 3px rgba(15,23,42,.05);font-family:'Roboto',system-ui,sans-serif}
+  .vpbanner .vbar{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .vpbanner .vbar .t{font-size:18px;font-weight:800}
+  .vpbanner .vbar .g{font-size:12.5px;color:#cdd6f7;font-weight:600;text-align:right}
+  .vpbanner .vrow{display:flex;gap:18px;align-items:flex-start;padding:16px 22px;border-top:1px solid #E9E9F4}
+  .vpbanner .vrow:first-of-type{border-top:none}
+  .pill2{flex:none;width:92px;text-align:center;font-size:11px;font-weight:800;letter-spacing:.05em;padding:5px 0;border-radius:16px;text-transform:uppercase;margin-top:2px}
+  .pill2.fix{background:#fde8ec;color:#c62a4f}.pill2.work{background:#e3f5ec;color:#127a45}.pill2.watch{background:#fdf0d6;color:#8a6412}
+  .vrow .rtx h4{margin:0 0 4px;font-size:15px;color:#0F172A;font-weight:800}
+  .vrow .rtx p{margin:0;font-size:13.5px;color:#5f6b7a;line-height:1.55}
 </style>
 </head>
 <body class="theme-reveal">
@@ -85,6 +97,26 @@
     <div class="meta"><span>Week of <b>July 27, 2026</b></span><span>Source: <b>G2 (profile &amp; reviews tier)</b></span><span>Pipeline: <b>Salesforce</b></span></div>
   </header>
 
+  <!-- ===== VP READOUT - 30-second view (above everything) ===== -->
+  <div class="vpbanner">
+    <div class="vbar">
+      <div class="t">VP Readout &mdash; 30-second view</div>
+      <div class="g">Goal: G2 as proof of category leadership &mdash; and surface in-market demand (blocked until intent tier is on)</div>
+    </div>
+    <div class="vrow fbx" data-fb-label="VP Readout: Fix">
+      <div class="pill2 fix">Fix</div>
+      <div class="rtx"><h4>Review generation is dead &mdash; 0 new reviews in 2026</h4><p>Seven months idle (last review Dec 22, 2025). Volume is the trust gap vs peers (60 vs 421&ndash;3,780) and the only G2 lever we control &mdash; restart review gen targeting 5&#9733; SMB &amp; fintech customers.</p></div>
+    </div>
+    <div class="vrow fbx" data-fb-label="VP Readout: Working">
+      <div class="pill2 work">Working</div>
+      <div class="rtx"><h4>#1 rating in the category</h4><p>4.6&#9733; (9.1/10), 92% 4&ndash;5&#9733;, zero detractors &mdash; highest-rated in the accessible Embedded BI set, ahead of Looker, Tableau and Sisense. G2 wins the click on quality.</p></div>
+    </div>
+    <div class="vrow fbx" data-fb-label="VP Readout: Watch">
+      <div class="pill2 watch">Watch</div>
+      <div class="rtx"><h4>Buyer-intent tier still gated</h4><p>Retested this run &mdash; still no access. The entire demand-surfacing + ABM half of G2 stays dark until the intent tier is enabled on Reveal. Escalate with the G2 rep.</p></div>
+    </div>
+  </div>
+
   <div class="tabbar" id="tabbar"></div>
 
   <div id="panels">
@@ -92,22 +124,22 @@
     <!-- ===================== TAB 1: OVERVIEW ===================== -->
     <section class="tabpanel" data-tab="overview" data-label="Overview">
 
-      <div class="sec"><span class="n">1</span> Executive summary</div>
-      <div class="lead">
+      <div class="sec fbx"><span class="n">1</span> Executive summary</div>
+      <div class="lead fbx">
         <b>Access note first:</b> Reveal's G2 plan still does <b>not</b> include the buyer-intent tier &mdash; retested this run, <code>browse_product_buyer_intent</code> returns "Product not found" for Reveal. So this report still cannot name in-market accounts, comparison views, intent scores, or trace G2 &rarr; Salesforce pipeline, and does not fabricate them. It runs on what the plan <b>does</b> expose &mdash; profile, reviews, category standing &mdash; and flags the gaps honestly.<br><br>
         <b>The story:</b> Reveal remains a <b>quality asset with a proof-volume problem</b>, and this week nothing on the G2 side moved. Rating holds at <b>4.6&#9733; (9.1/10)</b> &mdash; still the highest in its accessible Embedded BI peer set &mdash; with a clean 92% 4-and-5-star mix and zero detractors. But review generation is <b>still stalled: 0 new reviews in 2026 YTD</b> (last review Dec 22, 2025 &mdash; ~7 months idle). The only WoW movement is in the Salesforce context number: open "Reveal" pipeline slipped to <b>$3.17M across 64 opps</b>, down from $3.29M / 67 opps last week &mdash; normal deal aging, not a G2 signal, and not G2-attributable. Bottom line unchanged: with intent dark, <b>review velocity is the one G2 lever Reveal controls, and it's idle.</b>
       </div>
 
-      <div class="sec"><span class="n">2</span> KPI scorecard <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">&middot; WoW vs week of July 20 snapshot</span></div>
+      <div class="sec fbx"><span class="n">2</span> KPI scorecard <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">&middot; WoW vs week of July 20 snapshot</span></div>
       <div class="kpigrid">
-        <div class="kpi"><div class="lab">Star Rating</div><div class="val">4.6&#9733;</div><span class="delta flat">flat WoW</span></div>
-        <div class="kpi"><div class="lab">Avg Score</div><div class="val">9.1/10</div><span class="delta flat">flat WoW</span></div>
-        <div class="kpi"><div class="lab">Total Reviews (proof)</div><div class="val">60</div><span class="delta flat">+0 WoW</span></div>
-        <div class="kpi"><div class="lab">New Reviews (2026 YTD)</div><div class="val">0</div><span class="delta down">stalled</span></div>
-        <div class="kpi"><div class="lab">Buyer-Intent Signals</div><div class="val">N/A</div><span class="delta flat">plan-gated</span></div>
+        <div class="kpi fbx" data-fb-label="KPI: Star Rating"><div class="lab">Star Rating</div><div class="val">4.6&#9733;</div><span class="delta flat">flat WoW</span></div>
+        <div class="kpi fbx" data-fb-label="KPI: Avg Score"><div class="lab">Avg Score</div><div class="val">9.1/10</div><span class="delta flat">flat WoW</span></div>
+        <div class="kpi fbx" data-fb-label="KPI: Total Reviews"><div class="lab">Total Reviews (proof)</div><div class="val">60</div><span class="delta flat">+0 WoW</span></div>
+        <div class="kpi fbx" data-fb-label="KPI: New Reviews YTD"><div class="lab">New Reviews (2026 YTD)</div><div class="val">0</div><span class="delta down">stalled</span></div>
+        <div class="kpi fbx" data-fb-label="KPI: Buyer-Intent Signals"><div class="lab">Buyer-Intent Signals</div><div class="val">N/A</div><span class="delta flat">plan-gated</span></div>
       </div>
 
-      <div class="sec"><span class="n">3</span> Goal scoreboard</div>
+      <div class="sec fbx"><span class="n">3</span> Goal scoreboard</div>
       <div class="score"><table>
         <thead><tr><th>Goal</th><th>Current</th><th>Target</th><th>Status</th></tr></thead>
         <tbody>
@@ -124,17 +156,17 @@
     <!-- ===================== TAB 2: BUYER INTENT ===================== -->
     <section class="tabpanel" data-tab="intent" data-label="Buyer Intent">
 
-      <div class="sec"><span class="n">1</span> Status: plan-gated</div>
-      <div class="lead">
+      <div class="sec fbx"><span class="n">1</span> Status: plan-gated</div>
+      <div class="lead fbx">
         The buyer-intent feed &mdash; <b>which companies are researching Reveal</b>, what they're comparing, intent scores, and geography &mdash; is <b>not available on Reveal's current G2 subscription</b>. Retested this run: <code>browse_product_buyer_intent</code>, <code>browse_buyer_intent</code>, <code>browse_competitive_intelligence</code>, and market-intelligence reviews all fail for Reveal ("Product not found" / "plan does not provide access"). This is the tab that feeds ABM and sales named, in-market accounts, and it stays dark until the intent tier is enabled on Reveal (note: Slingshot appears subscribed; Reveal is not).
       </div>
 
-      <div class="sec"><span class="n">2</span> Closest available proxy: who Reveal actually lands</div>
-      <div class="lead" style="border-left-color:var(--warn)">
+      <div class="sec fbx"><span class="n">2</span> Closest available proxy: who Reveal actually lands</div>
+      <div class="lead fbx" style="border-left-color:var(--warn)">
         Until intent is live, the honest substitute for "who's in-market" is <b>who already buys and reviews Reveal</b> &mdash; the demonstrated ICP from 60 verified reviews. This describes demand Reveal <b>wins</b>, not demand currently <b>shopping</b>, but it's the sharpest targeting signal the plan exposes.
       </div>
 
-      <div class="sec"><span class="n">3</span> ICP by company segment</div>
+      <div class="sec fbx"><span class="n">3</span> ICP by company segment</div>
       <div class="dtable"><table>
         <thead><tr><th>Segment</th><th class="num">Reviews</th><th class="num">Share</th><th>Read</th></tr></thead>
         <tbody>
@@ -144,7 +176,7 @@
         </tbody>
       </table></div>
 
-      <div class="sec"><span class="n">4</span> ICP by industry &amp; region</div>
+      <div class="sec fbx"><span class="n">4</span> ICP by industry &amp; region</div>
       <div class="dtable"><table>
         <thead><tr><th>Top industries</th><th class="num">Reviews</th><th>Top regions</th><th class="num">Reviews</th></tr></thead>
         <tbody>
@@ -155,7 +187,7 @@
           <tr><td>Banking / Security / Telecom</td><td class="num">2 ea</td><td>Africa (KE, ZA)</td><td class="num">4</td></tr>
         </tbody>
       </table></div>
-      <div class="lead" style="margin-top:12px">
+      <div class="lead fbx" style="margin-top:12px">
         <b>ABM read:</b> the reviewable ICP is <b>US-first software/SaaS + fintech</b>, with a notable Latin America (Peru) and India footprint. When intent turns on, prioritize matching signals against <b>US Computer Software and Financial Services</b> accounts &mdash; that's where Reveal both wins and has proof to close.
       </div>
     </section>
@@ -163,8 +195,8 @@
     <!-- ===================== TAB 3: COMPETITIVE & PROFILE ===================== -->
     <section class="tabpanel" data-tab="competitive" data-label="Competitive &amp; Profile">
 
-      <div class="sec"><span class="n">1</span> Category standing &mdash; Embedded Business Intelligence</div>
-      <div class="lead">
+      <div class="sec fbx"><span class="n">1</span> Category standing &mdash; Embedded Business Intelligence</div>
+      <div class="lead fbx">
         Reveal <b>leads its accessible peer set on rating</b> but sits at the bottom on review volume by a wide margin &mdash; unchanged WoW. On G2, rating wins the click but <b>review count wins the trust</b> &mdash; a buyer comparing tiles sees 60 vs thousands. Named rivals from the brief (Luzmo, Domo, Qrvey) are <b>not resolvable on this plan</b>; the peers below are the accessible Embedded BI set.
       </div>
       <div class="dtable"><table>
@@ -179,21 +211,21 @@
         </tbody>
       </table></div>
 
-      <div class="sec"><span class="n">2</span> Where Reveal wins the click</div>
+      <div class="sec fbx"><span class="n">2</span> Where Reveal wins the click</div>
       <div class="cards">
-        <div class="card">
+        <div class="card fbx" data-fb-label="Win theme: True SDK, no iFrames">
           <div class="ch"><span class="nm">True SDK, no iFrames</span><span class="sp">win theme</span></div>
           <div class="cb">Reviewers repeatedly cite <b>native white-label embedding</b> as the deciding factor &mdash; "the only platform we tried that offers a genuine white-label experience&hellip; no iFrames, no hidden hints who's behind the analytics layer." This is Reveal's sharpest wedge against bolt-on BI. <b>Lean into it in the profile tagline and comparison content.</b></div>
         </div>
-        <div class="card">
+        <div class="card fbx" data-fb-label="Win theme: Flat pricing at scale">
           <div class="ch"><span class="nm">Flat pricing at scale</span><span class="sp">win theme</span></div>
           <div class="cb">"Usage increased ~3000%, yet no price increases, no renegotiations." Multiple reviewers switched <b>from Tableau</b> specifically over usage-based cost. This is a live conquest angle against every consumption-priced rival.</div>
         </div>
-        <div class="card">
+        <div class="card fbx" data-fb-label="Win theme: Fast deploy / on-prem / regulated">
           <div class="ch"><span class="nm">Fast deploy &middot; on-prem &middot; regulated fit</span><span class="sp">win theme</span></div>
           <div class="cb">Deploys in "weeks vs a year"; runs fully on customer infrastructure with no external connections &mdash; the reason regulated buyers (fintech, security) pick it. Strong Enterprise proof despite low volume.</div>
         </div>
-        <div class="card">
+        <div class="card fbx" data-fb-label="Friction: SDK learning curve / data gaps">
           <div class="ch"><span class="nm">Where Reveal loses ground</span><span class="sp">friction</span></div>
           <div class="cb"><b>SDK learning curve</b> &mdash; "not plug-and-play," "config options overwhelming," "hard without a professional dev team." One product gap flagged: <b>no Iceberg / Delta Lake table support</b>, called out as increasingly important. Feeds product (Ryan/Pam) and objection-handling content.</div>
         </div>
@@ -203,29 +235,29 @@
     <!-- ===================== TAB 4: JOURNEY & ROI ===================== -->
     <section class="tabpanel" data-tab="journey" data-label="Journey &amp; ROI">
 
-      <div class="sec"><span class="n">1</span> G2 &rarr; Salesforce: what can and can't be traced</div>
-      <div class="lead">
+      <div class="sec fbx"><span class="n">1</span> G2 &rarr; Salesforce: what can and can't be traced</div>
+      <div class="lead fbx">
         Reveal carries <b>$3.17M in open pipeline across 64 active "Reveal" opportunities</b> in Salesforce today &mdash; down WoW from $3.29M / 67 opps as deals age and close. But <b>G2's specific influence on that pipeline cannot be isolated</b>: there is no G2 LeadSource in Salesforce, and without the intent tier there are no G2 buyer-intent accounts to match against Accounts/Opps by domain. Any "G2-influenced pipeline" number this week would be invented, so none is reported.
       </div>
       <div class="kpigrid" style="grid-template-columns:repeat(3,1fr)">
-        <div class="kpi"><div class="lab">Open Reveal Pipeline (SF)</div><div class="val">$3.17M</div><span class="delta down">&ndash;$0.12M WoW</span></div>
-        <div class="kpi"><div class="lab">Open Reveal Opps</div><div class="val">64</div><span class="delta down">&ndash;3 WoW</span></div>
-        <div class="kpi"><div class="lab">G2-Attributed Pipeline</div><div class="val">N/A</div><span class="delta flat">not traceable</span></div>
+        <div class="kpi fbx" data-fb-label="KPI: Open Reveal Pipeline"><div class="lab">Open Reveal Pipeline (SF)</div><div class="val">$3.17M</div><span class="delta down">&ndash;$0.12M WoW</span></div>
+        <div class="kpi fbx" data-fb-label="KPI: Open Reveal Opps"><div class="lab">Open Reveal Opps</div><div class="val">64</div><span class="delta down">&ndash;3 WoW</span></div>
+        <div class="kpi fbx" data-fb-label="KPI: G2-Attributed Pipeline"><div class="lab">G2-Attributed Pipeline</div><div class="val">N/A</div><span class="delta flat">not traceable</span></div>
       </div>
 
-      <div class="sec"><span class="n">2</span> This week's actions</div>
+      <div class="sec fbx"><span class="n">2</span> This week's actions</div>
       <div class="dtable"><table>
         <thead><tr><th>Action</th><th>Why (what it moves)</th><th>Owner</th></tr></thead>
         <tbody>
-          <tr><td>Enable the G2 buyer-intent tier on Reveal (or confirm which plan holds it)</td><td>Unblocks the entire report's purpose &mdash; named in-market accounts + pipeline attribution</td><td>Casey / G2 rep</td></tr>
-          <tr><td>Restart review generation &mdash; target existing 5&#9733; SMB &amp; fintech customers</td><td>0 reviews in 2026; volume is the trust gap vs peers and the only lever we control now</td><td>Casey / CS</td></tr>
-          <tr><td>Push "True SDK / no iFrames" + flat-pricing into G2 profile &amp; comparison copy</td><td>Converts the rating lead into click-win against bolt-on and usage-priced rivals</td><td>Casey / Alex (SEO)</td></tr>
-          <tr><td>Route Iceberg / Delta Lake gap to product</td><td>Named deal-blocker in a verified review; affects regulated/data-heavy buyers</td><td>Ryan &amp; Pam</td></tr>
-          <tr><td>Stand up a G2 LeadSource / UTM in Salesforce ahead of intent go-live</td><td>Makes future G2 &rarr; pipeline attribution actually computable</td><td>Jarrett / RevOps</td></tr>
+          <tr><td class="fbx" data-fb-label="Action: Enable G2 buyer-intent tier">Enable the G2 buyer-intent tier on Reveal (or confirm which plan holds it)</td><td>Unblocks the entire report's purpose &mdash; named in-market accounts + pipeline attribution</td><td>Casey / G2 rep</td></tr>
+          <tr><td class="fbx" data-fb-label="Action: Restart review generation">Restart review generation &mdash; target existing 5&#9733; SMB &amp; fintech customers</td><td>0 reviews in 2026; volume is the trust gap vs peers and the only lever we control now</td><td>Casey / CS</td></tr>
+          <tr><td class="fbx" data-fb-label="Action: Push True-SDK + flat pricing into profile">Push "True SDK / no iFrames" + flat-pricing into G2 profile &amp; comparison copy</td><td>Converts the rating lead into click-win against bolt-on and usage-priced rivals</td><td>Casey / Alex (SEO)</td></tr>
+          <tr><td class="fbx" data-fb-label="Action: Route Iceberg/Delta Lake gap to product">Route Iceberg / Delta Lake gap to product</td><td>Named deal-blocker in a verified review; affects regulated/data-heavy buyers</td><td>Ryan &amp; Pam</td></tr>
+          <tr><td class="fbx" data-fb-label="Action: Stand up G2 LeadSource/UTM">Stand up a G2 LeadSource / UTM in Salesforce ahead of intent go-live</td><td>Makes future G2 &rarr; pipeline attribution actually computable</td><td>Jarrett / RevOps</td></tr>
         </tbody>
       </table></div>
 
-      <div class="verdict">
+      <div class="verdict fbx" data-fb-label="Verdict">
         <div class="vh">Verdict</div>
         <p><b>G2 is still a proof asset, not a demand engine &mdash; because the demand half is switched off.</b> Reveal keeps the best rating in its category and glowing switched-from-Tableau reviews, but with intent gated (retested, still no access) and review velocity at zero for seven months, G2 is doing nothing to <b>surface</b> or <b>route</b> in-market accounts. The only movement this week &mdash; open Reveal pipeline slipping $3.29M &rarr; $3.17M &mdash; is Salesforce deal aging, not a G2 signal. The single highest-leverage move is enabling the intent tier on Reveal; the second is restarting reviews to close the volume gap. Until the first happens, sales/ABM should treat G2 as a <b>positioning and objection-handling source</b> (lead with True-SDK/no-iFrame + flat pricing against Tableau/Sisense/Looker), not a lead source &mdash; and there is no G2-attributable pipeline to action this week.</p>
       </div>
@@ -249,6 +281,79 @@
     bar.appendChild(b);
     if(i===0) p.classList.add('on');
   });
+</script>
+
+<!-- ===== FEEDBACK LOOP (teaches the agent) ===== -->
+<style>
+  .fbx{position:relative}
+  .fbtn{position:absolute;top:6px;right:6px;z-index:3;width:22px;height:22px;border:none;border-radius:7px;background:#eef1fb;color:#2A41A2;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .12s;padding:0;box-shadow:0 1px 2px rgba(15,23,42,.14)}
+  .fbtn:hover{background:#2A41A2;color:#fff}
+  .fbtn svg{width:13px;height:13px}
+  .fbx:hover>.fbtn,.fbtn:focus-visible{opacity:1}
+  td.fbx>.fbtn{top:4px;right:4px;width:20px;height:20px}
+  .fbmodal{position:fixed;inset:0;background:rgba(15,23,42,.5);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
+  .fbmodal.on{display:flex}
+  .fbcard{background:#fff;border-radius:16px;max-width:470px;width:100%;box-shadow:0 20px 60px rgba(15,23,42,.32);overflow:hidden;font-family:'Roboto',system-ui,sans-serif}
+  .fbhd{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 20px}
+  .fbhd .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.85;font-weight:600}
+  .fbhd .l{font-size:15px;font-weight:800;margin-top:3px;line-height:1.3}
+  .fbbd{padding:16px 20px}
+  .fbbd label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#5f6b7a;display:block;margin:0 0 7px}
+  .fbcats{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+  .fbcat{font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;border:1.5px solid #e3e7f2;background:#fff;color:#41506b;cursor:pointer;font-family:inherit}
+  .fbcat.sel{border-color:#2A41A2;background:#eef1fb;color:#2A41A2}
+  .fbbd textarea{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13.5px;resize:vertical;min-height:74px;box-sizing:border-box}
+  .fbbd textarea:focus,.fbval:focus{outline:none;border-color:#2A41A2}
+  .fbvalwrap{display:none;margin-top:12px}.fbvalwrap.on{display:block}
+  .fbval{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:9px 12px;font-family:inherit;font-size:13.5px;box-sizing:border-box}
+  .fbft{display:flex;gap:10px;justify-content:flex-end;padding:14px 20px;border-top:1px solid #eef1f7;background:#fbfcff}
+  .fbbtn{font-family:inherit;font-size:13px;font-weight:600;padding:9px 15px;border-radius:9px;cursor:pointer;border:none}
+  .fbbtn.sec{background:#eef0f5;color:#41506b}
+  .fbbtn.pri{background:linear-gradient(120deg,#2A41A2,#3a54cf);color:#fff}
+  .fbbtn.pri:disabled{opacity:.5;cursor:not-allowed}
+  .fbtoast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0F172A;color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:300;opacity:0;transition:opacity .2s;box-shadow:0 8px 30px rgba(0,0,0,.3);max-width:90%;text-align:center;pointer-events:none}
+  .fbtoast.on{opacity:1}
+</style>
+<div class="fbmodal" id="fbModal" role="dialog" aria-modal="true" aria-label="Send feedback to the agent">
+  <div class="fbcard">
+    <div class="fbhd"><div class="k">Feedback to the agent</div><div class="l" id="fbLabel">&mdash;</div></div>
+    <div class="fbbd">
+      <label>What kind of feedback?</label>
+      <div class="fbcats" id="fbCats">
+        <button type="button" class="fbcat" data-cat="Won't do - strategic">Won't do &mdash; strategic</button>
+        <button type="button" class="fbcat" data-cat="Disagree">Disagree</button>
+        <button type="button" class="fbcat" data-cat="Wrong number">Wrong number</button>
+        <button type="button" class="fbcat" data-cat="Add context">Add context</button>
+        <button type="button" class="fbcat" data-cat="Approve">Approve</button>
+      </div>
+      <label>Why / details</label>
+      <textarea id="fbReason" placeholder="e.g. Hold this recommendation - we're deliberately doing X because Y."></textarea>
+      <div class="fbvalwrap" id="fbValWrap"><label>Correct value</label><input class="fbval" id="fbVal" placeholder="e.g. 168"></div>
+    </div>
+    <div class="fbft">
+      <button type="button" class="fbbtn sec" id="fbCancel">Cancel</button>
+      <button type="button" class="fbbtn pri" id="fbSend" disabled>Copy &amp; open Slingshot</button>
+    </div>
+  </div>
+</div>
+<div class="fbtoast" id="fbToast"></div>
+<script>
+(function(){
+  var FEEDBACK_URL="https://app.slingshotapp.io/openDiscussion/e97e10ef_b4c1ff6c-3dc7-47c1-909d-aaff8dcfb922";
+  var CHANNEL="G2";                                          /* label added to every submission */
+  var SCOPE="body";                                          /* report container selector */
+  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+  var secs=[],modal,curLabel="",curSection="",cat=null;
+  function labelFor(el){var t=(el.getAttribute('data-fb-label')||el.textContent||'').replace(/\s+/g,' ').trim();return t.length>90?t.slice(0,88)+'...':t;}
+  function sectionFor(el){var best="";for(var i=0;i<secs.length;i++){if(secs[i].compareDocumentPosition(el)&Node.DOCUMENT_POSITION_FOLLOWING){best=secs[i].textContent.replace(/\s+/g,' ').trim();}}return best;}
+  function addIcons(){document.querySelectorAll(SCOPE+' .fbx').forEach(function(el){if(el.querySelector(':scope > .fbtn'))return;var b=document.createElement('button');b.className='fbtn';b.type='button';b.title='Send feedback to the agent';b.innerHTML=ICON;b.addEventListener('click',function(ev){ev.stopPropagation();ev.preventDefault();openModal(el);});el.appendChild(b);});}
+  function openModal(el){curLabel=labelFor(el);curSection=sectionFor(el);cat=null;document.getElementById('fbLabel').textContent=(curSection?curSection+' > ':'')+curLabel;document.getElementById('fbReason').value='';document.getElementById('fbVal').value='';document.getElementById('fbValWrap').classList.remove('on');document.querySelectorAll('.fbcat').forEach(function(c){c.classList.remove('sel');});document.getElementById('fbSend').disabled=true;modal.classList.add('on');setTimeout(function(){document.getElementById('fbReason').focus();},60);}
+  function closeModal(){modal.classList.remove('on');}
+  function refreshSend(){var r=document.getElementById('fbReason').value.trim();document.getElementById('fbSend').disabled=!(cat&&r);}
+  function toast(m){var t=document.getElementById('fbToast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on');},3600);}
+  function send(){var reason=document.getElementById('fbReason').value.trim();var val=document.getElementById('fbVal').value.trim();var d=new Date().toISOString().slice(0,10);var lines=['*Agent feedback - Reveal '+CHANNEL+'*','Element: '+(curSection?curSection+' > ':'')+curLabel,'Category: '+cat,'Reason: '+reason];if(cat==='Wrong number'&&val)lines.push('Correct value: '+val);lines.push('Submitted: '+d);var payload=lines.join('\n');var done=function(){toast('Feedback copied - paste (Cmd/Ctrl+V) into the Slingshot thread');window.open(FEEDBACK_URL,'_blank');closeModal();};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(payload).then(done,done);}else{var ta=document.createElement('textarea');ta.value=payload;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}}
+  document.addEventListener('DOMContentLoaded',function(){modal=document.getElementById('fbModal');secs=[].slice.call(document.querySelectorAll(SCOPE+' .sec'));addIcons();document.getElementById('fbCats').addEventListener('click',function(e){var b=e.target.closest('.fbcat');if(!b)return;cat=b.dataset.cat;document.querySelectorAll('.fbcat').forEach(function(c){c.classList.toggle('sel',c===b);});document.getElementById('fbValWrap').classList.toggle('on',cat==='Wrong number');refreshSend();});document.getElementById('fbReason').addEventListener('input',refreshSend);document.getElementById('fbCancel').addEventListener('click',closeModal);document.getElementById('fbSend').addEventListener('click',send);modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});});
+})();
 </script>
 </body>
 </html>
