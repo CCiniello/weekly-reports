@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>React PPC Weekly / Ignite UI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
+    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
+    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
+  }
+  body.theme-ui {--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 90px}
+
+  header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
+  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
+  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
+  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)} .meta b{color:#fff;font-weight:700}
+
+  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03);overflow-x:auto}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 16px 13px;border-bottom:3px solid transparent;white-space:nowrap}
+  .tab:hover{color:var(--ink)}
+  .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+  .tabpanel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 32px}
+  .tabpanel.on{display:block}
+
+  .sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:26px 2px 13px;display:flex;align-items:center;gap:10px}
+  .sec:first-child{margin-top:2px}
+  .sec .n{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  .lead{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:16px 20px;font-size:14.5px;line-height:1.6} .lead b{color:var(--navy)} .lead p{margin:0 0 10px} .lead p:last-child{margin:0}
+
+  .vp{display:grid;gap:9px;margin:2px 0 4px}
+  .vprow{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:start;border:1px solid var(--line);border-radius:12px;padding:12px 15px;background:#fcfdff}
+  .vptag{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 0;text-align:center;border-radius:7px}
+  .vptag.fix{background:var(--bad-bg);color:var(--bad)} .vptag.work{background:var(--good-bg);color:var(--good)} .vptag.watch{background:var(--warn-bg);color:var(--warn)}
+  .vprow p{font-size:13.5px;line-height:1.5} .vprow b{color:var(--navy)}
+  .fbhint{font-size:11.5px;color:var(--muted);margin:8px 2px 0;display:flex;align-items:center;gap:6px}
+
+  .kpigrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
+  @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:#fcfdff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column;position:relative}
+  .kpi .lab{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;min-height:28px}
+  .kpi .val{font-size:22px;font-weight:700;margin:2px 0 8px;font-family:var(--mono)}
+  .kpi .delta{align-self:flex-start;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
+  .delta.up{background:var(--good-bg);color:var(--good)} .delta.down{background:var(--bad-bg);color:var(--bad)} .delta.flat{background:var(--warn-bg);color:var(--warn)} .delta.na{background:var(--gray-bg);color:var(--gray)}
+
+  .score{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  .score table{width:100%;border-collapse:collapse;font-size:13px}
+  .score th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  .score td{padding:11px 13px;border-top:1px solid var(--line);vertical-align:middle}
+  .score .goal{font-weight:600;color:var(--navy)}
+  .score .big{font-family:var(--mono);font-weight:700;font-size:15px;color:var(--navy)}
+  .track{position:relative;height:9px;background:var(--gray-bg);border-radius:5px;overflow:hidden;min-width:90px}
+  .track>span{position:absolute;left:0;top:0;height:100%;border-radius:5px}
+  .pill{font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px;white-space:nowrap}
+  .pill.good{background:var(--good-bg);color:var(--good)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.bad{background:var(--bad-bg);color:var(--bad)} .pill.gray{background:var(--gray-bg);color:var(--gray)}
+
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+  @media(max-width:820px){.cards{grid-template-columns:1fr}}
+  .card{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .card .ch{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:var(--accent-soft);border-bottom:1px solid var(--line)}
+  .card .ch .nm{font-size:15px;font-weight:700;color:var(--accent-deep)} .card .ch .sp{font-family:var(--mono);font-size:12.5px;color:var(--navy)}
+  .card .cb{padding:14px 18px;font-size:13.5px;line-height:1.55} .card .cb b{color:var(--navy)}
+  .card.muted .ch{background:var(--gray-bg)} .card.muted .ch .nm{color:var(--muted)}
+
+  .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  .dtable table{width:100%;border-collapse:collapse;font-size:13px}
+  .dtable th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  .dtable td{padding:10px 13px;border-top:1px solid var(--line)} .dtable td.num,.dtable th.num{font-family:var(--mono);text-align:right}
+  .dtable tr:hover td{background:#fafbff}
+  .up{color:var(--good)} .down{color:var(--bad)} .flat{color:var(--warn)}
+
+  .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
+  .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
+  .verdict p{font-size:15px;line-height:1.6;margin:0} .verdict b{color:var(--navy)}
+  code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+  .note{background:var(--accent-soft);border:1px solid #ffd9c2;border-radius:10px;padding:12px 14px;font-size:13px;color:#7a3a17;margin:12px 0}
+  .warn{background:var(--warn-bg);border:1px solid #e6cf95;border-radius:10px;padding:12px 14px;font-size:13px;color:#6d4c11;margin:12px 0}
+  .subh{font-size:14px;font-weight:700;color:var(--navy);margin:18px 0 8px}
+  .src{font-size:11.5px;color:var(--gray);margin-top:6px}
+  .small{font-size:12px;color:var(--muted)}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:8px}
+  .legend span{display:inline-flex;align-items:center;gap:5px} .dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+  .bar{height:14px;border-radius:7px;background:var(--gray-bg);overflow:hidden;display:inline-block;vertical-align:middle} .bar>span{display:block;height:100%}
+
+  .npm{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:6px} @media(max-width:820px){.npm{grid-template-columns:1fr}}
+  .npm a.pk{display:block;border:1px solid var(--line);border-radius:12px;padding:13px 15px;text-decoration:none;color:var(--ink);background:#fcfdff}
+  .npm a.pk:hover{border-color:var(--accent)}
+  .npm .pkn{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--accent-deep)}
+  .npm .pkv{font-size:12px;color:var(--muted);margin-top:3px}
+  .npm .pki{font-size:20px;font-weight:700;font-family:var(--mono);margin-top:8px;color:var(--navy)}
+
+  .funnel{display:flex;flex-direction:column;gap:7px;margin-top:6px}
+  .frow{display:grid;grid-template-columns:210px 1fr 130px;gap:10px;align-items:center;font-size:13px}
+  .frow .fb{height:30px;border-radius:7px;background:linear-gradient(90deg,var(--accent),var(--accent-deep));color:#fff;display:flex;align-items:center;padding:0 10px;font-weight:700;font-family:var(--mono);font-size:12px}
+  @media(max-width:640px){.frow{grid-template-columns:120px 1fr}.frow .fsrc{display:none}}
+
+  .taskbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .stat{font-size:11px;font-weight:600;padding:2px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:5px} .stat::before{content:"";width:6px;height:6px;border-radius:50%}
+  .todo{background:var(--gray-bg);color:#566} .todo::before{background:var(--gray)}
+  .prog{background:var(--peri-soft);color:var(--cobalt)} .prog::before{background:var(--cobalt)}
+  .done{background:var(--good-bg);color:var(--good)} .done::before{background:var(--good)}
+  .pri{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px;text-transform:uppercase}
+  .P1{background:var(--bad-bg);color:var(--bad)} .P2{background:var(--warn-bg);color:var(--warn)} .P3{background:var(--gray-bg);color:var(--gray)}
+  .donedate{font-family:var(--mono);font-size:11px;color:var(--good)} .donedate::before{content:"\2713 "}
+
+  .summary-card{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:22px 24px;background:#fff;font-size:14.5px;line-height:1.6}
+  .summary-card h3{color:var(--navy);font-size:15px;margin:16px 0 8px} .summary-card h3:first-child{margin-top:0}
+  .summary-card p{margin:0 0 11px} .summary-card b{color:var(--navy)} .summary-card ul{margin:0 0 11px;padding-left:20px} .summary-card li{margin-bottom:5px}
+  .glossary{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px} @media(max-width:820px){.glossary{grid-template-columns:1fr}}
+  .gterm{border:1px solid var(--line);border-radius:11px;padding:12px 14px;background:#fcfdff}
+  .gterm .t{font-weight:700;color:var(--accent-deep);font-size:13px} .gterm.ours .t::after{content:" · OURS";font-size:9px;color:var(--accent);letter-spacing:.05em}
+  .gterm .d{font-size:12.5px;color:var(--muted);margin-top:3px}
+
+  .fbx{position:relative}
+  .fbx::after{content:"\1F4AC";position:absolute;top:-7px;right:-7px;font-size:11px;opacity:0;transition:.15s;cursor:pointer;background:#fff;border:1px solid var(--line);border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;line-height:1}
+  .fbx:hover::after{opacity:1}
+  #fbtn{position:fixed;right:18px;bottom:18px;z-index:50;background:linear-gradient(120deg,var(--accent),var(--accent-deep));color:#fff;border:none;border-radius:999px;padding:11px 17px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(225,78,18,.35);text-decoration:none;display:inline-flex;align-items:center;gap:7px}
+  #fbtn:hover{filter:brightness(1.05)}
+  .copybtn{margin-left:auto;border:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:#fff;background:linear-gradient(120deg,var(--accent),var(--accent-deep));padding:9px 15px;border-radius:9px}
+  .copied{background:var(--good)!important}
+</style>
+</head>
+<body class="theme-ui">
+<a id="fbtn" href="https://app.slingshotapp.io/openDiscussion/e97e10ef_2cc8dab7-c994-41e7-a34e-8d1f243a4170" target="_blank" rel="noopener">&#128172; Feedback</a>
+<div class="wrap">
+
+  <header class="top">
+    <div class="logochip">&#9679; Ignite UI · React</div>
+    <div class="kick">UI Tools · React · Paid Media</div>
+    <h1>React PPC Weekly / Ignite UI</h1>
+    <div class="meta">
+      <span><b>For</b> Dean + leadership</span>
+      <span><b>Window</b> Jul 20–26 vs Jul 13–19, 2026</span>
+      <span><b>North star</b> NPM installs</span>
+      <span><b>Channels</b> Google Ads · Bing</span>
+      <span><b>One metric, one tool</b></span>
+    </div>
+  </header>
+
+  <div class="tabbar" id="tabbar"></div>
+  <div id="panels">
+
+  <section class="tabpanel on" data-tab="report" data-label="Report">
+    <div class="sec"><span class="n">1</span> VP readout</div>
+    <div class="vp">
+      <div class="vprow fbx"><div class="vptag fix">Fix</div><p><b>We're flying blind on outcomes.</b> Google Ads logged <b>1 conversion</b> on 1,769 clicks and GA4 cpc sessions collapsed <b>24,599 (May) → 283 (Jul)</b> — a broken <code>{campaignname}</code> auto-tag / no Ads conversion import. And our north-star, <b>NPM installs</b>, isn't wired into the pipeline yet. Success is currently unmeasurable end-to-end.</p></div>
+      <div class="vprow fbx"><div class="vptag work">Working</div><p><b>Top-of-funnel is strong.</b> Spend $4,768 (+19.6% WoW) at an efficient <b>$2.70 CPC</b>; the <b>Search-Compete</b> fund worked (budget-lost-abs-top 36%→<b>11%</b>, abs-top IS 45%→<b>54%</b>); top RSAs pull <b>18–22% CTR</b>. Ignite UI React packages are actively shipping (v19.8.1, published Jul 13).</p></div>
+      <div class="vprow fbx"><div class="vptag watch">Watch</div><p><b>"react grid" rank &amp; DemandGen leak.</b> Search-Grids lost <b>71%</b> of top slot to Ad Rank on QS 2–4; DemandGen React <b>doubled to $750</b> with 2 sessions / 0 conversions. And <b>Bing has no React campaigns</b> — a capture channel sitting idle for this product.</p></div>
+    </div>
+    <div class="fbhint">&#128172; Hover any tile, goal, or row and click the bubble to drop feedback in the React agent thread.</div>
+
+    <div class="sec"><span class="n">2</span> Executive read</div>
+    <div class="lead">
+      <p>Ignite UI for React paid is <b>spending confidently and flying blind</b>. The week was efficient at the top — $4,768 in spend (+19.6%), 1,769 clicks (+24.9%), $2.70 CPC — but the outcome layer is dark. GA4 stopped counting paid sessions after May (24,599 → 1,573 → 283), Google Ads shows effectively zero conversions, and the metric we actually care about for a developer SDK — <b>NPM installs</b> — isn't attributable to paid and can't be auto-read from this pipeline yet.</p>
+      <p>So we judge paid on what we <em>can</em> trust: auction position, efficiency, and creative pull. On those, <b>Compete is winning</b>, <b>Grids &amp; Components are rank-limited</b> by low Quality Score, and <b>DemandGen is an unmeasured leak</b>. The one-P1 message for Dean: <b>fix tracking and wire up an installs read</b>, then we can talk about scaling. Until then, hold spend flat and win the auctions we're already in.</p>
+    </div>
+
+    <div class="sec"><span class="n">3</span> Goal scoreboard</div>
+    <div class="score"><table>
+      <thead><tr><th>Goal (US + Intl where split)</th><th>Now</th><th>Progress</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr class="fbx"><td class="goal">NPM installs / wk <span class="small">(north star)</span></td><td class="big">n/a</td><td><span class="small">target undefined · auto-read blocked</span></td><td><span class="pill gray">Define</span></td></tr>
+        <tr class="fbx"><td class="goal">Search abs-top IS · Compete</td><td class="big">53.9%</td><td><div class="track"><span style="width:98%;background:var(--good)"></span></div></td><td><span class="pill good">On track</span></td></tr>
+        <tr class="fbx"><td class="goal">Search abs-top IS · Grids ("react grid")</td><td class="big">16.6%</td><td><div class="track"><span style="width:37%;background:var(--bad)"></span></div></td><td><span class="pill bad">Behind</span></td></tr>
+        <tr class="fbx"><td class="goal">Search abs-top IS · Components</td><td class="big">28.0%</td><td><div class="track"><span style="width:62%;background:var(--warn)"></span></div></td><td><span class="pill warn">At risk</span></td></tr>
+        <tr class="fbx"><td class="goal">Blended CTR (Google)</td><td class="big">2.78%</td><td><span class="small">▲ from 2.15% WoW</span></td><td><span class="pill good">On track</span></td></tr>
+        <tr class="fbx"><td class="goal">Avg CPC (Google)</td><td class="big">$2.70</td><td><span class="small">▼ 4.4% (better)</span></td><td><span class="pill good">On track</span></td></tr>
+        <tr class="fbx"><td class="goal">Budget-lost abs-top · Charts</td><td class="big">30%</td><td><div class="track"><span style="width:60%;background:var(--warn)"></span></div></td><td><span class="pill warn">Building</span></td></tr>
+        <tr class="fbx"><td class="goal">Conversion tracking wired</td><td class="big">No</td><td><span class="small">GA4 cpc + Ads import broken</span></td><td><span class="pill bad">Behind</span></td></tr>
+        <tr class="fbx"><td class="goal">Bing React coverage</td><td class="big">0</td><td><span class="small">no React campaigns live</span></td><td><span class="pill gray">Not running</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="src">Google Ads (Supermetrics AW 9179838229) · GA4 (GAWA 516222862) · Bing/Microsoft Ads (Adzviser, workspace Infragistics). Targets shown as working assumptions — confirm with Casey. Never blended across sources.</div>
+
+    <div class="sec"><span class="n">4</span> Channel at-a-glance</div>
+    <div class="cards">
+      <div class="card fbx"><div class="ch"><span class="nm">Google Ads</span><span class="sp">$4,768 · +19.6%</span></div><div class="cb">Primary channel — 7 React campaigns (Search, Demand Gen, PMax). 1,769 clicks, $2.70 CPC, 2.78% blended CTR. Auction position strong on Compete, rank-limited on Grids/Components. <b>Conversions untrustworthy</b> (tracking break).</div></div>
+      <div class="card muted fbx"><div class="ch"><span class="nm">Bing / Microsoft Ads</span><span class="sp">$0 · React</span></div><div class="cb"><b>Connected, but no React spend.</b> The Microsoft Ads account runs <b>Reveal</b> campaigns only — zero Ignite UI React campaigns this period. Honest gap: a warm search channel sitting idle for React. Decision for leadership: launch or leave off.</div></div>
+      <div class="card muted"><div class="ch"><span class="nm">LinkedIn · Reddit · G2</span><span class="sp">no active spend</span></div><div class="cb">Not running for Ignite UI React. Shown for a complete coverage map — no paid activity to report.</div></div>
+      <div class="card fbx"><div class="ch"><span class="nm">NPM installs (outcome)</span><span class="sp">north star</span></div><div class="cb">Adoption signal for the SDK. Packages are live and shipping (v19.8.1). <b>Weekly install counts can't be auto-read from this pipeline</b> (npm stats API blocked) — see the Journey &amp; ROI tab for the package links and the fix.</div></div>
+    </div>
+
+    <div class="sec"><span class="n">5</span> Google Ads deep dive</div>
+    <div class="dtable"><table>
+      <thead><tr><th>Campaign</th><th>Type</th><th class="num">Spend</th><th class="num">WoW</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">CPC</th><th class="num">Abs-top IS</th></tr></thead>
+      <tbody>
+        <tr><td>Search-Grids</td><td>Search</td><td class="num">$890.87</td><td class="num up">▲13.3%</td><td class="num">241</td><td class="num">7.08%</td><td class="num">$3.70</td><td class="num">16.6%</td></tr>
+        <tr><td>Search-Charts</td><td>Search</td><td class="num">$865.49</td><td class="num up">▲3.9%</td><td class="num">204</td><td class="num">8.10%</td><td class="num">$4.24</td><td class="num">22.1%</td></tr>
+        <tr><td>Search-Compete</td><td>Search</td><td class="num">$774.96</td><td class="num up">▲17.9%</td><td class="num">56</td><td class="num">11.02%</td><td class="num">$13.84</td><td class="num">53.9%</td></tr>
+        <tr><td>DemandGen React</td><td>Demand Gen</td><td class="num">$750.38</td><td class="num up">▲143.5%</td><td class="num">598</td><td class="num">3.00%</td><td class="num">$1.25</td><td class="num">—</td></tr>
+        <tr><td>Search-Components</td><td>Search</td><td class="num">$653.14</td><td class="num up">▲23.7%</td><td class="num">178</td><td class="num">10.44%</td><td class="num">$3.67</td><td class="num">28.0%</td></tr>
+        <tr><td>PMax-EMEA</td><td>Perf Max</td><td class="num">$425.11</td><td class="num down">▼1.8%</td><td class="num">316</td><td class="num">0.99%</td><td class="num">$1.35</td><td class="num">—</td></tr>
+        <tr><td>PMax-Americas</td><td>Perf Max</td><td class="num">$408.11</td><td class="num down">▼7.4%</td><td class="num">176</td><td class="num">4.72%</td><td class="num">$2.32</td><td class="num">—</td></tr>
+      </tbody>
+    </table></div>
+    <div class="verdict"><div class="vh">Google Ads verdict — Focus</div><p><b>Win the auctions we're in, don't add net-new budget.</b> Working: Compete position, search creative, CPC. Not working: Grids/Components Quality Score (rank-limited), DemandGen efficiency, and all conversion measurement. Focus: fix tracking, lift QS on Grids &amp; Components, contain DemandGen.</p></div>
+
+    <div class="subh">Bing / Microsoft Ads deep dive</div>
+    <div class="warn"><b>No active spend for React on Bing.</b> The connected Microsoft Ads account (Infragistics Inc) is running Reveal search campaigns only — there are no Ignite UI React campaigns to report. This is a coverage gap, not a data gap: Bing captures competitor and non-brand search we're paying Google for. Recommend a scoped test (Compete + Grids terms) if leadership wants the channel on.</div>
+
+    <div class="sec"><span class="n">6</span> Funnel</div>
+    <div class="funnel">
+      <div class="frow fbx"><div>Spend <span class="small">(Ads, 7d)</span></div><div class="fb" style="width:100%">$4,768</div><div class="fsrc small">Google Ads</div></div>
+      <div class="frow fbx"><div>Clicks <span class="small">(Ads, 7d)</span></div><div class="fb" style="width:70%">1,769</div><div class="fsrc small">Google Ads</div></div>
+      <div class="frow fbx"><div>React sessions <span class="small">(GA4 cpc, 30d)</span></div><div class="fb" style="width:12%;background:linear-gradient(90deg,#c23b39,#9a2f2d)">~130</div><div class="fsrc small">GA4 — broken</div></div>
+      <div class="frow fbx"><div>NPM installs <span class="small">(north star)</span></div><div class="fb" style="width:8%;background:#8a93a3">n/a</div><div class="fsrc small">not attributable</div></div>
+    </div>
+    <div class="warn">Break points: <b>(1)</b> broken auto-tagging / no Ads conversion import → GA4 cpc sessions collapsed after May; <b>(2)</b> NPM installs are a <b>blended adoption signal</b>, not 1:1 paid-attributed, and the weekly count can't be auto-read here. Paid <em>influences</em> installs but cannot be credited for them until tracking is fixed — so "fix conversion tracking" stays a standing P1.</div>
+
+    <div class="sec"><span class="n">7</span> Forecast</div>
+    <div class="note"><b>Installs forecast is pending an installs read.</b> With the npm stats API blocked from this pipeline and Ads conversions unwired, there is no trustworthy series to project. Once <code>api.npmjs.org</code> is allowlisted (or weekly numbers are provided) this panel renders a 12-week actual line plus two scenarios: <em>"fix tracking + restore budget"</em> and a flat baseline. Not fabricating a trend.</div>
+  </section>
+
+  <section class="tabpanel" data-tab="campaigns" data-label="Campaigns &amp; Ad Groups">
+    <div class="sec"><span class="n">1</span> Google Ads — campaign performance (WoW)</div>
+    <div class="dtable"><table>
+      <thead><tr><th>Campaign</th><th>Type</th><th class="num">Spend</th><th class="num">WoW Spend</th><th class="num">Clicks</th><th class="num">WoW Clicks</th><th class="num">CTR</th><th class="num">CPC</th><th class="num">Abs-top IS</th><th class="num">Budget-lost</th><th class="num">Rank-lost</th></tr></thead>
+      <tbody>
+        <tr><td>Search-Grids</td><td>Search</td><td class="num">$890.87</td><td class="num up">▲13.3%</td><td class="num">241</td><td class="num up">▲13.7%</td><td class="num">7.08%</td><td class="num">$3.70</td><td class="num">16.6%</td><td class="num">13%</td><td class="num down">71%</td></tr>
+        <tr><td>Search-Charts</td><td>Search</td><td class="num">$865.49</td><td class="num up">▲3.9%</td><td class="num">204</td><td class="num down">▼1.9%</td><td class="num">8.10%</td><td class="num">$4.24</td><td class="num">22.1%</td><td class="num">30%</td><td class="num">48%</td></tr>
+        <tr><td>Search-Compete</td><td>Search</td><td class="num">$774.96</td><td class="num up">▲17.9%</td><td class="num">56</td><td class="num up">▲24.4%</td><td class="num">11.02%</td><td class="num">$13.84</td><td class="num">53.9%</td><td class="num">11%</td><td class="num">35%</td></tr>
+        <tr><td>DemandGen React</td><td>Demand Gen</td><td class="num">$750.38</td><td class="num up">▲143.5%</td><td class="num">598</td><td class="num up">▲88.6%</td><td class="num">3.00%</td><td class="num">$1.25</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr><td>Search-Components</td><td>Search</td><td class="num">$653.14</td><td class="num up">▲23.7%</td><td class="num">178</td><td class="num up">▲33.8%</td><td class="num">10.44%</td><td class="num">$3.67</td><td class="num">28.0%</td><td class="num">9%</td><td class="num down">63%</td></tr>
+        <tr><td>PMax-EMEA</td><td>Perf Max</td><td class="num">$425.11</td><td class="num down">▼1.8%</td><td class="num">316</td><td class="num down">▼6.8%</td><td class="num">0.99%</td><td class="num">$1.35</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr><td>PMax-Americas</td><td>Perf Max</td><td class="num">$408.11</td><td class="num down">▼7.4%</td><td class="num">176</td><td class="num up">▲8.6%</td><td class="num">4.72%</td><td class="num">$2.32</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="2"><b>React total</b></td><td class="num"><b>$4,768</b></td><td class="num up">▲19.6%</td><td class="num"><b>1,769</b></td><td class="num up">▲24.9%</td><td class="num">2.78%</td><td class="num">$2.70</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr></tfoot>
+    </table></div>
+    <div class="subh">Brand vs non-brand</div>
+    <div class="bar" style="width:100%;height:20px"><span style="width:100%;background:linear-gradient(90deg,var(--accent),var(--accent-deep))"></span></div>
+    <div class="legend"><span><span class="dot" style="background:var(--accent)"></span>Non-brand — $4,768 (100%)</span><span><span class="dot" style="background:var(--gray-bg)"></span>Brand — $0 (0%)</span></div>
+    <p class="small">React paid carries no dedicated brand campaign; brand terms sit in the shared Ultimate campaign, outside React scope.</p>
+
+    <div class="subh">Ad-group themes — type &amp; region</div>
+    <div class="dtable"><table>
+      <thead><tr><th>Theme</th><th>Campaign</th><th>Ad type</th><th>Region</th><th class="num">Clicks</th><th>Signal</th></tr></thead>
+      <tbody>
+        <tr><td>Data grids &amp; tables</td><td>Search-Grids</td><td>Search RSA</td><td>US + Intl</td><td class="num">241</td><td><span class="pill bad">Rank-limited</span></td></tr>
+        <tr><td>Charts &amp; viz</td><td>Search-Charts</td><td>Search RSA</td><td>US + Intl</td><td class="num">204</td><td><span class="pill warn">Budget-limited</span></td></tr>
+        <tr><td>UI components</td><td>Search-Components</td><td>Search RSA</td><td>US + Intl</td><td class="num">178</td><td><span class="pill bad">Rank-limited</span></td></tr>
+        <tr><td>Competitor conquest</td><td>Search-Compete</td><td>Search RSA</td><td>US + Intl</td><td class="num">56</td><td><span class="pill good">Winning</span></td></tr>
+        <tr><td>PMax Americas</td><td>PMax-Americas</td><td>Perf Max</td><td>US</td><td class="num">176</td><td><span class="pill good">Good engage</span></td></tr>
+        <tr><td>PMax EMEA</td><td>PMax-EMEA</td><td>Perf Max</td><td>Intl</td><td class="num">316</td><td><span class="pill good">Best engage</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="src">Google Ads (AW), campaign level. Region for Search not split this run (flagged as a reporting task).</div>
+
+    <div class="subh">Bing / Microsoft Ads</div>
+    <div class="warn"><b>No React campaigns on Bing this period.</b> The account runs Reveal search only — nothing to report for Ignite UI React. Bing capability is confirmed working via Adzviser (impression share, QS, abs-top all available) the moment React campaigns launch.</div>
+  </section>
+
+  <section class="tabpanel" data-tab="terms" data-label="Search Terms &amp; Keywords">
+    <div class="sec"><span class="n">1</span> Google Ads — top search terms (intent-tagged)</div>
+    <div class="note">Keep high-intent grid / data-grid / table / chart / component &amp; conquest terms even when pricey. Research adjacent/OSS-library terms. Cut genuinely off-target queries. Suggestions deduped vs the live keyword book, shown only as true EXACT gaps.</div>
+    <div class="dtable"><table>
+      <thead><tr><th>Search term</th><th>Campaign</th><th class="num">Clicks</th><th class="num">Cost</th><th>Call</th></tr></thead>
+      <tbody>
+        <tr><td>react component library</td><td>Components</td><td class="num">30</td><td class="num">$109.88</td><td><span class="pill good">Keep</span></td></tr>
+        <tr><td>ag grid react</td><td>Compete</td><td class="num">21</td><td class="num">$267.79</td><td><span class="pill good">Keep — conquest</span></td></tr>
+        <tr><td>react charts</td><td>Charts</td><td class="num">16</td><td class="num">$73.60</td><td><span class="pill good">Keep</span></td></tr>
+        <tr><td>react tables</td><td>Grids</td><td class="num">7</td><td class="num">$29.75</td><td><span class="pill good">Keep — add exact</span></td></tr>
+        <tr><td>react data grid</td><td>Grids</td><td class="num">4</td><td class="num">$12.66</td><td><span class="pill good">Keep — head term</span></td></tr>
+        <tr><td>devexpress / kendoreact / syncfusion grid react</td><td>Compete</td><td class="num">6</td><td class="num">$78.24</td><td><span class="pill good">Keep — conquest</span></td></tr>
+        <tr><td>react flow examples / xyflow react</td><td>Charts</td><td class="num">8</td><td class="num">$25.97</td><td><span class="pill bad">Negative — OSS lib</span></td></tr>
+        <tr><td>react force graph / graph visualization</td><td>Charts</td><td class="num">4</td><td class="num">$16.85</td><td><span class="pill bad">Negative</span></td></tr>
+        <tr><td>apache echarts / apexcharts react</td><td>Charts</td><td class="num">3</td><td class="num">$14.86</td><td><span class="pill warn">Research</span></td></tr>
+        <tr><td>material ui table</td><td>Grids</td><td class="num">4</td><td class="num">$12.83</td><td><span class="pill warn">Research</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="cards">
+      <div class="card"><div class="ch"><span class="nm">Keyword gaps — add EXACT</span></div><div class="cb"><code>[react tables]</code> · <code>[react ui libraries]</code> · <code>[react components library]</code> · <code>[react data table]</code> — recurring spend via broad/phrase, no exact in the book. Add as exact (never phrase) to protect QS.</div></div>
+      <div class="card"><div class="ch"><span class="nm">Quality Score — the rank problem</span></div><div class="cb">Top-spend keywords carry <b>QS 1–4</b>: react chart library (2, $622), react ui table (4, $385), react component library (3), react ui library (2), ag grid react (1). Direct cause of 63–71% abs-top lost to rank on Grids/Components.</div></div>
+    </div>
+    <div class="warn"><b>Coverage gap:</b> "react table" still has no dedicated ad group (folded into Grids). A dedicated group with tailored RSAs would lift relevance and QS.</div>
+    <div class="subh">Bing / Microsoft Ads</div>
+    <div class="warn">No React search terms on Bing — no React campaigns live. Adzviser exposes Bing search-term + keyword + QS breakdowns; they populate on launch.</div>
+  </section>
+
+  <section class="tabpanel" data-tab="copy" data-label="Ad Copy">
+    <div class="sec"><span class="n">1</span> Google Ads — RSA performance</div>
+    <div class="warn"><b>Asset grading blind spot:</b> every RSA returns <b>"Pending information"</b> — Google can't grade assets without a conversion signal (downstream of the tracking break). Ranked below by CTR + impressions served.</div>
+    <div class="cards">
+      <div class="card"><div class="ch"><span class="nm">Top headlines by CTR</span></div><div class="cb">Build Faster With Ignite React <b>22.2%</b> · Build Customizable React Apps <b>18.6%</b> · Trusted By The World's Best <b>18.5%</b> · Ignite UI for React 12.1% · The Fastest React Chart 8.97% · React Table 9.43%</div></div>
+      <div class="card"><div class="ch"><span class="nm">Top descriptions by CTR</span></div><div class="cb">Explore a high-performance React Data Grid… <b>20.9%</b> · Modern &amp; Feature-Packed React Components… <b>20.3%</b> · Ignite UI for React fast real-time charts <b>20.0%</b> · Google/Yahoo Finance-style charts 15.7%</div></div>
+    </div>
+    <div class="subh">Demand Gen copy — the weak link</div>
+    <div class="dtable"><table>
+      <thead><tr><th>Asset</th><th>Type</th><th class="num">Impr</th><th class="num">CTR</th></tr></thead>
+      <tbody>
+        <tr><td>React Apps Delivered Faster</td><td>Headline</td><td class="num">7,677</td><td class="num">3.26%</td></tr>
+        <tr><td>Complete React UI Toolkit</td><td>Headline</td><td class="num">7,320</td><td class="num">3.27%</td></tr>
+        <tr><td>Essential React UI Toolkit with Grids, Charts…</td><td>Long headline</td><td class="num">2,109</td><td class="num">2.04%</td></tr>
+        <tr><td>Increase Developer Productivity 30–60%…</td><td>Long headline</td><td class="num">730</td><td class="num">1.23%</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small">Demand Gen CTR (1–3%) trails Search (18–22% on winners); long headlines weakest. Winning themes: speed + enterprise, developer velocity, breadth ("100+ React UI Components").</p>
+    <div class="warn"><b>US vs Intl:</b> Search creative isn't split/localized by region (no region dimension this run). Enable geo segmentation before judging Intl copy.</div>
+    <div class="subh">Bing / Microsoft Ads</div>
+    <div class="warn">No React ad copy on Bing — no React campaigns live. Bing exposes ad title/description + landing-page-experience grading on launch.</div>
+  </section>
+
+  <section class="tabpanel" data-tab="creative" data-label="Creative">
+    <div class="sec"><span class="n">1</span> Google Ads — Demand Gen image assets</div>
+    <div class="warn"><b>Grading blind spot:</b> all image assets return "Pending information." No conversion signal → Google can't rate or auto-optimize creative.</div>
+    <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+      <div class="card"><div class="cb" style="padding:0"><img src="https://tpc.googlesyndication.com/simgad/9920886698988483481" alt="DG creative 1" style="width:100%;height:140px;object-fit:cover;display:block"><div style="padding:10px 13px">Asset 1 · 19,948 impr · <b>3.00% CTR</b> · <span class="pill gray">Pending</span></div></div></div>
+      <div class="card"><div class="cb" style="padding:0"><img src="https://tpc.googlesyndication.com/simgad/781972544363365321" alt="DG creative 2" style="width:100%;height:140px;object-fit:cover;display:block"><div style="padding:10px 13px">Asset 2 · 18,902 impr · <b>3.06% CTR</b> · <span class="pill gray">Pending</span></div></div></div>
+      <div class="card"><div class="cb" style="padding:0"><img src="https://tpc.googlesyndication.com/simgad/14971761426856756287" alt="DG creative 3" style="width:100%;height:140px;object-fit:cover;display:block"><div style="padding:10px 13px">Asset 3 · 3,547 impr · <b>4.45% CTR</b> · <span class="pill good">Best</span></div></div></div>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="ch"><span class="nm">Format performance</span></div><div class="cb">Search RSA (text) — 8,135 impr / 679 clk / <b>8.35% CTR</b>. Demand Gen (image) — 19,955 / 598 / 3.00%. PMax (mixed) — 35,559 / 492 / 1.38%. Text search converts attention far more efficiently.</div></div>
+      <div class="card"><div class="ch"><span class="nm">Fatigue &amp; refresh</span></div><div class="cb"><span class="pill good">Working</span> Search RSAs — deep pool, no fatigue. <span class="pill warn">Watch</span> Demand Gen — only 3 images carrying $750/wk; add 3–5 variants. <span class="pill bad">Blind</span> PMax — no grading without conversions.</div></div>
+    </div>
+    <div class="subh">Bing / Microsoft Ads</div>
+    <div class="warn">No React creative on Bing — no React campaigns live.</div>
+  </section>
+
+  <section class="tabpanel" data-tab="landing" data-label="Landing Pages">
+    <div class="sec"><span class="n">1</span> GA4 google/cpc — landing pages</div>
+    <div class="kpigrid">
+      <div class="kpi fbx"><div class="lab">cpc sessions (30d)</div><div class="val">326</div><div class="delta down">▼ vs 24.6k/mo</div></div>
+      <div class="kpi fbx"><div class="lab">Engagement</div><div class="val">63.5%</div><div class="delta up">healthy</div></div>
+      <div class="kpi fbx"><div class="lab">Bounce</div><div class="val">36.5%</div><div class="delta up">healthy</div></div>
+      <div class="kpi fbx"><div class="lab">cpc conv (30d)</div><div class="val">7</div><div class="delta down">signal broken</div></div>
+      <div class="kpi fbx"><div class="lab">Desktop share</div><div class="val">96.6%</div><div class="delta flat">dev audience</div></div>
+    </div>
+    <div class="subh">cpc sessions by month — the tracking cliff</div>
+    <svg viewBox="0 0 700 210" width="100%" height="200" role="img" aria-label="Monthly cpc sessions">
+      <line x1="50" y1="170" x2="670" y2="170" stroke="#E9E9F4"/>
+      <polyline fill="none" stroke="#FF6B2C" stroke-width="3" points="50,96 150,89 250,65 350,20 450,30 550,161 650,168"/>
+      <g fill="#FF6B2C"><circle cx="50" cy="96" r="4"/><circle cx="150" cy="89" r="4"/><circle cx="250" cy="65" r="4"/><circle cx="350" cy="20" r="4"/><circle cx="450" cy="30" r="4"/><circle cx="550" cy="161" r="5" fill="#c23b39"/><circle cx="650" cy="168" r="5" fill="#c23b39"/></g>
+      <g font-size="11" fill="#5f6b7a" font-family="Roboto"><text x="50" y="188" text-anchor="middle">Jan</text><text x="150" y="188" text-anchor="middle">Feb</text><text x="250" y="188" text-anchor="middle">Mar</text><text x="350" y="188" text-anchor="middle">Apr</text><text x="450" y="188" text-anchor="middle">May</text><text x="550" y="188" text-anchor="middle">Jun</text><text x="650" y="188" text-anchor="middle">Jul</text></g>
+      <g font-size="10.5" fill="#0F172A" font-family="Roboto Mono" font-weight="600"><text x="350" y="14" text-anchor="middle">26,342</text><text x="450" y="24" text-anchor="middle">24,599</text><text x="550" y="155" text-anchor="middle" fill="#c23b39">1,573</text><text x="650" y="162" text-anchor="middle" fill="#c23b39">283</text></g>
+    </svg>
+    <p class="small">Sessions climbed through May, then collapsed while engagement held (Jun 67%, Jul 64%). Traffic didn't degrade — <b>measurement did</b>.</p>
+    <div class="cards">
+      <div class="card"><div class="ch"><span class="nm">Where paid lands</span></div><div class="cb">93.6% intent/product pages, 6.4% homepage. <b>/products/ignite-ui-react</b> is the workhorse — 186 sessions, 38% bounce (healthy). <b>/products/react-data-grid</b> underperforms — 6 sessions, 67% bounce (fix once volume returns).</div></div>
+      <div class="card"><div class="ch"><span class="nm">Engagement by campaign</span></div><div class="cb">PMax-EMEA <b>77.8%</b> (best) · PMax-Americas 59.2% · ignite-ui-react search 45.0% · Search-Grids 28.6% (weak/thin). Read directionally — counts suppressed by the tracking break.</div></div>
+    </div>
+    <div class="subh">Bing / Microsoft Ads</div>
+    <div class="warn">No React landing-page data on Bing — no React campaigns live.</div>
+  </section>
+
+  <section class="tabpanel" data-tab="journey" data-label="Journey &amp; ROI">
+    <div class="sec"><span class="n">1</span> NPM installs — the outcome</div>
+    <div class="note"><b>NPM installs are our north-star and a blended adoption signal — not 1:1 paid-attributed.</b> Paid influences installs; until Ads conversion tracking + auto-tagging are fixed we cannot credit installs to paid clicks. The weekly install <em>count</em> also can't be auto-read from this pipeline (the npm stats API <code>api.npmjs.org</code> is blocked here) — package pages below are live and clickable, and version/publish data is real from the npm registry.</div>
+    <div class="npm">
+      <a class="pk fbx" href="https://www.npmjs.com/package/igniteui-react" target="_blank" rel="noopener"><div class="pkn">igniteui-react</div><div class="pkv">v19.8.1 · published 2026-07-13</div><div class="pki">installs&nbsp;n/a</div></a>
+      <a class="pk fbx" href="https://www.npmjs.com/package/igniteui-react-charts" target="_blank" rel="noopener"><div class="pkn">igniteui-react-charts</div><div class="pkv">v19.6.0 · published 2026-06-08</div><div class="pki">installs&nbsp;n/a</div></a>
+      <a class="pk fbx" href="https://www.npmjs.com/package/igniteui-react-core" target="_blank" rel="noopener"><div class="pkn">igniteui-react-core</div><div class="pkv">v19.6.0 · published 2026-06-08</div><div class="pki">installs&nbsp;n/a</div></a>
+    </div>
+    <p class="small">Related: <a href="https://www.npmjs.com/package/igniteui-react-grids" target="_blank" rel="noopener">igniteui-react-grids</a> (v19.8.1) maps to the grid campaigns. Headline "installs / wk" = sum of the three packages once the stats API is reachable or numbers are provided.</p>
+
+    <div class="sec"><span class="n">2</span> The funnel, traced</div>
+    <div class="funnel">
+      <div class="frow"><div>Spend (Ads, 7d)</div><div class="fb" style="width:100%">$4,768</div><div class="fsrc small">Google Ads</div></div>
+      <div class="frow"><div>Clicks (Ads, 7d)</div><div class="fb" style="width:70%">1,769</div><div class="fsrc small">Google Ads</div></div>
+      <div class="frow"><div>React sessions (GA4, 30d)</div><div class="fb" style="width:12%;background:linear-gradient(90deg,#c23b39,#9a2f2d)">~130</div><div class="fsrc small">GA4 — broken</div></div>
+      <div class="frow"><div>NPM installs</div><div class="fb" style="width:8%;background:#8a93a3">n/a</div><div class="fsrc small">not attributable</div></div>
+    </div>
+    <div class="verdict"><div class="vh">Verdict — Fix, then hold</div><p><b>Do not scale on numbers we can't trust.</b> Freeze net-new budget (bar the small Charts top-up), repair tracking + wire an installs read, and re-baseline next week. Fix "react grid" Quality Score and cap DemandGen in parallel. Bing is a live opportunity if leadership wants a second search channel. ROI vs installs is <b>undefined until the outcome layer is measurable</b>.</p></div>
+  </section>
+
+  <section class="tabpanel" data-tab="tasks" data-label="Tasks">
+    <div class="taskbar">
+      <span class="small"><b>14 tasks</b> · live snapshot from the "React Paid" Slingshot list · owner Poojitha Battala</span>
+      <a class="copybtn" style="text-decoration:none" href="https://my.slingshotapp.io/openTaskList/e97e10ef_db463f36-99e3-4842-8951-2431a8403178_tg" target="_blank" rel="noopener">Open list in Slingshot</a>
+    </div>
+    <div class="dtable"><table>
+      <thead><tr><th>Task</th><th>Priority</th><th>Status</th><th class="num">Due</th></tr></thead>
+      <tbody>
+        <tr><td>Repair click→session→conversion tracking</td><td><span class="pri P1">P1</span></td><td><span class="stat todo">To do</span></td><td class="num">07-29</td></tr>
+        <tr><td>Fix "react grid" ad rank on Search-Grids</td><td><span class="pri P1">P1</span></td><td><span class="stat prog">In progress</span></td><td class="num">07-29</td></tr>
+        <tr><td>Raise Quality Score on Search-Components</td><td><span class="pri P1">P1</span></td><td><span class="stat todo">To do</span></td><td class="num">—</td></tr>
+        <tr><td>Stand up US-vs-Intl geo + conversion import</td><td><span class="pri P1">P1</span></td><td><span class="stat todo">To do</span></td><td class="num">—</td></tr>
+        <tr><td>Audit &amp; cap Demand Gen React</td><td><span class="pri P2">P2</span></td><td><span class="stat prog">In progress</span></td><td class="num">07-30</td></tr>
+        <tr><td>Extend the Search-Compete win (rank-lost share)</td><td><span class="pri P2">P2</span></td><td><span class="stat todo">To do</span></td><td class="num">—</td></tr>
+        <tr><td>Fund Search-Charts +$30/day</td><td><span class="pri P2">P2</span></td><td><span class="stat todo">To do</span></td><td class="num">—</td></tr>
+        <tr><td>Negatives sweep — OSS-library queries</td><td><span class="pri P2">P2</span></td><td><span class="stat todo">To do</span></td><td class="num">—</td></tr>
+        <tr><td>Add CLI videos to Demand Gen campaigns</td><td><span class="pri P3">P3</span></td><td><span class="stat prog">In progress</span></td><td class="num">08-03</td></tr>
+        <tr><td>Ad Copy and Landing page optimization</td><td><span class="pri P3">P3</span></td><td><span class="stat todo">To do</span></td><td class="num">08-03</td></tr>
+        <tr><td>Add Brand Guidelines for Ultimate &amp; Ignite UI</td><td><span class="pri P3">P3</span></td><td><span class="stat todo">To do</span></td><td class="num">08-06</td></tr>
+        <tr><td>Fund Search-Compete to recapture top slot</td><td><span class="pri P1">P1</span></td><td><span class="stat done">Done</span> <span class="donedate">07-24</span></td><td class="num">07-25</td></tr>
+        <tr><td>Search-terms sweep + "react table" coverage</td><td><span class="pri P2">P2</span></td><td><span class="stat done">Done</span> <span class="donedate">07-30</span></td><td class="num">07-30</td></tr>
+        <tr><td>React Grids campaign — Kw/search-terms opti</td><td><span class="pri P3">P3</span></td><td><span class="stat done">Done</span> <span class="donedate">07-31</span></td><td class="num">07-31</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small">Recurring cadence: this list is reviewed and topped up every Monday by the React Paid agent (≤5 new actions/week, owner Poojitha). Statuses/dates come straight from Slingshot — snapshot at report generation.</p>
+  </section>
+
+  <section class="tabpanel" data-tab="summary" data-label="Summary">
+    <div class="taskbar"><span class="small"><b>Executive summary</b> — copyable for Dean / leadership</span><button class="copybtn" id="copyBtn" type="button">Copy summary</button></div>
+    <div class="summary-card" id="summaryCard">
+      <h3>React PPC — week of Jul 27, 2026</h3>
+      <p><b>Where we are:</b> Ignite UI for React paid spent <b>$4,768 (+19.6% WoW)</b> for <b>1,769 clicks (+24.9%)</b> at an efficient <b>$2.70 CPC</b> — but we're flying blind on outcomes. GA4 cpc sessions collapsed after May (24,599 → 283) and Google Ads shows ~0 conversions, so CPA is unmeasurable. Our north-star, <b>NPM installs</b>, is live at the package level (v19.8.1) but isn't attributable to paid or auto-readable from this pipeline yet.</p>
+      <h3>What's working</h3>
+      <ul>
+        <li><b>Search-Compete</b> — budget-lost-abs-top 36%→11%, abs-top IS 45%→54%. Best-positioned React campaign.</li>
+        <li><b>Efficiency</b> — CPC down, CTR up (2.15%→2.78%); top RSAs at 18–22% CTR.</li>
+        <li><b>Product</b> — React packages actively shipping (v19.8.1).</li>
+      </ul>
+      <h3>What's not</h3>
+      <ul>
+        <li><b>Tracking</b> — conversion/session measurement broken since ~June. Standing P1.</li>
+        <li><b>"react grid" rank</b> — 71% of top slot lost to Ad Rank on QS 2–4.</li>
+        <li><b>DemandGen</b> — doubled to $750/wk with 2 sessions, 0 conversions.</li>
+      </ul>
+      <h3>This week's plan</h3>
+      <ul>
+        <li>Fix tracking + wire an installs read (P1).</li>
+        <li>Lift Quality Score on Grids &amp; Components; extend the Compete win.</li>
+        <li>Cap DemandGen; OSS-library negatives sweep; +$30/day to Charts.</li>
+      </ul>
+      <h3>Channel-by-channel</h3>
+      <p><b>Google Ads</b> — primary, strong top-of-funnel, blind on outcomes. <b>Bing</b> — connected but <b>no React campaigns</b> (Reveal only); a warm channel sitting idle. <b>LinkedIn/Reddit/G2</b> — not running.</p>
+      <h3>Installs forecast</h3>
+      <p>Pending a trustworthy installs read (npm stats API allowlist or provided numbers). No projection fabricated until the outcome layer is measurable.</p>
+    </div>
+  </section>
+
+  <section class="tabpanel" data-tab="cheat" data-label="Cheat sheet">
+    <div class="sec"><span class="n">1</span> Ours — product-specific</div>
+    <div class="glossary">
+      <div class="gterm ours"><div class="t">NPM installs</div><div class="d">Our north-star adoption signal. Sum of weekly downloads across igniteui-react, igniteui-react-charts, igniteui-react-core from api.npmjs.org. A blended signal — not 1:1 paid-attributed.</div></div>
+      <div class="gterm ours"><div class="t">By-package split</div><div class="d">Per-package installs + share of total, each linking to its npm page. Grids maps to the grid campaigns.</div></div>
+      <div class="gterm ours"><div class="t">"Flying blind"</div><div class="d">No working Ads conversion tracking / broken GA4 auto-tagging since ~June — CPA/CPL and asset grading unavailable.</div></div>
+      <div class="gterm ours"><div class="t">Google vs Bing</div><div class="d">Google = primary React channel. Bing = connected via Adzviser but currently Reveal-only; no React spend. Never blended.</div></div>
+    </div>
+    <div class="sec"><span class="n">2</span> Shared paid-media terms</div>
+    <div class="glossary">
+      <div class="gterm"><div class="t">Impression Share (IS)</div><div class="d">% of impressions won vs eligible. Abs-top IS = share of absolute-top (first) slot.</div></div>
+      <div class="gterm"><div class="t">Budget-lost / Rank-lost IS</div><div class="d">Share missed because budget was too low (budget) or Ad Rank too low (rank/Quality Score).</div></div>
+      <div class="gterm"><div class="t">Quality Score (QS)</div><div class="d">1–10 relevance grade (expected CTR, ad relevance, LP experience). Low QS → high rank-lost IS.</div></div>
+      <div class="gterm"><div class="t">CTR / CPC</div><div class="d">Click-through rate; cost per click. Blended = across a campaign set, per channel (never cross-channel).</div></div>
+      <div class="gterm"><div class="t">Demand Gen</div><div class="d">Google's image/audience prospecting channel. High volume, low intent — needs its own efficiency guardrails.</div></div>
+      <div class="gterm"><div class="t">Negatives</div><div class="d">Excluded queries. Here: OSS libraries (react-flow, xyflow, echarts) with no buying intent for Ignite UI.</div></div>
+    </div>
+    <div class="src">Status language: On track (green) · Building / Recovering / At risk (amber) · Behind (red) · Define/undefined (gray).</div>
+  </section>
+
+  </div>
+</div>
+
+<script>
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.tabpanel'));
+  var bar = document.getElementById('tabbar');
+  panels.forEach(function(p,i){
+    var b=document.createElement('button');
+    b.className='tab'+(i===0?' on':''); b.innerHTML=p.dataset.label||('Tab '+(i+1));
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+      panels.forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on'); p.classList.add('on');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+    bar.appendChild(b);
+  });
+
+  var FEEDBACK_URL="https://app.slingshotapp.io/openDiscussion/e97e10ef_2cc8dab7-c994-41e7-a34e-8d1f243a4170";
+  document.querySelectorAll('.fbx').forEach(function(el){
+    el.addEventListener('click',function(e){
+      var r=el.getBoundingClientRect();
+      if(e.clientX>=r.right-24 && e.clientY<=r.top+24){ window.open(FEEDBACK_URL,'_blank'); }
+    });
+  });
+
+  var copyBtn=document.getElementById('copyBtn'), card=document.getElementById('summaryCard');
+  if(copyBtn){copyBtn.addEventListener('click',function(){
+    var html=card.innerHTML.trim(), text=card.innerText.trim();
+    function done(){copyBtn.classList.add('copied');copyBtn.textContent='Copied!';setTimeout(function(){copyBtn.classList.remove('copied');copyBtn.textContent='Copy summary';},1800);}
+    if(navigator.clipboard&&window.ClipboardItem){navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([text],{type:'text/plain'})})]).then(done).catch(function(){navigator.clipboard.writeText(text).then(done);});}
+    else if(navigator.clipboard){navigator.clipboard.writeText(text).then(done);}
+  });}
+</script>
+</body>
+</html>
