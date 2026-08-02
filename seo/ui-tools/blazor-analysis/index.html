@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly SEO Brief — Ignite UI for Blazor · 2026-08-02</title>
+<style>
+:root{
+  --orange:#FF6B2C; --orange-deep:#E14E12; --orange-soft:#FFEEE2;
+  --hero:linear-gradient(120deg,#FF9A4D 0%,#FF6B2C 48%,#E14E12 100%);
+  --navy:#0A2540; --page:#F4F7FB; --card:#ffffff;
+  --green:#1FA971; --amber:#E8A317; --red:#E24C4C; --watch:#8A93A5;
+  --ink-soft:#54627B; --line:#E7ECF3;
+  --shadow:0 1px 2px rgba(10,37,64,.06),0 8px 24px rgba(10,37,64,.06);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--navy);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;
+  font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.mono{font-family:"Roboto Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+a{color:var(--orange-deep);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* hero */
+.hero{background:var(--hero);color:#fff;border-radius:0 0 22px 22px;padding:26px 0 30px;box-shadow:var(--shadow)}
+.hero .wrap{padding-bottom:0}
+.logo-chip{display:inline-flex;align-items:center;background:#fff;border-radius:11px;padding:8px 14px;box-shadow:0 2px 10px rgba(10,37,64,.18)}
+.kicker{margin:16px 0 4px;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+.hero h1{margin:2px 0 10px;font-size:30px;line-height:1.15;font-weight:800;letter-spacing:-.01em}
+.hero h1 span{opacity:.9;font-weight:700}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:rgba(255,255,255,.95)}
+.meta b{font-weight:700}
+
+/* tabs */
+.tabs{position:sticky;top:0;z-index:30;background:var(--page);border-bottom:1px solid var(--line);margin-top:8px}
+.tabs .wrap{padding-top:0;padding-bottom:0;display:flex;gap:4px}
+.tab-btn{appearance:none;border:0;background:transparent;padding:15px 16px;font-size:14px;font-weight:600;color:var(--ink-soft);cursor:pointer;border-bottom:3px solid transparent}
+.tab-btn:hover{color:var(--navy)}
+.tab-btn.active{color:var(--orange-deep);border-bottom-color:var(--orange)}
+.panel{display:none;padding-top:26px}
+.panel.active{display:block}
+
+/* cards & structure */
+.section-title{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-soft);font-weight:700;margin:30px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.pad{padding:18px 20px}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:820px){.g3,.g4,.g2{grid-template-columns:1fr}}
+
+/* VP cards */
+.vp{position:relative;border-top:4px solid var(--watch);padding:16px 18px}
+.vp.good{border-top-color:var(--green)}
+.vp.bad{border-top-color:var(--red)}
+.vp.watch{border-top-color:var(--amber)}
+.vp h4{margin:0 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft)}
+.vp p{margin:0;font-size:14.5px;font-weight:500}
+
+/* lead box */
+.lead{border-left:4px solid var(--orange);background:linear-gradient(90deg,var(--orange-soft),#fff 60%)}
+.lead .pad{padding:18px 22px}
+.lead p{margin:0 0 10px}.lead p:last-child{margin:0}
+.note{font-size:12.5px;color:var(--ink-soft);background:#fff;border:1px dashed var(--line);border-radius:8px;padding:8px 12px;display:inline-block}
+
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);font-weight:700;background:#FAFCFF}
+tbody tr:last-child td{border-bottom:0}
+.right{text-align:right}
+.chip{display:inline-block;font-size:11.5px;padding:2px 8px;border-radius:999px;background:var(--orange-soft);color:var(--orange-deep);font-weight:600}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:999px}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%}
+.pill.green{background:rgba(31,169,113,.12);color:#127a51}.pill.green::before{background:var(--green)}
+.pill.amber{background:rgba(232,163,23,.14);color:#9a6b06}.pill.amber::before{background:var(--amber)}
+.pill.red{background:rgba(226,76,76,.12);color:#b32a2a}.pill.red::before{background:var(--red)}
+.pill.watch{background:rgba(138,147,165,.14);color:#5c667a}.pill.watch::before{background:var(--watch)}
+.up{color:var(--green);font-weight:700}.down{color:var(--red);font-weight:700}.flat{color:var(--ink-soft);font-weight:700}
+
+/* progress */
+.bar{height:8px;border-radius:999px;background:var(--line);overflow:hidden;min-width:90px}
+.bar>i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--orange),var(--orange-deep))}
+
+/* KPI */
+.kpi h5{margin:0 0 8px;font-size:12.5px;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;justify-content:space-between}
+.badge{font-size:10px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#fff;background:var(--navy);padding:2px 7px;border-radius:6px}
+.badge.gsc{background:#3A6EA5}.badge.ga4{background:#E8710A}.badge.ahrefs{background:#0A2540}.badge.nuget{background:#004880}.badge.amp{background:#5A4FCF}
+.kpi .val{font-size:26px;font-weight:800;letter-spacing:-.01em;line-height:1}
+.kpi .sub{font-size:12.5px;color:var(--ink-soft);margin-top:4px}
+.spark{margin-top:10px}
+
+/* gauge */
+.gauge-wrap{display:flex;align-items:center;gap:14px}
+.gwrap svg{display:block}
+
+/* AI SoV bars */
+.sov-row{display:grid;grid-template-columns:130px 1fr 48px;align-items:center;gap:10px;margin:9px 0}
+.sov-row .name{font-size:13px;font-weight:600}
+.sov-bar{height:14px;border-radius:999px;background:var(--line);overflow:hidden}
+.sov-bar>i{display:block;height:100%;background:#C6D0DE}
+.sov-row.me .name{color:var(--orange-deep)}
+.sov-row.me .sov-bar>i{background:linear-gradient(90deg,var(--orange),var(--orange-deep))}
+.sov-row .pctv{font-size:12.5px;font-weight:700;text-align:right}
+
+/* fbx */
+.fbx-host{position:relative}
+.fbx{position:absolute;top:6px;right:6px;z-index:5;width:24px;height:24px;border-radius:7px;border:1px solid var(--line);background:#fff;color:var(--ink-soft);font-size:12px;line-height:1;cursor:pointer;opacity:0;transition:opacity .12s;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow)}
+.fbx-host:hover>.fbx{opacity:1}
+.fbx:hover{color:var(--orange-deep);border-color:var(--orange)}
+td.kw{position:relative}
+td.kw .fbx{top:50%;transform:translateY(-50%)}
+
+/* modal */
+.modal-back{position:fixed;inset:0;background:rgba(10,37,64,.45);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.modal-back.open{display:flex}
+.modal{background:#fff;border-radius:16px;max-width:460px;width:100%;box-shadow:0 20px 60px rgba(10,37,64,.3);overflow:hidden}
+.modal header{background:var(--hero);color:#fff;padding:14px 18px;font-weight:700}
+.modal .body{padding:18px}
+.modal .body label{font-size:12px;color:var(--ink-soft);font-weight:600}
+.modal .ctx{font-size:12.5px;background:var(--orange-soft);color:var(--orange-deep);border-radius:8px;padding:7px 10px;margin:6px 0 12px;word-break:break-word}
+.modal textarea{width:100%;min-height:90px;border:1px solid var(--line);border-radius:10px;padding:10px;font-family:inherit;font-size:14px;resize:vertical}
+.modal .actions{display:flex;gap:10px;justify-content:flex-end;margin-top:14px}
+.btn{appearance:none;border:1px solid var(--line);background:#fff;color:var(--navy);font-weight:600;font-size:13.5px;padding:9px 15px;border-radius:10px;cursor:pointer}
+.btn.primary{background:var(--orange);border-color:var(--orange);color:#fff}
+.btn.primary:hover{background:var(--orange-deep);border-color:var(--orange-deep)}
+
+/* seg control */
+.seg{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:10px;padding:3px;gap:2px}
+.seg button{border:0;background:transparent;padding:7px 14px;font-size:13px;font-weight:600;color:var(--ink-soft);border-radius:7px;cursor:pointer}
+.seg button.active{background:var(--orange-soft);color:var(--orange-deep)}
+.view{display:none}.view.active{display:block}
+
+/* board */
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:820px){.board{grid-template-columns:1fr}}
+.col h6{margin:0 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft)}
+.tk{background:#fff;border:1px solid var(--line);border-left:3px solid var(--orange);border-radius:10px;padding:10px 12px;margin-bottom:10px;box-shadow:var(--shadow)}
+.tk .t{font-weight:600;font-size:13px;margin-bottom:5px}
+.tk .m{font-size:11.5px;color:var(--ink-soft);display:flex;gap:8px;flex-wrap:wrap}
+.prio{font-size:10px;font-weight:700;text-transform:uppercase;padding:1px 6px;border-radius:5px}
+.prio.high{background:rgba(226,76,76,.12);color:#b32a2a}
+.prio.medium{background:rgba(232,163,23,.14);color:#9a6b06}
+.prio.low,.prio.none{background:rgba(138,147,165,.14);color:#5c667a}
+
+/* timeline */
+.tl{position:relative;margin-left:8px;padding-left:22px;border-left:2px solid var(--line)}
+.tl .ev{position:relative;margin-bottom:16px}
+.tl .ev::before{content:"";position:absolute;left:-29px;top:3px;width:12px;height:12px;border-radius:50%;background:var(--orange);border:2px solid #fff;box-shadow:0 0 0 2px var(--orange-soft)}
+.tl .d{font-size:11.5px;color:var(--ink-soft);font-weight:700}
+.tl .t{font-weight:600;font-size:13.5px}
+
+.copybar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.summary-box{white-space:pre-wrap;font-size:14px;line-height:1.6}
+.foot{margin-top:20px;font-size:12px;color:var(--ink-soft)}
+.def td:first-child{font-weight:600;white-space:nowrap}
+.glossary dt{font-weight:700;margin-top:10px}
+.glossary dd{margin:2px 0 0;color:var(--ink-soft);font-size:13.5px}
+.onerule{background:var(--navy);color:#fff;border-radius:12px;padding:16px 18px;font-size:14px}
+.onerule b{color:#FFB98A}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div class="logo-chip">
+      <svg width="116" height="26" viewBox="0 0 116 26" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ignite UI"><defs><linearGradient id="iguiB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF9A4D"/><stop offset="0.55" stop-color="#FF6B2C"/><stop offset="1" stop-color="#E14E12"/></linearGradient></defs><rect x="0" y="3" width="20" height="20" rx="5.5" fill="url(#iguiB)"/><path d="M10 6 C 12.6 8.7 13.8 10.8 13.8 13.4 C 13.8 16.3 12 18.2 10 18.2 C 8 18.2 6.2 16.5 6.2 13.9 C 6.2 12.4 6.9 11.2 7.8 10.4 C 7.7 11.7 8.3 12.6 9.3 12.8 C 8.6 11.1 9 8.4 10 6 Z" fill="#fff"/><text x="27" y="18.5" font-family="Inter,Roboto,system-ui,sans-serif" font-size="16" font-weight="800" fill="#0A2540">Ignite <tspan fill="#E14E12">UI</tspan></text></svg>
+    </div>
+    <div class="kicker">infragistics.com · Ignite UI for Blazor · Organic / SEO</div>
+    <h1>Weekly SEO Brief <span>/ Blazor components</span></h1>
+    <div class="meta">
+      <span><b>Report date:</b> 2026-08-02</span>
+      <span><b>WoW window:</b> Jul 20–26 vs Jul 13–19</span>
+      <span><b>Owner:</b> Casey (PMM)</span>
+      <span><b>Status:</b> Impressions steady, clicks off 29% — page-1 slips on the money terms</span>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="report">Report</button>
+    <button class="tab-btn" data-tab="tasks">Tasks</button>
+    <button class="tab-btn" data-tab="summary">Summary</button>
+    <button class="tab-btn" data-tab="defs">Definitions</button>
+  </div>
+</div>
+
+<div class="wrap" id="report-scope">
+
+<!-- ========== TAB 1: REPORT ========== -->
+<section class="panel active" id="report">
+
+  <div class="section-title">VP readout — the 3 things to know</div>
+  <div class="grid g3">
+    <div class="card vp good fbx-host"><button class="fbx" data-ctx="VP card — What's working">💬</button>
+      <h4>What's working</h4>
+      <p>The <b>charts cluster is winning</b>. Infragistics owns much of the Blazor charts SERP — <span class="mono">blazor charts</span> #4, <span class="mono">blazor graph</span> #4, <span class="mono">webassembly charts</span> #4, <span class="mono">chart library</span> #5, all on the product chart-overview page.</p>
+    </div>
+    <div class="card vp bad fbx-host"><button class="fbx" data-ctx="VP card — What's not working">💬</button>
+      <h4>What's not working</h4>
+      <p><b>Clicks fell 29% WoW</b> (59→42) and have slid three weeks running while impressions held. Driver: <span class="mono">blazor grid</span> slipped <b>#4→#7</b> and <span class="mono">blazor chart</span> #7→#10. It's CTR erosion, not lost demand.</p>
+    </div>
+    <div class="card vp watch fbx-host"><button class="fbx" data-ctx="VP card — The priority">💬</button>
+      <h4>The priority</h4>
+      <p>Recover <span class="mono">blazor grid</span> and <b>consolidate grid authority onto one money page</b> — the grid terms rank through blogs, not the product data-grid page (6 sessions/wk, 0% engagement). And restore the NuGet north-star pull.</p>
+    </div>
+  </div>
+
+  <div class="section-title">1 · Executive summary</div>
+  <div class="card lead fbx-host"><button class="fbx" data-ctx="Executive summary lead">💬</button>
+    <div class="pad">
+      <p>Blazor search <b>demand is steady</b> — impressions held at ~6.0k for the week (+1.4% WoW) — but <b>clicks dropped 29%</b> (59→42) and have now fallen three weeks in a row (88 → 55 → 59 → 42). This is <b>CTR erosion, not a demand problem</b>, and it maps cleanly to position slips on the money terms: <span class="mono">blazor grid</span> fell #4→#7 and <span class="mono">blazor chart</span> #7→#10 over the four-week window.</p>
+      <p>The <b>charts cluster remains strong</b> (multiple top-5), but the <b>grid cluster is stuck</b> mid page-1 (<span class="mono">blazor datagrid</span> #6, <span class="mono">blazor data grid</span> #7) and — the structural issue — those money terms rank through <b>blogs</b>, not the product data-grid page, which pulls just 6 sessions/wk at 0% engagement. DR holds at 72.</p>
+      <p><span class="note">Validate before circulating: the clicks drop is real (3-week trend, one tool), but partly reflects position volatility rather than lost interest — impressions are flat. NuGet installs (north star) could not be pulled this run; treat the adoption line as un-instrumented, not down.</span></p>
+    </div>
+  </div>
+
+  <div class="section-title">2 · Goal scoreboard</div>
+  <div class="card pad">
+    <table>
+      <thead><tr><th>Goal</th><th>Current</th><th>Target</th><th>Progress</th><th>Insight</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr class="fbx-host"><button class="fbx" data-ctx="Goal — blazor data grid">💬</button>
+          <td class="mono">blazor data grid</td><td>#7</td><td>Top-3 Sep 30 · #1 Dec 31</td>
+          <td><div class="bar"><i style="width:42%"></i></div></td>
+          <td>Page 1, 4 spots off top-3. Ranks via a blog.</td><td><span class="pill amber">Behind</span></td></tr>
+        <tr class="fbx-host"><button class="fbx" data-ctx="Goal — blazor grid">💬</button>
+          <td class="mono">blazor grid</td><td>#7 <span class="down">▼3</span></td><td>Top-3 Sep 30 · #1 Dec 31</td>
+          <td><div class="bar"><i style="width:34%"></i></div></td>
+          <td>Slipped #4→#7 this window — the week's red flag.</td><td><span class="pill red">Regressed</span></td></tr>
+        <tr class="fbx-host"><button class="fbx" data-ctx="Goal — blazor datagrid">💬</button>
+          <td class="mono">blazor datagrid</td><td>#6 <span class="up">▲1</span></td><td>Top-3 Sep 30 · #1 Dec 31</td>
+          <td><div class="bar"><i style="width:48%"></i></div></td>
+          <td>Closest of the three; ranks via /Blog/Blazor.</td><td><span class="pill amber">Behind</span></td></tr>
+        <tr class="fbx-host"><button class="fbx" data-ctx="Goal — NuGet installs">💬</button>
+          <td>NuGet installs (north star)</td><td>—</td><td>Up every month · +10% MoM stretch</td>
+          <td><div class="bar"><i style="width:8%"></i></div></td>
+          <td>Live pull blocked this run — not instrumented yet.</td><td><span class="pill red">No data</span></td></tr>
+        <tr class="fbx-host"><button class="fbx" data-ctx="Goal — organic traffic to target pages">💬</button>
+          <td>Organic traffic to target pages</td><td>8 sess/wk</td><td>+25% vs baseline by Dec 31</td>
+          <td><div class="bar"><i style="width:30%"></i></div></td>
+          <td>Data-grid 6 (▲ from 3) + hub 2. Tiny base; blogs pull the volume.</td><td><span class="pill amber">Behind</span></td></tr>
+        <tr class="fbx-host"><button class="fbx" data-ctx="Goal — Domain Rating">💬</button>
+          <td>Domain Rating</td><td>72</td><td>Hold ≥72 · 74 by Mar 2027</td>
+          <td><div class="bar"><i style="width:80%"></i></div></td>
+          <td>Held 72 all year; needs +2 to reach target.</td><td><span class="pill green">On track</span></td></tr>
+        <tr class="fbx-host"><button class="fbx" data-ctx="Goal — technical health">💬</button>
+          <td>Blazor technical health</td><td>45/100*</td><td>Blazor-scoped clean score</td>
+          <td><div class="bar"><i style="width:45%"></i></div></td>
+          <td>*Whole-site only — Blazor not isolable. Stand up a scoped audit.</td><td><span class="pill watch">Watch</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title">3 · KPI snapshot</div>
+  <div class="grid g4">
+    <div class="card pad kpi fbx-host"><button class="fbx" data-ctx="KPI — Organic clicks">💬</button>
+      <h5>Organic clicks <span class="badge gsc">GSC</span></h5>
+      <div class="val">42</div><div class="sub"><span class="down">▼ 29%</span> WoW (59)</div>
+      <div class="spark" data-spark="clicks"></div>
+      <div class="sub">Blazor queries · Jul 20–26</div>
+    </div>
+    <div class="card pad kpi fbx-host"><button class="fbx" data-ctx="KPI — Impressions">💬</button>
+      <h5>Impressions <span class="badge gsc">GSC</span></h5>
+      <div class="val">5,962</div><div class="sub"><span class="up">▲ 1.4%</span> WoW (5,882)</div>
+      <div class="spark" data-spark="impr"></div>
+      <div class="sub">Demand holding ~6.0k/wk</div>
+    </div>
+    <div class="card pad kpi fbx-host"><button class="fbx" data-ctx="KPI — CTR">💬</button>
+      <h5>Avg CTR <span class="badge gsc">GSC</span></h5>
+      <div class="val">0.70%</div><div class="sub"><span class="down">▼ 0.30pp</span> (1.00%)</div>
+      <div class="spark" data-spark="ctr"></div>
+      <div class="sub">The core problem this week</div>
+    </div>
+    <div class="card pad kpi fbx-host"><button class="fbx" data-ctx="KPI — Blazor sessions">💬</button>
+      <h5>Blazor sessions <span class="badge ga4">GA4</span></h5>
+      <div class="val">194</div><div class="sub"><span class="flat">◆ flat</span> WoW (~194)</div>
+      <div class="spark" data-spark="sess"></div>
+      <div class="sub">All Blazor landing pages</div>
+    </div>
+    <div class="card pad kpi fbx-host"><button class="fbx" data-ctx="KPI — Target-page sessions">💬</button>
+      <h5>Target-page sessions <span class="badge ga4">GA4</span></h5>
+      <div class="val">8</div><div class="sub"><span class="up">▲ from 5</span> WoW</div>
+      <div class="sub" style="margin-top:10px">Data-grid 6 · hub 2. Data-grid engagement <b>0%</b>.</div>
+    </div>
+    <div class="card pad kpi fbx-host"><button class="fbx" data-ctx="KPI — Domain Rating">💬</button>
+      <h5>Domain Rating <span class="badge ahrefs">Ahrefs</span></h5>
+      <div class="val">72</div><div class="sub"><span class="flat">◆ flat</span> · ≥72 held</div>
+      <div class="spark" data-spark="dr"></div>
+      <div class="sub">Whole domain</div>
+    </div>
+    <div class="card pad kpi fbx-host"><button class="fbx" data-ctx="KPI — NuGet installs">💬</button>
+      <h5>NuGet installs <span class="badge nuget">NuGet</span></h5>
+      <div class="val">—</div><div class="sub"><span class="down">pull blocked</span></div>
+      <div class="sub" style="margin-top:10px">North star. Restore live-pull (P1). npm is not used for Blazor.</div>
+    </div>
+    <div class="card pad kpi fbx-host"><button class="fbx" data-ctx="KPI — Technical health gauge">💬</button>
+      <h5>Technical health <span class="badge ahrefs">Ahrefs</span></h5>
+      <div class="gauge-wrap">
+        <div class="gwrap" id="gauge"></div>
+        <div><div class="val" style="font-size:22px">45</div><div class="sub">/100 whole-site*</div></div>
+      </div>
+      <div class="sub" style="margin-top:8px">*Blazor not isolable yet</div>
+    </div>
+  </div>
+
+  <div class="section-title">4 · Clusters</div>
+
+  <div class="card pad fbx-host" style="margin-bottom:16px"><button class="fbx" data-ctx="Cluster — Blazor Grid read">💬</button>
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <div><b>Blazor Grid</b> <span class="chip">/blogs/the-best-blazor-grid · /Blog/Blazor</span></div>
+      <span class="pill red">Stuck &amp; slipping</span>
+    </div>
+    <p style="margin:10px 0 12px;font-size:14px">The money cluster. All three head terms sit mid page-1, and <span class="mono">blazor grid</span> (vol 150) slipped #4→#7 this window. The deeper issue is <b>which page ranks</b>: grid demand is captured by <b>blogs</b>, not the product data-grid component page — so clicks land on editorial, not the page that converts. Consolidate authority onto one canonical money page.</p>
+    <table>
+      <thead><tr><th>Keyword</th><th class="right">Vol</th><th>Ranking page</th><th class="right">Pos</th><th class="right">Δ4wk</th></tr></thead>
+      <tbody>
+        <tr><td class="kw">blazor datagrid<button class="fbx" data-ctx="kw: blazor datagrid">💬</button></td><td class="right">100</td><td class="mono">/Blog/Blazor</td><td class="right">6</td><td class="right up">▲1</td></tr>
+        <tr><td class="kw">blazor data grid<button class="fbx" data-ctx="kw: blazor data grid">💬</button></td><td class="right">60</td><td class="mono">/blogs/the-best-blazor-grid</td><td class="right">7</td><td class="right flat">–</td></tr>
+        <tr><td class="kw">blazor grid<button class="fbx" data-ctx="kw: blazor grid">💬</button></td><td class="right">150</td><td class="mono">/blogs/the-best-blazor-grid</td><td class="right">7</td><td class="right down">▼3</td></tr>
+        <tr><td class="kw">blazor table<button class="fbx" data-ctx="kw: blazor table">💬</button></td><td class="right">30</td><td class="mono">/…/grids/grids-header</td><td class="right">23</td><td class="right down">▼2</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card pad fbx-host" style="margin-bottom:16px"><button class="fbx" data-ctx="Cluster — Blazor Charts read">💬</button>
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <div><b>Blazor Charts</b> <span class="chip">/…/components/charts/chart-overview</span></div>
+      <span class="pill green">Winning</span>
+    </div>
+    <p style="margin:10px 0 12px;font-size:14px">Infragistics owns most of the Blazor charts SERP off a single product page. Several terms hold top-5. Two soft spots this window — <span class="mono">blazor chart</span> #7→#10 and <span class="mono">blazor charts</span> #3→#4 — worth a light on-page refresh, but the cluster is healthy and defensible.</p>
+    <table>
+      <thead><tr><th>Keyword</th><th class="right">Vol</th><th>Ranking page</th><th class="right">Pos</th><th class="right">Δ4wk</th></tr></thead>
+      <tbody>
+        <tr><td class="kw">blazor charts<button class="fbx" data-ctx="kw: blazor charts">💬</button></td><td class="right">100</td><td class="mono">/…/charts/chart-overview</td><td class="right">4</td><td class="right down">▼1</td></tr>
+        <tr><td class="kw">blazor graph<button class="fbx" data-ctx="kw: blazor graph">💬</button></td><td class="right">70</td><td class="mono">/…/charts/chart-overview</td><td class="right">4</td><td class="right flat">–</td></tr>
+        <tr><td class="kw">blazor webassembly charts<button class="fbx" data-ctx="kw: blazor webassembly charts">💬</button></td><td class="right">40</td><td class="mono">/…/charts/chart-overview</td><td class="right">4</td><td class="right flat">–</td></tr>
+        <tr><td class="kw">blazor chart library<button class="fbx" data-ctx="kw: blazor chart library">💬</button></td><td class="right">30</td><td class="mono">/…/charts/chart-overview</td><td class="right">5</td><td class="right flat">–</td></tr>
+        <tr><td class="kw">blazor pie chart<button class="fbx" data-ctx="kw: blazor pie chart">💬</button></td><td class="right">30</td><td class="mono">/…/charts/types/pie-chart</td><td class="right">5</td><td class="right down">▼1</td></tr>
+        <tr><td class="kw">blazor chart<button class="fbx" data-ctx="kw: blazor chart">💬</button></td><td class="right">60</td><td class="mono">/…/charts/chart-overview</td><td class="right">10</td><td class="right down">▼3</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card pad fbx-host" style="margin-bottom:16px"><button class="fbx" data-ctx="Cluster — Comparison / vs demand read">💬</button>
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <div><b>Comparison / "vs" demand → routing</b> <span class="chip">/blogs/*</span></div>
+      <span class="pill amber">Capturing, not routing</span>
+    </div>
+    <p style="margin:10px 0 12px;font-size:14px">The "versus" blogs drive most of the impressions and nearly all the sessions — <span class="mono">blazor-component-libraries</span> 56/wk, <span class="mono">blazor-vs-razor</span> 31/wk, <span class="mono">server-vs-webassembly</span> 23/wk, <span class="mono">the-best-blazor-grid</span> 20/wk — while product pages get single digits. Right traffic, wrong destination. Add contextual CTAs from these blogs into the product grid and charts pages.</p>
+    <table>
+      <thead><tr><th>Keyword</th><th class="right">Vol</th><th>Ranking page</th><th class="right">Pos</th><th class="right">Δ4wk</th></tr></thead>
+      <tbody>
+        <tr><td class="kw">blazor vs angular<button class="fbx" data-ctx="kw: blazor vs angular">💬</button></td><td class="right">80</td><td class="mono">/blogs/blazor-vs-angular</td><td class="right">2</td><td class="right flat">–</td></tr>
+        <tr><td class="kw">blazor webassembly<button class="fbx" data-ctx="kw: blazor webassembly">💬</button></td><td class="right">200</td><td class="mono">/blogs/…server-vs-webassembly</td><td class="right">9</td><td class="right up">▲2</td></tr>
+        <tr><td class="kw">blazor components<button class="fbx" data-ctx="kw: blazor components">💬</button></td><td class="right">100</td><td class="mono">/blogs/blazor-component-libraries</td><td class="right">12</td><td class="right down">▼2</td></tr>
+        <tr><td class="kw">blazor vs react<button class="fbx" data-ctx="kw: blazor vs react">💬</button></td><td class="right">300</td><td class="mono">/blogs/blazor-vs-react</td><td class="right">13</td><td class="right down">▼2</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title">5 · AI visibility <span style="text-transform:none;font-weight:600;color:var(--ink-soft)">(brand-level · Amplitude report 188594, Jul 30)</span></div>
+  <div class="grid g4">
+    <div class="card pad kpi fbx-host"><button class="fbx" data-ctx="AI stat — Visibility">💬</button>
+      <h5>Visibility <span class="badge amp">Amplitude</span></h5><div class="val">0%</div><div class="sub">Infragistics, brand-level</div></div>
+    <div class="card pad kpi fbx-host"><button class="fbx" data-ctx="AI stat — Avg rank">💬</button>
+      <h5>Avg rank <span class="badge amp">Amplitude</span></h5><div class="val">10</div><div class="sub">Not mentioned in-answer</div></div>
+    <div class="card pad kpi fbx-host"><button class="fbx" data-ctx="AI stat — Citations">💬</button>
+      <h5>Citations <span class="badge amp">Amplitude</span></h5><div class="val">55</div><div class="sub">Source cites across 8 responses</div></div>
+    <div class="card pad kpi fbx-host"><button class="fbx" data-ctx="AI stat — Coverage">💬</button>
+      <h5>Prompt coverage <span class="badge amp">Amplitude</span></h5><div class="val">0%</div><div class="sub">0 of 4 prompts mention us</div></div>
+  </div>
+
+  <div class="card pad fbx-host" style="margin-top:16px"><button class="fbx" data-ctx="AI — share of voice bars">💬</button>
+    <div style="font-weight:700;margin-bottom:8px">Share of voice vs competitors</div>
+    <div class="sov-row me"><span class="name">Infragistics</span><div class="sov-bar"><i style="width:0%"></i></div><span class="pctv">0%</span></div>
+    <div class="sov-row"><span class="name">Material UI</span><div class="sov-bar"><i style="width:75%"></i></div><span class="pctv">75%</span></div>
+    <div class="sov-row"><span class="name">Ant Design</span><div class="sov-bar"><i style="width:37.5%"></i></div><span class="pctv">37.5%</span></div>
+    <div class="sov-row"><span class="name">Handsontable</span><div class="sov-bar"><i style="width:25%"></i></div><span class="pctv">25%</span></div>
+    <div class="sov-row"><span class="name">Chakra UI</span><div class="sov-bar"><i style="width:12.5%"></i></div><span class="pctv">12.5%</span></div>
+    <div class="sov-row"><span class="name">Syncfusion</span><div class="sov-bar"><i style="width:12.5%"></i></div><span class="pctv">12.5%</span></div>
+    <div class="sov-row"><span class="name">DevExpress</span><div class="sov-bar"><i style="width:0%"></i></div><span class="pctv">0%</span></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card pad fbx-host"><button class="fbx" data-ctx="AI — read & caveat">💬</button>
+      <div style="font-weight:700;margin-bottom:6px">Read &amp; caveat</div>
+      <p style="margin:0;font-size:13.5px">This report is <b>brand-level and not Blazor-scoped</b>, and the four prompts skew React (competitors surfaced are Material UI, Ant Design, Chakra — React libraries). Infragistics shows 0% visibility with 55 source citations, meaning our pages get <i>cited</i> but the brand isn't <i>named</i> in answers. Do not read this as a Blazor signal — it's a measurement gap.</p>
+    </div>
+    <div class="card pad fbx-host" style="border-left:4px solid var(--orange)"><button class="fbx" data-ctx="AI — standing action">💬</button>
+      <div style="font-weight:700;margin-bottom:6px">Standing action (P1)</div>
+      <p style="margin:0;font-size:13.5px">Create <b>Blazor-specific AI-visibility prompts</b> in Amplitude ("best Blazor data grid", "Blazor component library", "Blazor charts") so we can measure and close the gap against Syncfusion / DevExpress / Telerik in the Blazor answer set. Carried every run until done.</p>
+    </div>
+  </div>
+
+  <div class="foot">Sources — Rankings &amp; DR &amp; backlinks &amp; site audit: Ahrefs (rank tracker 1076972, US desktop, Aug 1 vs Jul 4). Clicks/impressions/CTR: Google Search Console via Supermetrics (sc-domain:infragistics.com, query contains "blazor"). Sessions/engagement: GA4 via Supermetrics (516222862, landing page contains "blazor"). AI visibility: Amplitude AI Visibility (brand "Infragistics", report 188594). NuGet installs: pull unavailable this run. One metric, one tool — no blended numbers.</div>
+</section>
+
+<!-- ========== TAB 2: TASKS ========== -->
+<section class="panel" id="tasks">
+  <div class="copybar">
+    <div class="seg" id="task-seg">
+      <button class="active" data-view="table">Table</button>
+      <button data-view="board">Board</button>
+      <button data-view="timeline">Timeline</button>
+    </div>
+    <a class="btn" href="https://my.slingshotapp.io/openTaskList/e97e10ef_b1501d7b-f89f-4e0b-be53-50d49a93bf2d_tg" target="_blank" rel="noopener">Open this list in Slingshot ↗</a>
+  </div>
+
+  <div class="view active" id="v-table"><div class="card pad"><table id="task-table">
+    <thead><tr><th>Task</th><th>Owner</th><th>Priority</th><th>Due</th><th>Status</th></tr></thead>
+    <tbody></tbody>
+  </table></div></div>
+
+  <div class="view" id="v-board"><div class="board" id="task-board"></div></div>
+
+  <div class="view" id="v-timeline"><div class="card pad"><div class="tl" id="task-tl"></div></div></div>
+</section>
+
+<!-- ========== TAB 3: SUMMARY ========== -->
+<section class="panel" id="summary">
+  <div class="copybar">
+    <div style="font-weight:700">Exec summary — formatted for Slingshot</div>
+    <button class="btn primary" id="copyBtn">Copy to clipboard</button>
+  </div>
+  <div class="card pad"><div class="summary-box" id="summaryText"></div></div>
+</section>
+
+<!-- ========== TAB 4: DEFINITIONS ========== -->
+<section class="panel" id="defs">
+  <div class="section-title">Source-of-truth cheat sheet</div>
+  <div class="card pad"><table class="def">
+    <thead><tr><th>Number</th><th>Tool that owns it</th><th>Why this tool (and not the alternative)</th></tr></thead>
+    <tbody>
+      <tr><td>Rankings / positions</td><td>Ahrefs Rank Tracker (1076972)</td><td>Consistent daily SERP snapshots with 4-week comparison. GSC average position is query-averaged and noisy — use it for demand, not rank.</td></tr>
+      <tr><td>Clicks / impressions / CTR</td><td>Google Search Console (via Supermetrics)</td><td>The only source of real click behavior on our results. Ahrefs models traffic; GSC measures it.</td></tr>
+      <tr><td>Sessions / engagement</td><td>GA4 (via Supermetrics)</td><td>On-site behavior once they land. GSC stops at the click. GA4 has no bounce rate — we use engagement rate.</td></tr>
+      <tr><td>NuGet installs (north star)</td><td>NuGet.org package stats</td><td>Blazor ships on <b>NuGet</b>, not npm — npm downloads are irrelevant to Blazor adoption. This is the adoption metric.</td></tr>
+      <tr><td>Domain Rating / backlinks</td><td>Ahrefs Site Explorer</td><td>Authority signal, whole domain. Not framework-splittable today.</td></tr>
+      <tr><td>Technical health</td><td>Ahrefs Site Audit (1076972)</td><td>Whole-site crawl (45/100). Blazor not isolable until a scoped project exists — reported with caveat.</td></tr>
+      <tr><td>AI visibility</td><td>Amplitude AI Visibility</td><td>Brand-level across consumer LLMs. Not Blazor-scoped yet — reported with caveat.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="section-title">Plain-English glossary</div>
+  <div class="card pad glossary"><dl>
+    <dt>Impressions</dt><dd>How many times our result showed in search for a Blazor query.</dd>
+    <dt>Clicks / CTR</dt><dd>Clicks are actual visits from search; CTR is clicks ÷ impressions. Falling CTR at flat impressions = we're shown but not chosen (usually a rank slip).</dd>
+    <dt>Position (Δ4wk)</dt><dd>SERP rank vs four weeks ago. A positive Δ number means the rank got worse (moved down the page).</dd>
+    <dt>Money / target page</dt><dd>The product page we want the traffic on — here the Blazor hub and the data-grid component page.</dd>
+    <dt>Engagement rate</dt><dd>Share of sessions that were "engaged" (GA4's replacement for bounce). 0% on the data-grid page is a red flag.</dd>
+    <dt>Share of voice (AI)</dt><dd>How often a brand is named in LLM answers to a fixed prompt set, vs competitors.</dd>
+  </dl></div>
+
+  <div class="section-title">The one rule</div>
+  <div class="onerule">One metric, <b>one tool</b>. Never blend two sources for the same number. If two tools disagree, they're measuring different things (search vs on-site, real vs modeled) — we don't reconcile them, and we never fabricate. Everything above is an actual tool value.</div>
+</section>
+
+</div><!-- /report-scope -->
+
+<!-- FEEDBACK MODAL -->
+<div class="modal-back" id="fbmodal">
+  <div class="modal">
+    <header>Add a comment</header>
+    <div class="body">
+      <label>Commenting on</label>
+      <div class="ctx" id="fbctx">—</div>
+      <label for="fbtext">Your note</label>
+      <textarea id="fbtext" placeholder="What should change or be checked?"></textarea>
+      <div class="actions">
+        <button class="btn" id="fbcancel">Cancel</button>
+        <button class="btn primary" id="fbsend">Send to Slingshot ↗</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---- data ---- */
+var SPARKS = {
+  clicks:[72,75,74,71,88,55,59,42],
+  impr:[6299,6860,4705,5900,6068,5991,5882,5962],
+  ctr:[1.14,1.09,1.57,1.20,1.45,0.92,1.00,0.70],
+  sess:[null,null,null,null,null,null,194,194],
+  dr:[74,74,72,72,72,72,72,72]
+};
+var TASKS = [
+  {t:"Blazor SEO: Recover \"blazor grid\" from #7 back toward top-3", p:"high", due:"2026-08-10", s:"To Do"},
+  {t:"Blazor SEO: Consolidate grid authority onto one canonical money page (blog vs product cannibalization)", p:"high", due:"2026-08-17", s:"To Do"},
+  {t:"Blazor SEO: Create Blazor-specific Amplitude AI-visibility prompts (standing P1)", p:"high", due:"2026-08-06", s:"To Do"},
+  {t:"Blazor SEO: Restore the NuGet installs live-pull (north-star metric)", p:"high", due:"2026-08-06", s:"To Do"},
+  {t:"Blazor SEO: Route top Blazor blog traffic to product grid & charts pages", p:"medium", due:"2026-08-13", s:"To Do"},
+  {t:"Blazor SEO: Investigate 0% engagement on the Blazor data-grid product page", p:"medium", due:"2026-08-10", s:"To Do"},
+  {t:"Blazor SEO: De-dupe localized (JP/KO) Blazor entries in Rank Tracker 1076972", p:"low", due:"2026-08-13", s:"To Do"},
+  {t:"Blazor SEO: Stand up a Blazor-prefix Ahrefs Site Audit project", p:"none", due:"2026-08-20", s:"To Do"}
+];
+var SUMMARY_TEXT =
+"*Blazor SEO — week of Jul 20–26*\n\n"+
+"Impressions held (~6.0k, +1.4% WoW) but *clicks fell 29%* (59→42) and have now slipped three weeks running (88 → 55 → 59 → 42). This is *CTR erosion, not lost demand* — it maps to page-1 position slips on the money terms: *blazor grid dropped #4→#7*, blazor chart #7→#10.\n\n"+
+"The *charts cluster is winning* — blazor charts #4, blazor graph #4, webassembly charts #4, chart library #5, all off the product chart page. The *grid cluster is stuck* mid page-1 (blazor datagrid #6, blazor data grid #7) and — critically — ranks through *blogs, not the product data-grid page*, which pulls just 6 sessions/wk at 0% engagement.\n\n"+
+"*Priority:* recover blazor grid, consolidate grid authority onto one canonical money page, and route blog traffic (component-libraries 56/wk, the-best-blazor-grid 20/wk) to product. DR holds at 72. *NuGet north-star pull was blocked this run* — restoring it is P1. AI visibility is still brand-level only (0%, prompts are React-flavored) — Blazor-specific prompts remain the standing P1.";
+
+var FEEDBACK_URL = "https://app.slingshotapp.io/openDiscussion/e97e10ef_bc51c2f1-4f9b-485f-823c-a3d154edeb5d";
+
+/* ---- tabs ---- */
+document.querySelectorAll('.tab-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.tab-btn').forEach(function(x){x.classList.remove('active')});
+    document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('active')});
+    b.classList.add('active');
+    document.getElementById(b.dataset.tab).classList.add('active');
+  });
+});
+
+/* ---- sparklines ---- */
+function sparkline(vals,w,h){
+  var pts=vals.filter(function(v){return v!=null});
+  if(pts.length<2){return '';}
+  var min=Math.min.apply(null,pts), max=Math.max.apply(null,pts), rng=(max-min)||1;
+  var n=vals.length, step=w/(n-1), d='', started=false;
+  for(var i=0;i<n;i++){
+    if(vals[i]==null){continue;}
+    var x=i*step, y=h-((vals[i]-min)/rng)*(h-4)-2;
+    d+=(started?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' ';
+    started=true;
+  }
+  var last=vals[n-1], lx=(n-1)*step, ly=h-((last-min)/rng)*(h-4)-2;
+  return '<svg width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'">'+
+    '<path d="'+d.trim()+'" fill="none" stroke="#FF6B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'+
+    '<circle cx="'+lx.toFixed(1)+'" cy="'+ly.toFixed(1)+'" r="2.6" fill="#E14E12"/></svg>';
+}
+document.querySelectorAll('[data-spark]').forEach(function(el){
+  el.innerHTML=sparkline(SPARKS[el.dataset.spark],150,34);
+});
+
+/* ---- gauge ---- */
+(function(){
+  var g=document.getElementById('gauge'); if(!g)return;
+  var val=45, r=26, c=Math.PI*r, off=c*(1-val/100);
+  var col= val>=70?'#1FA971':(val>=45?'#E8A317':'#E24C4C');
+  g.innerHTML='<svg width="70" height="42" viewBox="0 0 70 42">'+
+    '<path d="M6 40 A29 29 0 0 1 64 40" fill="none" stroke="#E7ECF3" stroke-width="8" stroke-linecap="round"/>'+
+    '<path d="M6 40 A29 29 0 0 1 64 40" fill="none" stroke="'+col+'" stroke-width="8" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+off+'"/></svg>';
+})();
+
+/* ---- tasks render ---- */
+function prioClass(p){return 'prio '+p;}
+(function(){
+  var tb=document.querySelector('#task-table tbody');
+  TASKS.forEach(function(k){
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td>'+k.t+'</td><td>JJ</td><td><span class="'+prioClass(k.p)+'">'+k.p+'</span></td><td class="mono">'+k.due+'</td><td><span class="pill watch">'+k.s+'</span></td>';
+    tb.appendChild(tr);
+  });
+  var cols={high:[],medium:[],low:[],none:[]};
+  TASKS.forEach(function(k){cols[k.p].push(k)});
+  var labels={high:'High',medium:'Medium',low:'Low',none:'Backlog'};
+  var board=document.getElementById('task-board');
+  ['high','medium','low','none'].forEach(function(p){
+    var col=document.createElement('div');col.className='col';
+    var html='<h6>'+labels[p]+' · '+cols[p].length+'</h6>';
+    cols[p].forEach(function(k){
+      html+='<div class="tk"><div class="t">'+k.t.replace('Blazor SEO: ','')+'</div><div class="m"><span class="'+prioClass(k.p)+'">'+k.p+'</span><span>JJ</span><span class="mono">'+k.due+'</span></div></div>';
+    });
+    col.innerHTML=html;board.appendChild(col);
+  });
+  var tl=document.getElementById('task-tl');
+  TASKS.slice().sort(function(a,b){return a.due<b.due?-1:1}).forEach(function(k){
+    var ev=document.createElement('div');ev.className='ev';
+    ev.innerHTML='<div class="d">'+k.due+'</div><div class="t">'+k.t.replace('Blazor SEO: ','')+'</div><div class="m" style="font-size:11.5px;color:var(--ink-soft)"><span class="'+prioClass(k.p)+'">'+k.p+'</span> · JJ</div>';
+    tl.appendChild(ev);
+  });
+})();
+document.getElementById('task-seg').addEventListener('click',function(e){
+  if(e.target.tagName!=='BUTTON')return;
+  this.querySelectorAll('button').forEach(function(b){b.classList.remove('active')});
+  e.target.classList.add('active');
+  document.querySelectorAll('#tasks .view').forEach(function(v){v.classList.remove('active')});
+  document.getElementById('v-'+e.target.dataset.view).classList.add('active');
+});
+
+/* ---- summary ---- */
+document.getElementById('summaryText').textContent=SUMMARY_TEXT;
+document.getElementById('copyBtn').addEventListener('click',function(){
+  var b=this;
+  navigator.clipboard.writeText(SUMMARY_TEXT).then(function(){
+    b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy to clipboard'},1600);
+  });
+});
+
+/* ---- feedback modal ---- */
+var modal=document.getElementById('fbmodal'), ctxEl=document.getElementById('fbctx'), txtEl=document.getElementById('fbtext'), curCtx='';
+document.addEventListener('click',function(e){
+  var f=e.target.closest('.fbx');
+  if(f){curCtx=f.dataset.ctx||'#report';ctxEl.textContent=curCtx;txtEl.value='';modal.classList.add('open');txtEl.focus();}
+});
+document.getElementById('fbcancel').addEventListener('click',function(){modal.classList.remove('open')});
+modal.addEventListener('click',function(e){if(e.target===modal)modal.classList.remove('open')});
+document.getElementById('fbsend').addEventListener('click',function(){
+  var payload='[Blazor SEO feedback · #report] '+curCtx+' — '+(txtEl.value||'(no note)');
+  if(navigator.clipboard){navigator.clipboard.writeText(payload);}
+  window.open(FEEDBACK_URL,'_blank','noopener');
+  modal.classList.remove('open');
+});
+</script>
+</body>
+</html>
