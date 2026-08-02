@@ -115,6 +115,7 @@
   .kwt tbody td{padding:9px 12px}
   .kwt tbody td:first-child{padding-left:20px}
   .kw{color:var(--navy)}
+  td.kw.fbx{position:relative}
   .kwt td.num{font-family:var(--mono);text-align:right;color:var(--muted)}
   .kwt td.vol{font-family:var(--mono);text-align:right;color:var(--navy);font-size:12px}
   .kwt td.pageco{font-family:var(--mono);font-size:10.5px;color:var(--cobalt)}
@@ -135,6 +136,7 @@
   .card .cap{font-size:11px;color:var(--muted);margin:0 0 14px}
   .bars{display:flex;flex-direction:column;gap:9px}
   .bar-row{display:grid;grid-template-columns:150px 1fr 40px;align-items:center;gap:10px}
+  .bar-row.fbx{position:relative}
   .bar-row .bl{font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .bar-row .bt{height:15px;background:var(--gray-bg);border-radius:4px;overflow:hidden}
   .bar-row .bt i{display:block;height:100%;background:var(--peri);border-radius:4px;opacity:.55}
@@ -268,7 +270,7 @@
   </div>
 
   <h2 class="sec"><span class="n">1</span> Executive summary</h2>
-  <div class="lead">
+  <div class="lead fbx">
     <p><b>React ranks across its core terms and adoption is growing — but the grid head terms sit at the page-1 floor, so the demand isn't fully cashing into clicks yet.</b></p>
     <p>The bright spot is <span class="bright">momentum</span>. Clicks recovered to 145 (+6.6% WoW) even as impressions eased −6.7% — better CTR on the terms we hold — and all-React sessions climbed ~11%. The north star, <b>npm installs, is up +19% MoM</b> (June 41,594 vs May 34,950). Branded terms own #1 (&ldquo;ignite ui react&rdquo;), and two page-2 terms improved sharply this week: &ldquo;react gauge&rdquo; onto page one (#13 → #9) and &ldquo;react grid component&rdquo; up +10 (#26 → #16).</p>
     <p>The gap is the money grid cluster. <b>&ldquo;react data grid&rdquo; ranks, but at #10</b> — the bottom of page one, where clicks are thin. The correct page already ranks, so this is on-page + authority work, not targeting. Two of the three #1-goal head terms — <code>react grid</code> and <code>react table</code> — <b>aren't in the tracker yet</b>, so we're partly blind on the core goal. And the north-star npm pull failed this run (figure carried from last week's same-period pull), while AI visibility is still whole-brand, not React-scoped. The job now is execution: instrument the two terms, push the data-grid page onto the top half of page one, route blog demand to the product pages, and fix the two measurement gaps.</p>
@@ -304,11 +306,11 @@
     <div class="cl-head"><div class="cl-top"><h3>React grid</h3><span class="page">/react/components/grids/data-grid</span><span class="verdict pill p-warn">Page-1 floor</span></div>
       <p class="cl-read fbx"><b>All ranking, none winning.</b> The money term &ldquo;react data grid&rdquo; holds page one at ~#10 with heavy impressions but few clicks — a page-1-floor / CTR problem, not a visibility one. &ldquo;react grid component&rdquo; is climbing (26 → 16). The play is on-page depth + internal links from the ranking best-react-data-grid blog to push the data-grid page into the top half of page one — and to <b>instrument the two untracked head terms</b> so we can measure the goal.</p></div>
     <div class="kwt-wrap"><table class="kwt"><thead><tr><th>Keyword</th><th class="r">Vol</th><th>Ranking page</th><th class="r">Position</th></tr></thead><tbody>
-      <tr><td class="kw">react data grid</td><td class="vol">350</td><td class="pageco">/…/grids/data-grid</td><td class="num"><span class="pos">10</span></td></tr>
-      <tr><td class="kw">react grid component</td><td class="vol">80</td><td class="pageco">/…/grids/data-grid</td><td class="num"><span class="pos">16</span></td></tr>
-      <tr><td class="kw">lightweight react data grid</td><td class="vol">20</td><td class="pageco">/blogs/best-react-data-grid</td><td class="num"><span class="pos best">5</span></td></tr>
-      <tr><td class="kw">react grid <span style="color:var(--gray)">(GSC only — not tracked)</span></td><td class="vol">—</td><td class="pageco">GSC ~#10</td><td class="num"><span class="pos">~10</span></td></tr>
-      <tr><td class="kw">react table <span style="color:var(--gray)">(not tracked)</span></td><td class="vol">—</td><td class="pageco">—</td><td class="num"><span class="pos">—</span></td></tr>
+      <tr><td class="kw fbx">react data grid</td><td class="vol">350</td><td class="pageco">/…/grids/data-grid</td><td class="num"><span class="pos">10</span></td></tr>
+      <tr><td class="kw fbx">react grid component</td><td class="vol">80</td><td class="pageco">/…/grids/data-grid</td><td class="num"><span class="pos">16</span></td></tr>
+      <tr><td class="kw fbx">lightweight react data grid</td><td class="vol">20</td><td class="pageco">/blogs/best-react-data-grid</td><td class="num"><span class="pos best">5</span></td></tr>
+      <tr><td class="kw fbx">react grid <span style="color:var(--gray)">(GSC only — not tracked)</span></td><td class="vol">—</td><td class="pageco">GSC ~#10</td><td class="num"><span class="pos">~10</span></td></tr>
+      <tr><td class="kw fbx">react table <span style="color:var(--gray)">(not tracked)</span></td><td class="vol">—</td><td class="pageco">—</td><td class="num"><span class="pos">—</span></td></tr>
     </tbody></table></div>
   </div>
 
@@ -316,8 +318,8 @@
     <div class="cl-head"><div class="cl-top"><h3>React charts</h3><span class="page">/react/components/charts/chart-overview</span><span class="verdict pill p-bad">Slipped off page 1</span></div>
       <p class="cl-read fbx"><b>The one red flag this week.</b> &ldquo;react chart&rdquo; fell off page one (10 → 13) on a high-difficulty term (KD 52), while &ldquo;react gauge&rdquo; went the other way — onto page one (13 → 9). The chart-overview page lost ground; next step is to root-cause SERP change vs on-page decay and scope a refresh if it holds below #10.</p></div>
     <div class="kwt-wrap"><table class="kwt"><thead><tr><th>Keyword</th><th class="r">Vol</th><th>Ranking page</th><th class="r">Position</th></tr></thead><tbody>
-      <tr><td class="kw">react gauge</td><td class="vol">150</td><td class="pageco">/…/linear-gauge</td><td class="num"><span class="pos">9</span></td></tr>
-      <tr><td class="kw">react chart</td><td class="vol">150</td><td class="pageco">/…/charts/chart-overview</td><td class="num"><span class="pos">13</span></td></tr>
+      <tr><td class="kw fbx">react gauge</td><td class="vol">150</td><td class="pageco">/…/linear-gauge</td><td class="num"><span class="pos">9</span></td></tr>
+      <tr><td class="kw fbx">react chart</td><td class="vol">150</td><td class="pageco">/…/charts/chart-overview</td><td class="num"><span class="pos">13</span></td></tr>
     </tbody></table></div>
   </div>
 
@@ -325,8 +327,8 @@
     <div class="cl-head"><div class="cl-top"><h3>Branded</h3><span class="page">/products/ignite-ui-react</span><span class="verdict pill p-good">Owns #1</span></div>
       <p class="cl-read fbx">Branded intent is <b>locked at #1</b> — &ldquo;ignite ui react&rdquo; and &ldquo;ignite ui for react&rdquo; both hold the top slot. Low volume, but it protects the brand SERP and the product page. No action beyond holding.</p></div>
     <div class="kwt-wrap"><table class="kwt"><thead><tr><th>Keyword</th><th class="r">Vol</th><th>Ranking page</th><th class="r">Position</th></tr></thead><tbody>
-      <tr><td class="kw">ignite ui react</td><td class="vol">30</td><td class="pageco">/products/ignite-ui-react</td><td class="num"><span class="pos best">1</span></td></tr>
-      <tr><td class="kw">ignite ui for react</td><td class="vol">30</td><td class="pageco">/products/ignite-ui-react</td><td class="num"><span class="pos best">1</span></td></tr>
+      <tr><td class="kw fbx">ignite ui react</td><td class="vol">30</td><td class="pageco">/products/ignite-ui-react</td><td class="num"><span class="pos best">1</span></td></tr>
+      <tr><td class="kw fbx">ignite ui for react</td><td class="vol">30</td><td class="pageco">/products/ignite-ui-react</td><td class="num"><span class="pos best">1</span></td></tr>
     </tbody></table></div>
   </div>
 
@@ -334,42 +336,42 @@
     <div class="cl-head"><div class="cl-top"><h3>Blog demand → routing</h3><span class="page">/blogs/* → product pages</span><span class="verdict pill p-warn">Traffic, not conversion</span></div>
       <p class="cl-read fbx"><b>Right traffic, wrong page.</b> React blogs pull 5–10× the sessions of the money pages — best-react-ui-library <b>110</b>, react-app-examples <b>76</b>, best-react-data-grid <b>41</b> vs the product page (40) and the data-grid page (2). We're capturing demand but not routing it to conversion pages. Add prominent CTAs + contextual links from the top React blogs into the product and data-grid pages.</p></div>
     <div class="kwt-wrap"><table class="kwt"><thead><tr><th>Landing page (GA4)</th><th class="r">Sessions/wk</th><th>Role</th><th class="r">WoW</th></tr></thead><tbody>
-      <tr><td class="kw">/blogs/best-react-ui-library</td><td class="vol">110</td><td class="pageco">blog — demand</td><td class="num">+31</td></tr>
-      <tr><td class="kw">/blogs/react-app-examples</td><td class="vol">76</td><td class="pageco">blog — demand</td><td class="num">+5</td></tr>
-      <tr><td class="kw">/products/ignite-ui-react</td><td class="vol">40</td><td class="pageco">product — money</td><td class="num">−8</td></tr>
-      <tr><td class="kw">/…/grids/data-grid</td><td class="vol">2</td><td class="pageco">product — money</td><td class="num">−2</td></tr>
+      <tr><td class="kw fbx">/blogs/best-react-ui-library</td><td class="vol">110</td><td class="pageco">blog — demand</td><td class="num">+31</td></tr>
+      <tr><td class="kw fbx">/blogs/react-app-examples</td><td class="vol">76</td><td class="pageco">blog — demand</td><td class="num">+5</td></tr>
+      <tr><td class="kw fbx">/products/ignite-ui-react</td><td class="vol">40</td><td class="pageco">product — money</td><td class="num">−8</td></tr>
+      <tr><td class="kw fbx">/…/grids/data-grid</td><td class="vol">2</td><td class="pageco">product — money</td><td class="num">−2</td></tr>
     </tbody></table></div>
   </div>
   <p class="cl-note">Tracked positions from Ahrefs Rank Tracker 1076972 (desktop, React subset), 4-week comparison Jun 28 → Jul 26; &ldquo;react grid&rdquo; position is directional from GSC (not yet tracked). Volumes/KD from Ahrefs. Session counts from GA4 (target-page allowlist). See the Definitions tab for why each number comes from where it does.</p>
 
   <h2 class="sec"><span class="n">5</span> AI visibility</h2>
   <div class="ai-top">
-    <div class="ai-stat"><div class="l">Visibility</div><div class="v">7.3%</div><div class="w flat">brand-level (caveat)</div></div>
-    <div class="ai-stat"><div class="l">Avg rank</div><div class="v">9.6</div><div class="w flat">3 of 21 prompts</div></div>
-    <div class="ai-stat"><div class="l">Citations</div><div class="v">335</div><div class="w flat">14.3% prompt coverage</div></div>
-    <div class="ai-stat"><div class="l">Tied with</div><div class="v">Figma</div><div class="w flat">both at 7.3%</div></div>
+    <div class="ai-stat fbx"><div class="l">Visibility</div><div class="v">7.3%</div><div class="w flat">brand-level (caveat)</div></div>
+    <div class="ai-stat fbx"><div class="l">Avg rank</div><div class="v">9.6</div><div class="w flat">3 of 21 prompts</div></div>
+    <div class="ai-stat fbx"><div class="l">Citations</div><div class="v">335</div><div class="w flat">14.3% prompt coverage</div></div>
+    <div class="ai-stat fbx"><div class="l">Tied with</div><div class="v">Figma</div><div class="w flat">both at 7.3%</div></div>
   </div>
   <div class="twocol">
-    <div class="card"><h4>Share of voice vs competitors</h4><p class="cap">same prompts · % of responses mentioning brand</p>
+    <div class="card fbx"><h4>Share of voice vs competitors</h4><p class="cap">same prompts · % of responses mentioning brand</p>
       <div class="bars">
-        <div class="bar-row"><span class="bl">Syncfusion</span><span class="bt"><i style="width:100%"></i></span><span class="bv">39%</span></div>
-        <div class="bar-row"><span class="bl">Material UI</span><span class="bt"><i style="width:94%"></i></span><span class="bv">37%</span></div>
-        <div class="bar-row"><span class="bl">Ant Design</span><span class="bt"><i style="width:81%"></i></span><span class="bv">32%</span></div>
-        <div class="bar-row"><span class="bl">DevExpress</span><span class="bt"><i style="width:69%"></i></span><span class="bv">27%</span></div>
-        <div class="bar-row"><span class="bl">Kendo UI</span><span class="bt"><i style="width:69%"></i></span><span class="bv">27%</span></div>
-        <div class="bar-row"><span class="bl">Chakra UI</span><span class="bt"><i style="width:37%"></i></span><span class="bv">15%</span></div>
-        <div class="bar-row"><span class="bl">Handsontable</span><span class="bt"><i style="width:31%"></i></span><span class="bv">12%</span></div>
-        <div class="bar-row me"><span class="bl">Infragistics</span><span class="bt"><i style="width:19%"></i></span><span class="bv">7%</span></div>
-        <div class="bar-row"><span class="bl">PrimeNG</span><span class="bt"><i style="width:6%"></i></span><span class="bv">2%</span></div>
+        <div class="bar-row fbx"><span class="bl">Syncfusion</span><span class="bt"><i style="width:100%"></i></span><span class="bv">39%</span></div>
+        <div class="bar-row fbx"><span class="bl">Material UI</span><span class="bt"><i style="width:94%"></i></span><span class="bv">37%</span></div>
+        <div class="bar-row fbx"><span class="bl">Ant Design</span><span class="bt"><i style="width:81%"></i></span><span class="bv">32%</span></div>
+        <div class="bar-row fbx"><span class="bl">DevExpress</span><span class="bt"><i style="width:69%"></i></span><span class="bv">27%</span></div>
+        <div class="bar-row fbx"><span class="bl">Kendo UI</span><span class="bt"><i style="width:69%"></i></span><span class="bv">27%</span></div>
+        <div class="bar-row fbx"><span class="bl">Chakra UI</span><span class="bt"><i style="width:37%"></i></span><span class="bv">15%</span></div>
+        <div class="bar-row fbx"><span class="bl">Handsontable</span><span class="bt"><i style="width:31%"></i></span><span class="bv">12%</span></div>
+        <div class="bar-row me fbx"><span class="bl">Infragistics</span><span class="bt"><i style="width:19%"></i></span><span class="bv">7%</span></div>
+        <div class="bar-row fbx"><span class="bl">PrimeNG</span><span class="bt"><i style="width:6%"></i></span><span class="bv">2%</span></div>
       </div>
     </div>
-    <div class="card"><h4>Read &amp; caveat</h4><p class="cap">what this figure is — and isn't</p>
+    <div class="card fbx"><h4>Read &amp; caveat</h4><p class="cap">what this figure is — and isn't</p>
       <p class="tnote" style="margin-top:0"><b>Whole-brand, not React-scoped.</b> Amplitude AI Visibility (report 185443, Jul 23) measures Infragistics across all frameworks, so 7.3% blends React with Angular, Blazor and Web Components. It neither isolates React AI presence nor the true React gap on Syncfusion (39%).</p>
       <p class="tnote"><b>The gap is real but the measurement is coarse.</b> We sit tied with Figma and well behind the grid/UI leaders. To act on it we need React-specific prompts — &ldquo;best react data grid&rdquo;, &ldquo;react component libraries&rdquo;, &ldquo;react grids&rdquo;.</p>
       <div class="chips"><span class="chip">standing P1 action</span><span class="chip">React prompts needed</span><span class="chip">close the Syncfusion gap</span></div>
     </div>
   </div>
-  <div class="card" style="margin-top:14px"><h4>Standing action — make this React-scoped</h4><p class="cap">carried every run until done · owner JJ</p>
+  <div class="card fbx" style="margin-top:14px"><h4>Standing action — make this React-scoped</h4><p class="cap">carried every run until done · owner JJ</p>
     <p class="tnote" style="margin-top:0"><b>Create React-specific AI Visibility prompts in Amplitude</b> so this section reports React-only and we can trend the gap on Syncfusion week over week. Until then, treat 7.3% as directional brand context, not a React KPI. This is the biggest strategic blind spot in the React program right now.</p>
   </div>
 
