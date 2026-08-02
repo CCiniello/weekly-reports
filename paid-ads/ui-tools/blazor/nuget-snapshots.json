@@ -1,0 +1,15 @@
+[
+  {
+    "date": "2026-08-02",
+    "perPackage": {
+      "IgniteUI.Blazor.Trial": 59863,
+      "IgniteUI.Blazor.Documents.Core.Trial": 23074,
+      "IgniteUI.Blazor.Documents.Excel.Trial": 18754,
+      "IgniteUI.Blazor.GridLite": 2483,
+      "IgniteUI.Blazor.Lite": 2029,
+      "IgniteUI.Blazor.Templates": 1003
+    },
+    "sum": 107206,
+    "note": "baseline - first snapshot; WoW available next week. Cumulative totalDownloads from nuget.org search API. Licensed IgniteUI.Blazor main package lives on a private feed and is not in the public index."
+  }
+]
