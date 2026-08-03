@@ -3,159 +3,121 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reveal — Weekly Paid Media Brief · Aug 3 2026</title>
+<title>Paid Media Weekly / PPC analysis · Reveal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#0F172A; --navy2:#2A41A2; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
-    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#ffffff;
+    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
     --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
-    --gray:#8a93a3; --gray-bg:#eef0f5;
-    --magenta:#EC417A; --amber:#FBB764; --pink:#F78DA7;
+    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
+    --accent:#EC417A; --accent-deep:#C9367F; --accent-soft:#fde4ee; --hero:linear-gradient(120deg,#FBB764,#EC417A 62%,#d63384);
   }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Roboto',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1080px;margin:0 auto;padding:28px 22px 80px}
-  header.top{background:linear-gradient(120deg,var(--amber) 0%,var(--magenta) 62%,#d63384 100%);color:#fff;border-radius:16px;padding:22px 26px;position:relative;overflow:hidden}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .hubnav{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:8px;background:#0B1220;color:#fff;font-weight:600;font-size:13px;padding:11px 20px;text-decoration:none}
+  .hubnav:hover{background:#111a2e}
+  .hubnav svg{width:14px;height:14px}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 80px}
+  header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
   header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
-  header.top .logochip{display:inline-block;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14)}
-  header.top .logochip img{height:26px;display:block}
-  header.top .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
-  header.top h1{margin:5px 0 0;font-size:27px;font-weight:900}
-  header.top .meta{margin-top:14px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)}
-  header.top .meta b{color:#fff;font-weight:700}
-  h2.sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:36px 4px 14px;display:flex;align-items:center;gap:10px}
-  h2.sec .n{width:22px;height:22px;border-radius:6px;background:var(--peri-soft);color:var(--cobalt);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
+  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
+  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)}
+  .meta b{color:#fff;font-weight:700}
+  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:42px;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03)}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;display:flex;align-items:center;gap:8px}
+  .tab .cbadge{font-family:var(--mono);font-size:11px;font-weight:600;background:var(--gray-bg);color:var(--muted);border-radius:999px;padding:1px 8px}
+  .tab:hover{color:var(--ink)}
+  .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+  .tab.on .cbadge{background:var(--accent-soft);color:var(--accent-deep)}
+  .panel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
+  .panel.on{display:block}
+  .slink{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:#fff;background:linear-gradient(120deg,var(--accent),var(--accent-deep));padding:9px 15px;border-radius:9px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;font-family:inherit}
+  .slink:hover{filter:brightness(1.05)}
+  .slink svg{width:13px;height:13px}
 
-  /* ---- KPI tiles (aligned) ---- */
-  .kpigrid{display:grid;gap:12px}
-  .g5{grid-template-columns:repeat(5,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
-  @media(max-width:900px){.g5{grid-template-columns:repeat(3,1fr)}}
-  @media(max-width:820px){.g4,.g3{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:520px){.g5,.g4,.g3,.g2{grid-template-columns:1fr 1fr}}
-  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column}
-  .kpi .lab{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600;min-height:30px}
-  .kpi .val{font-size:23px;font-weight:700;line-height:1.1;margin:2px 0 8px}
-  .kpi .delta{margin-top:auto;align-self:flex-start;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
-  .d-good{background:var(--good-bg);color:var(--good)} .d-bad{background:var(--bad-bg);color:var(--bad)} .d-gray{background:var(--gray-bg);color:var(--gray)} .d-warn{background:var(--warn-bg);color:var(--warn)}
-
-  .lead{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--magenta);border-radius:14px;padding:18px 22px;margin-top:14px}
-  .lead p{margin:0 0 10px;font-size:14.5px}.lead p:last-child{margin-bottom:0}.lead b{font-weight:600}
-
-  /* ---- scoreboard (aligned) ---- */
-  .scorecard{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-  @media(max-width:820px){.scorecard{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:520px){.scorecard{grid-template-columns:1fr 1fr}}
-  .sc{border:1px solid var(--line);border-radius:12px;padding:13px 14px;background:#fff;display:flex;flex-direction:column}
-  .sc .g{font-size:12px;color:var(--muted);font-weight:600;min-height:34px} .sc .v{font-size:19px;font-weight:700;margin:4px 0 8px}
-  .sc .pill{margin-top:auto;align-self:flex-start}
-  .pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 9px;border-radius:999px;letter-spacing:.02em}
-  .p-good{background:var(--good-bg);color:var(--good)} .p-warn{background:var(--warn-bg);color:var(--warn)} .p-bad{background:var(--bad-bg);color:var(--bad)} .p-gray{background:var(--gray-bg);color:var(--gray)}
-
-  /* ---- platform cards / deep dives ---- */
-  .plat{border-radius:16px;border:1px solid var(--line);overflow:hidden;margin-bottom:8px}
-  .plat .phd{padding:16px 20px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;color:#fff}
-  .plat .phd .nm{font-size:18px;font-weight:700}
-  .plat .phd .role{font-size:12px;opacity:.92;margin-top:3px;max-width:600px}
-  .plat .phd .owner{display:inline-block;margin-top:9px;font-size:10.5px;font-weight:700;letter-spacing:.03em;background:rgba(255,255,255,.18);color:#fff;padding:2px 9px;border-radius:6px}
-  .plat .phd .spend{text-align:right;font-family:'Roboto Mono',monospace;white-space:nowrap}
-  .plat .phd .spend .v{font-size:20px;font-weight:700}
-  .plat .phd .spend .l{font-size:11px;opacity:.85;text-transform:uppercase;letter-spacing:.05em}
-  .g-google .phd{background:linear-gradient(120deg,#2A41A2,#4a6bf5)}
-  .g-bing .phd{background:linear-gradient(120deg,#0F172A,#223a86)}
-  .g-li .phd{background:linear-gradient(120deg,#3E5BD0,#6C8CFD)}
-  .g-reddit .phd{background:linear-gradient(120deg,#F2994A,#EC417A)}
-  .g-g2 .phd{background:linear-gradient(120deg,#C9367F,#EC417A)}
-  .plat .pbody{padding:18px 20px;background:#fff}
-
-  .verdict{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px}
-  @media(max-width:720px){.verdict{grid-template-columns:1fr}}
-  .vbox{border-radius:10px;padding:11px 13px;font-size:12.5px}
-  .vbox .h{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
-  .vbox.w{background:var(--good-bg)} .vbox.w .h{color:var(--good)}
-  .vbox.n{background:var(--bad-bg)} .vbox.n .h{color:var(--bad)}
-  .vbox.f{background:var(--peri-soft)} .vbox.f .h{color:var(--cobalt)}
-  .vbox ul{margin:0;padding-left:15px} .vbox li{margin:2px 0}
-
-  /* ---- consistent sub-sections (4a..4e) ---- */
-  .subsec{margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
-  .subsec:first-of-type{margin-top:4px;padding-top:0;border-top:none}
-  .subsec-h{font-size:13.5px;font-weight:700;color:var(--navy);margin:0 0 10px;padding-left:11px;border-left:3px solid var(--cobalt)}
-  .subsec-h .q{font-weight:400;color:var(--muted);font-size:12.5px}
-
-  /* ---- real tables ---- */
-  .tablewrap{border:1px solid var(--line);border-radius:10px;overflow:hidden}
-  table{width:100%;border-collapse:collapse;font-size:13px}
-  thead th{background:#eef2fa;font-size:11px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:9px 12px;text-align:left;border-bottom:1px solid #dce3f0}
-  tbody td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-  tbody tr:last-child td{border-bottom:none}
-  tbody tr:hover{background:#fafbff}
-  td.r,th.r{text-align:right;font-family:'Roboto Mono',monospace}
-  thead th.r{text-align:right}
-  tr.grp td{background:#f6f8fc;font-weight:600}
-  tr.grp td:first-child{box-shadow:inset 3px 0 0 var(--peri)}
-  td.sub .ind{padding-left:18px;display:inline-block}
-  .badlbl{color:var(--bad);font-weight:600}.avglbl{color:var(--warn);font-weight:600}.goodlbl{color:var(--good);font-weight:600}
-  .info{display:inline-flex;width:14px;height:14px;border-radius:50%;background:var(--peri-soft);color:var(--cobalt);font-size:10px;line-height:1;align-items:center;justify-content:center;cursor:help;font-weight:700;margin-left:4px;vertical-align:middle}
-
-  /* ---- platform KPI mini-row (with goal) ---- */
-  .mkpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
-  @media(max-width:820px){.mkpis{grid-template-columns:repeat(3,1fr)}}
-  @media(max-width:520px){.mkpis{grid-template-columns:1fr 1fr}}
-  .mkpi{border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;background:#fcfdff}
-  .mkpi .l{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600;min-height:26px}
-  .mkpi .v{font-size:18px;font-weight:700;margin:2px 0 2px}
-  .mkpi .sub{font-size:10.5px;color:var(--muted);margin-top:auto}
-  .mkpi .sub b.g{color:var(--good)} .mkpi .sub b.r{color:var(--bad)} .mkpi .sub b.w{color:var(--warn)}
-
+  /* ===== TASKS (scoped) ===== */
+  #tasks .taskhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+  #tasks .viewtoggle{display:inline-flex;background:var(--gray-bg);border-radius:10px;padding:3px}
+  #tasks .vbtn{appearance:none;border:none;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:8px}
+  #tasks .vbtn.on{background:#fff;color:var(--accent-deep);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+  #tasks .tsum{font-size:12.5px;color:var(--muted)} #tasks .tsum b{color:var(--navy)}
+  #tasks .push{margin-left:auto}
+  #tasks .view{display:none} #tasks .view.on{display:block}
+  #tasks .tablewrap{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  #tasks table{width:100%;border-collapse:collapse;font-size:13px}
+  #tasks thead th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left;border-bottom:1px solid #dce3f0}
+  #tasks tbody td{padding:11px 13px;border-bottom:1px solid var(--line);vertical-align:middle}
+  #tasks tbody tr:last-child td{border-bottom:none}
+  #tasks tbody tr:hover{background:#fafbff}
+  #tasks .tname{font-weight:600;color:var(--navy)}
+  #tasks td.tkcell{position:relative}
+  #tasks .tnote{font-size:11px;color:var(--muted);font-weight:400;margin-top:3px;max-width:520px}
+  #tasks .who{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+  #tasks .av{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:700;color:#fff;font-family:var(--mono);flex:none}
+  #tasks .pri{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:.03em}
+  #tasks .P1{background:var(--bad-bg);color:var(--bad)} #tasks .P2{background:var(--warn-bg);color:var(--warn)} #tasks .P3{background:var(--gray-bg);color:var(--gray)}
+  #tasks .stat{font-size:11px;font-weight:600;padding:2px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+  #tasks .stat::before{content:"";width:6px;height:6px;border-radius:50%}
+  #tasks .todo{background:var(--gray-bg);color:#566} #tasks .todo::before{background:var(--gray)}
+  #tasks .prog{background:var(--peri-soft);color:var(--cobalt)} #tasks .prog::before{background:var(--cobalt)}
+  #tasks .done{background:var(--good-bg);color:var(--good)} #tasks .done::before{background:var(--good)}
+  #tasks .review{background:#e7ecff;color:#3E5BD0} #tasks .review::before{background:#6C8CFD}
+  #tasks td.due{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
+  #tasks .newbadge{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:#fde8ec;color:#c62a4f;border-radius:5px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+  #tasks .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+  @media(max-width:820px){#tasks .board{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){#tasks .board{grid-template-columns:1fr}}
+  #tasks .col{background:#f7f8fc;border:1px solid var(--line);border-radius:14px;padding:12px}
+  #tasks .col-h{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;margin-bottom:11px;padding:0 4px}
+  #tasks .col-h .cc{font-family:var(--mono);font-size:11px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:0 8px;color:var(--muted)}
+  #tasks .tcard{position:relative;background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 13px;margin-bottom:9px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+  #tasks .tcard .tt{font-weight:600;font-size:13px;color:var(--navy);line-height:1.35}
+  #tasks .tcard .tm{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+  #tasks .tcard .plt{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+  #tasks .tl{border:1px solid var(--line);border-radius:12px;padding:10px 16px;background:#fcfdff}
+  #tasks .tlrow{position:relative;display:grid;grid-template-columns:1fr 120px 96px;gap:12px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line)}
+  #tasks .tlrow:last-child{border-bottom:none}
+  #tasks .tlname{font-size:13px;font-weight:600;color:var(--navy)}
+  #tasks .tasksfoot{margin-top:22px}
   .subh{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:16px 0 8px}
-  .keyfix{font-size:13px;margin:0 0 12px;padding:12px 15px;background:#eaf1ff;border:1px solid #cdd9f7;border-radius:10px}
-  .keyfix b{color:var(--navy)}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
-  .grid{display:grid;gap:14px}
+  .freq{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:5px;background:#fff3d6;color:#8a6412;margin-left:6px}
+  .copybox{background:#f8faff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:12.5px;margin-top:8px}
+  .copybox code{font-family:var(--mono);font-size:12px;color:var(--navy)}
   .wl{font-size:13px;margin:6px 0 0;padding-left:0;list-style:none}
   .wl li{margin:6px 0;padding-left:18px;position:relative}
-  .wl li::before{position:absolute;left:0;top:1px;font-size:12px}
-  .wl li.pro::before{content:"\25B2";color:var(--good)}.wl li.con::before{content:"\25BC";color:var(--bad)}
-  .wl li.do::before{content:"\2192";color:var(--cobalt)}.wl li.watch::before{content:"\25C6";color:var(--warn)}
-  .path{display:flex;align-items:stretch;flex-wrap:wrap}
-  .pstep{flex:1;min-width:112px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 14px;text-align:center}
-  .pstep .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em} .pstep .n{font-size:21px;font-weight:700;margin-top:3px} .pstep .s{font-size:11.5px;color:var(--muted);margin-top:2px}
-  .parrow{display:flex;align-items:center;color:var(--peri);font-size:18px;padding:0 5px}
-  @media(max-width:640px){.parrow{transform:rotate(90deg)}}
-  .callout{background:var(--warn-bg);border:1px solid #f0dcae;border-radius:12px;padding:13px 16px;font-size:13px;color:#7a5a12}.callout b{color:#5f4708}
-  .owner-tag{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:5px;letter-spacing:.03em;white-space:nowrap}
-  .o-p{background:#e7ecff;color:#2A41A2}.o-s{background:#fde4ee;color:#C9367F}.o-c{background:#fdf0dc;color:#9a6a12}
-  .freq{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:5px;background:#fff3d6;color:#8a6412;margin-left:6px}
-  .ladder .step{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line)}
-  .ladder .step:last-child{border-bottom:none}
-  .ladder .num{flex:none;width:26px;height:26px;border-radius:7px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
-  .ladder .txt{font-size:13px}.ladder .txt b{color:var(--navy)}
-  .chartwrap{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
-  .legend{display:flex;gap:16px;font-size:12px;color:var(--muted);margin-top:6px;flex-wrap:wrap}
-  .legend span{display:inline-flex;align-items:center;gap:6px}
-  .swatch{width:14px;height:3px;border-radius:2px;display:inline-block}
-  .copybox{background:#f8faff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:12.5px;margin-top:8px}
-  .copybox code{font-family:'Roboto Mono',monospace;font-size:12px;color:var(--navy)}
-  small.src{color:var(--gray);font-size:11px}
-  .foot{margin-top:26px;font-size:11.5px;color:var(--gray);border-top:1px solid var(--line);padding-top:14px}
-  /* VP readout banner */
-  .vpbanner{border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:0 0 20px;box-shadow:0 1px 3px rgba(15,23,42,.05)}
-  .vpbanner .vbar{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-  .vpbanner .vbar .t{font-size:18px;font-weight:800}
-  .vpbanner .vbar .g{font-size:12.5px;color:#cdd6f7;font-weight:600;text-align:right}
-  .vpbanner .vrow{display:flex;gap:18px;align-items:flex-start;padding:16px 22px;border-top:1px solid var(--line)}
-  .vpbanner .vrow:first-of-type{border-top:none}
-  .pill2{flex:none;width:92px;text-align:center;font-size:11px;font-weight:800;letter-spacing:.05em;padding:5px 0;border-radius:16px;text-transform:uppercase;margin-top:2px}
-  .pill2.fix{background:#fde8ec;color:#c62a4f}.pill2.work{background:#e3f5ec;color:#127a45}.pill2.watch{background:#fdf0d6;color:#8a6412}
-  .vrow .rtx h4{margin:0 0 4px;font-size:15px;color:var(--navy);font-weight:800}
-  .vrow .rtx p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
-  .fbhint{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);background:#f7f9fe;border:1px solid var(--line);border-radius:10px;padding:9px 13px;margin:0 0 22px}
-  .fbhint svg{width:15px;height:15px;flex:none;color:var(--cobalt)}
-  /* feedback loop */
+  .wl li::before{position:absolute;left:0;top:1px;font-size:12px;content:"\2192";color:var(--cobalt)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+
+  /* ===== SUMMARY (scoped) ===== */
+  #summary .sumhead{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  #summary .dtitle{font-size:13px;font-weight:700;color:var(--navy)}
+  #summary .push{margin-left:auto}
+  #summary .copied{background:var(--good)!important;filter:none!important}
+  #summary .summary-card{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:22px 24px;background:#fff;font-size:14px;line-height:1.6;color:var(--ink)}
+  #summary .summary-card h2{color:var(--navy);font-weight:900;margin:0 0 12px;font-size:18px}
+  #summary .summary-card p{margin:0 0 11px} #summary .summary-card b{color:var(--navy)}
+  #summary .summary-card .q{margin-top:14px;font-size:12.5px;color:var(--muted)}
+
+  /* ===== CHEAT SHEET (scoped) ===== */
+  #cheatsheet .intro{font-size:13.5px;color:#5b6472;background:#f4f7ff;border:1px solid #dfe6f7;border-radius:12px;padding:14px 16px;margin:0 0 6px;line-height:1.55}
+  #cheatsheet h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#2A41A2;margin:26px 0 4px;padding-bottom:7px;border-bottom:2px solid #e9edf7}
+  #cheatsheet .item{display:grid;grid-template-columns:220px 1fr;gap:18px;padding:12px 4px;border-bottom:1px solid #eef1f7}
+  #cheatsheet .item:last-child{border-bottom:none}
+  #cheatsheet .term{font-weight:700;color:#0F172A;font-size:13.5px;line-height:1.3}
+  #cheatsheet .term .abbr{font-family:var(--mono);font-size:11px;color:#7a8494;display:block;margin-top:3px;font-weight:600}
+  #cheatsheet .def{font-size:13px;color:#4b5563;line-height:1.6}
+  #cheatsheet .def b{color:#2A41A2}
+  #cheatsheet .def code{font-family:var(--mono);font-size:11.5px;background:#f4f7ff;border:1px solid #e3e9f7;border-radius:5px;padding:1px 5px;color:#2A41A2}
+  .ours{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:#fde8ec;color:#c62a4f;border-radius:5px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+  @media(max-width:640px){#cheatsheet .item{grid-template-columns:1fr;gap:5px}}
+
+  /* ===== feedback loop ===== */
   .fbx{position:relative}
-  .fbi{position:absolute;top:6px;right:6px;width:22px;height:22px;border-radius:50%;border:none;cursor:pointer;background:var(--peri-soft);color:var(--cobalt);display:none;align-items:center;justify-content:center;padding:0;z-index:3}
+  .fbi{position:absolute;top:6px;right:6px;width:22px;height:22px;border-radius:50%;border:none;cursor:pointer;background:var(--peri-soft);color:var(--cobalt);display:none;align-items:center;justify-content:center;padding:0;z-index:4}
   .fbi svg{width:12px;height:12px}
   .fbx:hover>.fbi{display:inline-flex}
   .fbov{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px}
@@ -165,28 +127,143 @@
   .fbmodal .ctx{font-size:12px;color:var(--muted);margin:0 0 14px;padding:8px 10px;background:#f7f9fe;border-radius:8px;border:1px solid var(--line);max-height:90px;overflow:auto}
   .fbmodal .cats{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
   .fbcat{appearance:none;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;font-family:inherit}
-  .fbcat.on{background:#EC417A;border-color:#EC417A;color:#fff}
+  .fbcat.on{background:var(--accent);border-color:var(--accent);color:#fff}
   .fbmodal textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:10px;font-family:inherit;font-size:13px;min-height:78px;resize:vertical}
   .fbmodal .acts{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
   .fbbtn{appearance:none;border:none;border-radius:9px;padding:9px 15px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
   .fbbtn.sec{background:var(--gray-bg);color:var(--muted)}
-  .fbbtn.pri{background:linear-gradient(120deg,#EC417A,#C9367F);color:#fff}
+  .fbbtn.pri{background:linear-gradient(120deg,var(--accent),var(--accent-deep));color:#fff}
 </style>
 </head>
-<body>
+<body class="theme-reveal">
+<a class="hubnav" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg> All Reports</a>
 <div class="wrap">
 
-<header class="top">
-  <div class="logochip"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22112%22%20height%3D%2228%22%20viewBox%3D%220%200%20112%2028%22%3E%3Ctext%20x%3D%220%22%20y%3D%2222%22%20font-family%3D%22Roboto%2CArial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22900%22%20fill%3D%22%232A41A2%22%3EReveal%3C/text%3E%3Ccircle%20cx%3D%22106%22%20cy%3D%228%22%20r%3D%224.5%22%20fill%3D%22%23EC417A%22/%3E%3C/svg%3E" alt="Reveal"></div>
-  <div class="kick">revealbi.io · Paid Media</div>
-  <h1>Weekly Paid Media Brief</h1>
-  <div class="meta">
-    <span>Report date <b>Mon 3 Aug 2026</b></span>
-    <span>Window <b>Jul 27-Aug 2</b> vs <b>Jul 20-26</b></span>
-    <span>Owner <b>Poojitha</b> (driver)</span>
-    <span>Supporting <b>Sydney</b> — LinkedIn, Reddit &amp; channel growth</span>
+  <header class="top">
+    <div class="logochip">Reveal</div>
+    <div class="kick">revealbi.io · Paid Media</div>
+    <h1>Paid Media Weekly / PPC analysis</h1>
+    <div class="meta"><span>Week of <b>Jul 27-Aug 2, 2026</b></span> <span>vs <b>Jul 20-26</b></span> <span>Channels <b>Google · Bing · LinkedIn · Reddit · G2</b></span></div>
+  </header>
+
+  <div class="tabbar">
+    <button class="tab on" data-tab="report">Report</button>
+    <button class="tab" data-tab="tasks">Tasks <span class="cbadge" id="taskCount">0</span></button>
+    <button class="tab" data-tab="summary">Summary</button>
+    <button class="tab" data-tab="cheatsheet">Cheat sheet</button>
   </div>
-</header>
+
+  <!-- ============================== REPORT ============================== -->
+  <section class="panel on" id="report">
+    <style>
+  #report h2.sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:34px 4px 14px;display:flex;align-items:center;gap:10px}
+  #report h2.sec:first-child{margin-top:4px}
+  #report h2.sec .n{width:22px;height:22px;border-radius:6px;background:var(--peri-soft);color:var(--cobalt);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+  #report .kpigrid{display:grid;gap:12px}
+  #report .g5{grid-template-columns:repeat(5,1fr)}
+  @media(max-width:900px){#report .g5{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:520px){#report .g5{grid-template-columns:1fr 1fr}}
+  #report .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column}
+  #report .kpi .lab{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600;min-height:30px}
+  #report .kpi .val{font-size:23px;font-weight:700;line-height:1.1;margin:2px 0 8px}
+  #report .kpi .delta{margin-top:auto;align-self:flex-start;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
+  #report .d-good{background:var(--good-bg);color:var(--good)} #report .d-bad{background:var(--bad-bg);color:var(--bad)} #report .d-gray{background:var(--gray-bg);color:var(--gray)} #report .d-warn{background:var(--warn-bg);color:var(--warn)}
+  #report .lead{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:18px 22px;margin-top:14px}
+  #report .lead p{margin:0 0 10px;font-size:14.5px}#report .lead p:last-child{margin-bottom:0}#report .lead b{font-weight:600}
+  #report .scorecard{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  @media(max-width:820px){#report .scorecard{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){#report .scorecard{grid-template-columns:1fr 1fr}}
+  #report .sc{border:1px solid var(--line);border-radius:12px;padding:13px 14px;background:#fff;display:flex;flex-direction:column}
+  #report .sc .g{font-size:12px;color:var(--muted);font-weight:600;min-height:34px} #report .sc .v{font-size:19px;font-weight:700;margin:4px 0 8px}
+  #report .sc .pill{margin-top:auto;align-self:flex-start}
+  #report .pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 9px;border-radius:999px;letter-spacing:.02em}
+  #report .p-good{background:var(--good-bg);color:var(--good)} #report .p-warn{background:var(--warn-bg);color:var(--warn)} #report .p-bad{background:var(--bad-bg);color:var(--bad)}
+  #report .plat{border-radius:16px;border:1px solid var(--line);overflow:hidden;margin-bottom:8px}
+  #report .plat .phd{padding:16px 20px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;color:#fff}
+  #report .plat .phd .nm{font-size:18px;font-weight:700}
+  #report .plat .phd .role{font-size:12px;opacity:.92;margin-top:3px;max-width:600px}
+  #report .plat .phd .owner{display:inline-block;margin-top:9px;font-size:10.5px;font-weight:700;letter-spacing:.03em;background:rgba(255,255,255,.18);color:#fff;padding:2px 9px;border-radius:6px}
+  #report .plat .phd .spend{text-align:right;font-family:var(--mono);white-space:nowrap}
+  #report .plat .phd .spend .v{font-size:20px;font-weight:700}
+  #report .plat .phd .spend .l{font-size:11px;opacity:.85;text-transform:uppercase;letter-spacing:.05em}
+  #report .g-google .phd{background:linear-gradient(120deg,#2A41A2,#4a6bf5)}
+  #report .g-bing .phd{background:linear-gradient(120deg,#0F172A,#223a86)}
+  #report .g-li .phd{background:linear-gradient(120deg,#3E5BD0,#6C8CFD)}
+  #report .g-reddit .phd{background:linear-gradient(120deg,#F2994A,#EC417A)}
+  #report .g-g2 .phd{background:linear-gradient(120deg,#C9367F,#EC417A)}
+  #report .plat .pbody{padding:18px 20px;background:#fff}
+  #report .verdict{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px}
+  @media(max-width:720px){#report .verdict{grid-template-columns:1fr}}
+  #report .vbox{border-radius:10px;padding:11px 13px;font-size:12.5px}
+  #report .vbox .h{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+  #report .vbox.w{background:var(--good-bg)} #report .vbox.w .h{color:var(--good)}
+  #report .vbox.n{background:var(--bad-bg)} #report .vbox.n .h{color:var(--bad)}
+  #report .vbox.f{background:var(--peri-soft)} #report .vbox.f .h{color:var(--cobalt)}
+  #report .vbox ul{margin:0;padding-left:15px} #report .vbox li{margin:2px 0}
+  #report .subsec{margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+  #report .subsec:first-of-type{margin-top:4px;padding-top:0;border-top:none}
+  #report .subsec-h{font-size:13.5px;font-weight:700;color:var(--navy);margin:0 0 10px;padding-left:11px;border-left:3px solid var(--cobalt)}
+  #report .subsec-h .q{font-weight:400;color:var(--muted);font-size:12.5px}
+  #report .tablewrap{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  #report table{width:100%;border-collapse:collapse;font-size:13px}
+  #report thead th{background:#eef2fa;font-size:11px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:9px 12px;text-align:left;border-bottom:1px solid #dce3f0}
+  #report tbody td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  #report tbody tr:last-child td{border-bottom:none}
+  #report td.r,#report th.r{text-align:right;font-family:var(--mono)}
+  #report thead th.r{text-align:right}
+  #report tr.grp td{background:#f6f8fc;font-weight:600}
+  #report tr.grp td:first-child{box-shadow:inset 3px 0 0 var(--peri)}
+  #report td.sub .ind{padding-left:18px;display:inline-block}
+  #report .badlbl{color:var(--bad);font-weight:600}#report .avglbl{color:var(--warn);font-weight:600}#report .goodlbl{color:var(--good);font-weight:600}
+  #report .info{display:inline-flex;width:14px;height:14px;border-radius:50%;background:var(--peri-soft);color:var(--cobalt);font-size:10px;line-height:1;align-items:center;justify-content:center;cursor:help;font-weight:700;margin-left:4px;vertical-align:middle}
+  #report .mkpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
+  @media(max-width:820px){#report .mkpis{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:520px){#report .mkpis{grid-template-columns:1fr 1fr}}
+  #report .mkpi{border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;background:#fcfdff}
+  #report .mkpi .l{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600;min-height:26px}
+  #report .mkpi .v{font-size:18px;font-weight:700;margin:2px 0 2px}
+  #report .mkpi .sub{font-size:10.5px;color:var(--muted);margin-top:auto}
+  #report .mkpi .sub b.g{color:var(--good)} #report .mkpi .sub b.r{color:var(--bad)} #report .mkpi .sub b.w{color:var(--warn)}
+  #report .subh{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:16px 0 8px}
+  #report .keyfix{font-size:13px;margin:0 0 12px;padding:12px 15px;background:#eaf1ff;border:1px solid #cdd9f7;border-radius:10px}
+  #report .keyfix b{color:var(--navy)}
+  #report .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  #report .grid{display:grid;gap:14px}
+  #report .wl{font-size:13px;margin:6px 0 0;padding-left:0;list-style:none}
+  #report .wl li{margin:6px 0;padding-left:18px;position:relative}
+  #report .wl li::before{position:absolute;left:0;top:1px;font-size:12px}
+  #report .wl li.pro::before{content:"\25B2";color:var(--good)}#report .wl li.con::before{content:"\25BC";color:var(--bad)}
+  #report .wl li.do::before{content:"\2192";color:var(--cobalt)}#report .wl li.watch::before{content:"\25C6";color:var(--warn)}
+  #report .path{display:flex;align-items:stretch;flex-wrap:wrap}
+  #report .pstep{flex:1;min-width:112px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 14px;text-align:center}
+  #report .pstep .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em} #report .pstep .n{font-size:21px;font-weight:700;margin-top:3px} #report .pstep .s{font-size:11.5px;color:var(--muted);margin-top:2px}
+  #report .parrow{display:flex;align-items:center;color:var(--peri);font-size:18px;padding:0 5px}
+  @media(max-width:640px){#report .parrow{transform:rotate(90deg)}}
+  #report .callout{background:var(--warn-bg);border:1px solid #f0dcae;border-radius:12px;padding:13px 16px;font-size:13px;color:#7a5a12}#report .callout b{color:#5f4708}
+  #report .ladder .step{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line)}
+  #report .ladder .step:last-child{border-bottom:none}
+  #report .ladder .num{flex:none;width:26px;height:26px;border-radius:7px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+  #report .ladder .txt{font-size:13px}#report .ladder .txt b{color:var(--navy)}
+  #report .chartwrap{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  #report .legend{display:flex;gap:16px;font-size:12px;color:var(--muted);margin-top:6px;flex-wrap:wrap}
+  #report .legend span{display:inline-flex;align-items:center;gap:6px}
+  #report .swatch{width:14px;height:3px;border-radius:2px;display:inline-block}
+  #report small.src{color:var(--gray);font-size:11px}
+  #report .foot{margin-top:26px;font-size:11.5px;color:var(--gray);border-top:1px solid var(--line);padding-top:14px}
+  /* VP readout banner */
+  #report .vpbanner{border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:0 0 20px;box-shadow:0 1px 3px rgba(15,23,42,.05)}
+  #report .vpbanner .vbar{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  #report .vpbanner .vbar .t{font-size:18px;font-weight:800}
+  #report .vpbanner .vbar .g{font-size:12.5px;color:#cdd6f7;font-weight:600;text-align:right}
+  #report .vpbanner .vrow{display:flex;gap:18px;align-items:flex-start;padding:16px 22px;border-top:1px solid var(--line)}
+  #report .vpbanner .vrow:first-of-type{border-top:none}
+  #report .pill2{flex:none;width:92px;text-align:center;font-size:11px;font-weight:800;letter-spacing:.05em;padding:5px 0;border-radius:16px;text-transform:uppercase;margin-top:2px}
+  #report .pill2.fix{background:#fde8ec;color:#c62a4f}#report .pill2.work{background:#e3f5ec;color:#127a45}#report .pill2.watch{background:#fdf0d6;color:#8a6412}
+  #report .vrow .rtx h4{margin:0 0 4px;font-size:15px;color:var(--navy);font-weight:800}
+  #report .vrow .rtx p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
+  #report .fbhint{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);background:#f7f9fe;border:1px solid var(--line);border-radius:10px;padding:9px 13px;margin:0 0 22px}
+  #report .fbhint svg{width:15px;height:15px;flex:none;color:var(--cobalt)}
+</style>
 
 <div class="vpbanner">
   <div class="vbar">
@@ -207,7 +284,7 @@
   </div>
 </div>
 
-<p class="fbhint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Hover any KPI, goal, insight, or recommendation and click the chat icon to send feedback to the agent &mdash; it reads it every Monday and adjusts.</p>
+<p class="fbhint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Hover any KPI, goal, insight, recommendation &mdash; or task on the Tasks tab &mdash; and click the chat icon to send feedback to the agent. It reads it every Monday and adjusts.</p>
 
 <h2 class="sec"><span class="n">1</span> Executive summary</h2>
 <div class="kpigrid g5">
@@ -220,7 +297,7 @@
 <div class="lead">
   <p>Paid is still producing pipeline — <b>$462k open across 9 opportunities</b>, spend under the budget cap, and conquest visibility climbing after the Power BI bid work (Compete-US show-up 57% &rarr; 77%). Two things need leadership's eye this week, and neither is a demand problem.</p>
   <p>First, <b>a spend leak</b>. Our flagship Non-Brand-US search campaign spent <b>$2,334 on ~10 clicks and zero conversions</b> — six times the prior week. The cause is two broad-match terms running away: <b>"embeddable analytics" burned $1,049 on 2 clicks and "embedded dashboard" $326 on 1</b> — roughly $300-525 per click. That's a match-type/bid control problem, not real demand. Pausing and auditing it is job one.</p>
-  <p>Second, <b>lead pace is behind</b>: 118 of a 250 monthly target, dragged by a soft week (16 vs 42) and brand impression share stuck at 57% — we're absent on roughly four in ten of our own-name searches. Both levers are already in the task list; the next dollar goes to stopping the leak and restoring coverage, not to more volume.</p>
+  <p>Second, <b>lead pace is behind</b>: 118 of a 250 monthly target, dragged by a soft week (16 vs 42) and brand impression share stuck at 57% — we're absent on roughly four in ten of our own-name searches. Both levers are already in the Tasks tab; the next dollar goes to stopping the leak and restoring coverage, not to more volume.</p>
 </div>
 
 <h2 class="sec"><span class="n">2</span> Goal scoreboard</h2>
@@ -231,7 +308,7 @@
   <div class="sc"><div class="g">Brand defense (~100%)</div><div class="v">57%</div><span class="pill p-bad">Behind</span></div>
   <div class="sc"><div class="g">Competitor search (top 3)</div><div class="v">74-88%</div><span class="pill p-warn">At risk</span></div>
 </div>
-<p style="font-size:12px;color:var(--muted);margin:10px 4px 0">Lead context: 118 total leads and 51 Tier-1 quality over the last 30 days (goals 250 / 200). Cost-per-lead note: the "$75" plan target tracks form-fills (~$65 actual); a qualified paid Salesforce lead costs ~$1,830 (blended paid ~$800). At ~$44k/mo spend the $75 target isn't realistic — agreeing one definition (recommend qualified lead + pipeline) is an action in &sect;12.</p>
+<p style="font-size:12px;color:var(--muted);margin:10px 4px 0">Lead context: 118 total leads and 51 Tier-1 quality over the last 30 days (goals 250 / 200). Cost-per-lead note: the "$75" plan target tracks form-fills (~$65 actual); a qualified paid Salesforce lead costs ~$1,830 (blended paid ~$800). At ~$44k/mo spend the $75 target isn't realistic — agreeing one definition (recommend qualified lead + pipeline) is in the Tasks tab.</p>
 
 <h2 class="sec"><span class="n">3</span> Per-platform read — at a glance</h2>
 <div class="grid" style="grid-template-columns:1fr 1fr;gap:14px">
@@ -253,7 +330,6 @@
   </div>
 </div>
 
-<!-- ============ GOOGLE ============ -->
 <h2 class="sec"><span class="n">4</span> Google Ads — deep dive</h2>
 <div class="plat g-google">
   <div class="phd">
@@ -283,21 +359,14 @@
       </ul></div>
     </div>
 
-    <!-- 4a -->
     <div class="subsec">
       <div class="subsec-h">4a &middot; Search visibility <span class="q">— where we appear, and why we don't</span></div>
-      <p style="font-size:13px;margin:0 0 12px">Nothing we want to win is capped by budget — every loss is to ad rank (Quality Score), not money (budget-lost is 0% across US campaigns). The two stories: conquest is climbing after the Power BI bid lift, while brand and non-brand still lose ~4 in 10 auctions to rank.</p>
+      <p style="font-size:13px;margin:0 0 12px">Nothing we want to win is capped by budget — every loss is to ad rank (Quality Score), not money (budget-lost is 0% across US campaigns). Two stories: conquest is climbing after the Power BI bid lift, while brand and non-brand still lose ~4 in 10 auctions to rank.</p>
       <div class="tablewrap">
       <table>
-        <thead><tr>
-          <th>Campaign</th>
-          <th class="r">Show-up<span class="info" title="Search impression share: of all searches we could have appeared for, the share we actually showed up for.">i</span></th>
-          <th class="r">Lost: budget<span class="info" title="Share of appearances missed because the campaign ran out of money. ~0 for US.">i</span></th>
-          <th class="r">Lost: rank<span class="info" title="Share missed because ad rank (bid x Quality Score x relevance) wasn't high enough.">i</span></th>
-          <th>Read</th>
-        </tr></thead>
+        <thead><tr><th>Campaign</th><th class="r">Show-up</th><th class="r">Lost: budget</th><th class="r">Lost: rank</th><th>Read</th></tr></thead>
         <tbody>
-          <tr class="grp"><td>Non-Brand US</td><td class="r">55%</td><td class="r">0%</td><td class="r badlbl">45%</td><td>Flagship. $2,334 spend / 10 clicks / 0 conv — broad-match spike (see 4b). Audit before it repeats.</td></tr>
+          <tr class="grp"><td>Non-Brand US</td><td class="r">55%</td><td class="r">0%</td><td class="r badlbl">45%</td><td>Flagship. $2,334 / 10 clicks / 0 conv — broad-match spike (see 4b). Audit before it repeats.</td></tr>
           <tr class="grp"><td>Brand — reveal bi / revealbi</td><td class="r">57%</td><td class="r">0%</td><td class="r badlbl">43%</td><td>Missing our own brand; cheap to fix with bids/QS.</td></tr>
           <tr class="grp"><td>Compete US</td><td class="r goodlbl">77%</td><td class="r">0%</td><td class="r avglbl">23%</td><td>&#9650; from 57% — Power BI bid lift landing. Push to 85%+.</td></tr>
           <tr><td class="sub"><span class="ind">Compete Core US</span></td><td class="r">71%</td><td class="r">0%</td><td class="r">29%</td><td>Modest bid/QS lift to reach top-3.</td></tr>
@@ -309,7 +378,6 @@
       </div>
     </div>
 
-    <!-- 4b -->
     <div class="subsec">
       <div class="subsec-h">4b &middot; Top search terms <span class="q">— week over week (Google)</span></div>
       <div class="tablewrap">
@@ -330,7 +398,6 @@
       <p style="font-size:12.5px;color:var(--muted);margin:10px 2px 0">The Power BI embedded cluster is healthy and converting where it's branded. The problem is two broad-match terms — "embeddable analytics" and "embedded dashboard" — that together burned ~$1,375 at $300-525/click with zero conversions. Fix: move Non-Brand-US to tighter match types + add these as controls; this is the bulk of the $2,334 spike.</p>
     </div>
 
-    <!-- 4c -->
     <div class="subsec">
       <div class="subsec-h">4c &middot; Customer journey <span class="q">— where paid clicks land (GA4)</span></div>
       <div class="tablewrap">
@@ -350,7 +417,6 @@
       <p style="font-size:12.5px;color:var(--muted);margin:10px 2px 0">Comparison and pricing pages engage far better than the homepage, but the homepage soaks most paid traffic at 35% engagement. Repointing paid-search and Demand Gen clicks off the homepage onto matching pages is the recurring fix — and /embedded-bi still gets almost no traffic because we can't rank it.</p>
     </div>
 
-    <!-- 4d -->
     <div class="subsec">
       <div class="subsec-h">4d &middot; Demand Gen analysis <span class="q">— ~38% of Google spend</span></div>
       <div class="mkpis" style="grid-template-columns:repeat(4,1fr)">
@@ -360,29 +426,22 @@
         <div class="mkpi"><div class="l">Conversions (wk)</div><div class="v">2</div><div class="sub">low direct yield</div></div>
       </div>
       <p style="font-size:13px;margin:0 0 8px">Four Demand Gen campaigns spent <b>$3,704 for 2 tracked conversions</b> (Compete-US $1,332/0, Compete-Intl $1,014/1, NB-US $872/0, NB-Intl $485/1). It's buying reach but not intent-level quality, and most traffic still points at the homepage.</p>
-      <p style="font-size:13px;margin:0"><b>The rebuild is in progress</b> — segment by intent (T1 competitor/pricing &rarr; T2 embedded-analytics/BI researchers &rarr; T3 broad) with each tier pointed at a dedicated matching page (comparison and pricing for high intent) instead of the homepage. That turns a single broad line into a graded quality-and-reach engine.</p>
+      <p style="font-size:13px;margin:0"><b>The rebuild is in progress</b> — segment by intent (T1 competitor/pricing &rarr; T2 embedded-analytics/BI researchers &rarr; T3 broad) with each tier pointed at a dedicated matching page instead of the homepage.</p>
     </div>
 
-    <!-- 4e -->
     <div class="subsec">
       <div class="subsec-h">4e &middot; Quality Score <span class="q">— the standing unlock</span></div>
-      <p class="keyfix"><b>Standing diagnosis (keyword-level, unchanged until the two pages ship):</b> across every Non-Brand-US ad group, <b>landing-page experience is "Below average" on 100% of keywords</b> and <b>predicted CTR is "Below average" almost everywhere</b>, while <b>ad relevance is mostly "Above average."</b> The ads are on-target; the pages and copy hooks pull ad rank down. Because Google won't serve a low-QS ad even when we'll pay, this is why the flagship non-brand budget can't convert into real coverage — and why this week's spike went to junk broad terms instead of head terms.</p>
-      <div class="subh">Landing-page experience — the fixes (bigger lever)</div>
+      <p class="keyfix"><b>Standing diagnosis (keyword-level, unchanged until the two pages ship):</b> across every Non-Brand-US ad group, <b>landing-page experience is "Below average" on 100% of keywords</b> and <b>predicted CTR is "Below average" almost everywhere</b>, while <b>ad relevance is mostly "Above average."</b> The ads are on-target; the pages and copy hooks pull ad rank down — which is why the flagship non-brand budget can't convert into real coverage, and why this week's spike went to junk broad terms instead of head terms.</p>
+      <div class="subh">The fixes</div>
       <ul class="wl">
-        <li class="do"><b>Build the two missing pages</b> (/embedded-bi, /embedded-dashboards) — those ad groups have no dedicated page, so QS is capped until they exist. (Task open, due Aug 5.)</li>
+        <li class="do"><b>Build the two missing pages</b> (/embedded-bi, /embedded-dashboards) — QS is capped until they exist. (Tasks tab, due Aug 5.)</li>
         <li class="do"><b>Repoint every ad to its exact-match page</b> (not the homepage) and mirror the keyword in the H1.</li>
-        <li class="do"><b>Improve the existing pages</b> (/embedded-analytics, /white-label-analytics): speed &amp; Core Web Vitals, mobile, clear above-the-fold value, visible demo/CTA.</li>
-      </ul>
-      <div class="subh">Predicted CTR — the second lever</div>
-      <ul class="wl">
-        <li class="do"><b>Refresh the ad copy</b> (RSA): pin the exact keyword into headlines, sharpen CTAs, add sitelinks/callouts (monthly copy refresh, &sect;11).</li>
-        <li class="watch"><b>Leave ad relevance alone</b> — already "Above average"; and don't raise bids blindly, because the constraint is Quality Score, not bid.</li>
+        <li class="do"><b>Refresh RSA copy</b> — pin the exact keyword into headlines, sharpen CTAs. Leave ad relevance alone; don't raise bids blindly (constraint is QS, not bid).</li>
       </ul>
     </div>
   </div>
 </div>
 
-<!-- ============ BING ============ -->
 <h2 class="sec"><span class="n">5</span> Bing / Microsoft — deep dive</h2>
 <div class="plat g-bing">
   <div class="phd">
@@ -407,7 +466,7 @@
         </tbody>
       </table>
       </div>
-      <p style="font-size:12.5px;color:var(--muted);margin:10px 2px 0">CTR has climbed every week and clicks nearly tripled off the spam sweeps — Bing is earning more budget. The caution: as spend jumped 80%, show-up slipped to 70% and rank-lost rose to 30%, partly because spend is spilling into component-library queries (5c). Tighten those and the core-term visibility recovers.</p>
+      <p style="font-size:12.5px;color:var(--muted);margin:10px 2px 0">CTR has climbed every week and clicks nearly tripled off the spam sweeps — Bing is earning more budget. As spend jumped 80%, show-up slipped to 70% and rank-lost rose to 30%, partly because spend is spilling into component-library queries (5c). Tighten those and core-term visibility recovers.</p>
     </div>
 
     <div class="subsec">
@@ -430,7 +489,7 @@
 
     <div class="subsec">
       <div class="subsec-h">5c &middot; Spam &amp; waste to kill <span class="q">— the new cluster this week</span></div>
-      <p style="font-size:13px;margin:0 0 10px">A large share of this week's Bing spend leaked into <b>UI-component / data-grid queries that belong to Infragistics' component products (Ignite UI, Kendo-style), not Reveal embedded analytics</b>. These are cheap, high-volume, and irrelevant to the embedded-BI buyer.</p>
+      <p style="font-size:13px;margin:0 0 10px">A large share of this week's Bing spend leaked into <b>UI-component / data-grid queries that belong to Infragistics' component products (Ignite UI, Kendo-style), not Reveal embedded analytics</b>. Cheap, high-volume, and irrelevant to the embedded-BI buyer.</p>
       <div class="tablewrap">
       <table>
         <thead><tr><th>Query cluster</th><th class="r">Approx. wasted</th><th>Type</th></tr></thead>
@@ -443,12 +502,11 @@
         </tbody>
       </table>
       </div>
-      <p style="font-size:12.5px;color:var(--muted);margin:10px 2px 0"><b>Negatives to add (task in &sect;12):</b> <code>mudblazor</code>, <code>radzen</code>, <code>aggrid</code>, <code>ag-grid</code>, <code>kendo</code>, <code>telerik</code>, <code>syncfusion</code>, <code>devexpress</code>, <code>blazor grid</code>, <code>react data grid</code>, <code>mui data grid</code>, <code>angular grid</code> — roughly <b>$300+ of Bing spend this week</b> on component-library intent. Bing's broader match makes it the tightest watch; add these as phrase/exact negatives and the core Power BI / embedded terms get the budget back.</p>
+      <p style="font-size:12.5px;color:var(--muted);margin:10px 2px 0"><b>Negatives to add (Tasks tab):</b> <code>mudblazor</code>, <code>radzen</code>, <code>aggrid</code>, <code>ag-grid</code>, <code>kendo</code>, <code>telerik</code>, <code>syncfusion</code>, <code>devexpress</code>, <code>blazor grid</code>, <code>react data grid</code>, <code>mui data grid</code>, <code>angular grid</code> — roughly <b>$300+ of Bing spend this week</b> on component-library intent. Add as phrase/exact negatives and the core Power BI / embedded terms get the budget back.</p>
     </div>
   </div>
 </div>
 
-<!-- ============ LINKEDIN ============ -->
 <h2 class="sec"><span class="n">6</span> LinkedIn — deep dive</h2>
 <div class="plat g-li">
   <div class="phd">
@@ -463,7 +521,7 @@
     <div class="mkpis">
       <div class="mkpi"><div class="l">Spend</div><div class="v">$1,092</div><div class="sub"><b class="g">&#9660;12%</b> · widening reach</div></div>
       <div class="mkpi"><div class="l">CTR</div><div class="v">4.70%</div><div class="sub"><b class="g">vs ~0.45% benchmark</b></div></div>
-      <div class="mkpi"><div class="l">Reach</div><div class="v">5,401</div><div class="sub"><b class="g">+30% WoW</b> · widening</div></div>
+      <div class="mkpi"><div class="l">Reach</div><div class="v">5,401</div><div class="sub"><b class="g">+30% WoW</b></div></div>
       <div class="mkpi"><div class="l">Frequency</div><div class="v">4.2&times;</div><div class="sub"><b class="g">goal 3-5</b> · in range</div></div>
       <div class="mkpi"><div class="l">Impressions</div><div class="v">22.4k</div><div class="sub">1,054 clicks</div></div>
     </div>
@@ -473,13 +531,12 @@
       <ul class="wl">
         <li class="pro"><b>6sense &rarr; remarketing is paying off</b> — the +30% reach on lower spend is the widening we wanted; keep feeding aware accounts.</li>
         <li class="do"><b>Concentrate on the winning image ad</b> and keep the fatiguing video paused/refreshed.</li>
-        <li class="watch"><b>Confirm CTO/VP delivery</b> via the demographic report (in review) — audience quality is where LinkedIn ROI starts. <small class="src">Campaign-level creative read carried from last week's audit pending that report.</small></li>
+        <li class="watch"><b>Confirm CTO/VP delivery</b> via the demographic report (in review) — audience quality is where LinkedIn ROI starts.</li>
       </ul>
     </div>
   </div>
 </div>
 
-<!-- ============ REDDIT ============ -->
 <h2 class="sec"><span class="n">7</span> Reddit — deep dive</h2>
 <div class="plat g-reddit">
   <div class="phd">
@@ -495,7 +552,7 @@
       <div class="mkpi"><div class="l">Spend</div><div class="v">$381</div><div class="sub"><b class="g">&#9660;6%</b> · efficient</div></div>
       <div class="mkpi"><div class="l">Reach</div><div class="v">32.0k</div><div class="sub">34.3k impressions</div></div>
       <div class="mkpi"><div class="l">CTR</div><div class="v">0.83%</div><div class="sub"><b class="g">vs ~0.4% benchmark</b></div></div>
-      <div class="mkpi"><div class="l">Frequency</div><div class="v">1.07&times;</div><div class="sub"><b class="r">goal 2-3</b> · still too low</div></div>
+      <div class="mkpi"><div class="l">Frequency</div><div class="v">1.07&times;</div><div class="sub"><b class="r">goal 2-3</b> · still low</div></div>
       <div class="mkpi"><div class="l">Efficiency</div><div class="v">~$11</div><div class="sub">CPM · ~$1.33 CPC</div></div>
     </div>
     <p style="font-size:13px;margin:0 0 14px"><b>Top insight:</b> cheap, efficient developer reach with a rising CTR — but at a frequency of 1.07 the audience still sees us once and forgets. The frequency-lift task shipped, yet the number hasn't moved (1.05 &rarr; 1.07). The opportunity is recall, not more reach: tighten the audience harder so the same budget repeats to fewer people.</p>
@@ -503,14 +560,13 @@
       <div class="subsec-h">The ROI moves</div>
       <ul class="wl">
         <li class="do"><b>Tighten the audience further</b> to actually lift frequency to ~2-3 (shipped once, no movement yet).</li>
-        <li class="do"><b>Add a second dev-native creative</b> (SDK / "embed in hours" / docs) to fight fatigue and enable learning.</li>
+        <li class="do"><b>Add a second dev-native creative</b> (SDK / "embed in hours" / docs).</li>
         <li class="watch"><b>Measure the assist</b> — branded-search lift after exposure, not direct leads (0 is expected here).</li>
       </ul>
     </div>
   </div>
 </div>
 
-<!-- ============ G2 ============ -->
 <h2 class="sec"><span class="n">8</span> G2 Advertising — deep dive</h2>
 <div class="plat g-g2">
   <div class="phd">
@@ -522,17 +578,16 @@
     <div class="spend"><div class="l">Data</div><div class="v">Gated</div><div class="l" style="text-transform:none">no fresh pull</div></div>
   </div>
   <div class="pbody">
-    <p class="keyfix"><b>G2 sponsored data is gated this run — no fresh sponsored-click numbers.</b> The standing read holds: the placement is category-only with a homepage CTA, and was returning ~0 sponsored clicks against the free organic listing. This is a setup problem, not a channel problem.</p>
-    <div class="subh">The fix (unchanged, task in &sect;12)</div>
+    <p class="keyfix"><b>G2 sponsored data is gated this run — no fresh sponsored-click numbers.</b> The standing read holds: the placement is category-only with a homepage CTA, and was returning ~0 sponsored clicks against the free organic listing. A setup problem, not a channel problem.</p>
+    <div class="subh">The fix (unchanged, Tasks tab)</div>
     <ul class="wl">
       <li class="do"><b>Add targeted competitors</b> (Power BI, Tableau, Sisense, Metabase, Luzmo, Looker, Domo, GoodData); lead with Power BI given the live demand surge.</li>
       <li class="do"><b>Repoint the CTA</b> to /reveal-vs-&lt;competitor&gt; and /embedded-analytics.</li>
-      <li class="do"><b>Evaluate G2 Clicks (CPC)</b> for accountability, and harvest G2 buyer-intent into ABM / 6sense. <small class="src">Live intent pull is one connector approval away.</small></li>
+      <li class="do"><b>Evaluate G2 Clicks (CPC)</b> and harvest G2 buyer-intent into ABM / 6sense.</li>
     </ul>
   </div>
 </div>
 
-<!-- ============ FUNNEL ============ -->
 <h2 class="sec"><span class="n">9</span> The path — spend &rarr; site &rarr; lead &rarr; opp (with lag)</h2>
 <div class="card">
   <div class="path">
@@ -546,10 +601,9 @@
     <div class="parrow">&rarr;</div>
     <div class="pstep" style="border-color:#a9cbb5;background:var(--good-bg)"><div class="l">Pipeline (90d)</div><div class="n">$462k</div><div class="s">9 opps</div></div>
   </div>
-  <div class="callout" style="margin-top:12px"><b>The lag is the strategy.</b> Discovery happens on a non-brand or competitor search; the opportunity lands 30+ days later, often on brand. So a soft lead week (16) doesn't mean capture is dead — the $462k pipeline is the lagged payoff of prior weeks. This week's real problem is upstream: the front-door budget is leaking to junk broad terms (&sect;4b) instead of the head terms that feed that pipeline. *Qualified rate is the standing estimate — LeadQuality__c is still unpopulated (task in &sect;12).</div>
+  <div class="callout" style="margin-top:12px"><b>The lag is the strategy.</b> Discovery happens on a non-brand or competitor search; the opportunity lands 30+ days later, often on brand. So a soft lead week (16) doesn't mean capture is dead — the $462k pipeline is the lagged payoff of prior weeks. This week's real problem is upstream: front-door budget leaking to junk broad terms (&sect;4b) instead of the head terms that feed that pipeline. *Qualified rate is the standing estimate — LeadQuality__c is still unpopulated.</div>
 </div>
 
-<!-- ============ COVERAGE ============ -->
 <h2 class="sec"><span class="n">10</span> Coverage &amp; the next dollar</h2>
 <div class="grid" style="grid-template-columns:1fr 1fr;gap:14px">
   <div class="card">
@@ -578,18 +632,15 @@
   </div>
 </div>
 
-<!-- ============ SCALING ============ -->
-<h2 class="sec"><span class="n">11</span> Scaling — how do we grow quality volume?</h2>
+<h2 class="sec"><span class="n">11</span> Scaling &amp; forecast</h2>
 <div class="card" style="margin-bottom:14px">
-  <p style="font-size:13.5px;margin:0 0 6px"><b>Can we 10x paid volume? Not on paid search alone.</b> This is a high-ticket, niche category; total high-intent search volume caps pure capture. The realistic near-term prize is <b>~1.5-2x quality leads over a quarter</b> by unlocking what's already wasted, then adding surfaces. 10x is a portfolio question — new channels plus more mid-funnel — not a bid change.</p>
+  <p style="font-size:13.5px;margin:0 0 6px"><b>Can we 10x paid volume? Not on paid search alone.</b> High-ticket, niche category; total high-intent search volume caps pure capture. The realistic near-term prize is <b>~1.5-2x quality leads over a quarter</b> by unlocking what's already wasted, then adding surfaces.</p>
   <div class="ladder">
-    <div class="step"><div class="num">1</div><div class="txt"><b>Stop the Non-Brand-US broad-match leak.</b> ~$2k/wk going to $300-525/click junk terms. Free efficiency, no media cost — the biggest immediate lever.</div></div>
-    <div class="step"><div class="num">2</div><div class="txt"><b>Restore brand defense to ~100%.</b> We're absent on ~4 in 10 own-name searches; cheap bid/QS fix that protects conversions.</div></div>
+    <div class="step"><div class="num">1</div><div class="txt"><b>Stop the Non-Brand-US broad-match leak.</b> ~$2k/wk going to $300-525/click junk terms. Free efficiency, no media cost.</div></div>
+    <div class="step"><div class="num">2</div><div class="txt"><b>Restore brand defense to ~100%.</b> We're absent on ~4 in 10 own-name searches; cheap bid/QS fix.</div></div>
     <div class="step"><div class="num">3</div><div class="txt"><b>Own the Power BI embedded surge.</b> Hold the Compete-US bid gains + a dedicated push across Google, Bing &amp; G2.</div></div>
     <div class="step"><div class="num">4</div><div class="txt"><b>Build the two missing pages.</b> Unlocks the embedded-BI / dashboards clusters we can't rank today.</div></div>
-    <div class="step"><div class="num">5</div><div class="txt"><b>Intent-tier Demand Gen.</b> Convert ~38% of Google spend from a homepage firehose into graded quality + reach.</div></div>
-    <div class="step"><div class="num">6</div><div class="txt"><b>6sense &rarr; LinkedIn.</b> Keep widening reach on aware accounts to lift conversion.</div></div>
-    <div class="step"><div class="num">7</div><div class="txt"><b>EMEA as US saturates.</b> Follow Ahrefs volume by country; US intent first, always.</div></div>
+    <div class="step"><div class="num">5</div><div class="txt"><b>Intent-tier Demand Gen + 6sense &rarr; LinkedIn.</b> Convert ~38% of Google spend from a homepage firehose into graded quality + reach.</div></div>
   </div>
 </div>
 
@@ -625,50 +676,94 @@
   <p style="font-size:12px;color:var(--muted);margin:10px 2px 0">Recent 4-week run: 34 &rarr; 32 &rarr; 42 &rarr; 16, averaging ~31/wk (~124/mo). This week's dip to 16 tracks the Non-Brand-US leak and soft brand coverage. If the leak is stopped, brand IS restored and the two pages ship, a realistic ramp returns to ~38/wk within the month — still short of the ~58/wk (250/mo) goal, which needs Demand Gen converting.</p>
 </div>
 
-<div class="card" style="margin-top:14px">
-  <div style="font-weight:700;margin-bottom:6px">Monthly cadence — copy &amp; creative refresh</div>
-  <div class="subh">Ad copy refresh <span class="freq">MONTHLY</span></div>
-  <div class="copybox">
-    <b>Embedded Analytics — Core:</b> <code>Embedded Analytics SDK</code> · <code>Embed Dashboards in Your App</code> · <code>Native Analytics for SaaS &amp; ISVs</code> · <code>Ship Analytics in Days</code> — desc: <code>White-label dashboards your users own. See pricing.</code><br>
-    <b>White Label Analytics — Core:</b> <code>White-Label Analytics, Fully Yours</code> · <code>Your Brand, Not Ours</code><br>
-    <b>Embedded BI / Dashboards</b> (once pages ship): mirror the new page H1s in pinned headlines.
-  </div>
-  <div class="subh">Ad creative refresh <span class="freq">MONTHLY</span> — what's not working</div>
-  <ul class="wl" style="margin-top:2px">
-    <li class="con"><b>LinkedIn TOF video</b> — CTR fell 6.84% &rarr; 4.16% (fatigue). Video pullback is helping frequency; keep the fresh cut coming.</li>
-    <li class="con"><b>Reddit</b> — single static creative; add a 2nd dev-native angle.</li>
-    <li class="watch"><b>Display &rarr; /webinars/build-vs-buy</b> — refresh creative or repoint.</li>
-  </ul>
-</div>
-
-<!-- ============ ACTIONS ============ -->
-<h2 class="sec"><span class="n">12</span> This week's actions <span style="font-size:11px;color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400">— all live in the Slingshot "Paid — Reveal" list</span></h2>
-<div class="tablewrap">
-<table>
-  <thead><tr><th>Task</th><th>Owner</th><th class="r">Start</th><th class="r">Due</th><th>Status</th></tr></thead>
-  <tbody>
-    <tr><td>Pause / audit Non-Brand-US Search — $2,334 spend spike, 0 conv (broad-match terms)</td><td><span class="owner-tag o-p">Poojitha</span></td><td class="r">Aug 3</td><td class="r">Aug 5</td><td><span class="pill p-bad">New · To do</span></td></tr>
-    <tr><td>Bing — negative out component / grid terms (mudblazor, radzen, aggrid, kendo, telerik…) + hold IS</td><td><span class="owner-tag o-p">Poojitha</span></td><td class="r">Aug 3</td><td class="r">Aug 7</td><td><span class="pill p-bad">New · To do</span></td></tr>
-    <tr><td>Build /embedded-bi + /embedded-dashboards pages (top QS lever)</td><td><span class="owner-tag o-c">Casey</span></td><td class="r">Jul 23</td><td class="r">Aug 5</td><td><span class="pill p-warn">To do</span></td></tr>
-    <tr><td>Restore brand defense to ~100% Search IS</td><td><span class="owner-tag o-p">Poojitha</span></td><td class="r">Jul 23</td><td class="r">—</td><td><span class="pill p-warn">To do</span></td></tr>
-    <tr><td>Lift bids on Compete-US "Power BI" ad group</td><td><span class="owner-tag o-p">Poojitha</span></td><td class="r">Jul 23</td><td class="r">—</td><td><span class="pill p-warn">To do</span></td></tr>
-    <tr><td>Rebuild Demand Gen by intent tiers; point T1-2 at comparison pages</td><td><span class="owner-tag o-p">Poojitha</span></td><td class="r">Jul 23</td><td class="r">Jul 29</td><td><span class="pill p-good">In progress</span></td></tr>
-    <tr><td>Audit PMAX-Remarketing-WW — $1,168 / ~0 conversions</td><td><span class="owner-tag o-p">Poojitha</span></td><td class="r">Jul 23</td><td class="r">Jul 28</td><td><span class="pill p-good">In progress</span></td></tr>
-    <tr><td>Tighten targeting to cut 67% unqualified + LeadQuality__c + one CPL definition</td><td><span class="owner-tag o-c">Casey</span></td><td class="r">Jul 23</td><td class="r">Jul 31</td><td><span class="pill p-warn">To do</span></td></tr>
-    <tr><td>G2 — add competitors, repoint CTA, evaluate G2 Clicks (CPC)</td><td><span class="owner-tag o-c">Casey</span></td><td class="r">Jul 23</td><td class="r">—</td><td><span class="pill p-warn">To do</span></td></tr>
-    <tr><td>Pull LinkedIn demographic report (verify CTO/VP reach)</td><td><span class="owner-tag o-s">Sydney</span></td><td class="r">Jul 23</td><td class="r">Jul 25</td><td><span class="pill p-gray">In review</span></td></tr>
-    <tr><td><span class="freq">MONTHLY</span> Ad copy refresh (suggestions in &sect;11)</td><td><span class="owner-tag o-p">Poojitha</span></td><td class="r">Jul 23</td><td class="r">Aug 3</td><td><span class="pill p-warn">To do</span></td></tr>
-    <tr><td><span class="freq">MONTHLY</span> Request creative refresh (LinkedIn video, Reddit 2nd angle)</td><td><span class="owner-tag o-s">Sydney</span></td><td class="r">Jul 23</td><td class="r">Aug 3</td><td><span class="pill p-gray">In review</span></td></tr>
-  </tbody>
-</table>
-</div>
-
 <div class="foot">
-  <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22112%22%20height%3D%2228%22%20viewBox%3D%220%200%20112%2028%22%3E%3Ctext%20x%3D%220%22%20y%3D%2222%22%20font-family%3D%22Roboto%2CArial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22900%22%20fill%3D%22%232A41A2%22%3EReveal%3C/text%3E%3Ccircle%20cx%3D%22106%22%20cy%3D%228%22%20r%3D%224.5%22%20fill%3D%22%23EC417A%22/%3E%3C/svg%3E" alt="Reveal" style="height:20px;vertical-align:middle;margin-right:8px;opacity:.92">
-  Weekly paid brief · v9 (Reveal brand style), generated 3 Aug 2026 · window Jul 27-Aug 2 vs Jul 20-26 · sources: Google Ads &amp; GA4 (Supermetrics); Bing &amp; Reddit (Adzviser); LinkedIn (Supermetrics); leads/opps/pipeline (Salesforce). Quality-Score components are the standing keyword-level read (last 30d) and hold until the two pages ship. Lead trend = weekly Mon-Sun paid Reveal leads; forecast is an illustrative scenario, not a guarantee. Not investment or financial advice.
+  Weekly paid brief · v10 (Reveal brand style), generated 3 Aug 2026 · window Jul 27-Aug 2 vs Jul 20-26 · sources: Google Ads &amp; GA4 (Supermetrics); Bing &amp; Reddit (Adzviser); LinkedIn (Supermetrics); leads/opps/pipeline (Salesforce). Quality-Score components are the standing keyword-level read (last 30d). Actions live in the Tasks tab. Forecast is illustrative, not a guarantee. Not investment or financial advice.
 </div>
+  </section>
+
+  <!-- ============================== TASKS ============================== -->
+  <section class="panel" id="tasks">
+    <div class="taskhead">
+      <div class="viewtoggle">
+        <button class="vbtn on" data-view="table">Table</button>
+        <button class="vbtn" data-view="board">Board</button>
+        <button class="vbtn" data-view="timeline">Timeline</button>
+      </div>
+      <span class="tsum" id="taskSummary"></span>
+      <a class="slink push" href="https://my.slingshotapp.io/openTaskList/e97e10ef_52b2bc22-d90d-4cd3-b1a7-8d48b05c2ee9_tg" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg> Open this list in Slingshot</a>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin:-6px 2px 16px">Live from the Slingshot "Paid — Reveal" list — status, owner and due dates read every Monday. <span class="newbadge">New</span> = created from this week's analysis. Hover any task for the feedback icon.</p>
+    <div class="view on" data-view="table"><div class="tablewrap"><table><thead><tr><th>Task</th><th>Channel</th><th>Owner</th><th>Priority</th><th>Status</th><th>Due</th></tr></thead><tbody id="tblBody"></tbody></table></div></div>
+    <div class="view" data-view="board"><div class="board" id="boardWrap"></div></div>
+    <div class="view" data-view="timeline"><div class="tl" id="tlWrap"></div></div>
+
+    <div class="tasksfoot">
+      <div class="subh">Recurring cadence</div>
+      <div class="card">
+        <div class="subh" style="margin-top:0">Ad copy refresh <span class="freq">MONTHLY</span></div>
+        <div class="copybox">
+          <b>Embedded Analytics — Core:</b> <code>Embedded Analytics SDK</code> · <code>Embed Dashboards in Your App</code> · <code>Native Analytics for SaaS &amp; ISVs</code> · <code>Ship Analytics in Days</code><br>
+          <b>White Label Analytics — Core:</b> <code>White-Label Analytics, Fully Yours</code> · <code>Your Brand, Not Ours</code><br>
+          <b>Embedded BI / Dashboards</b> (once pages ship): mirror the new page H1s in pinned headlines.
+        </div>
+        <div class="subh">Ad creative refresh <span class="freq">MONTHLY</span></div>
+        <ul class="wl" style="margin-top:2px">
+          <li><b>LinkedIn TOF video</b> — keep a fresh cut coming; the pullback is helping frequency.</li>
+          <li><b>Reddit</b> — add a 2nd dev-native angle to fight fatigue.</li>
+          <li><b>GA4 conversions</b> — move new conversions to Primary once the 30-in-30 threshold clears (watch to Aug 17).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SUMMARY ============================== -->
+  <section class="panel" id="summary">
+    <div class="sumhead"><span class="dtitle">Team update — posted to the Reveal discussion</span><button class="slink push" id="copyBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg> <span id="copyLabel">Copy update</span></button></div>
+    <div class="summary-card" id="summaryCard">
+      <h2>Reveal Paid — week of Jul 27–Aug 2</h2>
+      <p>The engine's still turning, but we left money on the table. Paid pipeline sits at <b>$462k</b> across 9 open opps and spend stayed under budget (~$44k/mo run-rate vs the $68k cap) — yet one broken campaign quietly ate ~$2.3k.</p>
+      <p><b>Wins holding:</b> the Power BI bid work is landing — Compete-US search visibility jumped 57% → 77%. Bing keeps compounding (clicks doubled, CTR up to 2.15% as the spam sweeps clear). LinkedIn got healthier too: reach +30% on <b>less</b> spend, and video fatigue is easing.</p>
+      <p><b>Priority this week:</b> Non-Brand-US Search burned $2,334 on 10 clicks and zero conversions — a 6× spike, almost certainly a bid/tracking misfire after the page repoint. Pausing/auditing it is job one. Then restore brand impression share (stuck at 57% — we're missing on 4 of 10 of our own-name searches) and hold the Compete-US momentum.</p>
+      <p><b>By channel:</b> Google — fix the leak, feed conquest. Bing — scaling, guard IS (component-term spam to negative out). LinkedIn — healthy, confirming CTO/VP reach. Reddit — cheap awareness, frequency still needs lifting.</p>
+      <p><b>What to expect:</b> leads are behind pace (118 of 250) but the 30-day research lag means capture pays off later. Two new tasks are in the board.</p>
+      <p class="q">questions → Casey</p>
+    </div>
+  </section>
+
+  <!-- ============================== CHEAT SHEET ============================== -->
+  <section class="panel" id="cheatsheet">
+    <div class="intro"><b>Read me first.</b> Plain-English glossary for the Reveal paid-media report — for the dev team wiring these flows into Slingshot. Anything tagged <span class="ours">Ours</span> is a Reveal-specific definition (how <i>we</i> count it), not a generic industry term.</div>
+
+    <h3>1 · What our numbers mean</h3>
+    <div class="item"><div class="term">Total leads <span class="ours">Ours</span><span class="abbr">goal 250 / mo</span></div><div class="def">Every distinct person who converted, across <b>all channels</b>. From Salesforce <code>Lead_Event__c</code> where <code>ProductFamilyName__c = 'Reveal'</code>, <b>deduped by email</b>. The headline number because paid influences all of it.</div></div>
+    <div class="item"><div class="term">Tier-1 quality lead <span class="ours">Ours</span><span class="abbr">goal 200 / mo</span></div><div class="def">High-intent subset: a <b>demo request, pricing quote, or gated demo</b>, excluding spam-disqualified. Real buying-signal leads, not newsletter sign-ups.</div></div>
+    <div class="item"><div class="term">Tier-1 quality — paid <span class="ours">Ours</span><span class="abbr">goal 100 / mo</span></div><div class="def">Tier-1 quality filtered to <b>paid</b> (<code>TrackingMedium__c = 'cpc'</code>). Paid advertising's direct contribution.</div></div>
+    <div class="item"><div class="term">Opportunity / pipeline</div><div class="def">An <b>opp</b> is a real sales deal; <b>pipeline $</b> sums open opp amounts. Paid pipeline = opps carrying a Google click ID (gclid).</div></div>
+    <div class="item"><div class="term">CPL <span class="ours">Ours</span><span class="abbr">target ≤ $75</span></div><div class="def">Paid spend ÷ paid quality leads. The ≤$75 target tracks form-fills; a qualified Salesforce lead is far higher — hence the "define" status while we agree one number.</div></div>
+    <div class="item"><div class="term">Show-up <span class="ours">Ours</span></div><div class="def">Impression share on our non-brand head terms — how often we appear when someone searches them. "Top" = above the results.</div></div>
+
+    <h3>2 · Visibility &amp; the auction</h3>
+    <div class="item"><div class="term">Impression share (IS)</div><div class="def">% of available auctions where our ad showed. <b>Top IS</b> counts only top-of-page slots.</div></div>
+    <div class="item"><div class="term">Lost IS — budget vs rank</div><div class="def">The two reasons we didn't show: <b>budget</b> (out of money → add budget) or <b>rank</b> (bid/quality too low → improve those). This week everything is rank-lost.</div></div>
+    <div class="item"><div class="term">Quality Score (QS)</div><div class="def">Google's 1–10 grade of ad + keyword + landing-page fit. Higher = cheaper + higher rank. <b>Ad Rank</b> = bid × quality.</div></div>
+    <div class="item"><div class="term">CPC / CTR / CPM</div><div class="def">Cost per click / click-through rate / cost per 1,000 impressions.</div></div>
+
+    <h3>3 · Campaign types</h3>
+    <div class="item"><div class="term">Search / Demand Gen / PMax</div><div class="def"><b>Search</b> = text ads on queries (highest intent). <b>Demand Gen</b> = image/video across Google feeds (discovery). <b>PMax</b> = automated across all inventory.</div></div>
+    <div class="item"><div class="term">RSA / remarketing / negatives</div><div class="def"><b>RSA</b> = responsive search ad (Google mixes headlines). <b>Remarketing</b> = ads to prior visitors. <b>Negatives</b> = keywords we block to stop junk.</div></div>
+    <div class="item"><div class="term">Smart Bidding / Max Conversions</div><div class="def">Google sets bids automatically — you can't hand-set bids, so the lever is Quality Score, not manual bids.</div></div>
+
+    <h3>4 · Keywords &amp; targeting</h3>
+    <div class="item"><div class="term">Brand / non-brand / head</div><div class="def"><b>Brand</b> = our name (reveal bi). <b>Non-brand</b> = category terms (embedded analytics). <b>Head</b> = the biggest non-brand terms.</div></div>
+    <div class="item"><div class="term">Conquest / ICP / landing page</div><div class="def"><b>Conquest</b> = bidding on competitor terms. <b>ICP</b> = ideal customer profile (SaaS/ISV, CTO/dev). <b>Landing page</b> = where the ad sends the click; must match the keyword or QS drops.</div></div>
+
+    <h3>5 · Funnel &amp; measurement</h3>
+    <div class="item"><div class="term">Engagement rate / frequency</div><div class="def"><b>Engagement rate</b> (GA4) = share of sessions that were engaged. <b>Frequency</b> = average times one person saw the ad (impressions ÷ reach).</div></div>
+    <div class="item"><div class="term">First vs last touch · 30-day lag <span class="ours">Ours</span></div><div class="def">First = how they discovered us; last = the click before converting. Reveal buyers research 30+ days, so discovery and conversion are weeks apart — don't cut capture for zero same-week leads.</div></div>
+  </section>
 
 </div>
+
 <div class="fbov" id="fbov">
   <div class="fbmodal">
     <h3>Send feedback to the agent</h3>
@@ -687,10 +782,113 @@
     </div>
   </div>
 </div>
+
 <script>
+/* ---- TASKS: live snapshot of the Slingshot "Paid — Reveal" list (parent tasks only) ---- */
+var TASKS = [
+  {n:"Pause/audit Non-Brand-US Search — $2,334 spend spike, 0 conversions",ch:"Google",o:"Poojitha",i:"PB",c:"#2A41A2",p:"P1",s:"todo",due:"2026-08-05",nw:true,note:"Two broad-match terms (embeddable analytics, embedded dashboard) burned ~$1,375 at $300-525/click. Pause + audit match types/tracking."},
+  {n:"Bing — negative out component/grid terms (mudblazor, radzen, aggrid, kendo, telerik) + hold IS",ch:"Bing",o:"Poojitha",i:"PB",c:"#2A41A2",p:"P2",s:"todo",due:"2026-08-07",nw:true,note:"~$300 of Bing spend leaked to UI-component queries as spend scaled; IS slipped 80%→70%."},
+  {n:"Rebuild Demand Gen by intent tiers; point T1–2 at comparison/pricing pages",ch:"Google",o:"Poojitha",i:"PB",c:"#2A41A2",p:"P1",s:"prog",due:"2026-07-29",nw:false,note:"$3.7k/wk for 2 conv to homepage. Segment T1 competitor/pricing → T2 researchers → T3 broad."},
+  {n:"Restore brand defense to ~100% Search impression share",ch:"Google",o:"Poojitha",i:"PB",c:"#2A41A2",p:"P1",s:"todo",due:"—",nw:false,note:"Brand IS 57% — absent on ~4 in 10 own-name searches. Smart Bidding → QS lever."},
+  {n:"Lift bids on Compete-US \"Power BI\" ad group (hottest intent, weakest rank)",ch:"Google",o:"Poojitha",i:"PB",c:"#2A41A2",p:"P1",s:"todo",due:"—",nw:false,note:"Working — Compete-US show-up 57%→77%. Push to 85%+."},
+  {n:"Audit PMAX-Remarketing-WW — $1,168 / ~0 conversions",ch:"Google",o:"Poojitha",i:"PB",c:"#2A41A2",p:"P2",s:"prog",due:"2026-07-28",nw:false,note:"2nd-largest Google line, near-zero return two weeks running. Cap if audit finds no fix."},
+  {n:"Build /embedded-bi + /embedded-dashboards pages (top Quality-Score lever)",ch:"Pages",o:"Casey",i:"CC",c:"#B7791F",p:"P1",s:"todo",due:"2026-08-05",nw:false,note:"Landing-page experience 'Below average' on 100% of NB-US keywords until these ship."},
+  {n:"Tighten targeting to cut 67% unqualified + populate LeadQuality__c + agree one CPL definition",ch:"Strategy",o:"Casey",i:"CC",c:"#B7791F",p:"P1",s:"todo",due:"2026-07-31",nw:false,note:"CPL can't be managed until definition agreed and LeadQuality__c populated."},
+  {n:"G2 — add targeted competitors, repoint CTA to comparison pages, evaluate G2 Clicks (CPC)",ch:"G2",o:"Casey",i:"CC",c:"#B7791F",p:"P2",s:"todo",due:"—",nw:false,note:"Category-only placement, homepage CTA → ~0 sponsored clicks. Lead with Power BI."},
+  {n:"New Ad copy for Search Ads (RSA refresh)",ch:"Google",o:"Poojitha",i:"PB",c:"#2A41A2",p:"P3",s:"prog",due:"2026-08-03",nw:false,note:"Pin exact keyword into headlines; sharpen CTAs."},
+  {n:"New GA4 account / Goals / Conversion Actions",ch:"Measurement",o:"Poojitha",i:"PB",c:"#2A41A2",p:"P3",s:"prog",due:"2026-08-31",nw:false,note:"30-in-30 watch to Aug 17, then move conversions to Primary."},
+  {n:"Pull LinkedIn demographic delivery report — verify CTO/VP reach",ch:"LinkedIn",o:"Sydney",i:"SV",c:"#C9367F",p:"P2",s:"review",due:"2026-07-25",nw:false,note:"Confirm impressions land on CTO/VP titles, not cheap clicks."},
+  {n:"MONTHLY — Ad copy refresh (RSA headlines/descriptions)",ch:"Google",o:"Poojitha",i:"PB",c:"#2A41A2",p:"P3",s:"todo",due:"2026-08-03",nw:false,note:"Recurring — keeps predicted CTR up."},
+  {n:"MONTHLY — Request creative refresh (LinkedIn video, Reddit 2nd angle)",ch:"Social",o:"Sydney",i:"SV",c:"#C9367F",p:"P3",s:"review",due:"2026-08-03",nw:false,note:"Recurring — fight fatigue on LinkedIn video + Reddit."},
+  {n:"Repoint Non-Brand-US ads to exact-match pages + refresh RSA (QS fix)",ch:"Google",o:"Poojitha",i:"PB",c:"#2A41A2",p:"P1",s:"done",due:"2026-07-29",nw:false,note:"Shipped 7/31."},
+  {n:"Fix Bing Compete-Core-Terms-US — 97% impressions lost to rank",ch:"Bing",o:"Poojitha",i:"PB",c:"#2A41A2",p:"P1",s:"done",due:"2026-07-30",nw:false,note:"Shipped 7/31."},
+  {n:"Bing spam sweep — junk cluster (bi worldwide, lookerstudio, reveal.us)",ch:"Bing",o:"Poojitha",i:"PB",c:"#2A41A2",p:"P1",s:"done",due:"2026-07-29",nw:false,note:"Held — none recurred this week."},
+  {n:"Bing spam sweep — negatives (insolence, toucan, toco, grok, sign in, xb)",ch:"Bing",o:"Poojitha",i:"PB",c:"#2A41A2",p:"P1",s:"done",due:"2026-07-24",nw:false,note:"Held."},
+  {n:"Add Google negative \"embeddings\" (ML-sense mismatch)",ch:"Google",o:"Poojitha",i:"PB",c:"#2A41A2",p:"P3",s:"done",due:"2026-07-25",nw:false,note:""},
+  {n:"Pause Compete-Brazil + Non-Brand-Brazil search campaigns",ch:"Google",o:"Poojitha",i:"PB",c:"#2A41A2",p:"P2",s:"done",due:"2026-07-24",nw:false,note:"Confirmed 0 spend this week."},
+  {n:"Shift LinkedIn budget to winning image ad; pause/refresh fatiguing video",ch:"LinkedIn",o:"Sydney",i:"SV",c:"#C9367F",p:"P2",s:"done",due:"2026-07-25",nw:false,note:"Frequency eased 5.5→4.2."},
+  {n:"Feed 6sense in-market accounts into LinkedIn remarketing",ch:"LinkedIn",o:"Sydney",i:"SV",c:"#C9367F",p:"P1",s:"done",due:"2026-07-29",nw:false,note:"Result: reach +30% on lower spend."},
+  {n:"Reddit — lift frequency to ~2–3 + add second dev-native creative",ch:"Reddit",o:"Sydney",i:"SV",c:"#C9367F",p:"P2",s:"done",due:"2026-07-26",nw:false,note:"Shipped, but frequency still 1.07 — tighten audience further."},
+  {n:"Reddit — audit subreddit placements for embedded-analytics / dev fit",ch:"Reddit",o:"Sydney",i:"SV",c:"#C9367F",p:"P2",s:"done",due:"2026-07-26",nw:false,note:""}
+];
+var STLABEL={todo:"To do",prog:"In progress",review:"In review",done:"Done"};
+var STORDER={todo:0,prog:1,review:2,done:3};
+
+function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function newTag(t){return t.nw?' <span class="newbadge">New</span>':'';}
+
+function renderTable(){
+  var rows=TASKS.slice().sort(function(a,b){return STORDER[a.s]-STORDER[b.s];});
+  document.getElementById('tblBody').innerHTML=rows.map(function(t){
+    return '<tr><td class="tkcell"><div class="tname">'+esc(t.n)+newTag(t)+'</div>'+(t.note?'<div class="tnote">'+esc(t.note)+'</div>':'')+'</td>'+
+      '<td>'+esc(t.ch)+'</td>'+
+      '<td><span class="who"><span class="av" style="background:'+t.c+'">'+t.i+'</span>'+esc(t.o)+'</span></td>'+
+      '<td><span class="pri '+t.p+'">'+t.p+'</span></td>'+
+      '<td><span class="stat '+t.s+'">'+STLABEL[t.s]+'</span></td>'+
+      '<td class="due">'+esc(t.due)+'</td></tr>';
+  }).join('');
+}
+function renderBoard(){
+  var cols=[["todo","To do"],["prog","In progress"],["review","In review"],["done","Done"]];
+  document.getElementById('boardWrap').innerHTML=cols.map(function(col){
+    var items=TASKS.filter(function(t){return t.s===col[0];});
+    return '<div class="col"><div class="col-h">'+col[1]+' <span class="cc">'+items.length+'</span></div>'+
+      items.map(function(t){
+        return '<div class="tcard"><div class="tt">'+esc(t.n)+newTag(t)+'</div>'+
+          '<div class="tm"><span class="plt">'+esc(t.ch)+'</span><span class="who"><span class="av" style="background:'+t.c+'">'+t.i+'</span></span></div></div>';
+      }).join('')+'</div>';
+  }).join('');
+}
+function renderTimeline(){
+  var rows=TASKS.filter(function(t){return t.due&&t.due!=='—';}).sort(function(a,b){return a.due<b.due?-1:1;});
+  var extra=TASKS.filter(function(t){return !t.due||t.due==='—';});
+  document.getElementById('tlWrap').innerHTML=rows.concat(extra).map(function(t){
+    return '<div class="tlrow"><div class="tlname">'+esc(t.n)+newTag(t)+'</div>'+
+      '<div><span class="stat '+t.s+'">'+STLABEL[t.s]+'</span></div>'+
+      '<div class="due">'+esc(t.due)+'</div></div>';
+  }).join('');
+}
+function renderTasks(){
+  renderTable(); renderBoard(); renderTimeline();
+  document.getElementById('taskCount').textContent=TASKS.length;
+  var open=TASKS.filter(function(t){return t.s!=='done';}).length;
+  var nw=TASKS.filter(function(t){return t.nw;}).length;
+  document.getElementById('taskSummary').innerHTML='<b>'+open+'</b> open · <b>'+nw+'</b> new this week · <b>'+(TASKS.length-open)+'</b> done';
+}
+renderTasks();
+
+/* ---- tab + view switching ---- */
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('on');});
+    t.classList.add('on');
+    document.getElementById(t.dataset.tab).classList.add('on');
+    window.scrollTo(0,0);
+  });
+});
+document.querySelectorAll('#tasks .vbtn').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('#tasks .vbtn').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('#tasks .view').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on');
+    document.querySelector('#tasks .view[data-view="'+b.dataset.view+'"]').classList.add('on');
+  });
+});
+
+/* ---- copy team update ---- */
+document.getElementById('copyBtn').addEventListener('click',function(){
+  var btn=this, lbl=document.getElementById('copyLabel');
+  var t=document.getElementById('summaryCard').innerText;
+  try{navigator.clipboard.writeText(t);}catch(_){}
+  btn.classList.add('copied'); lbl.textContent='Copied!';
+  setTimeout(function(){btn.classList.remove('copied'); lbl.textContent='Copy update';},1800);
+});
+
+/* ---- feedback loop (blocks + individual tasks) ---- */
 (function(){
   var FB_URL="https://app.slingshotapp.io/openDiscussion/e97e10ef_b4c1ff6c-3dc7-47c1-909d-aaff8dcfb922";
-  var SEL=".kpi,.sc,.card,.plat,.vbox,.keyfix,.callout,.chartwrap,.lead,.wl li,h2.sec,.vpbanner .vrow";
+  var SEL="#report .kpi,#report .sc,#report .card,#report .plat,#report .vbox,#report .keyfix,#report .callout,#report .chartwrap,#report .lead,#report .wl li,#report h2.sec,#report .vpbanner .vrow,#tasks td.tkcell,#tasks .tcard,#tasks .tlrow";
   var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
   var ctxText="", cat="";
   var ov=document.getElementById('fbov'), ctxEl=document.getElementById('fbctx'), txt=document.getElementById('fbtxt');
