@@ -58,7 +58,7 @@
   ul.plain li{position:relative;padding:6px 0 6px 22px;font-size:14px;border-bottom:1px solid var(--line)}
   ul.plain li:last-child{border-bottom:none}
   ul.plain li::before{content:"";position:absolute;left:2px;top:13px;width:8px;height:8px;border-radius:2px;background:var(--accent)}
-  ul.plain li.up::before{background:var(--good)} ul.plain li.warnc::before{background:var(--warn)}
+  ul.plain li.up::before{background:var(--good)} ul.plain li.warnc::before{background:var(--warn)} ul.plain li.badc::before{background:var(--bad)}
   .cause{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:12px 15px;margin:10px 0;background:#fcfdff}
   .cause h4{font-size:14px;color:var(--navy);margin-bottom:3px}
   .cause p{font-size:13px;color:var(--ink)}
@@ -68,12 +68,12 @@
   /* issue cards */
   .card{border:1px solid var(--line);border-radius:14px;padding:0 0 16px;margin-bottom:14px;overflow:hidden}
   .whystrip{padding:9px 16px;font-size:12.5px;font-weight:600;color:#fff;display:flex;gap:8px;align-items:flex-start}
-  .whystrip.err{background:linear-gradient(90deg,#c23b39,#a92e2c)} .whystrip.warn{background:linear-gradient(90deg,#b7791f,#9c6412)}
+  .whystrip.err{background:linear-gradient(90deg,#c23b39,#a92e2c)} .whystrip.warn{background:linear-gradient(90deg,#b7791f,#9c6412)} .whystrip.ok{background:linear-gradient(90deg,#12915b,#0c7a4c)}
   .whystrip .lbl{background:rgba(255,255,255,.22);border-radius:5px;padding:1px 7px;font-size:10px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
   .cbody{padding:14px 16px 4px}
   .ctitle{font-size:16px;font-weight:900;color:var(--navy);display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:8px}
   .sev{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:.03em}
-  .sev.err{background:var(--bad-bg);color:var(--bad)} .sev.warn{background:var(--warn-bg);color:var(--warn)}
+  .sev.err{background:var(--bad-bg);color:var(--bad)} .sev.warn{background:var(--warn-bg);color:var(--warn)} .sev.ok{background:var(--good-bg);color:var(--good)} .sev.new{background:var(--accent-soft);color:var(--accent-deep)} .sev.flat{background:var(--gray-bg);color:var(--gray)}
   .cnt{font-family:var(--mono);font-size:12px;color:var(--muted);font-weight:600}
   .card p{font-size:13.5px;margin:7px 0}
   .card .role{font-size:12.5px;color:var(--muted)} .card .role b{color:var(--navy)}
@@ -104,7 +104,7 @@
   .pri{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;white-space:nowrap}
   .pri.P1{background:var(--bad-bg);color:var(--bad)} .pri.P2{background:var(--warn-bg);color:var(--warn)} .pri.P3{background:var(--gray-bg);color:var(--gray)}
   .tk{font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px}
-  .tk.yes{background:var(--good-bg);color:var(--good)} .tk.no{background:var(--gray-bg);color:var(--muted)}
+  .tk.yes{background:var(--good-bg);color:var(--good)} .tk.no{background:var(--gray-bg);color:var(--muted)} .tk.prog{background:var(--warn-bg);color:var(--warn)}
 
   /* cheat sheet */
   .glo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -123,8 +123,30 @@
     <div class="logochip">Slingshot</div>
     <div class="kick">slingshotapp.io · Technical SEO Audit</div>
     <h1>Technical SEO Audit / Slingshot</h1>
-    <div class="meta"><span>Updated <b>Jul 28, 2026</b></span><span>Crawl <b>Jul 22, 2026</b></span><span>Health <b>46 / 100</b></span><span>Ahrefs Site Audit <b>8155906</b></span></div>
+    <div class="meta"><span>Updated <b>Aug 3, 2026</b></span><span>Crawl <b>Jul 29, 2026</b></span><span>Health <b>46 / 100</b></span><span>Ahrefs Site Audit <b>8155906</b></span></div>
   </header>
+
+  <!-- VP READOUT -->
+  <div style="border:1px solid #E9E9F4;border-radius:14px;overflow:hidden;margin:16px 0 22px;font-family:'Roboto',system-ui,sans-serif">
+    <div style="background:linear-gradient(120deg,var(--accent,#2563EB),var(--accent-deep,#7C3AED));color:#fff;padding:13px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px">
+      <span style="font-weight:800;font-size:14px">VP Readout — 30-second view</span>
+      <span style="font-weight:600;font-size:12px;opacity:.92">Goal: a fully crawlable, indexable site so Google can reach and rank our money pages</span>
+    </div>
+    <div style="padding:4px 18px 12px">
+      <div style="display:flex;gap:12px;padding:13px 0;border-bottom:1px solid #f1f1f7;align-items:flex-start">
+        <span style="flex:none;margin-top:1px;font-weight:700;font-size:10.5px;letter-spacing:.04em;padding:3px 9px;border-radius:999px;background:#e3f5ec;color:#12915b">WORKING</span>
+        <div><div style="font-weight:700;color:#0F172A;font-size:14px;line-height:1.3">The redirect &amp; canonical cleanup is landing hard.</div><div style="color:#5f6b7a;font-size:13px;margin-top:2px;line-height:1.45">In one week: broken redirects 568&rarr;16, canonical-points-to-redirect 180&rarr;9, 3XX redirects 1,610&rarr;25, and the old help-centre 500s are gone. The biggest equity leaks flagged last month are essentially closed — keep the crew on it to mark done.</div></div>
+      </div>
+      <div style="display:flex;gap:12px;padding:13px 0;border-bottom:1px solid #f1f1f7;align-items:flex-start">
+        <span style="flex:none;margin-top:1px;font-weight:700;font-size:10.5px;letter-spacing:.04em;padding:3px 9px;border-radius:999px;background:#fbe4e3;color:#c23b39">FIX</span>
+        <div><div style="font-weight:700;color:#0F172A;font-size:14px;line-height:1.3">Locale sections (/ja /es /ko /pt-BR) still return 403 — now the #1 crawl blocker.</div><div style="color:#5f6b7a;font-size:13px;margin-top:2px;line-height:1.45">~1,100 URLs are Forbidden to Google, and this week it started breaking hreflang too (+1,064 pages in half-crawled language groups). This is a server/CDN block on our side. Ticketed P1, due Jul 31 — now overdue. Fixing it is what moves the score.</div></div>
+      </div>
+      <div style="display:flex;gap:12px;padding:13px 0;align-items:flex-start">
+        <span style="flex:none;margin-top:1px;font-weight:700;font-size:10.5px;letter-spacing:.04em;padding:3px 9px;border-radius:999px;background:#fbf1dd;color:#b7791f">WATCH</span>
+        <div><div style="font-weight:700;color:#0F172A;font-size:14px;line-height:1.3">Health is flat at 46/100 — don't read that as "no progress."</div><div style="color:#5f6b7a;font-size:13px;margin-top:2px;line-height:1.45">Every error we clear is backfilled by a 403-blocked locale page carrying its own error, so the totals barely move. The fixes are real but masked. Once the locale 403 clears, expect a step-change up in the score.</div></div>
+      </div>
+    </div>
+  </div>
 
   <nav class="jump">
     <a href="#health">1 · Site health</a>
@@ -143,34 +165,37 @@
     <div class="health">
       <div class="dial"><span><span class="n">46</span><span class="o">/ 100</span></span></div>
       <div class="hexplain">
-        <b>46 out of 100 — think of it as the share of your pages that are clean.</b> Just over half aren't, but the reason matters: it's <b>not</b> that your important marketing pages are broken. It's two self-inflicted messes — a multi-language section that's serving locked doors, and a batch of old help-centre links — inflating the count. The score held flat versus the last crawl, and the raw error count actually came down. Nothing new broke this week.
+        <b>46 out of 100 — the share of your pages that look clean to Google.</b> Just over half don't, but the reason matters: it's <b>not</b> that your important marketing pages are broken. It's mostly one self-inflicted mess — a multi-language section serving locked doors (403s) — inflating the count. The score held flat versus the last crawl even though we retired a huge pile of redirect and canonical errors, because the 403-blocked pages moved in to keep the count level.
       </div>
     </div>
     <div class="statline">
       <div class="stat"><div class="k">Health score</div><div class="v">46</div><div class="d flat">±0</div></div>
-      <div class="stat"><div class="k">URLs crawled</div><div class="v">6,417</div><div class="d good">▼ 42</div></div>
-      <div class="stat"><div class="k">Errors</div><div class="v">3,434</div><div class="d good">▼ 44</div></div>
-      <div class="stat"><div class="k">Warnings</div><div class="v">3,351</div><div class="d good">▼ 7</div></div>
-      <div class="stat"><div class="k">Notices</div><div class="v">1,507</div><div class="d good">▼ 287</div></div>
+      <div class="stat"><div class="k">URLs crawled</div><div class="v">6,431</div><div class="d flat">▲ 14</div></div>
+      <div class="stat"><div class="k">Errors</div><div class="v">3,443</div><div class="d bad">▲ 9</div></div>
+      <div class="stat"><div class="k">Warnings</div><div class="v">3,357</div><div class="d bad">▲ 6</div></div>
+      <div class="stat"><div class="k">Notices</div><div class="v">1,520</div><div class="d bad">▲ 13</div></div>
     </div>
-    <p class="sdesc" style="margin-top:14px;margin-bottom:0">Numbers are from the Ahrefs crawl finished <b>Jul 22, 2026</b> (6 days old — still fresh). Week-over-week compares it to the <b>Jul 8</b> crawl. For errors/warnings/notices, down is good.</p>
+    <p class="sdesc" style="margin-top:14px;margin-bottom:0">Numbers are from the Ahrefs crawl finished <b>Jul 29, 2026 18:59 UTC</b> (5 days old — still fresh). Week-over-week compares it to the <b>Jul 22, 2026</b> crawl. The headline counts barely moved; the story is in the <em>mix</em> underneath (Section 2).</p>
   </section>
 
   <!-- 2 — WHAT CHANGED -->
   <section class="block" id="changed">
     <div class="snum">SECTION 2</div>
     <h2 class="sh">What changed since last crawl</h2>
-    <p class="sdesc">Small cleanup, no new fires — and three named sources behind almost all the noise.</p>
+    <p class="sdesc">A lot of cleanup landed — but one root cause backfilled every gain, so the totals look flat.</p>
     <ul class="plain">
-      <li class="up">44 fewer error pages and 287 fewer notices; health held at 46.</li>
-      <li class="up">Broken internal pages (4xx) down 35; broken redirects down 4.</li>
-      <li>No new <em>types</em> of error appeared — the mix is the same debt as last week.</li>
+      <li class="up"><b>Broken redirects: 568 &rarr; 16</b> — redirects that used to dead-end in an error are almost all fixed.</li>
+      <li class="up"><b>Canonical points to redirect: 180 &rarr; 9</b> — pages naming a redirect as their "official version" are nearly cleared.</li>
+      <li class="up"><b>3XX redirects 1,610 &rarr; 25</b> and <b>4XX pages 1,143 &rarr; 66</b> — the trailing-slash duplicate redirects have been collapsed.</li>
+      <li class="up"><b>No hard 404s and no 500s this crawl</b> — the old help-centre <code>.html</code> 500 errors flagged last month are gone.</li>
+      <li class="badc"><b>"Not all pages in an hreflang group were crawled": 0 &rarr; 1,064</b> — brand new and the single biggest mover. A direct symptom of the locale 403 block: Google can't reach the language alternates, so it sees every language group as half-broken.</li>
+      <li class="badc"><b>~1,100 URLs now sit in the 4xx/5xx bucket</b>, overwhelmingly <b>/ja /es /ko /pt-BR</b> paths returning 403. As redirect/4xx errors retired, these blocked locale pages moved in — which is why total errors edged up +9 instead of dropping.</li>
     </ul>
-    <p class="sdesc" style="margin:16px 0 6px;font-weight:700;color:var(--navy)">Where the error count actually comes from — three root causes, not thousands of unrelated problems:</p>
-    <div class="cause"><h4>1. Blocked language pages (the biggest driver)</h4><p>The Japanese, Spanish, Korean and Portuguese sections (<span class="u" style="color:var(--cobalt)">/ja/ /es/ /ko/ /pt-BR/</span>) return "403 Forbidden" — a locked door — on hundreds of pages the site itself links to. This single fault also creates most of the multi-language-tag errors.</p></div>
-    <div class="cause"><h4>2. Old help-centre URLs</h4><p>Knowledge-base pages in the old <span class="u" style="color:var(--cobalt)">/en/…​.html</span> shape bounce through a redirect to their clean address instead of pointing straight at it, and a handful throw a 500 server error.</p></div>
-    <div class="cause"><h4>3. A webinar link bug</h4><p>A template is building webinar links with the query part mangled (<span class="u" style="color:var(--cobalt)">%3Ftopic=…?fr=1</span>), inventing URLs that don't exist and then dead-ending — this is most of the "broken redirects."</p></div>
-    <div class="fault"><b>Is this our fault?</b> Yes — all three are our own configuration and template issues, not a Google penalty or anything external. That's the good news: they're fully in our control, and fixing them can't hurt rankings — the pages that rank aren't the ones breaking.</div>
+    <p class="sdesc" style="margin:16px 0 6px;font-weight:700;color:var(--navy)">Where the errors actually come from — one dominant root cause and two small ones:</p>
+    <div class="cause"><h4>1. Blocked language pages (the dominant driver)</h4><p>The Japanese, Spanish, Korean and Portuguese sections (<span class="u" style="color:var(--cobalt)">/ja/ /es/ /ko/ /pt-BR/</span>) return "403 Forbidden" — a locked door — on ~1,100 URLs the site itself links to. This one fault also produces this week's hreflang spike, the broken-redirect stragglers (locale URLs that 301 to a 403), and most of the sitemap junk.</p></div>
+    <div class="cause"><h4>2. A malformed "In the News" pagination bug</h4><p>A template is building pagination links with the query part mangled — an encoded <span class="u" style="color:var(--cobalt)">%3F</span>, a second <span class="u" style="color:var(--cobalt)">?</span>, and a stray <span class="u" style="color:var(--cobalt)">&amp;fr=1</span> — inventing URLs that don't exist and 403 dead-end. Small in count, but self-inflicted.</p></div>
+    <div class="cause"><h4>3. Orphan pages ticking up</h4><p>Pages with no internal links pointing to them rose from 43 to 47 (4 new). Minor, but worth a quick internal-linking pass.</p></div>
+    <div class="fault"><b>Is this our fault?</b> Yes — both the wins and the remaining pain are ours. The wins are our redirect/slash work paying off. The 403 block is a server/CDN configuration on our own site refusing access to the locale sections — not a Google penalty. It's fully in our control, and it's the one thing holding the score down.</div>
   </section>
 
   <!-- 3 — ISSUES THAT MATTER -->
@@ -181,20 +206,24 @@
 
     <!-- Card A -->
     <div class="card">
-      <div class="whystrip err"><span class="lbl">Why it matters</span><span>Every blocked page is invisible in search, and Google wastes its limited crawl time hitting locked doors instead of your money pages.</span></div>
+      <div class="whystrip err"><span class="lbl">Why it matters</span><span>Every blocked page is invisible in search, and it's now corrupting our multi-language setup — Google wastes crawl time on locked doors instead of money pages.</span></div>
       <div class="cbody">
-        <div class="ctitle">Blocked language pages return 403 <span class="sev err">Error</span> <span class="cnt">~1,100+ URLs</span></div>
-        <p><b>What it actually is:</b> The whole non-English site — Japanese, Spanish, Korean, Portuguese — answers with "403 Forbidden" (a locked door) instead of showing the page. These aren't obscure URLs: the site links to them hundreds of times each, so crawlers and buyers keep hitting them.</p>
-        <details><summary>Show real example URLs</summary><div class="urls">
-          <div class="u">/ja/blog/ <span class="code">403</span> · 300 internal links</div>
-          <div class="u">/ja/templates/ <span class="code">403</span> · 311 internal links</div>
-          <div class="u">/ko/solutions/marketing/marketing-analytics/ <span class="code">403</span></div>
-          <div class="u">/es/solutions/marketing/campaign-launch/ <span class="code">403</span></div>
-          <div class="u">/pt-BR/product-tour/data-analytics/dashboarding-software/ <span class="code">403</span></div>
+        <div class="ctitle">Locale sections return 403 Forbidden <span class="sev err">Error</span> <span class="sev new">Rising</span> <span class="cnt">~1,100 URLs</span></div>
+        <p><b>What it actually is:</b> The non-English site — Japanese, Spanish, Korean, Portuguese — answers with "403 Forbidden" (a locked door) instead of the page. Some locale URLs even 301-redirect first and then land on a 403. Google treats a 403 as "not allowed in" and drops those URLs; because they're the alternates named in our hreflang tags, it now also flags 1,064 pages as half-crawled language groups.</p>
+        <details><summary>Show real example URLs from this crawl</summary><div class="urls">
+          <div class="u">https://www.slingshotapp.io/es/blog/ <span class="code">403</span> · in sitemap</div>
+          <div class="u">https://www.slingshotapp.io/ja/stories/ <span class="code">403</span> · in sitemap</div>
+          <div class="u">https://www.slingshotapp.io/ja/whitepapers/ <span class="code">403</span> · in sitemap</div>
+          <div class="u">https://www.slingshotapp.io/es/solutions/marketing/seo-workflow-software/ <span class="code">403</span></div>
+          <div class="u">https://www.slingshotapp.io/ko/templates/ <span class="code">403</span></div>
+          <div class="u">https://www.slingshotapp.io/pt-BR/in-the-news/ <span class="code">403</span></div>
+          <div class="u">https://www.slingshotapp.io/homepage/ <span class="code">403</span> · in sitemap &nbsp;&nbsp; /es/homepage/ <span class="code">403</span></div>
+          <div class="u">https://www.slingshotapp.io/es/stories &nbsp;301 &rarr; /es/stories/ <span class="code">403</span></div>
+          <div class="u">https://www.slingshotapp.io/ko/blog &nbsp;301 &rarr; /ko/blog/ <span class="code">403</span></div>
         </div></details>
-        <p class="role"><b>Likely cause:</b> a locale access rule (CDN or app) forbidding those path prefixes, or a half-retired translation that still ships internal links and language tags pointing at dead pages.</p>
-        <div class="fix"><b>Fix:</b> Decide per language. If we still support it, remove the 403 rule so the pages return 200 (normal). If we don't, 301-redirect each locale URL to its English equivalent and strip the internal links + language tags. Either way, stop serving 403.</div>
-        <div class="handrow"><span>Owner: <b>Web dev / infra</b></span><span>Effort: <b>Medium</b></span><span>Est: <b>4–6h + QA</b></span><span>Priority: <b>P1</b></span></div>
+        <p class="role"><b>Likely cause:</b> a server or CDN access rule forbidding the locale path prefixes (and the trailing-slash targets they redirect to). This is config, not content.</p>
+        <div class="fix"><b>Fix:</b> Decide per language. If live, remove the 403 rule so pages return 200, then regenerate hreflang so every alternate resolves to a crawlable 200. If deprecated, 301 each locale URL to its English equivalent and drop the locale entries from hreflang and the sitemap. Either way, remove blocked URLs from the sitemap and request a re-crawl.</div>
+        <div class="handrow"><span>Owner: <b>Web dev / infra (Dian, Sathya)</b></span><span>Effort: <b>Large</b></span><span>Est: <b>4–6h + QA</b></span><span>Priority: <b>P1</b></span><span>Status: <b>Ticketed · open (due Jul 31, overdue)</b></span></div>
       </div>
     </div>
 
@@ -202,68 +231,63 @@
     <div class="card">
       <div class="whystrip err"><span class="lbl">Why it matters</span><span>Language tags tell Google which version to show which country. Ours point at the blocked pages above, so Google distrusts them and can hide the right page.</span></div>
       <div class="cbody">
-        <div class="ctitle">Broken multi-language tags (hreflang) <span class="sev err">Error</span> <span class="cnt">1,131 + 950 URLs</span></div>
-        <p><b>What it actually is:</b> 1,131 language tags point to redirected or broken URLs, and 950 pages list more than one address for the same language — so the signals contradict each other.</p>
-        <p class="role"><b>Likely cause:</b> the same broken locale system as the card above — the tags are generated from it.</p>
-        <div class="fix"><b>Fix:</b> Mostly fixed for free once the locale pages are sorted (Card A). Then regenerate the language tags so each points to a live page and lists exactly one URL per language.</div>
-        <div class="handrow"><span>Owner: <b>Web dev</b></span><span>Effort: <b>Bundled with Card A</b></span><span>Priority: <b>P1</b></span></div>
+        <div class="ctitle">Half-crawled hreflang groups <span class="sev err">Error</span> <span class="sev new">New</span> <span class="cnt">0 → 1,064 URLs</span></div>
+        <p><b>What it actually is:</b> Brand new this week. Hreflang tags declare a page's language partners; when Google can't crawl those partners (because they 403), it marks the whole group incomplete and may stop honouring the language signals — risking the wrong-language page ranking. The English pages are fine; their declared alternates are the problem.</p>
+        <p class="role"><b>Likely cause:</b> identical to Card A — the locale 403 block. There is no separate bug.</p>
+        <div class="fix"><b>Fix:</b> Resolves for free once the locale 403 is fixed (Card A); then regenerate the language tags and re-crawl. No independent action needed.</div>
+        <div class="handrow"><span>Owner: <b>Web dev (Dian, Sathya)</b></span><span>Effort: <b>Bundled with Card A</b></span><span>Priority: <b>P1</b></span><span>Status: <b>Covered by the open locale ticket</b></span></div>
       </div>
     </div>
 
     <!-- Card C -->
     <div class="card">
-      <div class="whystrip err"><span class="lbl">Why it matters</span><span>Help-centre pages carry links and rank. Old URL shapes leak that value through detours, and 500 errors make real pages disappear.</span></div>
+      <div class="whystrip err"><span class="lbl">Why it matters</span><span>We're generating broken URLs and feeding them to Google, wasting crawl budget on pages that can never resolve.</span></div>
       <div class="cbody">
-        <div class="ctitle">Old help-centre URLs (.html + /en/) <span class="sev err">Error</span> <span class="cnt">180 + 4 URLs</span></div>
-        <p><b>What it actually is:</b> Knowledge-base pages in the old <span class="u" style="color:var(--cobalt)">/en/help/docs/….html</span> shape point their "official version" tag at a redirect instead of the final page (180 of these), and four docs pages return a 500 server error.</p>
-        <details><summary>Show real example URLs</summary><div class="urls">
-          <div class="u">/en/help/docs/analytics/datasources/overview.html → canonical is a <span class="code">301</span></div>
-          <div class="u">/en/help/docs/analytics/dashboards/dashboard-linking.html → <span class="code">301</span></div>
-          <div class="u">/en/help/docs/user-account/ <span class="code">500</span></div>
-          <div class="u">/en/help/docs/tasks-faq/ <span class="code">500</span></div>
+        <div class="ctitle">Malformed /in-the-news/ pagination URLs <span class="sev err">Error</span> <span class="sev new">New</span> <span class="cnt">encoding bug · 403</span></div>
+        <p><b>What it actually is:</b> A few "In the News" pagination links are built with a mangled query string — an encoded <span class="u" style="color:var(--cobalt)">%3F</span>, a second real <span class="u" style="color:var(--cobalt)">?</span>, a stray <span class="u" style="color:var(--cobalt)">&amp;fr=1</span>, and a trailing slash — and every one returns 403. Small in count but the kind of self-inflicted junk that eats crawl budget.</p>
+        <details><summary>Show real example URLs from this crawl</summary><div class="urls">
+          <div class="u">/in-the-news/index.html%3Fin-the-news-page=2?press-release-page=1&amp;fr=1/ <span class="code">403</span></div>
+          <div class="u">/in-the-news/index.html%3Fin-the-news-page=3?press-release-page=1&amp;fr=1/ <span class="code">403</span></div>
+          <div class="u">/in-the-news/index.html%3Fin-the-news-page=4?press-release-page=1&amp;fr=1/ <span class="code">403</span></div>
         </div></details>
-        <p class="role"><b>Likely cause:</b> a help-centre migration where the old URL shapes were never fully retired.</p>
-        <div class="fix"><b>Fix:</b> Point the "official version" tags and internal links straight at the final <span class="u" style="color:var(--cobalt)">/help/docs/…</span> address; investigate and fix the four pages returning 500.</div>
-        <div class="handrow"><span>Owner: <b>Web dev</b></span><span>Effort: <b>Small</b></span><span>Est: <b>2–3h</b></span><span>Priority: <b>P2</b></span></div>
+        <p class="role"><b>Likely cause:</b> the pagination link-builder is double-encoding the page parameter and appending a tracking flag, producing an invalid URL.</p>
+        <div class="fix"><b>Fix:</b> Fix the template to emit a clean <span class="u" style="color:var(--cobalt)">/in-the-news/?in-the-news-page=N</span>; 301 or remove the malformed variants; confirm the listing's internal links point to the clean URLs.</div>
+        <div class="handrow"><span>Owner: <b>Web dev (Dian, Sathya)</b></span><span>Effort: <b>Small</b></span><span>Est: <b>2h</b></span><span>Priority: <b>P3</b></span><span>Status: <b>New this week · added</b></span></div>
       </div>
     </div>
 
     <!-- Card D -->
     <div class="card">
-      <div class="whystrip err"><span class="lbl">Why it matters</span><span>Broken redirects burn crawl budget and look sloppy to anyone who lands on one — including press and buyers.</span></div>
+      <div class="whystrip ok"><span class="lbl">Shining light</span><span>Last month's biggest equity leak — broken redirects and canonicals to redirects — is nearly closed.</span></div>
       <div class="cbody">
-        <div class="ctitle">Webinar links with an encoding bug <span class="sev err">Error</span> <span class="cnt">568 broken redirects</span></div>
-        <p><b>What it actually is:</b> A template is building webinar links with the query string mangled — <span class="u" style="color:var(--cobalt)">?topic=</span> becomes <span class="u" style="color:var(--cobalt)">%3Ftopic=</span> with a stray <span class="u" style="color:var(--cobalt)">?fr=1</span> and <span class="u" style="color:var(--cobalt)">.html</span> tacked on. These invented URLs redirect once, then dead-end at 403.</p>
-        <details><summary>Show real example URLs</summary><div class="urls">
-          <div class="u">/webinars%3Ftopic=Trends?fr=1/ → <span class="code">403</span></div>
-          <div class="u">/ko/webinars/webinars%3Ftopic=Best%20Practices?fr=1.html → <span class="code">403</span></div>
-          <div class="u">/webinars/upgrading-reveal-to-slingshot-all-you-need-to-know → <span class="code">403</span></div>
-        </div></details>
-        <p class="role"><b>Likely cause:</b> a link/template generator encoding the query part incorrectly.</p>
-        <div class="fix"><b>Fix:</b> Fix the template so webinar links use a normal <span class="u" style="color:var(--cobalt)">?topic=</span> parameter (drop the <span class="u" style="color:var(--cobalt)">?fr=1</span> and <span class="u" style="color:var(--cobalt)">.html</span>); 301 the mangled variants to the clean <span class="u" style="color:var(--cobalt)">/webinars/</span> pages.</p>
-        <div class="handrow"><span>Owner: <b>Web dev</b></span><span>Effort: <b>Small–Medium</b></span><span>Est: <b>2–4h</b></span><span>Priority: <b>P2</b></span></div>
+        <div class="ctitle">Broken redirects &amp; canonical-to-redirect <span class="sev ok">Improving</span> <span class="cnt">568→16 · 180→9</span></div>
+        <p><b>What it actually is:</b> Redirects that dead-ended in an error, and canonical tags pointing at a redirect, both collapsed this week: broken redirects <b>568 &rarr; 16</b>, canonical-points-to-redirect <b>180 &rarr; 9</b>, 3XX redirects <b>1,610 &rarr; 25</b>. The stragglers that remain are almost all locale URLs whose redirect target is a 403 — so they clear automatically once Card A is fixed.</p>
+        <div class="fix"><b>Fix:</b> Finish the in-progress slash-convention and redirect-repointing tasks and mark them done; the locale-tail remainder resolves with the Card A fix.</div>
+        <div class="handrow"><span>Owner: <b>Casey (SEO) + web dev</b></span><span>Effort: <b>Finishing existing work</b></span><span>Priority: <b>P1</b></span><span>Status: <b>Ticketed · in progress</b></span></div>
       </div>
     </div>
 
     <!-- Card E -->
     <div class="card">
-      <div class="whystrip warn"><span class="lbl">Why it matters</span><span>The same page reachable at two addresses splits its ranking power in half.</span></div>
+      <div class="whystrip warn"><span class="lbl">Why it matters</span><span>Pages with zero internal links rarely get crawled or ranked, and pass on no authority.</span></div>
       <div class="cbody">
-        <div class="ctitle">Trailing-slash duplicates <span class="sev warn">Warning</span> <span class="cnt">1,610 redirects · 1,185 internal links</span></div>
-        <p><b>What it actually is:</b> Pages exist both with and without a trailing "/" (e.g. <span class="u" style="color:var(--cobalt)">/blog/project-management-goals/</span> vs no slash). Google treats them as two pages and halves the credit.</p>
-        <div class="fix"><b>Fix:</b> Pick one slash convention, 301-redirect the other form site-wide, and update internal links to the chosen form. Guardrail: 301 every retired URL — never delete.</div>
-        <div class="handrow"><span>Owner: <b>Web dev</b></span><span>Effort: <b>Medium</b></span><span>Est: <b>3–5h</b></span><span>Priority: <b>P1</b></span><span>Status: <b>Ticketed · in progress</b></span></div>
+        <div class="ctitle">Orphan pages <span class="sev err">Error</span> <span class="sev new">Rising</span> <span class="cnt">43 → 47 (4 new)</span></div>
+        <p><b>What it actually is:</b> Real pages that exist but aren't linked from anywhere in the site's navigation or content — only discoverable via the sitemap, which is a weak signal. The count ticked up 4 this week.</p>
+        <p class="role"><b>Likely cause:</b> pages published or migrated without being linked from a hub or related content.</p>
+        <div class="fix"><b>Fix:</b> Pull the orphan list and add a contextual internal link to each from the most relevant hub or sibling page — marketing ICP pages first.</div>
+        <div class="handrow"><span>Owner: <b>Casey (content / SEO)</b></span><span>Effort: <b>Small</b></span><span>Est: <b>2h</b></span><span>Priority: <b>P3</b></span><span>Status: <b>New this week · added</b></span></div>
       </div>
     </div>
 
     <!-- Card F -->
     <div class="card">
-      <div class="whystrip err"><span class="lbl">Why it matters</span><span>This is on our main conversion page — a wrong-product email and a broken link erode trust exactly where buyers convert.</span></div>
+      <div class="whystrip warn"><span class="lbl">Why it matters</span><span>A dirty sitemap tells Google to spend crawl budget on junk URLs instead of your real pages.</span></div>
       <div class="cbody">
-        <div class="ctitle">Wrong-product reference on the forms <span class="sev err">Error</span> <span class="cnt">demo + contact</span></div>
-        <p><b>What it actually is:</b> The demo and contact forms reference <span class="u" style="color:var(--cobalt)">support@revealbi.io</span> (the wrong product) and contain a broken internal link built from that email — leftover from cloning Reveal's templates.</p>
-        <div class="fix"><b>Fix:</b> Replace every revealbi.io reference with the correct Slingshot contact and fix the broken link.</div>
-        <div class="handrow"><span>Owner: <b>Web dev</b></span><span>Effort: <b>Small</b></span><span>Est: <b>1–2h</b></span><span>Priority: <b>P1</b></span><span>Status: <b>Ticketed · in progress</b></span></div>
+        <div class="ctitle">Non-canonical, 4XX &amp; 3XX URLs in the sitemap <span class="sev err">Error</span> <span class="sev flat">Flat</span> <span class="cnt">354 · 26 · 6</span></div>
+        <p><b>What it actually is:</b> The XML sitemap should list only canonical, 200-OK URLs. Right now it also lists 354 non-canonical URLs, 26 that 4xx, and 6 that redirect. Flat week-over-week — surfaced but not separately ticketed since it's mostly a symptom of the locale block.</p>
+        <p class="role"><b>Likely cause:</b> the sitemap is auto-generated from all routes, including locale and non-canonical variants.</p>
+        <div class="fix"><b>Fix:</b> Regenerate the sitemap to include only canonical 200 URLs. The bulk of the junk is the locale entries, so it largely self-cleans once Card A is resolved and the sitemap is rebuilt.</div>
+        <div class="handrow"><span>Owner: <b>Web dev (rolls up with locale fix)</b></span><span>Effort: <b>Small once locale is fixed</b></span><span>Priority: <b>P2</b></span><span>Status: <b>Not rising · resolves with locale + rebuild</b></span></div>
       </div>
     </div>
   </section>
@@ -272,13 +296,13 @@
   <section class="block" id="safe">
     <div class="snum">SECTION 4</div>
     <h2 class="sh">Safe to ignore this week</h2>
-    <p class="sdesc">Considered and deliberately parked — none of these block crawling or indexing, so chasing them now would just be noise against the big three.</p>
+    <p class="sdesc">Considered and deliberately parked — none of these block crawling or indexing, and most are already trending the right way.</p>
     <ul class="safe">
-      <li><b>1,689 images missing alt text</b> <span class="m">— accessibility nicety, no effect on indexing. Batch later.</span></li>
-      <li><b>Meta descriptions too long / short / missing</b> <span class="m">— cosmetic; handled naturally in the content rewrites, not a dev job.</span></li>
-      <li><b>864 schema / structured-data warnings</b> <span class="m">— real, but belong to the planned schema workstream, not a crawl blocker.</span></li>
-      <li><b>Multiple H1s, title-length notices</b> <span class="m">— page-polish, low impact.</span></li>
-      <li><b>"Pages to submit to IndexNow" (1,157)</b> <span class="m">— informational, not an error.</span></li>
+      <li><b>1,451 images missing alt text (down 238)</b> <span class="m">— accessibility nicety, no effect on indexing, and already falling. Batch later.</span></li>
+      <li><b>804 schema / structured-data validation notices (down 60)</b> <span class="m">— cosmetic schema warnings, not indexing blockers; belong to the schema workstream.</span></li>
+      <li><b>Meta descriptions too long / short (371 / 334)</b> <span class="m">— copy polish, handled in content rewrites, not a dev job.</span></li>
+      <li><b>Multiple H1s (37), title-length notices</b> <span class="m">— page-polish, low impact.</span></li>
+      <li><b>"Page has links to redirect" (1,095, down 90)</b> <span class="m">— a warning, not an error, and falling as the redirect cleanup lands. Revisit only if it starts rising.</span></li>
     </ul>
   </section>
 
@@ -290,15 +314,16 @@
     <table class="dt">
       <thead><tr><th>Priority</th><th>Fix</th><th>Owner</th><th>Est</th><th>Ticketed</th></tr></thead>
       <tbody>
-        <tr><td><span class="pri P1">P1</span></td><td>Stop the /ja /es /ko /pt-BR sections serving 403 — return 200 or 301 to English + fix language tags</td><td>Web dev / infra</td><td>4–6h</td><td><span class="tk no">New</span></td></tr>
-        <tr><td><span class="pri P1">P1</span></td><td>Pick one slash convention; 301 trailing-slash duplicates; set canonicals</td><td>Web dev</td><td>3–5h</td><td><span class="tk yes">Yes</span></td></tr>
-        <tr><td><span class="pri P1">P1</span></td><td>Fix revealbi.io references + broken link on demo/contact forms</td><td>Web dev</td><td>1–2h</td><td><span class="tk yes">Yes</span></td></tr>
-        <tr><td><span class="pri P2">P2</span></td><td>Point help-centre canonicals/links at final URL; fix 4 docs returning 500</td><td>Web dev</td><td>2–3h</td><td><span class="tk no">New</span></td></tr>
-        <tr><td><span class="pri P2">P2</span></td><td>Fix webinar link template (%3F encoding); 301 mangled URLs to clean /webinars/</td><td>Web dev</td><td>2–4h</td><td><span class="tk no">New</span></td></tr>
-        <tr><td><span class="pri P2">P2</span></td><td>Repoint remaining broken redirects + canonical-to-redirect to final 200 targets</td><td>Web dev</td><td>3–5h</td><td><span class="tk yes">Yes</span></td></tr>
+        <tr><td><span class="pri P1">P1</span></td><td>Unblock locale 403 (/ja /es /ko /pt-BR) — return 200 or 301 to English — and regenerate hreflang</td><td>Web dev / infra (Dian, Sathya)</td><td>4–6h</td><td><span class="tk yes">Open · overdue</span></td></tr>
+        <tr><td><span class="pri P1">P1</span></td><td>Repoint broken redirects + canonical-to-redirect to final 200 targets (568→16, 180→9 landed)</td><td>Casey (SEO)</td><td>In progress</td><td><span class="tk prog">In progress</span></td></tr>
+        <tr><td><span class="pri P1">P1</span></td><td>Pick one slash convention; 301 trailing-slash duplicates; set self-canonicals</td><td>Casey (SEO)</td><td>In progress</td><td><span class="tk prog">In progress</span></td></tr>
+        <tr><td><span class="pri P2">P2</span></td><td>Old help-centre .html canonical-to-redirect tail (500s now resolved)</td><td>Web dev</td><td>2–3h</td><td><span class="tk yes">Open</span></td></tr>
+        <tr><td><span class="pri P1">P1</span></td><td>Replace revealbi.io references on demo/contact forms; fix the broken internal link</td><td>Casey (SEO)</td><td>In progress</td><td><span class="tk prog">In progress</span></td></tr>
+        <tr><td><span class="pri P3">P3</span></td><td>Fix malformed /in-the-news/ pagination URLs (encoding bug producing 403s)</td><td>Web dev (Dian, Sathya)</td><td>2h</td><td><span class="tk no">New → added</span></td></tr>
+        <tr><td><span class="pri P3">P3</span></td><td>Resolve 47 orphan pages by adding contextual internal links</td><td>Casey (content / SEO)</td><td>2h</td><td><span class="tk no">New → added</span></td></tr>
       </tbody>
     </table>
-    <p class="sdesc" style="margin-top:12px;margin-bottom:0">Owner routing is "Web dev / infra" pending confirmation of who owns slingshotapp.io fixes (likely Ryan / Pam). Tasks currently sit with Casey to route.</p>
+    <p class="sdesc" style="margin-top:12px;margin-bottom:0">Web-dev / infra fixes routed to <b>Dian Jelyazkov</b> and <b>Sathya Sundaresan</b>; content / SEO fixes to <b>Casey Ciniello</b>. New tasks this week land in the "This Week" section of the Technical SEO list.</p>
   </section>
 
   <!-- 6 — CHEAT SHEET -->
@@ -324,7 +349,7 @@
     </div>
   </section>
 
-  <p class="foot">Slingshot Technical SEO Audit · data: Ahrefs Site Audit project 8155906 · crawl Jul 22, 2026 · generated Jul 28, 2026</p>
+  <p class="foot">Slingshot Technical SEO Audit · data: Ahrefs Site Audit project 8155906 · crawl Jul 29, 2026 (vs Jul 22, 2026) · generated Aug 3, 2026</p>
 
 </div>
 </body>
