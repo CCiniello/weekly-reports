@@ -114,25 +114,6 @@
   #cheatsheet .def code{font-family:var(--mono);font-size:11.5px;background:#f4f7ff;border:1px solid #e3e9f7;border-radius:5px;padding:1px 5px;color:#2A41A2}
   .ours{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:#fde8ec;color:#c62a4f;border-radius:5px;padding:1px 6px;margin-left:6px;vertical-align:middle}
   @media(max-width:640px){#cheatsheet .item{grid-template-columns:1fr;gap:5px}}
-
-  /* ===== feedback loop ===== */
-  .fbx{position:relative}
-  .fbi{position:absolute;top:6px;right:6px;width:22px;height:22px;border-radius:50%;border:none;cursor:pointer;background:var(--peri-soft);color:var(--cobalt);display:none;align-items:center;justify-content:center;padding:0;z-index:4}
-  .fbi svg{width:12px;height:12px}
-  .fbx:hover>.fbi{display:inline-flex}
-  .fbov{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px}
-  .fbov.on{display:flex}
-  .fbmodal{background:#fff;border-radius:16px;max-width:460px;width:100%;padding:22px 24px;box-shadow:0 20px 60px rgba(15,23,42,.3)}
-  .fbmodal h3{margin:0 0 4px;font-size:16px;color:var(--navy)}
-  .fbmodal .ctx{font-size:12px;color:var(--muted);margin:0 0 14px;padding:8px 10px;background:#f7f9fe;border-radius:8px;border:1px solid var(--line);max-height:90px;overflow:auto}
-  .fbmodal .cats{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
-  .fbcat{appearance:none;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;font-family:inherit}
-  .fbcat.on{background:var(--accent);border-color:var(--accent);color:#fff}
-  .fbmodal textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:10px;font-family:inherit;font-size:13px;min-height:78px;resize:vertical}
-  .fbmodal .acts{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
-  .fbbtn{appearance:none;border:none;border-radius:9px;padding:9px 15px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
-  .fbbtn.sec{background:var(--gray-bg);color:var(--muted)}
-  .fbbtn.pri{background:linear-gradient(120deg,var(--accent),var(--accent-deep));color:#fff}
 </style>
 </head>
 <body class="theme-reveal">
@@ -284,7 +265,7 @@
   </div>
 </div>
 
-<p class="fbhint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Hover any KPI, goal, insight, recommendation &mdash; or task on the Tasks tab &mdash; and click the chat icon to send feedback to the agent. It reads it every Monday and adjusts.</p>
+<p class="fbhint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> This is the static snapshot. To leave feedback the agent tracks and applies each Monday, use the interactive version in Cowork — the report's live artifact, where every KPI, insight, and task has a one-click feedback button and a status board.</p>
 
 <h2 class="sec"><span class="n">1</span> Executive summary</h2>
 <div class="kpigrid g5">
@@ -677,7 +658,7 @@
 </div>
 
 <div class="foot">
-  Weekly paid brief · v10 (Reveal brand style), generated 3 Aug 2026 · window Jul 27-Aug 2 vs Jul 20-26 · sources: Google Ads &amp; GA4 (Supermetrics); Bing &amp; Reddit (Adzviser); LinkedIn (Supermetrics); leads/opps/pipeline (Salesforce). Quality-Score components are the standing keyword-level read (last 30d). Actions live in the Tasks tab. Forecast is illustrative, not a guarantee. Not investment or financial advice.
+  Weekly paid brief · v10 (Reveal brand style), generated 3 Aug 2026 · window Jul 27-Aug 2 vs Jul 20-26 · sources: Google Ads &amp; GA4 (Supermetrics); Bing &amp; Reddit (Adzviser); LinkedIn (Supermetrics); leads/opps/pipeline (Salesforce). Quality-Score components are the standing keyword-level read (last 30d). Actions live in the Tasks tab. Feedback + status live in the Cowork artifact. Forecast is illustrative, not a guarantee. Not investment or financial advice.
 </div>
   </section>
 
@@ -692,7 +673,7 @@
       <span class="tsum" id="taskSummary"></span>
       <a class="slink push" href="https://my.slingshotapp.io/openTaskList/e97e10ef_52b2bc22-d90d-4cd3-b1a7-8d48b05c2ee9_tg" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg> Open this list in Slingshot</a>
     </div>
-    <p style="font-size:12px;color:var(--muted);margin:-6px 2px 16px">Live from the Slingshot "Paid — Reveal" list — status, owner and due dates read every Monday. <span class="newbadge">New</span> = created from this week's analysis. Hover any task for the feedback icon.</p>
+    <p style="font-size:12px;color:var(--muted);margin:-6px 2px 16px">Live from the Slingshot "Paid — Reveal" list — status, owner and due dates read every Monday. <span class="newbadge">New</span> = created from this week's analysis.</p>
     <div class="view on" data-view="table"><div class="tablewrap"><table><thead><tr><th>Task</th><th>Channel</th><th>Owner</th><th>Priority</th><th>Status</th><th>Due</th></tr></thead><tbody id="tblBody"></tbody></table></div></div>
     <div class="view" data-view="board"><div class="board" id="boardWrap"></div></div>
     <div class="view" data-view="timeline"><div class="tl" id="tlWrap"></div></div>
@@ -762,25 +743,6 @@
     <div class="item"><div class="term">First vs last touch · 30-day lag <span class="ours">Ours</span></div><div class="def">First = how they discovered us; last = the click before converting. Reveal buyers research 30+ days, so discovery and conversion are weeks apart — don't cut capture for zero same-week leads.</div></div>
   </section>
 
-</div>
-
-<div class="fbov" id="fbov">
-  <div class="fbmodal">
-    <h3>Send feedback to the agent</h3>
-    <div class="ctx" id="fbctx"></div>
-    <div class="cats" id="fbcats">
-      <button class="fbcat" data-c="Approve">Approve</button>
-      <button class="fbcat" data-c="Wrong number">Wrong number</button>
-      <button class="fbcat" data-c="Add context">Add context</button>
-      <button class="fbcat" data-c="Disagree">Disagree</button>
-      <button class="fbcat" data-c="Won't do — strategic">Won't do</button>
-    </div>
-    <textarea id="fbtxt" placeholder="Reason — and the corrected value, if any…"></textarea>
-    <div class="acts">
-      <button class="fbbtn sec" id="fbcancel">Cancel</button>
-      <button class="fbbtn pri" id="fbsend">Copy &amp; open thread</button>
-    </div>
-  </div>
 </div>
 
 <script>
@@ -884,40 +846,6 @@ document.getElementById('copyBtn').addEventListener('click',function(){
   btn.classList.add('copied'); lbl.textContent='Copied!';
   setTimeout(function(){btn.classList.remove('copied'); lbl.textContent='Copy update';},1800);
 });
-
-/* ---- feedback loop (blocks + individual tasks) ---- */
-(function(){
-  var FB_URL="https://app.slingshotapp.io/openDiscussion/e97e10ef_b4c1ff6c-3dc7-47c1-909d-aaff8dcfb922";
-  var SEL="#report .kpi,#report .sc,#report .card,#report .plat,#report .vbox,#report .keyfix,#report .callout,#report .chartwrap,#report .lead,#report .wl li,#report h2.sec,#report .vpbanner .vrow,#tasks td.tkcell,#tasks .tcard,#tasks .tlrow";
-  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
-  var ctxText="", cat="";
-  var ov=document.getElementById('fbov'), ctxEl=document.getElementById('fbctx'), txt=document.getElementById('fbtxt');
-  document.querySelectorAll(SEL).forEach(function(el){
-    if(el.querySelector(':scope > .fbi')) return;
-    el.classList.add('fbx');
-    var b=document.createElement('button'); b.className='fbi'; b.type='button'; b.setAttribute('aria-label','Send feedback'); b.innerHTML=ICON;
-    b.addEventListener('click',function(e){
-      e.stopPropagation();
-      ctxText=(el.innerText||'').replace(/\s+/g,' ').trim().slice(0,220);
-      ctxEl.textContent=ctxText; cat=""; txt.value="";
-      document.querySelectorAll('.fbcat').forEach(function(c){c.classList.remove('on');});
-      ov.classList.add('on');
-    });
-    el.appendChild(b);
-  });
-  document.querySelectorAll('.fbcat').forEach(function(c){
-    c.addEventListener('click',function(){document.querySelectorAll('.fbcat').forEach(function(x){x.classList.remove('on');});c.classList.add('on');cat=c.dataset.c;});
-  });
-  function close(){ov.classList.remove('on');}
-  document.getElementById('fbcancel').addEventListener('click',close);
-  ov.addEventListener('click',function(e){if(e.target===ov)close();});
-  document.getElementById('fbsend').addEventListener('click',function(){
-    var note="FEEDBACK — Reveal Paid ("+new Date().toISOString().slice(0,10)+")\nCategory: "+(cat||"(none)")+"\nOn: "+ctxText+"\nReason: "+txt.value;
-    try{navigator.clipboard.writeText(note);}catch(_){}
-    window.open(FB_URL,"_blank");
-    close();
-  });
-})();
 </script>
 </body>
 </html>
