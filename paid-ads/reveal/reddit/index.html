@@ -13,586 +13,457 @@
     --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
     --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
     --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
+    --accent:#EC417A; --accent-deep:#C9367F; --accent-soft:#fde4ee;
+    --hero:linear-gradient(120deg,#FBB764,#EC417A 62%,#d63384);
   }
-  body.theme-reveal   {--accent:#EC417A;--accent-deep:#C9367F;--accent-soft:#fde4ee;--hero:linear-gradient(120deg,#FBB764,#EC417A 62%,#d63384)}
-  body.theme-slingshot{--accent:#4B45C6;--accent-deep:#2D2A90;--accent-soft:#ECEBFB;--hero:linear-gradient(120deg,#6C5CE7,#4B45C6 55%,#2D2A90)}
-  body.theme-ui       {--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
-  body.theme-all      {--accent:#2563EB;--accent-deep:#7C3AED;--accent-soft:#EEF1FF;--hero:linear-gradient(120deg,#2563EB,#7C3AED)}
-
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
   .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 80px}
-
+  .mono{font-family:var(--mono)}
   header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
-  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
-  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
-  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
-  header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
-  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)} .meta b{color:#fff;font-weight:700}
+  header.top h1{font-size:23px;font-weight:900;letter-spacing:-.01em}
+  header.top .meta{margin-top:6px;font-size:13px;color:#fff;opacity:.92;font-weight:500}
+  header.top .chan{display:inline-block;margin-top:10px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:3px 11px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.04em}
 
-  /* dynamic tab bar (built from panels) */
-  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03);overflow-x:auto}
-  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;white-space:nowrap}
-  .tab:hover{color:var(--ink)}
-  .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
-  .tabpanel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
-  .tabpanel.on{display:block}
-
-  /* ===== SHARED CONTENT VOCABULARY (agents use these classes) ===== */
-  .sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:26px 2px 13px;display:flex;align-items:center;gap:10px}
-  .sec:first-child{margin-top:2px}
-  .sec .n{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
-  .lead{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:16px 20px;font-size:14.5px;line-height:1.6} .lead b{color:var(--navy)}
-
-  .kpigrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
-  @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}}
-  .kpi{background:#fcfdff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column}
-  .kpi .lab{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;min-height:28px}
-  .kpi .val{font-size:22px;font-weight:700;margin:2px 0 8px;font-family:var(--mono)}
-  .kpi .delta{align-self:flex-start;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
-  .delta.up{background:var(--good-bg);color:var(--good)} .delta.down{background:var(--bad-bg);color:var(--bad)} .delta.flat{background:var(--warn-bg);color:var(--warn)}
-
-  .score{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
-  .score table{width:100%;border-collapse:collapse;font-size:13px}
-  .score th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
-  .score td{padding:11px 13px;border-top:1px solid var(--line);vertical-align:middle}
-  .score .goal{font-weight:600;color:var(--navy)}
-  .pill{font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px}
-  .pill.good{background:var(--good-bg);color:var(--good)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.bad{background:var(--bad-bg);color:var(--bad)}
-
-  .cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
-  .card{border:1px solid var(--line);border-radius:14px;overflow:hidden}
-  .card .ch{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:var(--accent-soft);border-bottom:1px solid var(--line)}
-  .card .ch .nm{font-size:15px;font-weight:700;color:var(--accent-deep)} .card .ch .sp{font-family:var(--mono);font-size:12.5px;color:var(--navy)}
-  .card .cb{padding:14px 18px;font-size:13.5px;line-height:1.55} .card .cb b{color:var(--navy)}
-
-  .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
-  .dtable table{width:100%;border-collapse:collapse;font-size:13px}
-  .dtable th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
-  .dtable td{padding:10px 13px;border-top:1px solid var(--line)} .dtable td.num{font-family:var(--mono);text-align:right}
-  .dtable tr:hover td{background:#fafbff}
-
-  /* chart helpers (added for GA4 tab — canvas containers only) */
-  .chartgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
-  @media(max-width:820px){.chartgrid{grid-template-columns:1fr}}
-  .chartcard{border:1px solid var(--line);border-radius:14px;padding:14px 16px}
-  .chartcard h4{font-size:13px;color:var(--navy);font-weight:700;margin-bottom:2px}
-  .chartcard p.cap{font-size:11.5px;color:var(--muted);margin-bottom:10px}
-  .chartbox{position:relative;height:250px}
-
-  .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
-  .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
-  .verdict p{font-size:15px;line-height:1.6;margin:0} .verdict b{color:var(--navy)}
-  code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
-
-  /* ===== VP READOUT (30-second view) ===== */
+  /* VP banner */
   .vpbanner{border:1px solid #E9E9F4;border-radius:16px;overflow:hidden;margin:0 0 4px;box-shadow:0 1px 3px rgba(15,23,42,.05);font-family:'Roboto',system-ui,sans-serif}
   .vpbanner .vbar{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-  .vpbanner .vbar .t{font-size:18px;font-weight:800}
-  .vpbanner .vbar .g{font-size:12.5px;color:#cdd6f7;font-weight:600;text-align:right}
-  .vpbanner .vrow{display:flex;gap:18px;align-items:flex-start;padding:16px 22px;border-top:1px solid #E9E9F4}
-  .vpbanner .vrow:first-of-type{border-top:none}
+  .vpbanner .vbar .t{font-size:18px;font-weight:800}.vpbanner .vbar .g{font-size:12.5px;color:#cdd6f7;font-weight:600;text-align:right}
+  .vpbanner .vrow{display:flex;gap:18px;align-items:flex-start;padding:16px 22px;border-top:1px solid #E9E9F4;background:#fff}.vpbanner .vrow:first-of-type{border-top:none}
   .pill2{flex:none;width:92px;text-align:center;font-size:11px;font-weight:800;letter-spacing:.05em;padding:5px 0;border-radius:16px;text-transform:uppercase;margin-top:2px}
   .pill2.fix{background:#fde8ec;color:#c62a4f}.pill2.work{background:#e3f5ec;color:#127a45}.pill2.watch{background:#fdf0d6;color:#8a6412}
-  .vrow .rtx h4{margin:0 0 4px;font-size:15px;color:#0F172A;font-weight:800}
-  .vrow .rtx p{margin:0;font-size:13.5px;color:#5f6b7a;line-height:1.55}
+  .vrow .rtx h4{margin:0 0 4px;font-size:15px;color:#0F172A;font-weight:800}.vrow .rtx p{margin:0;font-size:13.5px;color:#5f6b7a;line-height:1.55}
+
+  /* tabs */
+  .tabbar{display:flex;flex-wrap:wrap;gap:4px;background:#fff;border:1px solid var(--line);border-top:none;padding:8px 10px 0;position:sticky;top:0;z-index:20}
+  .tabbar button{border:none;background:transparent;font-family:inherit;font-size:13.5px;font-weight:700;color:var(--muted);padding:11px 15px;border-radius:9px 9px 0 0;cursor:pointer;border-bottom:3px solid transparent}
+  .tabbar button:hover{color:var(--accent-deep);background:var(--accent-soft)}
+  .tabbar button.active{color:var(--accent-deep);border-bottom-color:var(--accent)}
+  .panel{display:none;background:#fff;border:1px solid var(--line);border-top:none;padding:24px 26px 30px}
+  .panel.active{display:block}
+  .panel.first{border-radius:0}
+
+  .sec{margin:26px 0 12px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);border-left:3px solid var(--accent);padding-left:9px}
+  .sec:first-child{margin-top:4px}
+  p.lede{font-size:14.5px;color:#33404f;margin:8px 0}
+  .rundown p{font-size:14.5px;color:#2b3746;margin:10px 0;line-height:1.62}
+  .rundown .bl{font-weight:800;color:var(--navy)}
+  .callout{background:var(--accent-soft);border:1px solid #f6cfe0;border-radius:12px;padding:14px 16px;margin:14px 0;font-size:13.6px;color:#7a2247}
+
+  .kpigrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:8px 0 4px}
+  .kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 13px;position:relative}
+  .kpi .l{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+  .kpi .v{font-family:var(--mono);font-size:21px;font-weight:600;color:var(--navy);margin-top:5px}
+  .kpi .d{font-size:11.5px;font-weight:700;margin-top:3px}
+  .up{color:var(--good)}.down{color:var(--bad)}.flat{color:var(--gray)}
+  table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:13px}
+  th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line)}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:800;background:#fafbfe}
+  td.n,th.n{text-align:right;font-family:var(--mono)}
+  .pill{display:inline-block;font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:12px;letter-spacing:.03em;text-transform:uppercase}
+  .pill.good{background:var(--good-bg);color:var(--good)}
+  .pill.warn{background:var(--warn-bg);color:var(--warn)}
+  .pill.bad{background:var(--bad-bg);color:var(--bad)}
+  .pill.na{background:var(--gray-bg);color:var(--gray)}
+  .bar{height:8px;border-radius:6px;background:#eef0f5;overflow:hidden;min-width:80px}
+  .bar > span{display:block;height:100%;border-radius:6px}
+  .cards2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
+  .card{border:1px solid var(--line);border-radius:12px;padding:15px 16px}
+  .card h4{font-size:13px;font-weight:800;margin-bottom:8px;letter-spacing:.02em}
+  .card.win h4{color:var(--good)}.card.bad h4{color:var(--bad)}
+  .card ul{margin:0;padding-left:17px}.card li{font-size:13px;margin:5px 0;color:#39424e}
+  .fixcard{border:1px solid #f6cfe0;background:var(--accent-soft);border-radius:12px;padding:15px 17px;margin:14px 0}
+  .fixcard h4{color:var(--accent-deep);font-size:13px;font-weight:800;margin-bottom:7px;letter-spacing:.03em;text-transform:uppercase}
+  .fixcard li{font-size:13.3px;margin:5px 0;color:#5a2740}
+  .note{font-size:12.5px;color:var(--muted);margin:8px 0}
+  .chartbox{position:relative;height:320px;margin:14px 0}
+  .chartbox.sm{height:260px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+  .verdict{border:2px solid var(--accent);border-radius:14px;padding:18px 20px;margin:18px 0 4px;background:linear-gradient(120deg,#fff,#fdeef4)}
+  .verdict .vh{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep)}
+  .verdict .vt{font-size:18px;font-weight:900;color:var(--navy);margin:5px 0 7px}
+  .verdict p{font-size:13.6px;color:#3a4553;margin:5px 0}
+  @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}.cards2,.grid2{grid-template-columns:1fr}}
+
+  /* feedback loop */
+  .fbx{position:relative}
+  .fbtn{position:absolute;top:6px;right:6px;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--accent-deep);font-size:12px;font-weight:800;line-height:20px;text-align:center;cursor:pointer;opacity:0;transition:opacity .15s;z-index:5}
+  .fbx:hover .fbtn{opacity:.9}.fbtn:hover{opacity:1;background:var(--accent-soft)}
+  .fbmodal{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:center;justify-content:center;z-index:100}
+  .fbmodal.open{display:flex}
+  .fbcard{background:#fff;border-radius:14px;max-width:440px;width:92%;padding:20px 22px;box-shadow:0 12px 40px rgba(15,23,42,.25)}
+  .fbcard h3{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:4px}
+  .fbcard .ctx{font-size:12px;color:var(--muted);margin-bottom:12px;font-weight:600}
+  .fbcats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+  .fbcat{border:1px solid var(--line);background:#fafbfe;font-family:inherit;font-size:12px;font-weight:700;color:var(--muted);padding:6px 11px;border-radius:16px;cursor:pointer}
+  .fbcat.sel{background:var(--accent-soft);color:var(--accent-deep);border-color:#f6cfe0}
+  .fbcard textarea,.fbcard input{width:100%;font-family:inherit;font-size:13px;border:1px solid var(--line);border-radius:9px;padding:9px 11px;margin-bottom:10px}
+  .fbcard textarea{min-height:70px;resize:vertical}
+  .fbrow{display:flex;gap:8px;justify-content:flex-end}
+  .fbrow button{font-family:inherit;font-size:13px;font-weight:700;padding:9px 16px;border-radius:9px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--muted)}
+  .fbrow button.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+  .fbtoast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:13px;font-weight:600;padding:11px 18px;border-radius:10px;opacity:0;transition:opacity .2s;z-index:120}
+  .fbtoast.show{opacity:1}
+  #fbCorrect{display:none}
 </style>
 </head>
-<!-- AGENT: set theme class (theme-reveal for all Reveal channels) -->
 <body class="theme-reveal">
 <div class="wrap">
 
-  <header class="top">
-    <div class="logochip">Reveal</div>
-    <div class="kick">revealbi.io · Reddit Ads</div>
-    <h1>Reddit Ads Weekly / Reveal</h1>
-    <div class="meta"><span>Week of <b>Jul 27, 2026</b></span><span>Current <b>Jul 20–26</b> vs prior <b>Jul 13–19</b></span><span>Role: <b>Awareness — developer top-of-funnel</b></span></div>
-  </header>
+<header class="top">
+  <h1>Reddit Ads Weekly &mdash; Reveal</h1>
+  <div class="meta">Week of Aug 3, 2026 &nbsp;&middot;&nbsp; Current Jul 27&ndash;Aug 2 vs prior Jul 20&ndash;26 &nbsp;&middot;&nbsp; revealbi.io embedded analytics</div>
+  <span class="chan">CHANNEL: REDDIT &middot; AWARENESS</span>
+</header>
 
-  <!-- ===================== VP READOUT (30-second view) ===================== -->
-  <div class="vpbanner">
-    <div class="vbar">
-      <div class="t">VP Readout — 30-second view</div>
-      <div class="g">Goal: developer awareness &amp; recall — cheap, relevant eyeballs on Reveal (not last-click leads)</div>
-    </div>
-    <div class="vrow fbx" data-fb-label="VP Readout — Fix">
-      <div class="pill2 fix">Fix</div>
-      <div class="rtx"><h4>The money is aimed at the wrong rooms</h4><p>~97% of spend is mobile and 78% lands on comment-page threads in unrelated consumer subreddits — only 8 of 280 clicks became real site visits. Switch to hand-picked dev/data communities and push delivery toward desktop.</p></div>
-    </div>
-    <div class="vrow fbx" data-fb-label="VP Readout — Working">
-      <div class="pill2 work">Working</div>
-      <div class="rtx"><h4>Cheap, above-benchmark attention — and cheaper this week</h4><p>CTR held at 0.78% (above the Reddit B2B benchmark) while CPC fell to $1.35 and eCPM dropped ~8% to $10.53; the "Embedded Analytics Into Your App" creative keeps carrying the channel.</p></div>
-    </div>
-    <div class="vrow fbx" data-fb-label="VP Readout — Watch">
-      <div class="pill2 watch">Watch</div>
-      <div class="rtx"><h4>The click→visit rate</h4><p>Only ~5% of clicks now become tracked GA4 sessions (was ~34% in spring) — watch it recover as targeting shifts to desktop and developer communities.</p></div>
-    </div>
-  </div>
-
-  <div class="tabbar" id="tabbar"></div>
-
-  <div id="panels">
-
-    <!-- ===================== TAB 1: OVERVIEW ===================== -->
-    <section class="tabpanel" data-tab="overview" data-label="Overview">
-
-      <div class="sec fbx"><span class="n">1</span> The rundown</div>
-      <div class="lead fbx">
-        <p>Reddit is our smallest paid bet — about <b>$377 this week</b> — and we run it purely as a top-of-funnel awareness play to get Reveal in front of developers. On that job it had a steady, slightly more efficient week. We put the brand in front of roughly <b>34,000 US developers</b>, held a click-through rate that still <b>beats Reddit's B2B benchmark</b>, and actually got <b>cheaper</b>: CPC dropped to $1.35 and the cost to reach a thousand people (eCPM) fell about 8% to the edge of benchmark. The "embedded analytics in your app" creative continues to carry the channel over the webinar ad.</p>
-        <p style="margin-top:10px">What's holding the channel back is unchanged, and it isn't the ad — it's <b>where the money lands</b>. Nearly all spend (about 97%) goes to mobile, most of it into comment threads scattered across unrelated subreddits — think r/airfryer, not r/dataengineering — with almost nothing on desktop, where developers actually evaluate a product like ours. That's why the clicks still aren't turning into meaningful site visits: only <b>8 real GA4 sessions</b> from 280 clicks this week, and the month-to-date click-to-visit rate has collapsed to under 5%. For an awareness channel this early that's expected, not alarming — but it's fixable.</p>
-        <p style="margin-top:10px"><b>Bottom line: keep it, but fix the targeting.</b> It's a cheap, above-benchmark awareness channel that got a little cheaper this week but is still pointed at the wrong rooms. Tighten it to developer communities and desktop before we ask it to influence pipeline.</p>
-      </div>
-
-      <div class="sec fbx"><span class="n">2</span> KPIs — week over week</div>
-      <div class="kpigrid">
-        <div class="kpi fbx"><span class="lab">Spend</span><span class="val">$377</span><span class="delta flat">▼ 6.9% WoW</span></div>
-        <div class="kpi fbx"><span class="lab">Impressions</span><span class="val">35,802</span><span class="delta flat">▲ 1.0% WoW</span></div>
-        <div class="kpi fbx"><span class="lab">Clicks</span><span class="val">280</span><span class="delta flat">▼ 3.8% WoW</span></div>
-        <div class="kpi fbx"><span class="lab">CTR</span><span class="val">0.78%</span><span class="delta flat">▼ 4.7% WoW</span></div>
-        <div class="kpi fbx"><span class="lab">CPC</span><span class="val">$1.35</span><span class="delta up">▼ 3.2% (cheaper)</span></div>
-      </div>
-      <div class="kpigrid" style="margin-top:11px">
-        <div class="kpi fbx"><span class="lab">Reach / Freq</span><span class="val">34.0k</span><span class="delta flat">1.05× freq</span></div>
-        <div class="kpi fbx"><span class="lab">eCPM</span><span class="val">$10.53</span><span class="delta up">▼ 7.8% (cheaper)</span></div>
-        <div class="kpi fbx"><span class="lab">Desktop share</span><span class="val">~3%</span><span class="delta down">97% mobile</span></div>
-        <div class="kpi fbx"><span class="lab">Site visits (GA4)</span><span class="val">8</span><span class="delta flat">1 engaged</span></div>
-        <div class="kpi fbx"><span class="lab">Direct leads</span><span class="val">0</span><span class="delta flat">awareness KPI</span></div>
-      </div>
-
-      <div class="sec fbx"><span class="n">3</span> How we stack up vs Reddit B2B benchmarks</div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Metric</th><th class="num">Reveal this week</th><th>Reddit B2B benchmark</th><th>Read</th></tr></thead>
-          <tbody>
-            <tr><td>Click-through rate</td><td class="num">0.78%</td><td>0.2% – 0.5% (≈0.8% for sharp niche creative)</td><td><span class="pill good">Above benchmark</span></td></tr>
-            <tr><td>Cost per click</td><td class="num">$1.35</td><td>$0.50 – $2.00</td><td><span class="pill good">In range</span></td></tr>
-            <tr><td>eCPM (cost / 1k impr)</td><td class="num">$10.53</td><td>$3 – $10</td><td><span class="pill warn">At top edge</span></td></tr>
-            <tr><td>Cost per lead</td><td class="num">n/a</td><td>$50 – $100 (qualified)</td><td><span class="pill warn">No direct leads yet</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p style="font-size:12px;color:var(--muted);margin:8px 2px 0">Read: the ad still earns attention efficiently (CTR above benchmark, CPC in range) and got cheaper WoW. eCPM improved to the top edge of the B2B range — the premium we pay for comments-page placement in a narrow niche, which shrinks as targeting tightens. Benchmarks are B2B/SaaS ranges; see Sources in chat.</p>
-
-      <div class="sec fbx"><span class="n">4</span> Goal scoreboard</div>
-      <div class="score">
-        <table>
-          <thead><tr><th>Goal</th><th>Target</th><th>This week</th><th>Status</th><th>Progress to goal</th></tr></thead>
-          <tbody>
-            <tr>
-              <td class="goal">Reach the developer ICP</td><td>Majority of impr in dev / data / tech communities</td><td>&lt;5% on-target</td>
-              <td><span class="pill bad">Behind</span></td>
-              <td><div style="background:var(--gray-bg);border-radius:999px;height:7px;width:110px;overflow:hidden"><div style="background:var(--bad);height:7px;width:10%"></div></div></td>
-            </tr>
-            <tr>
-              <td class="goal">Earn the click (CTR)</td><td>&ge; 0.50% (B2B benchmark)</td><td>0.78%</td>
-              <td><span class="pill good">On track</span></td>
-              <td><div style="background:var(--gray-bg);border-radius:999px;height:7px;width:110px;overflow:hidden"><div style="background:var(--good);height:7px;width:100%"></div></div><span style="font-size:11px;color:var(--muted);margin-left:6px">156% of target</span></td>
-            </tr>
-            <tr>
-              <td class="goal">Cost-per-click efficiency</td><td>&le; $2.00 (B2B range)</td><td>$1.35</td>
-              <td><span class="pill good">On track</span></td>
-              <td><div style="background:var(--gray-bg);border-radius:999px;height:7px;width:110px;overflow:hidden"><div style="background:var(--good);height:7px;width:100%"></div></div><span style="font-size:11px;color:var(--muted);margin-left:6px">33% under cap</span></td>
-            </tr>
-            <tr>
-              <td class="goal">Impression cost (eCPM)</td><td>&le; $10.00 (B2B range)</td><td>$10.53</td>
-              <td><span class="pill warn">Watch</span></td>
-              <td><div style="background:var(--gray-bg);border-radius:999px;height:7px;width:110px;overflow:hidden"><div style="background:var(--warn);height:7px;width:95%"></div></div><span style="font-size:11px;color:var(--muted);margin-left:6px">5% over</span></td>
-            </tr>
-            <tr>
-              <td class="goal">Reach the right device</td><td>&ge; 40% desktop (where devs evaluate)</td><td>~3% desktop</td>
-              <td><span class="pill bad">Behind</span></td>
-              <td><div style="background:var(--gray-bg);border-radius:999px;height:7px;width:110px;overflow:hidden"><div style="background:var(--bad);height:7px;width:7%"></div></div></td>
-            </tr>
-            <tr>
-              <td class="goal">Influence pipeline</td><td>Assisted / influenced touches (awareness KPI — direct leads not expected near-term)</td><td>0 direct · influence not yet measurable</td>
-              <td><span class="pill warn">Early</span></td>
-              <td><div style="background:var(--gray-bg);border-radius:999px;height:7px;width:110px;overflow:hidden"><div style="background:var(--gray);height:7px;width:5%"></div></div></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="sec fbx"><span class="n">5</span> What's working / what's not</div>
-      <div class="cards">
-        <div class="card fbx">
-          <div class="ch"><span class="nm">Working</span><span class="sp">the top of the funnel got cheaper</span></div>
-          <div class="cb"><b>The ad earns attention, and this week it cost less to do it.</b> CTR held at 0.78% (above the B2B benchmark) while CPC dropped 3% to $1.35 and eCPM fell nearly 8% to $10.53. Targeting is cleanly US-only, so no money is wasted off-geo. And the "Embedded Analytics Into Your App" creative out-pulls the webinar angle again — we have a message that resonates with devs.</div>
-        </div>
-        <div class="card fbx">
-          <div class="ch"><span class="nm">Not working</span><span class="sp">where the money lands</span></div>
-          <div class="cb"><b>Delivery is still aimed at the wrong place.</b> 97% of spend sits on mobile, 78% of it on comment threads sprayed across consumer subreddits, and only ~3% reaches desktop. Devs evaluating an SDK do it on a laptop, not mid-scroll on their phone — so the clicks stay low-intent and don't become real sessions (280 clicks → 8 GA4 visits). This is a targeting problem, not a creative or tracking problem.</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== TAB 2: COMMUNITIES & PLACEMENTS ===================== -->
-    <section class="tabpanel" data-tab="communities" data-label="Communities &amp; Placements">
-
-      <div class="sec fbx"><span class="n">1</span> First, how Reddit delivery works</div>
-      <div class="lead fbx">Reddit shows ads in two main spots: the <b>Feed</b> (between posts as you scroll a subreddit or your home feed) and the <b>Comments page</b> (inside a post's comment thread). Where your ad runs is driven by your targeting — you can target specific <b>communities</b> (subreddits) and interests, or let Reddit broaden delivery. Broad delivery is cheap and gets huge reach, but on a niche B2B product it scatters your budget into places your buyer never is. That's exactly what's happening here, so this tab is about steering the money to the right rooms.</div>
-
-      <div class="sec fbx"><span class="n">2</span> Placement — where the money goes</div>
-      <div class="lead fbx"><b>78% of spend ($295) is on the Comments-page placement</b>, 21% on Feed. Comments-page clicks show a higher headline CTR (0.85% vs Feed's 0.58%), but that placement is the one most prone to accidental mobile taps — and, as the device and community data below show, those impressions are landing far from our audience. The higher CTR there is partly a mirage.</div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Placement</th><th class="num">Spend</th><th class="num">Impr</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">CPC</th><th class="num">% spend</th></tr></thead>
-          <tbody>
-            <tr><td>Comments page</td><td class="num">$294.81</td><td class="num">25,984</td><td class="num">221</td><td class="num">0.85%</td><td class="num">$1.33</td><td class="num">78.2%</td></tr>
-            <tr><td>Feed</td><td class="num">$77.66</td><td class="num">9,548</td><td class="num">55</td><td class="num">0.58%</td><td class="num">$1.41</td><td class="num">20.6%</td></tr>
-            <tr><td>Other</td><td class="num">$4.66</td><td class="num">270</td><td class="num">4</td><td class="num">1.48%</td><td class="num">$1.17</td><td class="num">1.2%</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="sec fbx"><span class="n">3</span> Device — the biggest tell this week</div>
-      <div class="lead fbx"><b>97% of spend is mobile, 79% iOS alone; desktop gets ~3%.</b> For a developer-tooling product this is backwards. A dev doesn't evaluate an embedded-analytics SDK on their phone between subreddits — they do it at a desk. Notice Windows carries the <b>highest CTR (0.92%)</b> and one of the lowest CPCs ($1.32) of any device, on almost no budget. We're starving the one surface where real intent lives (the Site Behavior tab shows those desktop visits engaging far better).</div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Device</th><th class="num">Spend</th><th class="num">Impr</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">CPC</th><th class="num">% spend</th></tr></thead>
-          <tbody>
-            <tr><td>iOS (mobile)</td><td class="num">$296.70</td><td class="num">27,425</td><td class="num">221</td><td class="num">0.81%</td><td class="num">$1.34</td><td class="num">78.7%</td></tr>
-            <tr><td>Android (mobile)</td><td class="num">$67.89</td><td class="num">6,903</td><td class="num">49</td><td class="num">0.71%</td><td class="num">$1.39</td><td class="num">18.0%</td></tr>
-            <tr><td>Windows (desktop)</td><td class="num">$9.21</td><td class="num">760</td><td class="num">7</td><td class="num">0.92%</td><td class="num">$1.32</td><td class="num">2.4%</td></tr>
-            <tr><td>macOS (desktop)</td><td class="num">$1.32</td><td class="num">370</td><td class="num">1</td><td class="num">0.27%</td><td class="num">$1.32</td><td class="num">0.4%</td></tr>
-            <tr><td>Other</td><td class="num">$2.01</td><td class="num">345</td><td class="num">2</td><td class="num">0.58%</td><td class="num">$1.00</td><td class="num">0.5%</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="sec fbx"><span class="n">4</span> Community delivery — are we in the right subreddits?</div>
-      <div class="lead fbx">No. The comments-page broad delivery scatters impressions across <b>thousands of unrelated communities</b> at 1–13 impressions each. The dev/data communities we actually want barely register, while most reach goes to consumer subreddits with zero relevance to embedded analytics — this week's sample includes r/airfryer, r/2000snostalgia, r/adviceanimals and r/3dprinting.</div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Community (sample)</th><th class="num">Impr (wk)</th><th>Fit for Reveal</th></tr></thead>
-          <tbody>
-            <tr><td>r/advertising</td><td class="num">13</td><td><span class="pill warn">Adjacent</span></td></tr>
-            <tr><td>r/ai_agents</td><td class="num">4</td><td><span class="pill warn">Adjacent</span></td></tr>
-            <tr><td>r/aidiscussion</td><td class="num">3</td><td><span class="pill warn">Adjacent</span></td></tr>
-            <tr><td>r/3dprinting</td><td class="num">3</td><td><span class="pill bad">Off-target</span></td></tr>
-            <tr><td>r/airfryer, r/adviceanimals, r/2000snostalgia, r/aitah, r/amazonecho …</td><td class="num">1–8 ea.</td><td><span class="pill bad">Off-target</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="cards">
-        <div class="card fbx">
-          <div class="ch"><span class="nm">The fix</span><span class="sp">steer the money</span></div>
-          <div class="cb">Three concrete moves for whoever manages the account: <b>(1)</b> switch from broad delivery to <b>hand-picked community targeting</b> — r/dataengineering, r/analytics, r/BusinessIntelligence, r/dotnet, r/reactjs, r/webdev, r/SaaS, r/programming, r/dataisbeautiful. <b>(2)</b> Add a <b>device bid/target toward desktop</b> so we reach devs where they evaluate. <b>(3)</b> Rebalance from Comments-page toward <b>Feed</b>, which shows real intent rather than accidental taps. Same budget, aimed at the right rooms.</div>
-        </div>
-      </div>
-      <p style="font-size:12px;color:var(--muted);margin:10px 2px 0">Data note: Reddit did not return spend at the individual-community grain, and engagement fields (upvotes, comments, saves) came back empty via the connector — community analysis here is based on impression delivery.</p>
-    </section>
-
-    <!-- ===================== TAB 3: CREATIVE & MESSAGING ===================== -->
-    <section class="tabpanel" data-tab="creative" data-label="Creative &amp; Messaging">
-
-      <div class="sec fbx"><span class="n">1</span> What's in market and how it's doing</div>
-      <div class="lead fbx">Two angles are running: a product/value angle — <b>"Embedded Analytics Into Your App"</b> (three variants) — and an event angle, <b>"Webinar — Build vs Buy."</b> The product angle wins on CTR and earns the vast majority of spend ($363 of $377); the webinar angle is the weakest and smallest, and was throttled way down this week to under $14. Every variant clears the Reddit B2B CTR benchmark (~0.5%), so the creative itself is not the problem — it's a solid message reaching the wrong audience.</div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Ad / angle</th><th class="num">Spend</th><th class="num">Impr</th><th class="num">Clicks</th><th class="num">CTR</th><th>vs 0.5% B2B</th></tr></thead>
-          <tbody>
-            <tr><td>Embedded Analytics Into Your App — v3</td><td class="num">$142.96</td><td class="num">12,673</td><td class="num">103</td><td class="num">0.81%</td><td><span class="pill good">+63%</span></td></tr>
-            <tr><td>Embedded Analytics Into Your App — v2</td><td class="num">$114.52</td><td class="num">10,764</td><td class="num">85</td><td class="num">0.79%</td><td><span class="pill good">+58%</span></td></tr>
-            <tr><td>Embedded Analytics Into Your App — v1</td><td class="num">$105.71</td><td class="num">10,884</td><td class="num">81</td><td class="num">0.74%</td><td><span class="pill good">+49%</span></td></tr>
-            <tr><td>Webinar — Build vs Buy</td><td class="num">$13.94</td><td class="num">1,482</td><td class="num">11</td><td class="num">0.74%</td><td><span class="pill good">+48%</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="sec fbx"><span class="n">2</span> The angle read — week over week</div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Angle</th><th class="num">CTR prior wk</th><th class="num">CTR this wk</th><th>Read &amp; call</th></tr></thead>
-          <tbody>
-            <tr><td>Embedded Analytics Into Your App</td><td class="num">~0.84%</td><td class="num">~0.78%</td><td>Consistent winner — speaks to the dev's job; eased slightly but still well above benchmark. <span class="pill good">Keep &amp; scale</span></td></tr>
-            <tr><td>Webinar — Build vs Buy</td><td class="num">0.73%</td><td class="num">0.74%</td><td>Throttled to almost nothing this week; a registration ask is heavy for cold awareness. <span class="pill warn">Rework</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="sec fbx"><span class="n">3</span> What makes Reddit creative work (context)</div>
-      <div class="lead fbx">Reddit users — especially in dev communities — reward ads that feel native and authentic and punish anything that looks like a glossy billboard. The strongest performers are usually specific and technical: a real problem stated plainly, a code snippet or product screenshot, and a claim you can back up. That's the lane our "embedded analytics" message is already in, which is why it's winning — the test plan below pushes further down it.</div>
-
-      <div class="sec fbx"><span class="n">4</span> Test plan — next up</div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Test</th><th>Hypothesis — why it should work</th><th>Priority</th></tr></thead>
-          <tbody>
-            <tr><td>Pain-led hook — "Stop rebuilding dashboards for every customer"</td><td>Names the dev's actual pain; qualifies the click toward people with the problem we solve.</td><td><span class="pill bad">High</span></td></tr>
-            <tr><td>Dev-credibility proof — SDK snippet / "drop-in React &amp; JS component" visual</td><td>Reddit devs trust code over marketing; raises intent quality of the traffic.</td><td><span class="pill bad">High</span></td></tr>
-            <tr><td>Conquest angle — "The Power BI Embedded alternative that doesn't lock you in"</td><td>Captures devs actively researching alternatives; ties to our vs-pages.</td><td><span class="pill warn">Medium</span></td></tr>
-            <tr><td>Rework the Webinar ad into a value teaser</td><td>A signup demand is too heavy cold; lead with the insight, not the form.</td><td><span class="pill warn">Medium</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p style="font-size:12px;color:var(--muted);margin:8px 2px 0">Judge these on CTR and on-site engagement (once desktop/community targeting is fixed), not on direct leads — this is an awareness channel.</p>
-    </section>
-
-    <!-- ===================== TAB 4: SITE BEHAVIOR (GA4) ===================== -->
-    <section class="tabpanel" data-tab="ga4" data-label="Site Behavior (GA4)">
-
-      <div class="sec fbx"><span class="n">1</span> What this tab tracks</div>
-      <div class="lead fbx">This is the on-site view of Reddit traffic from GA4 (property <code>revealbi.io</code>): how many people Reddit sends to the site, whether that's growing, and how they behave once they arrive. Weekly counts are tiny, so we read it <b>monthly</b> — and the monthly view tells a real story. <b>Headline: Reddit drove big traffic in spring (291 sessions in March, 381 in April), the campaign went dark in May ($0 spend, 3 sessions), and it returned in June–July at a fraction of the size. More telling: each click now delivers far fewer real site visits than it used to.</b></div>
-
-      <div class="sec fbx"><span class="n">2</span> On-site snapshot</div>
-      <div class="kpigrid">
-        <div class="kpi fbx"><span class="lab">Sessions (Jul MTD)</span><span class="val">46</span><span class="delta down">▼ 88% vs Apr</span></div>
-        <div class="kpi fbx"><span class="lab">Peak month (Apr)</span><span class="val">381</span><span class="delta flat">$2.8k spend</span></div>
-        <div class="kpi fbx"><span class="lab">Click→visit rate</span><span class="val">~5%</span><span class="delta down">was ~34% in spring</span></div>
-        <div class="kpi fbx"><span class="lab">Engagement (Jul)</span><span class="val">19.6%</span><span class="delta flat">Jun 39%</span></div>
-        <div class="kpi fbx"><span class="lab">Desktop vs mobile</span><span class="val">3.6×</span><span class="delta up">better engagement</span></div>
-      </div>
-
-      <div class="sec fbx"><span class="n">3</span> Reddit site traffic by month — is it growing?</div>
-      <div class="chartgrid">
-        <div class="chartcard">
-          <h4>Sessions vs spend by month</h4>
-          <p class="cap">GA4 reddit sessions (bars) against Reddit Ads spend (line) · 2026.</p>
-          <div class="chartbox"><canvas id="chMonthly"></canvas></div>
-        </div>
-        <div class="chartcard">
-          <h4>Click → site-visit rate by month</h4>
-          <p class="cap">Share of Reddit clicks that became a tracked GA4 session.</p>
-          <div class="chartbox"><canvas id="chC2S"></canvas></div>
-        </div>
-      </div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Month</th><th class="num">Spend</th><th class="num">Clicks</th><th class="num">GA4 sessions</th><th class="num">Click→visit</th><th class="num">Engagement</th><th class="num">Avg session</th></tr></thead>
-          <tbody>
-            <tr><td>March</td><td class="num">$1,802</td><td class="num">860</td><td class="num">291</td><td class="num">33.8%</td><td class="num">12.0%</td><td class="num">1m 22s</td></tr>
-            <tr><td>April</td><td class="num">$2,763</td><td class="num">1,076</td><td class="num">381</td><td class="num">35.4%</td><td class="num">15.8%</td><td class="num">1m 06s</td></tr>
-            <tr><td>May</td><td class="num">$0</td><td class="num">0</td><td class="num">3</td><td class="num">—</td><td class="num">66.7%</td><td class="num">22s</td></tr>
-            <tr><td>June</td><td class="num">$1,289</td><td class="num">754</td><td class="num">56</td><td class="num">7.4%</td><td class="num">39.3%</td><td class="num">9m 50s</td></tr>
-            <tr><td>July*</td><td class="num">$1,347</td><td class="num">994</td><td class="num">46</td><td class="num">4.6%</td><td class="num">19.6%</td><td class="num">4m 43s</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="lead fbx" style="margin-top:12px">Two things stand out. <b>(1) We're not growing — we're well below the spring peak,</b> and the May gap shows how directly traffic tracks spend (spend off → traffic off). <b>(2) The click has gotten much weaker:</b> in March–April roughly <b>a third of clicks became real site visits; now it's under 5%.</b> Similar click volume, far fewer landings — the fingerprint of the shift to mobile comment-page taps. Pulling that click→visit rate back up is exactly what the targeting fix (desktop + dev communities) is for. <span style="color:var(--muted)">*July is month-to-date through Jul 26.</span></div>
-
-      <div class="sec fbx"><span class="n">4</span> Mobile vs desktop — the behavior gap</div>
-      <div class="chartgrid">
-        <div class="chartcard">
-          <h4>Sessions by device (last 30 days)</h4>
-          <p class="cap">Where Reddit visitors come from.</p>
-          <div class="chartbox"><canvas id="chDeviceMix"></canvas></div>
-        </div>
-        <div class="chartcard">
-          <h4>Engagement rate by device</h4>
-          <p class="cap">How well each device engages once on-site.</p>
-          <div class="chartbox"><canvas id="chDeviceEng"></canvas></div>
-        </div>
-      </div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Device</th><th class="num">Sessions</th><th class="num">Engaged</th><th class="num">Engagement rate</th><th class="num">Bounce</th><th class="num">Avg session</th></tr></thead>
-          <tbody>
-            <tr><td>Desktop</td><td class="num">15</td><td class="num">8</td><td class="num">53.3%</td><td class="num">46.7%</td><td class="num">13m 36s</td></tr>
-            <tr><td>Mobile</td><td class="num">41</td><td class="num">6</td><td class="num">14.6%</td><td class="num">85.4%</td><td class="num">1m 40s</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="lead fbx" style="margin-top:12px"><b>This is the most important chart in the report.</b> Desktop is only about a quarter of Reddit sessions but engages <b>3.6× better (53.3% vs 14.6%)</b> and stays <b>~8× longer (13.6 min vs 1.7 min)</b>. The few desktop visitors are the real researchers; the mobile majority mostly bounces (85%). It's the on-site proof for the media recommendation: <b>push spend toward desktop and we should see engaged sessions rise even if raw click volume falls.</b></div>
-
-      <div class="sec fbx"><span class="n">5</span> Where they land &amp; what they do</div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Landing page</th><th class="num">Sessions</th><th class="num">Engaged</th><th class="num">Engagement rate</th><th class="num">Avg session</th></tr></thead>
-          <tbody>
-            <tr><td>/ (homepage)</td><td class="num">7</td><td class="num">1</td><td class="num">14.3%</td><td class="num">52s</td></tr>
-            <tr><td>/webinars/build-vs-buy-in-the-age-of-ai</td><td class="num">1</td><td class="num">0</td><td class="num">0%</td><td class="num">3s</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="cards">
-        <div class="card fbx">
-          <div class="ch"><span class="nm">Read</span><span class="sp">landing experience</span></div>
-          <div class="cb">Nearly all Reddit visitors land on the <b>homepage</b> and most leave quickly — the ad promises "embedded analytics" but drops people on a general page rather than a focused, dev-oriented destination. <b>Recommendation:</b> point Reddit ads at a purpose-built landing page (e.g. <code>/embedded-analytics</code> with an SDK snippet and a live demo), and once UTM tags are on, watch this table by campaign/creative to see which angle earns real on-page time.</div>
-        </div>
-      </div>
-      <p style="font-size:12px;color:var(--muted);margin:10px 2px 0">Source: GA4 property revealbi.io, session source contains "reddit". Landing-page rows are the current week; trend and device views use rolling windows (YTD months / 30 days) so small daily counts don't mislead.</p>
-    </section>
-
-    <!-- ===================== TAB 5: JOURNEY & ROI ===================== -->
-    <section class="tabpanel" data-tab="journey" data-label="Journey &amp; ROI">
-
-      <div class="sec fbx"><span class="n">1</span> The journey, stage by stage</div>
-      <div class="lead fbx">Here's the money's path from impression to lead. The drop is early — between the click and a real site visit — and the device and placement data explain exactly why.</div>
-      <div class="dtable">
-        <table>
-          <thead><tr><th>Stage</th><th class="num">This week</th><th>What it means</th></tr></thead>
-          <tbody>
-            <tr><td>Spend</td><td class="num">$377</td><td>~1.5% of paid budget — a deliberate small bet</td></tr>
-            <tr><td>Impressions</td><td class="num">35,802</td><td>~34k US devs reached; 78% on comments-page</td></tr>
-            <tr><td>Clicks (Reddit)</td><td class="num">280</td><td>0.78% CTR — above B2B benchmark</td></tr>
-            <tr><td>Site visits (GA4)</td><td class="num">8</td><td>real sessions from Reddit (1 engaged); ~97% mobile clicks don't make it here</td></tr>
-            <tr><td>Conversions (GA4)</td><td class="num">0</td><td>expected — awareness traffic rarely converts same-session</td></tr>
-            <tr><td>Direct-attributed leads (Salesforce)</td><td class="num">0</td><td>no Reddit-sourced Reveal lead events this period</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="sec fbx"><span class="n">2</span> Where are the clicks going? (the click-vs-visit gap)</div>
-      <div class="cards">
-        <div class="card fbx">
-          <div class="ch"><span class="nm">280 clicks, 8 site visits — here's why</span><span class="sp">not a bug</span></div>
-          <div class="cb">
-            <b>1. A Reddit "click" isn't a website visit.</b> On mobile comment threads, a large share of taps are accidental — the user bounces before the page (and our analytics) ever loads. Reddit still counts the tap; GA4 never sees a session.
-            <br><b>2. ~97% of our clicks are mobile.</b> A developer isn't going to evaluate an embedded-analytics SDK on their phone mid-scroll. Even genuine curiosity doesn't turn into a real research session on a handset.
-            <br><b>3. So the 8 GA4 visits are the "real" ones.</b> The gap between 280 and 8 is mostly a <b>traffic-quality signal</b>, not a measurement failure — and it points straight back to the targeting fix (desktop + dev communities). See the Site Behavior tab for the device proof.
-          </div>
-        </div>
-      </div>
-
-      <div class="sec fbx"><span class="n">3</span> How Reddit leads will show up in Salesforce</div>
-      <div class="lead fbx">There <b>is</b> a clean attribution path, and it already works. When someone clicks a Reddit ad and later fills out a form, it lands as a <b>Lead Event</b> (<code>Lead_Event__c</code>) with <b>Product Family = Reveal</b>, <b>Tracking Source = reddit.com</b>, <b>Tracking Medium = referral</b> — the same mechanism capturing our paid leads this month: <b>Google (79), Bing (32), LinkedIn (3)</b>. This period Reddit produced <b>0 direct-attributed Reveal lead events</b> — which is what we'd expect from an awareness channel, and it will populate automatically here the moment a direct lead comes through. As targeting tightens, expect Reddit to show up first as assisted/influenced touches, then occasionally as a direct source.</div>
-
-      <div class="sec fbx"><span class="n">4</span> One measurement enhancement (nice-to-have)</div>
-      <div class="lead fbx">Our Reddit ad links aren't UTM-tagged, so GA4 currently files the traffic as <code>reddit.com / referral</code> instead of <code>reddit / cpc</code>. This isn't breaking attribution — leads still flow through the Lead Event tracking-source field above. But adding <code>utm_source=reddit&amp;utm_medium=cpc</code> (plus campaign/creative) would let GA4 report Reddit as a clean paid channel and tie the Site Behavior views above to specific campaigns and ads. Worth doing, not urgent.</div>
-
-      <div class="verdict fbx">
-        <div class="vh">Verdict — Keep &amp; Retarget</div>
-        <p><b>Keep the channel — but fix the targeting before judging its ROI.</b> Reddit had a steadier, slightly cheaper week — beating the B2B CTR benchmark at a lower CPC and eCPM, with a message developers respond to. Its only real weakness is unchanged: ~97% of spend lands on mobile, most of it comment threads in unrelated subreddits, with almost nothing on desktop — and the Site Behavior tab shows desktop visitors engage 3.6× better. Next 30 days: <b>(1)</b> switch to hand-picked developer/data community targeting and exclude the consumer long-tail; <b>(2)</b> push delivery toward desktop and the Feed; <b>(3)</b> point ads at a purpose-built landing page and add UTM tags so GA4 reads it as <code>reddit / cpc</code>. Then measure it as an awareness channel — engaged sessions and assisted/influenced touches, not last-click leads. <b>If, properly targeted, it still can't put engaged developers on the site, the call flips to cut-and-reallocate to Google/Bing capture.</b></p>
-      </div>
-    </section>
-
-  </div>
-
+<!-- VP READOUT -->
+<div class="vpbanner">
+  <div class="vbar"><div class="t">VP Readout &mdash; 30-second view</div><div class="g">Goal: developer awareness &amp; recall &mdash; cheap, relevant eyeballs on Reveal (not last-click leads)</div></div>
+  <div class="vrow fbx" data-fb-label="VP Readout — Fix"><div class="pill2 fix">Fix</div><div class="rtx"><h4>Reddit clicks are not turning into site visits &mdash; the money is buying taps, not traffic</h4><p>286 ad clicks this week, but GA4 saw only ~10 Reddit sessions land on the site. 72% of spend runs on the comments page and ~98% on mobile, where accidental taps inflate clicks. Fix at targeting/placement: shift to Feed, add desktop, hand-pick dev communities.</p></div></div>
+  <div class="vrow fbx" data-fb-label="VP Readout — Working"><div class="pill2 work">Working</div><div class="rtx"><h4>Cheap, above-benchmark reach &mdash; the awareness job is getting done</h4><p>0.83% CTR beats the B2B Reddit norm (0.2&ndash;0.5%) at a $1.33 CPC, putting Reveal in front of ~32k people this week. For an awareness play, the top of the funnel is efficient.</p></div></div>
+  <div class="vrow fbx" data-fb-label="VP Readout — Watch"><div class="pill2 watch">Watch</div><div class="rtx"><h4>One creative concept carrying the whole channel</h4><p>Every live ad is a variant of &ldquo;Embedded Analytics Into Your App&rdquo;; the BuildvsBuy webinar creative dropped off this week. eCPM also crept to $11, just above the $3&ndash;10 range &mdash; both signal early fatigue to monitor.</p></div></div>
 </div>
 
-<script>
-  // Build the tab bar from whatever panels the agent injected.
-  var panels = Array.prototype.slice.call(document.querySelectorAll('.tabpanel'));
-  var bar = document.getElementById('tabbar');
-  panels.forEach(function(p,i){
-    var b=document.createElement('button');
-    b.className='tab'+(i===0?' on':''); b.textContent=p.dataset.label||('Tab '+(i+1));
-    b.addEventListener('click',function(){
-      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
-      panels.forEach(function(x){x.classList.remove('on');});
-      b.classList.add('on'); p.classList.add('on');
-      window.scrollTo({top:0,behavior:'smooth'});
-      setTimeout(function(){window.dispatchEvent(new Event('resize'));},60);
-    });
-    bar.appendChild(b);
-    if(i===0) p.classList.add('on');
-  });
+<div class="tabbar">
+  <button class="active" data-tab="ov">Overview</button>
+  <button data-tab="cp">Communities &amp; Placements</button>
+  <button data-tab="cr">Creative &amp; Messaging</button>
+  <button data-tab="ga">Site Behavior (GA4)</button>
+  <button data-tab="jr">Journey &amp; ROI</button>
+</div>
 
-  // ---- GA4 charts ----
-  var C={accent:'#EC417A',cobalt:'#2A41A2',peri:'#6C8CFD',good:'#12915b',bad:'#c23b39',warn:'#b7791f',gray:'#8a93a3',line:'#E9E9F4',muted:'#5f6b7a'};
-  var months=['Mar','Apr','May','Jun','Jul*'];
-  Chart.defaults.font.family="'Roboto',system-ui,sans-serif";
-  Chart.defaults.color=C.muted;
-  Chart.defaults.plugins.legend.labels.boxWidth=12;
-  Chart.defaults.plugins.legend.labels.font={size:11};
+<!-- ============ TAB 1 OVERVIEW ============ -->
+<section class="panel active first" id="ov">
 
-  new Chart(document.getElementById('chMonthly'),{
-    data:{labels:months,datasets:[
-      {type:'bar',label:'GA4 sessions',data:[291,381,3,56,46],backgroundColor:C.peri,borderRadius:4,yAxisID:'y',order:2},
-      {type:'line',label:'Reddit spend',data:[1802,2763,0,1289,1347],borderColor:C.accent,backgroundColor:'rgba(236,65,122,.08)',tension:.3,pointRadius:3,yAxisID:'y1',order:1,fill:true}
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,
-      scales:{
-        y:{position:'left',beginAtZero:true,grid:{color:C.line},title:{display:true,text:'Sessions'}},
-        y1:{position:'right',beginAtZero:true,grid:{display:false},ticks:{callback:function(v){return '$'+(v/1000)+'k';}},title:{display:true,text:'Spend'}},
-        x:{grid:{display:false}}
-      },
-      plugins:{legend:{position:'bottom'}}}
-  });
+  <div class="sec fbx" data-fb-label="Overview — The rundown">The rundown</div>
+  <div class="rundown">
+    <p>Reddit did its awareness job again this week, but a little smaller. We spent about <span class="bl">$381</span> (down 6% from last week) to put Reveal in front of roughly <span class="bl">32,000 people</span>, and they clicked at <span class="bl">0.83%</span> &mdash; still comfortably above the B2B Reddit norm. On the surface, cheap and relevant eyeballs at a reasonable price.</p>
+    <p>The problem sits one step down the funnel. Of the <span class="bl">286 clicks</span> we paid for, only about <span class="bl">10</span> actually showed up as sessions on the site in GA4. That gap isn&rsquo;t a tracking bug &mdash; it&rsquo;s a quality signal. Nearly three-quarters of spend runs on the Reddit <span class="bl">comments page</span> and ~98% on <span class="bl">mobile</span>, where a large share of &ldquo;clicks&rdquo; are accidental thumb taps that never load our page. The click&rarr;visit rate has slid from ~35% in spring to under 5% this summer.</p>
+    <p><span class="bl">Bottom line:</span> keep Reddit running for developer awareness &mdash; the reach and CTR justify it &mdash; but stop paying comments-page/mobile rates for taps that don&rsquo;t convert to visits. The single highest-leverage move is to shift budget toward the Feed, layer in desktop, and hand-pick developer/data communities instead of broad delivery into consumer subreddits.</p>
+  </div>
 
-  new Chart(document.getElementById('chC2S'),{
-    type:'bar',
-    data:{labels:months,datasets:[{label:'Click → visit %',data:[33.8,35.4,null,7.4,4.6],backgroundColor:[C.good,C.good,C.gray,C.warn,C.bad],borderRadius:4}]},
-    options:{responsive:true,maintainAspectRatio:false,
-      scales:{y:{beginAtZero:true,grid:{color:C.line},ticks:{callback:function(v){return v+'%';}}},x:{grid:{display:false}}},
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return (c.raw==null?'no spend':c.raw+'% of clicks landed');}}}}}
-  });
+  <div class="sec fbx" data-fb-label="Overview — KPI scoreboard">This week vs last (WoW)</div>
+  <div class="kpigrid">
+    <div class="kpi fbx" data-fb-label="KPI — Spend"><div class="l">Spend</div><div class="v">$381</div><div class="d down">&darr; 6.1%</div></div>
+    <div class="kpi fbx" data-fb-label="KPI — Impressions"><div class="l">Impressions</div><div class="v">34,380</div><div class="d down">&darr; 11.1%</div></div>
+    <div class="kpi fbx" data-fb-label="KPI — Clicks"><div class="l">Clicks</div><div class="v">286</div><div class="d down">&darr; 5.3%</div></div>
+    <div class="kpi fbx" data-fb-label="KPI — CTR"><div class="l">CTR</div><div class="v">0.83%</div><div class="d up">&uarr; 0.05pp</div></div>
+    <div class="kpi fbx" data-fb-label="KPI — CPC"><div class="l">CPC</div><div class="v">$1.33</div><div class="d flat">&ndash; 0.9%</div></div>
+    <div class="kpi fbx" data-fb-label="KPI — Reach"><div class="l">Reach</div><div class="v">32,072</div><div class="d down">&darr; 13.0%</div></div>
+    <div class="kpi fbx" data-fb-label="KPI — Frequency"><div class="l">Frequency</div><div class="v">1.07</div><div class="d flat">&uarr; 2.3%</div></div>
+    <div class="kpi fbx" data-fb-label="KPI — eCPM"><div class="l">eCPM</div><div class="v">$11.08</div><div class="d down">&uarr; 5.5%</div></div>
+    <div class="kpi fbx" data-fb-label="KPI — GA4 site visits"><div class="l">GA4 visits</div><div class="v">10</div><div class="d up">&uarr; from 8</div></div>
+    <div class="kpi fbx" data-fb-label="KPI — Reddit leads"><div class="l">Direct leads</div><div class="v">0</div><div class="d flat">expected</div></div>
+  </div>
+  <p class="note">Reddit&rsquo;s own dashboard reports 187 &ldquo;page visit&rdquo; conversions this week; GA4 &mdash; the source of truth for site traffic &mdash; counts ~10 Reddit sessions. We report both and treat GA4 as truth.</p>
 
-  new Chart(document.getElementById('chDeviceMix'),{
-    type:'doughnut',
-    data:{labels:['Mobile','Desktop'],datasets:[{data:[41,15],backgroundColor:[C.gray,C.cobalt],borderWidth:2,borderColor:'#fff'}]},
-    options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom'}}}
-  });
+  <div class="sec fbx" data-fb-label="Overview — Benchmarks">Benchmark check (B2B/SaaS Reddit ranges)</div>
+  <table>
+    <thead><tr><th>Metric</th><th class="n">Reveal this week</th><th>B2B Reddit range</th><th>Read</th></tr></thead>
+    <tbody>
+      <tr><td>CTR</td><td class="n">0.83%</td><td>0.2&ndash;0.5% (~0.8% strong niche)</td><td><span class="pill good">Strong</span></td></tr>
+      <tr><td>CPC</td><td class="n">$1.33</td><td>$0.50&ndash;$2.00</td><td><span class="pill good">In range</span></td></tr>
+      <tr><td>eCPM</td><td class="n">$11.08</td><td>$3&ndash;$10</td><td><span class="pill warn">Just over</span></td></tr>
+      <tr><td>CPL (qualified)</td><td class="n">n/a</td><td>$50&ndash;$100</td><td><span class="pill na">Awareness &mdash; 0 direct</span></td></tr>
+    </tbody>
+  </table>
 
-  new Chart(document.getElementById('chDeviceEng'),{
-    type:'bar',
-    data:{labels:['Desktop','Mobile'],datasets:[{label:'Engagement rate %',data:[53.3,14.6],backgroundColor:[C.cobalt,C.gray],borderRadius:4}]},
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-      scales:{x:{beginAtZero:true,max:100,grid:{color:C.line},ticks:{callback:function(v){return v+'%';}}},y:{grid:{display:false}}},
-      plugins:{legend:{display:false}}}
-  });
-</script>
+  <div class="sec fbx" data-fb-label="Overview — Goal scoreboard">Goal scoreboard</div>
+  <table>
+    <thead><tr><th>Goal</th><th>Target</th><th class="n">This week</th><th>Status</th><th>Progress</th></tr></thead>
+    <tbody>
+      <tr><td>Weekly reach (awareness)</td><td>~30k</td><td class="n">32,072</td><td><span class="pill good">On track</span></td><td><div class="bar"><span style="width:100%;background:#12915b"></span></div></td></tr>
+      <tr><td>CTR</td><td>&ge; 0.5%</td><td class="n">0.83%</td><td><span class="pill good">Exceeds</span></td><td><div class="bar"><span style="width:100%;background:#12915b"></span></div></td></tr>
+      <tr><td>CPC</td><td>&lt; $2.00</td><td class="n">$1.33</td><td><span class="pill good">On track</span></td><td><div class="bar"><span style="width:84%;background:#12915b"></span></div></td></tr>
+      <tr><td>eCPM</td><td>&lt; $10</td><td class="n">$11.08</td><td><span class="pill warn">At risk</span></td><td><div class="bar"><span style="width:90%;background:#b7791f"></span></div></td></tr>
+      <tr><td>Click&rarr;visit quality</td><td>&ge; 25%</td><td class="n">~3.5%</td><td><span class="pill bad">Behind</span></td><td><div class="bar"><span style="width:14%;background:#c23b39"></span></div></td></tr>
+    </tbody>
+  </table>
 
-<!-- ===== FEEDBACK LOOP (teaches the agent) ===== -->
-<style>
-  .fbx{position:relative}
-  .fbtn{position:absolute;top:6px;right:6px;z-index:3;width:22px;height:22px;border:none;border-radius:7px;background:#eef1fb;color:#2A41A2;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .12s;padding:0;box-shadow:0 1px 2px rgba(15,23,42,.14)}
-  .fbtn:hover{background:#2A41A2;color:#fff}
-  .fbtn svg{width:13px;height:13px}
-  .fbx:hover>.fbtn,.fbtn:focus-visible{opacity:1}
-  li.fbx>.fbtn{top:-1px;right:0;width:20px;height:20px}
-  .fbmodal{position:fixed;inset:0;background:rgba(15,23,42,.5);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
-  .fbmodal.on{display:flex}
-  .fbcard{background:#fff;border-radius:16px;max-width:470px;width:100%;box-shadow:0 20px 60px rgba(15,23,42,.32);overflow:hidden;font-family:'Roboto',system-ui,sans-serif}
-  .fbhd{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 20px}
-  .fbhd .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.85;font-weight:600}
-  .fbhd .l{font-size:15px;font-weight:800;margin-top:3px;line-height:1.3}
-  .fbbd{padding:16px 20px}
-  .fbbd label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#5f6b7a;display:block;margin:0 0 7px}
-  .fbcats{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
-  .fbcat{font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;border:1.5px solid #e3e7f2;background:#fff;color:#41506b;cursor:pointer;font-family:inherit}
-  .fbcat.sel{border-color:#2A41A2;background:#eef1fb;color:#2A41A2}
-  .fbbd textarea{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13.5px;resize:vertical;min-height:74px;box-sizing:border-box}
-  .fbbd textarea:focus,.fbval:focus{outline:none;border-color:#2A41A2}
-  .fbvalwrap{display:none;margin-top:12px}.fbvalwrap.on{display:block}
-  .fbval{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:9px 12px;font-family:inherit;font-size:13.5px;box-sizing:border-box}
-  .fbft{display:flex;gap:10px;justify-content:flex-end;padding:14px 20px;border-top:1px solid #eef1f7;background:#fbfcff}
-  .fbbtn{font-family:inherit;font-size:13px;font-weight:600;padding:9px 15px;border-radius:9px;cursor:pointer;border:none}
-  .fbbtn.sec{background:#eef0f5;color:#41506b}
-  .fbbtn.pri{background:linear-gradient(120deg,#2A41A2,#3a54cf);color:#fff}
-  .fbbtn.pri:disabled{opacity:.5;cursor:not-allowed}
-  .fbtoast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0F172A;color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:300;opacity:0;transition:opacity .2s;box-shadow:0 8px 30px rgba(0,0,0,.3);max-width:90%;text-align:center;pointer-events:none}
-  .fbtoast.on{opacity:1}
-</style>
-<div class="fbmodal" id="fbModal" role="dialog" aria-modal="true" aria-label="Send feedback to the agent">
+  <div class="cards2">
+    <div class="card win fbx" data-fb-label="Overview — What's working"><h4>What&rsquo;s working</h4>
+      <ul>
+        <li>CTR 0.83% &mdash; above B2B Reddit norms, at a healthy $1.33 CPC.</li>
+        <li>Reach ~32k for &lt;$400; awareness delivery is cheap and steady.</li>
+        <li>The sessions that <em>do</em> land are decent &mdash; 40% engagement rate, ~5 min avg on the homepage this week.</li>
+      </ul>
+    </div>
+    <div class="card bad fbx" data-fb-label="Overview — What's not"><h4>What&rsquo;s not</h4>
+      <ul>
+        <li>Click&rarr;visit collapse: 286 clicks &rarr; ~10 GA4 sessions (down from ~35% in spring to &lt;5%).</li>
+        <li>72% of spend on the comments page; ~98% on mobile &mdash; the low-quality-tap zone.</li>
+        <li>Delivery is broad: impressions scattered across consumer subs (airfryer, aitah) rather than dev/data communities.</li>
+        <li>One creative concept live; eCPM creeping above range.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAB 2 COMMUNITIES & PLACEMENTS ============ -->
+<section class="panel" id="cp">
+  <div class="sec fbx" data-fb-label="Placements — How Reddit delivery works">How Reddit delivery works</div>
+  <p class="lede">Reddit serves ads in two main spots. The <span class="mono">Feed</span> looks like a normal post while a user scrolls &mdash; intentional, higher-intent clicks. The <span class="mono">Comments page</span> sits inside a thread a user opened to read; clicks there are cheaper but include a lot of accidental taps. Targeting can be set by <em>community</em> (subreddit), interest, or left broad &mdash; and broad delivery is where our impressions are leaking into consumer subreddits.</p>
+
+  <div class="sec fbx" data-fb-label="Placements — Placement table">Placement (current week)</div>
+  <table>
+    <thead><tr><th>Placement</th><th class="n">Spend</th><th class="n">% spend</th><th class="n">Impr</th><th class="n">Clicks</th><th class="n">CTR</th><th class="n">CPC</th></tr></thead>
+    <tbody>
+      <tr><td>Comments page</td><td class="n">$273.04</td><td class="n">71.7%</td><td class="n">24,027</td><td class="n">209</td><td class="n">0.87%</td><td class="n">$1.31</td></tr>
+      <tr><td>Feed</td><td class="n">$107.95</td><td class="n">28.3%</td><td class="n">10,256</td><td class="n">77</td><td class="n">0.75%</td><td class="n">$1.40</td></tr>
+      <tr><td>Other</td><td class="n">$0.00</td><td class="n">0%</td><td class="n">97</td><td class="n">0</td><td class="n">0%</td><td class="n">&mdash;</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Nearly three of every four dollars run on the comments page &mdash; the placement most exposed to accidental taps and the likeliest driver of the click&rarr;visit gap.</p>
+
+  <div class="sec fbx" data-fb-label="Placements — Device table">Device split (Reddit spend, current week)</div>
+  <table>
+    <thead><tr><th>Device OS</th><th class="n">Spend</th><th class="n">% spend</th><th class="n">Impr</th><th class="n">Clicks</th><th class="n">CTR</th></tr></thead>
+    <tbody>
+      <tr><td>iOS</td><td class="n">$307.83</td><td class="n">80.8%</td><td class="n">26,727</td><td class="n">231</td><td class="n">0.86%</td></tr>
+      <tr><td>Android</td><td class="n">$66.68</td><td class="n">17.5%</td><td class="n">6,889</td><td class="n">50</td><td class="n">0.73%</td></tr>
+      <tr><td>Other</td><td class="n">$4.28</td><td class="n">1.1%</td><td class="n">189</td><td class="n">3</td><td class="n">1.59%</td></tr>
+      <tr><td>macOS</td><td class="n">$1.19</td><td class="n">0.3%</td><td class="n">201</td><td class="n">1</td><td class="n">0.50%</td></tr>
+      <tr><td>Windows</td><td class="n">$1.02</td><td class="n">0.3%</td><td class="n">374</td><td class="n">1</td><td class="n">0.27%</td></tr>
+    </tbody>
+  </table>
+  <p class="note">~98% of spend is mobile (iOS + Android). Desktop &mdash; where developers actually evaluate an embedded-analytics SDK &mdash; gets almost none of the budget. This mobile skew compounds the comments-page tap problem.</p>
+
+  <div class="sec fbx" data-fb-label="Placements — Community delivery">Community delivery (impressions, current week)</div>
+  <p class="note">Spend does not break out at the community grain and engagement fields return empty, so this is an impression-delivery read only. Delivery is broad and consumer-skewed.</p>
+  <table>
+    <thead><tr><th>Target fit</th><th>Example communities receiving impressions</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill good">On / adjacent</span></td><td class="mono">r/advertising, r/3dprinting, r/ai_agents, r/aipromptprogramming, r/agency, r/accenture</td></tr>
+      <tr><td><span class="pill bad">Off-target (consumer)</span></td><td class="mono">r/airfryer, r/90dayfiance, r/aitah, r/acnh, r/amazonprime, r/allinclusiveresorts, r/adulting</td></tr>
+    </tbody>
+  </table>
+  <p class="note">The on-target subs receive a trickle of impressions (single digits each); the consumer long-tail absorbs the bulk. Almost none of this is in front of the developer/data audience we&rsquo;re buying.</p>
+
+  <div class="fixcard fbx" data-fb-label="Placements — The fix">
+    <h4>The fix</h4>
+    <ul>
+      <li><b>Hand-pick communities.</b> Build a curated dev/data list &mdash; r/dataengineering, r/BusinessIntelligence, r/webdev, r/SaaS, r/dotnet, r/reactjs, r/programming &mdash; and turn off broad delivery into consumer subs.</li>
+      <li><b>Shift toward Feed.</b> Move budget from comments page to Feed placements to buy intentional clicks, even at a slightly higher CPC.</li>
+      <li><b>Add desktop targeting.</b> Stop concentrating ~98% of spend on mobile; developers evaluate on desktop.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ TAB 3 CREATIVE & MESSAGING ============ -->
+<section class="panel" id="cr">
+  <div class="sec fbx" data-fb-label="Creative — Table">Creative performance (current week)</div>
+  <table>
+    <thead><tr><th>Ad</th><th class="n">Spend</th><th class="n">Impr</th><th class="n">Clicks</th><th class="n">CTR</th><th>vs 0.5% B2B</th><th class="n">Page visits</th></tr></thead>
+    <tbody>
+      <tr><td>Embedded Analytics Into Your App &mdash; v1</td><td class="n">$138.38</td><td class="n">12,785</td><td class="n">108</td><td class="n">0.84%</td><td><span class="pill good">+0.34pp</span></td><td class="n">71</td></tr>
+      <tr><td>Embedded Analytics Into Your App &mdash; v2</td><td class="n">$121.64</td><td class="n">10,373</td><td class="n">92</td><td class="n">0.89%</td><td><span class="pill good">+0.39pp</span></td><td class="n">59</td></tr>
+      <tr><td>Embedded Analytics Into Your App &mdash; v3</td><td class="n">$120.97</td><td class="n">11,222</td><td class="n">86</td><td class="n">0.77%</td><td><span class="pill good">+0.27pp</span></td><td class="n">57</td></tr>
+    </tbody>
+  </table>
+  <p class="note">All three live ads are variants of a single concept. Last week a fourth creative &mdash; &ldquo;Webinar &mdash; BuildvsBuy&rdquo; ($13.94, 0.74% CTR) &mdash; was also running; it dropped off this week, leaving no angle diversity.</p>
+
+  <div class="sec fbx" data-fb-label="Creative — Angle read">Angle read (WoW)</div>
+  <p class="lede">The &ldquo;Embedded Analytics Into Your App&rdquo; product angle holds a steady ~0.83% CTR week over week &mdash; it works. But with the BuildvsBuy webinar angle paused, the account is now a single message with three cosmetic variants. There is no build-vs-buy, competitor-conquest, or developer-experience angle in market to test against it, and eCPM is ticking up &mdash; an early fatigue signal.</p>
+
+  <div class="callout fbx" data-fb-label="Creative — What makes Reddit creative work">What makes Reddit creative work: Reddit users reward ads that read like a native post &mdash; plain, specific, and non-salesy. Developer audiences respond to a concrete problem statement (&ldquo;embed dashboards without building a BI tool&rdquo;), a code/product screenshot, and a straight answer to &ldquo;why not just use X.&rdquo; Polished brand creative underperforms; a founder/engineer voice outperforms.</div>
+
+  <div class="sec fbx" data-fb-label="Creative — Test plan">Test plan</div>
+  <table>
+    <thead><tr><th>Test</th><th>Hypothesis</th><th>Priority</th></tr></thead>
+    <tbody>
+      <tr><td>Build-vs-buy angle (revive)</td><td>&ldquo;Don&rsquo;t build your own BI &mdash; embed Reveal&rdquo; speaks to the dev decision moment and lifts click quality, not just CTR.</td><td><span class="pill bad">High</span></td></tr>
+      <tr><td>Competitor conquest</td><td>&ldquo;Power BI Embedded alternative&rdquo; framing captures in-market intent and improves click&rarr;visit rate.</td><td><span class="pill bad">High</span></td></tr>
+      <tr><td>Native founder/engineer voice</td><td>A plain-text, screenshot-led post outperforms polished brand creative on Reddit.</td><td><span class="pill warn">Medium</span></td></tr>
+      <tr><td>Feed-only creative variant</td><td>Creative written for Feed (vs comments) lifts intentional clicks that survive to a GA4 session.</td><td><span class="pill warn">Medium</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ TAB 4 SITE BEHAVIOR (GA4) ============ -->
+<section class="panel" id="ga">
+  <div class="sec fbx" data-fb-label="GA4 — Intro">Site behavior (GA4) &mdash; monthly view</div>
+  <p class="lede">Weekly Reddit traffic to the site is too thin to read on its own (single-digit to low-double-digit sessions), so we look at it monthly. GA4 is the source of truth for what actually reached the site &mdash; and it tells a very different story than Reddit&rsquo;s in-platform click count.</p>
+
+  <div class="kpigrid" style="grid-template-columns:repeat(4,1fr)">
+    <div class="kpi fbx" data-fb-label="GA4 KPI — Weekly sessions"><div class="l">Reddit sessions (wk)</div><div class="v">10</div><div class="d up">&uarr; from 8</div></div>
+    <div class="kpi fbx" data-fb-label="GA4 KPI — Engaged"><div class="l">Engaged (wk)</div><div class="v">4</div><div class="d up">&uarr; from 1</div></div>
+    <div class="kpi fbx" data-fb-label="GA4 KPI — Engagement rate"><div class="l">Engagement rate</div><div class="v">40%</div><div class="d up">&uarr;</div></div>
+    <div class="kpi fbx" data-fb-label="GA4 KPI — Avg session"><div class="l">Avg session</div><div class="v">4:55</div><div class="d flat">homepage</div></div>
+  </div>
+
+  <div class="sec fbx" data-fb-label="GA4 — Sessions vs spend chart">Sessions vs spend, and the click&rarr;visit collapse</div>
+  <div class="grid2">
+    <div class="chartbox"><canvas id="chSess"></canvas></div>
+    <div class="chartbox"><canvas id="chC2V"></canvas></div>
+  </div>
+  <table>
+    <thead><tr><th>Month</th><th class="n">Reddit spend</th><th class="n">Clicks</th><th class="n">GA4 sessions</th><th class="n">Click&rarr;visit %</th><th class="n">Engagement</th><th class="n">Avg session</th></tr></thead>
+    <tbody>
+      <tr><td>Mar</td><td class="n">$1,802</td><td class="n">860</td><td class="n">291</td><td class="n">33.8%</td><td class="n">12.0%</td><td class="n">1:22</td></tr>
+      <tr><td>Apr</td><td class="n">$2,763</td><td class="n">1,076</td><td class="n">381</td><td class="n">35.4%</td><td class="n">15.8%</td><td class="n">1:06</td></tr>
+      <tr><td>May</td><td class="n">$0</td><td class="n">0</td><td class="n">3</td><td class="n">&mdash;</td><td class="n">66.7%</td><td class="n">0:22</td></tr>
+      <tr><td>Jun</td><td class="n">$1,289</td><td class="n">754</td><td class="n">56</td><td class="n">7.4%</td><td class="n">39.3%</td><td class="n">9:50</td></tr>
+      <tr><td>Jul</td><td class="n">$1,622</td><td class="n">1,196</td><td class="n">56</td><td class="n">4.7%</td><td class="n">23.2%</td><td class="n">4:45</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Spend paused entirely in May, then resumed. The story: the <b>click&rarr;visit rate collapsed from ~35% in spring to under 5% this summer</b> &mdash; the same period spend concentrated on comments-page/mobile. We are buying more clicks (1,196 in July) that reach the site less (56 sessions).</p>
+
+  <div class="sec fbx" data-fb-label="GA4 — Device gap">Mobile vs desktop behavior (trailing 30 days)</div>
+  <div class="grid2">
+    <div class="chartbox sm"><canvas id="chDevPie"></canvas></div>
+    <div class="chartbox sm"><canvas id="chDevEng"></canvas></div>
+  </div>
+  <table>
+    <thead><tr><th>Device</th><th class="n">Sessions</th><th class="n">Engaged</th><th class="n">Engagement rate</th><th class="n">Bounce</th><th class="n">Avg session</th></tr></thead>
+    <tbody>
+      <tr><td>Mobile</td><td class="n">39</td><td class="n">10</td><td class="n">25.6%</td><td class="n">74.4%</td><td class="n">3:00</td></tr>
+      <tr><td>Desktop</td><td class="n">9</td><td class="n">1</td><td class="n">11.1%</td><td class="n">88.9%</td><td class="n">0:10</td></tr>
+      <tr><td>Tablet</td><td class="n">1</td><td class="n">0</td><td class="n">0%</td><td class="n">100%</td><td class="n">0:02</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Mobile carries ~80% of the Reddit sessions that reach the site &mdash; unsurprising given ~98% of spend is mobile. The desktop sample (9 sessions) is too small to draw a firm engagement conclusion this period; the takeaway is simply that desktop is barely being funded at all, so we can&rsquo;t yet judge whether desktop visitors convert better.</p>
+
+  <div class="sec fbx" data-fb-label="GA4 — Landing pages">Landing pages (current week)</div>
+  <table>
+    <thead><tr><th>Landing page</th><th class="n">Sessions</th><th class="n">Engaged</th><th class="n">Engagement rate</th><th class="n">Avg session</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">/ (homepage)</td><td class="n">10</td><td class="n">4</td><td class="n">40%</td><td class="n">4:55</td></tr>
+    </tbody>
+  </table>
+  <div class="fixcard fbx" data-fb-label="GA4 — Landing recommendation">
+    <h4>Landing experience recommendation</h4>
+    <ul>
+      <li>All Reddit traffic lands on the generic homepage. Point Reddit ads at <span class="mono">/embedded-analytics</span> &mdash; a page that matches the &ldquo;embed analytics into your app&rdquo; message and gives a developer a clear next step (docs, live demo, trial).</li>
+      <li>Add a Reddit-specific UTM so these sessions are attributable and the landing page can be optimized against them.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ TAB 5 JOURNEY & ROI ============ -->
+<section class="panel" id="jr">
+  <div class="sec fbx" data-fb-label="Journey — Funnel">The funnel (current week)</div>
+  <table>
+    <thead><tr><th>Stage</th><th class="n">Value</th><th>What it means</th></tr></thead>
+    <tbody>
+      <tr><td>Spend</td><td class="n">$381</td><td>Awareness budget, down 6% WoW.</td></tr>
+      <tr><td>Impressions</td><td class="n">34,380</td><td>Reach ~32k people; frequency 1.07 &mdash; barely repeating.</td></tr>
+      <tr><td>Clicks</td><td class="n">286</td><td>0.83% CTR &mdash; above benchmark.</td></tr>
+      <tr><td>Reddit &ldquo;page visits&rdquo;</td><td class="n">187</td><td>Reddit&rsquo;s in-platform count &mdash; inflated by comments-page taps.</td></tr>
+      <tr><td>GA4 site visits</td><td class="n">~10</td><td>The real number that reached the site. This is the break point.</td></tr>
+      <tr><td>SF direct leads</td><td class="n">0</td><td>Expected for an awareness channel &mdash; Reddit works via assisted recall, not last click.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="card bad fbx" data-fb-label="Journey — Where are the clicks going">
+    <h4>Where are the clicks going?</h4>
+    <ul>
+      <li>286 paid clicks vs ~10 GA4 sessions is a <b>traffic-quality signal, not a tracking bug</b>. Reddit fires a click the instant a tap registers; the visit only counts if the page actually loads and the user stays.</li>
+      <li>~98% of spend is mobile and ~72% is on the comments page &mdash; the exact conditions for accidental thumb taps that bounce before the page loads.</li>
+      <li>The fix is upstream (Feed, desktop, curated communities), not more tracking.</li>
+    </ul>
+  </div>
+
+  <div class="sec fbx" data-fb-label="Journey — Salesforce attribution">Salesforce attribution</div>
+  <p class="lede">Reddit leads would land through the same path that already captures Google, Bing, and LinkedIn: the <span class="mono">Lead_Event__c</span> object, with <span class="mono">ProductFamilyName__c = Reveal</span>, <span class="mono">TrackingSource__c = reddit.com</span>, and <span class="mono">TrackingMedium__c = referral</span>. Over the last 30 days the Reveal channel mix shows (direct) 281, google 65, webinar 17, bing 10, linkedin 3 &mdash; and <b>zero reddit</b>. That is the expected result for an awareness play; Reddit&rsquo;s value is discovery and recall that shows up later as a direct or branded search visit, not a same-session Reddit lead.</p>
+  <p class="note">UTM nice-to-have: Reddit currently lands as <span class="mono">reddit.com / referral</span> rather than <span class="mono">reddit / cpc</span>. Tagging the ad URLs with proper UTMs would let both GA4 and Salesforce credit Reddit cleanly instead of folding it into referral/direct.</p>
+
+  <div class="verdict fbx" data-fb-label="Journey — Verdict">
+    <div class="vh">Verdict</div>
+    <div class="vt">Keep &amp; Retarget</div>
+    <p>Reddit earns its place as a cheap, above-benchmark <b>developer awareness</b> channel &mdash; 32k reach at 0.83% CTR for &lt;$400/week. Do not cut it, and do not judge it on 0 direct leads.</p>
+    <p>But stop overpaying for taps that never become visits. The mandate this month: shift budget from comments-page/mobile to <b>Feed + desktop</b>, replace broad delivery with a <b>curated developer/data community list</b>, point clicks at <span class="mono">/embedded-analytics</span> with proper UTMs, and revive a second creative angle. Re-check the click&rarr;visit rate in two weeks &mdash; the target is to pull it back above 25%.</p>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<!-- ============ FEEDBACK LOOP ============ -->
+<div class="fbmodal" id="fbModal">
   <div class="fbcard">
-    <div class="fbhd"><div class="k">Feedback to the agent</div><div class="l" id="fbLabel">—</div></div>
-    <div class="fbbd">
-      <label>What kind of feedback?</label>
-      <div class="fbcats" id="fbCats">
-        <button type="button" class="fbcat" data-cat="Won't do — strategic">Won't do — strategic</button>
-        <button type="button" class="fbcat" data-cat="Disagree">Disagree</button>
-        <button type="button" class="fbcat" data-cat="Wrong number">Wrong number</button>
-        <button type="button" class="fbcat" data-cat="Add context">Add context</button>
-        <button type="button" class="fbcat" data-cat="Approve">Approve</button>
-      </div>
-      <label>Why / details</label>
-      <textarea id="fbReason" placeholder="e.g. Hold this recommendation — we're deliberately doing X because Y."></textarea>
-      <div class="fbvalwrap" id="fbValWrap"><label>Correct value</label><input class="fbval" id="fbVal" placeholder="e.g. 168"></div>
+    <h3>Flag this for the team</h3>
+    <div class="ctx" id="fbCtx">&nbsp;</div>
+    <div class="fbcats" id="fbCats">
+      <button class="fbcat" data-cat="Won't do — strategic">Won&rsquo;t do &mdash; strategic</button>
+      <button class="fbcat" data-cat="Disagree">Disagree</button>
+      <button class="fbcat" data-cat="Wrong number">Wrong number</button>
+      <button class="fbcat" data-cat="Add context">Add context</button>
+      <button class="fbcat" data-cat="Approve">Approve</button>
     </div>
-    <div class="fbft">
-      <button type="button" class="fbbtn sec" id="fbCancel">Cancel</button>
-      <button type="button" class="fbbtn pri" id="fbSend" disabled>Copy &amp; open Slingshot</button>
+    <input id="fbCorrect" placeholder="Correct value (e.g. $1.29)">
+    <textarea id="fbReason" placeholder="Reason / note for the team (optional)"></textarea>
+    <div class="fbrow">
+      <button onclick="fbClose()">Cancel</button>
+      <button class="pri" onclick="fbSubmit()">Copy &amp; open thread</button>
     </div>
   </div>
 </div>
-<div class="fbtoast" id="fbToast"></div>
+<div class="fbtoast" id="fbToast">Copied &mdash; opening feedback thread&hellip;</div>
+
 <script>
 (function(){
+  // ---- tabs ----
+  var btns=[].slice.call(document.querySelectorAll('.tabbar button'));
+  var panels=[].slice.call(document.querySelectorAll('.panel'));
+  btns.forEach(function(b){b.addEventListener('click',function(){
+    btns.forEach(function(x){x.classList.remove('active')});
+    panels.forEach(function(x){x.classList.remove('active')});
+    b.classList.add('active');
+    var p=document.getElementById(b.dataset.tab); if(p)p.classList.add('active');
+    window.dispatchEvent(new Event('resize'));
+  })});
+
+  // ---- charts ----
+  function mk(id,cfg){var el=document.getElementById(id); if(el&&window.Chart){new Chart(el,cfg);}}
+  var months=['Mar','Apr','May','Jun','Jul'];
+  mk('chSess',{type:'bar',data:{labels:months,datasets:[
+      {label:'GA4 sessions',data:[291,381,3,56,56],backgroundColor:'#6C8CFD',yAxisID:'y',order:2},
+      {label:'Reddit spend ($)',data:[1802,2763,0,1289,1622],type:'line',borderColor:'#EC417A',backgroundColor:'#EC417A',tension:.3,yAxisID:'y1',order:1}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'GA4 sessions (bars) vs Reddit spend (line)'}},scales:{y:{position:'left',title:{display:true,text:'Sessions'}},y1:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'Spend $'}}}}});
+  mk('chC2V',{type:'bar',data:{labels:months,datasets:[
+      {label:'Click → visit %',data:[33.8,35.4,0,7.4,4.7],backgroundColor:['#12915b','#12915b','#8a93a3','#b7791f','#c23b39']}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},title:{display:true,text:'Click → site-visit rate by month (%)'}},scales:{y:{title:{display:true,text:'%'}}}}});
+  mk('chDevPie',{type:'doughnut',data:{labels:['Mobile','Desktop','Tablet'],datasets:[{data:[39,9,1],backgroundColor:['#EC417A','#2A41A2','#8a93a3']}]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'GA4 sessions by device (30d)'}}}});
+  mk('chDevEng',{type:'bar',data:{labels:['Mobile','Desktop','Tablet'],datasets:[{label:'Engagement rate %',data:[25.6,11.1,0],backgroundColor:'#6C8CFD'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},title:{display:true,text:'Engagement rate by device (30d)'}},scales:{y:{title:{display:true,text:'%'}}}}});
+
+  // ---- feedback loop ----
   var FEEDBACK_URL="https://app.slingshotapp.io/openDiscussion/e97e10ef_b4c1ff6c-3dc7-47c1-909d-aaff8dcfb922";
-  var CHANNEL="Reddit";                                      /* label added to every submission */
-  var SCOPE="body";                                          /* your report container selector */
-  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
-  var secs=[],modal,curLabel="",curSection="",cat=null;
-  function labelFor(el){var t=(el.getAttribute('data-fb-label')||el.textContent||'').replace(/\s+/g,' ').trim();return t.length>90?t.slice(0,88)+'…':t;}
-  function sectionFor(el){var best="";for(var i=0;i<secs.length;i++){if(secs[i].compareDocumentPosition(el)&Node.DOCUMENT_POSITION_FOLLOWING){best=secs[i].textContent.replace(/\s+/g,' ').trim();}}return best;}
-  function addIcons(){document.querySelectorAll(SCOPE+' .fbx').forEach(function(el){if(el.querySelector(':scope > .fbtn'))return;var b=document.createElement('button');b.className='fbtn';b.type='button';b.title='Send feedback to the agent';b.innerHTML=ICON;b.addEventListener('click',function(ev){ev.stopPropagation();ev.preventDefault();openModal(el);});el.appendChild(b);});}
-  function openModal(el){curLabel=labelFor(el);curSection=sectionFor(el);cat=null;document.getElementById('fbLabel').textContent=(curSection?curSection+' › ':'')+curLabel;document.getElementById('fbReason').value='';document.getElementById('fbVal').value='';document.getElementById('fbValWrap').classList.remove('on');document.querySelectorAll('.fbcat').forEach(function(c){c.classList.remove('sel');});document.getElementById('fbSend').disabled=true;modal.classList.add('on');setTimeout(function(){document.getElementById('fbReason').focus();},60);}
-  function closeModal(){modal.classList.remove('on');}
-  function refreshSend(){var r=document.getElementById('fbReason').value.trim();document.getElementById('fbSend').disabled=!(cat&&r);}
-  function toast(m){var t=document.getElementById('fbToast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on');},3600);}
-  function send(){var reason=document.getElementById('fbReason').value.trim();var val=document.getElementById('fbVal').value.trim();var d=new Date().toISOString().slice(0,10);var lines=['📋 *Agent feedback — Reveal '+CHANNEL+'*','Element: '+(curSection?curSection+' › ':'')+curLabel,'Category: '+cat,'Reason: '+reason];if(cat==='Wrong number'&&val)lines.push('Correct value: '+val);lines.push('Submitted: '+d);var payload=lines.join('\n');var done=function(){toast('Feedback copied — paste (⌘/Ctrl+V) into the Slingshot thread');window.open(FEEDBACK_URL,'_blank');closeModal();};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(payload).then(done,done);}else{var ta=document.createElement('textarea');ta.value=payload;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}}
-  document.addEventListener('DOMContentLoaded',function(){modal=document.getElementById('fbModal');secs=[].slice.call(document.querySelectorAll(SCOPE+' .sec'));addIcons();document.getElementById('fbCats').addEventListener('click',function(e){var b=e.target.closest('.fbcat');if(!b)return;cat=b.dataset.cat;document.querySelectorAll('.fbcat').forEach(function(c){c.classList.toggle('sel',c===b);});document.getElementById('fbValWrap').classList.toggle('on',cat==='Wrong number');refreshSend();});document.getElementById('fbReason').addEventListener('input',refreshSend);document.getElementById('fbCancel').addEventListener('click',closeModal);document.getElementById('fbSend').addEventListener('click',send);modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});});
+  var CHANNEL="Reddit", SCOPE="body";
+  var secs=[].slice.call(document.querySelectorAll(SCOPE+' .sec'));
+  function nearestSec(el){var y=el.getBoundingClientRect().top;var best='',bd=1e9;secs.forEach(function(s){var t=s.getBoundingClientRect().top;if(t<=y+4&&y-t<bd){bd=y-t;best=s.textContent.trim();}});return best;}
+  var cur={label:'',section:'',cat:'',el:null};
+  [].slice.call(document.querySelectorAll('.fbx')).forEach(function(el){
+    var b=document.createElement('button');b.className='fbtn';b.textContent='⚑';b.title='Flag for the team';
+    b.addEventListener('click',function(ev){ev.stopPropagation();fbOpen(el);});
+    el.appendChild(b);
+  });
+  function fbOpen(el){cur.el=el;cur.label=el.getAttribute('data-fb-label')||'';cur.section=nearestSec(el);cur.cat='';
+    document.getElementById('fbCtx').textContent=(cur.section?cur.section+'  ·  ':'')+cur.label;
+    [].slice.call(document.querySelectorAll('.fbcat')).forEach(function(c){c.classList.remove('sel')});
+    document.getElementById('fbReason').value='';document.getElementById('fbCorrect').value='';document.getElementById('fbCorrect').style.display='none';
+    document.getElementById('fbModal').classList.add('open');}
+  window.fbClose=function(){document.getElementById('fbModal').classList.remove('open');};
+  [].slice.call(document.querySelectorAll('.fbcat')).forEach(function(c){c.addEventListener('click',function(){
+    [].slice.call(document.querySelectorAll('.fbcat')).forEach(function(x){x.classList.remove('sel')});
+    c.classList.add('sel');cur.cat=c.dataset.cat;
+    document.getElementById('fbCorrect').style.display=(cur.cat==='Wrong number')?'block':'none';
+  })});
+  window.fbSubmit=function(){
+    var reason=document.getElementById('fbReason').value.trim();
+    var correct=document.getElementById('fbCorrect').value.trim();
+    var lines=['Agent feedback — Reveal '+CHANNEL,
+      'Section: '+(cur.section||'—'),
+      'Item: '+(cur.label||'—'),
+      'Category: '+(cur.cat||'—')];
+    if(cur.cat==='Wrong number'&&correct)lines.push('Correct value: '+correct);
+    if(reason)lines.push('Note: '+reason);
+    var txt=lines.join('\n');
+    if(navigator.clipboard){navigator.clipboard.writeText(txt).catch(function(){});}
+    var t=document.getElementById('fbToast');t.classList.add('show');
+    setTimeout(function(){t.classList.remove('show');},2600);
+    fbClose();
+    window.open(FEEDBACK_URL,'_blank');
+  };
+  document.getElementById('fbModal').addEventListener('click',function(e){if(e.target===this)fbClose();});
 })();
 </script>
 </body>
