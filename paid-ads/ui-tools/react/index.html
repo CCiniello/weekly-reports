@@ -96,8 +96,9 @@
   @media(max-width:720px){.glossary{grid-template-columns:1fr}}
   .gitem{border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:13px}
   .gitem b{color:var(--navy)}
-  .pkgs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  @media(max-width:720px){.pkgs{grid-template-columns:1fr}}
+  .pkgs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media(max-width:900px){.pkgs{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.pkgs{grid-template-columns:1fr}}
   .pkg{border:1px solid var(--line);border-radius:12px;padding:14px 16px}
   .pkg .pn{font-family:var(--mono);font-weight:700;color:var(--accent-deep);font-size:13px}
   .pkg .pv{font-size:12px;color:var(--muted);margin-top:4px}
@@ -167,19 +168,14 @@
   #summary .summary-card p{margin:0 0 12px} #summary .summary-card b{color:var(--navy)}
   #summary .summary-card ul{margin:0 0 12px;padding-left:20px} #summary .summary-card li{margin-bottom:6px}
 
-  /* FEEDBACK */
-  .fbx{position:relative;transition:box-shadow .15s}
-  .fbx:hover{box-shadow:0 0 0 2px var(--accent-soft),0 0 0 3px var(--accent);border-radius:8px;cursor:pointer}
-  .fbx:hover::after{content:"\1F4AC feedback";position:absolute;top:-9px;right:-6px;background:var(--accent-deep);color:#fff;font-size:9px;font-weight:700;padding:1px 6px;border-radius:999px;letter-spacing:.03em;z-index:8}
-  .fbtn{position:fixed;right:22px;bottom:22px;z-index:120;display:inline-flex;align-items:center;gap:8px;background:linear-gradient(120deg,var(--accent),var(--accent-deep));color:#fff;font-weight:700;font-size:13px;padding:12px 17px;border-radius:999px;text-decoration:none;box-shadow:0 6px 20px rgba(225,78,18,.35)}
-  .fbtn:hover{filter:brightness(1.06)} .fbtn svg{width:15px;height:15px}
   .fbhint{font-size:11.5px;color:var(--muted);margin:4px 2px 0}
   svg.cliff{width:100%;height:auto;display:block}
+  .outage{border:1px solid #f3c6c5;background:#fff6f5;border-radius:12px;padding:12px 16px;font-size:13px;color:#7a2422;margin-bottom:14px}
+  .outage b{color:var(--bad)}
 </style>
 </head>
 <body class="theme-ui">
 <a class="hubnav" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg> All Reports</a>
-<a class="fbtn fbx" href="https://app.slingshotapp.io/openDiscussion/e97e10ef_2cc8dab7-c994-41e7-a34e-8d1f243a4170" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Leave feedback</a>
 
 <div class="wrap">
   <header class="top">
@@ -199,17 +195,19 @@
 
   <!-- ============ TAB 1: REPORT ============ -->
   <section class="tabpanel on" data-tab="report" data-label="Report">
+    <div class="outage"><b>Data outage this run:</b> Supermetrics lost its connection to Google Ads (acct 9179838229) and GA4 (property 516222862) — every query returned "no accounts found" plus a trial-expiry warning. The Bing/Microsoft Ads connector (Adzviser) isn't available in this session at all. Google Ads/GA4 figures below are <b>carried forward from the last confirmed pull (week of Jul 27–Aug 2) and re-labeled — not reconfirmed this run.</b> NPM installs are live and current (pulled fresh today via WebFetch). Reconnect is in progress with JJ.</div>
+
     <div class="sec"><span class="n">1</span> VP readout — most important first</div>
     <div class="vp">
-      <div class="row"><div class="lbl fix">Fix</div><div class="txt fbx"><b>We are still flying blind on Google Ads.</b> $4,761 spent this week produced ~56 GA4 React cpc sessions and zero tracked search conversions. The click&rarr;session signal is broken (cpc sessions fell 24,599/mo in May to 352 in July). Repairing conversion tracking is overdue (due Jul 29, still open).</div></div>
-      <div class="row"><div class="lbl work">Working</div><div class="txt fbx"><b>Last week's Compete budget bet paid off.</b> Search-Compete absolute-top IS jumped <b>54% &rarr; 74%</b>, rank-lost-abs-top fell 35% &rarr; 20%. Grids rank-lost also improved sharply (71% &rarr; 46%) after the keyword/search-term cleanup. And <b>Bing React is now live</b> (Compete + Grids) with strong early abs-top IS (79–91%).</div></div>
-      <div class="row"><div class="lbl watch">Watch</div><div class="txt fbx"><b>Quality Score is capping our head terms.</b> Our highest-spend keyword — <code>react chart library</code> ($495/wk) — sits at QS2; <code>ag grid react</code> and <code>react component library</code> at QS1. Charts lost 61% of abs-top to rank. Grids has flipped from rank-limited to budget-limited (budget-lost-abs-top 13% &rarr; 37%).</div></div>
+      <div class="row"><div class="lbl fix">Fix</div><div class="txt"><b>Supermetrics disconnected — Google Ads &amp; GA4 are dark this run.</b> Both accounts_discovery calls returned zero accounts; every response flagged the Supermetrics trial expiring in 2 days. Bing's connector is also unavailable this session. Until reconnected, every paid-media number below (except npm) is last-known, not current. Tracked as a P1 task, due Aug 10.</div></div>
+      <div class="row"><div class="lbl work">Working</div><div class="txt"><b>NPM installs are now a real, live metric.</b> The earlier "proxy-blocked" read was wrong for WebFetch — we pulled true current-week and 30-day download data for all 4 tracked packages today. Combined weekly installs: <b>9,688</b> (core+grids+charts+react), ~58.5k over the trailing month.</div></div>
+      <div class="row"><div class="lbl watch">Watch</div><div class="txt"><b>Reporting model corrected.</b> React has no conversion event by design (ungated trial, no form fill) — we've retired "conversion tracking broken" language and rebuilt the scoreboard around traffic + engagement. Separately, JJ flagged that Intl/EMEA campaigns exist at the campaign level (not just PMax) and that a dedicated "React Table" search campaign may be getting conflated with Grids — both need the live Google Ads campaign list to resolve, which is blocked until Supermetrics reconnects.</div></div>
     </div>
-    <p class="fbhint">Hover any KPI, goal, or recommendation to leave targeted feedback &rarr; posts to the Agent Feedback discussion.</p>
+    <p class="fbhint">This report now tracks feedback as Slingshot tasks, not inline hover comments — see the Feedback tab in the live Cowork artifact version of this report for the interactive version.</p>
 
     <div class="sec"><span class="n">2</span> Executive read</div>
-    <div class="lead fbx">
-      Spend held almost perfectly flat WoW (<b>$4,761 vs $4,762</b>), but clicks fell <b>19%</b> (1,764 &rarr; 1,426) as budget rotated out of PMax and Demand Gen into higher-CPC search. The story of the week is <b>progress on the two problems we can control</b> — impression share and rank — while the one problem we can't yet see around, <b>conversion tracking, stays broken</b>. Success is measured in NPM installs, and we still can't read installs from this environment, so we judge paid on installs trend + engagement, never a fabricated CPL. Compete is winning the auction (87% search IS, 74% abs-top). Charts and Components are still losing the top slot to Ad Rank because Quality Scores are stuck at 1–3 on the exact terms we most want. Bing quietly went live on React this week and is punching above its tiny budget. The mandate is unchanged: <b>fix the signal, lift Quality Score, keep feeding the campaigns that are already converting the auction.</b>
+    <div class="lead">
+      The headline this week isn't a campaign story — it's an <b>infrastructure story</b>. Our Google Ads and GA4 pipe went dark (Supermetrics disconnected, trial reportedly expiring), so every search/Demand Gen/PMax number below is last-known from Jul 27–Aug 2, carried forward and clearly labeled, not a fresh read. What <i>is</i> fresh and real: <b>NPM installs</b>, our actual north star — 9,688/week combined across igniteui-react, -core, -grids, and -charts, pulled live today. We've also corrected a standing framing error: React has no conversion event by design (the trial download is ungated, no form fill), so "0 conversions" was never a tracking bug — we're rebuilding the scoreboard around traffic and engagement instead of a CPA that was never real. Once Supermetrics is back, the top priorities carried over from last read are unchanged: Compete is winning its auction, Charts/Components are rank-capped by low Quality Scores, and Bing React (last seen live with 2 campaigns, 79–91% abs-top) needs a fund-vs-hold call.
     </div>
 
     <div class="sec"><span class="n">3</span> Goal scoreboard</div>
@@ -217,55 +215,55 @@
       <table>
         <thead><tr><th>Goal</th><th>Now</th><th style="width:150px">Progress</th><th>Target</th><th>Status</th></tr></thead>
         <tbody>
-          <tr class="fbx"><td class="goal">NPM installs / week</td><td class="big">n/a</td><td><div class="bar"><i style="width:4%"></i></div></td><td>TBD (unset)</td><td><span class="pill bad">Read blocked</span></td></tr>
-          <tr class="fbx"><td class="goal">Abs-top IS — Compete (G / B)</td><td class="big">74% / 91%</td><td><div class="bar"><i style="width:74%"></i></div></td><td>&ge;60%</td><td><span class="pill good">Beating</span></td></tr>
-          <tr class="fbx"><td class="goal">Abs-top IS — Components (G)</td><td class="big">33%</td><td><div class="bar"><i style="width:33%"></i></div></td><td>&ge;60%</td><td><span class="pill warn">Below</span></td></tr>
-          <tr class="fbx"><td class="goal">Abs-top IS — Charts / Grids (G)</td><td class="big">19% / 18%</td><td><div class="bar"><i style="width:19%"></i></div></td><td>&ge;60%</td><td><span class="pill bad">Rank-capped</span></td></tr>
-          <tr class="fbx"><td class="goal">Blended CTR — Google search / Bing React</td><td class="big">7.9% / 4.9%</td><td><div class="bar"><i style="width:79%"></i></div></td><td>&ge;8%</td><td><span class="pill warn">Near</span></td></tr>
-          <tr class="fbx"><td class="goal">Avg CPC — Google search / Bing React</td><td class="big">$5.73 / $4.35</td><td><div class="bar"><i style="width:60%"></i></div></td><td>&le;$5.00</td><td><span class="pill warn">Over</span></td></tr>
-          <tr class="fbx"><td class="goal">Budget-lost abs-top — Grids (worst)</td><td class="big">37%</td><td><div class="bar"><i style="width:63%"></i></div></td><td>&lt;10%</td><td><span class="pill bad">Budget-limited</span></td></tr>
-          <tr class="fbx"><td class="goal">Conversion-tracking status</td><td class="big">Broken</td><td><div class="bar"><i style="width:8%"></i></div></td><td>Live</td><td><span class="pill bad">Red</span></td></tr>
-          <tr class="fbx"><td class="goal">Bing React coverage</td><td class="big">2 live</td><td><div class="bar"><i style="width:55%"></i></div></td><td>Grow / assess</td><td><span class="pill good">Newly live</span></td></tr>
+          <tr><td class="goal">NPM installs / week (4-pkg sum)</td><td class="big">9,688</td><td><div class="bar"><i style="width:60%"></i></div></td><td>TBD (unset)</td><td><span class="pill warn">Target not set</span></td></tr>
+          <tr><td class="goal">Abs-top IS — Compete (G / B)</td><td class="big">74% / 91%*</td><td><div class="bar"><i style="width:74%"></i></div></td><td>&ge;60%</td><td><span class="pill good">Beating (last known)</span></td></tr>
+          <tr><td class="goal">Abs-top IS — Components (G)*</td><td class="big">33%</td><td><div class="bar"><i style="width:33%"></i></div></td><td>&ge;60%</td><td><span class="pill warn">Below (last known)</span></td></tr>
+          <tr><td class="goal">Abs-top IS — Charts / Grids (G)*</td><td class="big">19% / 18%</td><td><div class="bar"><i style="width:19%"></i></div></td><td>&ge;60%</td><td><span class="pill bad">Rank-capped (last known)</span></td></tr>
+          <tr><td class="goal">Blended CTR — Google search / Bing*</td><td class="big">7.9% / 4.9%</td><td><div class="bar"><i style="width:79%"></i></div></td><td>&ge;8%</td><td><span class="pill warn">Near (last known)</span></td></tr>
+          <tr><td class="goal">Avg CPC — Google search / Bing*</td><td class="big">$5.73 / $4.35</td><td><div class="bar"><i style="width:60%"></i></div></td><td>&le;$5.00</td><td><span class="pill warn">Over (last known)</span></td></tr>
+          <tr><td class="goal">React cpc sessions / week (GA4)*</td><td class="big">~56</td><td><div class="bar"><i style="width:15%"></i></div></td><td>TBD (unset)</td><td><span class="pill warn">Traffic KPI — target TBD</span></td></tr>
+          <tr><td class="goal">Data-pipe status (Supermetrics)</td><td class="big">Disconnected</td><td><div class="bar"><i style="width:8%"></i></div></td><td>Live every Monday</td><td><span class="pill bad">Red — reconnect in progress</span></td></tr>
+          <tr><td class="goal">Bing React coverage</td><td class="big">Unverified*</td><td><div class="bar"><i style="width:40%"></i></div></td><td>Grow / assess</td><td><span class="pill warn">Adzviser not connected this run</span></td></tr>
         </tbody>
       </table>
     </div>
-    <p class="note">Targets marked TBD/unset are not yet confirmed by Casey/leadership — see the open config questions in the Summary tab. Google and Bing are shown side by side and never blended.</p>
+    <p class="note">*Rows marked "last known" are carried over from the Jul 27–Aug 2 pull and were NOT reconfirmed this run — Supermetrics is disconnected. The old "Conversion-tracking status" row has been removed: React has no conversion event by design (ungated trial, no form fill), so we now score traffic (React cpc sessions) and engagement instead. Targets marked TBD/unset need JJ/Casey sign-off. Google and Bing are always shown side by side, never blended.</p>
 
     <div class="sec"><span class="n">4</span> Channel at a glance</div>
     <div class="cards">
-      <div class="card fbx"><div class="ch"><span class="nm">Google Ads — React</span><span class="sp">$4,761 · 7 campaigns</span></div>
-        <div class="cb">1,426 clicks · 61,267 impr · blended CTR 2.33% (search 7.9%) · avg CPC $3.34 (search $5.73). 4 search + 1 Demand Gen + 2 PMax. Spend flat WoW; clicks −19% as budget rotated into search/compete. <b>5 conversions</b> recorded (all PMax) — search still 0.</div></div>
-      <div class="card fbx"><div class="ch"><span class="nm">Bing / Microsoft — React</span><span class="sp">$109 · 2 campaigns</span></div>
-        <div class="cb"><b>New this week.</b> Compete ($25, abs-top 91%, QS4) + Grids ($84, abs-top 79%, QS5). 25 clicks · 507 impr · CTR 4.9% · avg CPC $4.35 · 0 conv. No React Bing spend in the prior week, so no WoW — treat as a fresh launch to nurture.</div></div>
-      <div class="card gray muted"><div class="ch"><span class="nm">LinkedIn Ads</span><span class="sp">No active spend</span></div><div class="cb">No React paid activity this period.</div></div>
+      <div class="card"><div class="ch"><span class="nm">Google Ads — React</span><span class="sp">$4,761* · 7 campaigns*</span></div>
+        <div class="cb"><b>Last known (Jul 27–Aug 2), not reconfirmed.</b> 1,426 clicks · 61,267 impr · blended CTR 2.33% (search 7.9%) · avg CPC $3.34 (search $5.73). 4 search + 1 Demand Gen + 2 PMax as of the last pull — JJ flags this campaign list may be incomplete (a "React Table" campaign and Intl/EMEA targeting may exist beyond what's shown); reconfirm once Supermetrics is back.</div></div>
+      <div class="card"><div class="ch"><span class="nm">Bing / Microsoft — React</span><span class="sp">Connector unavailable</span></div>
+        <div class="cb"><b>Adzviser is not connected in this session</b> — different from "no active React spend." Last known (from the prior report): 2 live campaigns (Compete + Grids), $108.63/wk, abs-top 79–91%, QS 4–5. Cannot confirm this is still accurate.</div></div>
+      <div class="card gray muted"><div class="ch"><span class="nm">LinkedIn Ads</span><span class="sp">No active spend</span></div><div class="cb">No React paid activity last confirmed.</div></div>
       <div class="card gray muted"><div class="ch"><span class="nm">Reddit / G2</span><span class="sp">No active spend</span></div><div class="cb">Reddit account exists under Reveal; no Ignite UI React paid activity.</div></div>
     </div>
 
     <div class="sec"><span class="n">5</span> Google Ads — deep dive</div>
-    <p class="par">Search campaigns carried $3,607 (76% of spend) at a 7.9% CTR. The auction picture splits three ways: <b>Compete is won</b> (87% search IS, only 6% of abs-top lost to budget and 20% to rank); <b>Components is close</b> (60% IS, 33% abs-top, improving); <b>Charts and Grids are held down</b> — Charts loses 61% of abs-top to rank (a Quality Score problem), Grids now loses 37% to budget (a funding problem, after its rank problem was fixed). Demand Gen spent $643 for 466 clicks at 1.9% CTR but only 1 GA4 session — the same tracking break plus likely low-intent placements. PMax-Americas produced the only real conversion signal (4 conv), PMax-EMEA 1.</p>
+    <p class="par"><b>Last known, not reconfirmed this run.</b> Search campaigns carried $3,607 (76% of spend) at a 7.9% CTR. Compete was winning its auction (87% search IS, 6% of abs-top lost to budget, 20% to rank); Components was close (60% IS, 33% abs-top, improving); Charts and Grids were held down — Charts lost 61% of abs-top to rank (a Quality Score problem), Grids lost 37% to budget. Demand Gen spent $643 for 466 clicks at 1.9% CTR. <b>Important correction:</b> React has no conversion event by design, so the low GA4 session count relative to clicks is a traffic/engagement measurement question, not a "broken conversion tracking" story — don't read it as CPA-blocking.</p>
 
     <div class="sec"><span class="n">6</span> Bing — deep dive</div>
-    <p class="par">React launched on Microsoft Ads this week and behaves like a healthy young account: high impression share (53–87%), high absolute-top (79–91%), near-zero budget loss, and Quality Scores of 4–5 (better than most of our Google React exact terms). Volume is tiny — 25 clicks, $109 — so this is a <b>watch-and-feed</b> story, not a scale story yet. The decision Casey needs to make: fund it deliberately or hold it as a low-cost hedge. Recommendation below in Journey &amp; ROI.</p>
+    <p class="par">The Adzviser (Bing Ads) connector is unavailable in this session, so this section cannot be refreshed. Last known state: React launched on Microsoft Ads with high impression share (53–87%), high absolute-top (79–91%), near-zero budget loss, and Quality Scores of 4–5. Volume was tiny (25 clicks, $109). The fund-vs-hold decision is still open and is tracked on the tracker (due Aug 11) — it needs live data to resolve responsibly.</p>
 
     <div class="sec"><span class="n">7</span> Funnel — where it breaks</div>
     <div class="funnel">
-      <div class="fstep"><div class="fl">Spend (G)</div><div class="fv">$4,761</div><div class="fd">flat WoW</div></div>
+      <div class="fstep"><div class="fl">Spend (G)*</div><div class="fv">$4,761</div><div class="fd">last known</div></div>
       <div class="farrow">&rarr;</div>
-      <div class="fstep"><div class="fl">Clicks (G)</div><div class="fv">1,426</div><div class="fd">−19% WoW</div></div>
+      <div class="fstep"><div class="fl">Clicks (G)*</div><div class="fv">1,426</div><div class="fd">last known</div></div>
       <div class="farrow">&rarr;</div>
-      <div class="fstep"><div class="fl">React cpc sessions (GA4)</div><div class="fv">~56</div><div class="fd" style="color:var(--bad)">96% never register</div></div>
+      <div class="fstep"><div class="fl">React cpc sessions (GA4)*</div><div class="fv">~56</div><div class="fd">last known</div></div>
       <div class="farrow">&rarr;</div>
-      <div class="fstep"><div class="fl">NPM installs</div><div class="fv">n/a</div><div class="fd">read blocked</div></div>
+      <div class="fstep"><div class="fl">NPM installs (4-pkg)</div><div class="fv">9,688</div><div class="fd" style="color:var(--good)">live, current</div></div>
     </div>
-    <p class="note"><b>Break point 1 (click &rarr; session):</b> ~1,426 Google clicks but only ~56 GA4 cpc sessions on React campaigns — a tracking/attribution break, not real traffic loss. <b>Break point 2 (session &rarr; install):</b> installs can't be read from this sandbox (api.npmjs.org proxy-blocked), so the bottom of the funnel is dark. One metric, one tool: clicks are Google Ads, sessions are GA4, installs are npm — never blended.</p>
+    <p class="note">*Spend/clicks/sessions carried from the last confirmed pull, not reconfirmed this run. NPM installs are live and current as of today. One metric, one tool: clicks are Google Ads, sessions are GA4, installs are npm — never blended. Installs are a blended adoption signal (all React devs, not just paid-driven), not 1:1 paid-attributed.</p>
 
     <div class="sec"><span class="n">8</span> Forecast</div>
-    <div class="lead">Installs are the north-star, but with the stats API blocked we will <b>not fabricate a 12-week installs trend</b>. Directionally, Snyk lists igniteui-react-charts at roughly ~1,040 downloads/week (third-party, non-authoritative). Once <code>api.npmjs.org</code> is allowlisted we'll publish the real 12-week installs curve and a 3-month outlook here. Near-term, expect search clicks to stay in the 1,400–1,600/wk band at a $5–6 search CPC; the swing factor is Quality Score on Charts/Components, which — if lifted from 2 to 4 — should meaningfully cut CPC and recover abs-top without new budget.</div>
+    <div class="lead">With real npm data flowing, current combined installs run <b>9,688/week</b> (~58.5k over the trailing 30 days across the 4 tracked packages). We are deliberately <b>not</b> publishing a smoothed 12-week trend yet: the 30-day daily data shows several single-day spikes (e.g. igniteui-react-core hit 6,576 and 6,001 on Jul 25–26 vs a ~300–900/day baseline) that look like CI/mirror-sync bursts rather than organic developer adoption, and a naive WoW view would overstate a "decline" driven entirely by those spikes. Once a few more weeks of clean daily data accumulate, we'll publish a proper 12-week curve and 3-month outlook. Near-term Google Ads expectations (once Supermetrics reconnects): last-known search clicks ran 1,400–1,600/wk at $5–6 search CPC; the swing factor remains Quality Score on Charts/Components.</div>
   </section>
 
   <!-- ============ TAB 2: CAMPAIGNS ============ -->
   <section class="tabpanel" data-tab="camp" data-label="Campaigns &amp; Ad Groups">
-    <div class="sec"><span class="n">A</span> Google Ads — campaign WoW</div>
+    <div class="sec"><span class="n">A</span> Google Ads — campaign WoW <span class="pill warn">last known, not reconfirmed</span></div>
     <div class="dtable">
       <table>
         <thead><tr><th>Campaign</th><th>Type</th><th class="num">Spend</th><th class="num">WoW</th><th class="num">Clicks</th><th class="num">WoW</th><th class="num">CTR</th><th class="num">CPC</th><th class="num">Srch IS</th><th class="num">Abs-top</th><th class="num">Bud-lost</th><th class="num">Rank-lost</th></tr></thead>
@@ -281,34 +279,24 @@
         </tbody>
       </table>
     </div>
-    <p class="note">Abs-top = absolute-top impression share. Bud-lost / Rank-lost = share of absolute-top lost to budget / ad rank. Arrows show WoW direction; green = favorable move. Compete's abs-top rose 54%&rarr;74%; Grids rank-lost fell 71%&rarr;46% (cleanup worked) but budget-lost rose 13%&rarr;37%.</p>
+    <p class="note"><b>Not reconfirmed this run — Supermetrics disconnected.</b> This table is exactly as last confirmed (Jul 27–Aug 2). JJ flags this list may not be the complete active React campaign set — see the open "confirm active React campaign list" task. Abs-top = absolute-top impression share. Bud-lost/Rank-lost = share of absolute-top lost to budget/ad rank.</p>
 
     <div class="sec"><span class="n">B</span> Brand vs non-brand</div>
-    <p class="par">React search is <b>effectively all non-brand</b> — head/category terms (react grid, react chart library, react component library) and competitor-conquest (ag grid, kendo, syncfusion, devexpress). There is no dedicated React brand campaign; "infragistics react" appears only as a 2-click search term inside Grids. Brand demand for React is thin, which is expected for an SDK sold on category and competitor intent.</p>
+    <p class="par">As last confirmed, React search is effectively all non-brand — head/category terms (react grid, react chart library, react component library) and competitor-conquest (ag grid, kendo, syncfusion, devexpress). Not reconfirmed this run.</p>
 
-    <div class="sec"><span class="n">C</span> Ad-group themes</div>
-    <p class="par">Search-Grids spans grid/table/tree-grid/pivot themes (US + Intl mixed, no geo split). Search-Charts covers charts/graphs/gantt/timeline. Search-Components covers UI-library/inputs/editors. Search-Compete is pure competitor conquest (ag grid, kendo/kendoreact, syncfusion, devexpress/devextreme, telerik). PMax carries the only real geo segmentation (Americas vs EMEA); search is not yet split US-vs-Intl — a reporting gap already on the tracker.</p>
+    <div class="sec"><span class="n">C</span> Ad-group themes &amp; geo — correction pending</div>
+    <p class="par"><b>Correction in progress.</b> A prior version of this report claimed "search campaigns aren't geo-segmented — only PMax carries Americas/EMEA." JJ has flagged this as wrong: international/EMEA campaigns exist at the campaign level, including for Demand Gen. We could not verify the current campaign-level geo settings this run (Supermetrics disconnected) — this is now a standalone P1 tracker task due Aug 10, and this section will be rebuilt with the real geo breakdown once resolved. Do not treat the "not geo-segmented" claim in older reports as current.</p>
 
-    <div class="sec"><span class="n">D</span> Bing — campaigns (new this week)</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Campaign</th><th class="num">Spend</th><th class="num">Clicks</th><th class="num">Impr</th><th class="num">CTR</th><th class="num">CPC</th><th class="num">QS</th><th class="num">IS</th><th class="num">Abs-top</th><th class="num">Bud-lost</th><th class="num">Rank-lost</th></tr></thead>
-        <tbody>
-          <tr><td>React-Search-Compete</td><td class="num">$24.97</td><td class="num">3</td><td class="num">100</td><td class="num">3.0%</td><td class="num">$8.32</td><td class="num">4</td><td class="num">87%</td><td class="num">91%</td><td class="num">0%</td><td class="num">9%</td></tr>
-          <tr><td>React-Search-Grids</td><td class="num">$83.66</td><td class="num">22</td><td class="num">407</td><td class="num">5.4%</td><td class="num">$3.80</td><td class="num">5</td><td class="num">53%</td><td class="num">79%</td><td class="num">0%</td><td class="num">21%</td></tr>
-          <tr style="font-weight:700"><td>Total</td><td class="num">$108.63</td><td class="num">25</td><td class="num">507</td><td class="num">4.9%</td><td class="num">$4.35</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">0%</td><td class="num">—</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="note">No React campaigns ran on Bing in the prior week, so WoW is not applicable — this is a genuine new launch. Grids on Bing already holds 79% abs-top at QS5 for $3.80 CPC, materially cheaper and higher-positioned than Grids on Google.</p>
+    <div class="sec"><span class="n">D</span> Bing — campaigns</div>
+    <p class="par">The Adzviser (Bing Ads) connector is not available in this session, so this table can't be refreshed. Last known (from the prior report): React-Search-Compete ($24.97, 3 clicks, QS4, 91% abs-top) and React-Search-Grids ($83.66, 22 clicks, QS5, 79% abs-top) — $108.63 total. Not reconfirmed this run.</p>
   </section>
 
   <!-- ============ TAB 3: SEARCH TERMS & KEYWORDS ============ -->
   <section class="tabpanel" data-tab="terms" data-label="Search Terms &amp; Keywords">
     <div class="sec"><span class="n">A</span> Intent rules</div>
-    <p class="par"><b>Keep</b> (buying intent for Ignite UI): grid / table / chart / component / library / pivot / tree-grid terms, and competitor conquest (ag grid, kendo/kendoreact, syncfusion, devexpress/devextreme, telerik) even when pricey. <b>Research</b> (OSS-adjacent, watch conversion once tracking is live): tanstack/react-table, mui table, mantine, shadcn, bootstrap table. <b>Cut</b> (no Ignite intent &rarr; add negative): open-source-library and how-to queries listed below.</p>
+    <p class="par"><b>Keep</b> (buying intent for Ignite UI): grid / table / chart / component / library / pivot / tree-grid terms, and competitor conquest (ag grid, kendo/kendoreact, syncfusion, devexpress/devextreme, telerik) even when pricey. <b>Research</b> (OSS-adjacent): tanstack/react-table, mui table, mantine, shadcn, bootstrap table. <b>Cut</b> (no Ignite intent &rarr; add negative): open-source-library and how-to queries below. We no longer gate "keep vs cut" on whether a term converts — React has no conversion event by design, so intent/relevance is the only signal.</p>
 
-    <div class="sec"><span class="n">B</span> Top spending search terms (this week)</div>
+    <div class="sec"><span class="n">B</span> Top spending search terms <span class="pill warn">last known</span></div>
     <div class="dtable">
       <table>
         <thead><tr><th>Search term</th><th>Campaign</th><th class="num">Clicks</th><th class="num">Cost</th><th class="num">Impr</th><th>Call</th></tr></thead>
@@ -325,15 +313,15 @@
         </tbody>
       </table>
     </div>
-    <p class="note">*"react grid layout" is an OSS drag-drop library query (react-grid-layout), not our data grid — likely a negative unless it converts once tracking is live.</p>
+    <p class="note">*"react grid layout" is an OSS drag-drop library query (react-grid-layout), not our data grid. Not reconfirmed this run.</p>
 
     <div class="sec"><span class="n">C</span> Negatives to add — OSS / no-intent queries</div>
-    <p class="par">Visible waste on Charts/Components with no Ignite UI buying intent: <code>react flow examples</code>, <code>xyflow react</code>, <code>react flow xyflow</code>, <code>reactflow alternatives</code>, <code>react force graph 2d/3d</code>, <code>apexcharts react</code>, <code>apex react</code>, <code>ag charts react</code>, <code>amcharts react</code>, <code>tremor charts/react/js</code>, <code>highcharts react</code>, <code>chart js react</code>, <code>plotly js react</code>, <code>d3 js react</code>, <code>react gantt task</code>, <code>react calendar heatmap</code>, <code>react org chart</code>, <code>react node graph</code>. Est. ~$60–90/wk of leak. This matches the standing "Negatives sweep — OSS-library queries" task.</p>
+    <p class="par">Last-known visible waste on Charts/Components with no Ignite UI intent: <code>react flow examples</code>, <code>xyflow react</code>, <code>react flow xyflow</code>, <code>reactflow alternatives</code>, <code>react force graph 2d/3d</code>, <code>apexcharts react</code>, <code>apex react</code>, <code>ag charts react</code>, <code>amcharts react</code>, <code>tremor charts/react/js</code>, <code>highcharts react</code>, <code>chart js react</code>, <code>plotly js react</code>, <code>d3 js react</code>, <code>react gantt task</code>, <code>react calendar heatmap</code>, <code>react org chart</code>, <code>react node graph</code>. Est. ~$60–90/wk of leak. Matches the standing "Negatives sweep" task.</p>
 
-    <div class="sec"><span class="n">D</span> Coverage — "react table"</div>
-    <p class="par"><code>react table</code> and <code>react data table</code> draw clicks inside Grids but have no dedicated exact match with a matched RSA. The search-term sweep task closed the negatives side; the true-gap side (a dedicated exact "react table" ad group) remains the one high-intent coverage hole worth a small carve-out — not a new campaign.</p>
+    <div class="sec"><span class="n">D</span> Coverage — "react table" <span class="pill bad">clarification needed</span></div>
+    <p class="par"><b>This section was a known source of confusion and needs re-verification.</b> A prior report treated "react table" purely as a keyword folded inside the Grids campaign with no dedicated campaign. JJ has since flagged that a <b>dedicated "React Table" search campaign may exist separately from Grids</b> — if so, every recommendation below that assumed "react table" traffic lives inside Grids needs to be re-pointed at the correct campaign. We could not pull the live campaign list this run (Supermetrics disconnected), so treat any "react table ↔ Grids" recommendation in this or prior reports as <b>provisional</b> until the standalone "confirm active React campaign list" task (due Aug 10) resolves it. We will not guess at which campaign owns which keyword.</p>
 
-    <div class="sec"><span class="n">E</span> Quality Score — the rank story</div>
+    <div class="sec"><span class="n">E</span> Quality Score — the rank story <span class="pill warn">last known</span></div>
     <div class="dtable">
       <table>
         <thead><tr><th>Keyword</th><th>Match</th><th>Campaign</th><th class="num">QS</th><th class="num">Clicks</th><th class="num">Cost</th></tr></thead>
@@ -348,15 +336,15 @@
         </tbody>
       </table>
     </div>
-    <p class="note">Our biggest-spend head terms carry QS 1–2. Conquest terms (ag grid, kendo, syncfusion) are QS1 by nature (low expected CTR on a competitor's brand) and are a "pay to play" cost; but <code>react chart library</code>, <code>react component library</code> and <code>react ui library</code> at QS1–2 are fixable with tighter ad-group-to-landing-page relevance — the direct lever behind Charts (61% abs-top lost to rank) and Components (55%).</p>
+    <p class="note">Our biggest-spend head terms carried QS 1–2 as of the last pull. Conquest terms are QS1 "by nature" (competitor brand terms); react chart/component/ui library at QS1–2 are the fixable ones via tighter ad-group-to-landing-page relevance. Not reconfirmed this run.</p>
 
     <div class="sec"><span class="n">F</span> Bing — terms &amp; keywords</div>
-    <p class="par">Bing React is too new and too small (25 clicks) for a meaningful search-term read this week. Early signal: Grids terms convert the auction cheaply (QS5, $3.80 CPC). Revisit next week once volume accrues.</p>
+    <p class="par">Adzviser (Bing Ads) is not connected this session. Last known: too new/small for a meaningful read (25 clicks); early signal showed Grids terms converting the auction cheaply (QS5, $3.80 CPC).</p>
   </section>
 
   <!-- ============ TAB 4: AD COPY ============ -->
   <section class="tabpanel" data-tab="copy" data-label="Ad Copy">
-    <div class="sec"><span class="n">A</span> RSA — top headlines by CTR (served)</div>
+    <div class="sec"><span class="n">A</span> RSA — top headlines by CTR <span class="pill warn">last known</span></div>
     <div class="dtable">
       <table>
         <thead><tr><th>Headline</th><th>Campaign</th><th class="num">Impr</th><th class="num">Clicks</th><th class="num">CTR</th></tr></thead>
@@ -370,8 +358,9 @@
         </tbody>
       </table>
     </div>
+    <p class="note">"Virtualized React Table" runs inside the Grids campaign per the last confirmed structure — see the Search Terms tab's open clarification on whether a distinct React Table campaign now exists.</p>
 
-    <div class="sec"><span class="n">B</span> RSA — top descriptions by CTR</div>
+    <div class="sec"><span class="n">B</span> RSA — top descriptions by CTR <span class="pill warn">last known</span></div>
     <div class="dtable">
       <table>
         <thead><tr><th>Description</th><th>Campaign</th><th class="num">Impr</th><th class="num">Clicks</th><th class="num">CTR</th></tr></thead>
@@ -385,68 +374,66 @@
     </div>
 
     <div class="sec"><span class="n">C</span> Demand Gen copy</div>
-    <p class="par">Demand Gen headlines cluster at ~2.3–2.7% CTR: best performers are <b>"Enterprise React UI Components"</b> (2.65%), <b>"Complete React UI Toolkit"</b> (2.58%) and <b>"Design Better React Apps Fast"</b> (2.48%). Long headlines underperform badly (0.9–1.4% CTR) — the "Increase Developer Productivity 30–60%" long headline pulls only 0.93%. Trim the weakest long headlines and lean into the short benefit-led ones.</p>
+    <p class="par">Last known: Demand Gen headlines cluster at ~2.3–2.7% CTR; best performers "Enterprise React UI Components" (2.65%), "Complete React UI Toolkit" (2.58%), "Design Better React Apps Fast" (2.48%). Long headlines underperform (0.9–1.4% CTR).</p>
 
     <div class="sec"><span class="n">D</span> Winning themes</div>
-    <p class="par">Two themes win on search: <b>speed/scale proof</b> ("100K+ Rows Seamless Scrolling", "Virtualized React Table", "The Fastest React Data Grid") and <b>developer velocity</b> ("Build Faster With Ignite React", "Build Customizable React Apps"). Generic "Trusted By The World's Best" underperforms except in Components. Recommend concentrating new RSA headlines on speed-proof + velocity and retiring generic trust claims.</p>
+    <p class="par">Two themes win on search: speed/scale proof ("100K+ Rows Seamless Scrolling", "Virtualized React Table") and developer velocity ("Build Faster With Ignite React"). Not reconfirmed this run.</p>
 
     <div class="sec"><span class="n">E</span> US-vs-Intl gap</div>
-    <p class="par">We cannot split ad-copy performance US vs Intl on search — search campaigns aren't geo-segmented (only PMax carries Americas/EMEA). This blocks any regional creative read and is on the tracker as the geo-segmentation task.</p>
+    <p class="par"><b>Under correction.</b> This section previously said search ad copy couldn't be split US vs Intl because "search campaigns aren't geo-segmented." JJ has flagged that Intl/EMEA targeting exists at the campaign level — this claim needs to be re-verified against the real account structure, not assumed. Pending the Supermetrics reconnect.</p>
 
-    <div class="sec"><span class="n">F</span> Asset grading blind spot</div>
-    <div class="lead fbx"><b>Every React text asset grades "Pending information."</b> Google can't assign Best/Good/Low labels while the conversion signal is broken, so the platform's own creative optimization is running blind alongside our reporting. Fixing conversion tracking unlocks asset grading too — a second reason the tracking repair is the highest-leverage fix.</div>
+    <div class="sec"><span class="n">F</span> Asset grading</div>
+    <div class="lead">Last known: React text assets graded "Pending information" in Google Ads. Note this is <b>not</b> caused by a "broken conversion signal" — React has no conversion event by design. If grading is still pending once Supermetrics reconnects, we'll investigate the actual cause (likely just low volume per asset) rather than attributing it to tracking.</div>
 
     <div class="sec"><span class="n">G</span> Bing — ad copy</div>
-    <p class="par">Bing React volume is too thin this week for an RSA read. Recommend mirroring the winning Google headlines (speed-proof + velocity) into the Bing Compete/Grids RSAs so both engines test the same message.</p>
+    <p class="par">Adzviser not connected this session. Last known: volume too thin for an RSA read; plan was to mirror winning Google headlines into Bing Compete/Grids RSAs (tracked, due Aug 8).</p>
   </section>
 
-  <!-- ============ TAB 5: CREATIVE ============ -->
-  <section class="tabpanel" data-tab="creative" data-label="Creative">
-    <div class="sec"><span class="n">A</span> Demand Gen image assets</div>
-    <div class="cards">
-      <div class="card"><div class="ch"><span class="nm">Asset A</span><span class="sp">24,160 impr · 1.93% CTR</span></div>
-        <div class="cb"><img src="https://tpc.googlesyndication.com/simgad/9920886698988483481" alt="Demand Gen asset A" style="width:100%;border-radius:8px;border:1px solid var(--line)"><br><b>466 clicks.</b> Primary workhorse — highest impressions, average CTR. Grade: Pending.</div></div>
-      <div class="card"><div class="ch"><span class="nm">Asset B</span><span class="sp">22,701 impr · 1.95% CTR</span></div>
-        <div class="cb"><img src="https://tpc.googlesyndication.com/simgad/781972544363365321" alt="Demand Gen asset B" style="width:100%;border-radius:8px;border:1px solid var(--line)"><br><b>442 clicks.</b> Near-identical performance to A. Grade: Pending.</div></div>
-      <div class="card"><div class="ch"><span class="nm">Asset C</span><span class="sp">1,897 impr · 3.85% CTR</span></div>
-        <div class="cb"><img src="https://tpc.googlesyndication.com/simgad/14971761426856756287" alt="Demand Gen asset C" style="width:100%;border-radius:8px;border:1px solid var(--line)"><br><b>73 clicks — 2× the CTR of A/B but starved of impressions.</b> Grade: Pending. Best candidate to promote.</div></div>
-    </div>
+  <!-- ============ TAB 5: DEMAND GEN PERFORMANCE (NEW) ============ -->
+  <section class="tabpanel" data-tab="demandgen" data-label="Demand Gen Performance">
+    <div class="sec"><span class="n">A</span> Audience segment performance</div>
+    <div class="lead"><b>Not available this run.</b> Supermetrics field discovery confirms an Audience/AudienceID/AudienceStatus dimension exists on the Google Ads source (via CampaignAudienceView / AdGroupAudienceView) — the query is scoped and ready, but the account connection is down, so no rows could be pulled. This tab is new this week per JJ's request; it will populate with real audience-segment data (impressions/clicks/cost/CTR per segment) the moment Supermetrics reconnects.</div>
+    <p class="note">Tracked as "React Paid: Pull Demand Gen audience-segment performance," due Aug 10.</p>
 
-    <div class="sec"><span class="n">B</span> Format performance</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Asset</th><th class="num">Impr</th><th class="num">Clicks</th><th class="num">CTR</th><th>Read</th></tr></thead>
-        <tbody>
-          <tr><td>Asset C</td><td class="num">1,897</td><td class="num">73</td><td class="num">3.85%</td><td><span class="pill good">Underserved winner</span></td></tr>
-          <tr><td>Asset B</td><td class="num">22,701</td><td class="num">442</td><td class="num">1.95%</td><td><span class="pill warn">Baseline</span></td></tr>
-          <tr><td>Asset A</td><td class="num">24,160</td><td class="num">466</td><td class="num">1.93%</td><td><span class="pill warn">Baseline</span></td></tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="sec"><span class="n">B</span> Location performance (Demand Gen)</div>
+    <div class="lead"><b>Not available this run</b> for the same reason — location/geo dimensions (Country/Region/City) are confirmed to exist on the data source but couldn't be queried. Will populate alongside the general Device &amp; Location tab once reconnected.</div>
 
-    <div class="sec"><span class="n">C</span> Fatigue / refresh map</div>
-    <p class="par">Assets A and B absorb ~97% of Demand Gen impressions at an identical, unremarkable 1.9% CTR — classic two-creative fatigue. Asset C proves higher-CTR creative exists but is under-served. <b>Action:</b> add 2–3 fresh variants in Asset C's style, and let Google rebalance away from the tired A/B pair. Pair this with the CLI-video uploads already in progress.</p>
-
-    <div class="sec"><span class="n">D</span> Grading blind spot</div>
-    <div class="lead">All three images grade "Pending information" — the same broken conversion signal that hides CPA and blocks text-asset grading. We're optimizing creative on CTR alone until tracking is repaired.</div>
-
-    <div class="sec"><span class="n">E</span> Bing — creative</div>
-    <p class="par">Bing React runs search only (RSA text) — no image/Demand-Gen creative this week. Nothing to grade.</p>
+    <div class="sec"><span class="n">C</span> What we know from the last confirmed pull</div>
+    <p class="par">Demand Gen spent $643 for 466 clicks at 1.9% CTR (Jul 27–Aug 2, last known). Two creative assets (A/B) absorbed ~97% of impressions at a flat ~1.9% CTR; a third, under-served asset (C) ran at 3.85% CTR on far less volume — a fatigue pattern worth revisiting once audience-level data confirms whether specific segments (vs. general fatigue) are driving the gap. The open "Audit &amp; cap Demand Gen React" task (in progress, was due Jul 30 — overdue) is investigating whether low GA4 session counts here reflect low-intent placements (e.g. mobile-app/gaming inventory) rather than a tracking issue.</p>
   </section>
 
-  <!-- ============ TAB 6: LANDING PAGES ============ -->
+  <!-- ============ TAB 6: DEVICE & LOCATION (NEW) ============ -->
+  <section class="tabpanel" data-tab="devloc" data-label="Device &amp; Location">
+    <div class="sec"><span class="n">A</span> Device performance — all React campaigns</div>
+    <div class="lead"><b>Not available this run.</b> A Device dimension (mobile/desktop/tablet) is confirmed to exist on the Google Ads source at the campaign/ad-group/ad level, but Supermetrics is disconnected. Last known GA4 read (google/cpc, not Google Ads' own device split): React paid ran ~95% desktop (73 of 77 sessions), with the 4 mobile sessions engaging at 0%.</div>
+
+    <div class="sec"><span class="n">B</span> Location performance — all React campaigns</div>
+    <div class="lead"><b>Not available this run.</b> Country/Region/City dimensions (GeographicView / CAMPAIGN_LOCATION_TARGET_REPORT) are confirmed to exist on the source but couldn't be queried. This is also the data needed to resolve the open US-vs-Intl geo-targeting correction (see Campaigns tab, section C) — JJ has flagged that Intl/EMEA campaigns exist at the campaign level, which this tab will confirm once live.</div>
+
+    <div class="sec"><span class="n">C</span> Why this is new</div>
+    <p class="par">This tab is new this week per JJ's request for device and location performance across campaigns. Both dimensions are confirmed available on the Google Ads data source (verified via field_discovery) — the only blocker is the live account connection. Tracked as "React Paid: Build Device + Location performance view," due Aug 10.</p>
+  </section>
+
+  <!-- ============ TAB 7: AUCTION INSIGHTS (NEW) ============ -->
+  <section class="tabpanel" data-tab="auction" data-label="Auction Insights">
+    <div class="sec"><span class="n">A</span> Not available from this data source</div>
+    <div class="lead"><b>Auction Insights cannot be reported here, and this is a source limitation, not an auth/reconnect issue.</b> We ran field_discovery against the Google Ads (AW) Supermetrics data source filtering specifically for auction-insight-style fields (competitor domain, overlap rate, position-above rate, top-of-page rate vs. competitors) and it returned <b>zero matching fields</b> — this connector does not expose Auction Insights at all, connected or not.</div>
+    <p class="note">To get real Auction Insights data we'd need either a different Supermetrics report type/data source that exposes it, or to pull it directly from the Google Ads UI/API (Auction Insights isn't part of the standard reporting API either — it typically requires the Google Ads UI export or a dedicated auction-insights API call). Flagged to JJ; not fabricating placeholder competitor data here.</p>
+  </section>
+
+  <!-- ============ TAB 8: LANDING PAGES ============ -->
   <section class="tabpanel" data-tab="lp" data-label="Landing Pages">
-    <div class="sec"><span class="n">A</span> GA4 google/cpc — this week</div>
+    <div class="sec"><span class="n">A</span> GA4 google/cpc — last known <span class="pill warn">not reconfirmed</span></div>
     <div class="kpigrid">
-      <div class="kpi fbx"><span class="lab">cpc sessions (all)</span><span class="val">77</span><span class="delta down">tracking break</span></div>
-      <div class="kpi fbx"><span class="lab">React cpc sessions</span><span class="val">~56</span><span class="delta down">vs 1,426 clicks</span></div>
-      <div class="kpi fbx"><span class="lab">Top LP engagement</span><span class="val">53%</span><span class="delta flat">/products/ignite-ui-react</span></div>
-      <div class="kpi fbx"><span class="lab">Desktop share</span><span class="val">95%</span><span class="delta flat">73 of 77</span></div>
-      <div class="kpi fbx"><span class="lab">Mobile engagement</span><span class="val">0%</span><span class="delta down">4 sessions</span></div>
+      <div class="kpi"><span class="lab">cpc sessions (all)</span><span class="val">77</span><span class="delta flat">last known</span></div>
+      <div class="kpi"><span class="lab">React cpc sessions</span><span class="val">~56</span><span class="delta flat">vs 1,426 clicks</span></div>
+      <div class="kpi"><span class="lab">Top LP engagement</span><span class="val">53%</span><span class="delta flat">/products/ignite-ui-react</span></div>
+      <div class="kpi"><span class="lab">Desktop share</span><span class="val">95%</span><span class="delta flat">73 of 77</span></div>
+      <div class="kpi"><span class="lab">Mobile engagement</span><span class="val">0%</span><span class="delta down">4 sessions</span></div>
     </div>
 
-    <div class="sec"><span class="n">B</span> The cpc-sessions cliff</div>
-    <svg class="cliff" viewBox="0 0 720 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Monthly google/cpc sessions collapsing from ~24.6k in May to 352 in July">
+    <div class="sec"><span class="n">B</span> The cpc-sessions history</div>
+    <svg class="cliff" viewBox="0 0 720 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Monthly google/cpc sessions, Dec through Aug, last confirmed data">
       <line x1="48" y1="200" x2="705" y2="200" stroke="#c9d2e3" stroke-width="1"/>
       <line x1="48" y1="20" x2="48" y2="200" stroke="#c9d2e3" stroke-width="1"/>
       <text x="8" y="26" font-size="10" fill="#5f6b7a" font-family="Roboto Mono">26k</text>
@@ -460,11 +447,11 @@
       <g font-size="10" fill="#5f6b7a" font-family="Roboto Mono" text-anchor="middle">
         <text x="80" y="216">Dec</text><text x="155" y="216">Jan</text><text x="230" y="216">Feb</text><text x="305" y="216">Mar</text><text x="380" y="216">Apr</text><text x="455" y="216">May</text><text x="530" y="216">Jun</text><text x="605" y="216">Jul</text><text x="680" y="216">Aug*</text>
       </g>
-      <text x="470" y="52" font-size="11" fill="#c23b39" font-weight="700">tracking break &rarr;</text>
+      <text x="440" y="52" font-size="11" fill="#c23b39" font-weight="700">session dip &rarr;</text>
     </svg>
-    <p class="note">google/cpc sessions: Apr 26,342 &rarr; May 24,599 &rarr; <b>Jun 1,573 &rarr; Jul 352</b> (Aug partial: 8). This is the visual proof the break is measurement, not demand — paid clicks held steady while measured sessions collapsed ~98%.</p>
+    <p class="note">google/cpc sessions: Apr 26,342 &rarr; May 24,599 &rarr; Jun 1,573 &rarr; Jul 352 (Aug partial: 8), as last confirmed. <b>Reframed:</b> this is a traffic/session-measurement question to investigate (see the corrected tracker task), not evidence of a broken conversion pixel — React never had a conversion event to break. Not reconfirmed this run.</p>
 
-    <div class="sec"><span class="n">C</span> Where paid lands</div>
+    <div class="sec"><span class="n">C</span> Where paid lands <span class="pill warn">last known</span></div>
     <div class="dtable">
       <table>
         <thead><tr><th>Landing page</th><th class="num">Sessions</th><th class="num">Engagement</th><th class="num">Bounce</th></tr></thead>
@@ -477,52 +464,53 @@
         </tbody>
       </table>
     </div>
-    <p class="par">The intent page <code>/products/ignite-ui-react</code> takes the bulk of measured React cpc traffic and engages well (53%). A meaningful chunk of cpc sessions still land on non-React product pages (Blazor, Angular, WPF) — cross-framework leakage worth a landing-page audit once volume is measurable again.</p>
+    <p class="par">The intent page <code>/products/ignite-ui-react</code> took the bulk of measured React cpc traffic and engaged well (53%), as last confirmed. A meaningful chunk of cpc sessions landed on non-React product pages — cross-framework leakage worth a landing-page audit once volume is reconfirmed.</p>
 
-    <div class="sec"><span class="n">D</span> Device split</div>
-    <p class="par">React paid is <b>95% desktop</b> (73 of 77 sessions), and the 4 mobile sessions engaged at 0%. Developers evaluate SDKs on desktop — a signal to keep bids desktop-weighted and treat mobile as low priority for React.</p>
+    <div class="sec"><span class="n">D</span> Device split — see also the new Device &amp; Location tab</div>
+    <p class="par">Last known: React paid was 95% desktop (73 of 77 sessions); the 4 mobile sessions engaged at 0%. A fuller device breakdown across all campaigns (not just GA4 google/cpc) now lives in the new Device &amp; Location tab, pending reconnect.</p>
 
-    <div class="sec"><span class="n">E</span> Engagement by campaign</div>
-    <p class="par">Measured React cpc sessions by campaign: PMax-Americas 38 (42% eng), PMax-EMEA 11 (64%), then Search-Charts / Components / Grids at just 2 each and Demand Gen 1 — despite those search campaigns driving 629 clicks. The search campaigns' near-zero session counts are the clearest fingerprint of the tracking break.</p>
+    <div class="sec"><span class="n">E</span> Engagement by campaign <span class="pill warn">last known</span></div>
+    <p class="par">Measured React cpc sessions by campaign: PMax-Americas 38 (42% eng), PMax-EMEA 11 (64%), Search-Charts/Components/Grids at 2 each, Demand Gen 1 — despite those search campaigns driving 629 clicks. Not reconfirmed this run.</p>
 
     <div class="sec"><span class="n">F</span> Bing — landing pages</div>
-    <p class="par">Bing/cpc sessions are not separately instrumented in this GA4 view; with only 25 Bing clicks this week there is no reliable landing-page read. Add Bing UTM tagging when the tracking repair goes in.</p>
+    <p class="par">Adzviser not connected this session; Bing/cpc sessions were not separately instrumented in GA4 as of the last read.</p>
   </section>
 
-  <!-- ============ TAB 7: JOURNEY & ROI ============ -->
+  <!-- ============ TAB 9: JOURNEY & ROI ============ -->
   <section class="tabpanel" data-tab="roi" data-label="Journey &amp; ROI">
-    <div class="sec"><span class="n">A</span> NPM installs — north star</div>
-    <div class="lead fbx"><b>Installs read is blocked from this environment.</b> The npm stats API (api.npmjs.org) and npmjs.com are proxy-blocked (HTTP 403); only registry.npmjs.org (version/publish, not counts) is reachable — and it too was outside the fetch allow-list this run. So installs = <b>n/a — needs api.npmjs.org allowlist</b>. Third-party directional only: Snyk lists igniteui-react-charts at ~1,040 downloads/week (non-authoritative). Installs are a <b>blended adoption signal, not 1:1 paid-attributed</b> — judge paid on installs trend + engagement, never a fabricated CPL.</div>
+    <div class="sec"><span class="n">A</span> NPM installs — north star <span class="pill good">live data</span></div>
+    <div class="lead"><b>Real installs data, pulled live today.</b> The earlier "api.npmjs.org proxy-blocked" finding turned out to be specific to direct sandbox curl/bash — the WebFetch tool reaches both <code>api.npmjs.org</code> (download counts) and <code>registry.npmjs.org</code> (version/publish) without issue. Combined current-week installs across the 4 tracked packages: <b>9,688</b> (Jul 27–Aug 2). Installs remain a <b>blended adoption signal, not 1:1 paid-attributed</b> — these are total package downloads from all sources (CI, mirrors, every developer), not just paid-driven traffic. Judge paid on traffic trend + engagement; never back into a fabricated CPL from this number.</div>
     <div class="pkgs" style="margin-top:12px">
-      <div class="pkg"><div class="pn"><a href="https://www.npmjs.com/package/igniteui-react" target="_blank" rel="noopener">igniteui-react</a></div><div class="pv">grids · charts · components</div><div class="pi">n/a</div><div class="pv">installs read blocked</div></div>
-      <div class="pkg"><div class="pn"><a href="https://www.npmjs.com/package/igniteui-react-charts" target="_blank" rel="noopener">igniteui-react-charts</a></div><div class="pv">~1,040/wk (Snyk, directional)</div><div class="pi">n/a</div><div class="pv">authoritative read blocked</div></div>
-      <div class="pkg"><div class="pn"><a href="https://www.npmjs.com/package/igniteui-react-core" target="_blank" rel="noopener">igniteui-react-core</a></div><div class="pv">shared dependency</div><div class="pi">n/a</div><div class="pv">installs read blocked</div></div>
+      <div class="pkg"><div class="pn"><a href="https://www.npmjs.com/package/igniteui-react" target="_blank" rel="noopener">igniteui-react</a></div><div class="pv">v19.0.3 · core package</div><div class="pi">499</div><div class="pv">this week (Jul 27–Aug 2)</div></div>
+      <div class="pkg"><div class="pn"><a href="https://www.npmjs.com/package/igniteui-react-core" target="_blank" rel="noopener">igniteui-react-core</a></div><div class="pv">v19.6.0 · shared dependency</div><div class="pi">3,220</div><div class="pv">this week — prior wk 18,592 (spike-driven, see note)</div></div>
+      <div class="pkg"><div class="pn"><a href="https://www.npmjs.com/package/igniteui-react-grids" target="_blank" rel="noopener">igniteui-react-grids</a></div><div class="pv">v19.8.1 · maps to Grids campaigns</div><div class="pi">2,381</div><div class="pv">this week — prior wk 4,908</div></div>
+      <div class="pkg"><div class="pn"><a href="https://www.npmjs.com/package/igniteui-react-charts" target="_blank" rel="noopener">igniteui-react-charts</a></div><div class="pv">v19.6.0 · maps to Charts campaigns</div><div class="pi">3,588</div><div class="pv">this week — prior wk 759</div></div>
     </div>
-    <p class="note">Also linked: <a href="https://www.npmjs.com/package/igniteui-react-grids" target="_blank" rel="noopener">igniteui-react-grids</a> (maps to the Grids campaigns). Summed total + by-package split will populate here once the stats API is allowlisted.</p>
+    <p class="note"><b>Combined:</b> 9,688 this week / ~24,778 prior week / ~58,537 over the trailing 30 days (4 packages). <b>Caveat:</b> igniteui-react-core's prior week includes three single-day spikes (Jul 23: 3,897 · Jul 25: 6,576 · Jul 26: 6,001) against a normal ~300–900/day baseline — almost certainly CI/mirror-sync bursts, not organic installs. We are not reporting a WoW % for the combined total because that spike would make it read as a fake ~61% "decline." Package set (react/core/grids/charts) is carried from the original spec — JJ, please confirm this is still the exact set you want tracked.</p>
 
     <div class="sec"><span class="n">B</span> Funnel per channel</div>
     <div class="dtable">
       <table>
-        <thead><tr><th>Channel</th><th class="num">Spend</th><th class="num">Clicks</th><th class="num">React cpc sessions</th><th class="num">Installs</th></tr></thead>
+        <thead><tr><th>Channel</th><th class="num">Spend</th><th class="num">Clicks</th><th class="num">React cpc sessions</th><th class="num">NPM installs (4-pkg, wk)</th></tr></thead>
         <tbody>
-          <tr><td>Google Ads — React</td><td class="num">$4,761</td><td class="num">1,426</td><td class="num">~56</td><td class="num">n/a</td></tr>
-          <tr><td>Bing — React</td><td class="num">$109</td><td class="num">25</td><td class="num">not instrumented</td><td class="num">n/a</td></tr>
+          <tr><td>Google Ads — React*</td><td class="num">$4,761</td><td class="num">1,426</td><td class="num">~56</td><td class="num" rowspan="2">9,688 (site-wide, not per-channel)</td></tr>
+          <tr><td>Bing — React*</td><td class="num">$109</td><td class="num">25</td><td class="num">not instrumented</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="note">Never blended: Google clicks (Google Ads), Bing clicks (Adzviser/Bing), sessions (GA4), installs (npm). Each column is one metric from one tool.</p>
+    <p class="note">*Spend/clicks/sessions are last known, not reconfirmed this run. Installs cannot be split by ad channel — npm downloads have no referrer, so this row is deliberately shown once, not blended per-channel. Never blended: Google clicks (Google Ads), Bing clicks (Adzviser), sessions (GA4), installs (npm) — each column is one metric from one tool.</p>
 
     <div class="sec"><span class="n">C</span> Verdict</div>
     <div class="verdict">
       <div class="vh">Decision</div>
-      <p><b>Fix</b> — conversion tracking is the gating item for the entire program; it's overdue and blocks CPA, asset grading, and the installs funnel. Nothing else scales cleanly until it's live.</p>
-      <p><b>Keep &amp; extend</b> — Search-Compete (auction won, 74% abs-top; take the remaining rank-lost share) and Search-Components (relevance improving). Lift Quality Score on Charts/Components to recover abs-top without new budget.</p>
-      <p><b>Fund selectively</b> — Grids has flipped to budget-limited (37% abs-top lost to budget) after its rank fix; a modest +$30/day recaptures top-slot impressions on a healthy campaign. Same logic for Charts.</p>
-      <p><b>Nurture, don't scale yet</b> — Bing React is a cheap, high-abs-top newcomer ($109/wk). Hold at current budget one more week to gather a real search-term read, then decide fund-vs-hold. <b>Cut-and-reallocate</b> the OSS-query waste on Charts/Components (~$60–90/wk) into the Grids/Charts budget top-ups.</p>
+      <p><b>Fix</b> — restore the Supermetrics connection (Google Ads + GA4) before next Monday; a report running on last week's numbers twice in a row is the real risk to this program's credibility, not any single campaign metric.</p>
+      <p><b>Keep &amp; extend</b> — last known: Search-Compete (auction won, 74% abs-top) and Search-Components (relevance improving). Lift Quality Score on Charts/Components once reconnected.</p>
+      <p><b>Clarify before acting</b> — do not apply "react table" recommendations to Grids until the standalone campaign question resolves; do not assume search is geo-unsegmented — both need the live campaign list.</p>
+      <p><b>Nurture, don't scale yet</b> — Bing React was a cheap, high-abs-top newcomer as of the last read ($109/wk). Hold the fund-vs-hold call until Adzviser is reconnected and a real search-term read is possible.</p>
     </div>
   </section>
 
-  <!-- ============ TAB 8: TASKS ============ -->
+  <!-- ============ TAB 10: TASKS ============ -->
   <section class="tabpanel" data-tab="tasks" id="tasks" data-label="Tasks">
     <div class="taskhead">
       <div class="viewtoggle">
@@ -536,46 +524,46 @@
     <div class="view on" data-view="table"><div class="tablewrap"><table><thead><tr><th>Task</th><th>Focus</th><th>Owner</th><th>Priority</th><th>Status</th><th>Due</th></tr></thead><tbody id="tblBody"></tbody></table></div></div>
     <div class="view" data-view="board"><div class="board" id="boardWrap"></div></div>
     <div class="view" data-view="timeline"><div class="tl" id="tlWrap"></div></div>
-    <p class="note" style="margin-top:14px">Live snapshot of the React Paid section (parent tasks only). Cadence: refreshed every Monday with this report; new actions appended after publish. All paid execution routes to Poojitha Battala.</p>
+    <p class="note" style="margin-top:14px">Live snapshot of the React Paid section (parent tasks only), pulled directly from Slingshot this run. Cadence: refreshed every Monday with this report. All paid execution routes to Poojitha Battala.</p>
   </section>
 
-  <!-- ============ TAB 9: SUMMARY ============ -->
+  <!-- ============ TAB 11: SUMMARY ============ -->
   <section class="tabpanel" data-tab="summary" id="summary" data-label="Summary">
     <div class="sumhead"><span class="dtitle">Executive summary — copyable CEO readout</span>
       <button class="slink push" id="copyBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg> <span id="copyLabel">Copy summary</span></button></div>
     <div class="summary-card" id="summaryCard">
-      <h2>React Paid — week of Jul 27–Aug 2, 2026</h2>
-      <p><b>Where we are.</b> Spend held flat at <b>$4,761</b> on Google (vs $4,762 prior) and a new <b>$109 on Bing</b>. Clicks fell 19% as budget rotated from PMax/Demand Gen into higher-CPC search. The north star is NPM installs, and we still cannot read installs from this environment (api.npmjs.org blocked), so we judge paid on auction position + engagement and refuse to invent a CPL. Google Ads conversion tracking remains broken — 1,426 clicks produced ~56 measured React sessions.</p>
+      <h2>React Paid — week of Jul 27–Aug 2, 2026 (published Aug 3)</h2>
+      <p><b>Where we are.</b> Supermetrics (Google Ads + GA4) disconnected mid-run — every Google/Bing number below is last-known from the prior pull, clearly labeled, not fresh. What is fresh: NPM installs, our real north star, at 9,688/week combined across igniteui-react/-core/-grids/-charts. We also corrected a standing framing error this week — React has no conversion event by design (ungated trial, no form fill), so "0 conversions" was never a tracking bug, and we've rebuilt the scoreboard around traffic + engagement instead.</p>
       <h3>What's working</h3>
       <ul>
-        <li><b>Compete won the auction</b> — abs-top IS 54%&rarr;74% WoW, rank-lost 35%&rarr;20%, after last week's budget bet. Search IS 87%.</li>
-        <li><b>Grids rank problem fixed</b> — rank-lost-abs-top 71%&rarr;46% after the keyword/search-term cleanup.</li>
-        <li><b>Bing React launched</b> — Compete + Grids live at 79–91% abs-top, QS4–5, $4.35 CPC. Punching above a tiny budget.</li>
+        <li><b>NPM installs are now a live, trustworthy metric</b> — 9,688/week combined, ~58.5k over the trailing 30 days, pulled fresh via WebFetch.</li>
+        <li><b>Reporting model corrected</b> — no more chasing a "broken conversion tracking" fix that was never real; scoreboard now scores traffic/engagement.</li>
+        <li><b>Last known (Jul 27–Aug 2):</b> Search-Compete won its auction (54%&rarr;74% abs-top WoW); Bing React launched strong (79–91% abs-top).</li>
       </ul>
       <h3>What's not</h3>
       <ul>
-        <li><b>Conversion tracking still broken</b> (overdue, due Jul 29) — hides CPA, blocks asset grading and the installs funnel.</li>
-        <li><b>Quality Score caps our head terms</b> — react chart library QS2 ($495/wk), react component/ui library QS1–2. Charts loses 61% of abs-top to rank, Components 55%.</li>
-        <li><b>Grids now budget-limited</b> — budget-lost-abs-top 13%&rarr;37%.</li>
+        <li><b>Supermetrics is disconnected</b> — Google Ads + GA4 accounts both return zero rows; every response flagged a trial expiring in 2 days. Reconnect links sent to JJ.</li>
+        <li><b>Adzviser (Bing Ads) isn't connected in this session at all</b> — separate issue from "no Bing spend."</li>
+        <li><b>Two open data-quality corrections</b>: (1) confirm whether a distinct "React Table" campaign exists separate from Grids; (2) confirm actual Intl/EMEA geo-targeting at the campaign level — a prior report's "not geo-segmented" claim was flagged as wrong.</li>
       </ul>
       <h3>This week's plan</h3>
       <ul>
-        <li>Land the tracking/attribution repair — top priority, unblocks everything.</li>
-        <li>Lift Quality Score on Charts &amp; Components (ad-group-to-LP relevance) to recover abs-top without new budget.</li>
-        <li>Add OSS-query negatives on Charts/Components (~$60–90/wk of leak) and reallocate into Grids/Charts top-ups (+$30/day each).</li>
-        <li>Extend the Compete win by taking its remaining 20% rank-lost abs-top.</li>
-        <li>Hold Bing React one more week for a real search-term read, then decide fund-vs-hold.</li>
+        <li>Reconnect Supermetrics (Google Ads acct 9179838229, GA4 property 516222862) — P1, due Aug 10.</li>
+        <li>Confirm the real active React campaign list, resolve the React Table/Grids question, and verify geo-targeting — P1, due Aug 10.</li>
+        <li>Once reconnected: pull Device &amp; Location and Demand Gen audience-segment data into the two new tabs built this week.</li>
+        <li>Lock a permanent KPI set with JJ now that conversions are off the table — P2, due Aug 10.</li>
+        <li>Decide Bing React fund-vs-hold once Adzviser is back and a real search-term read is possible.</li>
       </ul>
       <h3>Channel by channel</h3>
-      <p><b>Google:</b> search $3,607 at 7.9% CTR; Compete strong, Components improving, Charts/Grids held by rank/budget respectively; PMax carries the only conversion signal (5 conv). <b>Bing:</b> $109, 25 clicks, high abs-top, 0 conv, new launch.</p>
+      <p><b>Google:</b> last known — search $3,607 at 7.9% CTR; Compete strong, Components improving, Charts/Grids held by rank/budget respectively. Not reconfirmed this run. <b>Bing:</b> last known — $109, 25 clicks, high abs-top, new launch. Adzviser not connected this session.</p>
       <h3>Installs forecast</h3>
-      <p>Deliberately not forecasting a 12-week installs curve while the stats API is blocked. Directional third-party reference: Snyk shows igniteui-react-charts ~1,040 downloads/week. Real curve + 3-month outlook publish here once api.npmjs.org is allowlisted.</p>
+      <p>9,688/week combined, ~58.5k over the trailing 30 days. Deliberately not smoothing a 12-week curve yet — the 30-day data contains CI/mirror-sync spikes (igniteui-react-core: 6,576 and 6,001 on Jul 25–26) that would distort a trend line. Will publish a proper curve once more clean weeks accumulate.</p>
       <h3>Open config to confirm</h3>
-      <p>Installs/week target · CPA/CPL target (once tracking is fixed) · monthly React budget · exact npm package set · whether to formally fund Bing for React.</p>
+      <p>Installs/week target · React cpc-session/engagement targets (replacing the retired CPA/CPL framing) · monthly React budget · exact npm package set (react/core/grids/charts — confirm still correct) · whether to formally fund Bing for React.</p>
     </div>
   </section>
 
-  <!-- ============ TAB 10: CHEAT SHEET ============ -->
+  <!-- ============ TAB 12: CHEAT SHEET ============ -->
   <section class="tabpanel" data-tab="cheat" data-label="Cheat sheet">
     <div class="sec"><span class="n">A</span> Paid glossary</div>
     <div class="glossary">
@@ -588,13 +576,14 @@
       <div class="gitem"><b>CPC</b> — cost per click. Rises when QS falls or competition heats up.</div>
       <div class="gitem"><b>Demand Gen</b> — Google's visual/discovery format (image/video). Upper-funnel, lower intent than search.</div>
       <div class="gitem"><b>Negatives</b> — keywords you block to stop paying for irrelevant queries.</div>
+      <div class="gitem"><b>Auction Insights</b> — competitor overlap/position data. Not exposed by our current Google Ads data source (confirmed via field_discovery) — genuinely unavailable, not just disconnected.</div>
     </div>
     <div class="sec"><span class="n">B</span> "Ours" — product terms</div>
     <div class="glossary">
-      <div class="gitem"><b>NPM installs</b> — our north-star adoption metric (weekly package downloads). Blended signal, not 1:1 paid-attributed.</div>
-      <div class="gitem"><b>By-package split</b> — igniteui-react + -charts + -core (+ -grids for grid campaigns), reported summed and separately.</div>
-      <div class="gitem"><b>"Flying blind"</b> — shorthand for the broken click&rarr;session&rarr;conversion signal that hides CPA on Google Ads.</div>
-      <div class="gitem"><b>Google vs Bing</b> — always reported side by side, never summed into one figure (different auctions, different tools).</div>
+      <div class="gitem"><b>NPM installs</b> — our north-star adoption metric (weekly package downloads across igniteui-react/-core/-grids/-charts). Blended signal, not 1:1 paid-attributed.</div>
+      <div class="gitem"><b>By-package split</b> — igniteui-react + -core + -grids + -charts, reported summed and separately.</div>
+      <div class="gitem"><b>No conversion event, by design</b> — React's trial download is ungated (no form fill), so there is no lead/conversion signal to track. We optimize toward website traffic and engagement, not CPA/CPL. Retired: "flying blind" / "conversion tracking broken" language.</div>
+      <div class="gitem"><b>Google vs Bing</b> — always reported side by side, never summed into one figure (different auctions, different tools). When one connector is unavailable, we say so rather than guessing.</div>
     </div>
   </section>
 
@@ -620,18 +609,28 @@
   // ---- TASKS (parent tasks only, live from Slingshot React Paid section) ----
   var TODAY='2026-08-03';
   var TASKS=[
-    {name:'Repair click→session→conversion tracking',channel:'Tracking',owner:'Poojitha',initials:'PB',priority:'P1',status:'todo',due:'2026-07-29',start:'2026-07-23'},
+    {name:'Set up conversion tracking on React page',channel:'Engagement',owner:'Team',initials:'TM',priority:'P3',status:'todo',due:''},
+    {name:'Repair click→session→conversion tracking (reframed: traffic/session gap)',channel:'Measurement',owner:'Poojitha',initials:'PB',priority:'P1',status:'todo',due:'2026-07-29'},
     {name:'Fix "react grid" ad rank on Search-Grids',channel:'Grids',owner:'Poojitha',initials:'PB',priority:'P1',status:'prog',due:'2026-07-29',start:'2026-07-23'},
     {name:'Raise Quality Score on Search-Components',channel:'Components',owner:'Poojitha',initials:'PB',priority:'P1',status:'todo',due:''},
-    {name:'Stand up US-vs-Intl geo segmentation + conversion import',channel:'Reporting',owner:'Poojitha',initials:'PB',priority:'P1',status:'todo',due:''},
+    {name:'Confirm active React campaign list + geo/table structure',channel:'Data/Ops',owner:'Poojitha',initials:'PB',priority:'P1',status:'todo',due:'2026-08-10'},
+    {name:'Harden Supermetrics connection — prevent recurring outages',channel:'Data/Ops',owner:'Poojitha',initials:'PB',priority:'P1',status:'todo',due:'2026-08-10'},
+    {name:'Stand up US-vs-Intl geo verification for reporting (reframed)',channel:'Reporting',owner:'Poojitha',initials:'PB',priority:'P1',status:'todo',due:''},
     {name:'Audit & cap Demand Gen React',channel:'Demand Gen',owner:'Poojitha',initials:'PB',priority:'P2',status:'prog',due:'2026-07-30',start:'2026-07-23'},
+    {name:'Decide Bing React fund-vs-hold after a week of search-term data',channel:'Bing',owner:'Poojitha',initials:'PB',priority:'P2',status:'todo',due:'2026-08-11'},
+    {name:'Promote Demand Gen Asset C + add 2–3 fresh variants',channel:'Demand Gen',owner:'Poojitha',initials:'PB',priority:'P2',status:'todo',due:'2026-08-11'},
+    {name:'Mirror winning Google RSAs into Bing Compete/Grids',channel:'Bing',owner:'Poojitha',initials:'PB',priority:'P2',status:'todo',due:'2026-08-08'},
     {name:'Negatives sweep — OSS-library queries (Charts/Components)',channel:'Charts/Comp',owner:'Poojitha',initials:'PB',priority:'P2',status:'todo',due:''},
     {name:'Extend the Search-Compete win (take rank-lost share)',channel:'Compete',owner:'Poojitha',initials:'PB',priority:'P2',status:'todo',due:''},
     {name:'Fund Search-Charts +$30/day',channel:'Charts',owner:'Poojitha',initials:'PB',priority:'P2',status:'todo',due:''},
+    {name:'Build Device + Location performance view across React campaigns',channel:'Reporting',owner:'Poojitha',initials:'PB',priority:'P2',status:'todo',due:'2026-08-10'},
+    {name:'Pull Demand Gen audience-segment performance',channel:'Demand Gen',owner:'Poojitha',initials:'PB',priority:'P2',status:'todo',due:'2026-08-10'},
+    {name:'Confirm permanent KPI set now that React has no conversion event',channel:'Measurement',owner:'Poojitha',initials:'PB',priority:'P2',status:'todo',due:'2026-08-10'},
     {name:'Add CLI videos to Demand Gen campaigns',channel:'Demand Gen',owner:'Poojitha',initials:'PB',priority:'P3',status:'prog',due:'2026-08-03',start:'2026-07-30'},
     {name:'Add Brand Guidelines for Ultimate and Ignite UI',channel:'Brand',owner:'Poojitha',initials:'PB',priority:'P3',status:'todo',due:'2026-08-06',start:'2026-07-30'},
     {name:'Search-terms sweep + "react table" coverage',channel:'Search',owner:'Poojitha',initials:'PB',priority:'P2',status:'done',due:'2026-07-30',completed:'2026-07-31'},
-    {name:'Fund Search-Compete to recapture top slot',channel:'Compete',owner:'Poojitha',initials:'PB',priority:'P1',status:'done',due:'2026-07-25',completed:'2026-07-24'}
+    {name:'Fund Search-Compete to recapture top slot',channel:'Compete',owner:'Poojitha',initials:'PB',priority:'P1',status:'done',due:'2026-07-25',completed:'2026-07-24'},
+    {name:'Wire up an NPM installs read (now live via WebFetch)',channel:'Reporting',owner:'Poojitha',initials:'PB',priority:'P1',status:'done',due:'2026-08-11',completed:'2026-08-03'}
   ];
   var accentDeep='#E14E12';
   function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
