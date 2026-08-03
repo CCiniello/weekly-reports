@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Competitive Intelligence / Slingshot — Work Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
+    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
+    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
+  }
+  body.theme-reveal   {--accent:#EC417A;--accent-deep:#C9367F;--accent-soft:#fde4ee;--hero:linear-gradient(120deg,#FBB764,#EC417A 62%,#d63384)}
+  body.theme-slingshot{--accent:#4B45C6;--accent-deep:#2D2A90;--accent-soft:#ECEBFB;--hero:linear-gradient(120deg,#6C5CE7,#4B45C6 55%,#2D2A90)}
+  body.theme-ui       {--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
+  body.theme-all      {--accent:#2563EB;--accent-deep:#7C3AED;--accent-soft:#EEF1FF;--hero:linear-gradient(120deg,#2563EB,#7C3AED)}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 80px}
+
+  header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
+  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
+  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
+  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)} .meta b{color:#fff;font-weight:700}
+
+  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03);overflow-x:auto}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;white-space:nowrap}
+  .tab:hover{color:var(--ink)}
+  .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+  .tabpanel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
+  .tabpanel.on{display:block}
+
+  .sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:26px 2px 13px;display:flex;align-items:center;gap:10px}
+  .sec:first-child{margin-top:2px}
+  .sec .n{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  .lead{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:16px 20px;font-size:14.5px;line-height:1.6} .lead b{color:var(--navy)}
+
+  .kpigrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
+  @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:#fcfdff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column}
+  .kpi .lab{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;min-height:28px}
+  .kpi .val{font-size:22px;font-weight:700;margin:2px 0 8px;font-family:var(--mono)}
+  .kpi .delta{align-self:flex-start;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
+  .delta.up{background:var(--good-bg);color:var(--good)} .delta.down{background:var(--bad-bg);color:var(--bad)} .delta.flat{background:var(--warn-bg);color:var(--warn)}
+
+  .score{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  .score table{width:100%;border-collapse:collapse;font-size:13px}
+  .score th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  .score td{padding:11px 13px;border-top:1px solid var(--line);vertical-align:middle}
+  .score .goal{font-weight:600;color:var(--navy)}
+  .pill{font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px}
+  .pill.good{background:var(--good-bg);color:var(--good)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.bad{background:var(--bad-bg);color:var(--bad)}
+
+  .cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
+  .card{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .card .ch{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:var(--accent-soft);border-bottom:1px solid var(--line)}
+  .card .ch .nm{font-size:15px;font-weight:700;color:var(--accent-deep)} .card .ch .sp{font-family:var(--mono);font-size:12.5px;color:var(--navy)}
+  .card .cb{padding:14px 18px;font-size:13.5px;line-height:1.55} .card .cb b{color:var(--navy)}
+
+  .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  .dtable table{width:100%;border-collapse:collapse;font-size:13px}
+  .dtable th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  .dtable td{padding:10px 13px;border-top:1px solid var(--line)} .dtable td.num{font-family:var(--mono);text-align:right}
+  .dtable tr:hover td{background:#fafbff}
+
+  .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
+  .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
+  .verdict p{font-size:15px;line-height:1.6;margin:0} .verdict b{color:var(--navy)}
+  code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+  a{color:var(--accent-deep)}
+
+  /* ===== VP READOUT BANNER (universal across reports) ===== */
+  .vpbanner{border:1px solid #E9E9F4;border-radius:16px;overflow:hidden;margin:0 0 18px;box-shadow:0 1px 3px rgba(15,23,42,.05);font-family:'Roboto',system-ui,sans-serif}
+  .vpbanner .vbar{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .vpbanner .vbar .t{font-size:18px;font-weight:800}
+  .vpbanner .vbar .g{font-size:12.5px;color:#cdd6f7;font-weight:600;text-align:right}
+  .vpbanner .vrow{display:flex;gap:18px;align-items:flex-start;padding:16px 22px;border-top:1px solid #E9E9F4}
+  .vpbanner .vrow:first-of-type{border-top:none}
+  .pill2{flex:none;width:92px;text-align:center;font-size:11px;font-weight:800;letter-spacing:.05em;padding:5px 0;border-radius:16px;text-transform:uppercase;margin-top:2px}
+  .pill2.fix{background:#fde8ec;color:#c62a4f}.pill2.work{background:#e3f5ec;color:#127a45}.pill2.watch{background:#fdf0d6;color:#8a6412}
+  .vrow .rtx h4{margin:0 0 4px;font-size:15px;color:#0F172A;font-weight:800}
+  .vrow .rtx p{margin:0;font-size:13.5px;color:#5f6b7a;line-height:1.55}
+
+  /* ===== FEEDBACK LOOP (universal across reports) ===== */
+  .fbx{position:relative}
+  .fbtn{position:absolute;top:6px;right:6px;z-index:3;width:22px;height:22px;border:none;border-radius:7px;background:#eef1fb;color:#2A41A2;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .12s;padding:0;box-shadow:0 1px 2px rgba(15,23,42,.14)}
+  .fbtn:hover{background:#2A41A2;color:#fff}
+  .fbtn svg{width:13px;height:13px}
+  .fbx:hover>.fbtn,.fbtn:focus-visible{opacity:1}
+  li.fbx>.fbtn{top:-1px;right:0;width:20px;height:20px}
+  .fbmodal{position:fixed;inset:0;background:rgba(15,23,42,.5);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
+  .fbmodal.on{display:flex}
+  .fbcard{background:#fff;border-radius:16px;max-width:470px;width:100%;box-shadow:0 20px 60px rgba(15,23,42,.32);overflow:hidden;font-family:'Roboto',system-ui,sans-serif}
+  .fbhd{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 20px}
+  .fbhd .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.85;font-weight:600}
+  .fbhd .l{font-size:15px;font-weight:800;margin-top:3px;line-height:1.3}
+  .fbbd{padding:16px 20px}
+  .fbbd label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#5f6b7a;display:block;margin:0 0 7px}
+  .fbcats{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+  .fbcat{font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;border:1.5px solid #e3e7f2;background:#fff;color:#41506b;cursor:pointer;font-family:inherit}
+  .fbcat.sel{border-color:#2A41A2;background:#eef1fb;color:#2A41A2}
+  .fbbd textarea{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13.5px;resize:vertical;min-height:74px;box-sizing:border-box}
+  .fbbd textarea:focus,.fbval:focus{outline:none;border-color:#2A41A2}
+  .fbvalwrap{display:none;margin-top:12px}.fbvalwrap.on{display:block}
+  .fbval{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:9px 12px;font-family:inherit;font-size:13.5px;box-sizing:border-box}
+  .fbft{display:flex;gap:10px;justify-content:flex-end;padding:14px 20px;border-top:1px solid #eef1f7;background:#fbfcff}
+  .fbbtn{font-family:inherit;font-size:13px;font-weight:600;padding:9px 15px;border-radius:9px;cursor:pointer;border:none}
+  .fbbtn.sec{background:#eef0f5;color:#41506b}
+  .fbbtn.pri{background:linear-gradient(120deg,#2A41A2,#3a54cf);color:#fff}
+  .fbbtn.pri:disabled{opacity:.5;cursor:not-allowed}
+  .fbtoast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0F172A;color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:300;opacity:0;transition:opacity .2s;box-shadow:0 8px 30px rgba(0,0,0,.3);max-width:90%;text-align:center;pointer-events:none}
+  .fbtoast.on{opacity:1}
+</style>
+</head>
+<body class="theme-slingshot">
+<div class="wrap">
+
+  <header class="top">
+    <div class="logochip">Slingshot</div>
+    <div class="kick">slingshotapp.io · Work Management · Competitive Intelligence</div>
+    <h1>Competitive Intelligence / Slingshot — Work Management</h1>
+    <div class="meta"><span>Week of <b>August 3, 2026</b></span> <span>vs ClickUp · Asana · Monday · Wrike · Smartsheet · Notion · Airtable</span></div>
+  </header>
+
+  <div class="vpbanner">
+    <div class="vbar">
+      <div class="t">VP Readout &mdash; 30-second view</div>
+      <div class="g">Goal: win the marketing team's work platform vs ClickUp · Asana · Monday · Wrike · Smartsheet · Notion · Airtable</div>
+    </div>
+    <div class="vrow fbx">
+      <div class="pill2 fix">Fix</div>
+      <div class="rtx"><h4>Near-invisible in the category</h4><p>Slingshot draws ~1,200 organic visits/mo and ~14 G2 reviews vs rivals at 260K–3.8M visits and 3K–21K reviews. Awareness — not product — is the binding constraint.</p></div>
+    </div>
+    <div class="vrow fbx">
+      <div class="pill2 work">Working</div>
+      <div class="rtx"><h4>Analytics + work in one tool — a lane nobody owns</h4><p>Rivals bolt reporting on; Slingshot ships native dashboards with PM, docs &amp; chat, sharpened to a "Marketing Execution Platform" ICP no competitor targets. That's the wedge.</p></div>
+    </div>
+    <div class="vrow fbx">
+      <div class="pill2 watch">Watch</div>
+      <div class="rtx"><h4>AI agents everywhere + seat-pricing backlash</h4><p>Every rival shipped autonomous AI agents in 2026, so "unified + AI" alone no longer differentiates — but Airtable's $11.7B→$4B markdown and per-seat gripes hand us a pricing wedge.</p></div>
+    </div>
+  </div>
+
+  <div class="tabbar" id="tabbar"></div>
+
+  <div id="panels">
+
+  <!-- ============ OVERVIEW ============ -->
+  <section class="tabpanel" data-tab="overview" data-label="Overview">
+    <div class="sec fbx"><span class="n">1</span>The state of play — first edition</div>
+    <div class="lead fbx">
+      <b>First edition — baseline. No prior report to diff against; from next week we lead with what changed.</b>
+      Slingshot competes in a category of giants. Asana (~3.8M organic/mo), Smartsheet (~1.2M), ClickUp (~1.4M) and Monday (~810K) each out-reach Slingshot (~1,200) by roughly a thousand times, and carry 3,000–21,000 G2 reviews to our ~14. <b>The constraint is awareness, not capability.</b> Our genuine differentiator is real: Slingshot unifies <b>native analytics/dashboards</b> with project management, docs and chat, where every rival bolts reporting on — now sharpened into a <b>"Marketing Execution Platform"</b> position no competitor occupies. The 2026 backdrop: everyone shipped autonomous AI agents (so generic "AI + unified" no longer differentiates), and a wave of seat-pricing backlash gives us a pricing wedge.
+    </div>
+
+    <div class="sec fbx"><span class="n">2</span>Biggest moves &amp; why they matter</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Move</th><th>Who</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td><b>Autonomous AI agents shipped across the board</b> (Brain2, AI Teammates, Agent Factory, Custom Agents)</td><td>All rivals</td><td>"Unified + AI" alone no longer differentiates. Slingshot must lead on <em>data/analytics-native</em> AI, not generic agents.</td></tr>
+          <tr><td><b>Wrike bundles AI agents free in all plans</b></td><td>Wrike</td><td>Resets buyer expectations that AI is a paid add-on — pressures how we package AI value against our free tier.</td></tr>
+          <tr><td><b>Airtable marked down $11.7B → ~$4B</b>; seat-pricing backlash across Monday/Airtable/Asana</td><td>Airtable · Monday · Asana</td><td>Pricing discontent is our sharpest wedge — lead with a generous free tier + transparent per-seat pricing to marketing teams.</td></tr>
+          <tr><td><b>Asana acquired StackAI ($75M); Notion ~50% of revenue from AI</b></td><td>Asana · Notion</td><td>AI-orchestration is the new battleground — Slingshot's analytics DNA is its best wedge to differentiate there.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec fbx"><span class="n">3</span>KPIs — Slingshot vs the field</div>
+    <div class="kpigrid">
+      <div class="kpi fbx"><div class="lab">Notable moves this week</div><div class="val">4</div><span class="delta flat">baseline</span></div>
+      <div class="kpi fbx"><div class="lab">Our organic SoV (tracked set)</div><div class="val">&lt;0.1%</div><span class="delta flat">1st edition</span></div>
+      <div class="kpi fbx"><div class="lab">Our AI-answer SoV</div><div class="val">pending</div><span class="delta flat">first pull next run</span></div>
+      <div class="kpi fbx"><div class="lab">Our G2 rating</div><div class="val">4.6★</div><span class="delta flat">~14 reviews</span></div>
+      <div class="kpi fbx"><div class="lab">vs peer G2 avg</div><div class="val">+0.09</div><span class="delta up">above avg 4.51 (low vol)</span></div>
+    </div>
+    <p style="font-size:11.5px;color:var(--muted);margin-top:8px">Organic SoV = slingshotapp.io share of combined tracked-set organic traffic (Ahrefs, monthly, 2026-08-03). Our G2 rating is strong but on a tiny sample (~14) — directional, not statistically comparable to rivals' thousands.</p>
+
+    <div class="sec fbx"><span class="n">4</span>Scorecard — competitive threat from Slingshot's seat</div>
+    <div class="score">
+      <table>
+        <thead><tr><th>Competitor</th><th>SEO / reach</th><th>Product velocity</th><th>Paid</th><th>Reputation</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">Asana</td><td><span class="pill bad">dominant (3.8M)</span></td><td><span class="pill bad">fast (AI OS)</span></td><td><span class="pill bad">heavy</span></td><td><span class="pill warn">4.4 · 13.7K</span></td></tr>
+          <tr><td class="goal">ClickUp</td><td><span class="pill bad">dominant (1.4M)</span></td><td><span class="pill bad">very fast (Brain2)</span></td><td><span class="pill bad">heaviest paid</span></td><td><span class="pill warn">4.7 · 13.5K</span></td></tr>
+          <tr><td class="goal">Monday</td><td><span class="pill bad">strong (810K)</span></td><td><span class="pill bad">fast (agents)</span></td><td><span class="pill bad">heavy</span></td><td><span class="pill warn">4.7 · 18K</span></td></tr>
+          <tr><td class="goal">Smartsheet</td><td><span class="pill bad">dominant (1.2M)</span></td><td><span class="pill warn">steady</span></td><td><span class="pill good">light paid</span></td><td><span class="pill warn">4.4 · 21K</span></td></tr>
+          <tr><td class="goal">Notion / Airtable</td><td><span class="pill bad">strong (262K/793K)</span></td><td><span class="pill warn">AI pivot</span></td><td><span class="pill warn">mixed</span></td><td><span class="pill good">4.6 · pricing/PM gaps</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:11.5px;color:var(--muted);margin-top:8px">Pills read as threat level from Slingshot's seat: <span class="pill bad">red</span> = pressure on us, <span class="pill warn">amber</span> = watch, <span class="pill good">green</span> = opening for us.</p>
+
+    <div class="sec fbx"><span class="n">5</span>Recommended responses — summary</div>
+    <div class="lead fbx">
+      <b>1. Own "analytics-native work management"</b> — make the dashboards-in-your-workspace story the whole message, not a feature bullet; it's the one thing rivals can't copy quickly. <b>2. Weaponize the pricing backlash</b> — a "no ghost seats, generous free tier" comparison aimed at Monday/Airtable/Asana refugees. <b>3. Fix awareness at the source</b> — comparison + alternative content and G2 review velocity; we're invisible in both search and LLM answers. <b>4. Differentiate our AI on data, not agents</b> — everyone has agents; only we pair them with native analytics. Full actions in <b>Our Moves</b>.
+    </div>
+  </section>
+
+  <!-- ============ SEO FOCUS ============ -->
+  <section class="tabpanel" data-tab="seo" data-label="SEO Focus">
+    <div class="sec fbx"><span class="n">1</span>Organic footprint — the awareness gap</div>
+    <div class="lead fbx"><b>The single most important number in this report: Slingshot has ~411 ranking keywords and ~1,200 organic visits/mo against rivals with 30K–145K keywords and 260K–3.8M visits.</b> This is a ~1,000× reach gap. It's not a ranking-tactics problem — it's a brand-and-content-volume problem, and it caps every downstream metric (pipeline, AI-answer visibility, review volume). Every other recommendation in this report is downstream of closing it.</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Domain</th><th class="num">Org KW</th><th class="num">Org traffic/mo</th><th class="num">KW top 3</th><th class="num">Paid KW</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">slingshotapp.io (us)</td><td class="num">411</td><td class="num">1,228</td><td class="num">108</td><td class="num">105</td></tr>
+          <tr><td>asana.com</td><td class="num">144,825</td><td class="num">3,806,757</td><td class="num">76,397</td><td class="num">28,097</td></tr>
+          <tr><td>smartsheet.com</td><td class="num">114,984</td><td class="num">1,215,137</td><td class="num">73,041</td><td class="num">3,761</td></tr>
+          <tr><td>clickup.com</td><td class="num">40,369</td><td class="num">1,376,120</td><td class="num">16,686</td><td class="num">33,834</td></tr>
+          <tr><td>monday.com</td><td class="num">46,771</td><td class="num">810,218</td><td class="num">22,542</td><td class="num">41,299</td></tr>
+          <tr><td>airtable.com</td><td class="num">5,552</td><td class="num">792,623</td><td class="num">2,914</td><td class="num">3,864</td></tr>
+          <tr><td>wrike.com</td><td class="num">31,084</td><td class="num">450,887</td><td class="num">14,636</td><td class="num">3,885</td></tr>
+          <tr><td>notion.so*</td><td class="num">756</td><td class="num">262,452</td><td class="num">410</td><td class="num">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:11.5px;color:var(--muted);margin-top:8px">*Notion migrated marketing to notion.com, so notion.so understates its true footprint. Source: Ahrefs Site Explorer, mode=subdomains, monthly, 2026-08-03.</p>
+
+    <div class="sec fbx"><span class="n">2</span>Where we can actually win search</div>
+    <div class="lead fbx">We cannot out-publish Asana or ClickUp on head terms. The realistic wins are <b>narrow, high-intent, and differentiated:</b> "project management with built-in dashboards", "marketing work management", "[ClickUp/Monday/Asana] alternative for marketing teams", and "work management with analytics". These map to our actual wedge (analytics + marketing ICP) and are terms the giants under-serve because reporting isn't their story.</div>
+
+    <div class="sec fbx"><span class="n">3</span>The compounding cost of invisibility</div>
+    <div class="lead fbx">Low organic reach doesn't just cost traffic — it starves <b>AI-answer visibility</b> (LLMs cite what's widely referenced) and <b>G2 review volume</b> (fewer users, fewer reviews). Our 4.6 rating is strong but rests on ~14 reviews; rivals wield thousands. Content + reviews + comparison pages are the same investment attacking all three gaps at once.</div>
+  </section>
+
+  <!-- ============ PRODUCT & RELEASES ============ -->
+  <section class="tabpanel" data-tab="product" data-label="Product &amp; Releases">
+    <div class="sec fbx"><span class="n">1</span>What shipped — 2026 (the AI-agent wave)</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Competitor</th><th>Recent releases</th><th>Gap / opening?</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">ClickUp</td><td>Brain2 (multi-LLM), Super Agents, Brain MAX desktop app</td><td><span class="pill warn">AI agents parity</span></td></tr>
+          <tr><td class="goal">Asana</td><td>"Agentic Work Management" OS — AI Teammates, AI Studio, Dash</td><td><span class="pill warn">AI orchestration</span></td></tr>
+          <tr><td class="goal">Monday</td><td>AI agents with full user status + Agent Factory (Service Agent, Project Analyzer)</td><td><span class="pill warn">agent parity</span></td></tr>
+          <tr><td class="goal">Wrike</td><td>AI Agents + no-code Agent Builder + AI Priority Inbox — free in all plans</td><td><span class="pill bad">pricing pressure</span></td></tr>
+          <tr><td class="goal">Notion / Airtable</td><td>Notion Custom Agents (24/7); Airtable Omni + Field Agents + Superagent</td><td><span class="pill good">not true PM</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec fbx"><span class="n">2</span>Cadence read</div>
+    <div class="lead fbx">
+      <b>Every competitor shipped autonomous AI agents in 2026 — the category has fully commoditized "AI in your work tool."</b> That's actually clarifying for Slingshot: generic AI agents are no longer a differentiator for anyone, so the winning position isn't "we have agents too" — it's <b>"our AI acts on your connected data."</b> Slingshot's native analytics + data connections mean its AI can answer <em>business</em> questions ("which campaign is underperforming and who owns it?") and turn the answer into a task, in one place. That's the one AI story the pure work-management tools structurally can't tell — they'd have to bolt on a BI layer first. Lean into it hard.
+    </div>
+  </section>
+
+  <!-- ============ PAID & PLATFORMS ============ -->
+  <section class="tabpanel" data-tab="paid" data-label="Paid &amp; Platforms">
+    <div class="sec fbx"><span class="n">1</span>Paid search presence</div>
+    <div class="lead fbx"><b>The giants spend enormously on paid</b> — Monday (41K paid keywords), ClickUp (34K), Asana (28K). Slingshot runs a modest program (105 paid keywords). <b>We cannot compete on paid volume and shouldn't try.</b> The only defensible paid play is narrow, high-intent, low-competition terms tied to our wedge: "[tool] alternative for marketing," "work management with dashboards," and pricing-comparison terms where the seat-pricing backlash works in our favor.</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Domain</th><th class="num">Paid KW</th><th class="num">Paid pages</th><th class="num">Est. paid traffic/mo</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">slingshotapp.io (us)</td><td class="num">105</td><td class="num">36</td><td class="num">233</td></tr>
+          <tr><td>monday.com</td><td class="num">41,299</td><td class="num">3,256</td><td class="num">1,186,307</td></tr>
+          <tr><td>clickup.com</td><td class="num">33,834</td><td class="num">6,406</td><td class="num">1,587,004</td></tr>
+          <tr><td>asana.com</td><td class="num">28,097</td><td class="num">1,671</td><td class="num">888,781</td></tr>
+          <tr><td>airtable.com</td><td class="num">3,864</td><td class="num">423</td><td class="num">145,639</td></tr>
+          <tr><td>wrike.com</td><td class="num">3,885</td><td class="num">692</td><td class="num">234,421</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sec fbx"><span class="n">2</span>Direction &amp; opportunity</div>
+    <div class="lead fbx"><b>Recommendation:</b> skip head terms entirely. Run a tightly-scoped campaign on <code>monday.com alternative</code>, <code>airtable alternative pricing</code>, and <code>marketing project management dashboard</code> — riding the seat-pricing backlash and our analytics wedge. Measure on demo quality, not volume.</div>
+  </section>
+
+  <!-- ============ REPUTATION & MARKET ============ -->
+  <section class="tabpanel" data-tab="reputation" data-label="Reputation &amp; Market">
+    <div class="sec fbx"><span class="n">1</span>G2 ratings snapshot</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Product</th><th class="num">Rating</th><th class="num">Reviews</th><th>Read</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">Slingshot (us)</td><td class="num">4.6</td><td class="num">~14</td><td>Strong score, tiny sample — build volume to make it count.</td></tr>
+          <tr><td class="goal">Monday</td><td class="num">4.7</td><td class="num">~18,025</td><td>Loved for flexibility; pricing gripes.</td></tr>
+          <tr><td class="goal">ClickUp</td><td class="num">4.7</td><td class="num">~13,547</td><td>Feature-rich; UI clutter / learning curve.</td></tr>
+          <tr><td class="goal">Notion / Airtable</td><td class="num">4.6</td><td class="num">~12K / 3.2K</td><td>Loved, but not true PM; reporting/seat-cost gaps.</td></tr>
+          <tr><td class="goal">Asana / Smartsheet</td><td class="num">4.4</td><td class="num">~13.7K / 21.4K</td><td>Enterprise scale; cost + shallow native reporting.</td></tr>
+          <tr><td class="goal">Wrike</td><td class="num">4.2</td><td class="num">~4,520</td><td>Powerful but steep; clunky desktop app.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec fbx"><span class="n">2</span>Their weaknesses = our openings</div>
+    <div class="cards">
+      <div class="card fbx"><div class="ch"><span class="nm">Asana · Monday · Notion</span><span class="sp">shallow native reporting</span></div><div class="cb">All three are repeatedly flagged for project-centric or thin native reporting that pushes teams to external BI. <b>Our opening:</b> Slingshot's dashboards + benchmarks are built in — the insight and the work live together, no export required.</div></div>
+      <div class="card fbx"><div class="ch"><span class="nm">Monday · Airtable · Asana</span><span class="sp">seat-cost backlash</span></div><div class="cb">Seat-bucket "ghost seats," per-seat cost explosion, and Airtable's $11.7B→$4B markdown signal pricing fatigue. <b>Our opening:</b> a generous free tier (3 workspaces) and transparent ~$12/seat pricing aimed straight at refugees.</div></div>
+      <div class="card fbx"><div class="ch"><span class="nm">ClickUp · Wrike · Smartsheet</span><span class="sp">complexity &amp; ramp</span></div><div class="cb">ClickUp UI clutter, Wrike 3–6 month rollouts, Smartsheet spreadsheet-bound. <b>Our opening:</b> a cleaner, marketing-shaped workspace where analytics is native, not a bolt-on module to configure.</div></div>
+    </div>
+
+    <div class="sec fbx"><span class="n">3</span>PR / M&amp;A / market</div>
+    <div class="lead fbx">
+      <b>Consolidation and re-pricing everywhere:</b> ClickUp ~$4B valuation / ~$300M ARR (IPO rumored); Asana (NYSE:ASAN) acquired StackAI ($75M, May 2026); Monday (NASDAQ:MNDY) FY25 revenue $1.23B (+27%); Smartsheet taken private by Blackstone/Vista ($8.4B, closed Jan 2025); Notion ~$11B secondary / ~$600M ARR; Airtable marked down $11.7B → ~$4B (Jan 2026). Net signal: the category is maturing, AI is table stakes, and pricing/valuation pressure is opening a value-and-focus lane for a differentiated challenger.
+    </div>
+
+    <div class="sec fbx"><span class="n">4</span>Our AI-answer visibility</div>
+    <div class="lead fbx"><b>AI-answer share of voice — first pull pending.</b> Not yet baselined; the scheduled run will pull Slingshot's LLM-answer visibility from Amplitude AI Visibility and track it weekly. Expect it to be low initially (it tracks organic reach), which makes it a leading indicator for the awareness work — a metric to grow deliberately with comparison content and reviews.</div>
+    <p style="font-size:11.5px;color:var(--muted)">Data-quality note: AI-answer SoV is volatile week to week; establish the baseline first.</p>
+  </section>
+
+  <!-- ============ COMPETITIVE MATRIX ============ -->
+  <section class="tabpanel" data-tab="matrix" data-label="Competitive Matrix">
+    <div class="sec fbx"><span class="n">1</span>Slingshot vs the field — ICP: marketing team leads / ops choosing a work platform</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Dimension</th><th>Slingshot</th><th>ClickUp</th><th>Asana</th><th>Monday</th><th>Smartsheet</th><th>Notion / Airtable</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">Native analytics &amp; dashboards</td><td><span class="pill good">WIN — built-in dashboards + benchmarks</span></td><td>Bolt-on</td><td>Shallow native</td><td>Basic</td><td>Bolt-on</td><td>Weak / export</td></tr>
+          <tr><td class="goal">Work / project management depth</td><td><span class="pill warn">Parity — solid PM</span></td><td>WIN — deep</td><td>WIN — deep</td><td>Strong</td><td>Strong</td><td>Not true PM</td></tr>
+          <tr><td class="goal">Docs / knowledge</td><td><span class="pill warn">Parity — docs built in</span></td><td>Docs</td><td>Limited</td><td>Limited</td><td>Limited</td><td>WIN — Notion</td></tr>
+          <tr><td class="goal">Chat / collaboration</td><td><span class="pill good">WIN — native chat + discussions</span></td><td>Chat</td><td>Comments</td><td>Updates</td><td>Comments</td><td>Comments</td></tr>
+          <tr><td class="goal">AI (agents + on your data)</td><td><span class="pill warn">Parity — AI on connected data</span></td><td>Brain2 agents</td><td>AI Teammates</td><td>Agent Factory</td><td>Platform AI</td><td>Custom/Field Agents</td></tr>
+          <tr><td class="goal">Integrations ecosystem</td><td><span class="pill bad">GAP — smaller ecosystem</span></td><td>WIN — 1000s</td><td>Broad</td><td>Broad</td><td>Broad</td><td>Broad</td></tr>
+          <tr><td class="goal">Pricing / free tier</td><td><span class="pill good">WIN — generous free, ~$12/seat</span></td><td>Free/$7+</td><td>Free/$10.99+</td><td>Seat buckets</td><td>$9–32+</td><td>Per-seat climbs</td></tr>
+          <tr><td class="goal">Enterprise depth / scale</td><td><span class="pill bad">GAP — less proven</span></td><td>Growing</td><td>WIN — enterprise</td><td>Strong</td><td>WIN — enterprise</td><td>Mixed</td></tr>
+          <tr><td class="goal">Target-ICP fit (marketing)</td><td><span class="pill good">WIN — built for marketing execution</span></td><td>Horizontal</td><td>Horizontal</td><td>Marketing-friendly</td><td>Horizontal</td><td>Horizontal</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sec fbx"><span class="n">2</span>Honest read</div>
+    <div class="lead fbx">
+      <b>We win on native analytics, unified chat/docs, pricing, and marketing-ICP fit</b> — a genuinely differentiated bundle for a marketing team that's tired of stitching a work tool to a BI tool. <b>We have three real gaps:</b> (1) <b>brand/awareness</b> (the ~1,000× reach gap), (2) <b>integration ecosystem breadth</b> vs the incumbents' thousands, and (3) <b>proven enterprise depth</b> vs Asana/Smartsheet. On raw PM depth we're at parity, not ahead. An honest read says: don't try to out-feature ClickUp — win the marketing team that wants analytics and work in one place, and fix awareness so they can find us.
+    </div>
+  </section>
+
+  <!-- ============ OUR MOVES ============ -->
+  <section class="tabpanel" data-tab="moves" data-label="Our Moves">
+    <div class="sec fbx"><span class="n">1</span>This week — specific actions</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>#</th><th>Action</th><th>Owner</th><th>Tied to</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td><b>Make "analytics-native work management" the core message</b> — lead the site + campaigns with dashboards-in-your-workspace, not a feature bullet. It's the one claim rivals can't copy fast.</td><td>PMM (Casey)</td><td>Our wedge</td></tr>
+          <tr><td class="num">2</td><td><b>Ship a pricing-backlash comparison</b> — "no ghost seats, generous free tier" vs Monday/Airtable/Asana; target refugees from the $11.7B→$4B Airtable markdown moment.</td><td>PMM / Paid (David)</td><td>Seat-pricing backlash</td></tr>
+          <tr><td class="num">3</td><td><b>Ship 3 "alternative for marketing teams" pages</b> — Monday, Asana, ClickUp — mapped to our analytics + marketing wedge, to attack the awareness gap at high intent.</td><td>SEO (Alex)</td><td>Awareness gap</td></tr>
+          <tr><td class="num">4</td><td><b>Reframe our AI as "AI on your data"</b> — demo the agent answering a business question from a connected dashboard and creating the task; differentiate from generic agents.</td><td>Product (Ryan/Pam) / PMM</td><td>AI-agent commoditization</td></tr>
+          <tr><td class="num">5</td><td><b>Run a G2 review drive</b> — move from ~14 toward triple digits; every review compounds into search, social proof, and AI-answer citations.</td><td>PMM</td><td>Reputation depth</td></tr>
+          <tr><td class="num">6</td><td><b>Publish an integrations roadmap signal</b> — name the connectors coming; neutralize the "smaller ecosystem" objection in deals.</td><td>Product (Casey)</td><td>Integration gap</td></tr>
+          <tr><td class="num">7</td><td><b>Baseline AI-answer SoV</b> — pull Slingshot in Amplitude AI Visibility next run and track weekly as the leading indicator for awareness.</td><td>PMM</td><td>AI visibility</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="verdict fbx">
+      <div class="vh">Verdict — the one response that matters this week</div>
+      <p><b>Plant the flag on "analytics-native work management" and make awareness the mission.</b> Slingshot's product edge is real but invisible — a ~1,000× reach gap means the best positioning in the world reaches almost no one. The single highest-leverage move is to commit the message entirely to the one thing rivals can't quickly copy (native analytics + work in one tool, built for marketing), and pour the awareness engine — comparison content, reviews, pricing-backlash campaigns — behind it. Everyone shipped AI agents this year; only Slingshot can say the AI acts on your data. Say it loudly, everywhere, and get found.</p>
+    </div>
+  </section>
+
+  </div>
+</div>
+
+<script>
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.tabpanel'));
+  var bar = document.getElementById('tabbar');
+  panels.forEach(function(p,i){
+    var b=document.createElement('button');
+    b.className='tab'+(i===0?' on':''); b.textContent=p.dataset.label||('Tab '+(i+1));
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+      panels.forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on'); p.classList.add('on');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+    bar.appendChild(b);
+    if(i===0) p.classList.add('on');
+  });
+</script>
+
+<!-- ===== FEEDBACK LOOP (teaches the agent) ===== -->
+<div class="fbmodal" id="fbModal" role="dialog" aria-modal="true" aria-label="Send feedback to the agent">
+  <div class="fbcard">
+    <div class="fbhd"><div class="k">Feedback to the agent</div><div class="l" id="fbLabel">—</div></div>
+    <div class="fbbd">
+      <label>What kind of feedback?</label>
+      <div class="fbcats" id="fbCats">
+        <button type="button" class="fbcat" data-cat="Won't do — strategic">Won't do — strategic</button>
+        <button type="button" class="fbcat" data-cat="Disagree">Disagree</button>
+        <button type="button" class="fbcat" data-cat="Wrong number">Wrong number</button>
+        <button type="button" class="fbcat" data-cat="Add context">Add context</button>
+        <button type="button" class="fbcat" data-cat="Approve">Approve</button>
+      </div>
+      <label>Why / details</label>
+      <textarea id="fbReason" placeholder="e.g. Hold this recommendation — we're deliberately doing X because Y."></textarea>
+      <div class="fbvalwrap" id="fbValWrap"><label>Correct value</label><input class="fbval" id="fbVal" placeholder="e.g. 168"></div>
+    </div>
+    <div class="fbft">
+      <button type="button" class="fbbtn sec" id="fbCancel">Cancel</button>
+      <button type="button" class="fbbtn pri" id="fbSend" disabled>Copy &amp; open Slingshot</button>
+    </div>
+  </div>
+</div>
+<div class="fbtoast" id="fbToast"></div>
+<script>
+(function(){
+  var FEEDBACK_URL="https://app.slingshotapp.io/openDiscussion/e97e10ef_b4c1ff6c-3dc7-47c1-909d-aaff8dcfb922";
+  var CHANNEL="Slingshot · Work Mgmt";
+  var SCOPE="body";
+  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+  var secs=[],modal,curLabel="",curSection="",cat=null;
+  function labelFor(el){var t=(el.getAttribute('data-fb-label')||el.textContent||'').replace(/\s+/g,' ').trim();return t.length>90?t.slice(0,88)+'…':t;}
+  function sectionFor(el){var best="";for(var i=0;i<secs.length;i++){if(secs[i].compareDocumentPosition(el)&Node.DOCUMENT_POSITION_FOLLOWING){best=secs[i].textContent.replace(/\s+/g,' ').trim();}}return best;}
+  function addIcons(){document.querySelectorAll(SCOPE+' .fbx').forEach(function(el){if(el.querySelector(':scope > .fbtn'))return;var b=document.createElement('button');b.className='fbtn';b.type='button';b.title='Send feedback to the agent';b.innerHTML=ICON;b.addEventListener('click',function(ev){ev.stopPropagation();ev.preventDefault();openModal(el);});el.appendChild(b);});}
+  function openModal(el){curLabel=labelFor(el);curSection=sectionFor(el);cat=null;document.getElementById('fbLabel').textContent=(curSection?curSection+' › ':'')+curLabel;document.getElementById('fbReason').value='';document.getElementById('fbVal').value='';document.getElementById('fbValWrap').classList.remove('on');document.querySelectorAll('.fbcat').forEach(function(c){c.classList.remove('sel');});document.getElementById('fbSend').disabled=true;modal.classList.add('on');setTimeout(function(){document.getElementById('fbReason').focus();},60);}
+  function closeModal(){modal.classList.remove('on');}
+  function refreshSend(){var r=document.getElementById('fbReason').value.trim();document.getElementById('fbSend').disabled=!(cat&&r);}
+  function toast(m){var t=document.getElementById('fbToast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on');},3600);}
+  function send(){var reason=document.getElementById('fbReason').value.trim();var val=document.getElementById('fbVal').value.trim();var d=new Date().toISOString().slice(0,10);var lines=['📋 *Agent feedback — Slingshot '+CHANNEL+'*','Element: '+(curSection?curSection+' › ':'')+curLabel,'Category: '+cat,'Reason: '+reason];if(cat==='Wrong number'&&val)lines.push('Correct value: '+val);lines.push('Submitted: '+d);var payload=lines.join('\n');var done=function(){toast('Feedback copied — paste (⌘/Ctrl+V) into the Slingshot thread');window.open(FEEDBACK_URL,'_blank');closeModal();};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(payload).then(done,done);}else{var ta=document.createElement('textarea');ta.value=payload;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}}
+  document.addEventListener('DOMContentLoaded',function(){modal=document.getElementById('fbModal');secs=[].slice.call(document.querySelectorAll('.sec'));addIcons();document.getElementById('fbCats').addEventListener('click',function(e){var b=e.target.closest('.fbcat');if(!b)return;cat=b.dataset.cat;document.querySelectorAll('.fbcat').forEach(function(c){c.classList.toggle('sel',c===b);});document.getElementById('fbValWrap').classList.toggle('on',cat==='Wrong number');refreshSend();});document.getElementById('fbReason').addEventListener('input',refreshSend);document.getElementById('fbCancel').addEventListener('click',closeModal);document.getElementById('fbSend').addEventListener('click',send);modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});});
+})();
+</script>
+</body>
+</html>
