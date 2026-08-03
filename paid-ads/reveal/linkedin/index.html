@@ -1,142 +1,150 @@
 <!DOCTYPE html>
-<html lang="en" class="theme-reveal">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LinkedIn Ads Weekly / Reveal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#0F172A; --ink:#1e2635; --muted:#5f6b7a; --line:#E9E9F4;
-    --accent:#2A41A2; --accent-deep:#1d2f78; --peri:#8391d6;
-    --good:#127a45; --warn:#8a6412; --bad:#c62a4f;
-    --good-bg:#e3f5ec; --warn-bg:#fdf0d6; --bad-bg:#fde8ec;
-    --gray-bg:#eef1f7; --card:#fff; --mono:'Roboto Mono',monospace;
+    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
+    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
+    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
   }
-  *{box-sizing:border-box}
-  body{margin:0;background:#f4f6fb;color:var(--ink);font-family:'Roboto',system-ui,sans-serif;font-size:14px;line-height:1.55}
-  .wrap{max-width:1080px;margin:0 auto;padding:26px 20px 60px}
-  header.top{background:linear-gradient(120deg,#141d4a,#2A41A2);color:#fff;border-radius:16px;padding:22px 26px;margin-bottom:22px;box-shadow:0 4px 18px rgba(20,29,74,.18)}
-  header.top .kicker{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:#c3cdf5;font-weight:600}
-  header.top h1{margin:6px 0 12px;font-size:25px;font-weight:900;letter-spacing:-.01em}
-  header.top .meta{display:flex;flex-wrap:wrap;gap:18px;font-size:12.5px;color:#d7deff}
-  header.top .meta b{color:#fff;font-family:var(--mono)}
-  .tabbar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;border-bottom:2px solid var(--line);padding-bottom:0}
-  .tab{appearance:none;border:none;background:transparent;font-family:inherit;font-size:13.5px;font-weight:700;color:var(--muted);padding:11px 16px;cursor:pointer;border-radius:9px 9px 0 0;position:relative;top:2px;border-bottom:3px solid transparent}
-  .tab:hover{color:var(--accent)}
-  .tab.active{color:var(--accent);border-bottom-color:var(--accent);background:#fff}
-  .tabpanel{display:none;animation:fade .25s ease}
-  .tabpanel.active{display:block}
-  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-  .sec{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--accent);margin:26px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--line)}
-  .sec:first-child{margin-top:6px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(15,23,42,.04)}
-  .lead{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:14px 18px;margin-bottom:13px}
-  .lead p{margin:0 0 10px}
-  .lead p:last-child{margin:0}
-  .lead b{color:var(--navy)}
-  .q{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:6px}
-  .note{font-size:12px;color:var(--muted);background:var(--gray-bg);border-radius:9px;padding:9px 12px;margin:10px 0}
-  .kpigrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;margin-bottom:8px}
-  .kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 14px}
-  .kpi .k{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700}
-  .kpi .v{font-family:var(--mono);font-size:22px;font-weight:600;color:var(--navy);margin-top:3px}
-  .kpi .d{font-size:11.5px;font-weight:700;margin-top:3px}
-  .d.up{color:var(--good)} .d.down{color:var(--bad)} .d.flat{color:var(--muted)}
-  table{width:100%;border-collapse:collapse;font-size:12.5px;margin:4px 0 6px}
-  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:800;background:#fafbff}
-  td.n,th.n{text-align:right;font-family:var(--mono)}
-  tbody tr:hover{background:#fafbff}
-  .pill{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.03em;padding:3px 9px;border-radius:14px;text-transform:uppercase}
-  .pill.good{background:var(--good-bg);color:var(--good)}
-  .pill.warn{background:var(--warn-bg);color:var(--warn)}
-  .pill.bad{background:var(--bad-bg);color:var(--bad)}
-  .pill.core{background:#e6ebff;color:var(--accent)}
-  .tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;background:var(--gray-bg);color:var(--muted)}
-  .tag.icp{background:#e6ebff;color:var(--accent)} .tag.off{background:var(--bad-bg);color:var(--bad)}
+  body.theme-reveal   {--accent:#EC417A;--accent-deep:#C9367F;--accent-soft:#fde4ee;--hero:linear-gradient(120deg,#FBB764,#EC417A 62%,#d63384)}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 80px}
+
+  header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
+  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
+  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
+  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)} .meta b{color:#fff;font-weight:700}
+
+  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03);overflow-x:auto}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;white-space:nowrap}
+  .tab:hover{color:var(--ink)}
+  .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+  .tabpanel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
+  .tabpanel.on{display:block}
+
+  .sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:26px 2px 13px;display:flex;align-items:center;gap:10px}
+  .sec:first-child{margin-top:2px}
+  .sec .n{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  .lead{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:16px 20px;font-size:14.5px;line-height:1.6} .lead b{color:var(--navy)}
+  .lead p+p{margin-top:10px}
+  .note{font-size:12.5px;color:var(--muted);background:var(--gray-bg);border-radius:10px;padding:10px 13px;margin-top:12px}
+
+  .kpigrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
+  @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:#fcfdff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column}
+  .kpi .lab{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;min-height:28px}
+  .kpi .val{font-size:22px;font-weight:700;margin:2px 0 8px;font-family:var(--mono)}
+  .kpi .delta{align-self:flex-start;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
+  .delta.up{background:var(--good-bg);color:var(--good)} .delta.down{background:var(--bad-bg);color:var(--bad)} .delta.flat{background:var(--warn-bg);color:var(--warn)}
+
+  .score{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  .score table{width:100%;border-collapse:collapse;font-size:13px}
+  .score th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  .score td{padding:11px 13px;border-top:1px solid var(--line);vertical-align:middle}
+  .score .goal{font-weight:600;color:var(--navy)}
+  .prog{height:7px;background:var(--gray-bg);border-radius:999px;overflow:hidden;min-width:90px;margin-top:5px}
+  .prog span{display:block;height:100%;border-radius:999px}
+  .prog .g{background:var(--good)} .prog .w{background:var(--warn)} .prog .b{background:var(--bad)}
+  .pill{font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px}
+  .pill.good{background:var(--good-bg);color:var(--good)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.bad{background:var(--bad-bg);color:var(--bad)} .pill.core{background:var(--accent-soft);color:var(--accent-deep)}
+
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+  @media(max-width:820px){.cards{grid-template-columns:1fr}}
+  .card{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .card .ch{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:var(--accent-soft);border-bottom:1px solid var(--line)}
+  .card .ch .nm{font-size:15px;font-weight:700;color:var(--accent-deep)} .card .ch .sp{font-family:var(--mono);font-size:12.5px;color:var(--navy)}
+  .card .cb{padding:14px 18px;font-size:13.5px;line-height:1.55} .card .cb b{color:var(--navy)}
+  .card .cb ul{margin:0;padding-left:0;list-style:none}
+  .card .cb li{position:relative;padding:5px 0 5px 18px;border-bottom:1px solid #f4f5fa}
+  .card .cb li:last-child{border-bottom:none}
+  .card.win .cb li::before{content:"\25B2";position:absolute;left:0;top:7px;font-size:9px;color:var(--good)}
+  .card.lose .cb li::before{content:"\25BC";position:absolute;left:0;top:7px;font-size:9px;color:var(--bad)}
+
+  .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  .dtable table{width:100%;border-collapse:collapse;font-size:13px}
+  .dtable th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  .dtable td{padding:10px 13px;border-top:1px solid var(--line)} .dtable td.num{font-family:var(--mono);text-align:right}
+  .dtable tr:hover td{background:#fafbff}
   .up-ar{color:var(--good);font-weight:700} .dn-ar{color:var(--bad);font-weight:700}
-  .prog{height:7px;background:var(--gray-bg);border-radius:999px;overflow:hidden;min-width:80px;margin-top:5px}
-  .prog .fill{height:100%;border-radius:999px}
-  .fill.good{background:var(--good)} .fill.warn{background:#e6b25e} .fill.bad{background:var(--bad)}
-  .hbars{display:flex;flex-direction:column;gap:9px}
-  .hbar{display:grid;grid-template-columns:158px 1fr 46px;align-items:center;gap:9px;font-size:12px}
-  .hbar .lb{color:var(--ink);font-weight:600}
-  .hbar .track{display:block;background:var(--gray-bg);border-radius:6px;height:15px;overflow:hidden}
-  .hbar .track .fl{display:block;height:100%;border-radius:6px;min-width:2px}
-  .fl.core{background:var(--accent)} .fl.warnb{background:#e6b25e} .fl.badb{background:#d98b89} .fl.peri{background:var(--peri)}
-  .hbar .vv{font-family:var(--mono);text-align:right;color:var(--muted)}
-  .colchart{display:flex;align-items:flex-end;gap:14px;height:150px;padding:6px 4px 0}
-  .colchart .col{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
-  .colchart .bar{width:100%;max-width:56px;background:linear-gradient(180deg,var(--accent),var(--accent-deep));border-radius:6px 6px 0 0}
-  .colchart .cl{font-size:11px;color:var(--muted);font-family:var(--mono)}
-  .colchart .cv{font-size:12px;font-weight:700;font-family:var(--mono);color:var(--navy)}
-  .charts2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  @media(max-width:820px){.charts2{grid-template-columns:1fr}.hbar{grid-template-columns:120px 1fr 42px}}
-  .chartbox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
-  .chartbox h4{margin:0 0 12px;font-size:13px;color:var(--navy);font-weight:800}
+  .tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;background:var(--gray-bg);color:var(--muted)}
+  .tag.icp{background:var(--accent-soft);color:var(--accent-deep)} .tag.off{background:var(--bad-bg);color:var(--bad)}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+  @media(max-width:820px){.grid2{grid-template-columns:1fr}}
+  .chartbox{border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .chartbox h4{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px}
+  .bars{display:flex;flex-direction:column;gap:8px}
+  .barrow{display:grid;grid-template-columns:140px 1fr 46px;gap:10px;align-items:center;font-size:12px}
+  .barrow .bt{height:15px;border-radius:5px;background:var(--gray-bg);overflow:hidden}
+  .barrow .bf{display:block;height:100%;border-radius:5px;min-width:2px}
+  .bf.core{background:var(--accent)} .bf.adj{background:var(--peri)} .bf.off{background:#e6a5a3} .bf.warnb{background:#e6b25e}
+  .barrow .bn{font-family:var(--mono);text-align:right;color:var(--muted)}
   .donutwrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
   .legend{display:flex;flex-direction:column;gap:5px;font-size:11.5px}
   .legend .li{display:flex;align-items:center;gap:7px}
   .legend .sw{width:11px;height:11px;border-radius:3px;flex:none}
-  .legend .lp{font-family:var(--mono);color:var(--muted);margin-left:auto}
-  .runcols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  @media(max-width:820px){.runcols{grid-template-columns:1fr}}
-  .runbox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-  .runbox h4{margin:0 0 9px;font-size:13px;font-weight:800}
-  .runbox.win h4{color:var(--good)} .runbox.lose h4{color:var(--bad)}
-  .runbox ul{margin:0;padding-left:0;list-style:none}
-  .runbox li{position:relative;padding:6px 0 6px 20px;font-size:12.5px;border-bottom:1px solid #f2f4fa}
-  .runbox li:last-child{border-bottom:none}
-  .runbox.win li::before{content:"\25B2";position:absolute;left:0;color:var(--good);font-size:10px;top:8px}
-  .runbox.lose li::before{content:"\25BC";position:absolute;left:0;color:var(--bad);font-size:10px;top:8px}
-  .verdict{border:2px solid var(--accent);border-radius:14px;padding:18px 20px;background:linear-gradient(120deg,#f5f7ff,#eef1fb);margin-top:16px}
-  .verdict .vh{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--accent)}
-  .verdict .vcall{font-size:19px;font-weight:900;color:var(--navy);margin:6px 0 8px}
-  .verdict p{margin:0;font-size:13px;color:var(--ink)}
-  .vpbanner{border:1px solid #E9E9F4;border-radius:16px;overflow:hidden;margin:0 0 24px;box-shadow:0 1px 3px rgba(15,23,42,.05);font-family:'Roboto',system-ui,sans-serif}
-  .vpbanner .vbar{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-  .vpbanner .vbar .t{font-size:18px;font-weight:800}
-  .vpbanner .vbar .g{font-size:12.5px;color:#cdd6f7;font-weight:600;text-align:right}
-  .vpbanner .vrow{display:flex;gap:18px;align-items:flex-start;padding:16px 22px;border-top:1px solid #E9E9F4}
-  .vpbanner .vrow:first-of-type{border-top:none}
-  .pill2{flex:none;width:92px;text-align:center;font-size:11px;font-weight:800;letter-spacing:.05em;padding:5px 0;border-radius:16px;text-transform:uppercase;margin-top:2px}
-  .pill2.fix{background:#fde8ec;color:#c62a4f}.pill2.work{background:#e3f5ec;color:#127a45}.pill2.watch{background:#fdf0d6;color:#8a6412}
-  .vrow .rtx h4{margin:0 0 4px;font-size:15px;color:#0F172A;font-weight:800}
-  .vrow .rtx p{margin:0;font-size:13.5px;color:#5f6b7a;line-height:1.55}
+  .legend .lp{font-family:var(--mono);color:var(--muted);margin-left:auto;padding-left:14px}
+  .cols{display:flex;align-items:flex-end;gap:16px;height:140px;padding-top:12px}
+  .cols .c{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;height:100%}
+  .cols .cb2{width:100%;max-width:54px;background:linear-gradient(180deg,var(--accent),var(--accent-deep));border-radius:5px 5px 0 0}
+  .cols .cv{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--navy)}
+  .cols .cl{font-size:10.5px;color:var(--muted);font-family:var(--mono)}
+
+  .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
+  .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
+  .verdict .vc{font-size:19px;font-weight:900;color:var(--navy);margin-bottom:8px}
+  .verdict p{font-size:14.5px;line-height:1.6;margin:0} .verdict b{color:var(--navy)}
+  code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+
+  /* VP readout */
+  .vp{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:0 0 22px}
+  .vp .vbar{background:linear-gradient(120deg,var(--accent),var(--accent-deep));color:#fff;padding:13px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .vp .vbar .t{font-weight:800;font-size:14px} .vp .vbar .g{font-weight:600;font-size:12px;opacity:.93;text-align:right}
+  .vp .vbody{padding:4px 18px 12px}
+  .vp .vrow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid #f1f1f7;align-items:flex-start} .vp .vrow:last-child{border-bottom:none}
+  .vp .p2{flex:none;margin-top:1px;font-weight:700;font-size:10.5px;letter-spacing:.04em;padding:3px 9px;border-radius:999px}
+  .p2.fix{background:var(--bad-bg);color:var(--bad)} .p2.work{background:var(--good-bg);color:var(--good)} .p2.watch{background:var(--warn-bg);color:var(--warn)}
+  .vp .vrow h4{font-weight:700;color:var(--navy);font-size:14px;line-height:1.3;margin:0} .vp .vrow p{color:var(--muted);font-size:13px;margin:2px 0 0;line-height:1.45}
 </style>
 </head>
-<body>
+<body class="theme-reveal">
 <div class="wrap">
 
-  <div class="vpbanner">
-    <div class="vbar"><div class="t">VP Readout &mdash; 30-second view</div><div class="g">Goal: reach CTOs &amp; engineering leaders at mid-market SaaS/ISV accounts</div></div>
-    <div class="vrow fbx"><div class="pill2 fix">Fix</div><div class="rtx"><h4>Zero leads &mdash; no lead-gen forms are running</h4><p>All $1,092 this week ran on website-visit / conversion objectives, so LinkedIn produced <b>0 captured leads</b>. Compounding it, paid clicks aren&rsquo;t UTM-tagged &mdash; 1,054 clicks showed up as ~0 &ldquo;linkedin / cpc&rdquo; sessions in GA4, leaving Salesforce blind. Stand up a lead-gen form on the winning ICP ads and tag the URLs.</p></div></div>
-    <div class="vrow fbx"><div class="pill2 work">Working</div><div class="rtx"><h4>Efficient, on-ICP reach &mdash; and it broadened</h4><p>Unique reach jumped <b>+38% to 5,718</b> while frequency eased from 5.5 to 3.9 and CPM fell 11%. 64% of impressions hit the 201&ndash;1,000-employee sweet spot and 57% landed in Tech / IT. CTR held at a strong 4.7%. The media engine is healthy &mdash; it just isn&rsquo;t being measured or converted.</p></div></div>
-    <div class="vrow fbx"><div class="pill2 watch">Watch</div><div class="rtx"><h4>Retargeting unit is dead + exec mix is slipping</h4><p>The &ldquo;Book a demo&rdquo; retargeting ad burned <b>$210 for 7 clicks (0.26% CTR)</b> &mdash; kill it. And CXO+VP+Director share of impressions drifted down 2.7pp WoW as Entry-level share doubled to 5.7%. Watch that the exec audience doesn&rsquo;t keep eroding.</p></div></div>
-  </div>
-
   <header class="top">
-    <div class="kicker">revealbi.io &middot; LinkedIn Ads</div>
+    <div class="logochip">Reveal</div>
+    <div class="kick">revealbi.io &middot; LinkedIn Ads</div>
     <h1>LinkedIn Ads Weekly / Reveal</h1>
-    <div class="meta">
-      <span>Week of <b>2026-08-03</b></span>
-      <span>Current <b>2026-07-27&rarr;08-02</b> vs prior <b>2026-07-20&rarr;07-26</b></span>
-      <span>Account <b>506733539</b></span>
-    </div>
+    <div class="meta"><span>Week of <b>Aug 03, 2026</b></span><span>This week <b>Jul 27&ndash;Aug 2</b> vs prior <b>Jul 20&ndash;26</b></span><span>Account <b>506733539</b></span></div>
   </header>
 
-  <div class="tabbar" role="tablist">
-    <button class="tab active" data-t="overview">Overview</button>
-    <button class="tab" data-t="audience">Audience &amp; Demographics</button>
-    <button class="tab" data-t="creative">Creative &amp; Messaging</button>
-    <button class="tab" data-t="website">Website Performance</button>
-    <button class="tab" data-t="journey">Journey &amp; ROI</button>
-  </div>
+  <div class="tabbar" id="tabbar"></div>
 
-  <section class="tabpanel active" data-tab="overview" data-label="Overview">
-    <div class="sec fbx">Read for leadership</div>
+  <div id="panels">
+
+  <!-- ============ TAB 1: OVERVIEW ============ -->
+  <section class="tabpanel" data-tab="overview" data-label="Overview">
+
+    <div class="vp">
+      <div class="vbar"><span class="t">VP Readout &mdash; 30-second view</span><span class="g">Goal: reach CTOs &amp; engineering leaders at mid-market SaaS/ISV accounts</span></div>
+      <div class="vbody">
+        <div class="vrow fbx"><span class="p2 fix">FIX</span><div><h4>Zero leads &mdash; no lead-gen forms are running</h4><p>All $1,092 this week ran on website-visit / conversion objectives, so LinkedIn produced <b>0 captured leads</b>. Compounding it, paid clicks aren&rsquo;t UTM-tagged &mdash; 1,054 clicks showed up as ~0 &ldquo;linkedin / cpc&rdquo; sessions in GA4, leaving Salesforce blind. Stand up a lead-gen form on the winning ICP ads and tag the URLs.</p></div></div>
+        <div class="vrow fbx"><span class="p2 work">WORKING</span><div><h4>Efficient, on-ICP reach &mdash; and it broadened</h4><p>Unique reach jumped <b>+38% to 5,718</b> while frequency eased from 5.5 to 3.9 and CPM fell 11%. 64% of impressions hit the 201&ndash;1,000-employee sweet spot and 57% landed in Tech / IT. CTR held at a strong 4.7%. The media engine is healthy &mdash; it just isn&rsquo;t being measured or converted.</p></div></div>
+        <div class="vrow fbx"><span class="p2 watch">WATCH</span><div><h4>Retargeting unit is dead + exec mix is slipping</h4><p>The &ldquo;Book a demo&rdquo; retargeting ad burned <b>$210 for 7 clicks (0.26% CTR)</b> &mdash; kill it. And CXO+VP+Director share of impressions drifted down 2.7pp WoW as Entry-level share doubled to 5.7%. Watch that the exec audience doesn&rsquo;t keep eroding.</p></div></div>
+      </div>
+    </div>
+
+    <div class="sec fbx"><span class="n">1</span>Read for leadership</div>
     <div class="lead fbx">
       <p><b>ROI this week: unproven &mdash; and that&rsquo;s the headline.</b> We spent $1,092 on LinkedIn and drove 1,054 clicks at a strong 4.7% CTR, but the program captured <b>zero leads and zero attributable pipeline</b>. That isn&rsquo;t a demand problem; it&rsquo;s a plumbing problem. Every campaign is running a website-visit / conversion objective &mdash; there is no lead-gen form to capture anyone &mdash; and the paid clicks aren&rsquo;t UTM-tagged, so GA4 and Salesforce literally cannot see the traffic.</p>
       <p><b>Is the channel healthy? On media quality, yes.</b> Unique reach grew 38% to 5,718 people while average frequency dropped from 5.5 to 3.9, and CPM fell 11% to $48.70. We reached more of the right people, more efficiently, with less ad fatigue. 64% of impressions hit our 201&ndash;1,000-employee mid-market sweet spot and 57% landed inside Tech / IT &mdash; the ICP is intact.</p>
@@ -144,357 +152,373 @@
       <p><b>The call: FIX, don&rsquo;t cut.</b> Keep funding the working TOF ICP units, kill the dead retargeting ad ($210/wk at 0.26% CTR), and this week stand up a LinkedIn lead-gen form plus UTM tagging so we can finally attribute the channel. Until measurement exists, LinkedIn is a well-run awareness play we&rsquo;re flying blind on.</p>
     </div>
 
-    <div class="sec fbx">KPI scoreboard &mdash; week over week</div>
+    <div class="sec fbx"><span class="n">2</span>KPIs &mdash; this week vs prior</div>
     <div class="kpigrid">
-      <div class="kpi fbx"><div class="k">Spend</div><div class="v">$1,092</div><div class="d down">&darr; 12.2% vs $1,243</div></div>
-      <div class="kpi fbx"><div class="k">Impressions</div><div class="v">22,412</div><div class="d down">&darr; 1.7% vs 22,796</div></div>
-      <div class="kpi fbx"><div class="k">Clicks</div><div class="v">1,054</div><div class="d down">&darr; 9.7% vs 1,167</div></div>
-      <div class="kpi fbx"><div class="k">CTR</div><div class="v">4.70%</div><div class="d down">&darr; 0.42pp vs 5.12%</div></div>
-      <div class="kpi fbx"><div class="k">CPC</div><div class="v">$1.04</div><div class="d up">&darr; 2.8% vs $1.07</div></div>
-      <div class="kpi fbx"><div class="k">CPM</div><div class="v">$48.70</div><div class="d up">&darr; 10.7% vs $54.54</div></div>
-      <div class="kpi fbx"><div class="k">Reach (unique)</div><div class="v">5,718</div><div class="d up">&uarr; 37.6% vs 4,157</div></div>
-      <div class="kpi fbx"><div class="k">Frequency</div><div class="v">3.92</div><div class="d up">&darr; 28.5% vs 5.48</div></div>
-      <div class="kpi fbx"><div class="k">Engagement rate</div><div class="v">4.75%</div><div class="d down">&darr; 0.40pp vs 5.15%</div></div>
-      <div class="kpi fbx"><div class="k">Attributable leads</div><div class="v">0</div><div class="d flat">&mdash; no forms live</div></div>
+      <div class="kpi fbx"><div class="lab">Spend</div><div class="val">$1,092</div><span class="delta down">&darr; 12.2% vs $1,243</span></div>
+      <div class="kpi fbx"><div class="lab">Impressions</div><div class="val">22,412</div><span class="delta down">&darr; 1.7% vs 22,796</span></div>
+      <div class="kpi fbx"><div class="lab">Clicks</div><div class="val">1,054</div><span class="delta down">&darr; 9.7% vs 1,167</span></div>
+      <div class="kpi fbx"><div class="lab">CTR</div><div class="val">4.70%</div><span class="delta down">&darr; 0.42pp vs 5.12%</span></div>
+      <div class="kpi fbx"><div class="lab">Avg CPC</div><div class="val">$1.04</div><span class="delta up">&darr; 2.8% vs $1.07</span></div>
     </div>
-    <div class="note">CPC and CPM improvements are tagged as favorable (&darr; cost) even though the arrow points down. Reach up + frequency down = broader, fresher audience for less. Lead / CPL cannot be reported: no lead-gen forms and no paid UTM tracking exist yet.</div>
+    <div class="kpigrid" style="margin-top:11px">
+      <div class="kpi fbx"><div class="lab">CPM</div><div class="val">$48.70</div><span class="delta up">&darr; 10.7% vs $54.54</span></div>
+      <div class="kpi fbx"><div class="lab">Reach (unique)</div><div class="val">5,718</div><span class="delta up">&uarr; 37.6% vs 4,157</span></div>
+      <div class="kpi fbx"><div class="lab">Frequency</div><div class="val">3.92</div><span class="delta up">&darr; 28.5% vs 5.48</span></div>
+      <div class="kpi fbx"><div class="lab">Engagement rate</div><div class="val">4.75%</div><span class="delta down">&darr; 0.40pp vs 5.15%</span></div>
+      <div class="kpi fbx"><div class="lab">Attributable leads</div><div class="val">0</div><span class="delta flat">&mdash; no forms live</span></div>
+    </div>
+    <div class="note">CPC and CPM improvements are favorable (&darr; cost) even though the arrow points down. Reach up + frequency down = a broader, fresher audience for less. Lead / CPL cannot be reported: no lead-gen forms and no paid UTM tracking exist yet.</div>
 
-    <div class="sec fbx">Goal scoreboard</div>
-    <table>
-      <thead><tr><th>Goal (business terms)</th><th>Target</th><th class="n">Actual</th><th>Status</th><th>Progress</th><th>Insight</th></tr></thead>
-      <tbody>
-        <tr class="fbx"><td>Reach the mid-market sweet spot (201&ndash;1,000 employees)</td><td>&ge; 55% of impr.</td><td class="n">63.5%</td><td><span class="pill good">On track</span></td><td><div class="prog"><span class="fill good" style="width:100%"></span></div></td><td>Targeting is landing where it should.</td></tr>
-        <tr class="fbx"><td>Hold strong creative pull (CTR)</td><td>&ge; 1.0%</td><td class="n">4.70%</td><td><span class="pill good">Exceeds</span></td><td><div class="prog"><span class="fill good" style="width:100%"></span></div></td><td>~10&times; the LinkedIn norm; slight WoW dip, still elite.</td></tr>
-        <tr class="fbx"><td>Avoid audience fatigue (frequency)</td><td>&le; 5.0</td><td class="n">3.92</td><td><span class="pill good">On track</span></td><td><div class="prog"><span class="fill good" style="width:78%"></span></div></td><td>Down from 5.5 &mdash; reach expansion is working.</td></tr>
-        <tr class="fbx"><td>Reach senior technical buyers (CXO/VP/Dir)</td><td>&ge; 42% of impr.</td><td class="n">40.1%</td><td><span class="pill warn">At risk</span></td><td><div class="prog"><span class="fill warn" style="width:95%"></span></div></td><td>Slipped 2.7pp WoW; Entry-level share doubled.</td></tr>
-        <tr class="fbx"><td>Capture leads (lead-gen form live)</td><td>Yes</td><td class="n">No</td><td><span class="pill bad">Behind</span></td><td><div class="prog"><span class="fill bad" style="width:6%"></span></div></td><td>All campaigns are website-visit objectives.</td></tr>
-        <tr class="fbx"><td>Make the channel measurable (UTM tagging)</td><td>Yes</td><td class="n">No</td><td><span class="pill bad">Behind</span></td><td><div class="prog"><span class="fill bad" style="width:6%"></span></div></td><td>1,054 clicks &rarr; ~0 tracked GA4 paid sessions.</td></tr>
-        <tr class="fbx"><td>Attributable pipeline created</td><td>&gt; $0</td><td class="n">$0</td><td><span class="pill bad">Behind</span></td><td><div class="prog"><span class="fill bad" style="width:4%"></span></div></td><td>Blocked by the two gaps above.</td></tr>
-      </tbody>
-    </table>
+    <div class="sec fbx"><span class="n">3</span>Goal scoreboard</div>
+    <div class="score">
+      <table>
+        <thead><tr><th>Goal</th><th>Actual</th><th>Target</th><th>Status</th><th>Progress vs goal</th></tr></thead>
+        <tbody>
+          <tr class="fbx"><td class="goal">Reach mid-market sweet spot (201&ndash;1,000)</td><td>63.5%</td><td>&ge; 55%</td><td><span class="pill good">On track</span></td><td><div class="prog"><span class="g" style="width:100%"></span></div></td></tr>
+          <tr class="fbx"><td class="goal">Hold strong creative pull (CTR)</td><td>4.70%</td><td>&ge; 1.0%</td><td><span class="pill good">Exceeds</span></td><td><div class="prog"><span class="g" style="width:100%"></span></div></td></tr>
+          <tr class="fbx"><td class="goal">Avoid audience fatigue (frequency)</td><td>3.92</td><td>&le; 5.0</td><td><span class="pill good">On track</span></td><td><div class="prog"><span class="g" style="width:78%"></span></div></td></tr>
+          <tr class="fbx"><td class="goal">Reach senior technical buyers (CXO/VP/Dir)</td><td>40.1%</td><td>&ge; 42%</td><td><span class="pill warn">At risk</span></td><td><div class="prog"><span class="w" style="width:95%"></span></div></td></tr>
+          <tr class="fbx"><td class="goal">Capture leads (lead-gen form live)</td><td>No</td><td>Yes</td><td><span class="pill bad">Behind</span></td><td><div class="prog"><span class="b" style="width:6%"></span></div></td></tr>
+          <tr class="fbx"><td class="goal">Make the channel measurable (UTM tags)</td><td>No</td><td>Yes</td><td><span class="pill bad">Behind</span></td><td><div class="prog"><span class="b" style="width:6%"></span></div></td></tr>
+          <tr class="fbx"><td class="goal">Attributable pipeline created</td><td>$0</td><td>&gt; $0</td><td><span class="pill bad">Behind</span></td><td><div class="prog"><span class="b" style="width:4%"></span></div></td></tr>
+        </tbody>
+      </table>
+    </div>
     <div class="note">Targets are analyst-set placeholders pending confirmed internal goals. Sweet-spot &amp; seniority shares use modeled LinkedIn demographic data (see Audience tab caveat).</div>
 
-    <div class="sec fbx">What&rsquo;s working / what&rsquo;s not</div>
-    <div class="runcols">
-      <div class="runbox win fbx">
-        <h4>Working</h4>
-        <ul>
+    <div class="sec fbx"><span class="n">4</span>Working / Not working</div>
+    <div class="cards">
+      <div class="card win fbx">
+        <div class="ch"><span class="nm">What&rsquo;s working</span><span class="sp">keep</span></div>
+        <div class="cb"><ul>
           <li class="fbx">Reach up 38% (5,718) with frequency down to 3.9 &mdash; broader audience, less fatigue.</li>
           <li class="fbx">CPM down 11% to $48.70; CPC down to $1.04 &mdash; media buying more efficient WoW.</li>
           <li class="fbx">4.7% CTR &mdash; roughly 10&times; LinkedIn&rsquo;s benchmark; the ICP message resonates.</li>
           <li class="fbx">64% of impressions in the 201&ndash;1,000 sweet spot; 57% in Tech / IT &mdash; ICP intact.</li>
           <li class="fbx">Video ad pulling 7.5% CTR &mdash; the strongest single creative in the account.</li>
-        </ul>
+        </ul></div>
       </div>
-      <div class="runbox lose fbx">
-        <h4>Not working</h4>
-        <ul>
+      <div class="card lose fbx">
+        <div class="ch"><span class="nm">What&rsquo;s not working</span><span class="sp">fix</span></div>
+        <div class="cb"><ul>
           <li class="fbx">Zero leads: no lead-gen form exists &mdash; every campaign is a website-visit objective.</li>
           <li class="fbx">Untracked: paid clicks aren&rsquo;t UTM-tagged; GA4/Salesforce see ~0 paid sessions.</li>
           <li class="fbx">Retargeting ad wasted $210 for 7 clicks (0.26% CTR) &mdash; effectively dead.</li>
           <li class="fbx">Senior-exec share (CXO/VP/Dir) slipped 2.7pp WoW while Entry-level doubled.</li>
           <li class="fbx">Engagement rate eased to 4.75% &mdash; minor, but worth watching against creative age.</li>
-        </ul>
+        </ul></div>
       </div>
     </div>
   </section>
 
+  <!-- ============ TAB 2: AUDIENCE ============ -->
   <section class="tabpanel" data-tab="audience" data-label="Audience &amp; Demographics">
-    <div class="sec fbx">ICP verdict</div>
+    <div class="sec fbx"><span class="n">1</span>ICP verdict</div>
     <div class="lead fbx">
-      <span class="q">Are we buying the right people?</span>
       <p><b>Mostly yes &mdash; the core is solid, but the edges are drifting.</b> 63.5% of impressions hit the 201&ndash;1,000-employee mid-market sweet spot, 57% of industry impressions are Tech / IT, and technical functions (Engineering, Product, IT) make up ~39% of reach. That is a well-aimed embedded-analytics audience.</p>
       <p>The watch item: senior-decision-maker share is easing. CXO + VP + Director fell from 42.8% to 40.1% of impressions week over week, while <b>Entry-level doubled from 2.8% to 5.7%</b> &mdash; the least valuable segment for a technical B2B buy. Senior (individual-contributor technical leads) rose +3.0pp, which is fine, but we want the economic buyers holding steady, not slipping. Tighten seniority targeting to defend the CXO/VP/Director tier.</p>
     </div>
     <div class="note">Caveat: LinkedIn demographic breakdowns are <b>modeled</b> and don&rsquo;t reconcile to exact served totals (prior-week demo impressions summed to ~1.4&times; the account total). All week-over-week comparisons below are computed as <b>share-of-mix (percentage-point) change</b>, never raw counts.</div>
 
-    <div class="sec fbx">Audience snapshot</div>
-    <div class="charts2">
+    <div class="sec fbx"><span class="n">2</span>Audience snapshot</div>
+    <div class="grid2">
       <div class="chartbox fbx">
         <h4>Seniority mix (share of impressions)</h4>
         <div class="donutwrap">
           <svg width="150" height="150" viewBox="0 0 150 150">
             <g transform="rotate(-90 75 75)">
-              <circle cx="75" cy="75" r="54" fill="none" stroke="#f0f2f8" stroke-width="20"></circle>
-              <circle cx="75" cy="75" r="54" fill="none" stroke="#8391d6" stroke-width="20" stroke-dasharray="90.1 339.3" stroke-dashoffset="0"></circle>
-              <circle cx="75" cy="75" r="54" fill="none" stroke="#2A41A2" stroke-width="20" stroke-dasharray="65.9 339.3" stroke-dashoffset="-90.1"></circle>
-              <circle cx="75" cy="75" r="54" fill="none" stroke="#4a5fc0" stroke-width="20" stroke-dasharray="60.2 339.3" stroke-dashoffset="-156.0"></circle>
-              <circle cx="75" cy="75" r="54" fill="none" stroke="#1d2f78" stroke-width="20" stroke-dasharray="43.7 339.3" stroke-dashoffset="-216.2"></circle>
-              <circle cx="75" cy="75" r="54" fill="none" stroke="#3a54cf" stroke-width="20" stroke-dasharray="26.4 339.3" stroke-dashoffset="-259.9"></circle>
-              <circle cx="75" cy="75" r="54" fill="none" stroke="#d98b89" stroke-width="20" stroke-dasharray="19.2 339.3" stroke-dashoffset="-286.3"></circle>
-              <circle cx="75" cy="75" r="54" fill="none" stroke="#9aa6e0" stroke-width="20" stroke-dasharray="16.7 339.3" stroke-dashoffset="-305.5"></circle>
-              <circle cx="75" cy="75" r="54" fill="none" stroke="#b7c0ea" stroke-width="20" stroke-dasharray="16.2 339.3" stroke-dashoffset="-322.2"></circle>
+              <circle cx="75" cy="75" r="54" fill="none" stroke="#eef0f5" stroke-width="20"></circle>
+              <circle cx="75" cy="75" r="54" fill="none" stroke="#FBB764" stroke-width="20" stroke-dasharray="90.1 339.3" stroke-dashoffset="0"></circle>
+              <circle cx="75" cy="75" r="54" fill="none" stroke="#EC417A" stroke-width="20" stroke-dasharray="65.9 339.3" stroke-dashoffset="-90.1"></circle>
+              <circle cx="75" cy="75" r="54" fill="none" stroke="#f47ba4" stroke-width="20" stroke-dasharray="60.2 339.3" stroke-dashoffset="-156.0"></circle>
+              <circle cx="75" cy="75" r="54" fill="none" stroke="#C9367F" stroke-width="20" stroke-dasharray="43.7 339.3" stroke-dashoffset="-216.2"></circle>
+              <circle cx="75" cy="75" r="54" fill="none" stroke="#6C8CFD" stroke-width="20" stroke-dasharray="26.4 339.3" stroke-dashoffset="-259.9"></circle>
+              <circle cx="75" cy="75" r="54" fill="none" stroke="#e6a5a3" stroke-width="20" stroke-dasharray="19.2 339.3" stroke-dashoffset="-286.3"></circle>
+              <circle cx="75" cy="75" r="54" fill="none" stroke="#a9b6f5" stroke-width="20" stroke-dasharray="16.7 339.3" stroke-dashoffset="-305.5"></circle>
+              <circle cx="75" cy="75" r="54" fill="none" stroke="#c7d0f9" stroke-width="20" stroke-dasharray="16.2 339.3" stroke-dashoffset="-322.2"></circle>
             </g>
           </svg>
           <div class="legend">
-            <div class="li"><span class="sw" style="background:#8391d6"></span>Owner<span class="lp">26.6%</span></div>
-            <div class="li"><span class="sw" style="background:#2A41A2"></span>Director<span class="lp">19.4%</span></div>
-            <div class="li"><span class="sw" style="background:#4a5fc0"></span>Senior<span class="lp">17.7%</span></div>
-            <div class="li"><span class="sw" style="background:#1d2f78"></span>CXO<span class="lp">12.9%</span></div>
-            <div class="li"><span class="sw" style="background:#3a54cf"></span>VP<span class="lp">7.8%</span></div>
-            <div class="li"><span class="sw" style="background:#d98b89"></span>Entry<span class="lp">5.7%</span></div>
-            <div class="li"><span class="sw" style="background:#9aa6e0"></span>Manager<span class="lp">4.9%</span></div>
-            <div class="li"><span class="sw" style="background:#b7c0ea"></span>Partner<span class="lp">4.8%</span></div>
+            <div class="li"><span class="sw" style="background:#FBB764"></span>Owner<span class="lp">26.6%</span></div>
+            <div class="li"><span class="sw" style="background:#EC417A"></span>Director<span class="lp">19.4%</span></div>
+            <div class="li"><span class="sw" style="background:#f47ba4"></span>Senior<span class="lp">17.7%</span></div>
+            <div class="li"><span class="sw" style="background:#C9367F"></span>CXO<span class="lp">12.9%</span></div>
+            <div class="li"><span class="sw" style="background:#6C8CFD"></span>VP<span class="lp">7.8%</span></div>
+            <div class="li"><span class="sw" style="background:#e6a5a3"></span>Entry<span class="lp">5.7%</span></div>
+            <div class="li"><span class="sw" style="background:#a9b6f5"></span>Manager<span class="lp">4.9%</span></div>
+            <div class="li"><span class="sw" style="background:#c7d0f9"></span>Partner<span class="lp">4.8%</span></div>
           </div>
         </div>
       </div>
       <div class="chartbox fbx">
-        <h4>Company size (share of impressions) &mdash; <span style="color:var(--accent)">core = 201&ndash;1,000</span></h4>
-        <div class="hbars">
-          <div class="hbar"><span class="lb">201&ndash;500</span><span class="track"><span class="fl core" style="width:100%"></span></span><span class="vv">36.6%</span></div>
-          <div class="hbar"><span class="lb">501&ndash;1,000</span><span class="track"><span class="fl core" style="width:73%"></span></span><span class="vv">26.9%</span></div>
-          <div class="hbar"><span class="lb">2&ndash;10</span><span class="track"><span class="fl badb" style="width:30%"></span></span><span class="vv">11.1%</span></div>
-          <div class="hbar"><span class="lb">11&ndash;50</span><span class="track"><span class="fl peri" style="width:20%"></span></span><span class="vv">7.4%</span></div>
-          <div class="hbar"><span class="lb">1,001&ndash;5,000</span><span class="track"><span class="fl peri" style="width:16%"></span></span><span class="vv">5.9%</span></div>
-          <div class="hbar"><span class="lb">51&ndash;200</span><span class="track"><span class="fl peri" style="width:16%"></span></span><span class="vv">5.8%</span></div>
-          <div class="hbar"><span class="lb">10,001+</span><span class="track"><span class="fl warnb" style="width:8%"></span></span><span class="vv">3.0%</span></div>
+        <h4>Company size &mdash; <span style="color:var(--accent-deep)">core = 201&ndash;1,000</span></h4>
+        <div class="bars">
+          <div class="barrow"><span>201&ndash;500</span><span class="bt"><span class="bf core" style="width:100%"></span></span><span class="bn">36.6%</span></div>
+          <div class="barrow"><span>501&ndash;1,000</span><span class="bt"><span class="bf core" style="width:73%"></span></span><span class="bn">26.9%</span></div>
+          <div class="barrow"><span>2&ndash;10</span><span class="bt"><span class="bf off" style="width:30%"></span></span><span class="bn">11.1%</span></div>
+          <div class="barrow"><span>11&ndash;50</span><span class="bt"><span class="bf adj" style="width:20%"></span></span><span class="bn">7.4%</span></div>
+          <div class="barrow"><span>1,001&ndash;5,000</span><span class="bt"><span class="bf adj" style="width:16%"></span></span><span class="bn">5.9%</span></div>
+          <div class="barrow"><span>51&ndash;200</span><span class="bt"><span class="bf adj" style="width:16%"></span></span><span class="bn">5.8%</span></div>
+          <div class="barrow"><span>10,001+</span><span class="bt"><span class="bf warnb" style="width:8%"></span></span><span class="bn">3.0%</span></div>
         </div>
       </div>
     </div>
-    <div class="charts2" style="margin-top:16px">
+    <div class="grid2" style="margin-top:14px">
       <div class="chartbox fbx">
-        <h4>Job function (share) &mdash; <span style="color:var(--accent)">technical = core</span></h4>
-        <div class="hbars">
-          <div class="hbar"><span class="lb">Business Development</span><span class="track"><span class="fl peri" style="width:100%"></span></span><span class="vv">21.8%</span></div>
-          <div class="hbar"><span class="lb">Engineering</span><span class="track"><span class="fl core" style="width:99%"></span></span><span class="vv">21.5%</span></div>
-          <div class="hbar"><span class="lb">Product Management</span><span class="track"><span class="fl core" style="width:46%"></span></span><span class="vv">10.0%</span></div>
-          <div class="hbar"><span class="lb">Information Technology</span><span class="track"><span class="fl core" style="width:34%"></span></span><span class="vv">7.3%</span></div>
-          <div class="hbar"><span class="lb">Operations</span><span class="track"><span class="fl peri" style="width:20%"></span></span><span class="vv">4.4%</span></div>
-          <div class="hbar"><span class="lb">Sales</span><span class="track"><span class="fl warnb" style="width:18%"></span></span><span class="vv">3.9%</span></div>
-          <div class="hbar"><span class="lb">Education</span><span class="track"><span class="fl badb" style="width:17%"></span></span><span class="vv">3.7%</span></div>
+        <h4>Job function &mdash; <span style="color:var(--accent-deep)">technical = core</span></h4>
+        <div class="bars">
+          <div class="barrow"><span>Business Development</span><span class="bt"><span class="bf adj" style="width:100%"></span></span><span class="bn">21.8%</span></div>
+          <div class="barrow"><span>Engineering</span><span class="bt"><span class="bf core" style="width:99%"></span></span><span class="bn">21.5%</span></div>
+          <div class="barrow"><span>Product Management</span><span class="bt"><span class="bf core" style="width:46%"></span></span><span class="bn">10.0%</span></div>
+          <div class="barrow"><span>Information Technology</span><span class="bt"><span class="bf core" style="width:34%"></span></span><span class="bn">7.3%</span></div>
+          <div class="barrow"><span>Operations</span><span class="bt"><span class="bf adj" style="width:20%"></span></span><span class="bn">4.4%</span></div>
+          <div class="barrow"><span>Sales</span><span class="bt"><span class="bf warnb" style="width:18%"></span></span><span class="bn">3.9%</span></div>
+          <div class="barrow"><span>Education</span><span class="bt"><span class="bf off" style="width:17%"></span></span><span class="bn">3.7%</span></div>
         </div>
       </div>
       <div class="chartbox fbx">
-        <h4>Industry (share of top-20) &mdash; <span style="color:var(--accent)">Tech / IT = core</span></h4>
-        <div class="hbars">
-          <div class="hbar"><span class="lb">Tech / Info / Internet</span><span class="track"><span class="fl core" style="width:100%"></span></span><span class="vv">41.2%</span></div>
-          <div class="hbar"><span class="lb">IT Services &amp; Consulting</span><span class="track"><span class="fl core" style="width:37%"></span></span><span class="vv">15.4%</span></div>
-          <div class="hbar"><span class="lb">Business Consulting</span><span class="track"><span class="fl peri" style="width:21%"></span></span><span class="vv">8.5%</span></div>
-          <div class="hbar"><span class="lb">Media / Telecom</span><span class="track"><span class="fl peri" style="width:10%"></span></span><span class="vv">4.2%</span></div>
-          <div class="hbar"><span class="lb">Hospitals / Health Care</span><span class="track"><span class="fl badb" style="width:10%"></span></span><span class="vv">4.0%</span></div>
-          <div class="hbar"><span class="lb">Higher Education</span><span class="track"><span class="fl badb" style="width:8%"></span></span><span class="vv">3.4%</span></div>
-          <div class="hbar"><span class="lb">Non-profit</span><span class="track"><span class="fl badb" style="width:6%"></span></span><span class="vv">2.4%</span></div>
+        <h4>Industry (share of top-20) &mdash; <span style="color:var(--accent-deep)">Tech / IT = core</span></h4>
+        <div class="bars">
+          <div class="barrow"><span>Tech / Info / Internet</span><span class="bt"><span class="bf core" style="width:100%"></span></span><span class="bn">41.2%</span></div>
+          <div class="barrow"><span>IT Services &amp; Consulting</span><span class="bt"><span class="bf core" style="width:37%"></span></span><span class="bn">15.4%</span></div>
+          <div class="barrow"><span>Business Consulting</span><span class="bt"><span class="bf adj" style="width:21%"></span></span><span class="bn">8.5%</span></div>
+          <div class="barrow"><span>Media / Telecom</span><span class="bt"><span class="bf adj" style="width:10%"></span></span><span class="bn">4.2%</span></div>
+          <div class="barrow"><span>Hospitals / Health Care</span><span class="bt"><span class="bf off" style="width:10%"></span></span><span class="bn">4.0%</span></div>
+          <div class="barrow"><span>Higher Education</span><span class="bt"><span class="bf off" style="width:8%"></span></span><span class="bn">3.4%</span></div>
+          <div class="barrow"><span>Non-profit</span><span class="bt"><span class="bf off" style="width:6%"></span></span><span class="bn">2.4%</span></div>
         </div>
       </div>
     </div>
 
-    <div class="sec fbx">Mix shift &mdash; week over week (share-of-mix, pp)</div>
-    <table>
-      <thead><tr><th>Seniority</th><th class="n">This wk share</th><th class="n">Prior wk share</th><th class="n">&Delta; pp</th><th>Read</th></tr></thead>
-      <tbody>
-        <tr class="fbx"><td>CXO</td><td class="n">12.9%</td><td class="n">14.4%</td><td class="n dn-ar">&minus;1.6</td><td><span class="pill warn">Watch &mdash; econ buyer down</span></td></tr>
-        <tr class="fbx"><td>VP</td><td class="n">7.8%</td><td class="n">8.0%</td><td class="n dn-ar">&minus;0.2</td><td><span class="pill warn">Flat/soft</span></td></tr>
-        <tr class="fbx"><td>Director</td><td class="n">19.4%</td><td class="n">20.4%</td><td class="n dn-ar">&minus;0.9</td><td><span class="pill warn">Slight erosion</span></td></tr>
-        <tr class="fbx"><td>Senior (technical IC)</td><td class="n">17.7%</td><td class="n">14.7%</td><td class="n up-ar">&plus;3.0</td><td><span class="pill good">Good &mdash; more technical</span></td></tr>
-        <tr class="fbx"><td>Owner</td><td class="n">26.6%</td><td class="n">29.5%</td><td class="n dn-ar">&minus;3.0</td><td><span class="pill good">OK &mdash; away from micro-firms</span></td></tr>
-        <tr class="fbx"><td>Manager</td><td class="n">4.9%</td><td class="n">4.6%</td><td class="n up-ar">&plus;0.3</td><td><span class="tag">Neutral</span></td></tr>
-        <tr class="fbx"><td>Partner</td><td class="n">4.8%</td><td class="n">5.5%</td><td class="n dn-ar">&minus;0.8</td><td><span class="tag">Neutral</span></td></tr>
-        <tr class="fbx"><td>Entry</td><td class="n">5.7%</td><td class="n">2.8%</td><td class="n up-ar">&plus;2.9</td><td><span class="pill bad">Warn &mdash; off-ICP waste up</span></td></tr>
-      </tbody>
-    </table>
+    <div class="sec fbx"><span class="n">3</span>Mix shift &mdash; week over week (share-of-mix, pp)</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Seniority</th><th class="num">This wk</th><th class="num">Prior wk</th><th class="num">&Delta; pp</th><th>Read</th></tr></thead>
+        <tbody>
+          <tr class="fbx"><td>CXO</td><td class="num">12.9%</td><td class="num">14.4%</td><td class="num dn-ar">&minus;1.6</td><td><span class="pill warn">Watch &mdash; econ buyer down</span></td></tr>
+          <tr class="fbx"><td>VP</td><td class="num">7.8%</td><td class="num">8.0%</td><td class="num dn-ar">&minus;0.2</td><td><span class="pill warn">Flat / soft</span></td></tr>
+          <tr class="fbx"><td>Director</td><td class="num">19.4%</td><td class="num">20.4%</td><td class="num dn-ar">&minus;0.9</td><td><span class="pill warn">Slight erosion</span></td></tr>
+          <tr class="fbx"><td>Senior (technical IC)</td><td class="num">17.7%</td><td class="num">14.7%</td><td class="num up-ar">&plus;3.0</td><td><span class="pill good">Good &mdash; more technical</span></td></tr>
+          <tr class="fbx"><td>Owner</td><td class="num">26.6%</td><td class="num">29.5%</td><td class="num dn-ar">&minus;3.0</td><td><span class="pill good">OK &mdash; away from micro-firms</span></td></tr>
+          <tr class="fbx"><td>Entry</td><td class="num">5.7%</td><td class="num">2.8%</td><td class="num up-ar">&plus;2.9</td><td><span class="pill bad">Warn &mdash; off-ICP waste up</span></td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    <div class="sec fbx">Seniority detail (this week)</div>
-    <table>
-      <thead><tr><th>Seniority</th><th class="n">Impr.</th><th class="n">Clicks</th><th class="n">CTR</th><th class="n">Spend</th><th>Fit</th></tr></thead>
-      <tbody>
-        <tr class="fbx"><td>CXO</td><td class="n">2,753</td><td class="n">126</td><td class="n">4.58%</td><td class="n">$156.50</td><td><span class="tag icp">ICP core</span></td></tr>
-        <tr class="fbx"><td>VP</td><td class="n">1,662</td><td class="n">77</td><td class="n">4.63%</td><td class="n">$86.23</td><td><span class="tag icp">ICP core</span></td></tr>
-        <tr class="fbx"><td>Director</td><td class="n">4,146</td><td class="n">236</td><td class="n">5.69%</td><td class="n">$193.44</td><td><span class="tag icp">ICP core</span></td></tr>
-        <tr class="fbx"><td>Senior</td><td class="n">3,786</td><td class="n">184</td><td class="n">4.86%</td><td class="n">$208.59</td><td><span class="tag icp">ICP tech</span></td></tr>
-        <tr class="fbx"><td>Owner</td><td class="n">5,671</td><td class="n">272</td><td class="n">4.80%</td><td class="n">$281.76</td><td><span class="tag">Mixed</span></td></tr>
-        <tr class="fbx"><td>Manager</td><td class="n">1,050</td><td class="n">53</td><td class="n">5.05%</td><td class="n">$62.23</td><td><span class="tag">Adjacent</span></td></tr>
-        <tr class="fbx"><td>Partner</td><td class="n">1,017</td><td class="n">56</td><td class="n">5.51%</td><td class="n">$56.77</td><td><span class="tag">Adjacent</span></td></tr>
-        <tr class="fbx"><td>Entry</td><td class="n">1,209</td><td class="n">22</td><td class="n">1.82%</td><td class="n">$76.66</td><td><span class="tag off">Off-ICP</span></td></tr>
-        <tr class="fbx"><td>Training</td><td class="n">59</td><td class="n">0</td><td class="n">0.00%</td><td class="n">$0.00</td><td><span class="tag off">Off-ICP</span></td></tr>
-      </tbody>
-    </table>
+    <div class="sec fbx"><span class="n">4</span>Seniority detail (this week)</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Seniority</th><th class="num">Impr.</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">Spend</th><th>Fit</th></tr></thead>
+        <tbody>
+          <tr class="fbx"><td>CXO</td><td class="num">2,753</td><td class="num">126</td><td class="num">4.58%</td><td class="num">$156.50</td><td><span class="tag icp">ICP core</span></td></tr>
+          <tr class="fbx"><td>VP</td><td class="num">1,662</td><td class="num">77</td><td class="num">4.63%</td><td class="num">$86.23</td><td><span class="tag icp">ICP core</span></td></tr>
+          <tr class="fbx"><td>Director</td><td class="num">4,146</td><td class="num">236</td><td class="num">5.69%</td><td class="num">$193.44</td><td><span class="tag icp">ICP core</span></td></tr>
+          <tr class="fbx"><td>Senior</td><td class="num">3,786</td><td class="num">184</td><td class="num">4.86%</td><td class="num">$208.59</td><td><span class="tag icp">ICP tech</span></td></tr>
+          <tr class="fbx"><td>Owner</td><td class="num">5,671</td><td class="num">272</td><td class="num">4.80%</td><td class="num">$281.76</td><td><span class="tag">Mixed</span></td></tr>
+          <tr class="fbx"><td>Manager</td><td class="num">1,050</td><td class="num">53</td><td class="num">5.05%</td><td class="num">$62.23</td><td><span class="tag">Adjacent</span></td></tr>
+          <tr class="fbx"><td>Partner</td><td class="num">1,017</td><td class="num">56</td><td class="num">5.51%</td><td class="num">$56.77</td><td><span class="tag">Adjacent</span></td></tr>
+          <tr class="fbx"><td>Entry</td><td class="num">1,209</td><td class="num">22</td><td class="num">1.82%</td><td class="num">$76.66</td><td><span class="tag off">Off-ICP</span></td></tr>
+          <tr class="fbx"><td>Training</td><td class="num">59</td><td class="num">0</td><td class="num">0.00%</td><td class="num">$0.00</td><td><span class="tag off">Off-ICP</span></td></tr>
+        </tbody>
+      </table>
+    </div>
     <div class="note">Entry-level took $77 of spend at a 1.82% CTR &mdash; less than half the account CTR &mdash; and is the clearest exclusion candidate. Adding an Entry / Training seniority exclusion would push more budget to the CXO/VP/Director tier.</div>
 
-    <div class="sec fbx">Named companies reached (this week) &amp; ABM read</div>
-    <table>
-      <thead><tr><th>Company</th><th class="n">Impr.</th><th class="n">Clicks</th><th class="n">CTR</th><th>Fit</th></tr></thead>
-      <tbody>
-        <tr class="fbx"><td>Armsoft</td><td class="n">82</td><td class="n">18</td><td class="n">21.95%</td><td><span class="pill core">Hot &mdash; SaaS, high engagement</span></td></tr>
-        <tr class="fbx"><td>Rocketlane</td><td class="n">84</td><td class="n">6</td><td class="n">7.14%</td><td><span class="tag icp">ICP &mdash; SaaS PSA</span></td></tr>
-        <tr class="fbx"><td>DriveCentric</td><td class="n">123</td><td class="n">6</td><td class="n">4.88%</td><td><span class="tag icp">ICP &mdash; auto CRM SaaS</span></td></tr>
-        <tr class="fbx"><td>Open Dental Software</td><td class="n">68</td><td class="n">5</td><td class="n">7.35%</td><td><span class="tag icp">ICP &mdash; vertical SaaS</span></td></tr>
-        <tr class="fbx"><td>Iridium</td><td class="n">69</td><td class="n">6</td><td class="n">8.70%</td><td><span class="tag icp">ICP &mdash; tech / IoT</span></td></tr>
-        <tr class="fbx"><td>CareMedic Systems</td><td class="n">59</td><td class="n">6</td><td class="n">10.17%</td><td><span class="tag icp">ICP &mdash; healthtech SaaS</span></td></tr>
-        <tr class="fbx"><td>Definitive Healthcare</td><td class="n">99</td><td class="n">0</td><td class="n">0.00%</td><td><span class="tag icp">ICP &mdash; data SaaS (no click)</span></td></tr>
-        <tr class="fbx"><td>DoiT</td><td class="n">57</td><td class="n">0</td><td class="n">0.00%</td><td><span class="tag icp">ICP &mdash; cloud SaaS</span></td></tr>
-        <tr class="fbx"><td>Eide Bailly</td><td class="n">121</td><td class="n">0</td><td class="n">0.00%</td><td><span class="tag off">Off &mdash; accounting firm</span></td></tr>
-        <tr class="fbx"><td>Gordon Rees (LLP)</td><td class="n">71</td><td class="n">0</td><td class="n">0.00%</td><td><span class="tag off">Off &mdash; law firm</span></td></tr>
-      </tbody>
-    </table>
-    <div class="lead fbx" style="border-left-color:var(--good)">
-      <span class="q">ABM recommendation</span>
-      <p>Per-account impressions are thin (57&ndash;123), so ABM reach is spread wide rather than concentrated. <b>Armsoft, Rocketlane, DriveCentric, Open Dental, CareMedic and Iridium</b> are engaging SaaS/ISV accounts &mdash; feed this list to Jarrett for ABM sequencing and consider a dedicated company-list campaign to concentrate frequency on the 20&ndash;30 best-fit names instead of spraying broadly. Exclude professional-services firms (Eide Bailly, Gordon Rees) that are surfacing off-ICP.</p>
+    <div class="sec fbx"><span class="n">5</span>Named companies reached &amp; ABM read</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Company</th><th class="num">Impr.</th><th class="num">Clicks</th><th class="num">CTR</th><th>Fit</th></tr></thead>
+        <tbody>
+          <tr class="fbx"><td>Armsoft</td><td class="num">82</td><td class="num">18</td><td class="num">21.95%</td><td><span class="pill core">Hot &mdash; SaaS, high engagement</span></td></tr>
+          <tr class="fbx"><td>Rocketlane</td><td class="num">84</td><td class="num">6</td><td class="num">7.14%</td><td><span class="tag icp">ICP &mdash; SaaS PSA</span></td></tr>
+          <tr class="fbx"><td>DriveCentric</td><td class="num">123</td><td class="num">6</td><td class="num">4.88%</td><td><span class="tag icp">ICP &mdash; auto CRM SaaS</span></td></tr>
+          <tr class="fbx"><td>Open Dental Software</td><td class="num">68</td><td class="num">5</td><td class="num">7.35%</td><td><span class="tag icp">ICP &mdash; vertical SaaS</span></td></tr>
+          <tr class="fbx"><td>Iridium</td><td class="num">69</td><td class="num">6</td><td class="num">8.70%</td><td><span class="tag icp">ICP &mdash; tech / IoT</span></td></tr>
+          <tr class="fbx"><td>CareMedic Systems</td><td class="num">59</td><td class="num">6</td><td class="num">10.17%</td><td><span class="tag icp">ICP &mdash; healthtech SaaS</span></td></tr>
+          <tr class="fbx"><td>Definitive Healthcare</td><td class="num">99</td><td class="num">0</td><td class="num">0.00%</td><td><span class="tag icp">ICP &mdash; data SaaS (no click)</span></td></tr>
+          <tr class="fbx"><td>DoiT</td><td class="num">57</td><td class="num">0</td><td class="num">0.00%</td><td><span class="tag icp">ICP &mdash; cloud SaaS</span></td></tr>
+          <tr class="fbx"><td>Eide Bailly</td><td class="num">121</td><td class="num">0</td><td class="num">0.00%</td><td><span class="tag off">Off &mdash; accounting firm</span></td></tr>
+          <tr class="fbx"><td>Gordon Rees (LLP)</td><td class="num">71</td><td class="num">0</td><td class="num">0.00%</td><td><span class="tag off">Off &mdash; law firm</span></td></tr>
+        </tbody>
+      </table>
     </div>
+    <div class="lead fbx" style="margin-top:12px;border-left-color:var(--good)"><b>ABM recommendation.</b> Per-account impressions are thin (57&ndash;123), so ABM reach is spread wide rather than concentrated. <b>Armsoft, Rocketlane, DriveCentric, Open Dental, CareMedic and Iridium</b> are engaging SaaS/ISV accounts &mdash; feed this list to Jarrett for ABM sequencing and consider a dedicated company-list campaign to concentrate frequency on the 20&ndash;30 best-fit names instead of spraying broadly. Exclude professional-services firms (Eide Bailly, Gordon Rees) surfacing off-ICP.</div>
   </section>
 
+  <!-- ============ TAB 3: CREATIVE ============ -->
   <section class="tabpanel" data-tab="creative" data-label="Creative &amp; Messaging">
-    <div class="sec fbx">Winning angle</div>
+    <div class="sec fbx"><span class="n">1</span>Winning angle</div>
     <div class="lead fbx">
-      <span class="q">What&rsquo;s pulling?</span>
       <p>The <b>&ldquo;build-vs-buy / free your engineers&rdquo;</b> angle is the account&rsquo;s engine. Both top ads open on the customer&rsquo;s pain (&ldquo;your users keep asking for dashboards; your engineers keep getting pulled off core product&rdquo;) and resolve to Reveal as the ship-fast alternative. The <b>video cut is the standout at 7.52% CTR</b> &mdash; 55% higher than the image version &mdash; and deserves more budget. The image ad is the volume workhorse (16.5K impr, 4.85% CTR).</p>
       <p>The retargeting unit is the opposite story: a &ldquo;book a demo&rdquo; message to warm audiences pulling <b>0.26% CTR</b>, effectively dead. Copy is on-message and ICP-aligned; no expired-date or seasonal language is running. One small inconsistency to fix: the two lead ads promise different timelines &mdash; &ldquo;in Weeks&rdquo; vs &ldquo;in Days.&rdquo; Standardize the claim.</p>
     </div>
 
-    <div class="sec fbx">Ad-level performance (this week)</div>
-    <table>
-      <thead><tr><th>Ad</th><th>Type</th><th class="n">Impr.</th><th class="n">Clicks</th><th class="n">CTR</th><th class="n">Spend</th><th>Call</th><th>Why</th></tr></thead>
-      <tbody>
-        <tr class="fbx"><td>Ship Embedded Analytics in Days &mdash; Not Quarters</td><td>Video</td><td class="n">3,296</td><td class="n">248</td><td class="n">7.52%</td><td class="n">$217</td><td><span class="pill good">Scale</span></td><td>Best CTR in the account; video converts attention &mdash; give it more budget.</td></tr>
-        <tr class="fbx"><td>Ship Embedded Analytics in Weeks &mdash; Not Quarters</td><td>Image</td><td class="n">16,471</td><td class="n">799</td><td class="n">4.85%</td><td class="n">$665</td><td><span class="pill good">Keep</span></td><td>Reliable volume workhorse at strong CTR; the reach backbone.</td></tr>
-        <tr class="fbx"><td>Your Reveal demo is one click away</td><td>Image (retgt)</td><td class="n">2,645</td><td class="n">7</td><td class="n">0.26%</td><td class="n">$210</td><td><span class="pill bad">Kill</span></td><td>$30/click, 0.26% CTR &mdash; dead retargeting; reallocate the $210.</td></tr>
-      </tbody>
-    </table>
+    <div class="sec fbx"><span class="n">2</span>Ad-level performance (this week)</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Ad</th><th>Type</th><th class="num">Impr.</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">Spend</th><th>Call</th></tr></thead>
+        <tbody>
+          <tr class="fbx"><td>Ship Embedded Analytics in Days &mdash; Not Quarters</td><td>Video</td><td class="num">3,296</td><td class="num">248</td><td class="num">7.52%</td><td class="num">$217</td><td><span class="pill good">Scale</span></td></tr>
+          <tr class="fbx"><td>Ship Embedded Analytics in Weeks &mdash; Not Quarters</td><td>Image</td><td class="num">16,471</td><td class="num">799</td><td class="num">4.85%</td><td class="num">$665</td><td><span class="pill good">Keep</span></td></tr>
+          <tr class="fbx"><td>Your Reveal demo is one click away</td><td>Image (retgt)</td><td class="num">2,645</td><td class="num">7</td><td class="num">0.26%</td><td class="num">$210</td><td><span class="pill bad">Kill</span></td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    <div class="sec fbx">Messaging &amp; ad copy</div>
-    <div class="card fbx">
-      <div class="q">Winner &mdash; Video &middot; 7.52% CTR</div>
-      <p style="font-style:italic;color:var(--muted);margin:0 0 8px">&ldquo;Your users keep asking for dashboards. Your engineers keep getting pulled off core product to build them&hellip; drop white-label dashboards, reporting, and AI-powered insights directly into your app, without the quarters-long build&hellip; See it running in 15 minutes.&rdquo;</p>
-      <p style="margin:0"><b>Why it works:</b> names the exact ICP tension (eng opportunity cost), quantifies the payoff (&ldquo;15 minutes&rdquo;), and the &ldquo;AI-powered insights&rdquo; line rides current demand. Motion earns the extra CTR. <b>Do:</b> scale spend and build a lead-gen form variant behind it.</p>
-    </div>
-    <div class="card fbx">
-      <div class="q">Workhorse &mdash; Image &middot; 4.85% CTR</div>
-      <p style="font-style:italic;color:var(--muted);margin:0 0 8px">&ldquo;&lsquo;Can we get analytics in the app?&rsquo; &mdash; your customers. Building it yourself means quarters of eng time and a maintenance burden that never ends. Reveal is embedded analytics built for product teams who&rsquo;d rather ship than maintain&hellip;&rdquo;</p>
-      <p style="margin:0"><b>Why it works:</b> the customer-quote hook is instantly relatable to product leaders; &ldquo;ship than maintain&rdquo; is crisp positioning. <b>Fix:</b> align the headline timeline with the video (&ldquo;Days&rdquo; vs &ldquo;Weeks&rdquo;) so the promise is consistent across the set.</p>
-    </div>
-    <div class="card fbx">
-      <div class="q">Dead &mdash; Retargeting &middot; 0.26% CTR</div>
-      <p style="font-style:italic;color:var(--muted);margin:0 0 8px">&ldquo;You&rsquo;ve seen what Reveal can do. Now see it running inside an app like yours&hellip; No commitment. Just answers.&rdquo;</p>
-      <p style="margin:0"><b>Why it fails:</b> assumes prior awareness the retargeting pool may not have, offers a demo (high-commitment) with no proof or incentive, and the creative is stale for the audience. <b>Do:</b> pause it; if retargeting resumes, lead with a low-friction asset (interactive demo, ROI/build-vs-buy guide) gated behind a lead-gen form, not a raw &ldquo;book a demo.&rdquo;</p>
+    <div class="sec fbx"><span class="n">3</span>Messaging &amp; ad copy</div>
+    <div class="cards" style="grid-template-columns:1fr">
+      <div class="card fbx">
+        <div class="ch"><span class="nm">Winner &mdash; Video</span><span class="sp">7.52% CTR &middot; scale</span></div>
+        <div class="cb"><p style="font-style:italic;color:var(--muted);margin-bottom:8px">&ldquo;Your users keep asking for dashboards. Your engineers keep getting pulled off core product to build them&hellip; drop white-label dashboards, reporting, and AI-powered insights directly into your app, without the quarters-long build&hellip; See it running in 15 minutes.&rdquo;</p><b>Why it works:</b> names the exact ICP tension (eng opportunity cost), quantifies the payoff (&ldquo;15 minutes&rdquo;), and the &ldquo;AI-powered insights&rdquo; line rides current demand. Motion earns the extra CTR. <b>Do:</b> scale spend and build a lead-gen form variant behind it.</div>
+      </div>
+      <div class="card fbx">
+        <div class="ch"><span class="nm">Workhorse &mdash; Image</span><span class="sp">4.85% CTR &middot; keep</span></div>
+        <div class="cb"><p style="font-style:italic;color:var(--muted);margin-bottom:8px">&ldquo;&lsquo;Can we get analytics in the app?&rsquo; &mdash; your customers. Building it yourself means quarters of eng time and a maintenance burden that never ends. Reveal is embedded analytics built for product teams who&rsquo;d rather ship than maintain&hellip;&rdquo;</p><b>Why it works:</b> the customer-quote hook is instantly relatable to product leaders; &ldquo;ship than maintain&rdquo; is crisp positioning. <b>Fix:</b> align the headline timeline with the video (&ldquo;Days&rdquo; vs &ldquo;Weeks&rdquo;) so the promise is consistent across the set.</div>
+      </div>
+      <div class="card fbx">
+        <div class="ch"><span class="nm">Dead &mdash; Retargeting</span><span class="sp">0.26% CTR &middot; kill</span></div>
+        <div class="cb"><p style="font-style:italic;color:var(--muted);margin-bottom:8px">&ldquo;You&rsquo;ve seen what Reveal can do. Now see it running inside an app like yours&hellip; No commitment. Just answers.&rdquo;</p><b>Why it fails:</b> assumes prior awareness the retargeting pool may not have, offers a demo (high-commitment) with no proof or incentive, and the creative is stale for the audience. <b>Do:</b> pause it; if retargeting resumes, lead with a low-friction asset (interactive demo, ROI / build-vs-buy guide) gated behind a lead-gen form, not a raw &ldquo;book a demo.&rdquo;</div>
+      </div>
     </div>
   </section>
 
+  <!-- ============ TAB 4: WEBSITE ============ -->
   <section class="tabpanel" data-tab="website" data-label="Website Performance">
-    <div class="sec fbx">The tracking gap (read this first)</div>
+    <div class="sec fbx"><span class="n">1</span>The tracking gap (read this first)</div>
     <div class="lead fbx" style="border-left-color:var(--bad)">
-      <span class="q">Why the numbers on this tab are tiny</span>
       <p><b>LinkedIn drove 1,054 paid clicks this week. GA4 recorded essentially zero of them as paid sessions.</b> A source/medium filter for &ldquo;linkedin&rdquo; returns just 9 sessions &mdash; 5 organic-social and 4 referral &mdash; and <b>0 tagged &ldquo;linkedin / cpc&rdquo; sessions</b> (prior week had exactly 1). The paid landing URLs have no UTM parameters, so GA4 attributes the traffic to &ldquo;(direct)&rdquo; or drops it, and Salesforce inherits the same blindness. The volume below is real organic/referral spillover, not the paid program.</p>
       <p><b>Fix:</b> append <code>?utm_source=linkedin&amp;utm_medium=paid&amp;utm_campaign=&hellip;</code> to every ad destination URL. This one change makes the entire channel visible in GA4 and Salesforce and is the prerequisite for any ROI claim.</p>
     </div>
 
-    <div class="sec fbx">Spend &rarr; clicks &rarr; sessions (the ~99% gap)</div>
-    <table>
-      <thead><tr><th>Stage</th><th class="n">This week</th><th>Source</th><th>Read</th></tr></thead>
-      <tbody>
-        <tr class="fbx"><td>Paid spend</td><td class="n">$1,092</td><td>LinkedIn Ads</td><td>Delivered in full.</td></tr>
-        <tr class="fbx"><td>Paid clicks</td><td class="n">1,054</td><td>LinkedIn Ads</td><td>Strong 4.7% CTR.</td></tr>
-        <tr class="fbx"><td>GA4 &ldquo;linkedin / cpc&rdquo; sessions</td><td class="n">0</td><td>GA4</td><td><span class="pill bad">~100% lost to tracking</span></td></tr>
-        <tr class="fbx"><td>GA4 all-linkedin sessions</td><td class="n">9</td><td>GA4</td><td>Organic + referral only.</td></tr>
-        <tr class="fbx"><td>Conversions</td><td class="n">0</td><td>GA4</td><td>Nothing to attribute.</td></tr>
-      </tbody>
-    </table>
+    <div class="sec fbx"><span class="n">2</span>Spend &rarr; clicks &rarr; sessions (the ~99% gap)</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Stage</th><th class="num">This week</th><th>Source</th><th>Read</th></tr></thead>
+        <tbody>
+          <tr class="fbx"><td>Paid spend</td><td class="num">$1,092</td><td>LinkedIn Ads</td><td>Delivered in full.</td></tr>
+          <tr class="fbx"><td>Paid clicks</td><td class="num">1,054</td><td>LinkedIn Ads</td><td>Strong 4.7% CTR.</td></tr>
+          <tr class="fbx"><td>GA4 &ldquo;linkedin / cpc&rdquo; sessions</td><td class="num">0</td><td>GA4</td><td><span class="pill bad">~100% lost to tracking</span></td></tr>
+          <tr class="fbx"><td>GA4 all-linkedin sessions</td><td class="num">9</td><td>GA4</td><td>Organic + referral only.</td></tr>
+          <tr class="fbx"><td>Conversions</td><td class="num">0</td><td>GA4</td><td>Nothing to attribute.</td></tr>
+        </tbody>
+      </table>
+    </div>
     <div class="note">1,054 clicks vs 0 tracked paid sessions is not a bounce problem &mdash; it is a missing-UTM problem. Do not read the low session count as weak demand.</div>
 
-    <div class="sec fbx">All-LinkedIn sessions &mdash; last 4 weeks (organic + referral)</div>
+    <div class="sec fbx"><span class="n">3</span>All-LinkedIn sessions &mdash; last 4 weeks (organic + referral)</div>
     <div class="chartbox fbx">
-      <div class="colchart">
-        <div class="col"><span class="cv">16</span><div class="bar" style="height:100%"></div><span class="cl">Jul 6&ndash;12</span></div>
-        <div class="col"><span class="cv">12</span><div class="bar" style="height:75%"></div><span class="cl">Jul 13&ndash;19</span></div>
-        <div class="col"><span class="cv">10</span><div class="bar" style="height:62%"></div><span class="cl">Jul 20&ndash;26</span></div>
-        <div class="col"><span class="cv">9</span><div class="bar" style="height:56%"></div><span class="cl">Jul 27&ndash;Aug 2</span></div>
+      <div class="cols">
+        <div class="c"><span class="cv">16</span><div class="cb2" style="height:100%"></div><span class="cl">Jul 6&ndash;12</span></div>
+        <div class="c"><span class="cv">12</span><div class="cb2" style="height:75%"></div><span class="cl">Jul 13&ndash;19</span></div>
+        <div class="c"><span class="cv">10</span><div class="cb2" style="height:62%"></div><span class="cl">Jul 20&ndash;26</span></div>
+        <div class="c"><span class="cv">9</span><div class="cb2" style="height:56%"></div><span class="cl">Jul 27&ndash;Aug 2</span></div>
       </div>
-      <div class="note" style="margin-bottom:0">Tiny and declining &mdash; consistent with paid traffic being untracked. This chart is organic/referral spillover, not campaign performance.</div>
+      <div class="note">Tiny and declining &mdash; consistent with paid traffic being untracked. This is organic/referral spillover, not campaign performance.</div>
     </div>
 
-    <div class="charts2">
+    <div class="grid2" style="margin-top:14px">
       <div class="chartbox fbx">
         <h4>Device split (4-week, all-linkedin)</h4>
-        <div class="hbars">
-          <div class="hbar"><span class="lb">Desktop &mdash; sessions</span><span class="track"><span class="fl core" style="width:100%"></span></span><span class="vv">31</span></div>
-          <div class="hbar"><span class="lb">Desktop &mdash; engage rate</span><span class="track"><span class="fl core" style="width:65%"></span></span><span class="vv">64.5%</span></div>
-          <div class="hbar"><span class="lb">Mobile &mdash; sessions</span><span class="track"><span class="fl peri" style="width:52%"></span></span><span class="vv">16</span></div>
-          <div class="hbar"><span class="lb">Mobile &mdash; engage rate</span><span class="track"><span class="fl warnb" style="width:31%"></span></span><span class="vv">31.3%</span></div>
+        <div class="bars">
+          <div class="barrow"><span>Desktop &mdash; sessions</span><span class="bt"><span class="bf core" style="width:100%"></span></span><span class="bn">31</span></div>
+          <div class="barrow"><span>Desktop &mdash; engage</span><span class="bt"><span class="bf core" style="width:65%"></span></span><span class="bn">64.5%</span></div>
+          <div class="barrow"><span>Mobile &mdash; sessions</span><span class="bt"><span class="bf adj" style="width:52%"></span></span><span class="bn">16</span></div>
+          <div class="barrow"><span>Mobile &mdash; engage</span><span class="bt"><span class="bf warnb" style="width:31%"></span></span><span class="bn">31.3%</span></div>
         </div>
-        <div class="note" style="margin-bottom:0">Desktop engages 2&times; better than mobile &mdash; expected for a technical B2B audience evaluating a dev tool.</div>
+        <div class="note">Desktop engages 2&times; better than mobile &mdash; expected for a technical B2B audience evaluating a dev tool.</div>
       </div>
       <div class="chartbox fbx">
         <h4>Landing pages (this week, all-linkedin)</h4>
-        <table style="margin:0">
-          <thead><tr><th>Page</th><th class="n">Sess.</th><th class="n">Eng.</th><th class="n">Conv.</th></tr></thead>
-          <tbody>
-            <tr class="fbx"><td>/ (home)</td><td class="n">4</td><td class="n">1</td><td class="n">0</td></tr>
-            <tr class="fbx"><td>/stories/costperform&hellip;</td><td class="n">2</td><td class="n">1</td><td class="n">0</td></tr>
-            <tr class="fbx"><td>/request-demo</td><td class="n">1</td><td class="n">0</td><td class="n">0</td></tr>
-            <tr class="fbx"><td>/stories/scriptly&hellip;</td><td class="n">1</td><td class="n">0</td><td class="n">0</td></tr>
-            <tr class="fbx"><td>(not set)</td><td class="n">1</td><td class="n">0</td><td class="n">0</td></tr>
-          </tbody>
-        </table>
+        <div class="dtable" style="margin-top:0">
+          <table>
+            <thead><tr><th>Page</th><th class="num">Sess.</th><th class="num">Eng.</th><th class="num">Conv.</th></tr></thead>
+            <tbody>
+              <tr><td>/ (home)</td><td class="num">4</td><td class="num">1</td><td class="num">0</td></tr>
+              <tr><td>/stories/costperform&hellip;</td><td class="num">2</td><td class="num">1</td><td class="num">0</td></tr>
+              <tr><td>/request-demo</td><td class="num">1</td><td class="num">0</td><td class="num">0</td></tr>
+              <tr><td>/stories/scriptly&hellip;</td><td class="num">1</td><td class="num">0</td><td class="num">0</td></tr>
+              <tr><td>(not set)</td><td class="num">1</td><td class="num">0</td><td class="num">0</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ============ TAB 5: JOURNEY & ROI ============ -->
   <section class="tabpanel" data-tab="journey" data-label="Journey &amp; ROI">
-    <div class="sec fbx">Can we tie spend to pipeline?</div>
+    <div class="sec fbx"><span class="n">1</span>Can we tie spend to pipeline?</div>
     <div class="lead fbx" style="border-left-color:var(--bad)">
-      <span class="q">Honest answer: not yet.</span>
-      <p>Right now there is <b>no path from a LinkedIn dollar to a Salesforce opportunity.</b> The channel has no lead-gen form (so no lead is captured on-platform) and no UTM tags (so GA4 and Salesforce can&rsquo;t see the click). Any Reveal opp that touched LinkedIn this week would be credited to &ldquo;(direct)&rdquo; or last-touch brand search. We are spending ~$1.1K/week into a measurement black hole.</p>
+      <p><b>Honest answer: not yet.</b> Right now there is <b>no path from a LinkedIn dollar to a Salesforce opportunity.</b> The channel has no lead-gen form (so no lead is captured on-platform) and no UTM tags (so GA4 and Salesforce can&rsquo;t see the click). Any Reveal opp that touched LinkedIn this week would be credited to &ldquo;(direct)&rdquo; or last-touch brand search. We are spending ~$1.1K/week into a measurement black hole.</p>
       <p>The good news: everything needed to fix it is a configuration change, not a strategy change. Add a lead-gen form to the two winning ads and UTM-tag all destination URLs, and within a week we can report leads, cost-per-lead, and first-touch influence on pipeline.</p>
     </div>
 
-    <div class="sec fbx">Where the funnel goes dark</div>
-    <table>
-      <thead><tr><th>Funnel stage</th><th class="n">Signal</th><th>Visibility</th><th>Why it&rsquo;s dark</th></tr></thead>
-      <tbody>
-        <tr class="fbx"><td>Impression &rarr; reach</td><td class="n">22,412 / 5,718</td><td><span class="pill good">Clear</span></td><td>LinkedIn native reporting.</td></tr>
-        <tr class="fbx"><td>Click</td><td class="n">1,054</td><td><span class="pill good">Clear</span></td><td>LinkedIn native reporting.</td></tr>
-        <tr class="fbx"><td>Site session</td><td class="n">~0 paid</td><td><span class="pill bad">Dark</span></td><td>No UTM tags &rarr; GA4 can&rsquo;t attribute.</td></tr>
-        <tr class="fbx"><td>Lead</td><td class="n">0</td><td><span class="pill bad">Dark</span></td><td>No lead-gen form; no clean SF LeadSource.</td></tr>
-        <tr class="fbx"><td>Opportunity / pipeline</td><td class="n">Unknown</td><td><span class="pill bad">Dark</span></td><td>Nothing upstream to join on.</td></tr>
-      </tbody>
-    </table>
+    <div class="sec fbx"><span class="n">2</span>Where the funnel goes dark</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Funnel stage</th><th class="num">Signal</th><th>Visibility</th><th>Why it&rsquo;s dark</th></tr></thead>
+        <tbody>
+          <tr class="fbx"><td>Impression &rarr; reach</td><td class="num">22,412 / 5,718</td><td><span class="pill good">Clear</span></td><td>LinkedIn native reporting.</td></tr>
+          <tr class="fbx"><td>Click</td><td class="num">1,054</td><td><span class="pill good">Clear</span></td><td>LinkedIn native reporting.</td></tr>
+          <tr class="fbx"><td>Site session</td><td class="num">~0 paid</td><td><span class="pill bad">Dark</span></td><td>No UTM tags &rarr; GA4 can&rsquo;t attribute.</td></tr>
+          <tr class="fbx"><td>Lead</td><td class="num">0</td><td><span class="pill bad">Dark</span></td><td>No lead-gen form; no clean SF LeadSource.</td></tr>
+          <tr class="fbx"><td>Opportunity / pipeline</td><td class="num">Unknown</td><td><span class="pill bad">Dark</span></td><td>Nothing upstream to join on.</td></tr>
+        </tbody>
+      </table>
+    </div>
     <div class="note">Salesforce attribution note: there is <b>no clean LinkedIn LeadSource</b> in SF. Tracing has to run through GA4 source/medium + LinkedIn lead-gen forms + UTMs &mdash; all three are currently missing or empty, so no SF numbers are reported here rather than fabricated.</div>
 
-    <div class="sec fbx">This week&rsquo;s fixes (highest leverage first)</div>
-    <table>
-      <thead><tr><th>Fix</th><th>Why (metric it moves)</th><th>Expected result &amp; when</th><th>Owner</th></tr></thead>
-      <tbody>
-        <tr class="fbx"><td><b>UTM-tag every ad destination URL</b></td><td>Makes GA4 + Salesforce see the channel; unblocks all attribution.</td><td>Paid sessions visible in GA4 within days of relaunch.</td><td>David</td></tr>
-        <tr class="fbx"><td><b>Launch a LinkedIn lead-gen form</b> behind the video + image winners</td><td>Turns 1,054 clicks/wk of wasted intent into captured leads &amp; CPL.</td><td>First measurable leads within 1&ndash;2 weeks.</td><td>David / Casey</td></tr>
-        <tr class="fbx"><td><b>Kill the retargeting ad</b> (0.26% CTR)</td><td>Recovers $210/wk from a dead unit.</td><td>Immediate; reallocate to the video winner.</td><td>David</td></tr>
-        <tr class="fbx"><td><b>Add Entry / Training seniority exclusion</b></td><td>Defends CXO/VP/Director share (slipped 2.7pp WoW).</td><td>Exec share back above 42% next week.</td><td>David</td></tr>
-        <tr class="fbx"><td><b>Shift budget toward the video creative</b></td><td>7.5% CTR vs 4.9% &mdash; more clicks per dollar.</td><td>Higher blended CTR &amp; lower CPC next week.</td><td>David</td></tr>
-      </tbody>
-    </table>
+    <div class="sec fbx"><span class="n">3</span>This week&rsquo;s fixes (highest leverage first)</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Fix</th><th>Why (metric it moves)</th><th>Expected result &amp; when</th><th>Owner</th></tr></thead>
+        <tbody>
+          <tr class="fbx"><td><b>UTM-tag every ad destination URL</b></td><td>Makes GA4 + Salesforce see the channel; unblocks all attribution.</td><td>Paid sessions visible in GA4 within days of relaunch.</td><td>David</td></tr>
+          <tr class="fbx"><td><b>Launch a LinkedIn lead-gen form</b> behind the video + image winners</td><td>Turns 1,054 clicks/wk of wasted intent into captured leads &amp; CPL.</td><td>First measurable leads within 1&ndash;2 weeks.</td><td>David / Casey</td></tr>
+          <tr class="fbx"><td><b>Kill the retargeting ad</b> (0.26% CTR)</td><td>Recovers $210/wk from a dead unit.</td><td>Immediate; reallocate to the video winner.</td><td>David</td></tr>
+          <tr class="fbx"><td><b>Add Entry / Training seniority exclusion</b></td><td>Defends CXO/VP/Director share (slipped 2.7pp WoW).</td><td>Exec share back above 42% next week.</td><td>David</td></tr>
+          <tr class="fbx"><td><b>Shift budget toward the video creative</b></td><td>7.5% CTR vs 4.9% &mdash; more clicks per dollar.</td><td>Higher blended CTR &amp; lower CPC next week.</td><td>David</td></tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="verdict fbx">
       <div class="vh">Verdict</div>
-      <div class="vcall">FIX &mdash; keep the media, repair the measurement &amp; capture</div>
+      <div class="vc">FIX &mdash; keep the media, repair the measurement &amp; capture</div>
       <p>LinkedIn is a well-run awareness engine hitting the right accounts efficiently (reach +38%, CPM &minus;11%, 4.7% CTR, 64% mid-market) but returning <b>zero measurable leads or pipeline</b> because no lead-gen form and no UTM tracking exist. Do not cut spend on the working TOF ICP units. This week: UTM-tag all URLs, stand up a lead-gen form behind the two winning ads, kill the dead retargeting unit ($210/wk), and exclude Entry/Training to defend the exec tier. Re-judge ROI once the channel is finally visible.</p>
     </div>
   </section>
 
+  </div>
 </div>
 
+<!-- ===================== FEEDBACK LOOP (Reveal pink) ===================== -->
 <style>
   .fbx{position:relative}
-  .fbtn{position:absolute;top:6px;right:6px;z-index:3;width:22px;height:22px;border:none;border-radius:7px;background:#eef1fb;color:#2A41A2;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .12s;padding:0;box-shadow:0 1px 2px rgba(15,23,42,.14)}
-  .fbtn:hover{background:#2A41A2;color:#fff}
+  .fbtn{position:absolute;top:6px;right:6px;z-index:3;width:22px;height:22px;border:none;border-radius:7px;background:var(--accent-soft);color:var(--accent-deep);cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .12s;padding:0;box-shadow:0 1px 2px rgba(15,23,42,.14)}
+  .fbtn:hover{background:var(--accent);color:#fff}
   .fbtn svg{width:13px;height:13px}
   .fbx:hover>.fbtn,.fbtn:focus-visible{opacity:1}
   li.fbx>.fbtn{top:-1px;right:0;width:20px;height:20px}
   .fbmodal{position:fixed;inset:0;background:rgba(15,23,42,.5);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
   .fbmodal.on{display:flex}
   .fbcard{background:#fff;border-radius:16px;max-width:470px;width:100%;box-shadow:0 20px 60px rgba(15,23,42,.32);overflow:hidden;font-family:'Roboto',system-ui,sans-serif}
-  .fbhd{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 20px}
+  .fbhd{background:linear-gradient(120deg,var(--accent),var(--accent-deep));color:#fff;padding:15px 20px}
   .fbhd .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.85;font-weight:600}
   .fbhd .l{font-size:15px;font-weight:800;margin-top:3px;line-height:1.3}
   .fbbd{padding:16px 20px}
   .fbbd label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#5f6b7a;display:block;margin:0 0 7px}
   .fbcats{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
   .fbcat{font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;border:1.5px solid #e3e7f2;background:#fff;color:#41506b;cursor:pointer;font-family:inherit}
-  .fbcat.sel{border-color:#2A41A2;background:#eef1fb;color:#2A41A2}
+  .fbcat.sel{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-deep)}
   .fbbd textarea{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13.5px;resize:vertical;min-height:74px;box-sizing:border-box}
-  .fbbd textarea:focus,.fbval:focus{outline:none;border-color:#2A41A2}
+  .fbbd textarea:focus,.fbval:focus{outline:none;border-color:var(--accent)}
   .fbvalwrap{display:none;margin-top:12px}.fbvalwrap.on{display:block}
   .fbval{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:9px 12px;font-family:inherit;font-size:13.5px;box-sizing:border-box}
   .fbft{display:flex;gap:10px;justify-content:flex-end;padding:14px 20px;border-top:1px solid #eef1f7;background:#fbfcff}
   .fbbtn{font-family:inherit;font-size:13px;font-weight:600;padding:9px 15px;border-radius:9px;cursor:pointer;border:none}
   .fbbtn.sec{background:#eef0f5;color:#41506b}
-  .fbbtn.pri{background:linear-gradient(120deg,#2A41A2,#3a54cf);color:#fff}
+  .fbbtn.pri{background:linear-gradient(120deg,var(--accent),var(--accent-deep));color:#fff}
   .fbbtn.pri:disabled{opacity:.5;cursor:not-allowed}
   .fbtoast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0F172A;color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:300;opacity:0;transition:opacity .2s;box-shadow:0 8px 30px rgba(0,0,0,.3);max-width:90%;text-align:center;pointer-events:none}
   .fbtoast.on{opacity:1}
@@ -540,17 +564,22 @@
   document.addEventListener('DOMContentLoaded',function(){modal=document.getElementById('fbModal');secs=[].slice.call(document.querySelectorAll('.sec'));addIcons();document.getElementById('fbCats').addEventListener('click',function(e){var b=e.target.closest('.fbcat');if(!b)return;cat=b.dataset.cat;document.querySelectorAll('.fbcat').forEach(function(c){c.classList.toggle('sel',c===b);});document.getElementById('fbValWrap').classList.toggle('on',cat==='Wrong number');refreshSend();});document.getElementById('fbReason').addEventListener('input',refreshSend);document.getElementById('fbCancel').addEventListener('click',closeModal);document.getElementById('fbSend').addEventListener('click',send);modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});});
 })();
 </script>
+<!-- tab builder -->
 <script>
-(function(){
-  document.querySelectorAll('.tab').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      var t=btn.getAttribute('data-t');
-      document.querySelectorAll('.tab').forEach(function(b){b.classList.toggle('active',b===btn);});
-      document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.toggle('active',p.getAttribute('data-tab')===t);});
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.tabpanel'));
+  var bar = document.getElementById('tabbar');
+  panels.forEach(function(p,i){
+    var b=document.createElement('button');
+    b.className='tab'+(i===0?' on':''); b.innerHTML=p.dataset.label||('Tab '+(i+1));
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+      panels.forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on'); p.classList.add('on');
       window.scrollTo({top:0,behavior:'smooth'});
     });
+    bar.appendChild(b);
+    if(i===0) p.classList.add('on');
   });
-})();
 </script>
 </body>
 </html>
