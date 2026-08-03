@@ -13,10 +13,7 @@
     --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
     --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
   }
-  body.theme-reveal   {--accent:#EC417A;--accent-deep:#C9367F;--accent-soft:#fde4ee;--hero:linear-gradient(120deg,#FBB764,#EC417A 62%,#d63384)}
-  body.theme-slingshot{--accent:#4B45C6;--accent-deep:#2D2A90;--accent-soft:#ECEBFB;--hero:linear-gradient(120deg,#6C5CE7,#4B45C6 55%,#2D2A90)}
-  body.theme-ui       {--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
-  body.theme-all      {--accent:#2563EB;--accent-deep:#7C3AED;--accent-soft:#EEF1FF;--hero:linear-gradient(120deg,#2563EB,#7C3AED)}
+  body.theme-ui{--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
 
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
@@ -28,14 +25,13 @@
   header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
   header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
   .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
-  .logochip img{height:18px;display:block}
   .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
   header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
   .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)}
   .meta b{color:#fff;font-weight:700}
 
   .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:42px;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03);overflow-x:auto}
-  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 15px 13px;border-bottom:3px solid transparent;display:flex;align-items:center;gap:8px;white-space:nowrap}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:13.5px;font-weight:600;color:var(--muted);padding:15px 15px 13px;border-bottom:3px solid transparent;display:flex;align-items:center;gap:8px;white-space:nowrap}
   .tab .cbadge{font-family:var(--mono);font-size:11px;font-weight:600;background:var(--gray-bg);color:var(--muted);border-radius:999px;padding:1px 8px}
   .tab:hover{color:var(--ink)}
   .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
@@ -48,82 +44,100 @@
   .slink:hover{filter:brightness(1.05)}
   .slink svg{width:13px;height:13px}
 
-  /* ===== SHARED COMPONENTS (Ignite UI paid-media component system) ===== */
-  .sec{margin:26px 0 12px;display:flex;align-items:center;gap:10px}
-  .sec .chip{width:26px;height:26px;border-radius:8px;background:var(--accent-soft);color:var(--accent-deep);font-weight:900;font-size:13px;display:grid;place-items:center;font-family:var(--mono)}
-  .sec h2{font-size:17px;font-weight:900;color:var(--navy)}
-  .sec .sub{font-size:12px;color:var(--muted);font-weight:500}
-  .lead{font-size:14px;color:var(--ink);line-height:1.6;margin:8px 0 4px}
-  .lead b{color:var(--navy)}
-  .subhead{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px;display:flex;align-items:center;gap:8px}
-  .subhead .g{width:10px;height:10px;border-radius:3px;background:#4285F4}
-  .subhead .b{width:10px;height:10px;border-radius:3px;background:#008373}
-  .fbhint{font-size:11.5px;color:var(--muted);background:var(--gray-bg);border-radius:8px;padding:7px 11px;margin:10px 0;display:inline-flex;gap:7px;align-items:center}
+  /* ===== SHARED COMPONENTS ===== */
+  .sec{display:flex;align-items:center;gap:10px;margin:26px 0 14px;font-size:16px;font-weight:900;color:var(--navy)}
+  .sec:first-child{margin-top:4px}
+  .sec .n{display:grid;place-items:center;width:26px;height:26px;border-radius:8px;background:var(--accent-soft);color:var(--accent-deep);font-size:13px;font-family:var(--mono)}
+  .sub{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:20px 0 10px;display:flex;align-items:center;gap:8px}
+  .sub .eng{font-size:10.5px;padding:2px 8px;border-radius:6px;font-weight:700}
+  .eng-g{background:#e8f0fe;color:#1a56c4} .eng-b{background:#e6f4ea;color:#137333}
+  p.lead{font-size:14px;color:var(--ink);margin:0 0 12px}
+  p.lead b{color:var(--navy)}
+  .note{font-size:12px;color:var(--muted);margin:6px 0 0}
 
-  .vpbanner{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:6px 0 4px}
-  .vprow{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line);align-items:start}
-  .vprow:last-child{border-bottom:none}
-  .vptag{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:7px;text-align:center}
+  /* VP banner */
+  .vpbanner{display:grid;gap:9px;margin:2px 0 12px}
+  .vprow{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:start;border:1px solid var(--line);border-radius:12px;padding:12px 15px;background:#fff}
+  .vptag{font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:5px 9px;border-radius:7px;text-align:center}
   .vp-fix{background:var(--bad-bg);color:var(--bad)} .vp-work{background:var(--good-bg);color:var(--good)} .vp-watch{background:var(--warn-bg);color:var(--warn)}
-  .vprow p{font-size:13px;color:var(--ink);line-height:1.55} .vprow b{color:var(--navy)}
+  .vprow .txt{font-size:13px;color:var(--ink)} .vprow .txt b{color:var(--navy)}
+  .fbhint{font-size:11.5px;color:var(--muted);margin:0 0 20px;display:flex;align-items:center;gap:6px}
+  .fbhint svg{width:13px;height:13px;color:var(--accent)}
 
-  .mkpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;margin:12px 0}
-  .kpi{border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:#fff;position:relative}
-  .kpi .k{font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--muted)}
-  .kpi .v{font-size:23px;font-weight:900;color:var(--navy);font-family:var(--mono);margin-top:3px}
-  .kpi .d{font-size:11.5px;font-weight:700;margin-top:2px}
+  /* KPI tiles */
+  .mkpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:6px 0 8px}
+  .kpi{border:1px solid var(--line);border-radius:12px;padding:14px 15px;background:#fff;position:relative}
+  .kpi .k{font-size:11px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--muted)}
+  .kpi .v{font-size:23px;font-weight:900;color:var(--navy);margin-top:4px;font-family:var(--mono)}
+  .kpi .d{font-size:11.5px;font-weight:700;margin-top:3px}
   .up{color:var(--good)} .down{color:var(--bad)} .flat{color:var(--muted)}
 
-  .tablewrap{border:1px solid var(--line);border-radius:12px;overflow:auto;margin:8px 0}
-  table.sb{width:100%;border-collapse:collapse;font-size:13px;min-width:520px}
-  table.sb thead th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:700;padding:10px 13px;text-align:left;border-bottom:1px solid #dce3f0}
-  table.sb tbody td{padding:11px 13px;border-bottom:1px solid var(--line);vertical-align:middle}
-  table.sb tbody tr:last-child td{border-bottom:none}
-  table.sb tbody tr:hover{background:#fafbff}
+  /* Scoreboard */
+  table.sb{width:100%;border-collapse:collapse;font-size:13px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  table.sb th{background:#f4f6fb;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:9px 12px;text-align:left;border-bottom:1px solid #dce3f0}
+  table.sb td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+  table.sb tr:last-child td{border-bottom:none}
   table.sb .goal{font-weight:700;color:var(--navy)}
-  table.sb .num{font-family:var(--mono);font-size:12.5px}
-  .bartrack{position:relative;height:8px;background:#eef1f7;border-radius:5px;min-width:90px;margin-top:5px}
-  .barfill{position:absolute;left:0;top:0;height:8px;border-radius:5px;background:var(--accent)}
-  .pill{font-size:11px;font-weight:700;padding:2px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
-  .p-good{background:var(--good-bg);color:var(--good)} .p-warn{background:var(--warn-bg);color:var(--warn)} .p-bad{background:var(--bad-bg);color:var(--bad)} .p-gray{background:var(--gray-bg);color:var(--muted)}
+  table.sb .big{font-family:var(--mono);font-weight:700;font-size:15px;color:var(--navy)}
+  .prog{position:relative;height:8px;background:#eef1f6;border-radius:5px;overflow:hidden;min-width:90px}
+  .prog>i{position:absolute;left:0;top:0;height:100%;border-radius:5px;background:var(--accent)}
+  .pill{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+  .p-good{background:var(--good-bg);color:var(--good)} .p-warn{background:var(--warn-bg);color:var(--warn)} .p-bad{background:var(--bad-bg);color:var(--bad)} .p-gray{background:var(--gray-bg);color:var(--gray)}
 
-  .cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:10px 0}
-  .plat{border:1px solid var(--line);border-radius:14px;padding:15px 16px;background:#fff}
-  .plat.muted{background:#fafbfc;border-style:dashed;color:var(--muted)}
-  .plat h4{font-size:13.5px;font-weight:800;color:var(--navy);display:flex;align-items:center;gap:8px;margin-bottom:8px}
-  .plat .dot{width:9px;height:9px;border-radius:3px}
-  .plat .row{display:flex;justify-content:space-between;font-size:12.5px;padding:3px 0;border-bottom:1px dashed var(--line)}
-  .plat .row:last-child{border-bottom:none}
-  .plat .row span:last-child{font-family:var(--mono);font-weight:700;color:var(--navy)}
-  .vbox{border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin:8px 0;background:#fff}
-  .vbox .vh{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
-  .verdict-keep{color:var(--good)} .verdict-fix{color:var(--bad)} .verdict-scale{color:var(--cobalt)} .verdict-watch{color:var(--warn)}
-  .wl{list-style:none;margin:6px 0;padding:0}
-  .wl li{font-size:13px;padding:7px 0 7px 22px;position:relative;border-bottom:1px solid var(--line);line-height:1.5}
-  .wl li:last-child{border-bottom:none}
-  .wl li::before{position:absolute;left:0;top:7px;font-weight:900}
-  .wl.good li::before{content:"\2191";color:var(--good)}
-  .wl.bad li::before{content:"\2193";color:var(--bad)}
-  .wl.focus li::before{content:"\25B8";color:var(--accent-deep)}
+  /* Channel cards + deep dive */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:6px 0}
+  .plat{border:1px solid var(--line);border-radius:13px;padding:15px 16px;background:#fff}
+  .plat.muted{background:#fafbfd;opacity:.85}
+  .plat h4{font-size:13.5px;font-weight:800;color:var(--navy);margin:0 0 8px;display:flex;align-items:center;justify-content:space-between}
+  .plat .m{font-size:12.5px;color:var(--muted);margin:2px 0}
+  .plat .m b{color:var(--navy);font-family:var(--mono)}
+  .verdict{display:grid;gap:10px;margin:8px 0}
+  .vbox{border:1px solid var(--line);border-left:4px solid var(--line);border-radius:10px;padding:11px 14px;background:#fff}
+  .vbox.work{border-left-color:var(--good)} .vbox.no{border-left-color:var(--bad)} .vbox.focus{border-left-color:var(--warn)}
+  .vbox .h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+  .vbox.work .h{color:var(--good)} .vbox.no .h{color:var(--bad)} .vbox.focus .h{color:var(--warn)}
+  .vbox .b{font-size:12.5px;color:var(--ink)} .vbox .b b{color:var(--navy)}
 
-  .chartwrap{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#fcfdff;margin:10px 0}
-  .chartwrap .ct{font-size:12.5px;font-weight:800;color:var(--navy);margin-bottom:12px}
-  .cbar-row{display:grid;grid-template-columns:160px 1fr 74px;gap:10px;align-items:center;margin:6px 0;font-size:12px}
-  .cbar-row .lbl{color:var(--muted);font-weight:600}
-  .cbar-track{background:#eef1f7;border-radius:6px;height:20px;position:relative;overflow:hidden}
-  .cbar-fill{height:20px;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--accent-deep))}
-  .cbar-row .val{font-family:var(--mono);font-weight:700;color:var(--navy);text-align:right}
-  .spark{display:flex;align-items:flex-end;gap:6px;height:110px;padding-top:8px}
-  .spark .col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;justify-content:flex-end}
-  .spark .colbar{width:100%;max-width:34px;border-radius:5px 5px 0 0;background:linear-gradient(180deg,var(--accent),var(--accent-deep))}
-  .spark .colx{font-size:9.5px;color:var(--muted);font-family:var(--mono)}
-  .spark .coln{font-size:9.5px;color:var(--navy);font-weight:700;font-family:var(--mono)}
+  .tablewrap{border:1px solid var(--line);border-radius:12px;overflow:auto;margin:6px 0}
+  table.dt{width:100%;border-collapse:collapse;font-size:12.5px}
+  table.dt th{background:#f4f6fb;font-size:10px;letter-spacing:.02em;text-transform:uppercase;color:#41506b;font-weight:600;padding:8px 11px;text-align:left;border-bottom:1px solid #dce3f0;white-space:nowrap}
+  table.dt td{padding:8px 11px;border-bottom:1px solid var(--line);white-space:nowrap}
+  table.dt tr:last-child td{border-bottom:none}
+  table.dt td.num{font-family:var(--mono);text-align:right}
+  table.dt tbody tr:hover{background:#fafbff}
+  .tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px}
+  .t-keep{background:var(--good-bg);color:var(--good)} .t-cut{background:var(--bad-bg);color:var(--bad)} .t-research{background:#e8f0fe;color:#1a56c4} .t-gap{background:var(--warn-bg);color:var(--warn)}
 
-  .note{font-size:11.5px;color:var(--muted);font-style:italic;margin:6px 0}
-  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:10px 0}
-  .gcard{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
-  .gcard .im{height:90px;background:#f1f4fb url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 fill=%22none%22 stroke=%22%23c3ccdb%22 stroke-width=%221.6%22><rect x=%223%22 y=%223%22 width=%2218%22 height=%2218%22 rx=%222%22/><circle cx=%228.5%22 cy=%228.5%22 r=%221.6%22/><path d=%22M21 15l-5-5L5 21%22/></svg>') center/26px no-repeat;display:block}
-  .gcard .cap{font-size:10.5px;color:var(--muted);padding:7px 9px;line-height:1.35;word-break:break-word}
+  /* recommendation lists */
+  .wl{display:grid;gap:9px;margin:8px 0}
+  .wl .wi{display:grid;grid-template-columns:20px 1fr;gap:11px;border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-size:12.5px;background:#fff}
+  .wl .wi .ic{font-weight:900;color:var(--accent-deep)}
+  .wl .wi b{color:var(--navy)}
+
+  /* charts */
+  .chartwrap{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#fcfdff;margin:8px 0}
+  .chartwrap .ct{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px}
+  .bars{display:flex;align-items:flex-end;gap:10px;height:130px;padding-top:6px}
+  .bars .bcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;height:100%}
+  .bars .bcol>i{width:70%;background:linear-gradient(180deg,var(--accent),var(--accent-deep));border-radius:5px 5px 0 0;min-height:2px}
+  .bars .bcol .bl{font-size:9.5px;color:var(--muted);font-family:var(--mono)}
+  .bars .bcol .bv{font-size:9.5px;font-weight:700;color:var(--navy);font-family:var(--mono)}
+  .donut{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .lgnd{font-size:12px;color:var(--muted)} .lgnd b{color:var(--navy);font-family:var(--mono)}
+  .lgnd .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}
+  .funnel{display:grid;gap:8px;margin:8px 0}
+  .fstep{display:grid;grid-template-columns:180px 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px;background:#fff}
+  .fstep .fl{font-size:12px;font-weight:700;color:var(--navy)} .fstep .fl span{display:block;font-size:10.5px;font-weight:400;color:var(--muted)}
+  .fstep .fbar{height:14px;border-radius:7px;background:linear-gradient(90deg,var(--accent),var(--accent-deep))}
+  .fstep .fv{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--navy)}
+  .brk{font-size:11.5px;color:var(--bad);font-weight:700;padding:2px 0 0 194px}
+
+  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:8px 0}
+  .gcard{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:#fff}
+  .gcard img{width:100%;height:110px;object-fit:cover;background:#f1f4fb;display:block}
+  .gcard .gm{padding:8px 10px}
+  .gcard .gm .gn{font-size:10.5px;color:var(--muted);word-break:break-all}
+  .gcard .gm .gs{font-size:11px;font-weight:700;color:var(--navy);font-family:var(--mono);margin-top:3px}
 
   /* ===== TASKS (scoped) ===== */
   #tasks .taskhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
@@ -156,8 +170,6 @@
   #tasks .donedate{font-family:var(--mono);font-size:11px;color:var(--good);white-space:nowrap}
   #tasks .donedate::before{content:"\2713 "}
   #tasks .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px}
-  @media(max-width:820px){#tasks .board{grid-template-columns:1fr 1fr}}
-  @media(max-width:520px){#tasks .board{grid-template-columns:1fr}}
   #tasks .col{background:#f7f8fc;border:1px solid var(--line);border-radius:14px;padding:12px}
   #tasks .col-h{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;margin-bottom:11px;padding:0 4px}
   #tasks .col-h .cc{font-family:var(--mono);font-size:11px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:0 8px;color:var(--muted)}
@@ -169,11 +181,11 @@
   #tasks .tl{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#fcfdff;overflow-x:auto}
   #tasks .tlrow{display:grid;grid-template-columns:230px 1fr;gap:14px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
   #tasks .tlrow:last-child{border-bottom:none}
-  #tasks .tlname{font-size:12.5px;font-weight:600;color:var(--navy)} #tasks .tlname .sub{font-size:10.5px;color:var(--muted);font-weight:400}
+  #tasks .tlname{font-size:12.5px;font-weight:600;color:var(--navy)} #tasks .tlname .sub2{font-size:10.5px;color:var(--muted);font-weight:400;margin:0;text-transform:none;letter-spacing:0}
   #tasks .tltrack{position:relative;height:26px;background:#f1f4fb;border-radius:7px}
   #tasks .bar{position:absolute;top:4px;height:18px;border-radius:6px;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:700;color:#fff;font-family:var(--mono);white-space:nowrap;background:var(--accent-deep)}
   #tasks .empty{font-size:13px;color:var(--muted);padding:30px;text-align:center}
-  #tasks .foot{font-size:11.5px;color:var(--muted);margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+  #tasks .tfoot{font-size:11.5px;color:var(--muted);margin-top:14px;border-top:1px dashed var(--line);padding-top:10px}
 
   /* ===== SUMMARY (scoped) ===== */
   #summary .sumhead{display:flex;align-items:center;gap:12px;margin-bottom:14px}
@@ -186,29 +198,28 @@
   #summary .summary-card p{margin:0 0 12px} #summary .summary-card b,#summary .summary-card strong{color:var(--navy)}
   #summary .summary-card ul{margin:0 0 12px;padding-left:20px} #summary .summary-card li{margin-bottom:6px}
 
-  /* ===== CHEAT SHEET ===== */
-  #cheat .gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-  #cheat .term{border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:#fff}
-  #cheat .term.ours{border-left:3px solid var(--accent)}
-  #cheat .term h4{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:5px}
-  #cheat .term p{font-size:12.5px;color:var(--muted);line-height:1.5}
-  #cheat .grouph{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-deep);margin:18px 0 8px}
+  /* cheat sheet */
+  .cheat{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+  .cheat .cg{border:1px solid var(--line);border-radius:12px;padding:15px 17px;background:#fff}
+  .cheat .cg h4{font-size:13px;font-weight:800;color:var(--navy);margin:0 0 10px;display:flex;align-items:center;gap:7px}
+  .cheat dl{margin:0} .cheat dt{font-size:12.5px;font-weight:700;color:var(--accent-deep);margin-top:9px} .cheat dt:first-child{margin-top:0}
+  .cheat dd{font-size:12px;color:var(--ink);margin:2px 0 0}
+  .cheat .ours{border-left:3px solid var(--accent)}
 
-  /* ===== FEEDBACK SYSTEM ===== */
+  /* feedback */
   .fbx{position:relative}
-  #report .fbx:hover>.fbbtn{opacity:1}
-  .fbbtn{position:absolute;top:6px;right:6px;z-index:3;opacity:0;transition:opacity .12s;appearance:none;border:none;cursor:pointer;background:var(--accent-deep);color:#fff;font-size:10px;font-weight:700;border-radius:6px;padding:3px 7px;font-family:inherit;box-shadow:0 1px 4px rgba(0,0,0,.18)}
-  .fbbtn:hover{filter:brightness(1.08)}
-  .fbmodal{display:none;position:fixed;inset:0;z-index:200;background:rgba(15,23,42,.45);align-items:center;justify-content:center;padding:20px}
-  .fbmodal.on{display:flex}
-  .fbcard{background:#fff;border-radius:16px;max-width:440px;width:100%;padding:22px 24px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-  .fbcard h3{font-size:16px;font-weight:900;color:var(--navy);margin-bottom:4px}
-  .fbcard .ctx{font-size:12px;color:var(--muted);background:var(--gray-bg);border-radius:8px;padding:8px 11px;margin:10px 0;max-height:80px;overflow:auto}
-  .fbcard textarea{width:100%;min-height:92px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13px;resize:vertical}
-  .fbcard .acts{display:flex;gap:10px;justify-content:flex-end;margin-top:14px}
-  .fbcard button{appearance:none;border:none;cursor:pointer;font-family:inherit;font-size:13px;font-weight:700;border-radius:9px;padding:9px 16px}
-  .fbcancel{background:var(--gray-bg);color:var(--muted)}
-  .fbsend{background:linear-gradient(120deg,var(--accent),var(--accent-deep));color:#fff}
+  .fbbtn{position:absolute;top:6px;right:6px;width:22px;height:22px;border-radius:6px;border:none;background:var(--accent-soft);color:var(--accent-deep);font-size:12px;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:2;line-height:1}
+  .fbx:hover>.fbbtn{display:flex}
+  .fbov{position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+  .fbov.on{display:flex}
+  .fbmodal{background:#fff;border-radius:16px;max-width:440px;width:100%;padding:22px 24px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+  .fbmodal h3{font-size:16px;font-weight:900;color:var(--navy);margin:0 0 4px}
+  .fbmodal .fbsub{font-size:12px;color:var(--muted);margin:0 0 14px}
+  .fbmodal textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;font-family:inherit;font-size:13px;resize:vertical;min-height:90px}
+  .fbmodal .fbact{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+  .fbmodal button{font-family:inherit;font-size:12.5px;font-weight:600;border-radius:9px;padding:9px 15px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--muted)}
+  .fbmodal button.prim{background:linear-gradient(120deg,var(--accent),var(--accent-deep));color:#fff;border:none}
+  .fbctx{font-size:11px;color:var(--accent-deep);background:var(--accent-soft);border-radius:7px;padding:6px 9px;margin-bottom:10px;font-family:var(--mono);word-break:break-word}
 </style>
 </head>
 <body class="theme-ui">
@@ -216,21 +227,21 @@
 <div class="wrap">
 
   <header class="top">
-    <div class="logochip"><img src="https://static.infragistics.com/marketing/Website/General/Infragistics-horizontal.svg" alt="Infragistics"> Ignite UI for Blazor</div>
-    <div class="kick">UI TOOLS &middot; BLAZOR &middot; PAID MEDIA</div>
+    <div class="logochip">Ignite UI for Blazor</div>
+    <div class="kick">UI TOOLS · BLAZOR · PAID MEDIA</div>
     <h1>Blazor PPC Weekly / Ignite UI</h1>
     <div class="meta">
-      <span>Week of <b>Aug 2, 2026</b></span>
-      <span>Current <b>Jul 26 &ndash; Aug 1</b></span>
-      <span>Prior <b>Jul 19 &ndash; Jul 25</b></span>
-      <span>Google Ads <b>9179838229</b> + Bing <b>Infragistics Inc</b></span>
+      <span>Week of <b>Aug 3, 2026</b></span>
+      <span>Current <b>Jul 27 – Aug 2</b></span>
+      <span>Prior <b>Jul 20 – 26</b></span>
+      <span>Google Ads <b>9179838229</b> + Bing</span>
     </div>
   </header>
 
   <div class="tabbar">
     <button class="tab on" data-tab="report">Report</button>
-    <button class="tab" data-tab="campaigns">Campaigns</button>
-    <button class="tab" data-tab="terms">Search Terms</button>
+    <button class="tab" data-tab="campaigns">Campaigns &amp; Ad Groups</button>
+    <button class="tab" data-tab="terms">Search Terms &amp; Keywords</button>
     <button class="tab" data-tab="adcopy">Ad Copy</button>
     <button class="tab" data-tab="creative">Creative</button>
     <button class="tab" data-tab="landing">Landing Pages</button>
@@ -240,330 +251,375 @@
     <button class="tab" data-tab="cheat">Cheat sheet</button>
   </div>
 
-  <!-- ============ 1. REPORT ============ -->
+  <!-- ================= REPORT ================= -->
   <section class="panel on" id="report">
 
     <div class="vpbanner">
-      <div class="vprow fbx"><span class="vptag vp-fix">Fix</span><p><b>We are flying blind on paid conversions.</b> Blazor paid drove <b>271 clicks</b> this week (108 Google Search + 89 Demand Gen + 74 Bing), yet GA4 attributes only ~10 blazor <code>cpc</code> sessions in the last 30 days and <b>0 conversions across every channel</b>. Until auto-tagging / conversion import is repaired, CPA and ROAS cannot exist. Standing <b>P1</b>.</p></div>
-      <div class="vprow fbx"><span class="vptag vp-work">Working</span><p><b>Search efficiency improved and Bing is a cheap new lane.</b> Google search CPC fell <b>21% WoW ($20.17&rarr;$15.86)</b> and search CTR rose to <b>8.3%</b> on 25% less spend. Bing Blazor went live this week at a <b>$3.00 CPC</b> &mdash; 5&times; cheaper than Google search &mdash; for $222 and 74 clicks of competitor-conquest traffic.</p></div>
-      <div class="vprow fbx"><span class="vptag vp-watch">Watch</span><p><b>Budget is now capping our best terms, and Demand Gen looks leaky.</b> Compete lost <b>22.7%</b> and Components <b>21.7%</b> of impressions to budget (both up sharply WoW) right as CPCs got cheaper. Demand Gen launched at $59 / 5,990 impr / 89 clicks but produced <b>1 GA4 session, 0 engagement</b> &mdash; classic placement-leak profile. Don't scale it until tracked.</p></div>
+      <div class="vprow fbx"><span class="vptag vp-fix">Fix</span><div class="txt"><b>We are flying blind on paid ROI.</b> 368 paid clicks this week (280 Google + 88 Bing) produced just <b>6 GA4 cpc sessions</b> and <b>0 tracked conversions</b> across both engines. Click→session→conversion tracking is broken — CPA/ROAS are unknowable. Standing <b>P1</b>: wire auto-tagging + a NuGet-trial/download conversion before any scale.</div></div>
+      <div class="vprow fbx"><span class="vptag vp-work">Working</span><div class="txt"><b>Search got more efficient and Bing launched cheap.</b> Google search CPC fell <b>−20% ($19.90→$15.90)</b> and search CTR rose to <b>7.97%</b> while spend dropped 25%. Bing Blazor went live at <b>$2.87 CPC</b> and <b>84–86% impression share</b> for $252 — the cheapest qualified developer traffic we have.</div></div>
+      <div class="vprow fbx"><span class="vptag vp-watch">Watch</span><div class="txt"><b>The money terms are budget-capped and Charts nearly went dark.</b> Compete sits at <b>63% IS (23% lost to budget)</b>; Components slipped <b>92%→72% IS</b>. Charts spend collapsed <b>−95%</b> to $24. New DemandGen ($121, 12k impr) is diluting blended CTR to 2.1% — always read search-only alongside it.</div></div>
     </div>
-    <div class="fbhint">&#9432; Hover any tile, goal row, or banner in this tab and click <b>Feedback</b> to send a note to the paid-media discussion in Slingshot.</div>
+    <div class="fbhint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20h9M3 20l1.5-4.5L15 5l4 4L8.5 19.5 3 20z"/></svg> Hover any KPI, goal, banner or recommendation and click the pencil to send feedback — it routes to the shared paid-media discussion in Slingshot.</div>
 
-    <div class="sec"><span class="chip">1</span><div><h2>Executive read</h2><div class="sub">Audience: Dean + leadership</div></div></div>
-    <p class="lead">Blazor paid is <b>spending steadily but measuring nothing on the ad side.</b> This week we put <b>$1,994</b> to work across Google ($1,772) and the newly-live Bing account ($222) and generated <b>271 clicks</b> of mostly high-intent, competitor-conquest demand. The engine is running more efficiently than last week &mdash; search CPCs down a fifth, CTR up &mdash; but Google Ads still records <b>zero conversions</b> and GA4 sees almost none of the paid clicks, so we cannot yet tie a dollar of spend to a trial or a sale.</p>
-    <p class="lead">Because the ad platforms can't see outcomes, we measure Blazor success by <b>NuGet adoption</b> instead. This is our <b>first tracked week</b>: the six public Infragistics Blazor packages sit at <b>107,206 cumulative downloads</b>. From next Monday we report the weekly delta; today is the baseline. The honest framing for leadership: the media is getting cheaper and the demand is real, but until conversion tracking is wired we are optimizing to clicks and downloads, not revenue. Fixing tracking is the single highest-leverage move on this account.</p>
+    <div class="sec"><span class="n">1</span> Executive read</div>
+    <p class="lead">Blazor paid spent <b>$2,011 this week</b> ($1,759 Google + $252 Bing) and, on the numbers we can see, is buying qualified developer attention efficiently — search CPC is down 20%, CTR is up, and the new Bing buy is landing near-90% impression share at a third of Google's cost. <b>But we cannot prove any of it converts.</b> Google Ads records <b>zero conversions</b>, GA4 attributes only <b>6 paid sessions</b> to 368 clicks, and the licensed product isn't lead-gated — so the honest north-star is <b>NuGet adoption</b>, not CPA. This week the Infragistics Blazor packages added <b>+14 cumulative downloads</b> (to 107,220), but that diff is measured against a baseline captured last Sunday, so it spans ~1 day, not a full 7 — a clean weekly delta arrives next Monday. Bottom line for leadership: <b>the media is efficient, the measurement is broken.</b> Fix auto-tagging + a download/trial conversion and we can finally manage this buy to an outcome instead of to impression share.</p>
 
-    <div class="sec"><span class="chip">2</span><div><h2>Goal scoreboard</h2><div class="sub">Current week vs target &middot; Google and Bing shown separately</div></div></div>
-    <div class="tablewrap"><table class="sb">
-      <thead><tr><th>Goal</th><th>This week</th><th>Target</th><th>Progress</th><th>Status</th></tr></thead>
+    <div class="sec"><span class="n">2</span> Goal scoreboard</div>
+    <div class="tablewrap">
+    <table class="sb">
+      <thead><tr><th>Goal</th><th>Now</th><th>Progress</th><th>Target</th><th>Status</th></tr></thead>
       <tbody>
-        <tr class="fbx"><td class="goal">NuGet downloads / wk</td><td class="num">Baseline 107,206 cum.</td><td class="num">Trailing-4wk avg</td><td><div class="bartrack"><div class="barfill" style="width:12%"></div></div></td><td><span class="pill p-gray">Building baseline</span></td></tr>
-        <tr class="fbx"><td class="goal">Google Search impression share</td><td class="num">~71%</td><td class="num">90%</td><td><div class="bartrack"><div class="barfill" style="width:79%"></div></div></td><td><span class="pill p-warn">Behind</span></td></tr>
-        <tr class="fbx"><td class="goal">Bing impression share</td><td class="num">86&ndash;87%</td><td class="num">90%</td><td><div class="bartrack"><div class="barfill" style="width:96%"></div></div></td><td><span class="pill p-warn">Close</span></td></tr>
-        <tr class="fbx"><td class="goal">Search CTR (Google vs Bing)</td><td class="num">8.3% &middot; 1.9%</td><td class="num">&ge;7% / &ge;2%</td><td><div class="bartrack"><div class="barfill" style="width:90%"></div></div></td><td><span class="pill p-good">On track</span></td></tr>
-        <tr class="fbx"><td class="goal">Avg CPC (Google search vs Bing)</td><td class="num">$15.86 &middot; $3.00</td><td class="num">Drive down</td><td><div class="bartrack"><div class="barfill" style="width:60%"></div></div></td><td><span class="pill p-good">Improving</span></td></tr>
-        <tr class="fbx"><td class="goal">Budget-lost IS (Google)</td><td class="num">Compete 22.7% / Comp. 21.7%</td><td class="num">&lt;10%</td><td><div class="bartrack"><div class="barfill" style="width:35%"></div></div></td><td><span class="pill p-bad">At risk</span></td></tr>
-        <tr class="fbx"><td class="goal">Spend vs cap</td><td class="num">$1,994 blended</td><td class="num">Undefined</td><td><div class="bartrack"><div class="barfill" style="width:50%"></div></div></td><td><span class="pill p-gray">Define</span></td></tr>
-        <tr class="fbx"><td class="goal">Conversion tracking status</td><td class="num">0 tracked</td><td class="num">Live &amp; attributed</td><td><div class="bartrack"><div class="barfill" style="width:5%"></div></div></td><td><span class="pill p-bad">Behind</span></td></tr>
+        <tr class="fbx"><td class="goal">NuGet downloads / wk</td><td class="big">+14</td><td><div class="prog"><i style="width:20%"></i></div></td><td>trailing-4wk avg</td><td><span class="pill p-gray">Building baseline</span></td></tr>
+        <tr class="fbx"><td class="goal">Search impression share — Google</td><td class="big">70.7%</td><td><div class="prog"><i style="width:78%"></i></div></td><td>90%</td><td><span class="pill p-warn">Budget-capped</span></td></tr>
+        <tr class="fbx"><td class="goal">Search impression share — Bing</td><td class="big">85.4%</td><td><div class="prog"><i style="width:95%"></i></div></td><td>90%</td><td><span class="pill p-good">On track</span></td></tr>
+        <tr class="fbx"><td class="goal">CTR — Google Search vs Bing</td><td class="big">7.97% / 1.58%</td><td><div class="prog"><i style="width:80%"></i></div></td><td>hold search</td><td><span class="pill p-good">Search strong</span></td></tr>
+        <tr class="fbx"><td class="goal">Avg CPC — Google Search vs Bing</td><td class="big">$15.90 / $2.87</td><td><div class="prog"><i style="width:70%"></i></div></td><td>lower</td><td><span class="pill p-good">Improving</span></td></tr>
+        <tr class="fbx"><td class="goal">Budget-lost IS (Google money terms)</td><td class="big">23%</td><td><div class="prog"><i style="width:35%;background:var(--warn)"></i></div></td><td>&lt;10%</td><td><span class="pill p-warn">At risk</span></td></tr>
+        <tr class="fbx"><td class="goal">Spend vs cap</td><td class="big">$2,011</td><td><div class="prog"><i style="width:55%"></i></div></td><td>no cap defined</td><td><span class="pill p-gray">Define</span></td></tr>
+        <tr class="fbx"><td class="goal">Conversion-tracking status</td><td class="big">Broken</td><td><div class="prog"><i style="width:8%;background:var(--bad)"></i></div></td><td>wired</td><td><span class="pill p-bad">Behind</span></td></tr>
       </tbody>
-    </table></div>
+    </table>
+    </div>
+    <p class="note">Google search IS is impression-weighted across the four search campaigns; Bing across the two Blazor _bing campaigns. NuGet target shows "building baseline" until ≥5 weekly snapshots exist (currently 2).</p>
 
-    <div class="sec"><span class="chip">3</span><div><h2>Channel at-a-glance</h2><div class="sub">Where the money is running &mdash; and where it isn't</div></div></div>
-    <div class="cards3">
-      <div class="plat fbx"><h4><span class="dot" style="background:#4285F4"></span> Google Ads</h4>
-        <div class="row"><span>Spend (wk)</span><span>$1,771.64</span></div>
-        <div class="row"><span>Clicks</span><span>197</span></div>
-        <div class="row"><span>Search CPC</span><span>$15.86</span></div>
-        <div class="row"><span>Conversions</span><span>0</span></div>
+    <div class="sec"><span class="n">3</span> Channel at-a-glance</div>
+    <div class="cards">
+      <div class="plat"><h4>Google Ads <span class="pill p-warn">Budget-capped</span></h4>
+        <div class="m">Spend <b>$1,758.78</b> <span class="down">▼25% WoW</span></div>
+        <div class="m">Clicks <b>280</b> · Impr <b>13,360</b></div>
+        <div class="m">Search CPC <b>$15.90</b> · CTR <b>7.97%</b></div>
+        <div class="m">Conversions <b>0</b> · 5 campaigns (4 search + DemandGen)</div>
       </div>
-      <div class="plat fbx"><h4><span class="dot" style="background:#008373"></span> Bing (Microsoft Ads)</h4>
-        <div class="row"><span>Spend (wk)</span><span>$222.37</span></div>
-        <div class="row"><span>Clicks</span><span>74</span></div>
-        <div class="row"><span>CPC</span><span>$3.00</span></div>
-        <div class="row"><span>Conversions</span><span>0</span></div>
+      <div class="plat"><h4>Bing / Microsoft Ads <span class="pill p-good">New</span></h4>
+        <div class="m">Spend <b>$252.24</b> · launched this week</div>
+        <div class="m">Clicks <b>88</b> · Impr <b>5,582</b></div>
+        <div class="m">CPC <b>$2.87</b> · CTR <b>1.58%</b> · IS <b>85.4%</b></div>
+        <div class="m">Conversions <b>0</b> · 2 campaigns (Compete + Grids)</div>
       </div>
-      <div class="plat muted"><h4>LinkedIn</h4><div class="row"><span>Status</span><span>No spend</span></div><p class="note">Not running for Ignite UI Blazor.</p></div>
-      <div class="plat muted"><h4>Reddit</h4><div class="row"><span>Status</span><span>No spend</span></div><p class="note">Not running for Ignite UI Blazor.</p></div>
-      <div class="plat muted"><h4>G2</h4><div class="row"><span>Status</span><span>No spend</span></div><p class="note">Not running for Ignite UI Blazor.</p></div>
+      <div class="plat muted"><h4>LinkedIn Ads</h4><div class="m">No active spend — not running for Ignite UI Blazor.</div></div>
+      <div class="plat muted"><h4>Reddit Ads</h4><div class="m">No active spend — not running for Ignite UI Blazor.</div></div>
+      <div class="plat muted"><h4>G2</h4><div class="m">No active spend — not running for Ignite UI Blazor.</div></div>
     </div>
 
-    <div class="sec"><span class="chip">4</span><div><h2>Per-channel deep dive</h2><div class="sub">Google Ads first (deepest), then Bing</div></div></div>
-    <div class="subhead"><span class="g"></span> Google Ads</div>
-    <div class="vbox"><div class="vh verdict-keep">Working</div>
-      <ul class="wl good">
-        <li>Search CPC down <b>21% WoW</b> to $15.86 and CTR up to <b>8.3%</b> &mdash; efficiency improving on 25% less search spend.</li>
-        <li>Compete keeps winning cheap conquest clicks (76 clicks, $10.44 CPC) against free-OSS rivals MudBlazor, Radzen, Telerik, DevExpress.</li>
-        <li>Grids &amp; Charts hold high impression share (86.8% / 100%) &mdash; we own our owned-intent grid and chart terms when funded.</li>
-      </ul></div>
-    <div class="vbox"><div class="vh verdict-fix">Not working</div>
-      <ul class="wl bad">
-        <li><b>0 conversions tracked</b> and GA4 barely sees the clicks &mdash; the attribution break hides all CPA.</li>
-        <li>Budget-lost IS jumped to <b>22.7% (Compete)</b> and <b>21.7% (Components)</b> &mdash; we throttled our two best campaigns just as they got cheaper.</li>
-        <li>CPCs are still <b>$26&ndash;$35</b> on Components/Grids/Charts &mdash; premium prices for traffic we can't yet value.</li>
-      </ul></div>
-    <div class="vbox"><div class="vh verdict-watch">Focus this week</div>
-      <ul class="wl focus">
-        <li>Lift daily budgets on Compete &amp; Components to reclaim the ~22% of impressions lost to budget while CPCs are low.</li>
-        <li>Add negatives for developer-tutorial intent (&ldquo;lifecycle&rdquo;, &ldquo;dynamic component&rdquo;, &ldquo;refresh/reload component&rdquo;) &mdash; ~$400+/30d of non-buyer spend.</li>
-        <li>Hold Demand Gen flat and exclude mobile-app/gaming placements until GA4 sees its sessions.</li>
-      </ul></div>
-
-    <div class="subhead"><span class="b"></span> Bing (Microsoft Ads)</div>
-    <div class="vbox"><div class="vh verdict-scale">New this week &mdash; promising</div>
-      <ul class="wl good">
-        <li>Two Blazor campaigns went live (Compete + Grids): <b>$222 spend, 74 clicks, $3.00 CPC</b> &mdash; a fraction of Google's cost.</li>
-        <li>Healthy impression share out of the gate (86&ndash;87%) with near-zero budget loss.</li>
-        <li>Spend is clean competitor conquest (mudblazor, radzen, telerik, devexpress) &mdash; on-strategy.</li>
-      </ul>
-      <p class="note">No prior-week Blazor Bing spend &mdash; this is a launch baseline; WoW available next Monday. Watch: rank-lost IS 14% on Compete, and one junk term (&ldquo;blazorized&rdquo;, $7.17) to negative.</p>
+    <div class="sec"><span class="n">4</span> Per-channel deep dive</div>
+    <div class="sub">Google Ads <span class="eng eng-g">GOOGLE</span></div>
+    <div class="verdict">
+      <div class="vbox work"><div class="h">Working</div><div class="b">Efficiency improved across the board: <b>search CPC −20%</b>, search CTR up to <b>7.97%</b>. Compete holds the largest, highest-intent volume (73 clicks, 8.4% CTR) conquesting MudBlazor/Radzen/Telerik. Grids sits at a healthy <b>87% IS</b>.</div></div>
+      <div class="vbox no"><div class="h">Not working</div><div class="b"><b>Zero conversion signal</b> and Charts effectively went dark — <b>−95% spend to $24</b>, 1 click. Components lost impression share (<b>92%→72%</b>) to budget as spend was cut 23%. Head terms are leaving top-slot impressions on the table for lack of budget, not rank.</div></div>
+      <div class="vbox focus"><div class="h">Focus next</div><div class="b">Restore Charts to a working budget or consciously pause it — don't leave it at $24 limbo. Once tracking is wired, fund Compete + Components to recover the ~23% budget-lost IS on our best terms. Keep DemandGen capped and reported separately.</div></div>
+    </div>
+    <div class="sub">Bing / Microsoft Ads <span class="eng eng-b">BING</span></div>
+    <div class="verdict">
+      <div class="vbox work"><div class="h">Working</div><div class="b">Launched clean and cheap: <b>$2.87 CPC</b> (vs $15.90 on Google search), <b>84–86% impression share</b>, and near-zero budget loss. Compete_bing pulled 57 clicks conquesting the same MudBlazor/Radzen/Telerik/DevExpress set at a fraction of Google cost.</div></div>
+      <div class="vbox no"><div class="h">Not working</div><div class="b">Same tracking gap — <b>0 conversions</b>, and CTR is low (1.58%) as expected for a cold Bing launch. Grids_bing is showing early budget loss (8%). No prior week to compare — this is a fresh baseline.</div></div>
+      <div class="vbox focus"><div class="h">Focus next</div><div class="b">Give it one full week of search-term data, then decide fund-vs-hold. Mirror the winning Google Blazor RSAs into Bing so both engines test the same proven copy. Cheap IS here is the single best efficiency lever we have.</div></div>
     </div>
 
-    <div class="sec"><span class="chip">5</span><div><h2>Funnel</h2><div class="sub">Spend &rarr; Clicks &rarr; GA4 cpc sessions &rarr; NuGet downloads</div></div></div>
+    <div class="sec"><span class="n">5</span> Funnel — where it breaks</div>
+    <div class="funnel">
+      <div class="fstep"><div class="fl">Paid spend<span>Google $1,759 + Bing $252</span></div><div class="fbar" style="width:100%"></div><div class="fv">$2,011</div></div>
+      <div class="fstep"><div class="fl">Clicks<span>280 Google + 88 Bing</span></div><div class="fbar" style="width:60%"></div><div class="fv">368</div></div>
+      <div class="brk">▼ break 1 — auto-tagging / GCLID not resolving: 98% of clicks never appear as paid sessions</div>
+      <div class="fstep"><div class="fl">GA4 cpc blazor sessions<span>this week</span></div><div class="fbar" style="width:6%"></div><div class="fv">6</div></div>
+      <div class="brk">▼ break 2 — no conversion event wired: sessions → 0 tracked outcomes</div>
+      <div class="fstep"><div class="fl">NuGet downloads / wk<span>blended adoption signal</span></div><div class="fbar" style="width:14%"></div><div class="fv">+14</div></div>
+      <div class="brk">▲ endpoint — downloads are real but not attributable to paid until tracking is fixed</div>
+    </div>
+
+    <div class="sec"><span class="n">6</span> Forecast — NuGet adoption</div>
     <div class="chartwrap">
-      <div class="ct">Blazor paid funnel &mdash; current week (blended)</div>
-      <div class="cbar-row"><span class="lbl">Spend</span><div class="cbar-track"><div class="cbar-fill" style="width:100%"></div></div><span class="val">$1,994</span></div>
-      <div class="cbar-row"><span class="lbl">Paid clicks</span><div class="cbar-track"><div class="cbar-fill" style="width:60%"></div></div><span class="val">271</span></div>
-      <div class="cbar-row"><span class="lbl">GA4 cpc sessions*</span><div class="cbar-track"><div class="cbar-fill" style="width:9%"></div></div><span class="val">~10 / 30d</span></div>
-      <div class="cbar-row"><span class="lbl">Conversions</span><div class="cbar-track"><div class="cbar-fill" style="width:1%"></div></div><span class="val">0</span></div>
-      <div class="cbar-row"><span class="lbl">NuGet dl (endpoint)</span><div class="cbar-track"><div class="cbar-fill" style="width:85%"></div></div><span class="val">107,206 cum.</span></div>
-      <p class="note">*Break point #1: clicks &rarr; GA4 sessions collapses (271 wk clicks vs ~10 blazor cpc sessions/30d) &mdash; auto-tagging / landing-page attribution is broken. Break point #2: sessions &rarr; conversions is un-instrumented (0 key events). NuGet downloads are the only real endpoint we can read, and they are a blended adoption signal, not paid-attributed.</p>
+      <div class="ct">Weekly download deltas from snapshots (accumulates over time — no historical backfill possible)</div>
+      <div class="bars">
+        <div class="bcol"><span class="bv">baseline</span><i style="height:2px"></i><span class="bl">8/2</span></div>
+        <div class="bcol"><span class="bv">+14</span><i style="height:22px"></i><span class="bl">8/3*</span></div>
+        <div class="bcol"><span class="bv">?</span><i style="height:4px;background:var(--line)"></i><span class="bl">8/10</span></div>
+        <div class="bcol"><span class="bv">?</span><i style="height:4px;background:var(--line)"></i><span class="bl">8/17</span></div>
+        <div class="bcol"><span class="bv">?</span><i style="height:4px;background:var(--line)"></i><span class="bl">8/24</span></div>
+      </div>
+      <p class="note">*8/3 delta spans ~1 day (baseline was captured Sun 8/2). 3-month outlook: at current ~flat cadence the adoption line is roughly flat; the upside line ("if tracking fixed") is unquantifiable until we can attribute paid clicks to trial installs. A new 26.1.51 release is shipping now and will inflate a future week as CI/restore traffic lands.</p>
     </div>
 
-    <div class="sec"><span class="chip">6</span><div><h2>Forecast</h2><div class="sub">Weekly downloads trend + 3-month outlook</div></div></div>
-    <div class="chartwrap">
-      <div class="ct">NuGet weekly downloads (accumulated deltas from snapshots)</div>
-      <p class="note">No trend yet &mdash; this is the first snapshot. The weekly-delta line begins next Monday and grows one point per week; no historical backfill is possible from the public API (cumulative totals only). Baseline sum today: <b>107,206</b>. Once &ge;5 snapshots exist, the target becomes the trailing-4-week average weekly delta.</p>
-      <div class="ct" style="margin-top:14px">3-month outlook (directional)</div>
-      <ul class="wl focus">
-        <li><b>Flat baseline:</b> if spend and tracking stay as-is, adoption keeps drifting on organic + trial momentum; paid stays unattributable.</li>
-        <li><b>Actual line:</b> begins plotting next week as real weekly deltas land.</li>
-        <li><b>Upside &ldquo;if tracking fixed&rdquo;:</b> wiring conversion import + auto-tagging lets us shift budget to converting terms and cut the ~$400/wk tutorial waste &mdash; the same spend should lift qualified trials/downloads without a budget increase.</li>
-      </ul>
+    <div class="sec"><span class="n">7</span> Recommended actions (candidates — not yet in the tracker)</div>
+    <p class="note">The shared UI Tools paid tracker currently holds only React and cross-product tasks — <b>no Blazor-specific paid actions are logged yet</b>. These are this week's Blazor candidates for Poojitha; add on confirmation.</p>
+    <div class="wl">
+      <div class="wi fbx"><span class="ic">1</span><div><b>Blazor Paid — Fix click→session→conversion tracking (P1).</b> 368 clicks → 6 GA4 sessions → 0 conversions. Verify auto-tagging/GCLID pass-through on ignite-ui-blazor landing URLs and stand up a NuGet-trial/download conversion. Owner: Poojitha + analytics.</div></div>
+      <div class="wi fbx"><span class="ic">2</span><div><b>Blazor Paid — Decide Charts: fund or pause.</b> Spend collapsed −95% to $24 (1 click). Either restore a working daily budget or pause the campaign; don't leave it in limbo. Est. return: recover ~9 clicks/wk of chart-intent traffic.</div></div>
+      <div class="wi fbx"><span class="ic">3</span><div><b>Blazor Paid — Negatives sweep on tutorial junk.</b> "blazor component lifecycle" ($246/30d), "blazor lifecycle" ($55), "blazor dynamiccomponent" ($61), "dynamic component blazor" ($33) are how-to/OSS-tutorial queries with no buying intent — <b>~$395/30d of visible waste</b>. Add as exact/phrase negatives on Components.</div></div>
+      <div class="wi fbx"><span class="ic">4</span><div><b>Blazor Paid — Add "blazor ui" as Exact.</b> It spent $331/30d, 15 clicks as a search term with no matching keyword — a true coverage gap. Add EXACT (never phrase) on Components to control CPC and QS.</div></div>
+      <div class="wi fbx"><span class="ic">5</span><div><b>Blazor Paid — After tracking is wired, fund Compete + Components.</b> Both lose ~23% of impression share to budget on our highest-intent terms. Est. +$50/day on Compete recaptures top-slot conquest volume once we can measure it.</div></div>
+      <div class="wi fbx"><span class="ic">6</span><div><b>Blazor Paid — Mirror winning Google RSAs into Bing.</b> Bing is cheap and well-positioned (85% IS, $2.87 CPC); carry the proven Google Blazor copy so both engines test the same winners.</div></div>
     </div>
   </section>
 
-  <!-- ============ 2. CAMPAIGNS ============ -->
+  <!-- ================= CAMPAIGNS ================= -->
   <section class="panel" id="campaigns">
-    <div class="sec"><span class="chip">2</span><div><h2>Campaigns &amp; ad groups</h2><div class="sub">Structured by category theme &mdash; Grids / Components / Charts / Compete</div></div></div>
-    <div class="subhead"><span class="g"></span> Google Ads &mdash; campaigns (current wk vs prior wk)</div>
-    <div class="tablewrap"><table class="sb">
-      <thead><tr><th>Campaign</th><th>Spend</th><th>WoW</th><th>Clicks</th><th>CTR</th><th>CPC</th><th>Impr. share</th><th>Budget-lost</th><th>Rank-lost</th><th>Conv</th></tr></thead>
-      <tbody>
-        <tr><td class="goal">Search-Compete</td><td class="num">$793.53</td><td><span class="pill p-warn">+3.2%</span></td><td class="num">76</td><td class="num">8.71%</td><td class="num">$10.44</td><td class="num">63.2%</td><td class="num">22.7%</td><td class="num">14.0%</td><td class="num">0</td></tr>
-        <tr><td class="goal">Search-Components</td><td class="num">$523.93</td><td><span class="pill p-good">&minus;11.6%</span></td><td class="num">20</td><td class="num">11.98%</td><td class="num">$26.20</td><td class="num">73.5%</td><td class="num">21.7%</td><td class="num">4.8%</td><td class="num">0</td></tr>
-        <tr><td class="goal">Search-Grids</td><td class="num">$349.48</td><td><span class="pill p-good">&minus;27.7%</span></td><td class="num">10</td><td class="num">7.58%</td><td class="num">$34.95</td><td class="num">86.8%</td><td class="num">11.8%</td><td class="num">1.3%</td><td class="num">0</td></tr>
-        <tr><td class="goal">Search-Charts</td><td class="num">$45.81</td><td><span class="pill p-good">&minus;89.9%</span></td><td class="num">2</td><td class="num">1.55%</td><td class="num">$22.91</td><td class="num">100%</td><td class="num">0%</td><td class="num">0%</td><td class="num">0</td></tr>
-        <tr><td class="goal">Demand Gen (new)</td><td class="num">$58.89</td><td><span class="pill p-gray">new</span></td><td class="num">89</td><td class="num">1.49%</td><td class="num">$0.66</td><td class="num">n/a</td><td class="num">n/a</td><td class="num">n/a</td><td class="num">0</td></tr>
-        <tr style="background:#f7f9ff"><td class="goal">Search total</td><td class="num">$1,712.75</td><td><span class="pill p-good">&minus;25.5%</span></td><td class="num">108</td><td class="num">8.30%</td><td class="num">$15.86</td><td class="num">~71%</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">0</td></tr>
-        <tr style="background:#f7f9ff"><td class="goal">Blended total</td><td class="num">$1,771.64</td><td><span class="pill p-good">&minus;23.0%</span></td><td class="num">197</td><td class="num">2.70%</td><td class="num">$8.99</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">0</td></tr>
-      </tbody>
-    </table></div>
-    <p class="note">DemandGen caveat: it dilutes the blended CTR (2.70%) and CPC ($8.99). The search-only line (8.30% CTR, $15.86 CPC) is the real read. Prior week had no Demand Gen &mdash; blended vs search WoW differ for that reason.</p>
+    <div class="sec"><span class="n">2</span> Campaigns &amp; ad groups</div>
+    <p class="lead">Blazor runs by <b>category theme</b> — Grids / Components / Charts / Compete — not by geo. Compete is the competitor-conquest play (MudBlazor, Radzen, Telerik, DevExpress, Syncfusion). No dedicated brand-defense campaign runs for Blazor. WoW color: <span class="up">green = up</span>, <span class="down">red = down</span>.</p>
 
-    <div class="subhead"><span class="g"></span> Google Ads &mdash; ad groups (current wk)</div>
-    <div class="tablewrap"><table class="sb">
-      <thead><tr><th>Ad group</th><th>Campaign</th><th>Spend</th><th>Clicks</th><th>CTR</th><th>CPC</th></tr></thead>
+    <div class="sub">Google Ads — campaign totals <span class="eng eng-g">GOOGLE</span></div>
+    <div class="tablewrap"><table class="dt">
+      <thead><tr><th>Campaign</th><th>Cost</th><th>WoW</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>CPC</th><th>Conv</th><th>IS</th><th>Budget-lost</th><th>Rank-lost</th></tr></thead>
       <tbody>
-        <tr><td class="goal">Blazor Compete</td><td>Search-Compete</td><td class="num">$793.53</td><td class="num">76</td><td class="num">8.71%</td><td class="num">$10.44</td></tr>
-        <tr><td class="goal">Blazor Components</td><td>Search-Components</td><td class="num">$523.93</td><td class="num">20</td><td class="num">11.98%</td><td class="num">$26.20</td></tr>
-        <tr><td class="goal">Blazor Grids</td><td>Search-Grids</td><td class="num">$349.48</td><td class="num">10</td><td class="num">7.58%</td><td class="num">$34.95</td></tr>
-        <tr><td class="goal">Blazor Compete (DG)</td><td>Demand Gen</td><td class="num">$58.89</td><td class="num">89</td><td class="num">1.49%</td><td class="num">$0.66</td></tr>
-        <tr><td class="goal">Blazor Charts</td><td>Search-Charts</td><td class="num">$45.81</td><td class="num">2</td><td class="num">1.55%</td><td class="num">$22.91</td></tr>
+        <tr><td>Search-Compete</td><td class="num">$773.02</td><td class="num down">−5%</td><td class="num">869</td><td class="num">73</td><td class="num">8.40%</td><td class="num">$10.59</td><td class="num">0</td><td class="num">63.4%</td><td class="num">23.2%</td><td class="num">13.5%</td></tr>
+        <tr><td>Search-Components</td><td class="num">$491.38</td><td class="num down">−23%</td><td class="num">154</td><td class="num">19</td><td class="num">12.34%</td><td class="num">$25.86</td><td class="num">0</td><td class="num">72.3%</td><td class="num">22.6%</td><td class="num">5.2%</td></tr>
+        <tr><td>Search-Grids</td><td class="num">$349.48</td><td class="num down">−22%</td><td class="num">138</td><td class="num">10</td><td class="num">7.25%</td><td class="num">$34.95</td><td class="num">0</td><td class="num">87.3%</td><td class="num">11.4%</td><td class="num">1.3%</td></tr>
+        <tr><td>Search-Charts</td><td class="num">$24.25</td><td class="num down">−95%</td><td class="num">131</td><td class="num">1</td><td class="num">0.76%</td><td class="num">$24.25</td><td class="num">0</td><td class="num">100%</td><td class="num">0%</td><td class="num">0%</td></tr>
+        <tr><td>DemandGen <span class="tag t-research">new</span></td><td class="num">$120.65</td><td class="num flat">new</td><td class="num">12,068</td><td class="num">177</td><td class="num">1.47%</td><td class="num">$0.68</td><td class="num">0</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr style="font-weight:700;background:#fafbff"><td>Total</td><td class="num">$1,758.78</td><td class="num down">−25%</td><td class="num">13,360</td><td class="num">280</td><td class="num">2.10%</td><td class="num">$6.28</td><td class="num">0</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr style="font-weight:700"><td>Search only</td><td class="num">$1,638.13</td><td class="num down">−30%</td><td class="num">1,292</td><td class="num">103</td><td class="num">7.97%</td><td class="num">$15.90</td><td class="num">0</td><td class="num">70.7%</td><td class="num">—</td><td class="num">—</td></tr>
       </tbody>
     </table></div>
-    <p class="note">One ad group per campaign &mdash; clean single-theme structure. Brand defense: no dedicated Blazor brand campaign is running; brand/competitor coverage sits inside Compete (competitor spend &asymp; the Compete campaign).</p>
+    <p class="note"><b>DemandGen caveat:</b> DemandGen's 12,068 impressions drag blended CTR to 2.10% and blended CPC to $6.28. Always read <b>search-only</b> (7.97% CTR, $15.90 CPC) alongside the blend. Prior-week search totals: $2,347.91, 1,635 impr, 118 clicks, 7.22% CTR, $19.90 CPC — so search efficiency improved even as spend fell.</p>
 
-    <div class="subhead"><span class="b"></span> Bing (Microsoft Ads) &mdash; Blazor campaigns (current wk)</div>
-    <div class="tablewrap"><table class="sb">
-      <thead><tr><th>Campaign</th><th>Spend</th><th>Clicks</th><th>CTR</th><th>CPC</th><th>Impr. share</th><th>Budget-lost</th><th>Rank-lost</th><th>Conv</th></tr></thead>
+    <div class="sub">Google Ads — ad groups <span class="eng eng-g">GOOGLE</span></div>
+    <div class="tablewrap"><table class="dt">
+      <thead><tr><th>Ad group</th><th>Campaign</th><th>Cost</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>CPC</th></tr></thead>
       <tbody>
-        <tr><td class="goal">Blazor-Search-Compete_bing</td><td class="num">$159.54</td><td class="num">45</td><td class="num">1.71%</td><td class="num">$3.55</td><td class="num">86%</td><td class="num">0%</td><td class="num">14%</td><td class="num">0</td></tr>
-        <tr><td class="goal">Blazor-Search-Grids_bing</td><td class="num">$62.83</td><td class="num">29</td><td class="num">2.45%</td><td class="num">$2.17</td><td class="num">87%</td><td class="num">9%</td><td class="num">4%</td><td class="num">0</td></tr>
-        <tr style="background:#f7f9ff"><td class="goal">Bing total</td><td class="num">$222.37</td><td class="num">74</td><td class="num">1.94%</td><td class="num">$3.00</td><td class="num">~86%</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">0</td></tr>
+        <tr><td>Blazor Compete</td><td>Search-Compete</td><td class="num">$773.02</td><td class="num">869</td><td class="num">73</td><td class="num">8.40%</td><td class="num">$10.59</td></tr>
+        <tr><td>Blazor Components</td><td>Search-Components</td><td class="num">$491.38</td><td class="num">154</td><td class="num">19</td><td class="num">12.34%</td><td class="num">$25.86</td></tr>
+        <tr><td>Blazor Grids</td><td>Search-Grids</td><td class="num">$349.48</td><td class="num">138</td><td class="num">10</td><td class="num">7.25%</td><td class="num">$34.95</td></tr>
+        <tr><td>Blazor Compete</td><td>DemandGen</td><td class="num">$120.65</td><td class="num">12,068</td><td class="num">177</td><td class="num">1.47%</td><td class="num">$0.68</td></tr>
+        <tr><td>Blazor Charts</td><td>Search-Charts</td><td class="num">$24.25</td><td class="num">131</td><td class="num">1</td><td class="num">0.76%</td><td class="num">$24.25</td></tr>
       </tbody>
     </table></div>
-    <p class="note">Prior week: no Blazor _bing spend &mdash; newly live this week, so WoW is a launch baseline. Only Compete and Grids themes run on Bing so far (no Components/Charts Bing coverage yet &mdash; a gap to consider).</p>
+
+    <div class="sub">Bing / Microsoft Ads — campaign totals <span class="eng eng-b">BING</span></div>
+    <div class="tablewrap"><table class="dt">
+      <thead><tr><th>Campaign</th><th>Cost</th><th>WoW</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>CPC</th><th>Conv</th><th>IS</th><th>Budget-lost</th><th>Rank-lost</th></tr></thead>
+      <tbody>
+        <tr><td>Blazor-Search-Compete_bing</td><td class="num">$185.08</td><td class="num flat">new</td><td class="num">3,874</td><td class="num">57</td><td class="num">1.47%</td><td class="num">$3.25</td><td class="num">0</td><td class="num">86%</td><td class="num">0%</td><td class="num">14%</td></tr>
+        <tr><td>Blazor-Search-Grids_bing</td><td class="num">$67.16</td><td class="num flat">new</td><td class="num">1,708</td><td class="num">31</td><td class="num">1.81%</td><td class="num">$2.17</td><td class="num">0</td><td class="num">84%</td><td class="num">8%</td><td class="num">8%</td></tr>
+        <tr style="font-weight:700;background:#fafbff"><td>Total</td><td class="num">$252.24</td><td class="num flat">new</td><td class="num">5,582</td><td class="num">88</td><td class="num">1.58%</td><td class="num">$2.87</td><td class="num">0</td><td class="num">85.4%</td><td class="num">—</td><td class="num">—</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note"><b>Bing Blazor launched this week</b> — there was no Blazor _bing spend in the prior week (Jul 20–26 shows only Reveal campaigns), so WoW is "new". Only Blazor-named _bing campaigns are counted here; the Bing account also carries Angular / React / Ultimate / Reveal campaigns, which are excluded.</p>
   </section>
 
-  <!-- ============ 3. SEARCH TERMS ============ -->
+  <!-- ================= TERMS ================= -->
   <section class="panel" id="terms">
-    <div class="sec"><span class="chip">3</span><div><h2>Search terms &amp; keywords</h2><div class="sub">Last 30 days &middot; Jul 3 &ndash; Aug 1</div></div></div>
-    <div class="subhead"><span class="g"></span> Google Ads &mdash; top search terms (30d)</div>
-    <div class="tablewrap"><table class="sb">
-      <thead><tr><th>Search term</th><th>Campaign</th><th>Clicks</th><th>Cost</th><th>Impr</th><th>Intent call</th></tr></thead>
-      <tbody>
-        <tr><td class="goal">mudblazor</td><td>Compete</td><td class="num">153</td><td class="num">$1,467.98</td><td class="num">1,952</td><td><span class="pill p-warn">Conquest (free OSS)</span></td></tr>
-        <tr><td class="goal">blazor components</td><td>Components</td><td class="num">22</td><td class="num">$401.81</td><td class="num">166</td><td><span class="pill p-good">Keep &mdash; high intent</span></td></tr>
-        <tr><td class="goal">radzen</td><td>Compete</td><td class="num">21</td><td class="num">$217.61</td><td class="num">367</td><td><span class="pill p-warn">Conquest</span></td></tr>
-        <tr><td class="goal">syncfusion blazor</td><td>Compete</td><td class="num">19</td><td class="num">$189.43</td><td class="num">156</td><td><span class="pill p-warn">Conquest</span></td></tr>
-        <tr><td class="goal">blazor ui</td><td>Components</td><td class="num">15</td><td class="num">$331.37</td><td class="num">144</td><td><span class="pill p-good">Keep</span></td></tr>
-        <tr><td class="goal">blazorise</td><td>Compete</td><td class="num">17</td><td class="num">$154.93</td><td class="num">175</td><td><span class="pill p-warn">Conquest</span></td></tr>
-        <tr><td class="goal">blazor quickgrid</td><td>Grids</td><td class="num">8</td><td class="num">$317.57</td><td class="num">124</td><td><span class="pill p-warn">Conquest (MS free grid)</span></td></tr>
-        <tr><td class="goal">blazor ui components</td><td>Components</td><td class="num">8</td><td class="num">$176.59</td><td class="num">33</td><td><span class="pill p-good">Keep</span></td></tr>
-        <tr><td class="goal">blazor apexcharts</td><td>Charts</td><td class="num">7</td><td class="num">$233.47</td><td class="num">126</td><td><span class="pill p-warn">Conquest</span></td></tr>
-        <tr><td class="goal">blazor charts</td><td>Charts</td><td class="num">5</td><td class="num">$271.29</td><td class="num">71</td><td><span class="pill p-good">Keep</span></td></tr>
-        <tr><td class="goal">blazor component lifecycle</td><td>Components</td><td class="num">4</td><td class="num">$246.47</td><td class="num">48</td><td><span class="pill p-bad">Cut &mdash; tutorial</span></td></tr>
-        <tr><td class="goal">blazor dynamiccomponent</td><td>Components</td><td class="num">2</td><td class="num">$61.22</td><td class="num">23</td><td><span class="pill p-bad">Cut &mdash; docs intent</span></td></tr>
-      </tbody>
-    </table></div>
-    <div class="vbox"><div class="vh verdict-fix">Waste to negative (developer-tutorial intent)</div>
-      <p class="lead">&ldquo;lifecycle&rdquo; / &ldquo;dynamic component&rdquo; / &ldquo;refresh &amp; reload component&rdquo; / &ldquo;life cycle&rdquo; queries are people learning Blazor built-ins, not buyers evaluating a component library. Visible waste over 30 days: <b>blazor component lifecycle $246.47 + blazor lifecycle $55.09 + blazor dynamiccomponent $61.22 + dynamic component blazor $33.37 + blazor components lifecycle $9.10 &asymp; $405</b>, plus the &ldquo;blazor dynamic component&rdquo; keyword ($94.59). Add exact/phrase negatives across Components: <code>lifecycle</code>, <code>life cycle</code>, <code>dynamiccomponent</code>, <code>dynamic component</code>, <code>refresh component</code>, <code>reload component</code>.</p>
-    </div>
-    <div class="vbox"><div class="vh verdict-keep">Keep even when pricey (high-intent owned terms)</div>
-      <p class="lead">blazor grid, blazor data grid, blazor datagrid, blazor table, blazor charts, blazor components, blazor component library, blazor ui, blazor ui components. These are exactly who we want; hold them even at $26&ndash;$35 CPC.</p>
-    </div>
-    <p class="note">MudBlazor &amp; Radzen are <b>free OSS competitors</b> &mdash; keep conquesting them via Compete (RESEARCH label), don't mistake them for our own product intent. <b>mudblazor alone is $1,468/30d (&asymp;40% of Compete spend)</b> at a $9.60 CPC with no trackable outcome &mdash; the term most exposed if/when tracking reveals it doesn't convert.</p>
+    <div class="sec"><span class="n">3</span> Search terms &amp; keywords</div>
+    <p class="lead">Intent rules: <span class="tag t-keep">KEEP</span> high-intent Blazor component queries even when pricey · <span class="tag t-research">CONQUEST</span> competitor+blazor terms in Compete only · <span class="tag t-cut">CUT</span> broad/OSS-tutorial junk · <span class="tag t-gap">GAP</span> add as Exact. MudBlazor & Radzen are free OSS competitors — conquest via Compete, not treated as our own intent. 30-day window (Jul 4 – Aug 2).</p>
 
-    <div class="subhead"><span class="g"></span> Google Ads &mdash; keywords (30d, all Exact)</div>
-    <div class="tablewrap"><table class="sb">
-      <thead><tr><th>Keyword</th><th>Match</th><th>Campaign</th><th>Clicks</th><th>Cost</th><th>CTR</th></tr></thead>
+    <div class="sub">Google Ads — top search terms (30d) <span class="eng eng-g">GOOGLE</span></div>
+    <div class="tablewrap"><table class="dt">
+      <thead><tr><th>Search term</th><th>Campaign</th><th>Cost</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>Verdict</th></tr></thead>
       <tbody>
-        <tr><td class="goal">mudblazor</td><td>Exact</td><td>Compete</td><td class="num">159</td><td class="num">$1,519.30</td><td class="num">7.81%</td></tr>
-        <tr><td class="goal">blazor ui components</td><td>Exact</td><td>Components</td><td class="num">33</td><td class="num">$660.29</td><td class="num">11.50%</td></tr>
-        <tr><td class="goal">blazor components</td><td>Exact</td><td>Components</td><td class="num">32</td><td class="num">$606.10</td><td class="num">10.67%</td></tr>
-        <tr><td class="goal">blazor quick grid</td><td>Exact</td><td>Grids</td><td class="num">17</td><td class="num">$648.78</td><td class="num">7.11%</td></tr>
-        <tr><td class="goal">blazor charts</td><td>Exact</td><td>Charts</td><td class="num">17</td><td class="num">$561.22</td><td class="num">7.76%</td></tr>
-        <tr><td class="goal">blazor component library</td><td>Exact</td><td>Components</td><td class="num">21</td><td class="num">$372.35</td><td class="num">7.75%</td></tr>
+        <tr><td>mudblazor</td><td>Compete</td><td class="num">$1,482.91</td><td class="num">1,944</td><td class="num">154</td><td class="num">7.92%</td><td><span class="tag t-research">conquest</span></td></tr>
+        <tr><td>blazor components</td><td>Components</td><td class="num">$401.81</td><td class="num">162</td><td class="num">22</td><td class="num">13.58%</td><td><span class="tag t-keep">keep</span></td></tr>
+        <tr><td>blazor ui</td><td>Components</td><td class="num">$331.37</td><td class="num">130</td><td class="num">15</td><td class="num">11.54%</td><td><span class="tag t-gap">gap → exact</span></td></tr>
+        <tr><td>blazor quickgrid</td><td>Grids</td><td class="num">$317.57</td><td class="num">127</td><td class="num">8</td><td class="num">6.30%</td><td><span class="tag t-keep">keep</span></td></tr>
+        <tr><td>blazor charts</td><td>Charts</td><td class="num">$271.29</td><td class="num">64</td><td class="num">5</td><td class="num">7.81%</td><td><span class="tag t-keep">keep</span></td></tr>
+        <tr><td>blazor component lifecycle</td><td>Components</td><td class="num">$246.47</td><td class="num">49</td><td class="num">4</td><td class="num">8.16%</td><td><span class="tag t-cut">cut</span></td></tr>
+        <tr><td>blazor apexcharts</td><td>Charts</td><td class="num">$233.47</td><td class="num">121</td><td class="num">7</td><td class="num">5.79%</td><td><span class="tag t-research">conquest</span></td></tr>
+        <tr><td>radzen</td><td>Compete</td><td class="num">$210.92</td><td class="num">369</td><td class="num">20</td><td class="num">5.42%</td><td><span class="tag t-research">conquest</span></td></tr>
+        <tr><td>syncfusion blazor</td><td>Compete</td><td class="num">$204.39</td><td class="num">159</td><td class="num">20</td><td class="num">12.58%</td><td><span class="tag t-research">conquest</span></td></tr>
+        <tr><td>blazorise</td><td>Compete</td><td class="num">$154.93</td><td class="num">177</td><td class="num">17</td><td class="num">9.60%</td><td><span class="tag t-research">conquest</span></td></tr>
+        <tr><td>blazor component library</td><td>Components</td><td class="num">$129.76</td><td class="num">91</td><td class="num">6</td><td class="num">6.59%</td><td><span class="tag t-keep">keep</span></td></tr>
+        <tr><td>devexpress blazor</td><td>Compete</td><td class="num">$85.24</td><td class="num">177</td><td class="num">9</td><td class="num">5.08%</td><td><span class="tag t-research">conquest</span></td></tr>
+        <tr><td>telerik blazor</td><td>Compete</td><td class="num">$72.71</td><td class="num">209</td><td class="num">7</td><td class="num">3.35%</td><td><span class="tag t-research">conquest</span></td></tr>
+        <tr><td>blazor lifecycle</td><td>Components</td><td class="num">$55.09</td><td class="num">18</td><td class="num">1</td><td class="num">5.56%</td><td><span class="tag t-cut">cut</span></td></tr>
+        <tr><td>blazor dynamiccomponent</td><td>Components</td><td class="num">$61.22</td><td class="num">22</td><td class="num">2</td><td class="num">9.09%</td><td><span class="tag t-cut">cut</span></td></tr>
+        <tr><td>blazor data grid</td><td>Grids</td><td class="num">$43.49</td><td class="num">8</td><td class="num">2</td><td class="num">25.00%</td><td><span class="tag t-keep">keep</span></td></tr>
       </tbody>
     </table></div>
-    <p class="note">All keywords are Exact &mdash; no phrase leakage in the book. Close-variant leakage flag: the search term &ldquo;blazor grid&rdquo; served once from <b>Compete</b> (should sit in Grids); minor, add as exact in Grids and negative in Compete. &ldquo;blazor quick grid&rdquo; Exact is expensive at ~$38 CPC (QuickGrid is Microsoft's free grid &mdash; conquest, watch efficiency).</p>
+    <p class="note"><b>Waste to negative (~$395/30d):</b> "blazor component lifecycle" $246 + "blazor dynamiccomponent" $61 + "blazor lifecycle" $55 + "dynamic component blazor" $33 — dev tutorial / how-to intent, no buying signal. <b>Keyword gap:</b> "blazor ui" ($331/30d, 15 clicks) has no matching keyword — add EXACT. <b>Close-variant leakage:</b> the Exact keyword "mudblazor" is catching "mud blazor", "mudblazer", "mudbla", "mudblazor github", "mudblazor components" — expected on Exact, but worth a periodic review.</p>
 
-    <div class="subhead"><span class="b"></span> Bing &mdash; Blazor search terms (30d)</div>
-    <div class="tablewrap"><table class="sb">
-      <thead><tr><th>Search term</th><th>Campaign</th><th>Clicks</th><th>Cost</th><th>Impr</th></tr></thead>
+    <div class="sub">Google Ads — active keywords (30d) <span class="eng eng-g">GOOGLE</span></div>
+    <div class="tablewrap"><table class="dt">
+      <thead><tr><th>Keyword</th><th>Match</th><th>Campaign</th><th>Cost</th><th>Impr</th><th>Clicks</th><th>CTR</th></tr></thead>
       <tbody>
-        <tr><td class="goal">mudblazor</td><td>Compete_bing</td><td class="num">6</td><td class="num">$45.27</td><td class="num">94</td></tr>
-        <tr><td class="goal">radzen</td><td>Compete_bing</td><td class="num">4</td><td class="num">$33.10</td><td class="num">39</td></tr>
-        <tr><td class="goal">devexpress blazor</td><td>Compete_bing</td><td class="num">2</td><td class="num">$12.96</td><td class="num">7</td></tr>
-        <tr><td class="goal">blazor gridview component</td><td>Grids_bing</td><td class="num">1</td><td class="num">$9.66</td><td class="num">2</td></tr>
-        <tr><td class="goal">telerik blazor</td><td>Compete_bing</td><td class="num">1</td><td class="num">$8.57</td><td class="num">20</td></tr>
-        <tr><td class="goal">blazorized</td><td>Compete_bing</td><td class="num">1</td><td class="num">$7.17</td><td class="num">2</td></tr>
+        <tr><td>mudblazor</td><td>Exact</td><td>Compete</td><td class="num">$1,534.23</td><td class="num">2,031</td><td class="num">160</td><td class="num">7.88%</td></tr>
+        <tr><td>blazor ui components</td><td>Exact</td><td>Components</td><td class="num">$660.29</td><td class="num">273</td><td class="num">33</td><td class="num">12.09%</td></tr>
+        <tr><td>blazor quick grid</td><td>Exact</td><td>Grids</td><td class="num">$648.78</td><td class="num">247</td><td class="num">17</td><td class="num">6.88%</td></tr>
+        <tr><td>blazor components</td><td>Exact</td><td>Components</td><td class="num">$606.10</td><td class="num">294</td><td class="num">32</td><td class="num">10.88%</td></tr>
+        <tr><td>blazor charts</td><td>Exact</td><td>Charts</td><td class="num">$551.69</td><td class="num">210</td><td class="num">16</td><td class="num">7.62%</td></tr>
+        <tr><td>blazor component library</td><td>Exact</td><td>Components</td><td class="num">$360.09</td><td class="num">267</td><td class="num">20</td><td class="num">7.49%</td></tr>
+        <tr><td>syncfusion blazor</td><td>Exact</td><td>Compete</td><td class="num">$236.35</td><td class="num">196</td><td class="num">24</td><td class="num">12.24%</td></tr>
+        <tr><td>radzen</td><td>Exact</td><td>Compete</td><td class="num">$225.13</td><td class="num">372</td><td class="num">21</td><td class="num">5.65%</td></tr>
+        <tr><td>blazorise</td><td>Exact</td><td>Compete</td><td class="num">$162.88</td><td class="num">244</td><td class="num">18</td><td class="num">7.38%</td></tr>
+        <tr><td>blazor table</td><td>Exact</td><td>Grids</td><td class="num">$117.45</td><td class="num">77</td><td class="num">5</td><td class="num">6.49%</td></tr>
+        <tr><td>devexpress blazor</td><td>Exact</td><td>Compete</td><td class="num">$109.39</td><td class="num">244</td><td class="num">12</td><td class="num">4.92%</td></tr>
+        <tr><td>blazor datagrid</td><td>Exact</td><td>Grids</td><td class="num">$45.55</td><td class="num">47</td><td class="num">2</td><td class="num">4.26%</td></tr>
       </tbody>
     </table></div>
-    <p class="note">Bing Blazor search-term spend &asymp; $132/30d, cleanly competitor-conquest. Negative &ldquo;blazorized&rdquo; (a different unrelated tool, $7.17 waste). Zero-click impressions on ant design blazor, blazorise, mud blazor, syncfusion blazor, quickgrid blazor &mdash; monitor, don't cut yet.</p>
+
+    <div class="sub">Bing / Microsoft Ads — Blazor search terms (30d) <span class="eng eng-b">BING</span></div>
+    <div class="tablewrap"><table class="dt">
+      <thead><tr><th>Search term</th><th>Campaign</th><th>Cost</th><th>Impr</th><th>Clicks</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td>mudblazor</td><td>Compete_bing</td><td class="num">$53.59</td><td class="num">106</td><td class="num">7</td><td><span class="tag t-research">conquest</span></td></tr>
+        <tr><td>radzen</td><td>Compete_bing</td><td class="num">$33.10</td><td class="num">39</td><td class="num">4</td><td><span class="tag t-research">conquest</span></td></tr>
+        <tr><td>devexpress blazor</td><td>Compete_bing</td><td class="num">$12.96</td><td class="num">7</td><td class="num">2</td><td><span class="tag t-research">conquest</span></td></tr>
+        <tr><td>blazor gridview component</td><td>Grids_bing</td><td class="num">$9.66</td><td class="num">2</td><td class="num">1</td><td><span class="tag t-keep">keep</span></td></tr>
+        <tr><td>telerik blazor</td><td>Compete_bing</td><td class="num">$8.57</td><td class="num">22</td><td class="num">1</td><td><span class="tag t-research">conquest</span></td></tr>
+        <tr><td>dev express blazor</td><td>Compete_bing</td><td class="num">$8.28</td><td class="num">2</td><td class="num">1</td><td><span class="tag t-research">conquest</span></td></tr>
+        <tr><td>blazorized</td><td>Compete_bing</td><td class="num">$7.17</td><td class="num">2</td><td class="num">1</td><td><span class="tag t-cut">review</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Bing Blazor search terms are clean and conquest-heavy (~$150/30d total), mirroring Google's Compete strategy at a fraction of the cost. Watch the typo term "blozor quickgrid" and generic "blazorized" for relevance. No OSS-tutorial junk surfaced on Bing yet.</p>
   </section>
 
-  <!-- ============ 4. AD COPY ============ -->
+  <!-- ================= AD COPY ================= -->
   <section class="panel" id="adcopy">
-    <div class="sec"><span class="chip">4</span><div><h2>Ad copy</h2><div class="sub">RSA assets by field type &middot; 30 days</div></div></div>
-    <div class="subhead"><span class="g"></span> Google Ads &mdash; RSA text assets (by impressions)</div>
-    <div class="tablewrap"><table class="sb">
-      <thead><tr><th>Campaign</th><th>Asset field</th><th>Type</th><th>Impr</th><th>Clicks</th><th>Grade</th></tr></thead>
+    <div class="sec"><span class="n">4</span> Ad copy (RSA assets)</div>
+    <p class="lead">Assets ranked by field type and CTR over 30 days. Two structural blind spots this week, both flagged below.</p>
+
+    <div class="sub">Google Ads — RSA asset performance (30d) <span class="eng eng-g">GOOGLE</span></div>
+    <div class="tablewrap"><table class="dt">
+      <thead><tr><th>Asset type</th><th>Campaign</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>Grade</th></tr></thead>
       <tbody>
-        <tr><td class="goal">Search-Compete</td><td>Headline</td><td>Text</td><td class="num">7,560</td><td class="num">549</td><td><span class="pill p-gray">Pending</span></td></tr>
-        <tr><td class="goal">Search-Compete</td><td>Description</td><td>Text</td><td class="num">7,045</td><td class="num">529</td><td><span class="pill p-gray">Pending</span></td></tr>
-        <tr><td class="goal">Search-Components</td><td>Headline</td><td>Text</td><td class="num">2,159</td><td class="num">196</td><td><span class="pill p-gray">Pending</span></td></tr>
-        <tr><td class="goal">Search-Components</td><td>Description</td><td>Text</td><td class="num">1,986</td><td class="num">183</td><td><span class="pill p-gray">Pending</span></td></tr>
-        <tr><td class="goal">Search-Grids</td><td>Headline</td><td>Text</td><td class="num">1,378</td><td class="num">86</td><td><span class="pill p-gray">Pending</span></td></tr>
-        <tr><td class="goal">Search-Charts</td><td>Headline</td><td>Text</td><td class="num">1,055</td><td class="num">66</td><td><span class="pill p-gray">Pending</span></td></tr>
-        <tr><td class="goal">Demand Gen</td><td>Headline</td><td>Text</td><td class="num">5,992</td><td class="num">89</td><td><span class="pill p-gray">Pending</span></td></tr>
+        <tr><td>Headline</td><td>DemandGen</td><td class="num">12,071</td><td class="num">177</td><td class="num">1.47%</td><td><span class="pill p-gray">Pending</span></td></tr>
+        <tr><td>Headline</td><td>Compete</td><td class="num">7,545</td><td class="num">543</td><td class="num">7.20%</td><td><span class="pill p-gray">Pending</span></td></tr>
+        <tr><td>Description</td><td>Compete</td><td class="num">7,035</td><td class="num">525</td><td class="num">7.46%</td><td><span class="pill p-gray">Pending</span></td></tr>
+        <tr><td>Headline</td><td>Components</td><td class="num">2,101</td><td class="num">194</td><td class="num">9.23%</td><td><span class="pill p-gray">Pending</span></td></tr>
+        <tr><td>Description</td><td>Components</td><td class="num">1,932</td><td class="num">182</td><td class="num">9.42%</td><td><span class="pill p-gray">Pending</span></td></tr>
+        <tr><td>Headline</td><td>Grids</td><td class="num">1,356</td><td class="num">84</td><td class="num">6.19%</td><td><span class="pill p-gray">Pending</span></td></tr>
+        <tr><td>Headline</td><td>Charts</td><td class="num">1,030</td><td class="num">64</td><td class="num">6.21%</td><td><span class="pill p-gray">Pending</span></td></tr>
+        <tr><td>Description</td><td>Charts</td><td class="num">987</td><td class="num">63</td><td class="num">6.38%</td><td><span class="pill p-gray">Pending</span></td></tr>
       </tbody>
     </table></div>
-    <div class="vbox"><div class="vh verdict-watch">Two reporting blind spots</div>
-      <ul class="wl focus">
-        <li><b>Asset text isn't exposed by the API</b> &mdash; every <code>assetName</code> for text assets returns blank. To read and rank the actual headline/description copy, pull the <b>Asset report in the Google Ads UI</b> (Assets &rarr; filter Blazor campaigns). We can see volume by field type here, not the wording.</li>
-        <li><b>Every asset grades &ldquo;Pending information.&rdquo;</b> Google can't label assets Best/Good/Low without conversion signal &mdash; and we have zero conversions. Asset grading stays blind until conversion tracking is live. Same root cause as the funnel break.</li>
-      </ul>
+    <div class="verdict">
+      <div class="vbox no"><div class="h">Blind spot 1 — asset text not exposed</div><div class="b">The Supermetrics asset feed returns <b>blank asset names</b> for every headline and description, so we can rank by field type and CTR but can't see which copy is winning. To read the actual text, pull the <b>Asset report in the Google Ads UI</b> (Assets → segment by campaign).</div></div>
+      <div class="vbox no"><div class="h">Blind spot 2 — everything "Pending"</div><div class="b">Every asset carries a <b>"Pending information"</b> performance grade. That's not a data glitch — Google can't grade Best/Good/Low without a conversion signal, and Blazor has <b>0 conversions</b>. Grades unlock the moment tracking is wired (see Report P1).</div></div>
     </div>
-    <p class="note">Bing: ad-copy asset-level breakdown not pulled this week (Bing RSA asset reporting is limited via the connector) &mdash; not run this week.</p>
   </section>
 
-  <!-- ============ 5. CREATIVE ============ -->
+  <!-- ================= CREATIVE ================= -->
   <section class="panel" id="creative">
-    <div class="sec"><span class="chip">5</span><div><h2>Creative</h2><div class="sub">Demand Gen image &amp; video assets &middot; 30 days</div></div></div>
-    <div class="subhead"><span class="g"></span> Google Ads &mdash; Demand Gen creative (image assets)</div>
+    <div class="sec"><span class="n">5</span> Creative</div>
+    <p class="lead">Image assets running in Blazor campaigns (30d), with live thumbnails. Format breakdown, fatigue and cross-product-bleed checks below.</p>
+
+    <div class="sub">Google Ads — image assets <span class="eng eng-g">GOOGLE</span></div>
     <div class="gallery">
-      <div class="gcard"><span class="im"></span><div class="cap">ignite-ui-blazor-data-grid-cell-editing (1200&times;630) &middot; 642 impr / 14 clk</div></div>
-      <div class="gcard"><span class="im"></span><div class="cap">ignite-ui-blazor-bubble-chart (1200&times;630) &middot; 447 impr / 20 clk</div></div>
-      <div class="gcard"><span class="im"></span><div class="cap">ignite-ui-blazor-charts (1200&times;1200) &middot; 374 impr / 10 clk</div></div>
-      <div class="gcard"><span class="im"></span><div class="cap">ignite-ui-blazor-data-grid-column-options (1200&times;630) &middot; 407 impr / 8 clk</div></div>
-      <div class="gcard"><span class="im"></span><div class="cap">ignite-ui-blazor-bar-chart (1200&times;1200) &middot; 459 impr / 2 clk</div></div>
-      <div class="gcard"><span class="im"></span><div class="cap">infragistics-logo (1200&times;1200) logo &middot; 1,907 impr / 35 clk</div></div>
-      <div class="gcard"><span class="im"></span><div class="cap">pmax-logo-square.jpg logo &middot; 2,065 impr / 24 clk</div></div>
-      <div class="gcard"><span class="im"></span><div class="cap">Suggested logo #2 (1:1) &middot; 2,018 impr / 30 clk</div></div>
+      <div class="gcard"><img loading="lazy" src="https://tpc.googlesyndication.com/simgad/10716377948089888363" alt="workhorse product image"><div class="gm"><div class="gn">shared product image (unnamed)</div><div class="gs">4,618 impr · 361 clk</div></div></div>
+      <div class="gcard"><img loading="lazy" src="https://tpc.googlesyndication.com/simgad/9920886698988483481" alt="Infragistics logo"><div class="gm"><div class="gn">infragistics-logo-1200x1200.png</div><div class="gs">441 impr · 25 clk</div></div></div>
+      <div class="gcard"><img loading="lazy" src="https://tpc.googlesyndication.com/simgad/17968718300399724898" alt="geo map square"><div class="gm"><div class="gn">…google-display-geo-map-1200x1200.jpg</div><div class="gs">897 impr · 3 clk</div></div></div>
+      <div class="gcard"><img loading="lazy" src="https://tpc.googlesyndication.com/simgad/18273390665865020931" alt="geo map wide"><div class="gm"><div class="gn">…google-display-geo-map-1200x628.jpg</div><div class="gs">91 impr · 0 clk</div></div></div>
     </div>
-    <p class="note">Image previews are placeholders &mdash; the connector returns asset names/metrics but the full-size image URL came back empty for these Demand Gen assets this week (assetImageFullSizeUrl not populated). Product-shot creative (grid cell-editing, bubble/bar charts, column options) is genuinely on-brand Blazor imagery.</p>
-    <div class="vbox"><div class="vh verdict-watch">Flags</div>
-      <ul class="wl focus">
-        <li><b>Logo-only fatigue risk:</b> the three logo assets (pmax-logo, Suggested logo #2, infragistics-logo) carry the most impressions (2,065 / 2,018 / 1,907) &mdash; Demand Gen is leaning on plain logos over product shots. Push more grid/chart product imagery into rotation.</li>
-        <li><b>No cross-product creative bleed detected</b> &mdash; all image assets are Blazor-named (grid, charts). Good hygiene; keep watching that an Angular/WinForms asset doesn't slip into the Blazor buy.</li>
-        <li><b>Grade blind spot repeats:</b> all creative is &ldquo;Pending information&rdquo; &mdash; can't rank by outcome without conversions.</li>
-      </ul>
+    <div class="tablewrap"><table class="dt">
+      <thead><tr><th>Format / size</th><th>Example</th><th>Where</th><th>Read</th></tr></thead>
+      <tbody>
+        <tr><td>Square 1:1</td><td>shared product image, geo-map, logo</td><td>Compete, Components, Grids, Charts</td><td>Workhorse image does the work (7.8% CTR)</td></tr>
+        <tr><td>Wide 1200×628</td><td>geo-map wide</td><td>Compete</td><td>0 clicks / 91 impr — dead weight</td></tr>
+        <tr><td>Logo 1:1</td><td>infragistics-logo</td><td>Components, Grids, Charts</td><td>Low CTR — logo-only fatigue</td></tr>
+      </tbody>
+    </table></div>
+    <div class="verdict">
+      <div class="vbox work"><div class="h">Working</div><div class="b">One <b>shared product image</b> (unnamed simgad) carries the buy — <b>4,618 impr / 361 clicks (7.8% CTR)</b> across all four search campaigns. That's the creative to clone into new variants.</div></div>
+      <div class="vbox focus"><div class="h">Fatigue / dead weight</div><div class="b"><b>Logo-only fatigue:</b> infragistics-logo pulls just 25 clicks on 441 impr. The <b>geo-map wide</b> asset has 0 clicks on 91 impr. Retire or refresh both.</div></div>
+      <div class="vbox work"><div class="h">Cross-product bleed</div><div class="b"><b>None detected this week.</b> Every named image is ignite-ui-blazor-* or the shared Infragistics logo — no Angular/React/WinForms assets leaked into the Blazor buy. The DemandGen image library (grids, charts, cell-editing shots) is all Blazor-branded.</div></div>
+      <div class="vbox no"><div class="h">Grading blind spot (repeat)</div><div class="b">Same as Ad Copy — image assets can't be graded Best/Good/Low without a conversion signal. Read CTR only until tracking is wired.</div></div>
     </div>
   </section>
 
-  <!-- ============ 6. LANDING PAGES ============ -->
+  <!-- ================= LANDING ================= -->
   <section class="panel" id="landing">
-    <div class="sec"><span class="chip">6</span><div><h2>Landing pages</h2><div class="sub">GA4 google/cpc on Blazor pages</div></div></div>
+    <div class="sec"><span class="n">6</span> Landing pages</div>
+    <p class="lead">GA4 paid (cpc) sessions on Blazor pages. The narrow filter undercounts paid, and the click→session break (below) means absolute numbers are small — read direction, not magnitude. 90-day window (May 5 – Aug 2).</p>
+
+    <div class="sub">GA4 — paid KPIs <span class="eng eng-g">GA4 · CPC</span></div>
     <div class="mkpis">
-      <div class="kpi fbx"><div class="k">Paid sessions (90d)</div><div class="v">46</div><div class="d flat">blazor cpc</div></div>
-      <div class="kpi fbx"><div class="k">Engaged sessions</div><div class="v">25</div><div class="d flat">54% eng rate</div></div>
-      <div class="kpi fbx"><div class="k">Conversions</div><div class="v">0</div><div class="d down">un-tracked</div></div>
-      <div class="kpi fbx"><div class="k">Jul paid sessions</div><div class="v">10</div><div class="d down">vs 35 in Jan</div></div>
+      <div class="kpi fbx"><div class="k">Paid sessions (wk)</div><div class="v">6</div><div class="d up">▲ from 1 WoW</div></div>
+      <div class="kpi fbx"><div class="k">Paid sessions (90d)</div><div class="v">48</div><div class="d flat">desktop 42 · mobile 6</div></div>
+      <div class="kpi fbx"><div class="k">Engagement rate (wk)</div><div class="v">33%</div><div class="d flat">2 of 6 engaged</div></div>
+      <div class="kpi fbx"><div class="k">Conversions</div><div class="v">0</div><div class="d down">none tracked</div></div>
     </div>
-    <div class="subhead"><span class="g"></span> Monthly paid Blazor sessions (GA4 google/cpc, last 12 mo)</div>
+
+    <div class="sub">GA4 — monthly paid sessions on Blazor pages</div>
     <div class="chartwrap">
-      <div class="spark">
-        <div class="col"><span class="coln">2</span><div class="colbar" style="height:6%"></div><span class="colx">Dec</span></div>
-        <div class="col"><span class="coln">35</span><div class="colbar" style="height:100%"></div><span class="colx">Jan</span></div>
-        <div class="col"><span class="coln">12</span><div class="colbar" style="height:34%"></div><span class="colx">Feb</span></div>
-        <div class="col"><span class="coln">33</span><div class="colbar" style="height:94%"></div><span class="colx">Mar</span></div>
-        <div class="col"><span class="coln">16</span><div class="colbar" style="height:46%"></div><span class="colx">Apr</span></div>
-        <div class="col"><span class="coln">25</span><div class="colbar" style="height:71%"></div><span class="colx">May</span></div>
-        <div class="col"><span class="coln">12</span><div class="colbar" style="height:34%"></div><span class="colx">Jun</span></div>
-        <div class="col"><span class="coln">10</span><div class="colbar" style="height:29%"></div><span class="colx">Jul</span></div>
+      <div class="ct">Blazor cpc sessions by month (small volume; declining trend)</div>
+      <div class="bars">
+        <div class="bcol"><span class="bv">2</span><i style="height:6px"></i><span class="bl">Dec</span></div>
+        <div class="bcol"><span class="bv">35</span><i style="height:110px"></i><span class="bl">Jan</span></div>
+        <div class="bcol"><span class="bv">12</span><i style="height:38px"></i><span class="bl">Feb</span></div>
+        <div class="bcol"><span class="bv">33</span><i style="height:104px"></i><span class="bl">Mar</span></div>
+        <div class="bcol"><span class="bv">16</span><i style="height:50px"></i><span class="bl">Apr</span></div>
+        <div class="bcol"><span class="bv">25</span><i style="height:79px"></i><span class="bl">May</span></div>
+        <div class="bcol"><span class="bv">12</span><i style="height:38px"></i><span class="bl">Jun</span></div>
+        <div class="bcol"><span class="bv">10</span><i style="height:31px"></i><span class="bl">Jul</span></div>
       </div>
-      <p class="note">Paid Blazor sessions in GA4 peaked in Jan (35) and have trended down to 10 in Jul &mdash; but this counts only what GA4 attributes, which is a fraction of actual clicks. The decline likely reflects the attribution break as much as real traffic.</p>
     </div>
-    <div class="subhead"><span class="g"></span> Landing pages (paid, 90d) &mdash; home vs intent</div>
-    <div class="tablewrap"><table class="sb">
-      <thead><tr><th>Landing page</th><th>Sessions</th><th>Eng rate</th><th>Bounce</th><th>Avg dur (s)</th><th>Conv</th></tr></thead>
+
+    <div class="sub">GA4 — device split (90d)</div>
+    <div class="chartwrap"><div class="donut">
+      <svg viewBox="0 0 42 42" width="120" height="120" aria-label="device donut">
+        <circle cx="21" cy="21" r="15.915" fill="none" stroke="#eef1f6" stroke-width="6"></circle>
+        <circle cx="21" cy="21" r="15.915" fill="none" stroke="var(--accent)" stroke-width="6" stroke-dasharray="87.5 12.5" stroke-dashoffset="25"></circle>
+      </svg>
+      <div class="lgnd">
+        <div><span class="sw" style="background:var(--accent)"></span> Desktop <b>42</b> sessions · 87.5% · 52% engaged</div>
+        <div><span class="sw" style="background:#eef1f6"></span> Mobile <b>6</b> sessions · 12.5% · 50% engaged</div>
+        <p class="note">Overwhelmingly desktop — consistent with developer intent. No mobile/desktop conversion inversion (0 conversions either way). No display-placement junk signature in the paid cut.</p>
+      </div>
+    </div></div>
+
+    <div class="sub">GA4 — top paid landing pages (90d)</div>
+    <div class="tablewrap"><table class="dt">
+      <thead><tr><th>Landing page</th><th>Sessions</th><th>Engaged</th><th>Eng. rate</th><th>Bounce</th><th>Avg dur (s)</th></tr></thead>
       <tbody>
-        <tr><td class="goal">/products/ignite-ui-blazor</td><td class="num">24</td><td class="num">25%</td><td class="num">75%</td><td class="num">77</td><td class="num">0</td></tr>
-        <tr><td class="goal">/blogs/blazor-vs-angular</td><td class="num">6</td><td class="num">67%</td><td class="num">33%</td><td class="num">728</td><td class="num">0</td></tr>
-        <tr><td class="goal">.../general-getting-started</td><td class="num">3</td><td class="num">100%</td><td class="num">0%</td><td class="num">1,351</td><td class="num">0</td></tr>
-        <tr><td class="goal">/blazor-compare</td><td class="num">2</td><td class="num">100%</td><td class="num">0%</td><td class="num">105</td><td class="num">0</td></tr>
-        <tr><td class="goal">.../general-nuget-feed</td><td class="num">2</td><td class="num">100%</td><td class="num">0%</td><td class="num">1,283</td><td class="num">0</td></tr>
-        <tr><td class="goal">.../getting-started-blazor-web-app</td><td class="num">1</td><td class="num">100%</td><td class="num">0%</td><td class="num">4,265</td><td class="num">0</td></tr>
+        <tr><td>/products/ignite-ui-blazor</td><td class="num">26</td><td class="num">6</td><td class="num">23.1%</td><td class="num">76.9%</td><td class="num">71.7</td></tr>
+        <tr><td>/blogs/blazor-vs-angular</td><td class="num">6</td><td class="num">4</td><td class="num">66.7%</td><td class="num">33.3%</td><td class="num">728.4</td></tr>
+        <tr><td>…/general-getting-started</td><td class="num">3</td><td class="num">3</td><td class="num">100%</td><td class="num">0%</td><td class="num">1,351</td></tr>
+        <tr><td>/blazor-compare</td><td class="num">2</td><td class="num">2</td><td class="num">100%</td><td class="num">0%</td><td class="num">105</td></tr>
+        <tr><td>…/general-nuget-feed</td><td class="num">2</td><td class="num">2</td><td class="num">100%</td><td class="num">0%</td><td class="num">1,283</td></tr>
+        <tr><td>…/general-getting-started-blazor-web-app</td><td class="num">1</td><td class="num">1</td><td class="num">100%</td><td class="num">0%</td><td class="num">4,265</td></tr>
       </tbody>
     </table></div>
-    <p class="note">Split read: the <b>main product page (/products/ignite-ui-blazor) absorbs most paid traffic but engages worst (25% eng, 75% bounce, 77s)</b> &mdash; a high-intent ad landing on a broad page. Deeper intent pages (getting-started, nuget-feed, blazor-vs-angular) engage 67&ndash;100% with long dwell. Consider routing component/grid/chart ad groups to their matching component pages rather than the product hub.</p>
-    <div class="subhead"><span class="g"></span> Device split (paid, 90d)</div>
-    <div class="cards3">
-      <div class="plat"><h4><span class="dot" style="background:var(--accent)"></span> Desktop</h4><div class="row"><span>Sessions</span><span>41 (89%)</span></div><div class="row"><span>Eng rate</span><span>53.7%</span></div><div class="row"><span>Conv</span><span>0</span></div></div>
-      <div class="plat"><h4><span class="dot" style="background:var(--peri)"></span> Mobile</h4><div class="row"><span>Sessions</span><span>5 (11%)</span></div><div class="row"><span>Eng rate</span><span>60%</span></div><div class="row"><span>Conv</span><span>0</span></div></div>
-    </div>
-    <p class="note">Overwhelmingly desktop (89%) &mdash; appropriate for a developer B2B SDK. No mobile/desktop conversion inversion visible (both 0). No wound-down PMax/Display signature in the Blazor paid landing data this period; Demand Gen is the only display-style program and it barely registers in GA4 (1 session). Auto-tagging/UTM: no literal <code>{campaignname}</code> tokens observed in the Blazor rows this week.</p>
+    <div class="sub">GA4 — engagement by campaign (90d)</div>
+    <div class="tablewrap"><table class="dt">
+      <thead><tr><th>Session campaign</th><th>Sessions</th><th>Eng. rate</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>ignite-ui-blazor</td><td class="num">21</td><td class="num">19.1%</td><td>literal UTM value — manual tag</td></tr>
+        <tr><td>(organic)</td><td class="num">12</td><td class="num">100%</td><td>bleed into cpc cut</td></tr>
+        <tr><td>DT-Ignite-UI-Blazor-Search-Compete</td><td class="num">4</td><td class="num">75%</td><td>auto-tagged name</td></tr>
+        <tr><td>DT-DemandGen-Ignite-UI-Blazor</td><td class="num">3</td><td class="num">0%</td><td>auto-tagged name</td></tr>
+        <tr><td>DT-Ignite-UI-Blazor-Search-Components</td><td class="num">3</td><td class="num">66.7%</td><td>auto-tagged name</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note"><b>Home-vs-intent split:</b> the product hub (/products/ignite-ui-blazor, 26 sessions, 77% bounce) absorbs most paid traffic; deeper intent pages (getting-started, nuget-feed, blazor-compare) show 100% engagement but tiny volume — better landing-page routing could lift quality. <b>Tagging break flagged:</b> the same traffic appears under both a manual literal campaign value ("ignite-ui-blazor") and auto-tagged names ("DT-Ignite-UI-Blazor-Search-Compete") — inconsistent tagging is a prime suspect for the click→session gap. No wound-down PMax/Display program is over-attributing here (the paid cut is clean of display signatures).</p>
   </section>
 
-  <!-- ============ 7. JOURNEY & ROI ============ -->
+  <!-- ================= JOURNEY ================= -->
   <section class="panel" id="journey">
-    <div class="sec"><span class="chip">7</span><div><h2>Journey &amp; ROI</h2><div class="sub">Spend &rarr; Clicks &rarr; GA4 cpc sessions &rarr; NuGet downloads, per channel</div></div></div>
-    <div class="tablewrap"><table class="sb">
-      <thead><tr><th>Channel</th><th>Spend (wk)</th><th>Clicks (wk)</th><th>GA4 cpc sessions</th><th>NuGet endpoint</th><th>ROI / CPA</th></tr></thead>
+    <div class="sec"><span class="n">7</span> Journey &amp; ROI</div>
+    <p class="lead">Spend → Clicks → GA4 cpc sessions → NuGet downloads, per channel. ROI / CPA are <b>n/a</b> while conversions are untracked — NuGet downloads are the real (blended, unattributable) endpoint.</p>
+
+    <div class="tablewrap"><table class="dt">
+      <thead><tr><th>Stage</th><th>Google Ads</th><th>Bing</th><th>Blended</th></tr></thead>
       <tbody>
-        <tr><td class="goal">Google Search</td><td class="num">$1,712.75</td><td class="num">108</td><td class="num" colspan="1">~9 / 30d*</td><td class="num" rowspan="3" style="vertical-align:middle">107,206 cum.<br>(blended)</td><td class="num">n/a</td></tr>
-        <tr><td class="goal">Google Demand Gen</td><td class="num">$58.89</td><td class="num">89</td><td class="num">1 / 30d</td><td class="num">n/a</td></tr>
-        <tr><td class="goal">Bing</td><td class="num">$222.37</td><td class="num">74</td><td class="num">not in GA4 cut</td><td class="num">n/a</td></tr>
+        <tr><td>Spend (wk)</td><td class="num">$1,758.78</td><td class="num">$252.24</td><td class="num">$2,011.02</td></tr>
+        <tr><td>Clicks (wk)</td><td class="num">280</td><td class="num">88</td><td class="num">368</td></tr>
+        <tr><td>GA4 cpc blazor sessions (wk)</td><td class="num">~6</td><td class="num">n/a*</td><td class="num">6</td></tr>
+        <tr><td>Tracked conversions</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+        <tr><td>NuGet downloads (wk)</td><td class="num">—</td><td class="num">—</td><td class="num">+14</td></tr>
+        <tr><td>CPA / ROAS</td><td class="num">n/a</td><td class="num">n/a</td><td class="num">n/a</td></tr>
       </tbody>
     </table></div>
-    <p class="note">*GA4 campaign cut (30d): Compete 4 sessions, Components 3, brand/ignite-ui-blazor 2, Demand Gen 1. Bing sessions aren't isolated in this GA4 cut. ROI/CPA = <b>n/a</b> everywhere while conversions are untracked.</p>
-    <div class="vbox"><div class="vh verdict-fix">The attribution gap, quantified</div>
-      <p class="lead">This week's <b>271 paid clicks</b> should have produced a comparable count of GA4 <code>cpc</code> Blazor sessions. Instead GA4 attributes <b>~10 over the entire last 30 days</b>. That is not a traffic problem &mdash; it's a measurement break: GCLID auto-tagging, landing-page redirects stripping parameters, or consent-mode loss. Every downstream number (CPA, ROAS, asset grade, conversion rate) inherits this hole.</p>
+    <p class="note">*GA4's cpc cut doesn't cleanly separate Bing; the 6 sessions are the total paid-cpc blazor sessions this week. The 368→6 collapse is the attribution gap.</p>
+
+    <div class="verdict">
+      <div class="vbox no"><div class="h">Attribution gap</div><div class="b"><b>368 paid clicks → 6 GA4 cpc sessions</b> — a 98% loss. Auto-tagging/GCLID isn't resolving into GA4, and campaign values arrive inconsistently tagged (literal "ignite-ui-blazor" vs auto-tagged "DT-…"). We cannot see the traffic we're paying for.</div></div>
+      <div class="vbox no"><div class="h">Zero conversion tracking</div><div class="b">No trial/download conversion is wired in Google Ads or Bing, so every asset is "Pending", CPA is unknowable, and Smart Bidding has no signal. This is the single biggest constraint on the whole program.</div></div>
+      <div class="vbox focus"><div class="h">Verdict — KEEP + REALLOCATE, fix before scale</div><div class="b"><b>Keep</b> search (efficient, high-intent). <b>Lean into Bing</b> (cheap, 85% IS). <b>Fix</b> tracking as P1 — it gates everything. <b>Reallocate</b> the near-dead Charts budget and negative the ~$395/30d tutorial waste. Do <b>not</b> scale spend until we can attribute a download or trial to a click. NuGet adoption is flat (+14 over a ~1-day interval).</div></div>
     </div>
-    <div class="vbox"><div class="vh verdict-scale">Decisive verdict</div>
-      <ul class="wl focus">
-        <li><b>FIX first (P1):</b> repair click &rarr; session &rarr; conversion tracking and import a real key event (trial start / NuGet-feed page / SDK download). Nothing else can be optimized properly until this lands.</li>
-        <li><b>KEEP &amp; fund:</b> Compete and Components on Google &mdash; cheap efficient conquest, currently budget-throttled. Lift budgets to recover the ~22% lost impressions.</li>
-        <li><b>SCALE cautiously:</b> Bing &mdash; $3 CPCs are too good to ignore; extend to Components/Charts themes once we confirm quality.</li>
-        <li><b>REALLOCATE:</b> the ~$400/wk of tutorial-intent waste on Components &rarr; toward funded high-intent terms; hold Demand Gen flat until it shows up in GA4.</li>
-      </ul>
-    </div>
-    <p class="note">Honesty rule: NuGet downloads are cumulative-derived weekly deltas &mdash; they include CI/restore noise and inflate on release weeks as a new version ships (26.1.51 is the current build). They are a <b>blended adoption signal, not 1:1 paid-attributed.</b> Treat them as the north-star outcome, not a conversion count.</p>
+
+    <div class="sub">NuGet adoption — by package (this week)</div>
+    <div class="tablewrap"><table class="dt">
+      <thead><tr><th>Package</th><th>Weekly Δ</th><th>Cumulative</th><th>Share of Δ</th><th>Link</th></tr></thead>
+      <tbody>
+        <tr><td>IgniteUI.Blazor.Trial</td><td class="num">+6</td><td class="num">59,869</td><td class="num">43%</td><td><a href="https://www.nuget.org/packages/IgniteUI.Blazor.Trial" target="_blank" rel="noopener">nuget.org</a></td></tr>
+        <tr><td>IgniteUI.Blazor.GridLite</td><td class="num">+3</td><td class="num">2,486</td><td class="num">21%</td><td><a href="https://www.nuget.org/packages/IgniteUI.Blazor.GridLite" target="_blank" rel="noopener">nuget.org</a></td></tr>
+        <tr><td>IgniteUI.Blazor.Documents.Core.Trial</td><td class="num">+2</td><td class="num">23,076</td><td class="num">14%</td><td><a href="https://www.nuget.org/packages/IgniteUI.Blazor.Documents.Core.Trial" target="_blank" rel="noopener">nuget.org</a></td></tr>
+        <tr><td>IgniteUI.Blazor.Documents.Excel.Trial</td><td class="num">+2</td><td class="num">18,756</td><td class="num">14%</td><td><a href="https://www.nuget.org/packages/IgniteUI.Blazor.Documents.Excel.Trial" target="_blank" rel="noopener">nuget.org</a></td></tr>
+        <tr><td>IgniteUI.Blazor.Lite</td><td class="num">+1</td><td class="num">2,030</td><td class="num">7%</td><td><a href="https://www.nuget.org/packages/IgniteUI.Blazor.Lite" target="_blank" rel="noopener">nuget.org</a></td></tr>
+        <tr><td>IgniteUI.Blazor.Templates</td><td class="num">+0</td><td class="num">1,003</td><td class="num">0%</td><td><a href="https://www.nuget.org/packages/IgniteUI.Blazor.Templates" target="_blank" rel="noopener">nuget.org</a></td></tr>
+        <tr style="font-weight:700;background:#fafbff"><td>Total</td><td class="num">+14</td><td class="num">107,220</td><td class="num">100%</td><td>6 public packages</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note"><b>Honesty rule:</b> these are cumulative-derived deltas (they include CI/restore noise and inflate on release weeks). A new <b>26.1.51</b> release is shipping now across Trial/Core/Excel and may spike a future week. This is a <b>blended adoption signal, not paid-attributed</b> — until tracking is fixed we cannot tie any download to a paid click. The licensed main <b>IgniteUI.Blazor</b> package lives on a private feed and isn't in the public index, so it's excluded. The +14 is measured against a baseline captured Sun 8/2, so it spans ~1 day; a clean 7-day WoW arrives next Monday.</p>
   </section>
 
-  <!-- ============ 8. TASKS ============ -->
+  <!-- ================= TASKS ================= -->
   <section class="panel" id="tasks">
     <div class="taskhead">
       <div class="viewtoggle">
@@ -577,98 +633,113 @@
     <div class="view on" data-view="table"><div class="tablewrap"><table><thead><tr><th>Task</th><th>Channel</th><th>Owner</th><th>Priority</th><th>Status</th><th>Due</th></tr></thead><tbody id="tblBody"></tbody></table></div></div>
     <div class="view" data-view="board"><div class="board" id="boardWrap"></div></div>
     <div class="view" data-view="timeline"><div class="tl" id="tlWrap"></div></div>
-    <div class="foot">Shared UI Tools paid tracker (cross-product) &mdash; parent tasks only, live from Slingshot, refreshed every Monday. Note: the tracker is currently React-weighted; there are <b>no Blazor-specific paid tasks yet</b>. Blazor actions from this run live in the Report and Journey tabs as recommendations for Poojitha to action.</div>
+    <div class="tfoot">This is the <b>shared UI Tools paid tracker</b> (cross-product — currently React + generic tasks; no Blazor-specific paid actions logged yet). Parent tasks only, live from Slingshot · refreshed every Monday. Blazor recommendations for this week are in the Report tab, §7.</div>
   </section>
 
-  <!-- ============ 9. SUMMARY ============ -->
+  <!-- ================= SUMMARY ================= -->
   <section class="panel" id="summary">
     <div class="sumhead"><span class="dtitle">Executive summary</span><button class="slink push" id="copyBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg> <span id="copyLabel">Copy summary</span></button></div>
     <div class="summary-card" id="summaryCard">
-      <h2>Blazor PPC &mdash; Week of Aug 2, 2026</h2>
-      <p><b>Where we are.</b> Blazor paid spent <b>$1,994</b> this week ($1,772 Google + $222 Bing, newly live) for <b>271 clicks</b> of mostly high-intent, competitor-conquest demand. Efficiency improved &mdash; Google search CPC fell 21% WoW to $15.86 and CTR rose to 8.3% on 25% less search spend &mdash; but <b>Google Ads recorded 0 conversions</b> and GA4 attributes only ~10 Blazor cpc sessions in 30 days. We are optimizing to clicks and downloads, not revenue.</p>
+      <h2>Blazor Paid Media — Week of Aug 3, 2026</h2>
+      <p><b>Where we are.</b> Blazor paid spent <b>$2,011</b> this week ($1,759 Google + $252 Bing) and the media looks efficient — but we still can't prove it converts. Google Ads shows <b>0 conversions</b>, GA4 attributes only <b>6 paid sessions</b> to <b>368 clicks</b>, and the product isn't lead-gated, so our honest north-star is <b>NuGet adoption</b>: <b>+14 downloads</b> this week (to 107,220 cumulative), measured over a ~1-day interval against last Sunday's baseline.</p>
       <h3>What's working</h3>
       <ul>
-        <li>Search got cheaper and sharper: CPC &minus;21% WoW, CTR 8.3%.</li>
-        <li>Bing launched at a <b>$3.00 CPC</b> (5&times; cheaper than Google) with 86&ndash;87% impression share.</li>
-        <li>Conquest strategy is on-target &mdash; MudBlazor, Radzen, Telerik, DevExpress captured via Compete on both engines.</li>
+        <li><b>Search efficiency up:</b> Google search CPC −20% ($19.90→$15.90), CTR 7.97%, on 25% less spend.</li>
+        <li><b>Bing launched cheap and well-positioned:</b> $2.87 CPC, 85% impression share, $252 for 88 clicks conquesting MudBlazor/Radzen/Telerik.</li>
+        <li><b>Clean conquest engine:</b> Compete owns the competitor terms; no cross-product creative bleed this week.</li>
       </ul>
       <h3>What's not</h3>
       <ul>
-        <li><b>Conversion tracking is broken</b> &mdash; 271 clicks, ~10 GA4 sessions, 0 conversions. Standing P1.</li>
-        <li>Budget-lost IS spiked to <b>22.7% (Compete)</b> and <b>21.7% (Components)</b> &mdash; we throttled our best campaigns as they got cheaper.</li>
-        <li>~<b>$400+/30d</b> of Components spend goes to developer-tutorial queries (lifecycle, dynamic component) with no buying intent.</li>
+        <li><b>Tracking is broken (P1):</b> click→session→conversion all fail; CPA/ROAS unknowable; every asset stuck "Pending".</li>
+        <li><b>Money terms budget-capped:</b> Compete 63% IS (23% lost to budget), Components slipped 92%→72%.</li>
+        <li><b>Charts nearly dark:</b> −95% spend to $24 — decide fund or pause.</li>
+        <li><b>~$395/30d tutorial waste:</b> "blazor component lifecycle / lifecycle / dynamiccomponent" queries need negatives.</li>
       </ul>
       <h3>This week's plan</h3>
       <ul>
-        <li>Repair click&rarr;session&rarr;conversion tracking + import a key event (trial / NuGet-feed / SDK download).</li>
-        <li>Lift Compete &amp; Components daily budgets to reclaim ~22% lost impressions while CPCs are low.</li>
-        <li>Negative the tutorial-intent cluster on Components; add &ldquo;blazor grid&rdquo; exact to Grids.</li>
-        <li>Hold Demand Gen flat and exclude mobile-app/gaming placements until GA4 sees it.</li>
-        <li>Extend Bing to Components/Charts themes if week-2 quality holds.</li>
+        <li>Wire auto-tagging + a NuGet-trial/download conversion (gates everything else).</li>
+        <li>Add "blazor ui" as Exact ($331/30d gap); negative the tutorial junk.</li>
+        <li>Decide Charts (fund or pause); hold Bing one week for search-term data, then fund-vs-hold.</li>
+        <li>Mirror winning Google RSAs into Bing.</li>
       </ul>
-      <h3>Channel by channel</h3>
-      <p><b>Google:</b> $1,772 / 197 clicks / $15.86 search CPC / 0 conv. Compete &amp; Components budget-throttled; Charts cut 90% WoW; Demand Gen new and leaky.<br>
-      <b>Bing:</b> $222 / 74 clicks / $3.00 CPC / 0 conv. New this week, clean conquest, strong impression share &mdash; the cheapest lane we have.</p>
+      <h3>Channel-by-channel</h3>
+      <ul>
+        <li><b>Google:</b> $1,759, 280 clicks, 7.97% search CTR, $15.90 search CPC, 0 conv, IS 70.7% (budget-capped).</li>
+        <li><b>Bing:</b> $252, 88 clicks, 1.58% CTR, $2.87 CPC, 0 conv, IS 85.4% (new this week).</li>
+      </ul>
       <h3>Downloads forecast</h3>
-      <p>First tracked week &mdash; six public Infragistics Blazor packages at <b>107,206 cumulative downloads</b> (baseline). Weekly delta begins next Monday; target becomes the trailing-4-week average once we have five snapshots. NuGet is a blended adoption signal, not paid-attributed &mdash; the real ROI unlock is fixing tracking so we can move budget to what converts.</p>
+      <p>Adoption is roughly flat (+14 over a short interval); a clean 7-day WoW lands next Monday and the 26.1.51 release may inflate a future week. The upside "if tracking fixed" line stays unquantifiable until we can attribute a paid click to a trial install. <b>Verdict: KEEP + REALLOCATE — fix measurement before scaling spend.</b></p>
     </div>
   </section>
 
-  <!-- ============ 10. CHEAT SHEET ============ -->
+  <!-- ================= CHEAT SHEET ================= -->
   <section class="panel" id="cheat">
-    <div class="sec"><span class="chip">10</span><div><h2>Cheat sheet</h2><div class="sub">Shared paid-media glossary + Blazor-specific terms</div></div></div>
-    <div class="grouph">Shared paid-media glossary</div>
-    <div class="gloss">
-      <div class="term"><h4>Impression share (IS)</h4><p>The % of available impressions your ads actually won. 90% target = you show almost every time someone searches your term.</p></div>
-      <div class="term"><h4>Budget-lost IS</h4><p>Share of impressions missed <b>because the budget ran out</b>. High = raise budget to capture demand you're already qualified to win.</p></div>
-      <div class="term"><h4>Rank-lost IS</h4><p>Impressions missed <b>because Ad Rank (bid &times; Quality Score) was too low</b>. Fix with relevance/landing pages/bids, not budget.</p></div>
-      <div class="term"><h4>CTR</h4><p>Click-through rate = clicks &divide; impressions. Signals ad relevance to the query.</p></div>
-      <div class="term"><h4>CPC</h4><p>Cost per click. On premium dev terms $25&ndash;$35 is normal; conquest terms run cheaper.</p></div>
-      <div class="term"><h4>Conquest / Compete</h4><p>Bidding on a competitor's brand term to intercept their buyers. Labeled RESEARCH; our Compete campaign.</p></div>
-      <div class="term"><h4>Demand Gen (DG)</h4><p>Google's image/video audience product. Cheap clicks but placement-leaky; dilutes blended CTR/CPC &mdash; always read Search-only alongside.</p></div>
-      <div class="term"><h4>Close-variant leakage</h4><p>An Exact keyword matching a near-but-wrong query (or serving from the wrong campaign). Catch with search-term audits + cross-negatives.</p></div>
-    </div>
-    <div class="grouph">Ours &mdash; Blazor-specific</div>
-    <div class="gloss">
-      <div class="term ours"><h4>NuGet downloads (north-star)</h4><p>Weekly delta of summed <b>cumulative</b> totalDownloads across the public Infragistics Blazor packages, diffed Monday-to-Monday from snapshots. Replaces a lead goal &mdash; Blazor is a .NET/NuGet product.</p></div>
-      <div class="term ours"><h4>By-package split</h4><p>Trial (59,863), Documents.Core.Trial (23,074), Documents.Excel.Trial (18,754), GridLite (2,483), Lite (2,029), Templates (1,003). The licensed main IgniteUI.Blazor lives on a private feed &mdash; not in the public index.</p></div>
-      <div class="term ours"><h4>&ldquo;Flying blind&rdquo;</h4><p>No working Ads conversion tracking yet &mdash; 0 conversions, GA4 sees ~4% of clicks. CPA/ROAS can't be computed. Standing P1 to fix.</p></div>
-      <div class="term ours"><h4>Google-vs-Bing split</h4><p>Never blended into one number. Google search CPC $15.86; Bing CPC $3.00. Shown side by side; only the funnel blends.</p></div>
-      <div class="term ours"><h4>MudBlazor / Radzen / QuickGrid</h4><p>Free OSS competitors (QuickGrid is Microsoft's free grid). Conquest via Compete &mdash; don't treat as our own product intent.</p></div>
-      <div class="term ours"><h4>Tutorial-intent waste</h4><p>&ldquo;lifecycle&rdquo;, &ldquo;dynamic component&rdquo;, &ldquo;refresh/reload component&rdquo; &mdash; developers learning Blazor built-ins, not buyers. Negative them (~$400/30d).</p></div>
+    <div class="sec"><span class="n">•</span> Cheat sheet — paid-media glossary</div>
+    <div class="cheat">
+      <div class="cg"><h4>Impressions &amp; share</h4><dl>
+        <dt>Impression share (IS)</dt><dd>Impressions you got ÷ impressions you were eligible for. Target 90%.</dd>
+        <dt>Budget-lost IS</dt><dd>Share missed because the campaign ran out of budget. High = add budget.</dd>
+        <dt>Rank-lost IS</dt><dd>Share missed due to Ad Rank (bid × Quality Score). High = fix relevance/QS, not budget.</dd>
+        <dt>Absolute top</dt><dd>The very first paid slot above organic results.</dd>
+      </dl></div>
+      <div class="cg"><h4>Cost &amp; response</h4><dl>
+        <dt>CTR</dt><dd>Clicks ÷ impressions. Relevance signal.</dd>
+        <dt>CPC</dt><dd>Average cost per click.</dd>
+        <dt>CPA</dt><dd>Cost per acquisition/conversion — n/a here until tracking is wired.</dd>
+        <dt>Quality Score</dt><dd>Google's 1–10 relevance rating; lifts rank and cuts CPC.</dd>
+      </dl></div>
+      <div class="cg"><h4>Match &amp; intent</h4><dl>
+        <dt>Exact / Phrase / Broad</dt><dd>How tightly a keyword matches a query. We add gaps as Exact.</dd>
+        <dt>Conquest</dt><dd>Bidding on a competitor's brand term (MudBlazor, Radzen, Telerik).</dd>
+        <dt>Negative keyword</dt><dd>A term we block to stop wasted spend.</dd>
+        <dt>RSA</dt><dd>Responsive Search Ad — Google mixes headlines/descriptions automatically.</dd>
+      </dl></div>
+      <div class="cg ours"><h4>Ours — Ignite UI Blazor</h4><dl>
+        <dt>NuGet downloads</dt><dd>Our north-star: weekly delta from cumulative <code>totalDownloads</code> snapshots across the 6 public Infragistics Blazor packages.</dd>
+        <dt>By-package split</dt><dd>Trial + GridLite + Documents (Core/Excel) + Lite + Templates. Trial dominates.</dd>
+        <dt>"Flying blind"</dt><dd>No Ads conversion tracking yet — 0 conversions, everything "Pending", CPA unknowable.</dd>
+        <dt>Google-vs-Bing split</dt><dd>Never blended into one number — shown side by side. Blend only at the funnel.</dd>
+        <dt>Close-variant leakage</dt><dd>An Exact keyword catching typos/variants (e.g. "mudblazor" → "mud blazor", "mudbla").</dd>
+        <dt>DemandGen dilution</dt><dd>DemandGen's huge impressions drag blended CTR/CPC — always read search-only alongside.</dd>
+      </dl></div>
     </div>
   </section>
 
 </div>
 
-<!-- ===== FEEDBACK MODAL ===== -->
-<div class="fbmodal" id="fbModal">
-  <div class="fbcard">
+<!-- feedback modal -->
+<div class="fbov" id="fbov">
+  <div class="fbmodal">
     <h3>Send feedback</h3>
-    <div class="ctx" id="fbCtx"></div>
-    <textarea id="fbText" placeholder="What's off, missing, or worth a follow-up? Your note is copied to the clipboard and the Slingshot discussion opens in a new tab."></textarea>
-    <div class="acts">
-      <button class="fbcancel" id="fbCancel">Cancel</button>
-      <button class="fbsend" id="fbSend">Copy &amp; open discussion</button>
-    </div>
+    <p class="fbsub">Goes to the shared paid-media discussion in Slingshot.</p>
+    <div class="fbctx" id="fbctx"></div>
+    <textarea id="fbtext" placeholder="What's off or worth a follow-up?"></textarea>
+    <div class="fbact"><button id="fbcancel" type="button">Cancel</button><button class="prim" id="fbsend" type="button">Open in Slingshot</button></div>
   </div>
 </div>
 
 <script>
-  /* ===== TASKS (live Slingshot snapshot, parent tasks only) ===== */
+  var FEEDBACK_URL = "https://my.slingshotapp.io/openDiscussion/e97e10ef_c0188a24-0401-4c99-920f-c7ddd1c550bb";
+
+  /* Tasks — live snapshot of the shared Slingshot list (parent tasks only). */
   const TASKS = [
-    {name:"React Paid: Fund Search-Compete to recapture top slot",channel:"Google Ads",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P1",status:"done",due:"2026-07-25",start:"2026-07-23",completed:"2026-07-24"},
-    {name:"React Paid: Search-terms sweep + \"react table\" coverage",channel:"Google Ads",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P2",status:"done",due:"2026-07-30",start:"2026-07-23",completed:"2026-07-31"},
-    {name:"React Paid: Audit & cap Demand Gen React",channel:"Demand Gen",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P2",status:"prog",due:"2026-07-30",start:"2026-07-23"},
-    {name:"React Paid: Repair click→session→conversion tracking",channel:"Google Ads",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P1",status:"todo",due:"2026-07-29",start:"2026-07-23"},
-    {name:"React Paid: Fix \"react grid\" ad rank on Search-Grids",channel:"Google Ads",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P1",status:"prog",due:"2026-07-29",start:"2026-07-23"},
-    {name:"React Paid: Stand up US-vs-Intl geo segmentation + conversion import",channel:"Google Ads",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P1",status:"todo"},
-    {name:"React Paid: Negatives sweep — OSS-library queries on Charts/Components",channel:"Google Ads",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P2",status:"todo"},
-    {name:"React Paid: Extend the Search-Compete win (take rank-lost share)",channel:"Google Ads",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P2",status:"todo"},
-    {name:"React Paid: Fund Search-Charts +$30/day",channel:"Google Ads",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P2",status:"todo"},
-    {name:"React Paid: Raise Quality Score on Search-Components",channel:"Google Ads",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P1",status:"todo"},
-    {name:"Add Brand Guidelines for Ultimate and Ignite UI",channel:"Brand",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P3",status:"todo",due:"2026-08-06",start:"2026-07-30"},
-    {name:"Add CLI videos to Demand Gen Campaigns",channel:"Demand Gen",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P3",status:"prog",due:"2026-08-03",start:"2026-07-30"}
+    {name:"React Paid: Lift Quality Score on 'react chart library' (Search-Charts)",channel:"Google · Paid",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P1",status:"todo",due:"2026-08-12"},
+    {name:"React Paid: Wire up an NPM installs read (allowlist api.npmjs.org)",channel:"Reporting",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P1",status:"todo",due:"2026-08-11"},
+    {name:"React Paid: Decide Bing React fund-vs-hold after a week of search-term data",channel:"Bing · Paid",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P2",status:"todo",due:"2026-08-11"},
+    {name:"React Paid: Promote Demand Gen Asset C + add 2–3 fresh variants",channel:"Google · DemandGen",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P2",status:"todo",due:"2026-08-11"},
+    {name:"React Paid: Mirror winning Google RSAs into Bing Compete/Grids",channel:"Bing · Paid",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P2",status:"todo",due:"2026-08-08"},
+    {name:"React Paid: Fund Search-Compete to recapture top slot",channel:"Google · Paid",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P1",status:"done",due:"2026-07-25",start:"2026-07-23",completed:"2026-07-24"},
+    {name:"React Paid: Search-terms sweep + \"react table\" coverage",channel:"Google · Paid",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P2",status:"done",due:"2026-07-30",start:"2026-07-23",completed:"2026-07-31"},
+    {name:"React Paid: Audit & cap Demand Gen React",channel:"Google · DemandGen",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P2",status:"prog",due:"2026-07-30",start:"2026-07-23"},
+    {name:"React Paid: Repair click→session→conversion tracking",channel:"Analytics",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P1",status:"todo",due:"2026-07-29",start:"2026-07-23"},
+    {name:"React Paid: Fix \"react grid\" ad rank on Search-Grids",channel:"Google · Paid",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P1",status:"prog",due:"2026-07-29",start:"2026-07-23"},
+    {name:"React Paid: Stand up US-vs-Intl geo segmentation + conversion import",channel:"Reporting",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P1",status:"todo",due:""},
+    {name:"React Paid: Negatives sweep — OSS-library queries on Charts/Components",channel:"Google · Paid",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P2",status:"todo",due:""},
+    {name:"React Paid: Extend the Search-Compete win (take rank-lost share)",channel:"Google · Paid",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P2",status:"todo",due:""},
+    {name:"React Paid: Fund Search-Charts +$30/day",channel:"Google · Paid",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P2",status:"todo",due:""},
+    {name:"React Paid: Raise Quality Score on Search-Components",channel:"Google · Paid",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P1",status:"todo",due:""},
+    {name:"Add Brand Guidelines for Ultimate and Ignite UI",channel:"Creative",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P3",status:"todo",due:"2026-08-06",start:"2026-07-30"},
+    {name:"Add CLI videos to Demand Gen Campaigns",channel:"Google · DemandGen",owner:"Poojitha",initials:"PB",color:"#E14E12",priority:"P3",status:"prog",due:"2026-08-03",start:"2026-07-30"}
   ];
 
   var accentDeep = getComputedStyle(document.body).getPropertyValue('--accent-deep').trim() || '#333';
@@ -678,8 +749,7 @@
   document.getElementById('taskCount').textContent = TASKS.length;
   var prog = TASKS.filter(function(t){return t.status==='prog';}).length;
   var done = TASKS.filter(function(t){return t.status==='done';}).length;
-  var todo = TASKS.filter(function(t){return t.status==='todo';}).length;
-  var bits=[]; if(prog)bits.push('<b>'+prog+'</b> in progress'); if(todo)bits.push('<b>'+todo+'</b> to do'); if(done)bits.push('<b>'+done+'</b> done');
+  var bits=[]; if(prog)bits.push('<b>'+prog+'</b> in progress'); if(done)bits.push('<b>'+done+'</b> done');
   document.getElementById('taskSummary').innerHTML = '<b>'+TASKS.length+' tasks</b> · live from Slingshot · '+bits.join(' · ');
 
   document.getElementById('tblBody').innerHTML = TASKS.length ? TASKS.map(function(t){
@@ -695,7 +765,7 @@
     return '<div class="col"><div class="col-h"><span class="dt" style="background:'+dot+'"></span> '+label+' <span class="cc">'+items.length+'</span></div>'+
       items.map(function(t){return '<div class="tcard"><div class="tt">'+esc(t.name)+'</div><div class="tm"><span class="plt">'+esc(t.channel||'')+(t.completed?' · <span class="donedate">'+esc(t.completed)+'</span>':'')+'</span><span class="pri '+t.priority+'">'+esc(t.priority)+'</span></div></div>';}).join('')+'</div>';
   }
-  var STATUS_COLS=[['todo','To do','#8a93a3'],['prog','In progress','#2A41A2'],['review','In review','#6C8CFD'],['deferred','Deferred','#b7791f'],['done','Done','#12915b']];
+  var STATUS_COLS=[['todo','To do','#8a93a3'],['prog','In progress','#2A41A2'],['review','In review','#6C8CFD'],['done','Done','#12915b']];
   document.getElementById('boardWrap').innerHTML = STATUS_COLS.filter(function(c){return TASKS.some(function(t){return t.status===c[0];});}).map(function(c){return col(c[0],c[1],c[2]);}).join('');
 
   (function(){
@@ -709,12 +779,11 @@
       var s=new Date(t.start||t.due).getTime(), e=new Date(t.due).getTime();
       var left=((s-min)/span*100), width=Math.max(7,(e-s)/span*100);
       if(left+width>100){width=100-left;}
-      return '<div class="tlrow"><div class="tlname">'+esc(t.name)+'<div class="sub">'+esc(t.owner||'')+' · '+esc(t.priority)+'</div></div>'+
+      return '<div class="tlrow"><div class="tlname">'+esc(t.name)+'<div class="sub2">'+esc(t.owner||'')+' · '+esc(t.priority)+'</div></div>'+
         '<div class="tltrack"><div class="bar" style="left:'+left+'%;width:'+width+'%">'+esc(t.due)+'</div></div></div>';
     }).join('');
   })();
 
-  /* ===== COPY SUMMARY ===== */
   var copyBtn=document.getElementById('copyBtn'), copyLabel=document.getElementById('copyLabel'), card=document.getElementById('summaryCard');
   copyBtn.addEventListener('click',function(){
     var html=card.innerHTML.trim(), text=card.innerText.trim();
@@ -725,7 +794,6 @@
     else { var r=document.createRange(); r.selectNode(card); var s=getSelection(); s.removeAllRanges(); s.addRange(r); try{document.execCommand('copy');done();}catch(e){} s.removeAllRanges(); }
   });
 
-  /* ===== TABS + VIEW TOGGLE ===== */
   document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
     document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
     document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
@@ -738,29 +806,22 @@
     b.classList.add('on'); document.querySelector('#tasks .view[data-view="'+b.dataset.view+'"]').classList.add('on');
   });});
 
-  /* ===== FEEDBACK SYSTEM ===== */
-  /* FEEDBACK_URL = paid-media discussion in Slingshot; SCOPE = #report .fbx */
-  var FEEDBACK_URL = "https://my.slingshotapp.io/openDiscussion/e97e10ef_c0188a24-0401-4c99-920f-c7ddd1c550bb";
-  var fbModal=document.getElementById('fbModal'), fbCtx=document.getElementById('fbCtx'), fbText=document.getElementById('fbText'), fbCurrent="";
-  document.querySelectorAll('#report .fbx').forEach(function(el){
-    var b=document.createElement('button'); b.className='fbbtn'; b.type='button'; b.textContent='Feedback';
-    b.addEventListener('click',function(ev){
-      ev.stopPropagation();
-      fbCurrent = (el.innerText||'').trim().replace(/\s+/g,' ').slice(0,240);
-      fbCtx.textContent = fbCurrent;
-      fbText.value='';
-      fbModal.classList.add('on'); fbText.focus();
+  /* Feedback system — scope #report .fbx */
+  (function(){
+    var ov=document.getElementById('fbov'), ctx=document.getElementById('fbctx'), ta=document.getElementById('fbtext'), cur='';
+    document.querySelectorAll('#report .fbx').forEach(function(el){
+      var b=document.createElement('button'); b.className='fbbtn'; b.type='button'; b.innerHTML='&#9998;';
+      b.addEventListener('click',function(ev){ev.stopPropagation();cur=(el.innerText||'').trim().replace(/\s+/g,' ').slice(0,140);ctx.textContent=cur;ta.value='';ov.classList.add('on');ta.focus();});
+      el.appendChild(b);
     });
-    el.appendChild(b);
-  });
-  function closeFb(){ fbModal.classList.remove('on'); }
-  document.getElementById('fbCancel').addEventListener('click',closeFb);
-  fbModal.addEventListener('click',function(e){ if(e.target===fbModal) closeFb(); });
-  document.getElementById('fbSend').addEventListener('click',function(){
-    var note='[Blazor PPC Weekly · '+ new Date().toISOString().slice(0,10) +']\nContext: '+fbCurrent+'\nFeedback: '+(fbText.value||'').trim();
-    function go(){ window.open(FEEDBACK_URL,'_blank','noopener'); closeFb(); }
-    if(navigator.clipboard){ navigator.clipboard.writeText(note).then(go).catch(go); } else { go(); }
-  });
+    function close(){ov.classList.remove('on');}
+    document.getElementById('fbcancel').addEventListener('click',close);
+    ov.addEventListener('click',function(e){if(e.target===ov)close();});
+    document.getElementById('fbsend').addEventListener('click',function(){
+      try{navigator.clipboard&&navigator.clipboard.writeText('[Blazor PPC feedback] '+cur+' — '+ta.value);}catch(e){}
+      window.open(FEEDBACK_URL,'_blank'); close();
+    });
+  })();
 </script>
 </body>
 </html>
