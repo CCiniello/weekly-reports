@@ -341,6 +341,7 @@
   // On the hosted site, verify each linked report actually exists (HEAD) and hide 404s.
   allCards.forEach(function(el){
     el.dataset.avail = el.getAttribute('data-path') ? (isHosted ? 'pending' : '1') : '0';
+    if(el.closest('[data-cat="team"]')) el.dataset.avail = '0';   // Weekly Team is WIP — hidden for now
     if(el.dataset.avail !== '1') el.style.display = 'none';
   });
 
@@ -396,6 +397,7 @@
   if(isHosted){
     var checks=[];
     document.querySelectorAll('[data-path]').forEach(function(el){
+      if(el.closest('[data-cat="team"]')) return;   // Weekly Team is WIP — hidden for now
       checks.push(fetch(el.dataset.path,{method:'HEAD'}).then(function(r){
         el.dataset.avail = r.ok ? '1' : '0';
         if(r.ok){ var st=el.querySelector('.st'); if(st) st.innerHTML='<span class="sd dot-live"></span> Live · updated Mon'; }
