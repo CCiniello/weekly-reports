@@ -1,655 +1,550 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ignite UI for React — Weekly SEO Brief · Jul 27 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<title>Weekly SEO Brief — Ignite UI for React — 2026-08-03</title>
 <style>
   :root{
-    --navy:#0A2540; --cobalt:#E14E12; --peri:#9fb2c9; --peri-soft:#FFEEE2;
-    --ink:#0A2540; --muted:#5b6b82; --line:#E3EAF2; --bg:#F4F7FB; --card:#fff;
-    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
-    --gray:#8a93a3; --gray-bg:#eef0f5;
-    --azure:#FF6B2C; --azure-soft:#FFEEE2; --azure-hi:#FF9A4D; --azure-lo:#E14E12; --amber:#E8A400;
-    --mono:'Roboto Mono',monospace;
-    --sans:Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --hero-orange:#FF6B2C; --accent-deep:#E14E12; --accent-soft:#FFEEE2;
+    --navy:#0A2540; --page:#F4F7FB; --card:#ffffff; --line:#E7ECF3;
+    --ink:#0A2540; --muted:#5B6B7E; --sky:#E6F4FF;
+    --good:#1EA672; --amber:#E8912B; --red:#E14E12;
+    --hero-grad:linear-gradient(120deg,#FF9A4D 0%,#FF6B2C 48%,#E14E12 100%);
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1040px;margin:0 auto;padding:28px 22px 80px}
+  body{margin:0;background:var(--page);color:var(--ink);
+    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;
+    font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .num,.delta,.kpi .val,.mono{font-family:"Roboto Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px 60px}
+  a{color:var(--accent-deep);text-decoration:none}
+  a:hover{text-decoration:underline}
 
-  header.top{background:linear-gradient(120deg,var(--azure-hi) 0%,var(--azure) 48%,var(--azure-lo) 100%);color:#fff;border-radius:16px;padding:22px 26px;position:relative;overflow:hidden}
-  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
-  header.top .logochip{display:inline-block;background:#fff;border-radius:9px;padding:8px 14px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14)}
-  header.top .logochip img{height:22px;display:block}
-  header.top .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
-  header.top h1{margin:5px 0 0;font-size:27px;font-weight:900}
+  header.top{background:var(--hero-grad);color:#fff;padding:26px 0 22px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;inset:0;
+    background:radial-gradient(1200px 220px at 80% -40%,rgba(255,255,255,.30),transparent 70%)}
+  header.top .wrap{position:relative;z-index:1}
+  .logo-chip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:10px;
+    padding:7px 12px;box-shadow:0 2px 10px rgba(10,37,64,.15)}
+  .kicker{margin:14px 0 4px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:0;font-size:26px;font-weight:800;letter-spacing:-.01em}
   header.top h1 span{font-weight:500;opacity:.9}
-  header.top .meta{margin-top:14px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)}
+  header.top .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12.5px;color:rgba(255,255,255,.85)}
   header.top .meta b{color:#fff;font-weight:700}
 
-  .tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin:8px 4px 0;padding-top:18px;flex-wrap:wrap}
-  .tab{appearance:none;background:none;border:none;font:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:12px 18px;cursor:pointer;border-bottom:2px solid transparent;display:flex;align-items:center;gap:8px}
-  .tab:hover{color:var(--navy)}
-  .tab.active{color:var(--azure-lo);border-bottom-color:var(--azure)}
-  .tab .badge{background:var(--gray-bg);color:var(--muted);font-size:11px;font-weight:700;padding:1px 8px;border-radius:999px}
-  .tab.active .badge{background:var(--azure-soft);color:var(--azure-lo)}
+  .tabs{display:flex;gap:4px;margin:18px 0 22px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .tabbtn{appearance:none;border:0;background:transparent;padding:11px 16px;font-size:13.5px;font-weight:600;
+    color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;border-radius:6px 6px 0 0}
+  .tabbtn:hover{color:var(--ink);background:#fff}
+  .tabbtn.active{color:var(--accent-deep);border-bottom-color:var(--hero-orange)}
   .tabpane{display:none}
   .tabpane.active{display:block}
 
-  h2.sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:34px 4px 14px;display:flex;align-items:center;gap:10px}
-  h2.sec .n{width:22px;height:22px;border-radius:6px;background:var(--peri-soft);color:var(--cobalt);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
-  .pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px;letter-spacing:.02em;white-space:nowrap}
-  .p-good{background:var(--good-bg);color:var(--good)}.p-warn{background:var(--warn-bg);color:var(--warn)}.p-bad{background:var(--bad-bg);color:var(--bad)}.p-gray{background:var(--gray-bg);color:var(--gray)}.p-build{background:var(--peri-soft);color:var(--cobalt)}
-  .tnew{display:inline-block;font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.04em;color:#fff;background:var(--azure);padding:1px 6px;border-radius:4px;margin-left:8px;vertical-align:middle}
+  h2.sec{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+    margin:30px 0 12px;font-weight:700}
+  h2.sec:first-child{margin-top:6px}
 
-  /* VP readout */
-  .vp{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  @media(max-width:760px){.vp{grid-template-columns:1fr}}
-  .vpcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;border-top:3px solid var(--gray)}
-  .vpcard.good{border-top-color:var(--good)}.vpcard.watch{border-top-color:var(--amber)}.vpcard.bad{border-top-color:var(--bad)}
-  .vpcard .vlab{font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:7px;color:var(--gray)}
-  .vpcard.good .vlab{color:var(--good)}.vpcard.watch .vlab{color:var(--warn)}.vpcard.bad .vlab{color:var(--bad)}
-  .vpcard h4{font-size:14.5px;font-weight:700;color:var(--navy);margin:0 0 6px;line-height:1.3}
-  .vpcard p{font-size:13px;line-height:1.5;color:var(--ink);margin:0}
-  .vpcard p b{color:var(--navy)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;
+    box-shadow:0 1px 2px rgba(10,37,64,.04)}
+  .grid{display:grid;gap:14px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.g3,.g4{grid-template-columns:1fr}}
 
-  .lead{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--azure);border-radius:14px;padding:20px 24px}
-  .lead p{margin:0 0 11px;font-size:15px;line-height:1.62}.lead p:last-child{margin-bottom:0}
-  .lead b{font-weight:700;color:var(--navy)}.lead .bright{color:var(--good);font-weight:700}
-  .lead code{font-family:var(--mono);font-size:12.5px;background:var(--azure-soft);color:#9a3a12;padding:1px 5px;border-radius:4px}
+  .vp{border-top:4px solid var(--line)}
+  .vp.good{border-top-color:var(--good)}
+  .vp.bad{border-top-color:var(--red)}
+  .vp.watch{border-top-color:var(--amber)}
+  .vp h3{margin:2px 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+  .vp p{margin:0;color:var(--ink);font-size:13.5px}
 
-  .kpigrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:520px){.kpigrid{grid-template-columns:1fr 1fr}}
-  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;position:relative}
-  .kpi .lab{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600;max-width:70%}
-  .toolbadge{position:absolute;top:12px;right:12px;font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.02em;padding:3px 7px;border-radius:5px;color:#fff}
-  .tb-gsc{background:#4285F4}.tb-ga4{background:#E37400}.tb-sf{background:#00A1E0}.tb-ahrefs{background:#0b4bd6}.tb-amp{background:#3a5bd9}.tb-npm{background:#CB3837}
-  .kpi .row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:10px 0 2px}
-  .kpi .val{font-family:var(--mono);font-size:24px;font-weight:600;line-height:1;color:var(--navy)}
-  .kpi .val em{font-style:normal;font-size:12px;color:var(--muted)}
-  .kpi .delta{font-family:var(--mono);font-size:11px;font-weight:600}
-  .up{color:var(--good)}.down{color:var(--bad)}.flat{color:var(--gray)}
-  .kpi .spark{margin-top:8px}
-  .kpi .insight{font-size:11px;color:var(--muted);margin-top:9px;line-height:1.45}
-  .gauge{margin-top:8px;height:8px;border-radius:6px;background:#e9e9f4;position:relative;overflow:hidden}
-  .gauge i{position:absolute;left:0;top:0;bottom:0;background:var(--bad);border-radius:6px}
-  .gauge .tk{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--navy);opacity:.45}
+  .lead{background:linear-gradient(180deg,#fff, #fff);border-left:4px solid var(--hero-orange)}
+  .lead b{color:var(--accent-deep)}
+  .validate{margin-top:10px;font-size:12px;color:var(--amber);font-weight:600}
 
-  .scorewrap{border:1px solid var(--line);border-radius:12px;overflow:hidden}
   table{width:100%;border-collapse:collapse;font-size:13px}
-  thead th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 16px;text-align:left;border-bottom:1px solid #dce3f0}
-  thead th.r{text-align:right}
-  tbody td{padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
-  tbody tr:last-child td{border-bottom:none}
-  tbody tr:hover{background:#fafbff}
-  .g-goal{font-weight:500;color:var(--navy);line-height:1.35}
-  .g-goal small{display:block;font-family:var(--mono);font-weight:400;font-size:10px;color:var(--gray);margin-top:3px}
-  td.cur,td.tgt{font-family:var(--mono);text-align:right}
-  td.cur{font-weight:600;font-size:16px;color:var(--navy)}
-  td.cur small{font-size:11px;color:var(--muted);font-weight:400}
-  td.cur .na{font-size:11px;color:var(--gray)}
-  td.tgt{color:var(--muted);font-size:12px}
-  td.insightcol{font-size:12px;color:var(--muted);line-height:1.4;max-width:230px}
-  .prog{height:8px;background:#e9e9f4;border-radius:6px;overflow:hidden;position:relative;min-width:90px}
-  .prog i{display:block;height:100%;border-radius:6px}
-  .prog .tk{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--navy);opacity:.5}
-  .f-good{background:var(--good)}.f-warn{background:var(--amber)}.f-bad{background:var(--bad)}.f-neu{background:var(--gray)}
-  td.st{text-align:right}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  td.num,th.num{text-align:right;font-family:"Roboto Mono",monospace}
+  .bar{height:8px;border-radius:6px;background:#EEF2F7;overflow:hidden;min-width:80px}
+  .bar>span{display:block;height:100%;background:var(--hero-orange)}
+  .pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:700}
+  .pill.good{background:#E4F6EE;color:var(--good)}
+  .pill.watch{background:#FCF0DD;color:var(--amber)}
+  .pill.bad{background:var(--accent-soft);color:var(--accent-deep)}
+  .pill.info{background:var(--sky);color:#1667B5}
 
-  .cluster{margin-top:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
-  .cl-head{padding:16px 20px 14px}
-  .cl-top{display:flex;align-items:center;gap:10px;margin-bottom:9px;flex-wrap:wrap}
-  .cl-top h3{font-weight:700;font-size:16px;margin:0;color:var(--navy)}
-  .cl-top .page{font-family:var(--mono);font-size:11px;color:var(--cobalt);background:var(--peri-soft);padding:3px 8px;border-radius:6px}
-  .cl-top .verdict{margin-left:auto}
-  .cl-read{margin:0;font-size:14px;line-height:1.56;color:var(--ink)}
-  .cl-read b{color:var(--navy);font-weight:700}
-  .cl-read code{font-family:var(--mono);font-size:12px;background:var(--gray-bg);padding:1px 5px;border-radius:3px}
-  .kwt-wrap{border-top:1px solid var(--line)}
-  table.kwt{font-size:12.5px}
-  .kwt thead th{background:#f6f8fc;padding:8px 12px}
-  .kwt tbody td{padding:9px 12px}
-  .kwt tbody td:first-child{padding-left:20px}
-  .kw{color:var(--navy)}
-  td.kw.fbx{position:relative}
-  .kwt td.num{font-family:var(--mono);text-align:right;color:var(--muted)}
-  .kwt td.vol{font-family:var(--mono);text-align:right;color:var(--navy);font-size:12px}
-  .kwt td.pageco{font-family:var(--mono);font-size:10.5px;color:var(--cobalt)}
-  .pos{font-family:var(--mono);font-weight:600;font-size:14px;color:var(--navy)}
-  .pos.best{color:var(--good)}
-  .cl-note{font-family:var(--mono);font-size:10.5px;color:var(--gray);margin:12px 4px 0;line-height:1.5}
+  .kpi{position:relative}
+  .kpi .toolbadge{font-size:10px;font-weight:800;letter-spacing:.04em;padding:2px 7px;border-radius:6px;text-transform:uppercase}
+  .tb-gsc{background:#E8F0FE;color:#1A56C4}
+  .tb-ga4{background:#FDE9D6;color:#B5540E}
+  .tb-npm{background:#FBE3E3;color:#C5302B}
+  .tb-ahrefs{background:#E6EEF7;color:#204E7A}
+  .kpi .val{font-size:26px;font-weight:800;margin:8px 0 2px}
+  .kpi .lbl{font-size:12px;color:var(--muted)}
+  .delta{font-size:12px;font-weight:700}
+  .delta.up{color:var(--good)} .delta.down{color:var(--red)} .delta.flat{color:var(--muted)}
+  .kpi .insight{font-size:12px;color:var(--muted);margin-top:8px}
+  .spark{margin-top:8px}
 
-  .ai-top{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
-  @media(max-width:640px){.ai-top{grid-template-columns:1fr 1fr}}
-  .ai-stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
-  .ai-stat .l{font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600}
-  .ai-stat .v{font-family:var(--mono);font-weight:600;font-size:23px;color:var(--navy);margin-top:6px}
-  .ai-stat .w{font-family:var(--mono);font-size:10.5px;margin-top:4px}
-  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  @media(max-width:720px){.twocol{grid-template-columns:1fr}}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
-  .card h4{font-weight:700;font-size:13.5px;margin:0 0 3px;color:var(--navy)}
-  .card .cap{font-size:11px;color:var(--muted);margin:0 0 14px}
-  .bars{display:flex;flex-direction:column;gap:9px}
-  .bar-row{display:grid;grid-template-columns:150px 1fr 40px;align-items:center;gap:10px}
-  .bar-row.fbx{position:relative}
-  .bar-row .bl{font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .bar-row .bt{height:15px;background:var(--gray-bg);border-radius:4px;overflow:hidden}
-  .bar-row .bt i{display:block;height:100%;background:var(--peri);border-radius:4px;opacity:.55}
-  .bar-row .bv{font-family:var(--mono);font-size:11px;text-align:right;color:var(--muted)}
-  .bar-row.me .bl{color:var(--azure-lo);font-weight:700}.bar-row.me .bt i{background:var(--azure);opacity:1}.bar-row.me .bv{color:var(--azure-lo);font-weight:600}
-  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
-  .chip{font-family:var(--mono);font-size:10.5px;color:#9a3a12;background:var(--azure-soft);padding:4px 9px;border-radius:999px}
-  .tnote{font-size:13px;color:var(--ink);margin:12px 0 0;line-height:1.5}.tnote b{color:var(--navy);font-weight:700}
+  .clus h3{margin:0;font-size:15px;font-weight:800}
+  .clus .head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+  .chip{font-size:11px;background:var(--sky);color:#1667B5;border-radius:6px;padding:2px 8px;font-weight:600}
+  .read{color:var(--ink);font-size:13.5px;margin:6px 0 12px}
 
-  /* tasks tab */
-  .tk-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:20px 0 16px}
-  .seg{display:inline-flex;background:#eef0f5;border-radius:9px;padding:3px}
-  .seg button{appearance:none;border:none;background:none;font:inherit;font-size:12.5px;font-weight:600;color:var(--muted);padding:6px 15px;border-radius:7px;cursor:pointer}
-  .seg button.active{background:#fff;color:var(--navy);box-shadow:0 1px 3px rgba(0,0,0,.10)}
-  .tk-meta{font-size:13px;color:var(--muted)}.tk-meta b{color:var(--navy);font-weight:700}
-  .tk-open{margin-left:auto;background:var(--azure);color:#fff;border-radius:9px;padding:9px 16px;font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;gap:7px;align-items:center}
-  .tk-open:hover{background:var(--azure-lo)}
-  .tkwrap{border:1px solid var(--line);border-radius:12px;overflow:hidden}
-  table.tkt{width:100%;border-collapse:collapse;font-size:13px}
-  .tkt thead th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:11px 16px;text-align:left;border-bottom:1px solid #dce3f0}
-  .tkt tbody td{padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
-  .tkt tbody tr:last-child td{border-bottom:none}
-  .tkt tbody tr:hover{background:#fafbff}
-  .tkt .tname{font-weight:600;color:var(--navy);max-width:440px;line-height:1.35}
-  .tkt .tname .tins{display:block;font-weight:400;font-size:11px;color:var(--muted);margin-top:3px}
-  .trk{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
-  .owner{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
-  .av{width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;font-family:var(--mono);flex:none}
-  .av.jj{background:#E14E12}.av.casey{background:#d9a441}.av.none{background:var(--gray)}
-  .pri{font-family:var(--mono);font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:6px}
-  .pri.p1{background:var(--bad-bg);color:var(--bad)}.pri.p2{background:var(--warn-bg);color:var(--warn)}.pri.p3{background:var(--peri-soft);color:var(--cobalt)}.pri.pnone{background:var(--gray-bg);color:var(--gray)}
-  .stat{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--navy);white-space:nowrap}
-  .stat .dot{width:7px;height:7px;border-radius:50%;flex:none}
-  .st-todo .dot{background:var(--gray)}.st-todo{color:var(--muted)}
-  .st-prog .dot{background:var(--cobalt)}.st-prog{color:var(--cobalt)}
-  .st-review .dot{background:var(--peri)}.st-review{color:var(--peri)}
-  .st-done .dot{background:var(--good)}.st-done{color:var(--good)}
-  .due{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
-  .due.over{color:var(--bad);font-weight:600}
+  .sov{display:flex;align-items:center;gap:10px;margin:7px 0}
+  .sov .name{width:120px;font-size:12.5px}
+  .sov .track{flex:1;height:14px;background:#EEF2F7;border-radius:8px;overflow:hidden}
+  .sov .track>span{display:block;height:100%;background:#C7D2DE}
+  .sov.me .track>span{background:var(--hero-orange)}
+  .sov .pct{width:52px;text-align:right;font-family:"Roboto Mono",monospace;font-size:12px}
+
+  .foot{margin-top:26px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);padding-top:14px}
+  .caveat{background:var(--accent-soft);border:1px solid #F6D3BF;border-radius:12px;padding:12px 14px;font-size:12.5px}
+
+  /* segmented control */
+  .seg{display:inline-flex;background:#EEF2F7;border-radius:10px;padding:3px;margin-bottom:14px}
+  .seg button{border:0;background:transparent;padding:6px 14px;border-radius:8px;font-weight:600;font-size:12.5px;color:var(--muted);cursor:pointer}
+  .seg button.active{background:#fff;color:var(--accent-deep);box-shadow:0 1px 3px rgba(10,37,64,.12)}
+  .view{display:none}.view.active{display:block}
   .board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
   @media(max-width:820px){.board{grid-template-columns:1fr 1fr}}
-  .bcol{background:#fafbff;border:1px solid var(--line);border-radius:12px;padding:12px}
-  .bcol h5{margin:0 0 10px;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:7px}
-  .bcol h5 .c{background:#fff;border:1px solid var(--line);border-radius:999px;font-size:10px;padding:0 7px;color:var(--muted)}
-  .bcard{background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin-bottom:8px;font-size:12px;line-height:1.35;color:var(--navy)}
-  .bcard:last-child{margin-bottom:0}
-  .bcard .bm{display:flex;justify-content:space-between;align-items:center;margin-top:8px;gap:8px}
-  .tl-row{display:grid;grid-template-columns:96px 1fr;gap:14px;padding:11px 4px;border-bottom:1px solid var(--line);align-items:center}
-  .tl-row:last-child{border-bottom:none}
-  .tl-date{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
-  .tl-date.over{color:var(--bad);font-weight:600}
+  .col h4{margin:0 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+  .tk{background:#fff;border:1px solid var(--line);border-left:3px solid var(--hero-orange);border-radius:10px;padding:10px 11px;margin-bottom:10px}
+  .tk .t{font-size:12.5px;font-weight:600}
+  .tk .m{font-size:11px;color:var(--muted);margin-top:5px;display:flex;gap:8px;flex-wrap:wrap}
+  .tk.p1{border-left-color:var(--red)}.tk.p2{border-left-color:var(--amber)}.tk.p3{border-left-color:#9AA7B4}
+  .tl-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+  .tl-bar{flex:1;height:10px;background:#EEF2F7;border-radius:6px;position:relative;overflow:hidden}
+  .tl-bar>span{position:absolute;height:100%;background:var(--hero-orange);border-radius:6px;opacity:.85}
 
-  /* summary tab */
-  .sum-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:22px 4px 14px;flex-wrap:wrap}
-  .sum-head h3{margin:0;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
-  .copybtn{background:var(--azure);color:#fff;border:none;border-radius:9px;padding:9px 16px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
-  .copybtn:hover{background:var(--azure-lo)}
-  .copybtn.ok{background:var(--good)}
-  .sumcard{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--azure);border-radius:14px;padding:26px 30px}
-  .sumcard h4{font-size:19px;font-weight:800;color:var(--navy);margin:0 0 14px;line-height:1.3}
-  .sumcard h5{font-size:14px;font-weight:700;color:var(--navy);margin:22px 0 8px}
-  .sumcard p{font-size:14px;line-height:1.62;margin:0 0 12px;color:var(--ink)}
-  .sumcard ul{margin:0 0 12px;padding-left:20px}
-  .sumcard li{font-size:14px;line-height:1.55;margin-bottom:6px;color:var(--ink)}
-  .sumcard b{color:var(--navy);font-weight:700}
-  .sumcard code{font-family:var(--mono);font-size:12.5px;background:var(--azure-soft);color:#9a3a12;padding:1px 5px;border-radius:4px}
+  .copybtn{background:var(--hero-orange);color:#fff;border:0;border-radius:9px;padding:9px 16px;font-weight:700;cursor:pointer;font-size:13px}
+  .copybtn:hover{background:var(--accent-deep)}
+  pre.summary{white-space:pre-wrap;background:#0A2540;color:#EAF2FB;border-radius:12px;padding:18px;font-size:13px;line-height:1.55;font-family:"Roboto Mono",monospace}
 
-  /* definitions tab */
-  .defintro{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--cobalt);border-radius:14px;padding:18px 22px;margin:20px 0 18px;font-size:14px;line-height:1.6;color:var(--ink)}
-  .defintro b{color:var(--navy)}
-  .deftbl-wrap{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:26px}
-  table.deftbl{width:100%;border-collapse:collapse;font-size:13px}
-  .deftbl thead th{background:#eef2fa;font-size:10px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 14px;text-align:left;border-bottom:1px solid #dce3f0}
-  .deftbl tbody td{padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
-  .deftbl tbody tr:last-child td{border-bottom:none}
-  .deftbl .term{font-weight:700;color:var(--navy);width:150px}
-  .deftbl .src{font-family:var(--mono);font-size:11px;color:var(--azure-lo);font-weight:600;white-space:nowrap}
-  .deftbl .why b{color:var(--navy)}
-  .deftbl .alt{color:var(--muted);font-size:12px}
-  .deftbl .alt b{color:var(--bad)}
-  .subhead{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:6px 4px 12px}
-  .sot-rule{background:var(--azure-soft);border:1px solid #ffd9c2;border-radius:14px;padding:14px 18px;margin-bottom:24px;font-size:13.5px;line-height:1.55;color:#9a3a12}.sot-rule b{color:#9a3a12;font-weight:700}
-
-  .foot{margin-top:30px;font-size:11.5px;color:var(--gray);border-top:1px solid var(--line);padding-top:14px;line-height:1.7}
-  a{color:var(--cobalt)}
-  @media(max-width:720px){.wrap{padding:20px 14px 60px}.tmeta{grid-template-columns:1fr}.tkt .col-track,.tkt .col-due{display:none}.deftbl .col-mean{display:none}}
+  /* feedback loop */
+  .fbx{position:relative}
+  .fbx>.fbbtn{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;border:0;
+    background:var(--hero-orange);color:#fff;font-size:12px;line-height:22px;text-align:center;cursor:pointer;
+    opacity:0;transition:opacity .15s;z-index:5;box-shadow:0 1px 4px rgba(10,37,64,.25)}
+  .fbx:hover>.fbbtn{opacity:1}
+  #fbModal{position:fixed;inset:0;background:rgba(10,37,64,.45);display:none;align-items:center;justify-content:center;z-index:100}
+  #fbModal.open{display:flex}
+  #fbModal .box{background:#fff;border-radius:14px;padding:20px;width:min(460px,92vw);box-shadow:0 20px 60px rgba(10,37,64,.35)}
+  #fbModal h4{margin:0 0 4px;font-size:15px}
+  #fbModal .ctx{font-size:12px;color:var(--muted);margin-bottom:10px;word-break:break-word}
+  #fbModal textarea{width:100%;min-height:90px;border:1px solid var(--line);border-radius:10px;padding:10px;font:inherit;resize:vertical}
+  #fbModal .row{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+  #fbModal button{border-radius:9px;padding:8px 14px;font-weight:700;cursor:pointer;border:0;font-size:13px}
+  #fbModal .send{background:var(--hero-orange);color:#fff}
+  #fbModal .cancel{background:#EEF2F7;color:var(--ink)}
 </style>
 </head>
 <body>
-<div class="wrap">
-
-  <header class="top">
-    <div class="logochip"><svg width="116" height="26" viewBox="0 0 116 26" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ignite UI"><defs><linearGradient id="iguiR" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF9A4D"/><stop offset="0.55" stop-color="#FF6B2C"/><stop offset="1" stop-color="#E14E12"/></linearGradient></defs><rect x="0" y="3" width="20" height="20" rx="5.5" fill="url(#iguiR)"/><path d="M10 6 C 12.6 8.7 13.8 10.8 13.8 13.4 C 13.8 16.3 12 18.2 10 18.2 C 8 18.2 6.2 16.5 6.2 13.9 C 6.2 12.4 6.9 11.2 7.8 10.4 C 7.7 11.7 8.3 12.6 9.3 12.8 C 8.6 11.1 9 8.4 10 6 Z" fill="#fff"/><text x="27" y="18.5" font-family="Inter,Roboto,system-ui,sans-serif" font-size="16" font-weight="800" fill="#0A2540">Ignite <tspan fill="#E14E12">UI</tspan></text></svg></div>
-    <div class="kick">infragistics.com · Ignite UI for React · Organic / SEO</div>
+<header class="top">
+  <div class="wrap">
+    <span class="logo-chip">
+      <svg width="116" height="26" viewBox="0 0 116 26" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ignite UI"><defs><linearGradient id="iguiR" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF9A4D"/><stop offset="0.55" stop-color="#FF6B2C"/><stop offset="1" stop-color="#E14E12"/></linearGradient></defs><rect x="0" y="3" width="20" height="20" rx="5.5" fill="url(#iguiR)"/><path d="M10 6 C 12.6 8.7 13.8 10.8 13.8 13.4 C 13.8 16.3 12 18.2 10 18.2 C 8 18.2 6.2 16.5 6.2 13.9 C 6.2 12.4 6.9 11.2 7.8 10.4 C 7.7 11.7 8.3 12.6 9.3 12.8 C 8.6 11.1 9 8.4 10 6 Z" fill="#fff"/><text x="27" y="18.5" font-family="Inter,Roboto,system-ui,sans-serif" font-size="16" font-weight="800" fill="#0A2540">Ignite <tspan fill="#E14E12">UI</tspan></text></svg>
+    </span>
+    <div class="kicker">infragistics.com · Ignite UI for React · Organic / SEO</div>
     <h1>Weekly SEO Brief <span>/ React components</span></h1>
     <div class="meta">
-      <span>Report date <b>Mon 27 Jul 2026</b></span>
-      <span>Window <b>Jul 20–26</b> vs <b>Jul 13–19</b></span>
-      <span>Owner <b>Casey</b> (PMM)</span>
-      <span>Status <b>Holding page one, not yet winning</b></span>
-    </div>
-  </header>
-
-  <nav class="tabs">
-    <button class="tab active" data-tab="report">Report</button>
-    <button class="tab" data-tab="tasks">Tasks <span class="badge">7</span></button>
-    <button class="tab" data-tab="summary">Summary</button>
-    <button class="tab" data-tab="definitions">Definitions</button>
-  </nav>
-
-  <!-- ============ REPORT ============ -->
-  <section id="report" class="tabpane active">
-
-  <h2 class="sec"><span class="n">★</span> VP readout — the 3 things to know</h2>
-  <div class="vp">
-    <div class="vpcard good fbx">
-      <div class="vlab">What's working</div>
-      <h4>Clicks rebounded and adoption is climbing</h4>
-      <p>React organic clicks recovered to <b>145 (+6.6% WoW)</b> after last week's dip, all-React sessions rose <b>~11%</b>, and npm installs are up <b>+19% MoM</b>. Demand is healthy and the impression slide is flattening.</p>
-    </div>
-    <div class="vpcard bad fbx">
-      <div class="vlab">What's not</div>
-      <h4>The money grid term is stuck on the page-1 floor</h4>
-      <p>&ldquo;react data grid&rdquo; sits at <b>#10</b> — bottom of page one, seven off the Sep-30 top-3 goal — and <b>&ldquo;react chart&rdquo; just slipped off page one (#10 → #13)</b>. We rank, but we're not winning the clicks.</p>
-    </div>
-    <div class="vpcard watch fbx">
-      <div class="vlab">The priority</div>
-      <h4>Instrument the goal, push the grid, route the demand</h4>
-      <p>Get <b>&ldquo;react grid&rdquo; &amp; &ldquo;react table&rdquo; into the tracker</b>, push the data-grid page toward top-3, route blog traffic to the product pages, and restore npm + React AI-visibility tracking.</p>
+      <span>Report date <b>2026-08-03</b></span>
+      <span>WoW window <b>Jul 27–Aug 2</b> vs <b>Jul 20–26</b></span>
+      <span>Owner <b>Casey (PMM)</b></span>
+      <span>Status <b>Grid cluster breaking through — data grid into page 1</b></span>
     </div>
   </div>
+</header>
 
-  <h2 class="sec"><span class="n">1</span> Executive summary</h2>
-  <div class="lead fbx">
-    <p><b>React ranks across its core terms and adoption is growing — but the grid head terms sit at the page-1 floor, so the demand isn't fully cashing into clicks yet.</b></p>
-    <p>The bright spot is <span class="bright">momentum</span>. Clicks recovered to 145 (+6.6% WoW) even as impressions eased −6.7% — better CTR on the terms we hold — and all-React sessions climbed ~11%. The north star, <b>npm installs, is up +19% MoM</b> (June 41,594 vs May 34,950). Branded terms own #1 (&ldquo;ignite ui react&rdquo;), and two page-2 terms improved sharply this week: &ldquo;react gauge&rdquo; onto page one (#13 → #9) and &ldquo;react grid component&rdquo; up +10 (#26 → #16).</p>
-    <p>The gap is the money grid cluster. <b>&ldquo;react data grid&rdquo; ranks, but at #10</b> — the bottom of page one, where clicks are thin. The correct page already ranks, so this is on-page + authority work, not targeting. Two of the three #1-goal head terms — <code>react grid</code> and <code>react table</code> — <b>aren't in the tracker yet</b>, so we're partly blind on the core goal. And the north-star npm pull failed this run (figure carried from last week's same-period pull), while AI visibility is still whole-brand, not React-scoped. The job now is execution: instrument the two terms, push the data-grid page onto the top half of page one, route blog demand to the product pages, and fix the two measurement gaps.</p>
+<div class="wrap">
+  <div class="tabs" role="tablist">
+    <button class="tabbtn active" data-tab="report">Report</button>
+    <button class="tabbtn" data-tab="tasks">Tasks</button>
+    <button class="tabbtn" data-tab="summary">Summary</button>
+    <button class="tabbtn" data-tab="defs">Definitions</button>
   </div>
 
-  <h2 class="sec"><span class="n">2</span> Goal scoreboard</h2>
-  <div class="scorewrap"><table>
-    <thead><tr><th>Goal</th><th class="r">Current</th><th class="r">Target</th><th>Progress</th><th>Insight</th><th class="r">Status</th></tr></thead>
-    <tbody>
-      <tr><td class="g-goal fbx">Top-3: &ldquo;react data grid&rdquo;<small>money term · vol 350 · KD 31</small></td><td class="cur">#10</td><td class="tgt">Top 3</td><td><div class="prog"><i class="f-warn" style="width:35%"></i></div></td><td class="insightcol">Ranks but page-1 floor — on-page + links to climb.</td><td class="st"><span class="pill p-warn">Page-1 floor</span></td></tr>
-      <tr><td class="g-goal fbx">Top-3: &ldquo;react grid&rdquo;<small>head term · not tracked</small></td><td class="cur"><span class="na">n/a</span></td><td class="tgt">Top 3</td><td><div class="prog"><i class="f-bad" style="width:8%"></i></div></td><td class="insightcol">Untracked — GSC shows ~#10; instrument first.</td><td class="st"><span class="pill p-build">Instrument</span></td></tr>
-      <tr><td class="g-goal fbx">Top-3: &ldquo;react table&rdquo;<small>head term · not tracked</small></td><td class="cur"><span class="na">n/a</span></td><td class="tgt">Top 3</td><td><div class="prog"><i class="f-bad" style="width:8%"></i></div></td><td class="insightcol">Untracked — add to Rank Tracker 1076972.</td><td class="st"><span class="pill p-build">Instrument</span></td></tr>
-      <tr><td class="g-goal fbx">npm installs up every month<small>north star · stretch +10% MoM</small></td><td class="cur">+19%<small>MoM</small></td><td class="tgt">&ge;+10%</td><td><div class="prog"><i class="f-good" style="width:100%"></i></div></td><td class="insightcol">June 41,594 vs May 34,950; carried this run.</td><td class="st"><span class="pill p-good">On track</span></td></tr>
-      <tr><td class="g-goal fbx">Organic traffic to target pages +25%<small>allowlist product pages</small></td><td class="cur">&asymp;44<small>/wk</small></td><td class="tgt">+25% base</td><td><div class="prog"><i class="f-warn" style="width:30%"></i></div></td><td class="insightcol">44 vs 57 prior (validate); rises as terms hit p1.</td><td class="st"><span class="pill p-warn">At risk</span></td></tr>
-      <tr><td class="g-goal fbx">Domain Rating hold &ge;72, reach 74<small>Ahrefs Domain Rating</small></td><td class="cur">72</td><td class="tgt">74</td><td><div class="prog"><i class="f-warn" style="width:50%"></i><span class="tk" style="left:100%"></span></div></td><td class="insightcol">Holding the floor; was 74 a year ago. 8,245 ref domains.</td><td class="st"><span class="pill p-gray">At floor</span></td></tr>
-      <tr><td class="g-goal fbx">Healthy React-scoped technical score<small>whole-site 45/100 today</small></td><td class="cur">45<small>/100</small></td><td class="tgt">90</td><td><div class="prog"><i class="f-bad" style="width:45%"></i><span class="tk" style="left:90%"></span></div></td><td class="insightcol">React audit not stood up yet — whole-site only.</td><td class="st"><span class="pill p-bad">Needs scope</span></td></tr>
-    </tbody>
-  </table></div>
+  <!-- ================= REPORT ================= -->
+  <section class="tabpane active" id="report">
 
-  <h2 class="sec"><span class="n">3</span> KPI snapshot</h2>
-  <div class="kpigrid">
-    <div class="kpi fbx"><span class="toolbadge tb-gsc">GSC</span><div class="lab">Organic clicks · React</div><div class="row"><span class="val">145<em>/wk</em></span><span class="delta up">&#9650; 6.6%</span></div><svg class="spark" data-spark="168,150,159,136,145" data-dir="up" height="30" width="100%"></svg><div class="insight">Rebounded after last week's dip.</div></div>
-    <div class="kpi fbx"><span class="toolbadge tb-gsc">GSC</span><div class="lab">Impressions · React</div><div class="row"><span class="val">8,797<em>/wk</em></span><span class="delta down">&#9660; 6.7%</span></div><svg class="spark" data-spark="11100,10400,9900,9433,8797" data-dir="down" height="30" width="100%"></svg><div class="insight">Slide flattening (was −18% last week).</div></div>
-    <div class="kpi fbx"><span class="toolbadge tb-ga4">GA4</span><div class="lab">Sessions · target pages</div><div class="row"><span class="val">44<em>/wk</em></span><span class="delta down">&#9660; 22.8%</span></div><svg class="spark" data-spark="72,66,61,57,44" data-dir="down" height="30" width="100%"></svg><div class="insight">Small n — validate before circulating. All-React sessions +10.8% (432).</div></div>
-    <div class="kpi fbx"><span class="toolbadge tb-npm">npm</span><div class="lab">npm installs · React <em>(MoM)</em></div><div class="row"><span class="val">41,594</span><span class="delta up">&#9650; 19%</span></div><svg class="spark" data-spark="12343,13634,26711,34950,41594" data-dir="up" height="30" width="100%"></svg><div class="insight">North star · carried this run (live pull failed).</div></div>
-    <div class="kpi fbx"><span class="toolbadge tb-ahrefs">Ahrefs</span><div class="lab">Domain Rating</div><div class="row"><span class="val">72</span><span class="delta flat">&mdash; flat</span></div><svg class="spark" data-spark="74,74,74,72,72,72,72,72,72,72,72,72,72" data-dir="flat" height="30" width="100%"></svg><div class="insight">At the floor; needs link velocity to reach 74.</div></div>
-    <div class="kpi fbx"><span class="toolbadge tb-ahrefs">Ahrefs</span><div class="lab">Technical health <em>(whole-site)</em></div><div class="row"><span class="val">45<em>/100</em></span><span class="delta down">&#9660; needs scope</span></div><div class="gauge"><i style="width:45%"></i><span class="tk" style="left:90%"></span></div><div class="insight">React-scoped audit not stood up (caveat).</div></div>
-  </div>
-
-  <h2 class="sec"><span class="n">4</span> Clusters</h2>
-
-  <div class="cluster">
-    <div class="cl-head"><div class="cl-top"><h3>React grid</h3><span class="page">/react/components/grids/data-grid</span><span class="verdict pill p-warn">Page-1 floor</span></div>
-      <p class="cl-read fbx"><b>All ranking, none winning.</b> The money term &ldquo;react data grid&rdquo; holds page one at ~#10 with heavy impressions but few clicks — a page-1-floor / CTR problem, not a visibility one. &ldquo;react grid component&rdquo; is climbing (26 → 16). The play is on-page depth + internal links from the ranking best-react-data-grid blog to push the data-grid page into the top half of page one — and to <b>instrument the two untracked head terms</b> so we can measure the goal.</p></div>
-    <div class="kwt-wrap"><table class="kwt"><thead><tr><th>Keyword</th><th class="r">Vol</th><th>Ranking page</th><th class="r">Position</th></tr></thead><tbody>
-      <tr><td class="kw fbx">react data grid</td><td class="vol">350</td><td class="pageco">/…/grids/data-grid</td><td class="num"><span class="pos">10</span></td></tr>
-      <tr><td class="kw fbx">react grid component</td><td class="vol">80</td><td class="pageco">/…/grids/data-grid</td><td class="num"><span class="pos">16</span></td></tr>
-      <tr><td class="kw fbx">lightweight react data grid</td><td class="vol">20</td><td class="pageco">/blogs/best-react-data-grid</td><td class="num"><span class="pos best">5</span></td></tr>
-      <tr><td class="kw fbx">react grid <span style="color:var(--gray)">(GSC only — not tracked)</span></td><td class="vol">—</td><td class="pageco">GSC ~#10</td><td class="num"><span class="pos">~10</span></td></tr>
-      <tr><td class="kw fbx">react table <span style="color:var(--gray)">(not tracked)</span></td><td class="vol">—</td><td class="pageco">—</td><td class="num"><span class="pos">—</span></td></tr>
-    </tbody></table></div>
-  </div>
-
-  <div class="cluster">
-    <div class="cl-head"><div class="cl-top"><h3>React charts</h3><span class="page">/react/components/charts/chart-overview</span><span class="verdict pill p-bad">Slipped off page 1</span></div>
-      <p class="cl-read fbx"><b>The one red flag this week.</b> &ldquo;react chart&rdquo; fell off page one (10 → 13) on a high-difficulty term (KD 52), while &ldquo;react gauge&rdquo; went the other way — onto page one (13 → 9). The chart-overview page lost ground; next step is to root-cause SERP change vs on-page decay and scope a refresh if it holds below #10.</p></div>
-    <div class="kwt-wrap"><table class="kwt"><thead><tr><th>Keyword</th><th class="r">Vol</th><th>Ranking page</th><th class="r">Position</th></tr></thead><tbody>
-      <tr><td class="kw fbx">react gauge</td><td class="vol">150</td><td class="pageco">/…/linear-gauge</td><td class="num"><span class="pos">9</span></td></tr>
-      <tr><td class="kw fbx">react chart</td><td class="vol">150</td><td class="pageco">/…/charts/chart-overview</td><td class="num"><span class="pos">13</span></td></tr>
-    </tbody></table></div>
-  </div>
-
-  <div class="cluster">
-    <div class="cl-head"><div class="cl-top"><h3>Branded</h3><span class="page">/products/ignite-ui-react</span><span class="verdict pill p-good">Owns #1</span></div>
-      <p class="cl-read fbx">Branded intent is <b>locked at #1</b> — &ldquo;ignite ui react&rdquo; and &ldquo;ignite ui for react&rdquo; both hold the top slot. Low volume, but it protects the brand SERP and the product page. No action beyond holding.</p></div>
-    <div class="kwt-wrap"><table class="kwt"><thead><tr><th>Keyword</th><th class="r">Vol</th><th>Ranking page</th><th class="r">Position</th></tr></thead><tbody>
-      <tr><td class="kw fbx">ignite ui react</td><td class="vol">30</td><td class="pageco">/products/ignite-ui-react</td><td class="num"><span class="pos best">1</span></td></tr>
-      <tr><td class="kw fbx">ignite ui for react</td><td class="vol">30</td><td class="pageco">/products/ignite-ui-react</td><td class="num"><span class="pos best">1</span></td></tr>
-    </tbody></table></div>
-  </div>
-
-  <div class="cluster">
-    <div class="cl-head"><div class="cl-top"><h3>Blog demand → routing</h3><span class="page">/blogs/* → product pages</span><span class="verdict pill p-warn">Traffic, not conversion</span></div>
-      <p class="cl-read fbx"><b>Right traffic, wrong page.</b> React blogs pull 5–10× the sessions of the money pages — best-react-ui-library <b>110</b>, react-app-examples <b>76</b>, best-react-data-grid <b>41</b> vs the product page (40) and the data-grid page (2). We're capturing demand but not routing it to conversion pages. Add prominent CTAs + contextual links from the top React blogs into the product and data-grid pages.</p></div>
-    <div class="kwt-wrap"><table class="kwt"><thead><tr><th>Landing page (GA4)</th><th class="r">Sessions/wk</th><th>Role</th><th class="r">WoW</th></tr></thead><tbody>
-      <tr><td class="kw fbx">/blogs/best-react-ui-library</td><td class="vol">110</td><td class="pageco">blog — demand</td><td class="num">+31</td></tr>
-      <tr><td class="kw fbx">/blogs/react-app-examples</td><td class="vol">76</td><td class="pageco">blog — demand</td><td class="num">+5</td></tr>
-      <tr><td class="kw fbx">/products/ignite-ui-react</td><td class="vol">40</td><td class="pageco">product — money</td><td class="num">−8</td></tr>
-      <tr><td class="kw fbx">/…/grids/data-grid</td><td class="vol">2</td><td class="pageco">product — money</td><td class="num">−2</td></tr>
-    </tbody></table></div>
-  </div>
-  <p class="cl-note">Tracked positions from Ahrefs Rank Tracker 1076972 (desktop, React subset), 4-week comparison Jun 28 → Jul 26; &ldquo;react grid&rdquo; position is directional from GSC (not yet tracked). Volumes/KD from Ahrefs. Session counts from GA4 (target-page allowlist). See the Definitions tab for why each number comes from where it does.</p>
-
-  <h2 class="sec"><span class="n">5</span> AI visibility</h2>
-  <div class="ai-top">
-    <div class="ai-stat fbx"><div class="l">Visibility</div><div class="v">7.3%</div><div class="w flat">brand-level (caveat)</div></div>
-    <div class="ai-stat fbx"><div class="l">Avg rank</div><div class="v">9.6</div><div class="w flat">3 of 21 prompts</div></div>
-    <div class="ai-stat fbx"><div class="l">Citations</div><div class="v">335</div><div class="w flat">14.3% prompt coverage</div></div>
-    <div class="ai-stat fbx"><div class="l">Tied with</div><div class="v">Figma</div><div class="w flat">both at 7.3%</div></div>
-  </div>
-  <div class="twocol">
-    <div class="card fbx"><h4>Share of voice vs competitors</h4><p class="cap">same prompts · % of responses mentioning brand</p>
-      <div class="bars">
-        <div class="bar-row fbx"><span class="bl">Syncfusion</span><span class="bt"><i style="width:100%"></i></span><span class="bv">39%</span></div>
-        <div class="bar-row fbx"><span class="bl">Material UI</span><span class="bt"><i style="width:94%"></i></span><span class="bv">37%</span></div>
-        <div class="bar-row fbx"><span class="bl">Ant Design</span><span class="bt"><i style="width:81%"></i></span><span class="bv">32%</span></div>
-        <div class="bar-row fbx"><span class="bl">DevExpress</span><span class="bt"><i style="width:69%"></i></span><span class="bv">27%</span></div>
-        <div class="bar-row fbx"><span class="bl">Kendo UI</span><span class="bt"><i style="width:69%"></i></span><span class="bv">27%</span></div>
-        <div class="bar-row fbx"><span class="bl">Chakra UI</span><span class="bt"><i style="width:37%"></i></span><span class="bv">15%</span></div>
-        <div class="bar-row fbx"><span class="bl">Handsontable</span><span class="bt"><i style="width:31%"></i></span><span class="bv">12%</span></div>
-        <div class="bar-row me fbx"><span class="bl">Infragistics</span><span class="bt"><i style="width:19%"></i></span><span class="bv">7%</span></div>
-        <div class="bar-row fbx"><span class="bl">PrimeNG</span><span class="bt"><i style="width:6%"></i></span><span class="bv">2%</span></div>
+    <h2 class="sec">VP readout — the 3 things to know</h2>
+    <div class="grid g3">
+      <div class="card vp good fbx"><button class="fbbtn" title="Comment">+</button>
+        <h3 style="color:var(--good)">What's working</h3>
+        <p><b>react data grid</b> — the money term — climbed <b>#11 → #9</b>, crossing onto page 1. The whole grid cluster moved with it: <b>react grid component #27 → #13</b>, and <b>react grid</b> is now instrumented in the tracker (#20, first read).</p>
+      </div>
+      <div class="card vp bad fbx"><button class="fbbtn" title="Comment">+</button>
+        <h3 style="color:var(--red)">What's not</h3>
+        <p><b>react chart</b> (singular, vol 150, KD 52) is still stuck at <b>#15</b> — the #10→#13 slip hasn't recovered. Organic <b>clicks fell 15.5% WoW</b> despite impressions rising, and the npm north-star is still <b>carried</b> (live pull blocked).</p>
+      </div>
+      <div class="card vp watch fbx"><button class="fbbtn" title="Comment">+</button>
+        <h3 style="color:var(--amber)">The priority</h3>
+        <p>Push <b>react data grid #9 → top-3</b> before Sep 30. Correct page already ranks — this is an authority + on-page play, not a targeting problem. Highest-leverage move on the board.</p>
       </div>
     </div>
-    <div class="card fbx"><h4>Read &amp; caveat</h4><p class="cap">what this figure is — and isn't</p>
-      <p class="tnote" style="margin-top:0"><b>Whole-brand, not React-scoped.</b> Amplitude AI Visibility (report 185443, Jul 23) measures Infragistics across all frameworks, so 7.3% blends React with Angular, Blazor and Web Components. It neither isolates React AI presence nor the true React gap on Syncfusion (39%).</p>
-      <p class="tnote"><b>The gap is real but the measurement is coarse.</b> We sit tied with Figma and well behind the grid/UI leaders. To act on it we need React-specific prompts — &ldquo;best react data grid&rdquo;, &ldquo;react component libraries&rdquo;, &ldquo;react grids&rdquo;.</p>
-      <div class="chips"><span class="chip">standing P1 action</span><span class="chip">React prompts needed</span><span class="chip">close the Syncfusion gap</span></div>
+
+    <h2 class="sec">1 · Executive summary</h2>
+    <div class="card lead fbx"><button class="fbbtn" title="Comment">+</button>
+      <p>The grid cluster is breaking through. <b>react data grid</b> moved <b>#11 → #9</b> (onto page 1), <b>react grid component</b> jumped <b>#27 → #13</b>, and <b>react grid</b> is now tracked (#20 first read) after last week's instrumentation ask. Impressions rose <b>+6.8%</b> to 9,768/wk, but <b>clicks fell -15.5%</b> to 125/wk — we're surfacing more, converting the SERP less, consistent with mid-page grid terms gaining visibility before they earn clicks. React sessions eased <b>-6.7%</b> to 406/wk. Branded terms still own the SERP (<b>ignite ui for react #1</b>), though <b>ignite ui react</b> slipped #1→#2. DR holds at <b>72</b>. The two soft spots are unchanged and both structural: <b>react chart</b> (singular) stuck at #15, and the npm north-star still un-pullable (carried at June <b>41,594</b>).</p>
+      <div class="validate">⚠ Validate before circulating: the -15.5% clicks dip sits against +6.8% impressions — likely a CTR/mix effect as new terms enter page-1/2, not a demand loss. Confirm next week before treating as a trend.</div>
     </div>
-  </div>
-  <div class="card fbx" style="margin-top:14px"><h4>Standing action — make this React-scoped</h4><p class="cap">carried every run until done · owner JJ</p>
-    <p class="tnote" style="margin-top:0"><b>Create React-specific AI Visibility prompts in Amplitude</b> so this section reports React-only and we can trend the gap on Syncfusion week over week. Until then, treat 7.3% as directional brand context, not a React KPI. This is the biggest strategic blind spot in the React program right now.</p>
-  </div>
 
-  <div class="foot">
-    Sources — tracked positions: Ahrefs Rank Tracker 1076972 (React subset, 4-wk) · clicks &amp; impressions: Google Search Console via Supermetrics (React query filter) · sessions: GA4 via Supermetrics (target-page allowlist) · DR, backlinks &amp; health: Ahrefs Site Explorer + Site Audit · AI visibility: Amplitude AI Visibility (Infragistics, orgBrandId 35242, report 185443) · npm installs: public npm downloads API (carried this run) · volumes/KD: Ahrefs.<br>
-    Ignite UI brand style (Inter · orange #FF6B2C hero · navy #0A2540 · soft-orange #FFEEE2 accents). One metric, one tool — never blended.
-  </div>
+    <h2 class="sec">2 · Goal scoreboard</h2>
+    <div class="card" style="padding:6px 4px">
+      <table>
+        <thead><tr><th>Goal</th><th class="num">Current</th><th>Target</th><th>Progress</th><th>Insight</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr class="fbx"><button class="fbbtn" title="Comment">+</button>
+            <td><b>react data grid</b></td><td class="num">#9</td><td>Top-3 (Sep 30) · #1 (Dec 31)</td>
+            <td><div class="bar"><span style="width:70%"></span></div></td>
+            <td>#11 → #9, onto page 1 (+2). Money term.</td><td><span class="pill watch">On track</span></td></tr>
+          <tr class="fbx"><button class="fbbtn" title="Comment">+</button>
+            <td><b>react grid</b> (instrument)</td><td class="num">#20</td><td>Top-3</td>
+            <td><div class="bar"><span style="width:30%"></span></div></td>
+            <td>Now tracked (first read, vol 350).</td><td><span class="pill info">Instrumented</span></td></tr>
+          <tr class="fbx"><button class="fbbtn" title="Comment">+</button>
+            <td><b>react table</b> (instrument)</td><td class="num">—</td><td>Tracked</td>
+            <td><div class="bar"><span style="width:8%"></span></div></td>
+            <td>Still not in Rank Tracker 1076972.</td><td><span class="pill bad">Blocked</span></td></tr>
+          <tr class="fbx"><button class="fbbtn" title="Comment">+</button>
+            <td><b>npm installs</b> (north star)</td><td class="num">41,594</td><td>Up MoM · +10% stretch</td>
+            <td><div class="bar"><span style="width:60%"></span></div></td>
+            <td>June, carried (live pull blocked). May 34,950 → +19%.</td><td><span class="pill watch">Carried</span></td></tr>
+          <tr class="fbx"><button class="fbbtn" title="Comment">+</button>
+            <td>Organic traffic to target pages</td><td class="num">54/wk</td><td>+25% by Dec 31</td>
+            <td><div class="bar"><span style="width:35%"></span></div></td>
+            <td>Product 48, react-data-grid 4, data-grid 2. React total 406 (-6.7%).</td><td><span class="pill watch">Watch</span></td></tr>
+          <tr class="fbx"><button class="fbbtn" title="Comment">+</button>
+            <td>Domain Rating</td><td class="num">72</td><td>Hold ≥72 · 74 by Mar '27</td>
+            <td><div class="bar"><span style="width:80%"></span></div></td>
+            <td>Flat 10 months. 8,265 ref domains (+20).</td><td><span class="pill good">Holding</span></td></tr>
+          <tr class="fbx"><button class="fbbtn" title="Comment">+</button>
+            <td>React technical health</td><td class="num">45/100</td><td>React-scoped clean score</td>
+            <td><div class="bar"><span style="width:20%"></span></div></td>
+            <td>Whole-site only; stale crawl (Jul 4). Not React-isolable.</td><td><span class="pill bad">Blocked</span></td></tr>
+        </tbody>
+      </table>
+    </div>
 
+    <h2 class="sec">3 · KPI snapshot</h2>
+    <div class="grid g4">
+      <div class="card kpi fbx"><button class="fbbtn" title="Comment">+</button>
+        <span class="toolbadge tb-gsc">GSC</span>
+        <div class="val">125<span style="font-size:13px;color:var(--muted)"> /wk</span></div>
+        <div class="lbl">Organic clicks (React)</div>
+        <div class="delta down">▼ 15.5% WoW</div>
+        <svg class="spark" data-vals="150,159,136,148,125" data-dir="down" width="150" height="34"></svg>
+        <div class="insight">Fewer clicks despite more impressions — CTR/mix effect.</div>
+      </div>
+      <div class="card kpi fbx"><button class="fbbtn" title="Comment">+</button>
+        <span class="toolbadge tb-gsc">GSC</span>
+        <div class="val">9,768<span style="font-size:13px;color:var(--muted)"> /wk</span></div>
+        <div class="lbl">Impressions (React)</div>
+        <div class="delta up">▲ 6.8% WoW</div>
+        <svg class="spark" data-vals="10400,9900,9433,9144,9768" data-dir="up" width="150" height="34"></svg>
+        <div class="insight">Grid cluster gaining page-1/2 visibility.</div>
+      </div>
+      <div class="card kpi fbx"><button class="fbbtn" title="Comment">+</button>
+        <span class="toolbadge tb-ga4">GA4</span>
+        <div class="val">406<span style="font-size:13px;color:var(--muted)"> /wk</span></div>
+        <div class="lbl">Sessions to React pages</div>
+        <div class="delta down">▼ 6.7% WoW</div>
+        <svg class="spark" data-vals="470,441,452,435,406" data-dir="down" width="150" height="34"></svg>
+        <div class="insight">Blogs still carry the demand; money pages thin.</div>
+      </div>
+      <div class="card kpi fbx"><button class="fbbtn" title="Comment">+</button>
+        <span class="toolbadge tb-npm">npm</span>
+        <div class="val">41,594<span style="font-size:13px;color:var(--muted)"> /mo</span></div>
+        <div class="lbl">Installs — north star</div>
+        <div class="delta flat">● carried (June)</div>
+        <svg class="spark" data-vals="343,13634,26711,34950,41594" data-dir="up" width="150" height="34"></svg>
+        <div class="insight">Live pull blocked again — restore the path (P1).</div>
+      </div>
+      <div class="card kpi fbx"><button class="fbbtn" title="Comment">+</button>
+        <span class="toolbadge tb-ga4">GA4</span>
+        <div class="val">54<span style="font-size:13px;color:var(--muted)"> /wk</span></div>
+        <div class="lbl">Sessions to target pages</div>
+        <div class="delta flat">● allowlist</div>
+        <svg class="spark" data-vals="61,58,55,57,54" data-dir="down" width="150" height="34"></svg>
+        <div class="insight">Product 48 · react-data-grid 4 · data-grid 2.</div>
+      </div>
+      <div class="card kpi fbx"><button class="fbbtn" title="Comment">+</button>
+        <span class="toolbadge tb-ahrefs">Ahrefs</span>
+        <div class="val">72</div>
+        <div class="lbl">Domain Rating</div>
+        <div class="delta flat">● flat</div>
+        <svg class="spark" data-vals="74,74,72,72,72,72,72,72,72,72,72,72,72" data-dir="flat" width="150" height="34"></svg>
+        <div class="insight">Holding ≥72; 74 target by Mar '27.</div>
+      </div>
+      <div class="card kpi fbx"><button class="fbbtn" title="Comment">+</button>
+        <span class="toolbadge tb-ahrefs">Ahrefs</span>
+        <div class="val">#9</div>
+        <div class="lbl">react data grid (desktop)</div>
+        <div class="delta up">▲ 2 (4-wk)</div>
+        <svg class="spark" data-vals="14,13,11,11,9" data-dir="up-rank" width="150" height="34"></svg>
+        <div class="insight">Onto page 1 — closest of the goal terms.</div>
+      </div>
+      <div class="card kpi fbx"><button class="fbbtn" title="Comment">+</button>
+        <span class="toolbadge tb-ahrefs">Ahrefs</span>
+        <div class="lbl" style="margin-bottom:6px">React technical health (whole-site)</div>
+        <svg id="gauge" width="150" height="86"></svg>
+        <div class="insight">45/100 · not React-scoped (caveat).</div>
+      </div>
+    </div>
+
+    <h2 class="sec">4 · Clusters</h2>
+    <div class="grid" style="grid-template-columns:1fr 1fr">
+      <div class="card clus">
+        <div class="head"><h3>React grid</h3><span class="chip">/react/components/grids/data-grid</span><span class="pill good">Momentum</span></div>
+        <p class="read fbx"><button class="fbbtn" title="Comment">+</button>The core cluster is moving as a unit. <b>react data grid</b> onto page 1 (#9), <b>react grid component</b> up 14 to #13, and <b>react grid</b> now visible at #20. Correct pages already rank — the gap to top-3 is authority + on-page depth, not targeting.</p>
+        <table>
+          <thead><tr><th>Keyword</th><th class="num">Vol</th><th>Ranking page</th><th class="num">Pos</th></tr></thead>
+          <tbody>
+            <tr><td class="kw fbx"><button class="fbbtn" title="Comment">+</button>react data grid</td><td class="num">350</td><td>/…/grids/data-grid</td><td class="num">9 ▲2</td></tr>
+            <tr><td class="kw fbx"><button class="fbbtn" title="Comment">+</button>react grid</td><td class="num">350</td><td>/…/grids/data-grid</td><td class="num">20 (new)</td></tr>
+            <tr><td class="kw fbx"><button class="fbbtn" title="Comment">+</button>react grid component</td><td class="num">80</td><td>/…/grids/data-grid</td><td class="num">13 ▲14</td></tr>
+            <tr><td class="kw fbx"><button class="fbbtn" title="Comment">+</button>lightweight react data grid</td><td class="num">20</td><td>/blogs/best-react-data-grid</td><td class="num">3</td></tr>
+            <tr><td class="kw fbx"><button class="fbbtn" title="Comment">+</button>react table</td><td class="num">—</td><td>not tracked</td><td class="num">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card clus">
+        <div class="head"><h3>React charts</h3><span class="chip">/react/components/charts</span><span class="pill watch">Mixed</span></div>
+        <p class="read fbx"><button class="fbbtn" title="Comment">+</button>Two of three up: <b>react charts</b> (plural) #15→#12 and <b>react gauge</b> #10→#9 onto page 1. But <b>react chart</b> (singular) drifted to #15 and hasn't recovered its earlier #10 — high KD (52) and a thin overview page. Needs a dedicated chart-overview push.</p>
+        <table>
+          <thead><tr><th>Keyword</th><th class="num">Vol</th><th>Ranking page</th><th class="num">Pos</th></tr></thead>
+          <tbody>
+            <tr><td class="kw fbx"><button class="fbbtn" title="Comment">+</button>react charts</td><td class="num">450</td><td>/…/charts/chart-overview</td><td class="num">12 ▲3</td></tr>
+            <tr><td class="kw fbx"><button class="fbbtn" title="Comment">+</button>react gauge</td><td class="num">150</td><td>/…/linear-gauge</td><td class="num">9 ▲1</td></tr>
+            <tr><td class="kw fbx"><button class="fbbtn" title="Comment">+</button>react chart</td><td class="num">150</td><td>/…/charts/chart-overview</td><td class="num">15 ▼1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card clus">
+        <div class="head"><h3>Branded</h3><span class="chip">/products/ignite-ui-react</span><span class="pill good">Owned</span></div>
+        <p class="read fbx"><button class="fbbtn" title="Comment">+</button>We own the brand SERP. <b>ignite ui for react</b> holds #1; <b>ignite ui react</b> slipped #1→#2 (minor, worth a glance). Branded queries are healthy — the growth lever is non-branded grid/chart demand, not here.</p>
+        <table>
+          <thead><tr><th>Keyword</th><th class="num">Vol</th><th>Ranking page</th><th class="num">Pos</th></tr></thead>
+          <tbody>
+            <tr><td class="kw fbx"><button class="fbbtn" title="Comment">+</button>ignite ui for react</td><td class="num">30</td><td>/products/ignite-ui-react</td><td class="num">1</td></tr>
+            <tr><td class="kw fbx"><button class="fbbtn" title="Comment">+</button>ignite ui react</td><td class="num">30</td><td>/products/ignite-ui-react</td><td class="num">2 ▼1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card clus">
+        <div class="head"><h3>Blog demand → routing</h3><span class="chip">/blogs → /products</span><span class="pill bad">Routing gap</span></div>
+        <p class="read fbx"><button class="fbbtn" title="Comment">+</button>The right-traffic-wrong-page problem persists. Blogs pull 2–20× the sessions of the money pages — <b>best-react-ui-library 93</b>, <b>react-app-examples 85</b>, <b>best-react-data-grid 37</b> vs product page 48 and the data-grid component page at just <b>2</b>. We're capturing demand but not routing it to conversion pages.</p>
+        <table>
+          <thead><tr><th>Landing page</th><th class="num">Sessions/wk</th><th>Type</th></tr></thead>
+          <tbody>
+            <tr><td class="kw fbx"><button class="fbbtn" title="Comment">+</button>/blogs/best-react-ui-library</td><td class="num">93</td><td>Blog</td></tr>
+            <tr><td class="kw fbx"><button class="fbbtn" title="Comment">+</button>/blogs/react-app-examples</td><td class="num">85</td><td>Blog</td></tr>
+            <tr><td class="kw fbx"><button class="fbbtn" title="Comment">+</button>/products/ignite-ui-react</td><td class="num">48</td><td>Money</td></tr>
+            <tr><td class="kw fbx"><button class="fbbtn" title="Comment">+</button>/blogs/best-react-data-grid</td><td class="num">37</td><td>Blog</td></tr>
+            <tr><td class="kw fbx"><button class="fbbtn" title="Comment">+</button>/…/grids/data-grid</td><td class="num">2</td><td>Money</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h2 class="sec">5 · AI visibility</h2>
+    <div class="grid g4">
+      <div class="card kpi fbx"><button class="fbbtn" title="Comment">+</button><div class="val">0%</div><div class="lbl">Visibility (brand)</div><div class="insight">4 prompts · whole-Infragistics</div></div>
+      <div class="card kpi fbx"><button class="fbbtn" title="Comment">+</button><div class="val">10</div><div class="lbl">Avg rank</div><div class="insight">Bottom of set</div></div>
+      <div class="card kpi fbx"><button class="fbbtn" title="Comment">+</button><div class="val">55</div><div class="lbl">Citations</div><div class="insight">Sources cited across runs</div></div>
+      <div class="card kpi fbx"><button class="fbbtn" title="Comment">+</button><div class="val">0/4</div><div class="lbl">Prompt coverage</div><div class="insight">No React prompts yet</div></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h2 class="sec" style="margin-top:2px">Share of voice vs competitors (brand-level)</h2>
+      <div class="sov me"><span class="name">Infragistics</span><div class="track"><span style="width:0%"></span></div><span class="pct">0%</span></div>
+      <div class="sov"><span class="name">Material UI</span><div class="track"><span style="width:100%"></span></div><span class="pct">75%</span></div>
+      <div class="sov"><span class="name">Ant Design</span><div class="track"><span style="width:50%"></span></div><span class="pct">37.5%</span></div>
+      <div class="sov"><span class="name">Handsontable</span><div class="track"><span style="width:33%"></span></div><span class="pct">25%</span></div>
+      <div class="sov"><span class="name">Chakra UI</span><div class="track"><span style="width:17%"></span></div><span class="pct">12.5%</span></div>
+      <div class="sov"><span class="name">Syncfusion</span><div class="track"><span style="width:17%"></span></div><span class="pct">12.5%</span></div>
+    </div>
+    <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:14px">
+      <div class="card caveat fbx"><button class="fbbtn" title="Comment">+</button><b>Read &amp; caveat:</b> This is <b>whole-Infragistics</b>, not React-scoped, and only 4 prompts drive it — so a 0% read is volatile, not a verdict on React. Material UI dominates the generic React-UI prompts. We can't measure React AI presence until React-specific prompts exist.</div>
+      <div class="card fbx" style="border-left:4px solid var(--hero-orange)"><button class="fbbtn" title="Comment">+</button><b>Standing action (P1):</b> Create React-specific Amplitude AI Visibility prompts ("best react data grid", "react charting library", "ignite ui react vs …"). Until then AI visibility stays un-actionable for React. Owner: JJ.</div>
+    </div>
+
+    <div class="foot">
+      Sources — Rankings/volume/KD/DR/backlinks/site-audit: <b>Ahrefs</b> (rank tracker 1076972, desktop, Aug 2 vs Jul 5). Clicks/impressions: <b>Google Search Console</b> via Supermetrics (React query filter, Jul 27–Aug 2 vs Jul 20–26). Sessions/engagement: <b>GA4</b> via Supermetrics (React landing pages). npm installs: <b>public npm API</b> — carried this run (live pull blocked). AI visibility: <b>Amplitude</b> (brand-level, report 188594). One metric, one tool — never blended.
+    </div>
   </section>
 
-  <!-- ============ TASKS ============ -->
-  <section id="tasks" class="tabpane">
-    <div class="tk-bar">
-      <div class="seg" id="seg">
-        <button data-view="table" class="active">Table</button>
+  <!-- ================= TASKS ================= -->
+  <section class="tabpane" id="tasks">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+      <div class="seg" id="taskseg">
+        <button class="active" data-view="table">Table</button>
         <button data-view="board">Board</button>
         <button data-view="timeline">Timeline</button>
       </div>
-      <div class="tk-meta"><b>7 tasks</b> · live from Slingshot · <b>0</b> in progress · <b>0</b> in review · <b>0</b> done · <b>7</b> to do</div>
-      <a class="tk-open" href="https://my.slingshotapp.io/openTaskList/e97e10ef_b1501d7b-f89f-4e0b-be53-50d49a93bf2d_tg" target="_blank" rel="noopener">&#8599; Open this list in Slingshot</a>
+      <a class="pill info" style="padding:8px 14px" href="https://my.slingshotapp.io/openTaskList/e97e10ef_b1501d7b-f89f-4e0b-be53-50d49a93bf2d_tg" target="_blank">Open this list in Slingshot ↗</a>
     </div>
-    <div id="tkview"></div>
+
+    <div class="view active" id="v-table">
+      <div class="card" style="padding:6px 4px"><table id="tasktable">
+        <thead><tr><th>Task</th><th>Owner</th><th>Priority</th><th>Status</th><th>Due</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+    </div>
+    <div class="view" id="v-board"><div class="board" id="taskboard"></div></div>
+    <div class="view" id="v-timeline"><div class="card" id="tasktimeline"></div></div>
   </section>
 
-  <!-- ============ SUMMARY ============ -->
-  <section id="summary" class="tabpane">
-    <div class="sum-head">
-      <h3>Executive summary — post to Slingshot</h3>
-      <button class="copybtn" id="copybtn">&#128203; Copy summary</button>
+  <!-- ================= SUMMARY ================= -->
+  <section class="tabpane" id="summary">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <h2 class="sec" style="margin:0">Exec summary — formatted for Slingshot</h2>
+      <button class="copybtn" id="copySummary">Copy to clipboard</button>
     </div>
-    <div class="sumcard">
-      <h4>React SEO: adoption is climbing — now we win the grid SERP</h4>
-      <p>Two-line version: <b>React ranks across its core terms and npm adoption is up, but the grid head terms sit at the page-1 floor where clicks are thin.</b> The work now is execution, not strategy.</p>
-      <h5>What's working</h5>
-      <p>Momentum. Clicks rebounded to <b>145 (+6.6% WoW)</b> after last week's dip, all-React sessions rose <b>~11%</b>, and the north star — <b>npm installs — is up +19% MoM</b> (June 41,594). Branded terms own #1, and &ldquo;react gauge&rdquo; (#13 → #9) and &ldquo;react grid component&rdquo; (#26 → #16) both climbed.</p>
-      <h5>What's not</h5>
-      <p>The money term <b>&ldquo;react data grid&rdquo; is stuck at #10</b> — the page-1 floor, seven off the Sep-30 top-3 goal — and <b>&ldquo;react chart&rdquo; slipped off page one (#10 → #13)</b>. Two of the three #1-goal head terms (<code>react grid</code>, <code>react table</code>) still aren't tracked, so we're partly blind on the core goal.</p>
-      <h5>The priority this week</h5>
-      <ul>
-        <li><b>Instrument the goal</b> — add &ldquo;react grid&rdquo; &amp; &ldquo;react table&rdquo; to Rank Tracker 1076972.</li>
-        <li><b>Push the grid</b> — on-page depth + internal links to move &ldquo;react data grid&rdquo; off the page-1 floor.</li>
-        <li><b>Investigate</b> the &ldquo;react chart&rdquo; page-one slip; <b>route</b> top blog traffic to the product/grid pages.</li>
-        <li><b>Fix the plumbing</b> — restore the npm live pull and stand up React-specific AI-visibility prompts.</li>
-      </ul>
-      <h5>For leadership</h5>
-      <p>Demand and adoption are trending the right way — npm +19% MoM, clicks recovering. The constraint is getting the grid head terms off the bottom of page one; as that happens, product-page traffic and conversion should follow. Two measurement gaps (npm live pull, React-scoped AI visibility) are being closed so next week's read is cleaner.</p>
-    </div>
+    <pre class="summary" id="summaryText"></pre>
   </section>
 
-  <!-- ============ DEFINITIONS ============ -->
-  <section id="definitions" class="tabpane">
-    <div class="defintro">
-      <b>Two things live here:</b> (1) our <b>source of truth</b> — which tool is the authority for each number and why, so nobody compares two tools that measure different things; and (2) a plain-English <b>SEO glossary</b> so anyone reading the report knows what the terms mean. The rule underneath it all: <b>one metric, one tool</b> — a trend is only trustworthy if it comes from the same place every week.</div>
-
-    <div class="subhead">Source of truth — where each number comes from</div>
-    <div class="deftbl-wrap"><table class="deftbl">
-      <thead><tr><th>Metric</th><th>Source of truth</th><th class="col-mean">What it tells us</th><th>Why here — and why not the alternative</th></tr></thead>
+  <!-- ================= DEFINITIONS ================= -->
+  <section class="tabpane" id="defs">
+    <h2 class="sec">Source-of-truth — which tool owns each number</h2>
+    <div class="card" style="padding:6px 4px"><table>
+      <thead><tr><th>Metric</th><th>Tool (owner)</th><th>Why this tool</th><th>Why not the alternative</th></tr></thead>
       <tbody>
-        <tr><td class="term">Tracked keyword positions</td><td class="src">Ahrefs Rank Tracker 1076972</td><td class="col-mean">Where our React terms rank week to week (React subset of the project).</td><td class="why"><b>Why Ahrefs Rank Tracker:</b> consistent tracked positions for our goal terms, including desktop head terms. <span class="alt">Always filter to the React subset — the project holds ~1,051 keywords across all frameworks; <b>never</b> report Angular / Blazor / Web Components / jQuery here.</span></td></tr>
-        <tr><td class="term">Organic clicks &amp; impressions</td><td class="src">Google Search Console</td><td class="col-mean">How our React pages actually get shown and clicked, per query.</td><td class="why"><b>Why GSC:</b> Google's own record of real clicks/impressions. <span class="alt"><b>Not Ahrefs</b> for clicks — Ahrefs traffic is modeled; GSC is the real, per-query truth. Filter queries to those containing &ldquo;react&rdquo;.</span></td></tr>
-        <tr><td class="term">Keywords we don't rank for yet</td><td class="src">Ahrefs Keywords Explorer</td><td class="col-mean">Volume, difficulty, and whitespace terms we don't surface on.</td><td class="why"><b>Why Ahrefs:</b> it can see terms we don't appear for. <span class="alt"><b>Not GSC</b> — GSC only reports queries we already surface on, so it's blind to whitespace. Volume/KD always come from Ahrefs.</span></td></tr>
-        <tr><td class="term">Sessions to target pages</td><td class="src">GA4 (via Supermetrics)</td><td class="col-mean">What visitors do once they land on React product/blog pages.</td><td class="why"><b>Why GA4:</b> it measures on-site behaviour (engagement rate, not bounce). <span class="alt"><b>Not GSC</b> — GSC measures Google's results, GA4 measures the site; they'll never match exactly, so we don't reconcile them. Target-page allowlist only.</span></td></tr>
-        <tr><td class="term">npm installs (north star)</td><td class="src">public npm downloads API</td><td class="col-mean">Monthly installs for igniteui-react, -grids, -charts — real adoption.</td><td class="why"><b>Why npm API:</b> the actual download record for our packages, MoM. <span class="alt">Not a modeled proxy. When the live pull fails we carry the last same-period figure and flag it, rather than blend a different source.</span></td></tr>
-        <tr><td class="term">AI / LLM visibility</td><td class="src">Amplitude AI Visibility</td><td class="col-mean">How often AI answers mention Infragistics, at what rank, with what citations.</td><td class="why"><b>Why Amplitude:</b> single source for everything AI/AEO, so the trend stays consistent. <span class="alt">Today it's <b>brand-level</b> (whole-Infragistics), not React-scoped — reported with a caveat until React-specific prompts exist. <b>Not Ahrefs Brand Radar</b> — mixing tools for the same number creates fake movement.</span></td></tr>
-        <tr><td class="term">Domain authority &amp; backlinks</td><td class="src">Ahrefs (Site Explorer)</td><td class="col-mean">Domain Rating, referring domains, backlink growth for infragistics.com.</td><td class="why"><b>Why Ahrefs:</b> DR is Ahrefs' own model. <span class="alt"><b>Don't cross-compare</b> to any other tool's authority score — different scales, not interchangeable.</span></td></tr>
-        <tr><td class="term">Technical site health</td><td class="src">Ahrefs Site Audit 1076972</td><td class="col-mean">Crawl-based health score, errors, canonicals, sitemaps.</td><td class="why"><b>Why Ahrefs Site Audit:</b> consistent crawl-based scoring week to week. <span class="alt">Currently <b>whole-site</b> (React not isolable yet) — reported with a caveat; standing up a React-prefix audit is an open task.</span></td></tr>
+        <tr><td>Organic clicks &amp; impressions</td><td>Google Search Console</td><td>Google's own record of what searchers saw and clicked.</td><td>Ahrefs models search demand, not your actual clicks.</td></tr>
+        <tr><td>Keyword position (goal terms)</td><td>Ahrefs Rank Tracker</td><td>Consistent daily desktop tracking of the exact terms.</td><td>GSC "avg position" blends pages/countries/devices — noisy for one term.</td></tr>
+        <tr><td>Sessions / engagement</td><td>GA4</td><td>On-site behaviour once they land.</td><td>GSC stops at the click; can't see the session.</td></tr>
+        <tr><td>npm installs (north star)</td><td>public npm API</td><td>The actual download record for igniteui-react, -grids, -charts.</td><td>Nothing else measures real package adoption.</td></tr>
+        <tr><td>Domain Rating / backlinks</td><td>Ahrefs Site Explorer</td><td>Largest live backlink index.</td><td>GSC links report is partial and undated.</td></tr>
+        <tr><td>Technical health</td><td>Ahrefs Site Audit</td><td>Full-site crawl scored 0–100.</td><td>Whole-site only today — React not isolable (open action).</td></tr>
+        <tr><td>AI visibility</td><td>Amplitude AI Visibility</td><td>Tracks brand mentions in LLM answers.</td><td>Brand-level only; React prompts not built yet.</td></tr>
       </tbody>
     </table></div>
 
-    <div class="subhead">SEO glossary — plain English</div>
-    <div class="deftbl-wrap"><table class="deftbl">
-      <thead><tr><th>Term</th><th>What it means</th><th>Where / why we track it</th></tr></thead>
-      <tbody>
-        <tr><td class="term">Keyword</td><td>A word or phrase people type into search (e.g. &ldquo;react data grid&rdquo;). We group related keywords into <b>clusters</b> around one page.</td><td class="alt">Ahrefs for volume; Rank Tracker / GSC for how we rank.</td></tr>
-        <tr><td class="term">Head term vs. long-tail</td><td>A <b>head term</b> is short and high-volume (&ldquo;react data grid&rdquo;). A <b>long-tail keyword</b> is longer, more specific and lower-volume (&ldquo;lightweight react data grid&rdquo;) — less traffic each, but easier to rank for and higher intent.</td><td class="alt">Ahrefs (find them) + Rank Tracker (track them).</td></tr>
-        <tr><td class="term">Impressions</td><td>How many times our page showed up in search results for a query — whether or not anyone clicked.</td><td class="alt">GSC.</td></tr>
-        <tr><td class="term">Clicks &amp; CTR</td><td>Clicks = people who actually clicked through. <b>CTR</b> (click-through rate) = clicks ÷ impressions. Low CTR at a good position usually means a weak title or an AI Overview taking the click.</td><td class="alt">GSC.</td></tr>
-        <tr><td class="term">Position / ranking</td><td>Where our page sits in Google results for a query. <b>Page 1</b> = positions 1–10 (almost all clicks); <b>page 2</b> = 11–20 (almost none). The &ldquo;page-1 floor&rdquo; is ~#10.</td><td class="alt">Ahrefs Rank Tracker (ours); GSC (clicks).</td></tr>
-        <tr><td class="term">KD (Keyword Difficulty)</td><td>Ahrefs' 0–100 estimate of how hard it is to rank in the top 10 for a term. Higher = more on-page + links needed.</td><td class="alt">Ahrefs.</td></tr>
-        <tr><td class="term">Domain Rating (DR)</td><td>Ahrefs' 0–100 score of a site's overall backlink strength / authority. Higher DR makes it easier to rank. Ours is 72; goal is 74.</td><td class="alt">Ahrefs.</td></tr>
-        <tr><td class="term">npm installs</td><td>How many times our React packages are downloaded from npm each month — the closest thing to real product adoption, and our north-star metric.</td><td class="alt">public npm downloads API.</td></tr>
-        <tr><td class="term">Technical health</td><td>A crawl-based score (0–100) of how clean the site is — broken links, errors, redirects, sitemaps. Low health caps how high anything can rank.</td><td class="alt">Ahrefs Site Audit.</td></tr>
-        <tr><td class="term">AI visibility (AEO)</td><td>How often AI answers (Google AI Overview, ChatGPT) mention our brand for relevant questions — the AI-era version of ranking. AEO = Answer Engine Optimization.</td><td class="alt">Amplitude AI Visibility.</td></tr>
-        <tr><td class="term">Share of voice</td><td>Of all the AI answers to a set of questions, the % that mention a given brand — how loud we are vs. competitors in AI answers.</td><td class="alt">Amplitude.</td></tr>
-        <tr><td class="term">Cluster / not tracked</td><td>A <b>cluster</b> is a group of related keywords one page should own. <b>Not tracked</b> means we have the demand but the term isn't in the Rank Tracker yet (e.g. react grid, react table).</td><td class="alt">Rank Tracker + GSC.</td></tr>
-      </tbody>
-    </table></div>
+    <h2 class="sec">Plain-English glossary</h2>
+    <div class="card">
+      <p><b>Impressions</b> — times a page showed in results. <b>Clicks</b> — times someone clicked through. <b>CTR</b> — clicks ÷ impressions. <b>Position</b> — average ranking slot (lower = better; #1 is top). <b>Page 1</b> — positions 1–10. <b>KD</b> — keyword difficulty, 0–100. <b>Volume</b> — est. monthly searches. <b>DR</b> — Domain Rating, backlink strength 0–100. <b>Engagement rate</b> — % of sessions that were engaged (GA4's replacement for bounce rate). <b>north star</b> — the one metric adoption ladders up to: npm installs.</p>
+    </div>
 
-    <div class="sot-rule"><b>The one rule:</b> one metric, one tool — never blend sources for the same number. When two tools disagree, they're usually measuring two different things (search vs. on-site, our real data vs. a model's estimate), not contradicting each other. Volatility: WoW on clicks/impressions, not raw position; flag a position move only if ≥3 positions OR crossing the page-1 boundary (10↔11); for the #1-target grid terms, also flag any slip from #1.</div>
+    <h2 class="sec">The one rule</h2>
+    <div class="card caveat"><b>One metric, one tool.</b> Never blend two sources for the same number. If two tools disagree, they're measuring different things (search vs on-site, real vs modeled) — we don't reconcile them. We never fabricate; we present only actual tool values, and everything here is filtered to React.</div>
   </section>
-
 </div>
 
+<!-- feedback modal -->
+<div id="fbModal"><div class="box">
+  <h4>Send feedback to the SEO thread</h4>
+  <div class="ctx" id="fbCtx"></div>
+  <textarea id="fbText" placeholder="What's off, what to change, what to dig into…"></textarea>
+  <div class="row"><button class="cancel" id="fbCancel">Cancel</button><button class="send" id="fbSend">Post to Slingshot ↗</button></div>
+</div></div>
+
 <script>
-document.querySelectorAll('.tab').forEach(function(t){
-  t.addEventListener('click',function(){
-    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active');});
-    document.querySelectorAll('.tabpane').forEach(function(x){x.classList.remove('active');});
-    t.classList.add('active');
-    document.getElementById(t.getAttribute('data-tab')).classList.add('active');
-    if(t.getAttribute('data-tab')==='report') drawSparks();
-  });
+const FEEDBACK_URL="https://app.slingshotapp.io/openDiscussion/e97e10ef_bc51c2f1-4f9b-485f-823c-a3d154edeb5d";
+
+// ---- tabs ----
+document.querySelectorAll('.tabbtn').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tabbtn').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.tabpane').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active');
 });
 
-var TODAY='2026-07-27';
-var TASKS=[
- {n:"React SEO: Add \"react grid\" & \"react table\" to Rank Tracker 1076972",ins:"Core #1-goal terms, untracked — can't measure the goal. GSC shows react grid ~#10.",track:"Monitoring",owner:"jj",pri:"p1",status:"todo",due:"2026-07-30"},
- {n:"React SEO: Create React-specific Amplitude AI Visibility prompts (standing P1)",ins:"AI visibility is whole-brand (7.3%), not React — need React prompts to close the Syncfusion gap.",track:"Measurement",owner:"jj",pri:"p1",status:"todo",due:"2026-07-30"},
- {n:"React SEO: Push \"react data grid\" from #10 to top-3",ins:"Money term stuck at the page-1 floor; on-page + links — correct page already ranks.",track:"Content",owner:"jj",pri:"p1",status:"todo",due:"2026-08-20"},
- {n:"React SEO: Route top React blog traffic to product/grid pages",ins:"Blogs pull 5–10x the sessions of the money pages; route demand to conversion pages.",track:"Content",owner:"jj",pri:"pnone",status:"todo",due:"2026-08-06"},
- {n:"React SEO: Stand up a React-prefix Ahrefs Site Audit project",ins:"Whole-site health (45) isn't actionable for React; a scoped crawl gives a clean target.",track:"Technical",owner:"jj",pri:"pnone",status:"todo",due:"2026-08-06"},
- {n:"React SEO: Investigate the \"react chart\" page-1 slip (#10 → #13)",ins:"Only red flag this week; SERP change vs on-page decay on chart-overview.",track:"Content",owner:"jj",pri:"p2",status:"todo",due:"2026-08-03",isNew:true},
- {n:"React SEO: Restore the npm live-pull path for the north-star metric",ins:"npm API unreachable this run; June carried. Needs an allowlisted pull path.",track:"Measurement",owner:"jj",pri:"p1",status:"todo",due:"2026-08-03",isNew:true}
-];
-var OWNERS={jj:{label:"JJ McGuigan",cls:"jj",init:"JJ"},casey:{label:"Casey",cls:"casey",init:"CC"},none:{label:"Unassigned",cls:"none",init:"—"}};
-var STATUS={todo:{label:"To do",cls:"st-todo"},prog:{label:"In progress",cls:"st-prog"},review:{label:"In review",cls:"st-review"},done:{label:"Done",cls:"st-done"}};
-var PRI={p1:"P1",p2:"P2",p3:"P3",pnone:"—"};
-
-function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-function dueCell(d){if(!d)return '<span class="due">—</span>';var over=(d<TODAY);return '<span class="due'+(over?' over':'')+'">'+d+'</span>';}
-function ownerCell(o){var m=OWNERS[o];return '<span class="owner"><span class="av '+m.cls+'">'+m.init+'</span>'+m.label+'</span>';}
-function statCell(s){var m=STATUS[s];return '<span class="stat '+m.cls+'"><span class="dot"></span>'+m.label+'</span>';}
-
-function renderTable(){
-  var h='<div class="tkwrap"><table class="tkt"><thead><tr><th>Task</th><th class="col-track">Track</th><th>Owner</th><th>Priority</th><th>Status</th><th class="col-due">Due</th></tr></thead><tbody>';
-  TASKS.forEach(function(t){
-    var ins=t.ins?'<span class="tins">'+esc(t.ins)+'</span>':'';
-    h+='<tr><td class="tname">'+esc(t.n)+(t.isNew?' <span class="tnew">NEW</span>':'')+ins+'</td><td class="col-track"><span class="trk">'+t.track+'</span></td><td>'+ownerCell(t.owner)+'</td><td><span class="pri '+t.pri+'">'+PRI[t.pri]+'</span></td><td>'+statCell(t.status)+'</td><td class="col-due">'+dueCell(t.due)+'</td></tr>';
-  });
-  h+='</tbody></table></div>';
-  return h;
+// ---- sparklines ----
+function spark(svg){
+  const vals=svg.dataset.vals.split(',').map(Number);const dir=svg.dataset.dir;
+  const w=+svg.getAttribute('width'),h=+svg.getAttribute('height'),p=3;
+  let mn=Math.min(...vals),mx=Math.max(...vals);if(mn===mx){mn-=1;mx+=1;}
+  const rank=dir==='up-rank';
+  const pts=vals.map((v,i)=>{const x=p+i*(w-2*p)/(vals.length-1);
+    let t=(v-mn)/(mx-mn);if(rank)t=1-t;
+    const y=h-p-t*(h-2*p);return [x,y];});
+  const col=dir==='down'?'#E14E12':(dir==='flat'?'#8A98A8':'#1EA672');
+  const d=pts.map((pt,i)=>(i?'L':'M')+pt[0].toFixed(1)+' '+pt[1].toFixed(1)).join(' ');
+  svg.innerHTML='<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'+
+    '<circle cx="'+pts[pts.length-1][0].toFixed(1)+'" cy="'+pts[pts.length-1][1].toFixed(1)+'" r="2.6" fill="'+col+'"/>';
 }
-function renderBoard(){
-  var cols=[['todo','To do'],['prog','In progress'],['review','In review'],['done','Done']];
-  var h='<div class="board">';
-  cols.forEach(function(c){
-    var items=TASKS.filter(function(t){return t.status===c[0];});
-    h+='<div class="bcol"><h5>'+c[1]+' <span class="c">'+items.length+'</span></h5>';
-    items.forEach(function(t){h+='<div class="bcard">'+esc(t.n)+'<div class="bm"><span class="pri '+t.pri+'">'+PRI[t.pri]+'</span>'+dueCell(t.due)+'</div></div>';});
-    if(!items.length) h+='<div style="font-size:11px;color:var(--gray)">—</div>';
-    h+='</div>';
-  });
-  return h+'</div>';
-}
-function renderTimeline(){
-  var dated=TASKS.filter(function(t){return t.due;}).slice().sort(function(a,b){return a.due<b.due?-1:1;});
-  var undated=TASKS.filter(function(t){return !t.due;});
-  var h='<div class="tkwrap" style="padding:6px 18px">';
-  dated.forEach(function(t){var over=(t.due<TODAY);h+='<div class="tl-row"><span class="tl-date'+(over?' over':'')+'">'+t.due+'</span><span><span class="tname">'+esc(t.n)+'</span> &nbsp;<span class="pri '+t.pri+'">'+PRI[t.pri]+'</span> &nbsp;'+statCell(t.status)+'</span></div>';});
-  undated.forEach(function(t){h+='<div class="tl-row"><span class="tl-date">no date</span><span><span class="tname">'+esc(t.n)+'</span> &nbsp;<span class="pri '+t.pri+'">'+PRI[t.pri]+'</span> &nbsp;'+statCell(t.status)+'</span></div>';});
-  return h+'</div>';
-}
-function drawView(v){document.getElementById('tkview').innerHTML = v==='board'?renderBoard():v==='timeline'?renderTimeline():renderTable();}
-document.querySelectorAll('#seg button').forEach(function(b){
-  b.addEventListener('click',function(){
-    document.querySelectorAll('#seg button').forEach(function(x){x.classList.remove('active');});
-    b.classList.add('active');drawView(b.getAttribute('data-view'));
-  });
-});
-drawView('table');
+document.querySelectorAll('svg.spark').forEach(spark);
 
-var SUMMARY_TEXT=[
-"*React SEO — week of Jul 27.* Adoption is climbing; now we win the grid SERP.",
-"",
-"Two-line version: React ranks across its core terms and npm adoption is up, but the grid head terms sit at the page-1 floor where clicks are thin. The work now is execution, not strategy.",
-"",
-"*What's working:* momentum. Clicks rebounded to 145 (+6.6% WoW), all-React sessions +~11%, and the north star — npm installs — is up +19% MoM (June 41,594). Branded terms own #1; 'react gauge' (#13-#9) and 'react grid component' (#26-#16) both climbed.",
-"",
-"*What's not:* 'react data grid' is stuck at #10 — the page-1 floor, seven off the Sep-30 top-3 goal — and 'react chart' slipped off page one (#10-#13). 'react grid' and 'react table' still aren't tracked, so we're partly blind on the core goal.",
-"",
-"*Priority this week:*",
-"• Instrument — add 'react grid' & 'react table' to Rank Tracker 1076972.",
-"• Push the grid — on-page depth + internal links to move 'react data grid' off the floor.",
-"• Investigate the 'react chart' slip; route top blog traffic to the product/grid pages.",
-"• Fix the plumbing — restore the npm live pull and stand up React-specific AI-visibility prompts.",
-"",
-"*For leadership:* demand and adoption are trending up (npm +19% MoM, clicks recovering). The constraint is getting the grid head terms off the bottom of page one; as that happens, product-page traffic and conversion should follow.",
-"",
-"Full brief + live task list attached."
-].join("\n");
-document.getElementById('copybtn').addEventListener('click',function(){
-  var btn=this;
-  var done=function(){btn.classList.add('ok');btn.textContent='✓ Copied';setTimeout(function(){btn.classList.remove('ok');btn.innerHTML='📋 Copy summary';},1800);};
-  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(SUMMARY_TEXT).then(done,fallback);}else fallback();
-  function fallback(){var ta=document.createElement('textarea');ta.value=SUMMARY_TEXT;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}
-});
-
-function cssv(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
-function drawSparks(){
-  document.querySelectorAll('svg.spark').forEach(function(svg){
-    if(svg.getAttribute('data-done'))return;
-    var vals=svg.getAttribute('data-spark').split(',').map(Number);
-    var dir=svg.getAttribute('data-dir')||'flat';
-    var col=dir==='up'?cssv('--good'):dir==='down'?cssv('--bad'):cssv('--gray');
-    var W=svg.clientWidth||220,H=30,pad=3;
-    var min=Math.min.apply(null,vals),max=Math.max.apply(null,vals),rng=(max-min)||1;
-    var n=vals.length,step=n>1?(W-pad*2)/(n-1):0;
-    var pts=vals.map(function(v,i){return [pad+i*step,H-pad-((v-min)/rng)*(H-pad*2)];});
-    var line=pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ');
-    var area='M'+pts[0][0].toFixed(1)+','+H+' L'+line.split(' ').join(' L')+' L'+pts[n-1][0].toFixed(1)+','+H+' Z';
-    var id='g'+Math.random().toString(36).slice(2,7);
-    svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.setAttribute('preserveAspectRatio','none');
-    svg.innerHTML='<defs><linearGradient id="'+id+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+col+'" stop-opacity="0.16"/><stop offset="1" stop-color="'+col+'" stop-opacity="0"/></linearGradient></defs><path d="'+area+'" fill="url(#'+id+')"/><polyline points="'+line+'" fill="none" stroke="'+col+'" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/><circle cx="'+pts[n-1][0].toFixed(1)+'" cy="'+pts[n-1][1].toFixed(1)+'" r="2.1" fill="'+col+'"/>';
-    svg.setAttribute('data-done','1');
-  });
-}
-drawSparks();
-</script>
-<!-- ===== FEEDBACK LOOP (teaches the agent) ===== -->
-<style>
-  .fbx{position:relative}
-  .fbtn{position:absolute;top:6px;right:6px;z-index:3;width:22px;height:22px;border:none;border-radius:7px;background:#FFEEE2;color:#E14E12;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .12s;padding:0;box-shadow:0 1px 2px rgba(10,37,64,.14)}
-  .fbtn:hover{background:#E14E12;color:#fff}
-  .fbtn svg{width:13px;height:13px}
-  .fbx:hover>.fbtn,.fbtn:focus-visible{opacity:1}
-  .wl li>.fbtn,li>.fbtn{top:-1px;right:0;width:20px;height:20px}
-  .fbmodal{position:fixed;inset:0;background:rgba(10,37,64,.5);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
-  .fbmodal.on{display:flex}
-  .fbcard{background:#fff;border-radius:16px;max-width:470px;width:100%;box-shadow:0 20px 60px rgba(10,37,64,.32);overflow:hidden;font-family:system-ui,sans-serif}
-  .fbhd{background:linear-gradient(100deg,#E14E12,#FF6B2C);color:#fff;padding:15px 20px}
-  .fbhd .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.85;font-weight:600}
-  .fbhd .l{font-size:15px;font-weight:800;margin-top:3px;line-height:1.3}
-  .fbbd{padding:16px 20px}
-  .fbbd label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#5b6b82;display:block;margin:0 0 7px}
-  .fbcats{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
-  .fbcat{font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;border:1.5px solid #e3e7f2;background:#fff;color:#41506b;cursor:pointer;font-family:inherit}
-  .fbcat.sel{border-color:#E14E12;background:#FFEEE2;color:#E14E12}
-  .fbbd textarea{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13.5px;resize:vertical;min-height:74px;box-sizing:border-box}
-  .fbbd textarea:focus,.fbval:focus{outline:none;border-color:#E14E12}
-  .fbvalwrap{display:none;margin-top:12px}.fbvalwrap.on{display:block}
-  .fbval{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:9px 12px;font-family:inherit;font-size:13.5px;box-sizing:border-box}
-  .fbft{display:flex;gap:10px;justify-content:flex-end;padding:14px 20px;border-top:1px solid #eef1f7;background:#fbfcff}
-  .fbbtn{font-family:inherit;font-size:13px;font-weight:600;padding:9px 15px;border-radius:9px;cursor:pointer;border:none}
-  .fbbtn.sec{background:#eef0f5;color:#41506b}
-  .fbbtn.pri{background:linear-gradient(120deg,#E14E12,#FF6B2C);color:#fff}
-  .fbbtn.pri:disabled{opacity:.5;cursor:not-allowed}
-  .fbtoast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0A2540;color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:300;opacity:0;transition:opacity .2s;box-shadow:0 8px 30px rgba(0,0,0,.3);max-width:90%;text-align:center;pointer-events:none}
-  .fbtoast.on{opacity:1}
-</style>
-<div class="fbmodal" id="fbModal" role="dialog" aria-modal="true" aria-label="Send feedback to the agent">
-  <div class="fbcard">
-    <div class="fbhd"><div class="k">Feedback to the agent</div><div class="l" id="fbLabel">—</div></div>
-    <div class="fbbd">
-      <label>What kind of feedback?</label>
-      <div class="fbcats" id="fbCats">
-        <button type="button" class="fbcat" data-cat="Won't do — strategic">Won't do — strategic</button>
-        <button type="button" class="fbcat" data-cat="Disagree">Disagree</button>
-        <button type="button" class="fbcat" data-cat="Wrong number">Wrong number</button>
-        <button type="button" class="fbcat" data-cat="Add context">Add context</button>
-        <button type="button" class="fbcat" data-cat="Approve">Approve</button>
-      </div>
-      <label>Why / details</label>
-      <textarea id="fbReason" placeholder="e.g. Don't chase 'react flow' — it's an OSS lib, off-target; hold that recommendation."></textarea>
-      <div class="fbvalwrap" id="fbValWrap"><label>Correct value</label><input class="fbval" id="fbVal" placeholder="e.g. DR 73"></div>
-    </div>
-    <div class="fbft">
-      <button type="button" class="fbbtn sec" id="fbCancel">Cancel</button>
-      <button type="button" class="fbbtn pri" id="fbSend" disabled>Copy &amp; open Slingshot</button>
-    </div>
-  </div>
-</div>
-<div class="fbtoast" id="fbToast"></div>
-<script>
-(function(){
-  var FEEDBACK_URL="https://app.slingshotapp.io/openDiscussion/e97e10ef_bc51c2f1-4f9b-485f-823c-a3d154edeb5d";
-  var SCOPE="#report";
-  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
-  var secs=[],modal,curLabel="",curSection="",cat=null;
-  function labelFor(el){var t=(el.getAttribute('data-fb-label')||el.textContent||'').replace(/\s+/g,' ').trim();return t.length>90?t.slice(0,88)+'…':t;}
-  function sectionFor(el){var best="";for(var i=0;i<secs.length;i++){if(secs[i].compareDocumentPosition(el)&Node.DOCUMENT_POSITION_FOLLOWING){best=secs[i].textContent.replace(/\s+/g,' ').trim();}}return best;}
-  function addIcons(){document.querySelectorAll(SCOPE+' .fbx').forEach(function(el){if(el.querySelector(':scope > .fbtn'))return;var b=document.createElement('button');b.className='fbtn';b.type='button';b.title='Send feedback to the agent';b.innerHTML=ICON;b.addEventListener('click',function(ev){ev.stopPropagation();ev.preventDefault();openModal(el);});el.appendChild(b);});}
-  function openModal(el){curLabel=labelFor(el);curSection=sectionFor(el);cat=null;document.getElementById('fbLabel').textContent=(curSection?curSection+' › ':'')+curLabel;document.getElementById('fbReason').value='';document.getElementById('fbVal').value='';document.getElementById('fbValWrap').classList.remove('on');document.querySelectorAll('.fbcat').forEach(function(c){c.classList.remove('sel');});document.getElementById('fbSend').disabled=true;modal.classList.add('on');setTimeout(function(){document.getElementById('fbReason').focus();},60);}
-  function closeModal(){modal.classList.remove('on');}
-  function refreshSend(){var r=document.getElementById('fbReason').value.trim();document.getElementById('fbSend').disabled=!(cat&&r);}
-  function toast(m){var t=document.getElementById('fbToast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on');},3600);}
-  function send(){var reason=document.getElementById('fbReason').value.trim();var val=document.getElementById('fbVal').value.trim();var d=new Date().toISOString().slice(0,10);var lines=['📋 *Agent feedback — React SEO report*','Element: '+(curSection?curSection+' › ':'')+curLabel,'Category: '+cat,'Reason: '+reason];if(cat==='Wrong number'&&val)lines.push('Correct value: '+val);lines.push('Submitted: '+d);var payload=lines.join('\n');var done=function(){toast('Feedback copied — paste (⌘/Ctrl+V) into the Slingshot thread');window.open(FEEDBACK_URL,'_blank');closeModal();};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(payload).then(done,done);}else{var ta=document.createElement('textarea');ta.value=payload;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}}
-  document.addEventListener('DOMContentLoaded',function(){modal=document.getElementById('fbModal');secs=[].slice.call(document.querySelectorAll(SCOPE+' h2.sec, '+SCOPE+' h2, '+SCOPE+' h3'));addIcons();document.getElementById('fbCats').addEventListener('click',function(e){var b=e.target.closest('.fbcat');if(!b)return;cat=b.dataset.cat;document.querySelectorAll('.fbcat').forEach(function(c){c.classList.toggle('sel',c===b);});document.getElementById('fbValWrap').classList.toggle('on',cat==='Wrong number');refreshSend();});document.getElementById('fbReason').addEventListener('input',refreshSend);document.getElementById('fbCancel').addEventListener('click',closeModal);document.getElementById('fbSend').addEventListener('click',send);modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});});
+// ---- gauge (health 45/100) ----
+(function(){const g=document.getElementById('gauge');if(!g)return;const val=45,w=150,h=86,cx=75,cy=78,r=60;
+  function arc(a0,a1){const p0=[cx+r*Math.cos(a0),cy+r*Math.sin(a0)],p1=[cx+r*Math.cos(a1),cy+r*Math.sin(a1)];
+    const laf=(a1-a0)>Math.PI?1:0;return 'M'+p0[0]+' '+p0[1]+' A'+r+' '+r+' 0 '+laf+' 1 '+p1[0]+' '+p1[1];}
+  const start=Math.PI,end=2*Math.PI,frac=start+(end-start)*val/100;
+  const col=val<50?'#E14E12':(val<75?'#E8912B':'#1EA672');
+  g.innerHTML='<path d="'+arc(start,end)+'" fill="none" stroke="#EEF2F7" stroke-width="12" stroke-linecap="round"/>'+
+    '<path d="'+arc(start,frac)+'" fill="none" stroke="'+col+'" stroke-width="12" stroke-linecap="round"/>'+
+    '<text x="75" y="72" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="22" font-weight="800" fill="#0A2540">45</text>';
 })();
+
+// ---- tasks ----
+const TASKS=[
+ {name:"Push “react data grid” from #10 to top-3",owner:"JJ",initials:"JJ",pri:"p1",status:"prog",due:"2026-08-20"},
+ {name:"Add “react grid” & “react table” to Rank Tracker 1076972",owner:"JJ",initials:"JJ",pri:"p1",status:"prog",due:"2026-07-30"},
+ {name:"Create React-specific Amplitude AI Visibility prompts (standing P1)",owner:"JJ",initials:"JJ",pri:"p1",status:"todo",due:"2026-07-30"},
+ {name:"Restore the npm live-pull path for the north-star metric",owner:"JJ",initials:"JJ",pri:"p1",status:"todo",due:"2026-08-03"},
+ {name:"Investigate the “react chart” page-1 slip (#10 → #15)",owner:"JJ",initials:"JJ",pri:"p2",status:"prog",due:"2026-08-10"},
+ {name:"Stand up a React-prefix Ahrefs Site Audit project",owner:"JJ",initials:"JJ",pri:"p2",status:"todo",due:"2026-08-06"},
+ {name:"Route top React blog traffic to product/grid pages",owner:"JJ",initials:"JJ",pri:"p2",status:"todo",due:"2026-08-06"},
+ {name:"Deepen the react-data-grid page for top-3 (on-page + internal links)",owner:"JJ",initials:"JJ",pri:"p1",status:"todo",due:"2026-08-15"}
+];
+const PRILBL={p1:"P1",p2:"P2",p3:"P3"},STLBL={todo:"To Do",prog:"In progress",done:"Done"};
+document.querySelector('#tasktable tbody').innerHTML=TASKS.map(t=>
+ `<tr><td>${t.name}</td><td>${t.owner}</td><td><span class="pill ${t.pri==='p1'?'bad':(t.pri==='p2'?'watch':'info')}">${PRILBL[t.pri]}</span></td><td>${STLBL[t.status]}</td><td class="num">${t.due}</td></tr>`).join('');
+const cols={todo:"To Do",prog:"In progress",done:"Done"};
+document.getElementById('taskboard').innerHTML=Object.keys(cols).map(k=>
+ `<div class="col"><h4>${cols[k]}</h4>${TASKS.filter(t=>t.status===k).map(t=>
+   `<div class="tk ${t.pri}"><div class="t">${t.name}</div><div class="m"><span>${t.initials}</span><span>${PRILBL[t.pri]}</span><span>${t.due}</span></div></div>`).join('')||'<div style="color:#9AA7B4;font-size:12px">—</div>'}</div>`).join('')
+ +`<div class="col"><h4>Blocked</h4><div style="color:#9AA7B4;font-size:12px">—</div></div>`;
+const days=(d)=>{const t=new Date("2026-08-03"),x=new Date(d);return Math.round((x-t)/864e5);};
+const maxd=Math.max(...TASKS.map(t=>days(t.due)),1);const mind=Math.min(...TASKS.map(t=>days(t.due)),0);
+document.getElementById('tasktimeline').innerHTML=TASKS.slice().sort((a,b)=>new Date(a.due)-new Date(b.due)).map(t=>{
+  const rel=days(t.due);const left=(rel-mind)/(maxd-mind||1)*88;
+  return `<div class="tl-row"><div style="width:230px;font-size:12.5px">${t.name}</div><div class="tl-bar"><span style="left:${Math.max(0,left-6)}%;width:10%"></span></div><div class="mono" style="width:90px;text-align:right;font-size:12px">${t.due}</div></div>`;
+}).join('');
+document.querySelectorAll('#taskseg button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#taskseg button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('v-'+b.dataset.view).classList.add('active');
+});
+
+// ---- summary (Slack-style *bold*) ----
+const SUMMARY=`*React SEO — weekly brief (2026-08-03)*
+
+*The grid cluster is breaking through.* "react data grid" — the money term — climbed #11 → #9, onto page 1. "react grid component" jumped #27 → #13, and "react grid" is now instrumented in the tracker (#20, first read) after last week's ask.
+
+*Traffic:* impressions +6.8% (9,768/wk) but clicks -15.5% (125/wk) — more visibility, softer CTR as new terms enter page 1/2. React sessions -6.7% (406/wk). Validate the clicks dip next week before calling it a trend.
+
+*Still soft:* "react chart" (singular) stuck at #15 — hasn't recovered its #10. npm north-star still carried (June 41,594; live pull blocked). AI visibility is brand-level 0% (4 prompts only — not React-scoped, volatile).
+
+*Steady:* DR holds at 72, 8,265 ref domains. Branded terms own #1 (ignite ui for react).
+
+*Priority:* push react data grid #9 → top-3 by Sep 30 — authority + on-page, correct page already ranks. Owner: JJ.`;
+document.getElementById('summaryText').textContent=SUMMARY;
+document.getElementById('copySummary').onclick=function(){
+  navigator.clipboard.writeText(SUMMARY).then(()=>{this.textContent="Copied ✓";setTimeout(()=>this.textContent="Copy to clipboard",1600);});
+};
+
+// ---- feedback loop ----
+const modal=document.getElementById('fbModal');let fbCtx="";
+document.addEventListener('click',e=>{
+  const btn=e.target.closest('.fbbtn');if(!btn)return;
+  const host=btn.closest('.fbx');fbCtx=(host?host.innerText:'').replace(/\s+/g,' ').trim().slice(0,140);
+  document.getElementById('fbCtx').textContent="On: "+(fbCtx||"#report");
+  document.getElementById('fbText').value="";modal.classList.add('open');
+});
+document.getElementById('fbCancel').onclick=()=>modal.classList.remove('open');
+modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open');});
+document.getElementById('fbSend').onclick=()=>{
+  const note=document.getElementById('fbText').value.trim();
+  const payload=encodeURIComponent("[React SEO report feedback] "+(fbCtx?("["+fbCtx+"] "):"")+note);
+  window.open(FEEDBACK_URL+"?comment="+payload,"_blank");
+  modal.classList.remove('open');
+};
 </script>
 </body>
 </html>
