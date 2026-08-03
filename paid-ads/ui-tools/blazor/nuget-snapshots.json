@@ -11,5 +11,27 @@
     },
     "sum": 107206,
     "note": "baseline - first snapshot; WoW available next week. Cumulative totalDownloads from nuget.org search API. Licensed IgniteUI.Blazor main package lives on a private feed and is not in the public index."
+  },
+  {
+    "date": "2026-08-03",
+    "perPackage": {
+      "IgniteUI.Blazor.Trial": 59869,
+      "IgniteUI.Blazor.Documents.Core.Trial": 23076,
+      "IgniteUI.Blazor.Documents.Excel.Trial": 18756,
+      "IgniteUI.Blazor.GridLite": 2486,
+      "IgniteUI.Blazor.Lite": 2030,
+      "IgniteUI.Blazor.Templates": 1003
+    },
+    "sum": 107220,
+    "weeklyDelta": 14,
+    "perPackageDelta": {
+      "IgniteUI.Blazor.Trial": 6,
+      "IgniteUI.Blazor.Documents.Core.Trial": 2,
+      "IgniteUI.Blazor.Documents.Excel.Trial": 2,
+      "IgniteUI.Blazor.GridLite": 3,
+      "IgniteUI.Blazor.Lite": 1,
+      "IgniteUI.Blazor.Templates": 0
+    },
+    "note": "WoW vs 2026-08-02 baseline = +14, but that baseline was captured Sun 8/2 so this delta spans ~1 day, not a full 7 days. A clean 7-day WoW lands next Monday once snapshots are a week apart. Cumulative totalDownloads from nuget.org search API. New 26.1.51 (26.1 line) now shipping across Trial/Core/Excel. Licensed IgniteUI.Blazor main package not in public index. Target (trailing-4wk avg) still building baseline (2 snapshots)."
   }
 ]
