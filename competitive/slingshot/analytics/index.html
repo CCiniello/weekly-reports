@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Competitive Intelligence / Slingshot — Analytics &amp; Dashboarding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
+    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
+    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
+  }
+  body.theme-reveal   {--accent:#EC417A;--accent-deep:#C9367F;--accent-soft:#fde4ee;--hero:linear-gradient(120deg,#FBB764,#EC417A 62%,#d63384)}
+  body.theme-slingshot{--accent:#4B45C6;--accent-deep:#2D2A90;--accent-soft:#ECEBFB;--hero:linear-gradient(120deg,#6C5CE7,#4B45C6 55%,#2D2A90)}
+  body.theme-ui       {--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
+  body.theme-all      {--accent:#2563EB;--accent-deep:#7C3AED;--accent-soft:#EEF1FF;--hero:linear-gradient(120deg,#2563EB,#7C3AED)}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 80px}
+
+  header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
+  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
+  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
+  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)} .meta b{color:#fff;font-weight:700}
+
+  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03);overflow-x:auto}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;white-space:nowrap}
+  .tab:hover{color:var(--ink)}
+  .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+  .tabpanel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
+  .tabpanel.on{display:block}
+
+  .sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:26px 2px 13px;display:flex;align-items:center;gap:10px}
+  .sec:first-child{margin-top:2px}
+  .sec .n{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  .lead{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:16px 20px;font-size:14.5px;line-height:1.6} .lead b{color:var(--navy)}
+
+  .kpigrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
+  @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:#fcfdff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column}
+  .kpi .lab{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;min-height:28px}
+  .kpi .val{font-size:22px;font-weight:700;margin:2px 0 8px;font-family:var(--mono)}
+  .kpi .delta{align-self:flex-start;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
+  .delta.up{background:var(--good-bg);color:var(--good)} .delta.down{background:var(--bad-bg);color:var(--bad)} .delta.flat{background:var(--warn-bg);color:var(--warn)}
+
+  .score{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  .score table{width:100%;border-collapse:collapse;font-size:13px}
+  .score th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  .score td{padding:11px 13px;border-top:1px solid var(--line);vertical-align:middle}
+  .score .goal{font-weight:600;color:var(--navy)}
+  .pill{font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px}
+  .pill.good{background:var(--good-bg);color:var(--good)} .pill.warn{background:var(--warn-bg);color:var(--warn)} .pill.bad{background:var(--bad-bg);color:var(--bad)}
+
+  .cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
+  .card{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .card .ch{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:var(--accent-soft);border-bottom:1px solid var(--line)}
+  .card .ch .nm{font-size:15px;font-weight:700;color:var(--accent-deep)} .card .ch .sp{font-family:var(--mono);font-size:12.5px;color:var(--navy)}
+  .card .cb{padding:14px 18px;font-size:13.5px;line-height:1.55} .card .cb b{color:var(--navy)}
+
+  .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
+  .dtable table{width:100%;border-collapse:collapse;font-size:13px}
+  .dtable th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
+  .dtable td{padding:10px 13px;border-top:1px solid var(--line)} .dtable td.num{font-family:var(--mono);text-align:right}
+  .dtable tr:hover td{background:#fafbff}
+
+  .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
+  .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
+  .verdict p{font-size:15px;line-height:1.6;margin:0} .verdict b{color:var(--navy)}
+  code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+  a{color:var(--accent-deep)}
+
+  /* ===== VP READOUT BANNER (universal across reports) ===== */
+  .vpbanner{border:1px solid #E9E9F4;border-radius:16px;overflow:hidden;margin:0 0 18px;box-shadow:0 1px 3px rgba(15,23,42,.05);font-family:'Roboto',system-ui,sans-serif}
+  .vpbanner .vbar{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .vpbanner .vbar .t{font-size:18px;font-weight:800}
+  .vpbanner .vbar .g{font-size:12.5px;color:#cdd6f7;font-weight:600;text-align:right}
+  .vpbanner .vrow{display:flex;gap:18px;align-items:flex-start;padding:16px 22px;border-top:1px solid #E9E9F4}
+  .vpbanner .vrow:first-of-type{border-top:none}
+  .pill2{flex:none;width:92px;text-align:center;font-size:11px;font-weight:800;letter-spacing:.05em;padding:5px 0;border-radius:16px;text-transform:uppercase;margin-top:2px}
+  .pill2.fix{background:#fde8ec;color:#c62a4f}.pill2.work{background:#e3f5ec;color:#127a45}.pill2.watch{background:#fdf0d6;color:#8a6412}
+  .vrow .rtx h4{margin:0 0 4px;font-size:15px;color:#0F172A;font-weight:800}
+  .vrow .rtx p{margin:0;font-size:13.5px;color:#5f6b7a;line-height:1.55}
+
+  /* ===== FEEDBACK LOOP (universal across reports) ===== */
+  .fbx{position:relative}
+  .fbtn{position:absolute;top:6px;right:6px;z-index:3;width:22px;height:22px;border:none;border-radius:7px;background:#eef1fb;color:#2A41A2;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .12s;padding:0;box-shadow:0 1px 2px rgba(15,23,42,.14)}
+  .fbtn:hover{background:#2A41A2;color:#fff}
+  .fbtn svg{width:13px;height:13px}
+  .fbx:hover>.fbtn,.fbtn:focus-visible{opacity:1}
+  li.fbx>.fbtn{top:-1px;right:0;width:20px;height:20px}
+  .fbmodal{position:fixed;inset:0;background:rgba(15,23,42,.5);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
+  .fbmodal.on{display:flex}
+  .fbcard{background:#fff;border-radius:16px;max-width:470px;width:100%;box-shadow:0 20px 60px rgba(15,23,42,.32);overflow:hidden;font-family:'Roboto',system-ui,sans-serif}
+  .fbhd{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 20px}
+  .fbhd .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.85;font-weight:600}
+  .fbhd .l{font-size:15px;font-weight:800;margin-top:3px;line-height:1.3}
+  .fbbd{padding:16px 20px}
+  .fbbd label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#5f6b7a;display:block;margin:0 0 7px}
+  .fbcats{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+  .fbcat{font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;border:1.5px solid #e3e7f2;background:#fff;color:#41506b;cursor:pointer;font-family:inherit}
+  .fbcat.sel{border-color:#2A41A2;background:#eef1fb;color:#2A41A2}
+  .fbbd textarea{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13.5px;resize:vertical;min-height:74px;box-sizing:border-box}
+  .fbbd textarea:focus,.fbval:focus{outline:none;border-color:#2A41A2}
+  .fbvalwrap{display:none;margin-top:12px}.fbvalwrap.on{display:block}
+  .fbval{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:9px 12px;font-family:inherit;font-size:13.5px;box-sizing:border-box}
+  .fbft{display:flex;gap:10px;justify-content:flex-end;padding:14px 20px;border-top:1px solid #eef1f7;background:#fbfcff}
+  .fbbtn{font-family:inherit;font-size:13px;font-weight:600;padding:9px 15px;border-radius:9px;cursor:pointer;border:none}
+  .fbbtn.sec{background:#eef0f5;color:#41506b}
+  .fbbtn.pri{background:linear-gradient(120deg,#2A41A2,#3a54cf);color:#fff}
+  .fbbtn.pri:disabled{opacity:.5;cursor:not-allowed}
+  .fbtoast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0F172A;color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:300;opacity:0;transition:opacity .2s;box-shadow:0 8px 30px rgba(0,0,0,.3);max-width:90%;text-align:center;pointer-events:none}
+  .fbtoast.on{opacity:1}
+</style>
+</head>
+<body class="theme-slingshot">
+<div class="wrap">
+
+  <header class="top">
+    <div class="logochip">Slingshot</div>
+    <div class="kick">slingshotapp.io · Analytics &amp; Dashboarding · Competitive Intelligence</div>
+    <h1>Competitive Intelligence / Slingshot — Analytics &amp; Dashboarding</h1>
+    <div class="meta"><span>Week of <b>August 3, 2026</b></span> <span>vs Databox · DashThis · AgencyAnalytics · Looker · Power BI · Geckoboard · Klipfolio</span></div>
+  </header>
+
+  <div class="vpbanner">
+    <div class="vbar">
+      <div class="t">VP Readout &mdash; 30-second view</div>
+      <div class="g">Goal: win marketing dashboards &amp; reporting vs Databox · DashThis · AgencyAnalytics · Looker · Power BI</div>
+    </div>
+    <div class="vrow fbx">
+      <div class="pill2 fix">Fix</div>
+      <div class="rtx"><h4>Connector breadth &amp; demand capture</h4><p>Databox &amp; AgencyAnalytics carry 85–200+ integrations and AgencyAnalytics dominates paid (12K paid visits/mo); Slingshot has fewer connectors and ~1,200 organic. We lose the "does it connect to X?" and the discovery battle.</p></div>
+    </div>
+    <div class="vrow fbx">
+      <div class="pill2 work">Working</div>
+      <div class="rtx"><h4>Act on the insight in the same tool</h4><p>Every rival stops at the dashboard; Slingshot turns a metric into a task or a discussion in one place — plus a genuine $0 free tier vs $40–159/mo entry points.</p></div>
+    </div>
+    <div class="vrow fbx">
+      <div class="pill2 watch">Watch</div>
+      <div class="rtx"><h4>Databox MCP server + consumption pricing creep</h4><p>Databox now lets LLMs query its data directly (MCP); DashThis went source-based and Looker/Power BI meter AI by token/Fabric. Reporting is getting metered — our flat, generous free tier is the contrast to lead with.</p></div>
+    </div>
+  </div>
+
+  <div class="tabbar" id="tabbar"></div>
+
+  <div id="panels">
+
+  <!-- ============ OVERVIEW ============ -->
+  <section class="tabpanel" data-tab="overview" data-label="Overview">
+    <div class="sec fbx"><span class="n">1</span>The state of play — first edition</div>
+    <div class="lead fbx">
+      <b>First edition — baseline. No prior report to diff against; from next week we lead with what changed.</b>
+      On the analytics side, Slingshot competes with two groups: <b>marketing-dashboard specialists</b> (Databox, DashThis, AgencyAnalytics, Geckoboard, Klipfolio) and <b>enterprise BI</b> (Looker, Power BI, Looker Studio). The specialists win on <b>connector breadth</b> (85–200+ integrations) and demand capture — AgencyAnalytics alone drives ~12K paid visits/mo; the BI players win on depth. Slingshot's edge is neither breadth nor depth — it's that the <b>insight and the work live in the same tool</b>: a Slingshot dashboard's number becomes a task or a discussion without an export. Paired with a genuine $0 free tier while the field drifts toward metered/consumption pricing (Databox per-source fees, DashThis source-based, Looker/Power BI token &amp; Fabric metering), that's a real, ownable wedge for mid-market marketing teams.
+    </div>
+
+    <div class="sec fbx"><span class="n">2</span>Biggest moves &amp; why they matter</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Move</th><th>Who</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td><b>Launched an MCP server</b> — LLMs (Claude/ChatGPT) query Databox data directly</td><td>Databox</td><td>Sets an AI-access bar for the category. Slingshot should expose its own MCP/AI-query path (it already has an MCP surface) and say so.</td></tr>
+          <tr><td><b>Per-client repricing + heavy paid</b> (1,040 paid keywords, ~12K paid visits)</td><td>AgencyAnalytics</td><td>Dominates agency demand capture. We can't out-SEO/SEM here — we win on integrated-work + price, not reporting-for-reporting.</td></tr>
+          <tr><td><b>Conversational AI (Gemini/Copilot) + token/Fabric metering</b></td><td>Looker · Power BI</td><td>Powerful but costly and complex — reinforces Slingshot's "affordable, act-in-one-tool" wedge for mid-market.</td></tr>
+          <tr><td><b>Source-based pricing + AI Insights Pro add-on</b></td><td>DashThis</td><td>Reporting tools are moving to consumption pricing; Slingshot's flat generous free tier is a sharp contrast to lead with.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec fbx"><span class="n">3</span>KPIs — Slingshot vs the field</div>
+    <div class="kpigrid">
+      <div class="kpi fbx"><div class="lab">Notable moves this week</div><div class="val">4</div><span class="delta flat">baseline</span></div>
+      <div class="kpi fbx"><div class="lab">Our organic SoV (tracked set)</div><div class="val">~0.4%</div><span class="delta flat">1st edition</span></div>
+      <div class="kpi fbx"><div class="lab">Our AI-answer SoV</div><div class="val">pending</div><span class="delta flat">first pull next run</span></div>
+      <div class="kpi fbx"><div class="lab">Our G2 rating</div><div class="val">4.6★</div><span class="delta flat">~14 reviews</span></div>
+      <div class="kpi fbx"><div class="lab">vs peer G2 avg</div><div class="val">+0.16</div><span class="delta up">above avg 4.44 (low vol)</span></div>
+    </div>
+    <p style="font-size:11.5px;color:var(--muted);margin-top:8px">Organic SoV = slingshotapp.io share of combined specialist organic traffic (DashThis, Databox, AgencyAnalytics, Looker, Geckoboard, Klipfolio; Ahrefs, monthly, 2026-08-03). Power BI &amp; Looker Studio excluded from Ahrefs (no isolable domain). Our G2 rating is strong but rests on ~14 reviews.</p>
+
+    <div class="sec fbx"><span class="n">4</span>Scorecard — competitive threat from Slingshot's seat</div>
+    <div class="score">
+      <table>
+        <thead><tr><th>Competitor</th><th>SEO / reach</th><th>Product velocity</th><th>Paid</th><th>Reputation</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">AgencyAnalytics</td><td><span class="pill bad">strong (52K)</span></td><td><span class="pill warn">frequent (AI)</span></td><td><span class="pill bad">dominant paid (12K)</span></td><td><span class="pill warn">4.7 · 434</span></td></tr>
+          <tr><td class="goal">DashThis</td><td><span class="pill bad">strong (89K)</span></td><td><span class="pill warn">steady (AI Pro)</span></td><td><span class="pill good">light</span></td><td><span class="pill warn">4.7 · 82</span></td></tr>
+          <tr><td class="goal">Databox</td><td><span class="pill warn">solid (43K)</span></td><td><span class="pill bad">fast (MCP, AI)</span></td><td><span class="pill good">light</span></td><td><span class="pill good">4.4 · 193</span></td></tr>
+          <tr><td class="goal">Geckoboard / Klipfolio</td><td><span class="pill warn">solid (60K/77K)</span></td><td><span class="pill good">slow / two-product</span></td><td><span class="pill good">light</span></td><td><span class="pill good">4.3–4.4</span></td></tr>
+          <tr><td class="goal">Looker / Power BI</td><td><span class="pill warn">enterprise BI</span></td><td><span class="pill warn">Gemini / Copilot</span></td><td><span class="pill good">n/a</span></td><td><span class="pill good">4.2–4.4 · complex</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:11.5px;color:var(--muted);margin-top:8px">Pills read as threat level from Slingshot's seat: <span class="pill bad">red</span> = pressure on us, <span class="pill warn">amber</span> = watch, <span class="pill good">green</span> = opening for us.</p>
+
+    <div class="sec fbx"><span class="n">5</span>Recommended responses — summary</div>
+    <div class="lead fbx">
+      <b>1. Own "dashboards you can act on"</b> — the metric-to-task-to-discussion loop no pure reporting tool has; make it the headline. <b>2. Lead with flat + free vs metered</b> — contrast our $0 tier against Databox per-source fees, DashThis source pricing, and Looker/Power BI token metering. <b>3. Publish our MCP/AI-query story</b> — match Databox's AI-access bar; we already have the surface. <b>4. Close the connector objection</b> — publish an integrations roadmap so "does it connect to X?" stops losing deals. Full actions in <b>Our Moves</b>.
+    </div>
+  </section>
+
+  <!-- ============ SEO FOCUS ============ -->
+  <section class="tabpanel" data-tab="seo" data-label="SEO Focus">
+    <div class="sec fbx"><span class="n">1</span>Organic footprint — the reporting incumbents</div>
+    <div class="lead fbx"><b>The marketing-dashboard specialists own this category's search demand.</b> DashThis (~89K organic/mo), Klipfolio (~77K), Geckoboard (~60K), AgencyAnalytics (~52K) and Databox (~43K) each dwarf Slingshot's ~1,200. AgencyAnalytics also runs the category's most aggressive paid program (1,040 keywords, ~12K paid visits). Slingshot cannot win a head-to-head reporting-SEO race — the path is narrow, differentiated intent tied to "act on the data," not "build a dashboard."</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Domain</th><th class="num">Org KW</th><th class="num">Org traffic/mo</th><th class="num">KW top 3</th><th class="num">Paid KW</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">slingshotapp.io (us)</td><td class="num">411</td><td class="num">1,228</td><td class="num">108</td><td class="num">105</td></tr>
+          <tr><td>dashthis.com</td><td class="num">7,954</td><td class="num">89,011</td><td class="num">3,374</td><td class="num">6</td></tr>
+          <tr><td>klipfolio.com</td><td class="num">7,327</td><td class="num">76,973</td><td class="num">2,401</td><td class="num">4</td></tr>
+          <tr><td>geckoboard.com</td><td class="num">3,367</td><td class="num">59,914</td><td class="num">1,742</td><td class="num">103</td></tr>
+          <tr><td>agencyanalytics.com</td><td class="num">4,462</td><td class="num">52,118</td><td class="num">2,096</td><td class="num">1,040</td></tr>
+          <tr><td>databox.com</td><td class="num">6,302</td><td class="num">43,353</td><td class="num">2,484</td><td class="num">5</td></tr>
+          <tr><td>looker.com*</td><td class="num">178</td><td class="num">7,137</td><td class="num">49</td><td class="num">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:11.5px;color:var(--muted);margin-top:8px">*looker.com mostly redirects to Google Cloud, hence low numbers. Power BI &amp; Looker Studio omitted (no isolable domain). Source: Ahrefs, mode=subdomains, monthly, 2026-08-03.</p>
+
+    <div class="sec fbx"><span class="n">2</span>Where we can actually win search</div>
+    <div class="lead fbx">Not "marketing dashboard" (saturated by DashThis/Databox) — instead the differentiated long tail: <b>"turn dashboards into tasks", "marketing analytics + project management", "act on marketing data", "free marketing dashboard tool"</b>, and pricing-contrast terms ("Databox alternative pricing", "DashThis alternative free"). These match our wedge and the metered-pricing backlash, and the incumbents don't optimize for them.</div>
+
+    <div class="sec fbx"><span class="n">3</span>The compounding cost of invisibility</div>
+    <div class="lead fbx">As with the work-management side, low organic reach starves AI-answer visibility and G2 volume. Comparison + "alternative" pages and a review drive attack all three at once — and here they double as demand-capture against AgencyAnalytics' paid dominance, which we can't match dollar-for-dollar.</div>
+  </section>
+
+  <!-- ============ PRODUCT & RELEASES ============ -->
+  <section class="tabpanel" data-tab="product" data-label="Product &amp; Releases">
+    <div class="sec fbx"><span class="n">1</span>What shipped — 2026 (AI + metered pricing)</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Competitor</th><th>Recent releases</th><th>Gap / opening?</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">Databox</td><td>AI credits (metric explanations, anomaly detection, NL queries) + MCP server for LLM-native data access</td><td><span class="pill bad">sets AI-access bar</span></td></tr>
+          <tr><td class="goal">AgencyAnalytics</td><td>"Ask AI," Smart Reports, anomaly detection, benchmarks &amp; forecasting; 85+ integrations</td><td><span class="pill warn">agency depth</span></td></tr>
+          <tr><td class="goal">DashThis</td><td>AI Insights + "AI Insights Pro" add-on (Chat Mode); Reddit &amp; Pinterest Ads sources</td><td><span class="pill warn">AI add-on upsell</span></td></tr>
+          <tr><td class="goal">Looker · Power BI</td><td>Looker Conversational Analytics (Gemini) GA; Power BI Copilot on any Fabric F2+ capacity</td><td><span class="pill good">costly / complex</span></td></tr>
+          <tr><td class="goal">Klipfolio · Geckoboard</td><td>Klipfolio PowerMetrics AI (NL + AI narratives); Geckoboard steady (90+ integrations, TV dashboards)</td><td><span class="pill good">niche</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec fbx"><span class="n">2</span>Cadence read</div>
+    <div class="lead fbx">
+      <b>Two forces are shaping the category: AI-native data access and metered pricing.</b> Databox's MCP server is the notable move — it lets an LLM query dashboard data directly, which is exactly the "ask your data a question" behavior buyers now expect. <b>Where this pressures us:</b> we need a visible MCP/AI-query story (Slingshot already has an MCP surface — say so). <b>Where the category hands us an opening:</b> everyone is drifting to consumption/metered pricing (Databox per-source, DashThis source-based, Looker/Power BI token &amp; Fabric metering) while Slingshot stays flat with a real free tier — and, crucially, none of them let you <em>act</em> on the insight without switching tools. That "dashboard → task → discussion" loop is the one thing not on any competitor's roadmap.
+    </div>
+  </section>
+
+  <!-- ============ PAID & PLATFORMS ============ -->
+  <section class="tabpanel" data-tab="paid" data-label="Paid &amp; Platforms">
+    <div class="sec fbx"><span class="n">1</span>Paid search presence</div>
+    <div class="lead fbx"><b>AgencyAnalytics dominates paid in this category</b> — 1,040 paid keywords driving ~12K paid visits/mo, far ahead of everyone. DashThis, Databox and Klipfolio run almost no paid; Geckoboard is light (103). Slingshot is modest (105). <b>The read:</b> agency-reporting demand is being captured by AgencyAnalytics' spend; we won't outbid them, so we compete on the integrated-work + pricing wedge, not on head reporting terms.</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Domain</th><th class="num">Paid KW</th><th class="num">Paid pages</th><th class="num">Est. paid traffic/mo</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">slingshotapp.io (us)</td><td class="num">105</td><td class="num">36</td><td class="num">233</td></tr>
+          <tr><td>agencyanalytics.com</td><td class="num">1,040</td><td class="num">167</td><td class="num">12,207</td></tr>
+          <tr><td>geckoboard.com</td><td class="num">103</td><td class="num">27</td><td class="num">245</td></tr>
+          <tr><td>databox.com</td><td class="num">5</td><td class="num">8</td><td class="num">210</td></tr>
+          <tr><td>dashthis.com</td><td class="num">6</td><td class="num">15</td><td class="num">42</td></tr>
+          <tr><td>klipfolio.com</td><td class="num">4</td><td class="num">9</td><td class="num">15</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sec fbx"><span class="n">2</span>Direction &amp; opportunity</div>
+    <div class="lead fbx"><b>Recommendation:</b> avoid the terms AgencyAnalytics saturates. Bid narrowly on <code>databox alternative</code>, <code>dashthis alternative free</code>, and <code>marketing dashboard with task management</code> — differentiated, lower-competition, and aligned to the metered-pricing backlash. Lead the landing pages with the free tier and the act-on-insight loop.</div>
+  </section>
+
+  <!-- ============ REPUTATION & MARKET ============ -->
+  <section class="tabpanel" data-tab="reputation" data-label="Reputation &amp; Market">
+    <div class="sec fbx"><span class="n">1</span>G2 ratings snapshot</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Product</th><th class="num">Rating</th><th class="num">Reviews</th><th>Read</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">Slingshot (us)</td><td class="num">4.6</td><td class="num">~14</td><td>Strong score, tiny sample — build volume.</td></tr>
+          <tr><td class="goal">DashThis</td><td class="num">4.7</td><td class="num">~82</td><td>Loved for simple client reports; widget caps.</td></tr>
+          <tr><td class="goal">AgencyAnalytics</td><td class="num">4.7</td><td class="num">~434</td><td>Agency favorite; per-client cost scaling.</td></tr>
+          <tr><td class="goal">Klipfolio</td><td class="num">4.4</td><td class="num">~256</td><td>Powerful, steep learning curve.</td></tr>
+          <tr><td class="goal">Databox</td><td class="num">4.4</td><td class="num">~193</td><td>Flexible; per-source fees / expensive.</td></tr>
+          <tr><td class="goal">Power BI / Looker / Geckoboard</td><td class="num">4.2–4.4</td><td class="num">234 / — / 32</td><td>BI power vs complexity; Gecko pricey per dashboard.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec fbx"><span class="n">2</span>Their weaknesses = our openings</div>
+    <div class="cards">
+      <div class="card fbx"><div class="ch"><span class="nm">Databox · DashThis · Geckoboard</span><span class="sp">metered / capped pricing</span></div><div class="cb">Databox per-source fees "balloon the bill" (export gated to $399), DashThis 50-widget cap + new source-based pricing, Geckoboard charges per extra dashboard/user. <b>Our opening:</b> flat pricing + a real free tier, no per-source or per-widget meter.</div></div>
+      <div class="card fbx"><div class="ch"><span class="nm">Looker · Power BI</span><span class="sp">cost &amp; complexity</span></div><div class="cb">Looker needs data-modeling skills and token-metered AI; Power BI locks Copilot behind PPU/Fabric and Microsoft-ecosystem complexity. <b>Our opening:</b> mid-market teams get dashboards + AI without a BI engineer or a Fabric bill.</div></div>
+      <div class="card fbx"><div class="ch"><span class="nm">All reporting tools</span><span class="sp">the dashboard is the dead-end</span></div><div class="cb">Every competitor stops at the chart — the user then leaves to assign work elsewhere. <b>Our opening:</b> Slingshot turns the metric into a task and a discussion in the same tool; the insight doesn't die on the dashboard.</div></div>
+    </div>
+
+    <div class="sec fbx"><span class="n">3</span>PR / M&amp;A / market</div>
+    <div class="lead fbx">
+      <b>AgencyAnalytics</b> is backed by C100 / Lazaridis Institute and made the category's biggest business-model shift with per-client repricing (May 2026). <b>Databox</b> launched an MCP server — a notable AI-era move toward LLM-native data access. No major 2026 funding/M&amp;A found for DashThis, Geckoboard or Klipfolio. On the BI side, Google (Looker) and Microsoft (Power BI) are pushing Gemini/Copilot with new token/Fabric metering. Net signal: AI-native access is the new bar, and pricing is fragmenting toward consumption — both of which favor a flat, act-in-one-tool challenger for mid-market marketing.
+    </div>
+
+    <div class="sec fbx"><span class="n">4</span>Our AI-answer visibility</div>
+    <div class="lead fbx"><b>AI-answer share of voice — first pull pending.</b> Not yet baselined; the scheduled run will pull Slingshot's LLM-answer visibility from Amplitude AI Visibility and track it weekly. Especially relevant here: with Databox exposing an MCP server and buyers asking LLMs "best marketing dashboard tool," being present in AI answers is fast becoming a demand channel of its own.</div>
+    <p style="font-size:11.5px;color:var(--muted)">Data-quality note: AI-answer SoV is volatile week to week; establish the baseline first.</p>
+  </section>
+
+  <!-- ============ COMPETITIVE MATRIX ============ -->
+  <section class="tabpanel" data-tab="matrix" data-label="Competitive Matrix">
+    <div class="sec fbx"><span class="n">1</span>Slingshot vs the field — ICP: marketing teams &amp; ops needing dashboards + reporting</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Dimension</th><th>Slingshot</th><th>Databox</th><th>DashThis</th><th>AgencyAnalytics</th><th>Looker / Power BI</th></tr></thead>
+        <tbody>
+          <tr><td class="goal">Dashboarding / visualization</td><td><span class="pill warn">Parity — solid dashboards</span></td><td>Strong</td><td>Strong (simple)</td><td>Strong</td><td>WIN — deep BI viz</td></tr>
+          <tr><td class="goal">Data connectors / integrations</td><td><span class="pill bad">GAP — fewer connectors</span></td><td>WIN — 200+</td><td>Broad (marketing)</td><td>85+</td><td>Broad (enterprise)</td></tr>
+          <tr><td class="goal">Act on insight (tasks + chat in-tool)</td><td><span class="pill good">WIN — dashboard→task→discussion</span></td><td>None</td><td>None</td><td>None</td><td>None</td></tr>
+          <tr><td class="goal">AI / NL analytics</td><td><span class="pill warn">Parity — NL + insights</span></td><td>AI credits + MCP</td><td>AI Insights Pro</td><td>Ask AI</td><td>Gemini / Copilot</td></tr>
+          <tr><td class="goal">Benchmarks</td><td><span class="pill warn">Parity — benchmarks built in</span></td><td>WIN — benchmarks</td><td>Limited</td><td>Benchmarks</td><td>Custom</td></tr>
+          <tr><td class="goal">White-label / client reporting</td><td><span class="pill bad">GAP — less agency-tuned</span></td><td>Good</td><td>WIN — client reports</td><td>WIN — agency-built</td><td>Limited</td></tr>
+          <tr><td class="goal">Pricing / free tier</td><td><span class="pill good">WIN — $0 free, flat</span></td><td>Free/$64+, per-source</td><td>$49+, source-based</td><td>$20–25/client</td><td>PPU/Fabric/quote</td></tr>
+          <tr><td class="goal">Enterprise BI depth (modeling/scale)</td><td><span class="pill bad">GAP — not a full BI engine</span></td><td>Mid</td><td>Light</td><td>Mid</td><td>WIN — enterprise BI</td></tr>
+          <tr><td class="goal">Target-ICP fit (marketing execution)</td><td><span class="pill good">WIN — analytics + work in one</span></td><td>Reporting-only</td><td>Reporting-only</td><td>Agency-only</td><td>Horizontal BI</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sec fbx"><span class="n">2</span>Honest read</div>
+    <div class="lead fbx">
+      <b>We win on the act-on-insight loop, pricing/free tier, and marketing-execution fit</b> — a marketing team that wants dashboards <em>and</em> a place to do the work gets both in one tool, free to start. <b>We have three real gaps:</b> (1) <b>connector breadth</b> vs Databox's 200+ / AgencyAnalytics' 85+, the most common deal-blocker; (2) <b>white-label client reporting</b>, where DashThis and AgencyAnalytics are purpose-built for agencies; and (3) <b>enterprise BI depth</b> vs Looker/Power BI (we're not, and shouldn't pretend to be, a semantic-modeling BI engine). The honest positioning: we're not the deepest dashboard tool or the biggest connector list — we're the only one where the insight turns into action without leaving the app, at a price that starts free.
+    </div>
+  </section>
+
+  <!-- ============ OUR MOVES ============ -->
+  <section class="tabpanel" data-tab="moves" data-label="Our Moves">
+    <div class="sec fbx"><span class="n">1</span>This week — specific actions</div>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>#</th><th>Action</th><th>Owner</th><th>Tied to</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td><b>Make "dashboards you can act on" the headline</b> — lead analytics messaging with the metric→task→discussion loop; it's the one thing no pure reporting tool offers.</td><td>PMM (Casey)</td><td>Our wedge</td></tr>
+          <tr><td class="num">2</td><td><b>Publish a flat-vs-metered pricing comparison</b> — Slingshot $0/flat vs Databox per-source, DashThis source-based, Looker/Power BI token &amp; Fabric metering.</td><td>PMM / Paid (David)</td><td>Consumption-pricing creep</td></tr>
+          <tr><td class="num">3</td><td><b>Publish our MCP / "ask your data" story</b> — match Databox's AI-access bar; we already have an MCP surface, so make it visible with a demo.</td><td>Product (Ryan/Pam) / PMM</td><td>Databox MCP server</td></tr>
+          <tr><td class="num">4</td><td><b>Ship an integrations roadmap + top-connectors page</b> — neutralize the "does it connect to X?" objection that costs us reporting deals.</td><td>Product (Casey)</td><td>Connector gap</td></tr>
+          <tr><td class="num">5</td><td><b>Ship 3 "alternative" pages</b> — Databox, DashThis, Geckoboard — leading with free tier + act-on-insight, to capture demand we can't win on paid.</td><td>SEO (Alex)</td><td>Reach + paid gap</td></tr>
+          <tr><td class="num">6</td><td><b>Run a G2 review drive</b> — from ~14 toward triple digits; compounds into search, social proof, and AI-answer citations.</td><td>PMM</td><td>Reputation depth</td></tr>
+          <tr><td class="num">7</td><td><b>Baseline AI-answer SoV</b> — pull Slingshot in Amplitude AI Visibility next run; "best marketing dashboard" is increasingly an LLM query.</td><td>PMM</td><td>AI visibility</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="verdict fbx">
+      <div class="vh">Verdict — the one response that matters this week</div>
+      <p><b>Own the one thing no reporting tool has: dashboards you can act on.</b> Slingshot won't win connector breadth against Databox or agency client-reporting against AgencyAnalytics, and it shouldn't try to be enterprise BI. Its defensible position is the loop the entire category ignores — a dashboard number becomes a task and a discussion in the same tool, starting free while rivals meter by source, widget and token. Make that loop the headline of every analytics touchpoint, wrap it in a flat-vs-metered pricing story, and back it with the MCP/"ask your data" proof point. That's the wedge that turns a tiny challenger into a category of one.</p>
+    </div>
+  </section>
+
+  </div>
+</div>
+
+<script>
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.tabpanel'));
+  var bar = document.getElementById('tabbar');
+  panels.forEach(function(p,i){
+    var b=document.createElement('button');
+    b.className='tab'+(i===0?' on':''); b.textContent=p.dataset.label||('Tab '+(i+1));
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+      panels.forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on'); p.classList.add('on');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+    bar.appendChild(b);
+    if(i===0) p.classList.add('on');
+  });
+</script>
+
+<!-- ===== FEEDBACK LOOP (teaches the agent) ===== -->
+<div class="fbmodal" id="fbModal" role="dialog" aria-modal="true" aria-label="Send feedback to the agent">
+  <div class="fbcard">
+    <div class="fbhd"><div class="k">Feedback to the agent</div><div class="l" id="fbLabel">—</div></div>
+    <div class="fbbd">
+      <label>What kind of feedback?</label>
+      <div class="fbcats" id="fbCats">
+        <button type="button" class="fbcat" data-cat="Won't do — strategic">Won't do — strategic</button>
+        <button type="button" class="fbcat" data-cat="Disagree">Disagree</button>
+        <button type="button" class="fbcat" data-cat="Wrong number">Wrong number</button>
+        <button type="button" class="fbcat" data-cat="Add context">Add context</button>
+        <button type="button" class="fbcat" data-cat="Approve">Approve</button>
+      </div>
+      <label>Why / details</label>
+      <textarea id="fbReason" placeholder="e.g. Hold this recommendation — we're deliberately doing X because Y."></textarea>
+      <div class="fbvalwrap" id="fbValWrap"><label>Correct value</label><input class="fbval" id="fbVal" placeholder="e.g. 168"></div>
+    </div>
+    <div class="fbft">
+      <button type="button" class="fbbtn sec" id="fbCancel">Cancel</button>
+      <button type="button" class="fbbtn pri" id="fbSend" disabled>Copy &amp; open Slingshot</button>
+    </div>
+  </div>
+</div>
+<div class="fbtoast" id="fbToast"></div>
+<script>
+(function(){
+  var FEEDBACK_URL="https://app.slingshotapp.io/openDiscussion/e97e10ef_b4c1ff6c-3dc7-47c1-909d-aaff8dcfb922";
+  var CHANNEL="Slingshot · Analytics";
+  var SCOPE="body";
+  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+  var secs=[],modal,curLabel="",curSection="",cat=null;
+  function labelFor(el){var t=(el.getAttribute('data-fb-label')||el.textContent||'').replace(/\s+/g,' ').trim();return t.length>90?t.slice(0,88)+'…':t;}
+  function sectionFor(el){var best="";for(var i=0;i<secs.length;i++){if(secs[i].compareDocumentPosition(el)&Node.DOCUMENT_POSITION_FOLLOWING){best=secs[i].textContent.replace(/\s+/g,' ').trim();}}return best;}
+  function addIcons(){document.querySelectorAll(SCOPE+' .fbx').forEach(function(el){if(el.querySelector(':scope > .fbtn'))return;var b=document.createElement('button');b.className='fbtn';b.type='button';b.title='Send feedback to the agent';b.innerHTML=ICON;b.addEventListener('click',function(ev){ev.stopPropagation();ev.preventDefault();openModal(el);});el.appendChild(b);});}
+  function openModal(el){curLabel=labelFor(el);curSection=sectionFor(el);cat=null;document.getElementById('fbLabel').textContent=(curSection?curSection+' › ':'')+curLabel;document.getElementById('fbReason').value='';document.getElementById('fbVal').value='';document.getElementById('fbValWrap').classList.remove('on');document.querySelectorAll('.fbcat').forEach(function(c){c.classList.remove('sel');});document.getElementById('fbSend').disabled=true;modal.classList.add('on');setTimeout(function(){document.getElementById('fbReason').focus();},60);}
+  function closeModal(){modal.classList.remove('on');}
+  function refreshSend(){var r=document.getElementById('fbReason').value.trim();document.getElementById('fbSend').disabled=!(cat&&r);}
+  function toast(m){var t=document.getElementById('fbToast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on');},3600);}
+  function send(){var reason=document.getElementById('fbReason').value.trim();var val=document.getElementById('fbVal').value.trim();var d=new Date().toISOString().slice(0,10);var lines=['📋 *Agent feedback — Slingshot '+CHANNEL+'*','Element: '+(curSection?curSection+' › ':'')+curLabel,'Category: '+cat,'Reason: '+reason];if(cat==='Wrong number'&&val)lines.push('Correct value: '+val);lines.push('Submitted: '+d);var payload=lines.join('\n');var done=function(){toast('Feedback copied — paste (⌘/Ctrl+V) into the Slingshot thread');window.open(FEEDBACK_URL,'_blank');closeModal();};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(payload).then(done,done);}else{var ta=document.createElement('textarea');ta.value=payload;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}}
+  document.addEventListener('DOMContentLoaded',function(){modal=document.getElementById('fbModal');secs=[].slice.call(document.querySelectorAll('.sec'));addIcons();document.getElementById('fbCats').addEventListener('click',function(e){var b=e.target.closest('.fbcat');if(!b)return;cat=b.dataset.cat;document.querySelectorAll('.fbcat').forEach(function(c){c.classList.toggle('sel',c===b);});document.getElementById('fbValWrap').classList.toggle('on',cat==='Wrong number');refreshSend();});document.getElementById('fbReason').addEventListener('input',refreshSend);document.getElementById('fbCancel').addEventListener('click',closeModal);document.getElementById('fbSend').addEventListener('click',send);modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});});
+})();
+</script>
+</body>
+</html>
