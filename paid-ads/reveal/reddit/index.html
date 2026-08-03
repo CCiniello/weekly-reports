@@ -25,11 +25,11 @@
   header.top .meta{margin-top:6px;font-size:13px;color:#fff;opacity:.92;font-weight:500}
   header.top .chan{display:inline-block;margin-top:10px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:3px 11px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.04em}
 
-  /* VP banner */
-  .vpbanner{border:1px solid #E9E9F4;border-radius:16px;overflow:hidden;margin:0 0 4px;box-shadow:0 1px 3px rgba(15,23,42,.05);font-family:'Roboto',system-ui,sans-serif}
-  .vpbanner .vbar{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-  .vpbanner .vbar .t{font-size:18px;font-weight:800}.vpbanner .vbar .g{font-size:12.5px;color:#cdd6f7;font-weight:600;text-align:right}
-  .vpbanner .vrow{display:flex;gap:18px;align-items:flex-start;padding:16px 22px;border-top:1px solid #E9E9F4;background:#fff}.vpbanner .vrow:first-of-type{border-top:none}
+  /* VP banner — Reveal branding */
+  .vpbanner{border:1px solid #f6cfe0;border-radius:16px;overflow:hidden;margin:0 0 22px;box-shadow:0 1px 3px rgba(15,23,42,.05);font-family:'Roboto',system-ui,sans-serif}
+  .vpbanner .vbar{background:linear-gradient(100deg,#EC417A,#C9367F);color:#fff;padding:15px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .vpbanner .vbar .t{font-size:18px;font-weight:800}.vpbanner .vbar .g{font-size:12.5px;color:#ffe1ec;font-weight:600;text-align:right}
+  .vpbanner .vrow{display:flex;gap:18px;align-items:flex-start;padding:16px 22px;border-top:1px solid #f4dbe6;background:#fff}.vpbanner .vrow:first-of-type{border-top:none}
   .pill2{flex:none;width:92px;text-align:center;font-size:11px;font-weight:800;letter-spacing:.05em;padding:5px 0;border-radius:16px;text-transform:uppercase;margin-top:2px}
   .pill2.fix{background:#fde8ec;color:#c62a4f}.pill2.work{background:#e3f5ec;color:#127a45}.pill2.watch{background:#fdf0d6;color:#8a6412}
   .vrow .rtx h4{margin:0 0 4px;font-size:15px;color:#0F172A;font-weight:800}.vrow .rtx p{margin:0;font-size:13.5px;color:#5f6b7a;line-height:1.55}
@@ -56,7 +56,8 @@
   .kpi .v{font-family:var(--mono);font-size:21px;font-weight:600;color:var(--navy);margin-top:5px}
   .kpi .d{font-size:11.5px;font-weight:700;margin-top:3px}
   .up{color:var(--good)}.down{color:var(--bad)}.flat{color:var(--gray)}
-  table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:13px}
+  .tblwrap{margin:10px 0 4px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
   th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line)}
   th{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:800;background:#fafbfe}
   td.n,th.n{text-align:right;font-family:var(--mono)}
@@ -116,14 +117,6 @@
   <span class="chan">CHANNEL: REDDIT &middot; AWARENESS</span>
 </header>
 
-<!-- VP READOUT -->
-<div class="vpbanner">
-  <div class="vbar"><div class="t">VP Readout &mdash; 30-second view</div><div class="g">Goal: developer awareness &amp; recall &mdash; cheap, relevant eyeballs on Reveal (not last-click leads)</div></div>
-  <div class="vrow fbx" data-fb-label="VP Readout — Fix"><div class="pill2 fix">Fix</div><div class="rtx"><h4>Reddit clicks are not turning into site visits &mdash; the money is buying taps, not traffic</h4><p>286 ad clicks this week, but GA4 saw only ~10 Reddit sessions land on the site. 72% of spend runs on the comments page and ~98% on mobile, where accidental taps inflate clicks. Fix at targeting/placement: shift to Feed, add desktop, hand-pick dev communities.</p></div></div>
-  <div class="vrow fbx" data-fb-label="VP Readout — Working"><div class="pill2 work">Working</div><div class="rtx"><h4>Cheap, above-benchmark reach &mdash; the awareness job is getting done</h4><p>0.83% CTR beats the B2B Reddit norm (0.2&ndash;0.5%) at a $1.33 CPC, putting Reveal in front of ~32k people this week. For an awareness play, the top of the funnel is efficient.</p></div></div>
-  <div class="vrow fbx" data-fb-label="VP Readout — Watch"><div class="pill2 watch">Watch</div><div class="rtx"><h4>One creative concept carrying the whole channel</h4><p>Every live ad is a variant of &ldquo;Embedded Analytics Into Your App&rdquo;; the BuildvsBuy webinar creative dropped off this week. eCPM also crept to $11, just above the $3&ndash;10 range &mdash; both signal early fatigue to monitor.</p></div></div>
-</div>
-
 <div class="tabbar">
   <button class="active" data-tab="ov">Overview</button>
   <button data-tab="cp">Communities &amp; Placements</button>
@@ -135,8 +128,16 @@
 <!-- ============ TAB 1 OVERVIEW ============ -->
 <section class="panel active first" id="ov">
 
+  <!-- VP READOUT (first element inside Overview, directly above The rundown) -->
+  <div class="vpbanner">
+    <div class="vbar"><div class="t">VP Readout &mdash; 30-second view</div><div class="g">Goal: developer awareness &amp; recall &mdash; cheap, relevant eyeballs on Reveal (not last-click leads)</div></div>
+    <div class="vrow fbx" data-fb-label="VP Readout — Fix"><div class="pill2 fix">Fix</div><div class="rtx"><h4>Reddit clicks are not turning into site visits &mdash; the money is buying taps, not traffic</h4><p>286 ad clicks this week, but GA4 saw only ~10 Reddit sessions land on the site. 72% of spend runs on the comments page and ~98% on mobile, where accidental taps inflate clicks. Fix at targeting/placement: shift to Feed, add desktop, hand-pick dev communities.</p></div></div>
+    <div class="vrow fbx" data-fb-label="VP Readout — Working"><div class="pill2 work">Working</div><div class="rtx"><h4>Cheap, above-benchmark reach &mdash; the awareness job is getting done</h4><p>0.83% CTR beats the B2B Reddit norm (0.2&ndash;0.5%) at a $1.33 CPC, putting Reveal in front of ~32k people this week. For an awareness play, the top of the funnel is efficient.</p></div></div>
+    <div class="vrow fbx" data-fb-label="VP Readout — Watch"><div class="pill2 watch">Watch</div><div class="rtx"><h4>One creative concept carrying the whole channel</h4><p>Every live ad is a variant of &ldquo;Embedded Analytics Into Your App&rdquo;; the BuildvsBuy webinar creative dropped off this week. eCPM also crept to $11, just above the $3&ndash;10 range &mdash; both signal early fatigue to monitor.</p></div></div>
+  </div>
+
   <div class="sec fbx" data-fb-label="Overview — The rundown">The rundown</div>
-  <div class="rundown">
+  <div class="rundown fbx" data-fb-label="Overview — The rundown (detail)">
     <p>Reddit did its awareness job again this week, but a little smaller. We spent about <span class="bl">$381</span> (down 6% from last week) to put Reveal in front of roughly <span class="bl">32,000 people</span>, and they clicked at <span class="bl">0.83%</span> &mdash; still comfortably above the B2B Reddit norm. On the surface, cheap and relevant eyeballs at a reasonable price.</p>
     <p>The problem sits one step down the funnel. Of the <span class="bl">286 clicks</span> we paid for, only about <span class="bl">10</span> actually showed up as sessions on the site in GA4. That gap isn&rsquo;t a tracking bug &mdash; it&rsquo;s a quality signal. Nearly three-quarters of spend runs on the Reddit <span class="bl">comments page</span> and ~98% on <span class="bl">mobile</span>, where a large share of &ldquo;clicks&rdquo; are accidental thumb taps that never load our page. The click&rarr;visit rate has slid from ~35% in spring to under 5% this summer.</p>
     <p><span class="bl">Bottom line:</span> keep Reddit running for developer awareness &mdash; the reach and CTR justify it &mdash; but stop paying comments-page/mobile rates for taps that don&rsquo;t convert to visits. The single highest-leverage move is to shift budget toward the Feed, layer in desktop, and hand-pick developer/data communities instead of broad delivery into consumer subreddits.</p>
@@ -155,9 +156,10 @@
     <div class="kpi fbx" data-fb-label="KPI — GA4 site visits"><div class="l">GA4 visits</div><div class="v">10</div><div class="d up">&uarr; from 8</div></div>
     <div class="kpi fbx" data-fb-label="KPI — Reddit leads"><div class="l">Direct leads</div><div class="v">0</div><div class="d flat">expected</div></div>
   </div>
-  <p class="note">Reddit&rsquo;s own dashboard reports 187 &ldquo;page visit&rdquo; conversions this week; GA4 &mdash; the source of truth for site traffic &mdash; counts ~10 Reddit sessions. We report both and treat GA4 as truth.</p>
+  <p class="note fbx" data-fb-label="Overview — GA4 vs Reddit count note">Reddit&rsquo;s own dashboard reports 187 &ldquo;page visit&rdquo; conversions this week; GA4 &mdash; the source of truth for site traffic &mdash; counts ~10 Reddit sessions. We report both and treat GA4 as truth.</p>
 
   <div class="sec fbx" data-fb-label="Overview — Benchmarks">Benchmark check (B2B/SaaS Reddit ranges)</div>
+  <div class="tblwrap fbx" data-fb-label="Overview — Benchmark table">
   <table>
     <thead><tr><th>Metric</th><th class="n">Reveal this week</th><th>B2B Reddit range</th><th>Read</th></tr></thead>
     <tbody>
@@ -167,8 +169,10 @@
       <tr><td>CPL (qualified)</td><td class="n">n/a</td><td>$50&ndash;$100</td><td><span class="pill na">Awareness &mdash; 0 direct</span></td></tr>
     </tbody>
   </table>
+  </div>
 
   <div class="sec fbx" data-fb-label="Overview — Goal scoreboard">Goal scoreboard</div>
+  <div class="tblwrap fbx" data-fb-label="Overview — Goal scoreboard table">
   <table>
     <thead><tr><th>Goal</th><th>Target</th><th class="n">This week</th><th>Status</th><th>Progress</th></tr></thead>
     <tbody>
@@ -179,6 +183,7 @@
       <tr><td>Click&rarr;visit quality</td><td>&ge; 25%</td><td class="n">~3.5%</td><td><span class="pill bad">Behind</span></td><td><div class="bar"><span style="width:14%;background:#c23b39"></span></div></td></tr>
     </tbody>
   </table>
+  </div>
 
   <div class="cards2">
     <div class="card win fbx" data-fb-label="Overview — What's working"><h4>What&rsquo;s working</h4>
@@ -202,9 +207,10 @@
 <!-- ============ TAB 2 COMMUNITIES & PLACEMENTS ============ -->
 <section class="panel" id="cp">
   <div class="sec fbx" data-fb-label="Placements — How Reddit delivery works">How Reddit delivery works</div>
-  <p class="lede">Reddit serves ads in two main spots. The <span class="mono">Feed</span> looks like a normal post while a user scrolls &mdash; intentional, higher-intent clicks. The <span class="mono">Comments page</span> sits inside a thread a user opened to read; clicks there are cheaper but include a lot of accidental taps. Targeting can be set by <em>community</em> (subreddit), interest, or left broad &mdash; and broad delivery is where our impressions are leaking into consumer subreddits.</p>
+  <p class="lede fbx" data-fb-label="Placements — Delivery primer">Reddit serves ads in two main spots. The <span class="mono">Feed</span> looks like a normal post while a user scrolls &mdash; intentional, higher-intent clicks. The <span class="mono">Comments page</span> sits inside a thread a user opened to read; clicks there are cheaper but include a lot of accidental taps. Targeting can be set by <em>community</em> (subreddit), interest, or left broad &mdash; and broad delivery is where our impressions are leaking into consumer subreddits.</p>
 
-  <div class="sec fbx" data-fb-label="Placements — Placement table">Placement (current week)</div>
+  <div class="sec fbx" data-fb-label="Placements — Placement table header">Placement (current week)</div>
+  <div class="tblwrap fbx" data-fb-label="Placements — Placement table">
   <table>
     <thead><tr><th>Placement</th><th class="n">Spend</th><th class="n">% spend</th><th class="n">Impr</th><th class="n">Clicks</th><th class="n">CTR</th><th class="n">CPC</th></tr></thead>
     <tbody>
@@ -213,9 +219,11 @@
       <tr><td>Other</td><td class="n">$0.00</td><td class="n">0%</td><td class="n">97</td><td class="n">0</td><td class="n">0%</td><td class="n">&mdash;</td></tr>
     </tbody>
   </table>
-  <p class="note">Nearly three of every four dollars run on the comments page &mdash; the placement most exposed to accidental taps and the likeliest driver of the click&rarr;visit gap.</p>
+  </div>
+  <p class="note fbx" data-fb-label="Placements — Placement note">Nearly three of every four dollars run on the comments page &mdash; the placement most exposed to accidental taps and the likeliest driver of the click&rarr;visit gap.</p>
 
-  <div class="sec fbx" data-fb-label="Placements — Device table">Device split (Reddit spend, current week)</div>
+  <div class="sec fbx" data-fb-label="Placements — Device table header">Device split (Reddit spend, current week)</div>
+  <div class="tblwrap fbx" data-fb-label="Placements — Device table">
   <table>
     <thead><tr><th>Device OS</th><th class="n">Spend</th><th class="n">% spend</th><th class="n">Impr</th><th class="n">Clicks</th><th class="n">CTR</th></tr></thead>
     <tbody>
@@ -226,10 +234,12 @@
       <tr><td>Windows</td><td class="n">$1.02</td><td class="n">0.3%</td><td class="n">374</td><td class="n">1</td><td class="n">0.27%</td></tr>
     </tbody>
   </table>
-  <p class="note">~98% of spend is mobile (iOS + Android). Desktop &mdash; where developers actually evaluate an embedded-analytics SDK &mdash; gets almost none of the budget. This mobile skew compounds the comments-page tap problem.</p>
+  </div>
+  <p class="note fbx" data-fb-label="Placements — Device note">~98% of spend is mobile (iOS + Android). Desktop &mdash; where developers actually evaluate an embedded-analytics SDK &mdash; gets almost none of the budget. This mobile skew compounds the comments-page tap problem.</p>
 
-  <div class="sec fbx" data-fb-label="Placements — Community delivery">Community delivery (impressions, current week)</div>
-  <p class="note">Spend does not break out at the community grain and engagement fields return empty, so this is an impression-delivery read only. Delivery is broad and consumer-skewed.</p>
+  <div class="sec fbx" data-fb-label="Placements — Community delivery header">Community delivery (impressions, current week)</div>
+  <p class="note fbx" data-fb-label="Placements — Community caveat">Spend does not break out at the community grain and engagement fields return empty, so this is an impression-delivery read only. Delivery is broad and consumer-skewed.</p>
+  <div class="tblwrap fbx" data-fb-label="Placements — Community table">
   <table>
     <thead><tr><th>Target fit</th><th>Example communities receiving impressions</th></tr></thead>
     <tbody>
@@ -237,7 +247,8 @@
       <tr><td><span class="pill bad">Off-target (consumer)</span></td><td class="mono">r/airfryer, r/90dayfiance, r/aitah, r/acnh, r/amazonprime, r/allinclusiveresorts, r/adulting</td></tr>
     </tbody>
   </table>
-  <p class="note">The on-target subs receive a trickle of impressions (single digits each); the consumer long-tail absorbs the bulk. Almost none of this is in front of the developer/data audience we&rsquo;re buying.</p>
+  </div>
+  <p class="note fbx" data-fb-label="Placements — Community read">The on-target subs receive a trickle of impressions (single digits each); the consumer long-tail absorbs the bulk. Almost none of this is in front of the developer/data audience we&rsquo;re buying.</p>
 
   <div class="fixcard fbx" data-fb-label="Placements — The fix">
     <h4>The fix</h4>
@@ -251,7 +262,8 @@
 
 <!-- ============ TAB 3 CREATIVE & MESSAGING ============ -->
 <section class="panel" id="cr">
-  <div class="sec fbx" data-fb-label="Creative — Table">Creative performance (current week)</div>
+  <div class="sec fbx" data-fb-label="Creative — Table header">Creative performance (current week)</div>
+  <div class="tblwrap fbx" data-fb-label="Creative — Performance table">
   <table>
     <thead><tr><th>Ad</th><th class="n">Spend</th><th class="n">Impr</th><th class="n">Clicks</th><th class="n">CTR</th><th>vs 0.5% B2B</th><th class="n">Page visits</th></tr></thead>
     <tbody>
@@ -260,14 +272,16 @@
       <tr><td>Embedded Analytics Into Your App &mdash; v3</td><td class="n">$120.97</td><td class="n">11,222</td><td class="n">86</td><td class="n">0.77%</td><td><span class="pill good">+0.27pp</span></td><td class="n">57</td></tr>
     </tbody>
   </table>
-  <p class="note">All three live ads are variants of a single concept. Last week a fourth creative &mdash; &ldquo;Webinar &mdash; BuildvsBuy&rdquo; ($13.94, 0.74% CTR) &mdash; was also running; it dropped off this week, leaving no angle diversity.</p>
+  </div>
+  <p class="note fbx" data-fb-label="Creative — Table note">All three live ads are variants of a single concept. Last week a fourth creative &mdash; &ldquo;Webinar &mdash; BuildvsBuy&rdquo; ($13.94, 0.74% CTR) &mdash; was also running; it dropped off this week, leaving no angle diversity.</p>
 
-  <div class="sec fbx" data-fb-label="Creative — Angle read">Angle read (WoW)</div>
-  <p class="lede">The &ldquo;Embedded Analytics Into Your App&rdquo; product angle holds a steady ~0.83% CTR week over week &mdash; it works. But with the BuildvsBuy webinar angle paused, the account is now a single message with three cosmetic variants. There is no build-vs-buy, competitor-conquest, or developer-experience angle in market to test against it, and eCPM is ticking up &mdash; an early fatigue signal.</p>
+  <div class="sec fbx" data-fb-label="Creative — Angle read header">Angle read (WoW)</div>
+  <p class="lede fbx" data-fb-label="Creative — Angle read">The &ldquo;Embedded Analytics Into Your App&rdquo; product angle holds a steady ~0.83% CTR week over week &mdash; it works. But with the BuildvsBuy webinar angle paused, the account is now a single message with three cosmetic variants. There is no build-vs-buy, competitor-conquest, or developer-experience angle in market to test against it, and eCPM is ticking up &mdash; an early fatigue signal.</p>
 
   <div class="callout fbx" data-fb-label="Creative — What makes Reddit creative work">What makes Reddit creative work: Reddit users reward ads that read like a native post &mdash; plain, specific, and non-salesy. Developer audiences respond to a concrete problem statement (&ldquo;embed dashboards without building a BI tool&rdquo;), a code/product screenshot, and a straight answer to &ldquo;why not just use X.&rdquo; Polished brand creative underperforms; a founder/engineer voice outperforms.</div>
 
-  <div class="sec fbx" data-fb-label="Creative — Test plan">Test plan</div>
+  <div class="sec fbx" data-fb-label="Creative — Test plan header">Test plan</div>
+  <div class="tblwrap fbx" data-fb-label="Creative — Test plan table">
   <table>
     <thead><tr><th>Test</th><th>Hypothesis</th><th>Priority</th></tr></thead>
     <tbody>
@@ -277,12 +291,13 @@
       <tr><td>Feed-only creative variant</td><td>Creative written for Feed (vs comments) lifts intentional clicks that survive to a GA4 session.</td><td><span class="pill warn">Medium</span></td></tr>
     </tbody>
   </table>
+  </div>
 </section>
 
 <!-- ============ TAB 4 SITE BEHAVIOR (GA4) ============ -->
 <section class="panel" id="ga">
-  <div class="sec fbx" data-fb-label="GA4 — Intro">Site behavior (GA4) &mdash; monthly view</div>
-  <p class="lede">Weekly Reddit traffic to the site is too thin to read on its own (single-digit to low-double-digit sessions), so we look at it monthly. GA4 is the source of truth for what actually reached the site &mdash; and it tells a very different story than Reddit&rsquo;s in-platform click count.</p>
+  <div class="sec fbx" data-fb-label="GA4 — Intro header">Site behavior (GA4) &mdash; monthly view</div>
+  <p class="lede fbx" data-fb-label="GA4 — Intro">Weekly Reddit traffic to the site is too thin to read on its own (single-digit to low-double-digit sessions), so we look at it monthly. GA4 is the source of truth for what actually reached the site &mdash; and it tells a very different story than Reddit&rsquo;s in-platform click count.</p>
 
   <div class="kpigrid" style="grid-template-columns:repeat(4,1fr)">
     <div class="kpi fbx" data-fb-label="GA4 KPI — Weekly sessions"><div class="l">Reddit sessions (wk)</div><div class="v">10</div><div class="d up">&uarr; from 8</div></div>
@@ -291,11 +306,12 @@
     <div class="kpi fbx" data-fb-label="GA4 KPI — Avg session"><div class="l">Avg session</div><div class="v">4:55</div><div class="d flat">homepage</div></div>
   </div>
 
-  <div class="sec fbx" data-fb-label="GA4 — Sessions vs spend chart">Sessions vs spend, and the click&rarr;visit collapse</div>
+  <div class="sec fbx" data-fb-label="GA4 — Sessions vs spend header">Sessions vs spend, and the click&rarr;visit collapse</div>
   <div class="grid2">
-    <div class="chartbox"><canvas id="chSess"></canvas></div>
-    <div class="chartbox"><canvas id="chC2V"></canvas></div>
+    <div class="chartbox fbx" data-fb-label="GA4 — Sessions vs spend chart"><canvas id="chSess"></canvas></div>
+    <div class="chartbox fbx" data-fb-label="GA4 — Click-to-visit chart"><canvas id="chC2V"></canvas></div>
   </div>
+  <div class="tblwrap fbx" data-fb-label="GA4 — Monthly table">
   <table>
     <thead><tr><th>Month</th><th class="n">Reddit spend</th><th class="n">Clicks</th><th class="n">GA4 sessions</th><th class="n">Click&rarr;visit %</th><th class="n">Engagement</th><th class="n">Avg session</th></tr></thead>
     <tbody>
@@ -306,13 +322,15 @@
       <tr><td>Jul</td><td class="n">$1,622</td><td class="n">1,196</td><td class="n">56</td><td class="n">4.7%</td><td class="n">23.2%</td><td class="n">4:45</td></tr>
     </tbody>
   </table>
-  <p class="note">Spend paused entirely in May, then resumed. The story: the <b>click&rarr;visit rate collapsed from ~35% in spring to under 5% this summer</b> &mdash; the same period spend concentrated on comments-page/mobile. We are buying more clicks (1,196 in July) that reach the site less (56 sessions).</p>
-
-  <div class="sec fbx" data-fb-label="GA4 — Device gap">Mobile vs desktop behavior (trailing 30 days)</div>
-  <div class="grid2">
-    <div class="chartbox sm"><canvas id="chDevPie"></canvas></div>
-    <div class="chartbox sm"><canvas id="chDevEng"></canvas></div>
   </div>
+  <p class="note fbx" data-fb-label="GA4 — Collapse note">Spend paused entirely in May, then resumed. The story: the <b>click&rarr;visit rate collapsed from ~35% in spring to under 5% this summer</b> &mdash; the same period spend concentrated on comments-page/mobile. We are buying more clicks (1,196 in July) that reach the site less (56 sessions).</p>
+
+  <div class="sec fbx" data-fb-label="GA4 — Device gap header">Mobile vs desktop behavior (trailing 30 days)</div>
+  <div class="grid2">
+    <div class="chartbox sm fbx" data-fb-label="GA4 — Device sessions chart"><canvas id="chDevPie"></canvas></div>
+    <div class="chartbox sm fbx" data-fb-label="GA4 — Device engagement chart"><canvas id="chDevEng"></canvas></div>
+  </div>
+  <div class="tblwrap fbx" data-fb-label="GA4 — Device table">
   <table>
     <thead><tr><th>Device</th><th class="n">Sessions</th><th class="n">Engaged</th><th class="n">Engagement rate</th><th class="n">Bounce</th><th class="n">Avg session</th></tr></thead>
     <tbody>
@@ -321,15 +339,18 @@
       <tr><td>Tablet</td><td class="n">1</td><td class="n">0</td><td class="n">0%</td><td class="n">100%</td><td class="n">0:02</td></tr>
     </tbody>
   </table>
-  <p class="note">Mobile carries ~80% of the Reddit sessions that reach the site &mdash; unsurprising given ~98% of spend is mobile. The desktop sample (9 sessions) is too small to draw a firm engagement conclusion this period; the takeaway is simply that desktop is barely being funded at all, so we can&rsquo;t yet judge whether desktop visitors convert better.</p>
+  </div>
+  <p class="note fbx" data-fb-label="GA4 — Device note">Mobile carries ~80% of the Reddit sessions that reach the site &mdash; unsurprising given ~98% of spend is mobile. The desktop sample (9 sessions) is too small to draw a firm engagement conclusion this period; the takeaway is simply that desktop is barely being funded at all, so we can&rsquo;t yet judge whether desktop visitors convert better.</p>
 
-  <div class="sec fbx" data-fb-label="GA4 — Landing pages">Landing pages (current week)</div>
+  <div class="sec fbx" data-fb-label="GA4 — Landing pages header">Landing pages (current week)</div>
+  <div class="tblwrap fbx" data-fb-label="GA4 — Landing pages table">
   <table>
     <thead><tr><th>Landing page</th><th class="n">Sessions</th><th class="n">Engaged</th><th class="n">Engagement rate</th><th class="n">Avg session</th></tr></thead>
     <tbody>
       <tr><td class="mono">/ (homepage)</td><td class="n">10</td><td class="n">4</td><td class="n">40%</td><td class="n">4:55</td></tr>
     </tbody>
   </table>
+  </div>
   <div class="fixcard fbx" data-fb-label="GA4 — Landing recommendation">
     <h4>Landing experience recommendation</h4>
     <ul>
@@ -341,7 +362,8 @@
 
 <!-- ============ TAB 5 JOURNEY & ROI ============ -->
 <section class="panel" id="jr">
-  <div class="sec fbx" data-fb-label="Journey — Funnel">The funnel (current week)</div>
+  <div class="sec fbx" data-fb-label="Journey — Funnel header">The funnel (current week)</div>
+  <div class="tblwrap fbx" data-fb-label="Journey — Funnel table">
   <table>
     <thead><tr><th>Stage</th><th class="n">Value</th><th>What it means</th></tr></thead>
     <tbody>
@@ -353,6 +375,7 @@
       <tr><td>SF direct leads</td><td class="n">0</td><td>Expected for an awareness channel &mdash; Reddit works via assisted recall, not last click.</td></tr>
     </tbody>
   </table>
+  </div>
 
   <div class="card bad fbx" data-fb-label="Journey — Where are the clicks going">
     <h4>Where are the clicks going?</h4>
@@ -363,9 +386,9 @@
     </ul>
   </div>
 
-  <div class="sec fbx" data-fb-label="Journey — Salesforce attribution">Salesforce attribution</div>
-  <p class="lede">Reddit leads would land through the same path that already captures Google, Bing, and LinkedIn: the <span class="mono">Lead_Event__c</span> object, with <span class="mono">ProductFamilyName__c = Reveal</span>, <span class="mono">TrackingSource__c = reddit.com</span>, and <span class="mono">TrackingMedium__c = referral</span>. Over the last 30 days the Reveal channel mix shows (direct) 281, google 65, webinar 17, bing 10, linkedin 3 &mdash; and <b>zero reddit</b>. That is the expected result for an awareness play; Reddit&rsquo;s value is discovery and recall that shows up later as a direct or branded search visit, not a same-session Reddit lead.</p>
-  <p class="note">UTM nice-to-have: Reddit currently lands as <span class="mono">reddit.com / referral</span> rather than <span class="mono">reddit / cpc</span>. Tagging the ad URLs with proper UTMs would let both GA4 and Salesforce credit Reddit cleanly instead of folding it into referral/direct.</p>
+  <div class="sec fbx" data-fb-label="Journey — Salesforce attribution header">Salesforce attribution</div>
+  <p class="lede fbx" data-fb-label="Journey — Salesforce attribution">Reddit leads would land through the same path that already captures Google, Bing, and LinkedIn: the <span class="mono">Lead_Event__c</span> object, with <span class="mono">ProductFamilyName__c = Reveal</span>, <span class="mono">TrackingSource__c = reddit.com</span>, and <span class="mono">TrackingMedium__c = referral</span>. Over the last 30 days the Reveal channel mix shows (direct) 281, google 65, webinar 17, bing 10, linkedin 3 &mdash; and <b>zero reddit</b>. That is the expected result for an awareness play; Reddit&rsquo;s value is discovery and recall that shows up later as a direct or branded search visit, not a same-session Reddit lead.</p>
+  <p class="note fbx" data-fb-label="Journey — UTM note">UTM nice-to-have: Reddit currently lands as <span class="mono">reddit.com / referral</span> rather than <span class="mono">reddit / cpc</span>. Tagging the ad URLs with proper UTMs would let both GA4 and Salesforce credit Reddit cleanly instead of folding it into referral/direct.</p>
 
   <div class="verdict fbx" data-fb-label="Journey — Verdict">
     <div class="vh">Verdict</div>
