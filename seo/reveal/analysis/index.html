@@ -95,7 +95,7 @@ table{width:100%;border-collapse:collapse}
 .kpi .ins{font-size:12px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;margin-top:2px}
 
 /* CLUSTERS */
-.clusters{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.clusters{display:grid;grid-template-columns:1fr;gap:14px}
 .cluster{padding:0;overflow:hidden}
 .cluster .top{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line)}
 .cluster .top h3{margin:0;font-size:15px;font-weight:600}
@@ -104,7 +104,10 @@ table{width:100%;border-collapse:collapse}
 .kwt td,.kwt th{padding:8px 18px;font-size:12.5px;border-bottom:1px solid var(--line)}
 .kwt th{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;background:#FBFCFE}
 .kwt td.kw{font-weight:500}
-.kwt td.pos,.kwt td.impr{font-family:var(--mono);text-align:right;white-space:nowrap}
+.kwt td.pos,.kwt td.impr,.kwt td.vol,.kwt td.ctr{font-family:var(--mono);text-align:right;white-space:nowrap}
+.kwt td.pageco{font-family:var(--mono);font-size:11.5px;color:var(--cobalt);white-space:nowrap}
+.kwt th.r{text-align:right}
+.kwt td.ctr{color:var(--muted)}
 .pg{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:5px;margin-left:6px;vertical-align:middle}
 .pg1{background:var(--greenbg);color:var(--green)}
 .pg2{background:var(--amberbg);color:var(--amberc)}
@@ -193,7 +196,7 @@ table{width:100%;border-collapse:collapse}
 .gl dd{margin:2px 0 10px;font-size:12.5px;color:#2B3444}
 .rule{background:linear-gradient(100deg,rgba(251,183,100,.14),rgba(236,65,122,.12));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-top:16px;font-size:13.5px;font-weight:500}
 .foot{color:var(--muted);font-size:11.5px;margin-top:26px;text-align:center}
-@media(max-width:900px){.vp,.kpis,.clusters,.ai-stats,.ai-grid,.board,.gl{grid-template-columns:1fr}.tabs-inner,.wrap,.hero-inner{padding-left:16px;padding-right:16px}}
+@media(max-width:900px){.vp,.kpis,.ai-stats,.ai-grid,.board,.gl{grid-template-columns:1fr}.tabs-inner,.wrap,.hero-inner{padding-left:16px;padding-right:16px}.kwt td,.kwt th{padding:8px 10px}}
 </style>
 </head>
 <body>
@@ -231,7 +234,7 @@ table{width:100%;border-collapse:collapse}
     <div class="card good fbx">
       <div class="lab">What's working</div>
       <h3>Technical cleanup is landing</h3>
-      <p>Site-audit health climbed <b>36 → 48</b> after the sitemap + internal-link fixes shipped. White Label stays our strongest cluster — several long-tail terms sit at <b>#1</b> and "white label platform" holds <b>#4</b>.</p>
+      <p>Site-audit health climbed <b>36 → 48</b> after the sitemap + internal-link fixes shipped. White Label stays our strongest cluster — all three head terms rank on one owned page, just off page 1.</p>
     </div>
     <div class="card bad fbx">
       <div class="lab">What's not</div>
@@ -249,7 +252,7 @@ table{width:100%;border-collapse:collapse}
   <div class="card pad exec">
     <p>The technical repair work is showing up in the numbers: audit health recovered from <b>36 to 48</b> as the clean sitemap and redirect-link fixes landed. That removes the biggest drag on everything else we do.</p>
     <p>Demand signals cooled this week. Organic clicks fell to <b>235 (-6%)</b> and organic sessions to <b>291 (-24%)</b> versus the prior week, and July deduped organic leads came in at <b>23</b> against a 100/month target. Impressions actually rose (<b>123k, +10%</b>), so we're being <b>shown</b> more but converting the click less — a page-2 and CTR problem, not a visibility one.</p>
-    <p>The structural fix is unchanged and on schedule: our core commercial terms rank but sit at <b>#15–#29</b> because two money pages don't exist yet. <b>/embedded-bi</b> (live Aug 15) and <b>/embedded-dashboards</b> (live Aug 31) target that gap directly; "embedded dashboards" is already <b>#8</b> off the homepage alone.</p>
+    <p>The structural fix is unchanged and on schedule: our core commercial terms rank but sit at <b>#14–#29</b> because two money pages don't exist yet. <b>/embedded-bi</b> (live Aug 15) and <b>/embedded-dashboards</b> (live Aug 31) target that gap directly; "embedded dashboards" is already <b>#8</b> off the homepage alone.</p>
     <p>In AI answers we own the comparison conversation (<b>77%</b> visibility on "Brand &amp; Competitive Comparison") but are <b>invisible</b> on the top-of-funnel category topics — 0% on both "embedded analytics platforms" and "AI-powered embedded analytics" while competitors are cited 10–14× each. New action opened to close that.</p>
   </div>
 
@@ -260,21 +263,21 @@ table{width:100%;border-collapse:collapse}
       <tbody>
         <tr>
           <td class="goal fbx">Embedded analytics → top 3</td>
-          <td class="num">#15.6</td><td>Top 3</td>
+          <td class="num">#16</td><td>Top 3</td>
           <td><span class="bar"><i style="width:20%"></i></span></td>
           <td>Served heavily (4,120 impr) but stuck page 2; needs on-page + CTR.</td>
           <td><span class="badge b-amber">Page 2</span></td>
         </tr>
         <tr>
           <td class="goal fbx">White label analytics → top 3</td>
-          <td class="num">#14.2</td><td>Top 3</td>
+          <td class="num">#14</td><td>Top 3</td>
           <td><span class="bar"><i style="width:33%"></i></span></td>
-          <td>Head term page 2, but "white label platform" #4 and long-tail already #1.</td>
+          <td>All three head terms on one owned page, just off page 1 (#14–17).</td>
           <td><span class="badge b-amber">Page 2</span></td>
         </tr>
         <tr>
           <td class="goal fbx">Embedded BI → page live + top 10</td>
-          <td class="num">#29.4</td><td>Top 10 · Sep 30</td>
+          <td class="num">#29</td><td>Top 10 · Sep 30</td>
           <td><span class="bar"><i style="width:15%"></i></span></td>
           <td>Homepage-carried; dedicated /embedded-bi in progress, live Aug 15.</td>
           <td><span class="badge b-build">Building</span></td>
@@ -376,62 +379,56 @@ table{width:100%;border-collapse:collapse}
     <div class="card cluster">
       <div class="top"><h3>Embedded Analytics</h3><span class="path">/embedded-analytics</span></div>
       <table class="kwt">
-        <thead><tr><th>Keyword</th><th style="text-align:right">GSC pos</th><th style="text-align:right">Impr</th></tr></thead>
+        <thead><tr><th>Keyword</th><th class="r">Vol</th><th>Ranking page (GSC)</th><th class="r">Position</th><th class="r">Impr</th><th class="r">CTR</th></tr></thead>
         <tbody>
-          <tr><td class="kw fbx">embedded analytics</td><td class="pos">#15.6<span class="pg pg2">P2</span></td><td class="impr">4,120</td></tr>
-          <tr><td class="kw fbx">embedded analytics software</td><td class="pos">#15.7<span class="pg pg2">P2</span></td><td class="impr">905</td></tr>
-          <tr><td class="kw fbx">what is embedded analytics</td><td class="pos">#18.8<span class="pg pg2">P2</span></td><td class="impr">859</td></tr>
-          <tr><td class="kw fbx">embedded analytics platform</td><td class="pos">#16.5<span class="pg pg2">P2</span></td><td class="impr">881</td></tr>
-          <tr><td class="kw fbx">embedded analytics tools</td><td class="pos">#24.4<span class="pg pgx">P3</span></td><td class="impr">732</td></tr>
-          <tr><td class="kw fbx">embedded analytics pricing</td><td class="pos">#19.6<span class="pg pg2">P2</span></td><td class="impr">348</td></tr>
+          <tr><td class="kw fbx">embedded analytics</td><td class="vol">1,600</td><td class="pageco">/embedded-analytics</td><td class="pos">#16<span class="pg pg2">P2</span></td><td class="impr">4,120</td><td class="ctr">0.05%</td></tr>
+          <tr><td class="kw fbx">embedded analytics software</td><td class="vol">200</td><td class="pageco">/embedded-analytics-software</td><td class="pos">#16<span class="pg pg2">P2</span></td><td class="impr">905</td><td class="ctr">0%</td></tr>
+          <tr><td class="kw fbx">what is embedded analytics</td><td class="vol">300</td><td class="pageco">/embedded-analytics</td><td class="pos">#19<span class="pg pg2">P2</span></td><td class="impr">859</td><td class="ctr">0%</td></tr>
+          <tr><td class="kw fbx">embedded analytics pricing</td><td class="vol">150</td><td class="pageco">/pricing/embedded-analytics</td><td class="pos">#20<span class="pg pg2">P2</span></td><td class="impr">348</td><td class="ctr">0%</td></tr>
+          <tr><td class="kw fbx">embedded analytics tools</td><td class="vol">350</td><td class="pageco">/embedded-analytics</td><td class="pos">#24<span class="pg pgx">P3</span></td><td class="impr">732</td><td class="ctr">0%</td></tr>
         </tbody>
       </table>
-      <div class="read fbx"><span class="verdict"><span class="badge b-amber">Page 2</span></span><span>Everything ranks, nothing is top-10. The lever is on-page optimization + CTR on the existing page — not new content.</span></div>
+      <div class="read fbx"><span class="verdict"><span class="badge b-amber">Page 2</span></span><span>Everything ranks, nothing is top-10 — 4,120 impressions on the head term at ~0.05% CTR. The lever is on-page optimization + CTR on the existing page, not new content.</span></div>
     </div>
 
     <div class="card cluster">
       <div class="top"><h3>Embedded BI</h3><span class="path">PAGE GAP → /embedded-bi</span></div>
       <table class="kwt">
-        <thead><tr><th>Keyword</th><th style="text-align:right">GSC pos</th><th style="text-align:right">Impr</th></tr></thead>
+        <thead><tr><th>Keyword</th><th class="r">Vol</th><th>Ranking page (GSC)</th><th class="r">Position</th><th class="r">Impr</th><th class="r">CTR</th></tr></thead>
         <tbody>
-          <tr><td class="kw fbx">embedded bi</td><td class="pos">#29.4<span class="pg pgx">P3</span></td><td class="impr">1,007</td></tr>
-          <tr><td class="kw fbx">embedded business intelligence</td><td class="pos">#24.5<span class="pg pgx">P3</span></td><td class="impr">443</td></tr>
-          <tr><td class="kw fbx">embedded bi tools</td><td class="pos">#21.9<span class="pg pgx">P3</span></td><td class="impr">382</td></tr>
-          <tr><td class="kw fbx">embedded bi tool</td><td class="pos">#19.0<span class="pg pg2">P2</span></td><td class="impr">291</td></tr>
+          <tr><td class="kw fbx">embedded bi</td><td class="vol">300</td><td class="pageco">/ (homepage)</td><td class="pos">#29<span class="pg pgx">P3</span></td><td class="impr">1,007</td><td class="ctr">0%</td></tr>
+          <tr><td class="kw fbx">embedded business intelligence</td><td class="vol">200</td><td class="pageco">/ (homepage)</td><td class="pos">#25<span class="pg pgx">P3</span></td><td class="impr">443</td><td class="ctr">0%</td></tr>
+          <tr><td class="kw fbx">embedded bi tool</td><td class="vol">150</td><td class="pageco">/ (homepage)</td><td class="pos">#19<span class="pg pg2">P2</span></td><td class="impr">291</td><td class="ctr">0%</td></tr>
         </tbody>
       </table>
-      <div class="read fbx"><span class="verdict"><span class="badge b-build">Building</span></span><span>Homepage is carrying the whole cluster (#25–29). A dedicated /embedded-bi page (live Aug 15) shifts the ranking signal onto owned real estate.</span></div>
+      <div class="read fbx"><span class="verdict"><span class="badge b-build">Building</span></span><span>The homepage is carrying the whole cluster (#19–29) with no owned page. A dedicated /embedded-bi page (live Aug 15) shifts the ranking signal onto owned real estate.</span></div>
     </div>
 
     <div class="card cluster">
       <div class="top"><h3>White Label</h3><span class="path">/white-label-analytics</span></div>
       <table class="kwt">
-        <thead><tr><th>Keyword</th><th style="text-align:right">GSC pos</th><th style="text-align:right">Impr</th></tr></thead>
+        <thead><tr><th>Keyword</th><th class="r">Vol</th><th>Ranking page (GSC)</th><th class="r">Position</th><th class="r">Impr</th><th class="r">CTR</th></tr></thead>
         <tbody>
-          <tr><td class="kw fbx">white label platform</td><td class="pos">#4.3<span class="pg pg1">P1</span></td><td class="impr">1,163</td></tr>
-          <tr><td class="kw fbx">white label analytics</td><td class="pos">#14.2<span class="pg pg2">P2</span></td><td class="impr">844</td></tr>
-          <tr><td class="kw fbx">white label dashboard</td><td class="pos">#17.5<span class="pg pg2">P2</span></td><td class="impr">678</td></tr>
-          <tr><td class="kw fbx">white label data analytics</td><td class="pos">#14.8<span class="pg pg2">P2</span></td><td class="impr">489</td></tr>
-          <tr><td class="kw fbx">best white label analytics platforms</td><td class="pos">#1.4<span class="pg pg1">P1</span></td><td class="impr">112</td></tr>
+          <tr><td class="kw fbx">white label analytics</td><td class="vol">250</td><td class="pageco">/white-label-analytics</td><td class="pos">#14<span class="pg pg2">P2</span></td><td class="impr">844</td><td class="ctr">0.12%</td></tr>
+          <tr><td class="kw fbx">white label data analytics</td><td class="vol">200</td><td class="pageco">/white-label-analytics</td><td class="pos">#15<span class="pg pg2">P2</span></td><td class="impr">489</td><td class="ctr">0.20%</td></tr>
+          <tr><td class="kw fbx">white label dashboard</td><td class="vol">300</td><td class="pageco">/white-label-analytics</td><td class="pos">#17<span class="pg pg2">P2</span></td><td class="impr">678</td><td class="ctr">0%</td></tr>
         </tbody>
       </table>
-      <div class="read fbx"><span class="verdict"><span class="badge b-ontrack">Strongest</span></span><span>Our best cluster: long-tail already at #1 and "white label platform" #4. Backlinks to the ranking page are the push from #2 to #1 on the head term.</span></div>
+      <div class="read fbx"><span class="verdict"><span class="badge b-ontrack">Strongest</span></span><span>Our strongest cluster and the one owned page ranking all three head terms — all just off page 1 (#14–17). Backlinks to /white-label-analytics are the push into the top 10.</span></div>
     </div>
 
     <div class="card cluster">
       <div class="top"><h3>Competitors</h3><span class="path">/reveal-vs-*</span></div>
       <table class="kwt">
-        <thead><tr><th>Keyword</th><th style="text-align:right">GSC pos</th><th style="text-align:right">Impr</th></tr></thead>
+        <thead><tr><th>Keyword</th><th class="r">Vol</th><th>Ranking page (GSC)</th><th class="r">Position</th><th class="r">Impr</th><th class="r">CTR</th></tr></thead>
         <tbody>
-          <tr><td class="kw fbx">gooddata embedded analytics</td><td class="pos">#4.7<span class="pg pg1">P1</span></td><td class="impr">6</td></tr>
-          <tr><td class="kw fbx">power bi embedded analytics</td><td class="pos">#11.3<span class="pg pg2">P2</span></td><td class="impr">49</td></tr>
-          <tr><td class="kw fbx">thoughtspot embedded analytics</td><td class="pos">#11.8<span class="pg pg2">P2</span></td><td class="impr">16</td></tr>
-          <tr><td class="kw fbx">sisense embedded analytics</td><td class="pos">#13.5<span class="pg pg2">P2</span></td><td class="impr">20</td></tr>
-          <tr><td class="kw fbx">looker embedded analytics</td><td class="pos">#15.8<span class="pg pg2">P2</span></td><td class="impr">12</td></tr>
-          <tr><td class="kw fbx">tableau embedded analytics</td><td class="pos">#23.7<span class="pg pgx">P3</span></td><td class="impr">74</td></tr>
+          <tr><td class="kw fbx">power bi embedded</td><td class="vol">700</td><td class="pageco">/reveal-vs-power-bi</td><td class="pos">#13<span class="pg pg2">P2</span></td><td class="impr">809</td><td class="ctr">0.37%</td></tr>
+          <tr><td class="kw fbx">sisense embedded analytics</td><td class="vol">100</td><td class="pageco">/reveal-vs-sisense</td><td class="pos">#14<span class="pg pg2">P2</span></td><td class="impr">20</td><td class="ctr">0%</td></tr>
+          <tr><td class="kw fbx">looker embedded analytics</td><td class="vol">150</td><td class="pageco">/reveal-vs-looker</td><td class="pos">#16<span class="pg pg2">P2</span></td><td class="impr">12</td><td class="ctr">0%</td></tr>
+          <tr><td class="kw fbx">tableau embedded analytics</td><td class="vol">200</td><td class="pageco">/blog/tableau-embedded-analytics-alt</td><td class="pos">#24<span class="pg pgx">P3</span></td><td class="impr">74</td><td class="ctr">0%</td></tr>
         </tbody>
       </table>
-      <div class="read fbx"><span class="verdict"><span class="badge b-amber">Thin</span></span><span>Comparison pages are too thin to rank or get served. Target "&lt;competitor&gt; embedded analytics" (real demand) — rebuild tableau/looker/sisense first.</span></div>
+      <div class="read fbx"><span class="verdict"><span class="badge b-amber">Thin</span></span><span>"power bi embedded" is served (809 impr, #13) but the rest are barely shown — the comparison pages are too thin. Target "&lt;competitor&gt; embedded analytics" (real demand); rebuild tableau/looker/sisense first.</span></div>
     </div>
 
   </div>
@@ -535,8 +532,8 @@ table{width:100%;border-collapse:collapse}
     <p>Demand cooled short-term. Organic clicks 235 (-6% WoW), sessions 291 (-24% WoW), and July deduped organic leads 23 vs a 100/mo goal. Impressions rose to 123k (+10%) — we're shown more, clicked less. That's a page-2 / CTR problem, not a reach problem.</p>
     <p><b>Priority:</b> ship the two missing money pages. /embedded-bi (live Aug 15) and /embedded-dashboards (live Aug 31). "embedded dashboards" is already #8 off the homepage — the fastest available top-5.</p>
     <ul>
-      <li>White Label stays strongest: "white label platform" #4, long-tail terms at #1.</li>
-      <li>Embedded Analytics: everything ranks #15–20, nothing top-10 — on-page + CTR, not new content.</li>
+      <li>White Label strongest: all three head terms rank on /white-label-analytics at #14–17.</li>
+      <li>Embedded Analytics: everything ranks #16–24, nothing top-10 — on-page + CTR, not new content.</li>
       <li>AI answers: we own comparison (77%) but are invisible (0%) on "embedded analytics platforms" and "AI-powered embedded." New action opened.</li>
       <li>DR 55 (goal 60); technical health 48 (goal 60 by Oct 1).</li>
     </ul>
@@ -551,7 +548,8 @@ table{width:100%;border-collapse:collapse}
     <table class="deft">
       <thead><tr><th>Metric</th><th>Source</th><th>What it tells us</th><th>Why this source (and not the alternative)</th></tr></thead>
       <tbody>
-        <tr><td class="m">Rankings</td><td>Google Search Console</td><td>Our real average position for each query, plus impressions &amp; clicks.</td><td>GSC is Google's own record of how <i>we</i> rank. Ahrefs Rank Tracker is a third-party sample — good for competitors, not for our own truth.</td></tr>
+        <tr><td class="m">Rankings &amp; ranking page</td><td>Google Search Console</td><td>Our real average position per query, the URL that ranks, plus impressions &amp; clicks.</td><td>GSC is Google's own record of how <i>we</i> rank. Ahrefs Rank Tracker is a third-party sample — good for competitors, not for our own truth.</td></tr>
+        <tr><td class="m">Search volume</td><td>Ahrefs</td><td>Estimated monthly searches for a keyword (demand size).</td><td>Ahrefs owns the largest clickstream volume index. GSC has no volume — only what we were shown for.</td></tr>
         <tr><td class="m">Sessions</td><td>GA4</td><td>Organic visits that land on and engage the site.</td><td>GA4 measures on-site behavior; GSC measures search-side clicks. Different events — never blended.</td></tr>
         <tr><td class="m">Leads</td><td>Salesforce</td><td>Distinct people from organic who became leads.</td><td>Distinct Email__c on Lead_Event__c where ProductFamily=Reveal &amp; TrackingMedium=organic (deduped). GA4 "conversions" are session events, not deduped humans in the CRM.</td></tr>
         <tr><td class="m">Domain Rating</td><td>Ahrefs</td><td>Backlink authority strength (0–100).</td><td>Ahrefs owns the largest link index. GSC doesn't score authority.</td></tr>
@@ -566,6 +564,8 @@ table{width:100%;border-collapse:collapse}
     <dl class="gl">
       <div><dt>Keyword</dt><dd>A phrase people type into search. We group related keywords into "clusters."</dd></div>
       <div><dt>Head vs long-tail</dt><dd>Head = short, high-volume, competitive ("embedded bi"). Long-tail = longer, lower-volume, easier ("best white label analytics platforms").</dd></div>
+      <div><dt>Search volume (Vol)</dt><dd>Estimated monthly searches for a keyword (Ahrefs) — the size of the demand.</dd></div>
+      <div><dt>Ranking page (GSC)</dt><dd>The specific URL Google is currently ranking for that keyword.</dd></div>
       <div><dt>Impressions</dt><dd>How many times a result was shown in search.</dd></div>
       <div><dt>Clicks &amp; CTR</dt><dd>Clicks = visits from search. CTR = clicks ÷ impressions. High impressions + low CTR = shown but not chosen.</dd></div>
       <div><dt>Position / page 1 vs page 2</dt><dd>Average rank. #1–10 = page 1 (gets nearly all clicks); #11–20 = page 2 (almost none).</dd></div>
@@ -581,7 +581,7 @@ table{width:100%;border-collapse:collapse}
   </div>
 </section>
 
-<div class="foot">Reveal SEO Executive Operating Brief · Generated Mon Aug 3, 2026 · Rankings = GSC 28-day · Sessions = GA4 · Leads = Salesforce (deduped) · DR &amp; health = Ahrefs · AI = Amplitude</div>
+<div class="foot">Reveal SEO Executive Operating Brief · Generated Mon Aug 3, 2026 · Rankings &amp; ranking page = GSC 28-day · Volume = Ahrefs · Sessions = GA4 · Leads = Salesforce (deduped) · DR &amp; health = Ahrefs · AI = Amplitude</div>
 </div>
 
 <div class="toast" id="toast">Copied</div>
@@ -619,7 +619,7 @@ const TASKS=[
   {n:"Build /embedded-bi product page (P1) — shift cluster off the homepage",trk:"Product",owner:"Casey Ciniello",pr:"high",st:"prog",due:"2026-08-07"},
   {n:"Build /embedded-dashboards product page (P2) — convert the #9 into a top-5",trk:"Product",owner:"Casey Ciniello",pr:"high",st:"open",due:"2026-08-21"},
   {n:"On-page: move page-2 money terms to page 1 (embedded analytics · white label)",trk:"Content",owner:"Casey Ciniello",pr:"high",st:"open",due:"2026-08-14"},
-  {n:"Lift CTR on /embedded-analytics (GSC #17, 4,120 impr, ~0.05% CTR)",trk:"Content",owner:"Casey Ciniello",pr:"high",st:"open",due:"2026-08-01"},
+  {n:"Lift CTR on /embedded-analytics (GSC #16, 4,120 impr, ~0.05% CTR)",trk:"Content",owner:"Casey Ciniello",pr:"high",st:"open",due:"2026-08-01"},
   {n:"Add homepage internal link to /embedded-bi (anchor: “embedded BI”)",trk:"Technical",owner:"Casey Ciniello",pr:"high",st:"open",due:"2026-08-10"},
   {n:"301 redirect /glossary/embedded-bi-business-intelligence → /embedded-bi",trk:"Technical",owner:"Casey Ciniello",pr:"high",st:"open",due:"2026-08-10"},
   {n:"Target “white label reporting tool” (800 vol, GSC #20)",trk:"Content",owner:"Casey Ciniello",pr:"medium",st:"open",due:"2026-08-29"},
@@ -694,8 +694,8 @@ Demand cooled short-term: organic clicks 235 (-6% WoW), sessions 291 (-24% WoW),
 
 Priority: ship the two missing money pages — /embedded-bi (live Aug 15) and /embedded-dashboards (live Aug 31). "embedded dashboards" is already #8 off the homepage.
 
-- White Label strongest: "white label platform" #4, long-tail at #1
-- Embedded Analytics: everything #15–20, nothing top-10 — on-page + CTR
+- White Label strongest: all three head terms on /white-label-analytics at #14–17
+- Embedded Analytics: everything #16–24, nothing top-10 — on-page + CTR
 - AI answers: we own comparison (77%) but 0% on "embedded analytics platforms" and "AI-powered embedded" — new action opened
 - DR 55 (goal 60); technical health 48 (goal 60 by Oct 1)
 
