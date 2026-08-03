@@ -140,6 +140,37 @@
   .copybox code{font-family:'Roboto Mono',monospace;font-size:12px;color:var(--navy)}
   small.src{color:var(--gray);font-size:11px}
   .foot{margin-top:26px;font-size:11.5px;color:var(--gray);border-top:1px solid var(--line);padding-top:14px}
+  /* VP readout banner */
+  .vpbanner{border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:0 0 20px;box-shadow:0 1px 3px rgba(15,23,42,.05)}
+  .vpbanner .vbar{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .vpbanner .vbar .t{font-size:18px;font-weight:800}
+  .vpbanner .vbar .g{font-size:12.5px;color:#cdd6f7;font-weight:600;text-align:right}
+  .vpbanner .vrow{display:flex;gap:18px;align-items:flex-start;padding:16px 22px;border-top:1px solid var(--line)}
+  .vpbanner .vrow:first-of-type{border-top:none}
+  .pill2{flex:none;width:92px;text-align:center;font-size:11px;font-weight:800;letter-spacing:.05em;padding:5px 0;border-radius:16px;text-transform:uppercase;margin-top:2px}
+  .pill2.fix{background:#fde8ec;color:#c62a4f}.pill2.work{background:#e3f5ec;color:#127a45}.pill2.watch{background:#fdf0d6;color:#8a6412}
+  .vrow .rtx h4{margin:0 0 4px;font-size:15px;color:var(--navy);font-weight:800}
+  .vrow .rtx p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
+  .fbhint{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);background:#f7f9fe;border:1px solid var(--line);border-radius:10px;padding:9px 13px;margin:0 0 22px}
+  .fbhint svg{width:15px;height:15px;flex:none;color:var(--cobalt)}
+  /* feedback loop */
+  .fbx{position:relative}
+  .fbi{position:absolute;top:6px;right:6px;width:22px;height:22px;border-radius:50%;border:none;cursor:pointer;background:var(--peri-soft);color:var(--cobalt);display:none;align-items:center;justify-content:center;padding:0;z-index:3}
+  .fbi svg{width:12px;height:12px}
+  .fbx:hover>.fbi{display:inline-flex}
+  .fbov{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px}
+  .fbov.on{display:flex}
+  .fbmodal{background:#fff;border-radius:16px;max-width:460px;width:100%;padding:22px 24px;box-shadow:0 20px 60px rgba(15,23,42,.3)}
+  .fbmodal h3{margin:0 0 4px;font-size:16px;color:var(--navy)}
+  .fbmodal .ctx{font-size:12px;color:var(--muted);margin:0 0 14px;padding:8px 10px;background:#f7f9fe;border-radius:8px;border:1px solid var(--line);max-height:90px;overflow:auto}
+  .fbmodal .cats{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+  .fbcat{appearance:none;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;font-family:inherit}
+  .fbcat.on{background:#EC417A;border-color:#EC417A;color:#fff}
+  .fbmodal textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:10px;font-family:inherit;font-size:13px;min-height:78px;resize:vertical}
+  .fbmodal .acts{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+  .fbbtn{appearance:none;border:none;border-radius:9px;padding:9px 15px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+  .fbbtn.sec{background:var(--gray-bg);color:var(--muted)}
+  .fbbtn.pri{background:linear-gradient(120deg,#EC417A,#C9367F);color:#fff}
 </style>
 </head>
 <body>
@@ -156,6 +187,27 @@
     <span>Supporting <b>Sydney</b> — LinkedIn, Reddit &amp; channel growth</span>
   </div>
 </header>
+
+<div class="vpbanner">
+  <div class="vbar">
+    <div class="t">VP Readout &mdash; 30-second view</div>
+    <div class="g">Goal: qualified paid pipeline + leads on the terms buyers actually search</div>
+  </div>
+  <div class="vrow">
+    <div class="pill2 fix">Fix</div>
+    <div class="rtx"><h4>Non-Brand-US Search burned $2,334 on 10 clicks and 0 conversions</h4><p>Six times the prior week &mdash; driven by two broad-match terms ("embeddable analytics" $1,049 on 2 clicks, "embedded dashboard" $326 on 1) running at ~$300&ndash;525 a click. A match-type / bid-control misfire, not real demand. Pause and audit it before it repeats: it's ~19% of the week's Google spend for nothing.</p></div>
+  </div>
+  <div class="vrow">
+    <div class="pill2 work">Working</div>
+    <div class="rtx"><h4>Conquest visibility climbing &mdash; Compete-US show-up 57% &rarr; 77%</h4><p>The Power BI bid lift is landing. Bing is compounding too: clicks doubled to 988 and CTR hit 2.15% as the spam sweeps clear. Paid pipeline holds at $462k across 9 open opps, and LinkedIn reach grew 30% on lower spend.</p></div>
+  </div>
+  <div class="vrow">
+    <div class="pill2 watch">Watch</div>
+    <div class="rtx"><h4>Lead pace is behind and brand defense is soft</h4><p>118 leads over 30 days vs a 250 target, and a soft 16-lead week (vs 42). Brand impression share sits at 57% &mdash; we're absent on ~4 in 10 of our own-name searches. Reveal's 30-day research lag means capture isn't dead, but coverage needs restoring.</p></div>
+  </div>
+</div>
+
+<p class="fbhint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Hover any KPI, goal, insight, or recommendation and click the chat icon to send feedback to the agent &mdash; it reads it every Monday and adjusts.</p>
 
 <h2 class="sec"><span class="n">1</span> Executive summary</h2>
 <div class="kpigrid g5">
@@ -617,5 +669,57 @@
 </div>
 
 </div>
+<div class="fbov" id="fbov">
+  <div class="fbmodal">
+    <h3>Send feedback to the agent</h3>
+    <div class="ctx" id="fbctx"></div>
+    <div class="cats" id="fbcats">
+      <button class="fbcat" data-c="Approve">Approve</button>
+      <button class="fbcat" data-c="Wrong number">Wrong number</button>
+      <button class="fbcat" data-c="Add context">Add context</button>
+      <button class="fbcat" data-c="Disagree">Disagree</button>
+      <button class="fbcat" data-c="Won't do — strategic">Won't do</button>
+    </div>
+    <textarea id="fbtxt" placeholder="Reason — and the corrected value, if any…"></textarea>
+    <div class="acts">
+      <button class="fbbtn sec" id="fbcancel">Cancel</button>
+      <button class="fbbtn pri" id="fbsend">Copy &amp; open thread</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var FB_URL="https://app.slingshotapp.io/openDiscussion/e97e10ef_b4c1ff6c-3dc7-47c1-909d-aaff8dcfb922";
+  var SEL=".kpi,.sc,.card,.plat,.vbox,.keyfix,.callout,.chartwrap,.lead,.wl li,h2.sec,.vpbanner .vrow";
+  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+  var ctxText="", cat="";
+  var ov=document.getElementById('fbov'), ctxEl=document.getElementById('fbctx'), txt=document.getElementById('fbtxt');
+  document.querySelectorAll(SEL).forEach(function(el){
+    if(el.querySelector(':scope > .fbi')) return;
+    el.classList.add('fbx');
+    var b=document.createElement('button'); b.className='fbi'; b.type='button'; b.setAttribute('aria-label','Send feedback'); b.innerHTML=ICON;
+    b.addEventListener('click',function(e){
+      e.stopPropagation();
+      ctxText=(el.innerText||'').replace(/\s+/g,' ').trim().slice(0,220);
+      ctxEl.textContent=ctxText; cat=""; txt.value="";
+      document.querySelectorAll('.fbcat').forEach(function(c){c.classList.remove('on');});
+      ov.classList.add('on');
+    });
+    el.appendChild(b);
+  });
+  document.querySelectorAll('.fbcat').forEach(function(c){
+    c.addEventListener('click',function(){document.querySelectorAll('.fbcat').forEach(function(x){x.classList.remove('on');});c.classList.add('on');cat=c.dataset.c;});
+  });
+  function close(){ov.classList.remove('on');}
+  document.getElementById('fbcancel').addEventListener('click',close);
+  ov.addEventListener('click',function(e){if(e.target===ov)close();});
+  document.getElementById('fbsend').addEventListener('click',function(){
+    var note="FEEDBACK — Reveal Paid ("+new Date().toISOString().slice(0,10)+")\nCategory: "+(cat||"(none)")+"\nOn: "+ctxText+"\nReason: "+txt.value;
+    try{navigator.clipboard.writeText(note);}catch(_){}
+    window.open(FB_URL,"_blank");
+    close();
+  });
+})();
+</script>
 </body>
 </html>
