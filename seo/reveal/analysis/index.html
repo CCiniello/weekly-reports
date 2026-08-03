@@ -1,663 +1,783 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reveal — Weekly SEO Brief · Aug 3 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<title>Reveal SEO — Executive Operating Brief · Aug 3, 2026</title>
 <style>
-  :root{
-    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
-    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
-    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
-    --gray:#8a93a3; --gray-bg:#eef0f5;
-    --magenta:#EC417A; --magenta-soft:#fde4ee; --amber:#FBB764; --pink:#F78DA7;
-    --mono:'Roboto Mono',monospace;
-    --sans:'GT Walsheim','GT Walsheim Pro','GT Walsheim App',Roboto,system-ui,-apple-system,'Segoe UI',sans-serif;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1040px;margin:0 auto;padding:28px 22px 80px}
+:root{
+  --sans:'GT Walsheim','GT Walsheim Pro','GT Walsheim App',Roboto,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'Roboto Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --page:#F6F7FA; --ink:#0F172A; --muted:#5B6472; --line:#E7EAF0;
+  --cobalt:#2A41A2; --peri:#6C8CFD;
+  --amber:#FBB764; --magenta:#EC417A; --rose:#d63384;
+  --green:#16A34A; --greenbg:#E7F6EC;
+  --red:#DC2626; --redbg:#FCE9E9;
+  --amberc:#D97706; --amberbg:#FBF0DD;
+  --graybg:#EEF1F6; --gray:#64748B;
+  --card:#fff; --radius:14px;
+  --shadow:0 1px 2px rgba(15,23,42,.04),0 6px 20px rgba(15,23,42,.05);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--sans);background:var(--page);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
+.num,.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--cobalt);text-decoration:none}
+a:hover{text-decoration:underline}
 
-  header.top{background:linear-gradient(120deg,var(--amber) 0%,var(--magenta) 62%,#d63384 100%);color:#fff;border-radius:16px;padding:22px 26px;position:relative;overflow:hidden}
-  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
-  header.top .logochip{display:inline-block;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14)}
-  header.top .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
-  header.top h1{margin:5px 0 0;font-size:27px;font-weight:900}
-  header.top h1 span{font-weight:500;opacity:.9}
-  header.top .meta{margin-top:14px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)}
-  header.top .meta b{color:#fff;font-weight:700}
+/* HERO */
+.hero{background:linear-gradient(100deg,var(--amber) 0%,var(--magenta) 55%,var(--rose) 100%);color:#fff;padding:26px 30px 22px}
+.hero-inner{max-width:1180px;margin:0 auto}
+.brandrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.logo-chip{background:#fff;border-radius:10px;padding:7px 12px;display:inline-flex;align-items:center;gap:8px;box-shadow:0 2px 8px rgba(0,0,0,.14)}
+.logo-chip .mark{width:16px;height:16px;border-radius:4px;background:linear-gradient(135deg,var(--amber),var(--magenta))}
+.logo-chip b{color:var(--ink);font-size:15px;letter-spacing:.2px}
+.hero h1{margin:14px 0 4px;font-size:25px;font-weight:600;letter-spacing:.2px}
+.hero .sub{opacity:.95;font-size:13.5px;font-weight:500}
+.hero .meta{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+.hero .pill{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 11px;font-size:12px;font-weight:500}
 
-  .tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin:8px 4px 0;padding-top:18px;flex-wrap:wrap}
-  .tab{appearance:none;background:none;border:none;font:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:12px 18px;cursor:pointer;border-bottom:2px solid transparent;display:flex;align-items:center;gap:8px}
-  .tab:hover{color:var(--navy)}
-  .tab.active{color:var(--magenta);border-bottom-color:var(--magenta)}
-  .tab .badge{background:var(--gray-bg);color:var(--muted);font-size:11px;font-weight:700;padding:1px 8px;border-radius:999px}
-  .tab.active .badge{background:var(--magenta-soft);color:var(--magenta)}
-  .tabpane{display:none}
-  .tabpane.active{display:block}
+/* TABS */
+.tabs{position:sticky;top:0;z-index:40;background:rgba(246,247,250,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.tabs-inner{max-width:1180px;margin:0 auto;display:flex;gap:4px;padding:0 30px}
+.tab{appearance:none;border:0;background:transparent;font-family:var(--sans);font-size:14px;font-weight:600;color:var(--muted);padding:14px 16px;cursor:pointer;border-bottom:2.5px solid transparent}
+.tab[aria-selected="true"]{color:var(--cobalt);border-bottom-color:var(--magenta)}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 30px 70px}
+.panel{display:none;animation:f .25s ease}
+.panel.active{display:block}
+@keyframes f{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 
-  h2.sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:34px 4px 14px;display:flex;align-items:center;gap:10px}
-  h2.sec .n{width:22px;height:22px;border-radius:6px;background:var(--peri-soft);color:var(--cobalt);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
-  .pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px;letter-spacing:.02em;white-space:nowrap}
-  .p-good{background:var(--good-bg);color:var(--good)}.p-warn{background:var(--warn-bg);color:var(--warn)}.p-bad{background:var(--bad-bg);color:var(--bad)}.p-gray{background:var(--gray-bg);color:var(--gray)}.p-build{background:var(--peri-soft);color:var(--cobalt)}
-  .tnew{display:inline-block;font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.04em;color:#fff;background:var(--magenta);padding:1px 6px;border-radius:4px;margin-left:8px;vertical-align:middle}
+h2.sec{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:30px 0 12px}
+h2.sec:first-child{margin-top:6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.pad{padding:18px 20px}
 
-  .vp{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  @media(max-width:760px){.vp{grid-template-columns:1fr}}
-  .vpcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;border-top:3px solid var(--gray)}
-  .vpcard.good{border-top-color:var(--good)}.vpcard.watch{border-top-color:var(--amber)}.vpcard.bad{border-top-color:var(--bad)}
-  .vpcard .vlab{font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:7px;color:var(--gray)}
-  .vpcard.good .vlab{color:var(--good)}.vpcard.watch .vlab{color:var(--warn)}.vpcard.bad .vlab{color:var(--bad)}
-  .vpcard h4{font-size:14.5px;font-weight:700;color:var(--navy);margin:0 0 6px;line-height:1.3}
-  .vpcard p{font-size:13px;line-height:1.5;color:var(--ink);margin:0}
-  .vpcard p b{color:var(--navy)}
+/* VP READOUT */
+.vp{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.vp .card{border-top:4px solid var(--line);padding:16px 18px}
+.vp .good{border-top-color:var(--green)}
+.vp .bad{border-top-color:var(--red)}
+.vp .pri{border-top-color:var(--amberc)}
+.vp .lab{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.vp h3{margin:0 0 6px;font-size:15.5px;font-weight:600}
+.vp p{margin:0;font-size:13px;color:#2B3444}
 
-  .lead{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--magenta);border-radius:14px;padding:20px 24px}
-  .lead p{margin:0 0 11px;font-size:15px;line-height:1.62}.lead p:last-child{margin-bottom:0}
-  .lead b{font-weight:700;color:var(--navy)}.lead .bright{color:var(--good);font-weight:700}
-  .lead code{font-family:var(--mono);font-size:12.5px;background:var(--magenta-soft);color:#8a1140;padding:1px 5px;border-radius:4px}
+/* EXEC */
+.exec p{font-size:14.5px;margin:0 0 11px;color:#232B39}
+.exec p:last-child{margin-bottom:0}
+.exec b{color:var(--ink)}
 
-  .kpigrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:520px){.kpigrid{grid-template-columns:1fr 1fr}}
-  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;position:relative}
-  .kpi .lab{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600;max-width:70%}
-  .toolbadge{position:absolute;top:12px;right:12px;font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.02em;padding:3px 7px;border-radius:5px;color:#fff}
-  .tb-gsc{background:#4285F4}.tb-ga4{background:#E37400}.tb-sf{background:#00A1E0}.tb-ahrefs{background:#0b4bd6}.tb-amp{background:#3a5bd9}
-  .kpi .row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:10px 0 2px}
-  .kpi .val{font-family:var(--mono);font-size:24px;font-weight:600;line-height:1;color:var(--navy)}
-  .kpi .val em{font-style:normal;font-size:12px;color:var(--muted)}
-  .kpi .delta{font-family:var(--mono);font-size:11px;font-weight:600}
-  .up{color:var(--good)}.down{color:var(--bad)}.flat{color:var(--gray)}
-  .kpi .spark{margin-top:8px}
-  .kpi .insight{font-size:11px;color:var(--muted);margin-top:9px;line-height:1.45}
-  .gauge{margin-top:8px;height:8px;border-radius:6px;background:#e9e9f4;position:relative;overflow:hidden}
-  .gauge i{position:absolute;left:0;top:0;bottom:0;background:var(--bad);border-radius:6px}
-  .gauge .tk{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--navy);opacity:.45}
+/* TABLE */
+table{width:100%;border-collapse:collapse}
+.scoreboard{overflow:hidden}
+.scoreboard th,.scoreboard td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px;vertical-align:middle}
+.scoreboard th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);background:#FBFCFE}
+.scoreboard td.goal{font-weight:600}
+.bar{height:8px;border-radius:999px;background:var(--graybg);overflow:hidden;min-width:110px}
+.bar > i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--peri),var(--cobalt))}
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:11.5px;font-weight:700;white-space:nowrap}
+.b-behind{background:var(--redbg);color:var(--red)}
+.b-amber{background:var(--amberbg);color:var(--amberc)}
+.b-build{background:#EAEFFF;color:var(--cobalt)}
+.b-stable{background:var(--graybg);color:var(--gray)}
+.b-ontrack{background:var(--greenbg);color:var(--green)}
 
-  .scorewrap{border:1px solid var(--line);border-radius:12px;overflow:hidden}
-  table{width:100%;border-collapse:collapse;font-size:13px}
-  thead th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 16px;text-align:left;border-bottom:1px solid #dce3f0}
-  thead th.r{text-align:right}
-  tbody td{padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
-  tbody tr:last-child td{border-bottom:none}
-  tbody tr:hover{background:#fafbff}
-  .g-goal{font-weight:500;color:var(--navy);line-height:1.35}
-  .g-goal small{display:block;font-family:var(--mono);font-weight:400;font-size:10px;color:var(--gray);margin-top:3px}
-  td.cur,td.tgt{font-family:var(--mono);text-align:right}
-  td.cur{font-weight:600;font-size:16px;color:var(--navy)}
-  td.cur small{font-size:11px;color:var(--muted);font-weight:400}
-  td.cur .na{font-size:11px;color:var(--gray)}
-  td.tgt{color:var(--muted);font-size:12px}
-  td.insightcol{font-size:12px;color:var(--muted);line-height:1.4;max-width:230px}
-  .prog{height:8px;background:#e9e9f4;border-radius:6px;overflow:hidden;position:relative;min-width:90px}
-  .prog i{display:block;height:100%;border-radius:6px}
-  .prog .tk{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--navy);opacity:.5}
-  .f-good{background:var(--good)}.f-warn{background:var(--amber)}.f-bad{background:var(--bad)}.f-neu{background:var(--gray)}
-  td.st{text-align:right}
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kpi{position:relative;padding:16px 18px}
+.kpi .chip{position:absolute;top:14px;right:14px;font-size:10px;font-weight:700;letter-spacing:.04em;padding:3px 8px;border-radius:6px;color:#fff}
+.c-gsc{background:#4285F4}.c-ga4{background:#E8710A}.c-sf{background:#00A1E0}.c-ah{background:#ff8800}.c-amp{background:#1F6FEB}
+.kpi .lab{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.kpi .val{font-family:var(--mono);font-size:29px;font-weight:600;margin:6px 0 2px;letter-spacing:-.5px}
+.kpi .wow{font-size:12.5px;font-weight:600}
+.up{color:var(--green)}.down{color:var(--red)}.flat{color:var(--gray)}
+.spark{margin:10px 0 8px}
+.kpi .ins{font-size:12px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;margin-top:2px}
 
-  .cluster{margin-top:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
-  .cl-head{padding:16px 20px 14px}
-  .cl-top{display:flex;align-items:center;gap:10px;margin-bottom:9px;flex-wrap:wrap}
-  .cl-top h3{font-weight:700;font-size:16px;margin:0;color:var(--navy)}
-  .cl-top .page{font-family:var(--mono);font-size:11px;color:var(--cobalt);background:var(--peri-soft);padding:3px 8px;border-radius:6px}
-  .cl-top .verdict{margin-left:auto}
-  .cl-read{margin:0;font-size:14px;line-height:1.56;color:var(--ink)}
-  .cl-read b{color:var(--navy);font-weight:700}
-  .cl-read code{font-family:var(--mono);font-size:12px;background:var(--gray-bg);padding:1px 5px;border-radius:3px}
-  .kwt-wrap{border-top:1px solid var(--line)}
-  table.kwt{font-size:12.5px}
-  .kwt thead th{background:#f6f8fc;padding:8px 12px}
-  .kwt tbody td{padding:9px 12px}
-  .kwt tbody td:first-child{padding-left:20px}
-  .kw{color:var(--navy)}
-  .kwt td.num{font-family:var(--mono);text-align:right;color:var(--muted)}
-  .kwt td.vol{font-family:var(--mono);text-align:right;color:var(--navy);font-size:12px}
-  .kwt td.pageco{font-family:var(--mono);font-size:10.5px;color:var(--cobalt)}
-  .pos{font-family:var(--mono);font-weight:600;font-size:14px;color:var(--navy)}
-  .pos.best{color:var(--good)}
-  .cl-note{font-family:var(--mono);font-size:10.5px;color:var(--gray);margin:12px 4px 0;line-height:1.5}
+/* CLUSTERS */
+.clusters{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cluster{padding:0;overflow:hidden}
+.cluster .top{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line)}
+.cluster .top h3{margin:0;font-size:15px;font-weight:600}
+.cluster .top .path{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.kwt{width:100%}
+.kwt td,.kwt th{padding:8px 18px;font-size:12.5px;border-bottom:1px solid var(--line)}
+.kwt th{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;background:#FBFCFE}
+.kwt td.kw{font-weight:500}
+.kwt td.pos,.kwt td.impr{font-family:var(--mono);text-align:right;white-space:nowrap}
+.pg{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:5px;margin-left:6px;vertical-align:middle}
+.pg1{background:var(--greenbg);color:var(--green)}
+.pg2{background:var(--amberbg);color:var(--amberc)}
+.pgx{background:var(--redbg);color:var(--red)}
+.read{padding:12px 18px;font-size:12.5px;color:#2B3444;background:#FBFCFE;display:flex;gap:10px;align-items:flex-start}
+.read .verdict{flex:0 0 auto}
 
-  .ai-top{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
-  @media(max-width:640px){.ai-top{grid-template-columns:1fr 1fr}}
-  .ai-stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;position:relative}
-  .ai-stat .l{font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600}
-  .ai-stat .v{font-family:var(--mono);font-weight:600;font-size:23px;color:var(--navy);margin-top:6px}
-  .ai-stat .w{font-family:var(--mono);font-size:10.5px;margin-top:4px}
-  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  @media(max-width:720px){.twocol{grid-template-columns:1fr}}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
-  .card h4{font-weight:700;font-size:13.5px;margin:0 0 3px;color:var(--navy)}
-  .card .cap{font-size:11px;color:var(--muted);margin:0 0 14px}
-  .bars{display:flex;flex-direction:column;gap:9px}
-  .bar-row{display:grid;grid-template-columns:150px 1fr 40px;align-items:center;gap:10px}
-  .bar-row .bl{font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .bar-row .bt{height:15px;background:var(--gray-bg);border-radius:4px;overflow:hidden}
-  .bar-row .bt i{display:block;height:100%;background:var(--peri);border-radius:4px;opacity:.55}
-  .bar-row .bv{font-family:var(--mono);font-size:11px;text-align:right;color:var(--muted)}
-  .bar-row.me .bl{color:var(--magenta);font-weight:700}.bar-row.me .bt i{background:var(--magenta);opacity:1}.bar-row.me .bv{color:var(--magenta);font-weight:600}
-  .sentiment{display:flex;height:24px;border-radius:6px;overflow:hidden;font-family:var(--mono);font-size:10px;font-weight:600}
-  .sentiment span{display:flex;align-items:center;justify-content:center;color:#fff}
-  .s-pos{background:var(--good)}.s-neu{background:var(--gray)}.s-neg{background:var(--bad)}
-  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
-  .chip{font-family:var(--mono);font-size:10.5px;color:#8a1140;background:var(--magenta-soft);padding:4px 9px;border-radius:999px}
-  .tnote{font-size:13px;color:var(--ink);margin:12px 0 0;line-height:1.5}.tnote b{color:var(--navy);font-weight:700}
+/* AI */
+.ai-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ai-stat{padding:14px 16px}
+.ai-stat .lab{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ai-stat .val{font-family:var(--mono);font-size:24px;font-weight:600;margin-top:4px}
+.ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.rowbar{display:flex;align-items:center;gap:10px;margin:9px 0;font-size:12.5px}
+.rowbar .nm{flex:0 0 150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rowbar .track{flex:1;height:8px;background:var(--graybg);border-radius:999px;overflow:hidden}
+.rowbar .track > i{display:block;height:100%;border-radius:999px}
+.rowbar .pct{flex:0 0 46px;text-align:right;font-family:var(--mono);color:var(--muted)}
+.fill-us{background:linear-gradient(90deg,var(--magenta),var(--rose))}
+.fill-them{background:linear-gradient(90deg,var(--peri),var(--cobalt))}
+.us{font-weight:700;color:var(--magenta)}
+.card h3.ct{margin:0 0 4px;font-size:14px;font-weight:600;padding:14px 16px 0}
+.card .csub{font-size:11.5px;color:var(--muted);padding:0 16px 8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 16px}
+.tchip{font-size:11.5px;border:1px solid var(--line);border-radius:999px;padding:4px 9px;background:#fff}
+.tchip b{color:var(--green)}
+.tchip i{color:var(--red);font-style:normal}
 
-  .tk-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:20px 0 16px}
-  .seg{display:inline-flex;background:#eef0f5;border-radius:9px;padding:3px}
-  .seg button{appearance:none;border:none;background:none;font:inherit;font-size:12.5px;font-weight:600;color:var(--muted);padding:6px 15px;border-radius:7px;cursor:pointer}
-  .seg button.active{background:#fff;color:var(--navy);box-shadow:0 1px 3px rgba(0,0,0,.10)}
-  .tk-meta{font-size:13px;color:var(--muted)}.tk-meta b{color:var(--navy);font-weight:700}
-  .tk-open{margin-left:auto;background:var(--magenta);color:#fff;border-radius:9px;padding:9px 16px;font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;gap:7px;align-items:center}
-  .tk-open:hover{background:#d63384}
-  .tkwrap{border:1px solid var(--line);border-radius:12px;overflow:hidden}
-  table.tkt{width:100%;border-collapse:collapse;font-size:13px}
-  .tkt thead th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:11px 16px;text-align:left;border-bottom:1px solid #dce3f0}
-  .tkt tbody td{padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
-  .tkt tbody tr:last-child td{border-bottom:none}
-  .tkt tbody tr:hover{background:#fafbff}
-  .tkt .tname{font-weight:600;color:var(--navy);max-width:440px;line-height:1.35}
-  .tkt .tname .tins{display:block;font-weight:400;font-size:11px;color:var(--muted);margin-top:3px}
-  .trk{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
-  .owner{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
-  .av{width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;font-family:var(--mono);flex:none}
-  .av.casey{background:#d9a441}.av.dev{background:#2A41A2}.av.none{background:var(--gray)}
-  .pri{font-family:var(--mono);font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:6px}
-  .pri.p1{background:var(--bad-bg);color:var(--bad)}.pri.p2{background:var(--warn-bg);color:var(--warn)}.pri.p3{background:var(--peri-soft);color:var(--cobalt)}.pri.pnone{background:var(--gray-bg);color:var(--gray)}
-  .stat{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--navy);white-space:nowrap}
-  .stat .dot{width:7px;height:7px;border-radius:50%;flex:none}
-  .st-todo .dot{background:var(--gray)}.st-todo{color:var(--muted)}
-  .st-prog .dot{background:var(--cobalt)}.st-prog{color:var(--cobalt)}
-  .st-review .dot{background:var(--peri)}.st-review{color:var(--peri)}
-  .st-done .dot{background:var(--good)}.st-done{color:var(--good)}
-  .due{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
-  .due.over{color:var(--bad);font-weight:600}
-  .board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-  @media(max-width:820px){.board{grid-template-columns:1fr 1fr}}
-  .bcol{background:#fafbff;border:1px solid var(--line);border-radius:12px;padding:12px}
-  .bcol h5{margin:0 0 10px;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:7px}
-  .bcol h5 .c{background:#fff;border:1px solid var(--line);border-radius:999px;font-size:10px;padding:0 7px;color:var(--muted)}
-  .bcard{background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin-bottom:8px;font-size:12px;line-height:1.35;color:var(--navy)}
-  .bcard:last-child{margin-bottom:0}
-  .bcard .bm{display:flex;justify-content:space-between;align-items:center;margin-top:8px;gap:8px}
-  .tl-row{display:grid;grid-template-columns:96px 1fr;gap:14px;padding:11px 4px;border-bottom:1px solid var(--line);align-items:center}
-  .tl-row:last-child{border-bottom:none}
-  .tl-date{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
-  .tl-date.over{color:var(--bad);font-weight:600}
+/* TASKS */
+.taskbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.toggles{display:flex;gap:4px;background:var(--graybg);padding:3px;border-radius:10px}
+.toggles button{border:0;background:transparent;font-family:var(--sans);font-weight:600;font-size:12.5px;color:var(--muted);padding:7px 13px;border-radius:8px;cursor:pointer}
+.toggles button.on{background:#fff;color:var(--cobalt);box-shadow:var(--shadow)}
+.btn{display:inline-flex;align-items:center;gap:7px;background:var(--cobalt);color:#fff;border:0;border-radius:9px;font-family:var(--sans);font-weight:600;font-size:13px;padding:9px 14px;cursor:pointer}
+.btn:hover{text-decoration:none;opacity:.94}
+.btn.ghost{background:#fff;color:var(--cobalt);border:1px solid var(--line)}
+.tt th,.tt td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);font-size:13px;vertical-align:middle}
+.tt th{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);background:#FBFCFE;position:sticky;top:56px}
+.tt td.tk{font-weight:500;max-width:430px}
+.new{display:inline-block;background:var(--magenta);color:#fff;font-size:9.5px;font-weight:800;letter-spacing:.05em;padding:2px 6px;border-radius:5px;margin-left:8px;vertical-align:middle}
+.trk{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:6px;background:var(--graybg);color:var(--gray)}
+.trk.Product{background:#EAEFFF;color:var(--cobalt)}
+.trk.Content{background:#F3EAFE;color:#7C3AED}
+.trk.Technical{background:#FEF0E6;color:#C2410C}
+.trk.Backlinks{background:#E6F6F0;color:#0E9F6E}
+.pr{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600}
+.pr::before{content:"";width:8px;height:8px;border-radius:2px}
+.pr.high::before{background:var(--red)}
+.pr.medium::before{background:var(--amberc)}
+.pr.low::before{background:var(--gray)}
+.st{display:inline-flex;align-items:center;gap:6px;font-size:12px}
+.st::before{content:"";width:8px;height:8px;border-radius:999px;background:var(--gray)}
+.st.prog::before{background:var(--peri)}
+.st.review::before{background:var(--amberc)}
+.st.done::before{background:var(--green)}
+.st.open::before{background:var(--gray)}
+.av{display:inline-flex;align-items:center;gap:6px}
+.dot{width:22px;height:22px;border-radius:999px;background:linear-gradient(135deg,var(--peri),var(--cobalt));color:#fff;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.overdue{color:var(--red);font-weight:600}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.col{background:#FBFCFE;border:1px solid var(--line);border-radius:12px;padding:10px}
+.col h4{margin:2px 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.tcard{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 11px;margin-bottom:9px;box-shadow:var(--shadow)}
+.tcard .tn{font-size:12.5px;font-weight:500;margin-bottom:7px}
+.tcard .mrow{display:flex;align-items:center;justify-content:space-between}
+.tl{position:relative;border-left:2px solid var(--line);margin-left:8px}
+.tl .ev{position:relative;padding:6px 0 14px 18px}
+.tl .ev::before{content:"";position:absolute;left:-6px;top:9px;width:10px;height:10px;border-radius:999px;background:var(--peri);border:2px solid #fff;box-shadow:0 0 0 1px var(--line)}
+.tl .d{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.tl .n{font-size:13px;font-weight:500}
+.hide{display:none}
 
-  .sum-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:22px 4px 14px;flex-wrap:wrap}
-  .sum-head h3{margin:0;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
-  .copybtn{background:var(--magenta);color:#fff;border:none;border-radius:9px;padding:9px 16px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
-  .copybtn:hover{background:#d63384}
-  .copybtn.ok{background:var(--good)}
-  .sumcard{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--magenta);border-radius:14px;padding:26px 30px}
-  .sumcard h4{font-size:19px;font-weight:800;color:var(--navy);margin:0 0 14px;line-height:1.3}
-  .sumcard h5{font-size:14px;font-weight:700;color:var(--navy);margin:22px 0 8px}
-  .sumcard p{font-size:14px;line-height:1.62;margin:0 0 12px;color:var(--ink)}
-  .sumcard ul{margin:0 0 12px;padding-left:20px}
-  .sumcard li{font-size:14px;line-height:1.55;margin-bottom:6px;color:var(--ink)}
-  .sumcard b{color:var(--navy);font-weight:700}
-  .sumcard code{font-family:var(--mono);font-size:12.5px;background:var(--magenta-soft);color:#8a1140;padding:1px 5px;border-radius:4px}
+/* SUMMARY */
+.sumcard p{font-size:14px;color:#232B39;margin:0 0 11px}
+.sumcard ul{margin:0 0 12px;padding-left:20px}
+.sumcard li{font-size:14px;margin:5px 0}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s;z-index:120}
+.toast.show{opacity:1}
 
-  .defintro{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--cobalt);border-radius:14px;padding:18px 22px;margin:20px 0 18px;font-size:14px;line-height:1.6;color:var(--ink)}
-  .defintro b{color:var(--navy)}
-  .deftbl-wrap{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:26px}
-  table.deftbl{width:100%;border-collapse:collapse;font-size:13px}
-  .deftbl thead th{background:#eef2fa;font-size:10px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 14px;text-align:left;border-bottom:1px solid #dce3f0}
-  .deftbl tbody td{padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
-  .deftbl tbody tr:last-child td{border-bottom:none}
-  .deftbl .term{font-weight:700;color:var(--navy);width:150px}
-  .deftbl .src{font-family:var(--mono);font-size:11px;color:var(--magenta);font-weight:600;white-space:nowrap}
-  .deftbl .why b{color:var(--navy)}
-  .deftbl .alt{color:var(--muted);font-size:12px}
-  .deftbl .alt b{color:var(--bad)}
-  .subhead{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:6px 4px 12px}
-  .sot-rule{background:var(--magenta-soft);border:1px solid #f7cede;border-radius:14px;padding:14px 18px;margin-bottom:24px;font-size:13.5px;line-height:1.55;color:#7a1140}.sot-rule b{color:#8a1140;font-weight:700}
-
-  .foot{margin-top:30px;font-size:11.5px;color:var(--gray);border-top:1px solid var(--line);padding-top:14px;line-height:1.7}
-  a{color:var(--cobalt)}
-  @media(max-width:720px){.wrap{padding:20px 14px 60px}.tmeta{grid-template-columns:1fr}.tkt .col-track,.tkt .col-due{display:none}.deftbl .col-mean{display:none}}
+/* DEFINITIONS */
+.deft th,.deft td{text-align:left;padding:11px 13px;border-bottom:1px solid var(--line);font-size:12.5px;vertical-align:top}
+.deft th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:#FBFCFE}
+.deft td.m{font-weight:600;white-space:nowrap}
+.gl{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;margin-top:6px}
+.gl dt{font-weight:600;font-size:13px}
+.gl dd{margin:2px 0 10px;font-size:12.5px;color:#2B3444}
+.rule{background:linear-gradient(100deg,rgba(251,183,100,.14),rgba(236,65,122,.12));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-top:16px;font-size:13.5px;font-weight:500}
+.foot{color:var(--muted);font-size:11.5px;margin-top:26px;text-align:center}
+@media(max-width:900px){.vp,.kpis,.clusters,.ai-stats,.ai-grid,.board,.gl{grid-template-columns:1fr}.tabs-inner,.wrap,.hero-inner{padding-left:16px;padding-right:16px}}
 </style>
 </head>
 <body>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="brandrow">
+      <span class="logo-chip"><span class="mark"></span><b>Reveal</b></span>
+      <span class="pill">SEO · Executive Operating Brief</span>
+    </div>
+    <h1>Weekly SEO Readout — Reveal (revealbi.io)</h1>
+    <div class="sub">Owner: Casey Ciniello (PMM) · Automated Monday brief</div>
+    <div class="meta">
+      <span class="pill">Report date: Mon Aug 3, 2026</span>
+      <span class="pill">Window: Jul 27 – Aug 2 vs Jul 20 – 26</span>
+      <span class="pill">Rankings: GSC 28-day (Jul 6 – Aug 2)</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="tabs-inner" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-p="report">Report</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="tasks">Tasks</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="summary">Summary</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="definitions">Definitions</button>
+  </div>
+</nav>
+
 <div class="wrap">
 
-  <header class="top">
-    <div class="logochip"><svg width="104" height="26" viewBox="0 0 104 26" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Reveal"><defs><linearGradient id="rv" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FBB764"/><stop offset="0.6" stop-color="#EC417A"/><stop offset="1" stop-color="#d63384"/></linearGradient></defs><rect x="0" y="3" width="20" height="20" rx="5" fill="url(#rv)"/><circle cx="10" cy="13" r="4.4" fill="#fff"/><text x="27" y="19" font-family="Roboto,system-ui,sans-serif" font-size="18" font-weight="900" fill="#0F172A">Reveal</text></svg></div>
-    <div class="kick">revealbi.io · Organic / SEO</div>
-    <h1>Weekly SEO Brief <span>/ embedded analytics</span></h1>
-    <div class="meta">
-      <span>Report date <b>Mon 3 Aug 2026</b></span>
-      <span>Window <b>Jul 27–Aug 2</b> vs <b>Jul 20–26</b></span>
-      <span>Owner <b>Casey</b> (PMM)</span>
-      <span>Status <b>Ranking, not yet winning</b></span>
-    </div>
-  </header>
+<!-- ================= REPORT ================= -->
+<section class="panel active" id="report" role="tabpanel">
 
-  <nav class="tabs">
-    <button class="tab active" data-tab="report">Report</button>
-    <button class="tab" data-tab="tasks">Tasks <span class="badge">19</span></button>
-    <button class="tab" data-tab="summary">Summary</button>
-    <button class="tab" data-tab="definitions">Definitions</button>
-  </nav>
-
-  <section id="report" class="tabpane active">
-
-  <h2 class="sec"><span class="n">★</span> VP readout — the 3 things to know</h2>
   <div class="vp">
-    <div class="vpcard good fbx">
-      <div class="vlab">What's working</div>
-      <h4>We're now winning the AI answer box</h4>
-      <p>After reworking our AI tracking, Reveal shows up in about <b>1 in 4</b> AI answers on embedded analytics (27% visibility), with <b>80% positive</b> sentiment. That's a real edge as buyers shift to AI search.</p>
+    <div class="card good fbx">
+      <div class="lab">What's working</div>
+      <h3>Technical cleanup is landing</h3>
+      <p>Site-audit health climbed <b>36 → 48</b> after the sitemap + internal-link fixes shipped. White Label stays our strongest cluster — several long-tail terms sit at <b>#1</b> and "white label platform" holds <b>#4</b>.</p>
     </div>
-    <div class="vpcard bad fbx">
-      <div class="vlab">What's not</div>
-      <h4>Our money pages are stuck on page 2</h4>
-      <p>Google shows our core pages, but on <b>page 2</b> — embedded analytics ~#17, white label ~#15. Page 2 gets almost no clicks, so the demand isn't converting to traffic yet.</p>
+    <div class="card bad fbx">
+      <div class="lab">What's not</div>
+      <h3>Traffic and leads softened</h3>
+      <p>Organic clicks <b>235 (-6%)</b> and sessions <b>291 (-24%)</b> both dipped week-over-week; July organic leads <b>23</b> are far under the 100/mo goal. Head terms remain stuck on <b>page 2</b>.</p>
     </div>
-    <div class="vpcard watch fbx">
-      <div class="vlab">The priority</div>
-      <h4>Build 2 pages, optimize the rest, fix the plumbing</h4>
-      <p>Ship the <b>embedded-BI</b> and <b>embedded-dashboards</b> pages, tune the page-2 pages onto page 1, and clear the technical errors dragging site health (36/100).</p>
-    </div>
-  </div>
-
-  <h2 class="sec"><span class="n">1</span> Executive summary</h2>
-  <div class="lead">
-    <p><b>Reveal is winning in AI search and ranks across Google for its core terms — but those rankings sit on page 2, so the demand isn't converting to traffic yet.</b></p>
-    <p>The bright spot is <span class="bright">AI search</span>. After we rebuilt how we track it, Reveal now appears in roughly a quarter of AI answers about embedded analytics, with overwhelmingly positive sentiment. Buyers increasingly start in AI, so being in that answer set is a genuine competitive asset.</p>
-    <p>The gap is classic Google. Our commercial pages <b>rank, but they sit on page 2</b> — close, not winning, and page 2 earns almost no clicks. Two things hold it back, both ours to fix: a handful of key pages need on-page work to cross onto page 1, and the site's <b>technical foundation is still weak</b> (health 36/100), which caps how high anything can climb. Demand is steady but modest — <b>~24 organic leads/mo</b> (deduped by email), about a quarter of the 100/mo goal. The job now is execution: finish the two product pages, optimize the near-miss pages, and clear the technical errors.</p>
-  </div>
-
-  <h2 class="sec"><span class="n">2</span> Goal scoreboard</h2>
-  <div class="scorewrap"><table>
-    <thead><tr><th>Goal</th><th class="r">Current</th><th class="r">Target</th><th>Progress</th><th>Insight</th><th class="r">Status</th></tr></thead>
-    <tbody>
-      <tr><td class="g-goal fbx">Top-3: &ldquo;embedded analytics&rdquo;<small>head term · vol 1,600</small></td><td class="cur">#17</td><td class="tgt">Top 3</td><td><div class="prog"><i class="f-warn" style="width:35%"></i></div></td><td class="insightcol">Ranks but page 2 — needs on-page + CTR work to climb.</td><td class="st"><span class="pill p-warn">Page 2</span></td></tr>
-      <tr><td class="g-goal fbx">Top-3: &ldquo;white label analytics&rdquo;<small>head term · vol 250</small></td><td class="cur">#15</td><td class="tgt">Top 3</td><td><div class="prog"><i class="f-warn" style="width:38%"></i></div></td><td class="insightcol">Page 2, but our strongest AI-answer topic — lift the on-page.</td><td class="st"><span class="pill p-warn">Page 2</span></td></tr>
-      <tr><td class="g-goal fbx">Top-3: &ldquo;embedded BI&rdquo;<small>priority #1 build</small></td><td class="cur">#29</td><td class="tgt">Top 3</td><td><div class="prog"><i class="f-bad" style="width:15%"></i></div></td><td class="insightcol">Ranking is the <b>homepage</b> — building a dedicated product page to own it.</td><td class="st"><span class="pill p-build">Building</span></td></tr>
-      <tr><td class="g-goal fbx">Top-3: &ldquo;embedded dashboards&rdquo;<small>priority #2 build</small></td><td class="cur">#9</td><td class="tgt">Top 3</td><td><div class="prog"><i class="f-warn" style="width:55%"></i></div></td><td class="insightcol">Best-placed gap term — a product page can push it to top-5 fast.</td><td class="st"><span class="pill p-build">Building</span></td></tr>
-      <tr><td class="g-goal fbx">Healthy technical site score<small>7,364 of 11,494 URLs erroring</small></td><td class="cur">36<small>/100</small></td><td class="tgt">90</td><td><div class="prog"><i class="f-bad" style="width:40%"></i><span class="tk" style="left:66%"></span></div></td><td class="insightcol">The core blocker — 2 fixes shipped, P1 set queued this week.</td><td class="st"><span class="pill p-bad">Behind</span></td></tr>
-      <tr><td class="g-goal fbx">Grow domain authority<small>Ahrefs Domain Rating</small></td><td class="cur">55</td><td class="tgt">60</td><td><div class="prog"><i class="f-warn" style="width:50%"></i></div></td><td class="insightcol">Stable; needs steady backlink velocity to move.</td><td class="st"><span class="pill p-gray">Stable</span></td></tr>
-      <tr><td class="g-goal fbx">1,000 organic sessions / mo to key pages<small>allowlist pages only</small></td><td class="cur">&asymp;40<small>/mo</small></td><td class="tgt">1,000</td><td><div class="prog"><i class="f-bad" style="width:5%"></i></div></td><td class="insightcol">Gated by page-2 rankings — rises as pages reach page 1.</td><td class="st"><span class="pill p-bad">Behind</span></td></tr>
-      <tr><td class="g-goal fbx">100 organic leads / mo<small>Reveal · organic · distinct email</small></td><td class="cur">&asymp;23<small>/mo</small></td><td class="tgt">100</td><td><div class="prog"><i class="f-bad" style="width:23%"></i></div></td><td class="insightcol">Deduped by email; steady (~24 in Jun) but ~&frac14; of goal.</td><td class="st"><span class="pill p-bad">Behind</span></td></tr>
-    </tbody>
-  </table></div>
-
-  <h2 class="sec"><span class="n">3</span> KPI snapshot</h2>
-  <div class="kpigrid">
-    <div class="kpi fbx"><span class="toolbadge tb-gsc">GSC</span><div class="lab">Organic clicks · site</div><div class="row"><span class="val">237<em>/wk</em></span><span class="delta up">&#9650; 5%</span></div><svg class="spark" data-spark="393,360,325,281,271,232,241,226,237" data-dir="up" height="30" width="100%"></svg><div class="insight">Stabilizing after a long slide.</div></div>
-    <div class="kpi fbx"><span class="toolbadge tb-ga4">GA4</span><div class="lab">Organic sessions · site</div><div class="row"><span class="val">358<em>/wk</em></span><span class="delta up">&#9650; 2%</span></div><svg class="spark" data-spark="369,649,494,415,421,498,419,351,358" data-dir="flat" height="30" width="100%"></svg><div class="insight">Holding steady.</div></div>
-    <div class="kpi fbx"><span class="toolbadge tb-sf">Salesforce</span><div class="lab">Organic leads · Reveal</div><div class="row"><span class="val">23<em>/mo</em></span><span class="delta flat">&mdash; flat</span></div><svg class="spark" data-spark="16,24,23" data-dir="flat" height="30" width="100%"></svg><div class="insight">Deduped by email; ~&frac14; of the 100/mo goal.</div></div>
-    <div class="kpi fbx"><span class="toolbadge tb-ahrefs">Ahrefs</span><div class="lab">Domain Rating</div><div class="row"><span class="val">55</span><span class="delta flat">&mdash; flat</span></div><svg class="spark" data-spark="53,53,54,55,55,55,57,56,56,55,55,55" data-dir="flat" height="30" width="100%"></svg><div class="insight">Flat; needs link velocity.</div></div>
-    <div class="kpi fbx"><span class="toolbadge tb-ahrefs">Ahrefs</span><div class="lab">Technical health</div><div class="row"><span class="val">36<em>/100</em></span><span class="delta down">&#9660; still erroring</span></div><div class="gauge"><i style="width:36%"></i><span class="tk" style="left:60%"></span><span class="tk" style="left:90%"></span></div><div class="insight">Still the core blocker.</div></div>
-    <div class="kpi fbx"><span class="toolbadge tb-amp">Amplitude</span><div class="lab">AI visibility</div><div class="row"><span class="val">27.4<em>%</em></span><span class="delta up">new baseline</span></div><svg class="spark" data-spark="18,27,27,14,10" data-dir="up" height="30" width="100%"></svg><div class="insight">New strength after the topic/prompt reset.</div></div>
-  </div>
-
-  <h2 class="sec"><span class="n">4</span> Clusters</h2>
-
-  <div class="cluster">
-    <div class="cl-head"><div class="cl-top"><h3>Embedded analytics</h3><span class="page">/embedded-analytics</span><span class="verdict pill p-warn">Page 2</span></div>
-      <p class="cl-read fbx">All ranking, all on page 2. The product page shows for the head term at ~#17 with heavy impressions but almost no clicks — a title/CTR and AI-Overview problem, not a visibility one. The play is on-page optimization to cross onto page 1, plus a title/meta rewrite to earn the clicks we already have impressions for.</p></div>
-    <div class="kwt-wrap"><table class="kwt"><thead><tr><th>Keyword</th><th class="r">Vol</th><th>Ranking page (GSC)</th><th class="r">Position</th></tr></thead><tbody>
-      <tr><td class="kw fbx">embedded analytics</td><td class="vol">1,600</td><td class="pageco">/embedded-analytics</td><td class="num"><span class="pos">17</span></td></tr>
-      <tr><td class="kw fbx">embedded analytics software</td><td class="vol">200</td><td class="pageco">/embedded-analytics-software</td><td class="num"><span class="pos">17</span></td></tr>
-      <tr><td class="kw fbx">what is embedded analytics</td><td class="vol">300</td><td class="pageco">/embedded-analytics</td><td class="num"><span class="pos">21</span></td></tr>
-      <tr><td class="kw fbx">embedded analytics pricing</td><td class="vol">250</td><td class="pageco">/pricing/embedded-analytics</td><td class="num"><span class="pos">22</span></td></tr>
-      <tr><td class="kw fbx">embedded analytics tools</td><td class="vol">350</td><td class="pageco">/embedded-analytics</td><td class="num"><span class="pos">24</span></td></tr>
-    </tbody></table></div>
-  </div>
-
-  <div class="cluster">
-    <div class="cl-head"><div class="cl-top"><h3>Embedded BI</h3><span class="page">PAGE GAP · build #1</span><span class="verdict pill p-build">Homepage-carried</span></div>
-      <p class="cl-read fbx"><b>These terms only rank because the homepage is absorbing them</b> (#25–29). There's no owned page, so we can't push them onto page 1 or convert the intent. That's exactly why the dedicated <code>/embedded-bi</code> product page is priority #1 (in progress, due Aug 15) — it lets us target the head term directly and move the signal off the homepage.</p></div>
-    <div class="kwt-wrap"><table class="kwt"><thead><tr><th>Keyword</th><th class="r">Vol</th><th>Ranking page (GSC)</th><th class="r">Position</th></tr></thead><tbody>
-      <tr><td class="kw fbx">embedded bi tool</td><td class="vol">150</td><td class="pageco">/ (homepage)</td><td class="num"><span class="pos">19</span></td></tr>
-      <tr><td class="kw fbx">embedded business intelligence</td><td class="vol">150</td><td class="pageco">/ (homepage)</td><td class="num"><span class="pos">25</span></td></tr>
-      <tr><td class="kw fbx">embedded bi</td><td class="vol">250</td><td class="pageco">/ (homepage)</td><td class="num"><span class="pos">29</span></td></tr>
-    </tbody></table></div>
-  </div>
-
-  <div class="cluster">
-    <div class="cl-head"><div class="cl-top"><h3>White label analytics</h3><span class="page">/white-label-analytics</span><span class="verdict pill p-warn">Page 2 · AI-strong</span></div>
-      <p class="cl-read fbx">Ranking on page 2 across the cluster (#15–17), but this is our <b>strongest topic in AI answers</b> and a top organic click-getter. The pages exist and are relevant — targeted on-page work should lift them toward page 1, where the AI strength and organic demand compound.</p></div>
-    <div class="kwt-wrap"><table class="kwt"><thead><tr><th>Keyword</th><th class="r">Vol</th><th>Ranking page (GSC)</th><th class="r">Position</th></tr></thead><tbody>
-      <tr><td class="kw fbx">white label analytics</td><td class="vol">250</td><td class="pageco">/white-label-analytics</td><td class="num"><span class="pos">15</span></td></tr>
-      <tr><td class="kw fbx">white label data analytics</td><td class="vol">200</td><td class="pageco">/white-label-analytics</td><td class="num"><span class="pos">15</span></td></tr>
-      <tr><td class="kw fbx">white label dashboard</td><td class="vol">300</td><td class="pageco">/white-label-analytics</td><td class="num"><span class="pos">17</span></td></tr>
-    </tbody></table></div>
-  </div>
-
-  <div class="cluster">
-    <div class="cl-head"><div class="cl-top"><h3>Competitor pages</h3><span class="page">/reveal-vs-* · embed intent</span><span class="verdict pill p-warn">Page 2</span></div>
-      <p class="cl-read fbx">We <b>do</b> rank for the competitor embed terms (page 2), led by <code>power bi embedded</code> at ~#13 with real impression volume. These are the high-intent terms — the vs-pages need on-page work and clean serving (tied to the subdomain cleanup) to move up. Chase &ldquo;&lt;competitor&gt; embedded analytics&rdquo; (real demand), not &ldquo;&lt;competitor&gt; alternative&rdquo; (~0 volume).</p></div>
-    <div class="kwt-wrap"><table class="kwt"><thead><tr><th>Target keyword</th><th class="r">Vol</th><th>Ranking page (GSC)</th><th class="r">Position</th></tr></thead><tbody>
-      <tr><td class="kw fbx">power bi embedded</td><td class="vol">700</td><td class="pageco">/reveal-vs-power-bi</td><td class="num"><span class="pos">13</span></td></tr>
-      <tr><td class="kw fbx">sisense embedded analytics</td><td class="vol">100</td><td class="pageco">/reveal-vs-sisense</td><td class="num"><span class="pos">15</span></td></tr>
-      <tr><td class="kw fbx">looker embedded analytics</td><td class="vol">150</td><td class="pageco">/reveal-vs-looker</td><td class="num"><span class="pos">17</span></td></tr>
-      <tr><td class="kw fbx">tableau embedded analytics</td><td class="vol">250</td><td class="pageco">/blog/tableau-embedded-analytics-alt</td><td class="num"><span class="pos">24</span></td></tr>
-    </tbody></table></div>
-  </div>
-  <p class="cl-note">Positions from Google Search Console (our source of truth for our own rankings) — 28-day average, all devices/locales, so figures run more conservative than a single-country tool snapshot. Volumes from Ahrefs. See the Definitions tab for why we use GSC here and not Ahrefs.</p>
-
-  <h2 class="sec"><span class="n">5</span> AI visibility</h2>
-  <div class="ai-top">
-    <div class="ai-stat fbx"><div class="l">Visibility</div><div class="v">27.4%</div><div class="w up">&#9650; new baseline</div></div>
-    <div class="ai-stat fbx"><div class="l">Avg rank</div><div class="v">7.9</div><div class="w flat">34 of 124 responses</div></div>
-    <div class="ai-stat fbx"><div class="l">Citations</div><div class="v">445</div><div class="w flat">37.9% prompt coverage</div></div>
-    <div class="ai-stat fbx"><div class="l">Sentiment</div><div class="v" style="color:var(--good)">80%</div><div class="w flat">positive · 5.7% neg</div></div>
-  </div>
-  <div class="twocol">
-    <div class="card fbx"><h4>Share of voice vs competitors</h4><p class="cap">same prompts · % of responses mentioning brand</p>
-      <div class="bars">
-        <div class="bar-row"><span class="bl">Microsoft</span><span class="bt"><i style="width:100%"></i></span><span class="bv">57%</span></div>
-        <div class="bar-row"><span class="bl">Looker</span><span class="bt"><i style="width:97%"></i></span><span class="bv">56%</span></div>
-        <div class="bar-row"><span class="bl">Salesforce</span><span class="bt"><i style="width:86%"></i></span><span class="bv">49%</span></div>
-        <div class="bar-row"><span class="bl">Metabase</span><span class="bt"><i style="width:79%"></i></span><span class="bv">45%</span></div>
-        <div class="bar-row"><span class="bl">Sisense</span><span class="bt"><i style="width:69%"></i></span><span class="bv">40%</span></div>
-        <div class="bar-row me"><span class="bl">Reveal BI</span><span class="bt"><i style="width:48%"></i></span><span class="bv">27%</span></div>
-        <div class="bar-row"><span class="bl">Qlik Sense</span><span class="bt"><i style="width:40%"></i></span><span class="bv">23%</span></div>
-        <div class="bar-row"><span class="bl">Zoho Analytics</span><span class="bt"><i style="width:8%"></i></span><span class="bv">5%</span></div>
-      </div>
-    </div>
-    <div class="card fbx"><h4>Visibility by topic &rarr; cluster</h4><p class="cap">where Reveal surfaces in AI answers</p>
-      <div class="bars">
-        <div class="bar-row me"><span class="bl">Brand &amp; compete</span><span class="bt"><i style="width:100%"></i></span><span class="bv">77%</span></div>
-        <div class="bar-row"><span class="bl">Developer &amp; stack fit</span><span class="bt"><i style="width:35%"></i></span><span class="bv">27%</span></div>
-        <div class="bar-row"><span class="bl">White label</span><span class="bt"><i style="width:35%"></i></span><span class="bv">27%</span></div>
-        <div class="bar-row"><span class="bl">Pricing &amp; licensing</span><span class="bt"><i style="width:18%"></i></span><span class="bv">14%</span></div>
-        <div class="bar-row"><span class="bl">SaaS / ISV teams</span><span class="bt"><i style="width:13%"></i></span><span class="bv">10%</span></div>
-      </div>
-      <h4 style="margin-top:20px">By model</h4><p class="cap">visibility is now solid on both engines</p>
-      <div class="bars">
-        <div class="bar-row"><span class="bl">Google AI Overview</span><span class="bt"><i style="width:100%"></i></span><span class="bv">37.9%</span></div>
-        <div class="bar-row"><span class="bl">ChatGPT</span><span class="bt"><i style="width:48%"></i></span><span class="bv">18.2%</span></div>
-      </div>
+    <div class="card pri fbx">
+      <div class="lab">The priority</div>
+      <h3>Ship the two missing pages</h3>
+      <p><b>/embedded-bi</b> (live Aug 15) and <b>/embedded-dashboards</b> (live Aug 31) are the highest-leverage moves. "embedded dashboards" already sits <b>#8</b> with no owned page — the fastest available top-5.</p>
     </div>
   </div>
-  <div class="card fbx" style="margin-top:14px"><h4>Sentiment &amp; how AI describes Reveal</h4><p class="cap">strongly positive — developer-first, white-label, predictable pricing</p>
-    <div class="sentiment"><span class="s-pos" style="width:80%">80% positive</span><span class="s-neu" style="width:14%">14%</span><span class="s-neg" style="width:6%">6%</span></div>
-    <div class="chips"><span class="chip">embedded analytics</span><span class="chip">developer experience</span><span class="chip">SDK-first</span><span class="chip">white-labeling</span><span class="chip">predictable pricing</span><span class="chip">.NET / Angular native</span><span class="chip">self-service</span></div>
-    <p class="tnote"><b>Fresh baseline:</b> the topic/prompt set was rebuilt this cycle, so 27.4% is a new starting line — not comparable to prior weeks. From here it's a clean week-over-week trend. One thing to watch: Power BI and Tableau still read 0% share of voice, which likely means those competitor mappings need one more pass.</p>
+
+  <h2 class="sec">§1 · Executive summary</h2>
+  <div class="card pad exec">
+    <p>The technical repair work is showing up in the numbers: audit health recovered from <b>36 to 48</b> as the clean sitemap and redirect-link fixes landed. That removes the biggest drag on everything else we do.</p>
+    <p>Demand signals cooled this week. Organic clicks fell to <b>235 (-6%)</b> and organic sessions to <b>291 (-24%)</b> versus the prior week, and July deduped organic leads came in at <b>23</b> against a 100/month target. Impressions actually rose (<b>123k, +10%</b>), so we're being <b>shown</b> more but converting the click less — a page-2 and CTR problem, not a visibility one.</p>
+    <p>The structural fix is unchanged and on schedule: our core commercial terms rank but sit at <b>#15–#29</b> because two money pages don't exist yet. <b>/embedded-bi</b> (live Aug 15) and <b>/embedded-dashboards</b> (live Aug 31) target that gap directly; "embedded dashboards" is already <b>#8</b> off the homepage alone.</p>
+    <p>In AI answers we own the comparison conversation (<b>77%</b> visibility on "Brand &amp; Competitive Comparison") but are <b>invisible</b> on the top-of-funnel category topics — 0% on both "embedded analytics platforms" and "AI-powered embedded analytics" while competitors are cited 10–14× each. New action opened to close that.</p>
   </div>
 
-  </section>
-
-  <section id="tasks" class="tabpane">
-    <div class="tk-bar">
-      <div class="seg" id="seg">
-        <button data-view="table" class="active">Table</button>
-        <button data-view="board">Board</button>
-        <button data-view="timeline">Timeline</button>
-      </div>
-      <div class="tk-meta"><b>19 tasks</b> · live from Slingshot · <b>2</b> in progress · <b>1</b> in review · <b>2</b> done · <b>14</b> to do</div>
-      <a class="tk-open" href="https://my.slingshotapp.io/openTaskList/e97e10ef_0a775366-47ca-4550-8556-8d051ecc00b4_tg" target="_blank" rel="noopener">&#8599; Open this list in Slingshot</a>
-    </div>
-    <div id="tkview"></div>
-  </section>
-
-  <section id="summary" class="tabpane">
-    <div class="sum-head">
-      <h3>Executive summary — post to Slingshot</h3>
-      <button class="copybtn" id="copybtn">&#128203; Copy summary</button>
-    </div>
-    <div class="sumcard">
-      <h4>Reveal SEO: we've built the visibility — now we convert it</h4>
-      <p>Two-line version: <b>Reveal is winning in AI search and ranking in Google, but our commercial pages are stuck on page 2 where nobody clicks.</b> The work now is execution, not strategy.</p>
-      <h5>What's working</h5>
-      <p>AI search is a real strength. After rebuilding how we track it, Reveal appears in about <b>1 in 4 AI answers</b> on embedded analytics (27% visibility), with <b>80% positive</b> sentiment and solid presence on both Google AI Overview (38%) and ChatGPT (18%). As buyers move to AI-first research, that's an asset.</p>
-      <h5>What's not</h5>
-      <p>Our money pages <b>rank but sit on page 2</b> (embedded analytics ~#17, white label ~#15) — close, but page 2 earns almost no clicks. And technical site health is still <b>36/100</b> with thousands of erroring URLs, which caps how high anything can climb.</p>
-      <h5>The priority this week</h5>
-      <ul>
-        <li><b>Ship two product pages</b> — /embedded-bi (its terms only rank via the homepage today) and /embedded-dashboards (already ~#9, quickest win).</li>
-        <li><b>Optimize the page-2 pages</b> — titles, internal links and content to cross onto page 1.</li>
-        <li><b>Clear the technical errors</b> — dev shipped 2 fixes; the P1 subdomain/canonical/403 set is queued.</li>
-      </ul>
-      <h5>For leadership</h5>
-      <p>Demand is steady but modest — organic leads are running <b>~24/mo</b> (deduped by email), about a quarter of the 100/mo goal. This is a conversion-and-execution story: the demand and AI visibility are there; the constraint is getting pages onto page 1. As that happens, leads should follow on the usual lag.</p>
-    </div>
-  </section>
-
-  <section id="definitions" class="tabpane">
-    <div class="defintro">
-      <b>Two things live here:</b> (1) our <b>source of truth</b> — which tool is the authority for each number and why, so nobody compares two tools that measure different things; and (2) a plain-English <b>SEO glossary</b> so anyone reading the report knows what the terms mean. The rule underneath it all: <b>one metric, one tool</b> — a trend is only trustworthy if it comes from the same place every week.</div>
-
-    <div class="subhead">Source of truth — where each number comes from</div>
-    <div class="deftbl-wrap"><table class="deftbl">
-      <thead><tr><th>Metric</th><th>Source of truth</th><th class="col-mean">What it tells us</th><th>Why here — and why not the alternative</th></tr></thead>
+  <h2 class="sec">§2 · Goal scoreboard</h2>
+  <div class="card scoreboard">
+    <table>
+      <thead><tr><th>Goal</th><th>Current</th><th>Target</th><th style="min-width:130px">Progress</th><th>Insight</th><th>Status</th></tr></thead>
       <tbody>
-        <tr><td class="term">Our keyword rankings &amp; clicks</td><td class="src">Google Search Console</td><td class="col-mean">How we actually rank and get clicked, per query, daily.</td><td class="why"><b>Why GSC:</b> it's Google's own record of our real positions and clicks. <span class="alt"><b>Not Ahrefs</b> — Ahrefs positions are modeled estimates sampled on a schedule; fine as a directional check, but for our own pages GSC is the real, daily, per-query truth.</span></td></tr>
-        <tr><td class="term">Keywords we don't rank for yet</td><td class="src">Ahrefs (Keywords Explorer / Rank Tracker)</td><td class="col-mean">Search volume, difficulty, and whitespace terms + competitor tracking.</td><td class="why"><b>Why Ahrefs:</b> it can see terms we don't appear for. <span class="alt"><b>Not GSC</b> — GSC only reports queries we already surface on, so it's blind to whitespace. Volume/difficulty always come from Ahrefs.</span></td></tr>
-        <tr><td class="term">Sessions &amp; on-site behavior</td><td class="src">GA4 (via Supermetrics)</td><td class="col-mean">What visitors do once they land on the site.</td><td class="why"><b>Why GA4:</b> it measures on-site behavior. <span class="alt"><b>Not GSC</b> — GSC measures what happens in Google's results, GA4 measures what happens on the site; they'll never match exactly, so we don't reconcile them.</span></td></tr>
-        <tr><td class="term">Leads (organic-sourced)</td><td class="src">Salesforce</td><td class="col-mean">Distinct email on Lead_Event__c, ProductFamily = Reveal, TrackingMedium = organic (deduped, so multiple events by one person count once).</td><td class="why"><b>Why Salesforce:</b> it's the only system that ties a lead to pipeline. <span class="alt"><b>Not GA4 &ldquo;conversions&rdquo;</b> — those are on-site proxies (form views, clicks), not qualified leads.</span></td></tr>
-        <tr><td class="term">AI / LLM visibility</td><td class="src">Amplitude AI Visibility</td><td class="col-mean">How often AI answers mention Reveal, at what rank, with what sentiment.</td><td class="why"><b>Why Amplitude:</b> single source for everything AI/AEO, so the trend stays consistent. <span class="alt"><b>Not Ahrefs Brand Radar</b> — mixing tools for the same number creates fake movement; Brand Radar stays a manual PR pull only.</span></td></tr>
-        <tr><td class="term">Domain authority &amp; backlinks</td><td class="src">Ahrefs (Site Explorer)</td><td class="col-mean">Domain Rating, referring domains, backlink growth.</td><td class="why"><b>Why Ahrefs:</b> DR is Ahrefs' own model. <span class="alt"><b>Don't cross-compare</b> to any other tool's authority score — different scales, not interchangeable.</span></td></tr>
-        <tr><td class="term">Technical site health</td><td class="src">Ahrefs Site Audit</td><td class="col-mean">Crawl-based health score, broken URLs, canonicals, sitemaps.</td><td class="why"><b>Why Ahrefs Site Audit:</b> consistent crawl-based scoring week to week. Feeds the separate Technical SEO audit; the score is mirrored here so leadership sees the foundation risk.</td></tr>
+        <tr>
+          <td class="goal fbx">Embedded analytics → top 3</td>
+          <td class="num">#15.6</td><td>Top 3</td>
+          <td><span class="bar"><i style="width:20%"></i></span></td>
+          <td>Served heavily (4,120 impr) but stuck page 2; needs on-page + CTR.</td>
+          <td><span class="badge b-amber">Page 2</span></td>
+        </tr>
+        <tr>
+          <td class="goal fbx">White label analytics → top 3</td>
+          <td class="num">#14.2</td><td>Top 3</td>
+          <td><span class="bar"><i style="width:33%"></i></span></td>
+          <td>Head term page 2, but "white label platform" #4 and long-tail already #1.</td>
+          <td><span class="badge b-amber">Page 2</span></td>
+        </tr>
+        <tr>
+          <td class="goal fbx">Embedded BI → page live + top 10</td>
+          <td class="num">#29.4</td><td>Top 10 · Sep 30</td>
+          <td><span class="bar"><i style="width:15%"></i></span></td>
+          <td>Homepage-carried; dedicated /embedded-bi in progress, live Aug 15.</td>
+          <td><span class="badge b-build">Building</span></td>
+        </tr>
+        <tr>
+          <td class="goal fbx">Embedded dashboards → page live + top 10</td>
+          <td class="num">#8.0</td><td>Top 10 · Oct 31</td>
+          <td><span class="bar"><i style="width:62%"></i></span></td>
+          <td>Best-positioned page gap — already top-10 with no owned page.</td>
+          <td><span class="badge b-build">Building</span></td>
+        </tr>
+        <tr>
+          <td class="goal fbx">Technical health ≥ 60</td>
+          <td class="num">48</td><td>≥60 Oct 1 · ≥90 Mar '27</td>
+          <td><span class="bar"><i style="width:53%"></i></span></td>
+          <td>Up from 36; P1 subdomain/canonical fixes still open to reach 60.</td>
+          <td><span class="badge b-build">Building</span></td>
+        </tr>
+        <tr>
+          <td class="goal fbx">Domain Rating 60</td>
+          <td class="num">55</td><td>60 · Mar '27</td>
+          <td><span class="bar"><i style="width:75%"></i></span></td>
+          <td>5 points off; backlink work on white-label page is the lever.</td>
+          <td><span class="badge b-ontrack">On track</span></td>
+        </tr>
+        <tr>
+          <td class="goal fbx">Organic sessions 1,000/mo</td>
+          <td class="num">1,719/mo</td><td>1,000/mo · Dec '26</td>
+          <td><span class="bar"><i style="width:80%"></i></span></td>
+          <td>Total organic clears the bar but fell -22% MoM; allowlist subset tracked separately.</td>
+          <td><span class="badge b-stable">Stable</span></td>
+        </tr>
+        <tr>
+          <td class="goal fbx">Organic leads 100/mo (deduped)</td>
+          <td class="num">23/mo</td><td>100/mo · Dec '26</td>
+          <td><span class="bar"><i style="width:23%"></i></span></td>
+          <td>Flat-to-down (Jun 24 → Jul 23); page-2 rankings cap the funnel.</td>
+          <td><span class="badge b-behind">Behind</span></td>
+        </tr>
       </tbody>
-    </table></div>
+    </table>
+  </div>
 
-    <div class="subhead">SEO glossary — plain English</div>
-    <div class="deftbl-wrap"><table class="deftbl">
-      <thead><tr><th>Term</th><th>What it means</th><th>Where / why we track it</th></tr></thead>
+  <h2 class="sec">§3 · KPI snapshot</h2>
+  <div class="kpis">
+    <div class="card kpi fbx">
+      <span class="chip c-gsc">GSC</span>
+      <div class="lab">Organic clicks</div>
+      <div class="val">235</div>
+      <div class="wow down">▼ 6% WoW <span class="flat">(prior 250)</span></div>
+      <div class="spark" data-spark="250,235" data-color="#DC2626"></div>
+      <div class="ins">Impressions up, clicks down — a click-through gap, not a reach gap.</div>
+    </div>
+    <div class="card kpi fbx">
+      <span class="chip c-ga4">GA4</span>
+      <div class="lab">Organic sessions</div>
+      <div class="val">291</div>
+      <div class="wow down">▼ 24% WoW <span class="flat">(prior 383)</span></div>
+      <div class="spark" data-spark="383,291" data-color="#DC2626"></div>
+      <div class="ins">Weekly dip mirrors the softer July; page-2 terms leak the traffic.</div>
+    </div>
+    <div class="card kpi fbx">
+      <span class="chip c-sf">SF</span>
+      <div class="lab">Organic leads / mo</div>
+      <div class="val">23</div>
+      <div class="wow down">▼ 1 vs Jun <span class="flat">(goal 100)</span></div>
+      <div class="spark" data-spark="21,27,20,16,24,23" data-color="#2A41A2"></div>
+      <div class="ins">Deduped; conversion is capped until money terms reach page 1.</div>
+    </div>
+    <div class="card kpi fbx">
+      <span class="chip c-ah">AH</span>
+      <div class="lab">Domain Rating</div>
+      <div class="val">55</div>
+      <div class="wow flat">— stable <span class="flat">(goal 60)</span></div>
+      <div class="spark" data-spark="55,55" data-color="#6C8CFD"></div>
+      <div class="ins">Five points from goal; earn links to the white-label page.</div>
+    </div>
+    <div class="card kpi fbx">
+      <span class="chip c-ah">AH</span>
+      <div class="lab">Technical health</div>
+      <div class="val">48</div>
+      <div class="wow up">▲ 12 pts <span class="flat">(from 36)</span></div>
+      <div class="spark" data-spark="36,48" data-color="#16A34A"></div>
+      <div class="ins">Cleanup working; P1 subdomain + canonical fixes get us to 60.</div>
+    </div>
+    <div class="card kpi fbx">
+      <span class="chip c-amp">AMP</span>
+      <div class="lab">AI visibility</div>
+      <div class="val">27.4%</div>
+      <div class="wow flat">baseline <span class="flat">(avg rank 7.9)</span></div>
+      <div class="spark" data-spark="13.6,27.4" data-color="#1F6FEB"></div>
+      <div class="ins">Small-sample run (124 responses) — treat as a baseline, not a trend.</div>
+    </div>
+  </div>
+
+  <h2 class="sec">§4 · Clusters</h2>
+  <div class="clusters">
+
+    <div class="card cluster">
+      <div class="top"><h3>Embedded Analytics</h3><span class="path">/embedded-analytics</span></div>
+      <table class="kwt">
+        <thead><tr><th>Keyword</th><th style="text-align:right">GSC pos</th><th style="text-align:right">Impr</th></tr></thead>
+        <tbody>
+          <tr><td class="kw fbx">embedded analytics</td><td class="pos">#15.6<span class="pg pg2">P2</span></td><td class="impr">4,120</td></tr>
+          <tr><td class="kw fbx">embedded analytics software</td><td class="pos">#15.7<span class="pg pg2">P2</span></td><td class="impr">905</td></tr>
+          <tr><td class="kw fbx">what is embedded analytics</td><td class="pos">#18.8<span class="pg pg2">P2</span></td><td class="impr">859</td></tr>
+          <tr><td class="kw fbx">embedded analytics platform</td><td class="pos">#16.5<span class="pg pg2">P2</span></td><td class="impr">881</td></tr>
+          <tr><td class="kw fbx">embedded analytics tools</td><td class="pos">#24.4<span class="pg pgx">P3</span></td><td class="impr">732</td></tr>
+          <tr><td class="kw fbx">embedded analytics pricing</td><td class="pos">#19.6<span class="pg pg2">P2</span></td><td class="impr">348</td></tr>
+        </tbody>
+      </table>
+      <div class="read fbx"><span class="verdict"><span class="badge b-amber">Page 2</span></span><span>Everything ranks, nothing is top-10. The lever is on-page optimization + CTR on the existing page — not new content.</span></div>
+    </div>
+
+    <div class="card cluster">
+      <div class="top"><h3>Embedded BI</h3><span class="path">PAGE GAP → /embedded-bi</span></div>
+      <table class="kwt">
+        <thead><tr><th>Keyword</th><th style="text-align:right">GSC pos</th><th style="text-align:right">Impr</th></tr></thead>
+        <tbody>
+          <tr><td class="kw fbx">embedded bi</td><td class="pos">#29.4<span class="pg pgx">P3</span></td><td class="impr">1,007</td></tr>
+          <tr><td class="kw fbx">embedded business intelligence</td><td class="pos">#24.5<span class="pg pgx">P3</span></td><td class="impr">443</td></tr>
+          <tr><td class="kw fbx">embedded bi tools</td><td class="pos">#21.9<span class="pg pgx">P3</span></td><td class="impr">382</td></tr>
+          <tr><td class="kw fbx">embedded bi tool</td><td class="pos">#19.0<span class="pg pg2">P2</span></td><td class="impr">291</td></tr>
+        </tbody>
+      </table>
+      <div class="read fbx"><span class="verdict"><span class="badge b-build">Building</span></span><span>Homepage is carrying the whole cluster (#25–29). A dedicated /embedded-bi page (live Aug 15) shifts the ranking signal onto owned real estate.</span></div>
+    </div>
+
+    <div class="card cluster">
+      <div class="top"><h3>White Label</h3><span class="path">/white-label-analytics</span></div>
+      <table class="kwt">
+        <thead><tr><th>Keyword</th><th style="text-align:right">GSC pos</th><th style="text-align:right">Impr</th></tr></thead>
+        <tbody>
+          <tr><td class="kw fbx">white label platform</td><td class="pos">#4.3<span class="pg pg1">P1</span></td><td class="impr">1,163</td></tr>
+          <tr><td class="kw fbx">white label analytics</td><td class="pos">#14.2<span class="pg pg2">P2</span></td><td class="impr">844</td></tr>
+          <tr><td class="kw fbx">white label dashboard</td><td class="pos">#17.5<span class="pg pg2">P2</span></td><td class="impr">678</td></tr>
+          <tr><td class="kw fbx">white label data analytics</td><td class="pos">#14.8<span class="pg pg2">P2</span></td><td class="impr">489</td></tr>
+          <tr><td class="kw fbx">best white label analytics platforms</td><td class="pos">#1.4<span class="pg pg1">P1</span></td><td class="impr">112</td></tr>
+        </tbody>
+      </table>
+      <div class="read fbx"><span class="verdict"><span class="badge b-ontrack">Strongest</span></span><span>Our best cluster: long-tail already at #1 and "white label platform" #4. Backlinks to the ranking page are the push from #2 to #1 on the head term.</span></div>
+    </div>
+
+    <div class="card cluster">
+      <div class="top"><h3>Competitors</h3><span class="path">/reveal-vs-*</span></div>
+      <table class="kwt">
+        <thead><tr><th>Keyword</th><th style="text-align:right">GSC pos</th><th style="text-align:right">Impr</th></tr></thead>
+        <tbody>
+          <tr><td class="kw fbx">gooddata embedded analytics</td><td class="pos">#4.7<span class="pg pg1">P1</span></td><td class="impr">6</td></tr>
+          <tr><td class="kw fbx">power bi embedded analytics</td><td class="pos">#11.3<span class="pg pg2">P2</span></td><td class="impr">49</td></tr>
+          <tr><td class="kw fbx">thoughtspot embedded analytics</td><td class="pos">#11.8<span class="pg pg2">P2</span></td><td class="impr">16</td></tr>
+          <tr><td class="kw fbx">sisense embedded analytics</td><td class="pos">#13.5<span class="pg pg2">P2</span></td><td class="impr">20</td></tr>
+          <tr><td class="kw fbx">looker embedded analytics</td><td class="pos">#15.8<span class="pg pg2">P2</span></td><td class="impr">12</td></tr>
+          <tr><td class="kw fbx">tableau embedded analytics</td><td class="pos">#23.7<span class="pg pgx">P3</span></td><td class="impr">74</td></tr>
+        </tbody>
+      </table>
+      <div class="read fbx"><span class="verdict"><span class="badge b-amber">Thin</span></span><span>Comparison pages are too thin to rank or get served. Target "&lt;competitor&gt; embedded analytics" (real demand) — rebuild tableau/looker/sisense first.</span></div>
+    </div>
+
+  </div>
+
+  <h2 class="sec">§5 · AI visibility (Amplitude)</h2>
+  <div class="ai-stats">
+    <div class="card ai-stat fbx"><div class="lab">Visibility</div><div class="val">27.4%</div></div>
+    <div class="card ai-stat fbx"><div class="lab">Avg rank</div><div class="val">7.9</div></div>
+    <div class="card ai-stat fbx"><div class="lab">Citations</div><div class="val">445</div></div>
+    <div class="card ai-stat fbx"><div class="lab">Sentiment</div><div class="val">80%<span style="font-size:12px;color:var(--muted)"> pos</span></div></div>
+  </div>
+  <p style="font-size:12px;color:var(--muted);margin:10px 2px 0">Report 187963 · completed Jul 28, 2026 · <b>fresh baseline</b> — 124 responses (~half a normal week), coverage 25/66 prompts. Present as a baseline, not a WoW trend; measurement stabilization is an open task.</p>
+
+  <div class="ai-grid">
+    <div class="card">
+      <h3 class="ct">Competitor share of voice</h3>
+      <div class="csub">Same prompt set · visibility %</div>
+      <div style="padding:0 16px 14px">
+        <div class="rowbar"><span class="nm us">Reveal BI</span><span class="track"><i class="fill-us" style="width:27.4%"></i></span><span class="pct">27.4</span></div>
+        <div class="rowbar"><span class="nm">Microsoft</span><span class="track"><i class="fill-them" style="width:57.3%"></i></span><span class="pct">57.3</span></div>
+        <div class="rowbar"><span class="nm">Looker</span><span class="track"><i class="fill-them" style="width:55.6%"></i></span><span class="pct">55.6</span></div>
+        <div class="rowbar"><span class="nm">Salesforce</span><span class="track"><i class="fill-them" style="width:49.2%"></i></span><span class="pct">49.2</span></div>
+        <div class="rowbar"><span class="nm">Metabase</span><span class="track"><i class="fill-them" style="width:45.2%"></i></span><span class="pct">45.2</span></div>
+        <div class="rowbar"><span class="nm">Sisense</span><span class="track"><i class="fill-them" style="width:39.5%"></i></span><span class="pct">39.5</span></div>
+        <div class="rowbar"><span class="nm">Qlik Sense</span><span class="track"><i class="fill-them" style="width:22.6%"></i></span><span class="pct">22.6</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="ct">Visibility by topic → cluster</h3>
+      <div class="csub">Where we win and where we're absent</div>
+      <div style="padding:0 16px 14px">
+        <div class="rowbar"><span class="nm">Brand &amp; Comparison</span><span class="track"><i class="fill-us" style="width:77%"></i></span><span class="pct">77</span></div>
+        <div class="rowbar"><span class="nm">Developer &amp; Stack Fit</span><span class="track"><i class="fill-them" style="width:27%"></i></span><span class="pct">27</span></div>
+        <div class="rowbar"><span class="nm">White label embedded</span><span class="track"><i class="fill-them" style="width:27%"></i></span><span class="pct">27</span></div>
+        <div class="rowbar"><span class="nm">Pricing &amp; Licensing</span><span class="track"><i class="fill-them" style="width:14%"></i></span><span class="pct">14</span></div>
+        <div class="rowbar"><span class="nm">Embedded for SaaS/ISV</span><span class="track"><i class="fill-them" style="width:10%"></i></span><span class="pct">10</span></div>
+        <div class="rowbar"><span class="nm">Embedded analytics platforms</span><span class="track"><i style="width:2%;background:var(--red)"></i></span><span class="pct">0</span></div>
+        <div class="rowbar"><span class="nm">AI-powered embedded</span><span class="track"><i style="width:2%;background:var(--red)"></i></span><span class="pct">0</span></div>
+      </div>
+    </div>
+
+    <div class="card fbx">
+      <h3 class="ct">By model</h3>
+      <div class="csub">Where the mentions come from</div>
+      <div style="padding:0 16px 14px">
+        <div class="rowbar"><span class="nm">Google AI Overview</span><span class="track"><i class="fill-us" style="width:37.9%"></i></span><span class="pct">37.9</span></div>
+        <div class="rowbar"><span class="nm">ChatGPT</span><span class="track"><i class="fill-them" style="width:18.2%"></i></span><span class="pct">18.2</span></div>
+      </div>
+      <div class="csub" style="padding-top:2px">Google AI Overview carries us; ChatGPT is the gap.</div>
+    </div>
+
+    <div class="card fbx">
+      <h3 class="ct">Sentiment themes</h3>
+      <div class="csub">Score 74.3 · 80% positive · 5.7% negative</div>
+      <div class="chips">
+        <span class="tchip">embedded analytics <b>+9</b></span>
+        <span class="tchip">customization <b>+7</b> <i>/1</i></span>
+        <span class="tchip">pricing <b>+4</b> <i>/1</i></span>
+        <span class="tchip">developer experience <b>+4</b></span>
+        <span class="tchip">SDK <b>+3</b></span>
+        <span class="tchip">white-labeling <b>+2</b></span>
+        <span class="tchip">predictable pricing <b>+2</b></span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ================= TASKS ================= -->
+<section class="panel" id="tasks" role="tabpanel">
+  <div class="taskbar">
+    <div class="toggles">
+      <button class="on" data-view="table">Table</button>
+      <button data-view="board">Board</button>
+      <button data-view="timeline">Timeline</button>
+    </div>
+    <a class="btn" href="https://my.slingshotapp.io/openTaskList/e97e10ef_0a775366-47ca-4550-8556-8d051ecc00b4_tg" target="_blank" rel="noopener">Open this list in Slingshot ↗</a>
+  </div>
+
+  <div class="card" id="tv-table">
+    <table class="tt">
+      <thead><tr><th>Task</th><th>Track</th><th>Owner</th><th>Priority</th><th>Status</th><th>Due</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+
+  <div class="board hide" id="tv-board"></div>
+  <div class="card pad hide" id="tv-timeline"><div class="tl" id="tl"></div></div>
+</section>
+
+<!-- ================= SUMMARY ================= -->
+<section class="panel" id="summary" role="tabpanel">
+  <div class="taskbar">
+    <h2 class="sec" style="margin:0">Discussion-ready summary</h2>
+    <button class="btn ghost" id="copysum">Copy summary</button>
+  </div>
+  <div class="card pad sumcard" id="sumbody">
+    <p><b>Reveal SEO — week of Jul 27–Aug 2, 2026</b></p>
+    <p>Technical cleanup is landing: site-audit health recovered 36 → 48 as the clean sitemap and redirect-link fixes shipped. That lifts the ceiling on everything else.</p>
+    <p>Demand cooled short-term. Organic clicks 235 (-6% WoW), sessions 291 (-24% WoW), and July deduped organic leads 23 vs a 100/mo goal. Impressions rose to 123k (+10%) — we're shown more, clicked less. That's a page-2 / CTR problem, not a reach problem.</p>
+    <p><b>Priority:</b> ship the two missing money pages. /embedded-bi (live Aug 15) and /embedded-dashboards (live Aug 31). "embedded dashboards" is already #8 off the homepage — the fastest available top-5.</p>
+    <ul>
+      <li>White Label stays strongest: "white label platform" #4, long-tail terms at #1.</li>
+      <li>Embedded Analytics: everything ranks #15–20, nothing top-10 — on-page + CTR, not new content.</li>
+      <li>AI answers: we own comparison (77%) but are invisible (0%) on "embedded analytics platforms" and "AI-powered embedded." New action opened.</li>
+      <li>DR 55 (goal 60); technical health 48 (goal 60 by Oct 1).</li>
+    </ul>
+    <p>One new task this run; 23 existing actions reviewed and still valid. Full board in the Tasks tab.</p>
+  </div>
+</section>
+
+<!-- ================= DEFINITIONS ================= -->
+<section class="panel" id="definitions" role="tabpanel">
+  <h2 class="sec">Source of truth — one metric, one tool</h2>
+  <div class="card" style="overflow:hidden">
+    <table class="deft">
+      <thead><tr><th>Metric</th><th>Source</th><th>What it tells us</th><th>Why this source (and not the alternative)</th></tr></thead>
       <tbody>
-        <tr><td class="term">Keyword</td><td>A word or phrase people type into search (e.g. &ldquo;embedded analytics&rdquo;). We group related keywords into <b>clusters</b> around one page.</td><td class="alt">Ahrefs for volume; GSC for how we rank.</td></tr>
-        <tr><td class="term">Head term vs. long-tail</td><td>A <b>head term</b> is short and high-volume (&ldquo;embedded analytics&rdquo;). A <b>long-tail keyword</b> is longer, more specific and lower-volume (&ldquo;best embedded analytics for SaaS startups&rdquo;) — less traffic each, but easier to rank for and higher intent.</td><td class="alt">Ahrefs (find them) + GSC (track them).</td></tr>
-        <tr><td class="term">Impressions</td><td>How many times our page showed up in search results for a query — whether or not anyone clicked.</td><td class="alt">GSC.</td></tr>
-        <tr><td class="term">Clicks &amp; CTR</td><td>Clicks = people who actually clicked through. <b>CTR</b> (click-through rate) = clicks ÷ impressions. Low CTR at a good position usually means a weak title or an AI Overview taking the click.</td><td class="alt">GSC.</td></tr>
-        <tr><td class="term">Position / ranking</td><td>Where our page sits in Google results for a query. <b>Page 1</b> = positions 1–10 (almost all clicks); <b>page 2</b> = 11–20 (almost none).</td><td class="alt">GSC (ours); Ahrefs (competitors).</td></tr>
-        <tr><td class="term">Backlink</td><td>A link from another website to ours. Backlinks are votes of confidence — more good ones generally means Google trusts the site more.</td><td class="alt">Ahrefs.</td></tr>
-        <tr><td class="term">Domain Rating (DR)</td><td>Ahrefs' 0–100 score of a site's overall backlink strength / authority. Higher DR makes it easier to rank. Ours is 55; goal is 60.</td><td class="alt">Ahrefs.</td></tr>
-        <tr><td class="term">Canonical</td><td>A tag that tells Google &ldquo;this is the official version of this page&rdquo; when duplicates exist. Broken canonicals confuse Google about which page to rank.</td><td class="alt">Ahrefs Site Audit.</td></tr>
-        <tr><td class="term">Technical health</td><td>A crawl-based score (0–100) of how clean the site is — broken links, errors, redirects, sitemaps. Low health caps how high anything can rank.</td><td class="alt">Ahrefs Site Audit.</td></tr>
-        <tr><td class="term">AI visibility (AEO)</td><td>How often AI answers (Google AI Overview, ChatGPT) mention our brand for relevant questions — the AI-era version of ranking. AEO = Answer Engine Optimization.</td><td class="alt">Amplitude AI Visibility.</td></tr>
-        <tr><td class="term">Share of voice</td><td>Of all the AI answers to a set of questions, the % that mention a given brand — how loud we are vs. competitors in AI answers.</td><td class="alt">Amplitude.</td></tr>
-        <tr><td class="term">Cluster / PAGE GAP</td><td>A <b>cluster</b> is a group of related keywords one page should own. <b>PAGE GAP</b> means we have the demand but no dedicated page yet (e.g. embedded BI).</td><td class="alt">GSC + Ahrefs.</td></tr>
+        <tr><td class="m">Rankings</td><td>Google Search Console</td><td>Our real average position for each query, plus impressions &amp; clicks.</td><td>GSC is Google's own record of how <i>we</i> rank. Ahrefs Rank Tracker is a third-party sample — good for competitors, not for our own truth.</td></tr>
+        <tr><td class="m">Sessions</td><td>GA4</td><td>Organic visits that land on and engage the site.</td><td>GA4 measures on-site behavior; GSC measures search-side clicks. Different events — never blended.</td></tr>
+        <tr><td class="m">Leads</td><td>Salesforce</td><td>Distinct people from organic who became leads.</td><td>Distinct Email__c on Lead_Event__c where ProductFamily=Reveal &amp; TrackingMedium=organic (deduped). GA4 "conversions" are session events, not deduped humans in the CRM.</td></tr>
+        <tr><td class="m">Domain Rating</td><td>Ahrefs</td><td>Backlink authority strength (0–100).</td><td>Ahrefs owns the largest link index. GSC doesn't score authority.</td></tr>
+        <tr><td class="m">Technical health</td><td>Ahrefs Site Audit</td><td>Share of crawled pages free of errors.</td><td>Mirrored from crawl 1241581; not re-crawled here. GSC coverage is partial by comparison.</td></tr>
+        <tr><td class="m">AI visibility</td><td>Amplitude AI Visibility</td><td>How often LLM answers mention us, at what rank &amp; sentiment.</td><td>Amplitude runs a fixed prompt set across models. Ahrefs Brand Radar is a different panel — mixing them would blend two measures of one number.</td></tr>
       </tbody>
-    </table></div>
+    </table>
+  </div>
 
-    <div class="sot-rule"><b>The one rule:</b> one metric, one tool — never blend sources for the same number. When two tools disagree, they're usually measuring two different things (search vs. on-site, our real data vs. a model's estimate), not contradicting each other.</div>
-  </section>
+  <h2 class="sec">Plain-English SEO glossary</h2>
+  <div class="card pad">
+    <dl class="gl">
+      <div><dt>Keyword</dt><dd>A phrase people type into search. We group related keywords into "clusters."</dd></div>
+      <div><dt>Head vs long-tail</dt><dd>Head = short, high-volume, competitive ("embedded bi"). Long-tail = longer, lower-volume, easier ("best white label analytics platforms").</dd></div>
+      <div><dt>Impressions</dt><dd>How many times a result was shown in search.</dd></div>
+      <div><dt>Clicks &amp; CTR</dt><dd>Clicks = visits from search. CTR = clicks ÷ impressions. High impressions + low CTR = shown but not chosen.</dd></div>
+      <div><dt>Position / page 1 vs page 2</dt><dd>Average rank. #1–10 = page 1 (gets nearly all clicks); #11–20 = page 2 (almost none).</dd></div>
+      <div><dt>Backlink</dt><dd>A link from another site to ours — a vote of authority.</dd></div>
+      <div><dt>Domain Rating (DR)</dt><dd>0–100 score of overall backlink strength.</dd></div>
+      <div><dt>Canonical</dt><dd>The tag naming the "official" version of a page so duplicates don't compete.</dd></div>
+      <div><dt>Technical health</dt><dd>Audit score for how clean the site is to crawl (errors, redirects, broken links).</dd></div>
+      <div><dt>AI visibility (AEO)</dt><dd>Answer Engine Optimization — being cited in AI answers (ChatGPT, Google AI Overview).</dd></div>
+      <div><dt>Share of voice</dt><dd>Our visibility vs competitors across the same prompts or queries.</dd></div>
+      <div><dt>Cluster / PAGE GAP</dt><dd>Cluster = a group of related terms mapped to one page. PAGE GAP = terms with demand but no owned page yet.</dd></div>
+    </dl>
+    <div class="rule"><b>The one rule:</b> one metric, one tool. If two tools disagree, they're measuring different things — we don't reconcile them, and we never fabricate a number.</div>
+  </div>
+</section>
 
+<div class="foot">Reveal SEO Executive Operating Brief · Generated Mon Aug 3, 2026 · Rankings = GSC 28-day · Sessions = GA4 · Leads = Salesforce (deduped) · DR &amp; health = Ahrefs · AI = Amplitude</div>
 </div>
 
+<div class="toast" id="toast">Copied</div>
+
 <script>
-document.querySelectorAll('.tab').forEach(function(t){
-  t.addEventListener('click',function(){
-    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active');});
-    document.querySelectorAll('.tabpane').forEach(function(x){x.classList.remove('active');});
-    t.classList.add('active');
-    document.getElementById(t.getAttribute('data-tab')).classList.add('active');
-    if(t.getAttribute('data-tab')==='report') drawSparks();
+/* ---------- TABS ---------- */
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected','false'));
+    t.setAttribute('aria-selected','true');
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById(t.dataset.p).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
   });
 });
 
-var TODAY='2026-08-03';
-var TASKS=[
- {n:"Fix support@revealbi.io email-as-link bug (broken URLs sitewide)",ins:"",track:"Technical",owner:"dev",pri:"p1",status:"todo",due:"2026-07-25"},
- {n:"Clean up sitewide errors & stray subdomains",ins:"",track:"Technical",owner:"dev",pri:"p1",status:"review",due:"2026-07-28"},
- {n:"Retire wp-staging.revealbi.io + block old./dev. subdomains",ins:"",track:"Technical",owner:"dev",pri:"p1",status:"todo",due:"2026-07-29"},
- {n:"Fix 403 errors on localized pages (/ja /ko /es /pt-BR)",ins:"",track:"Technical",owner:"dev",pri:"p1",status:"todo",due:"2026-07-30"},
- {n:"Repoint canonicals aimed at broken/redirecting URLs (383)",ins:"",track:"Technical",owner:"dev",pri:"p1",status:"todo",due:"2026-07-31"},
- {n:"Fix the erroring embedded-analytics pages",ins:"",track:"Technical",owner:"none",pri:"p1",status:"todo",due:""},
- {n:"Build /embedded-bi product page (P1)",ins:"embedded bi #29 — carried by the homepage; needs its own page.",track:"Product",owner:"casey",pri:"p1",status:"prog",due:"2026-08-07"},
- {n:"Build /embedded-dashboards product page (P2)",ins:"embedded dashboards #9 (GSC) — quickest available top-5 win.",track:"Product",owner:"casey",pri:"p1",status:"todo",due:"2026-08-21"},
- {n:"On-page optimization: move page-2 money terms to page 1",ins:"embedded analytics #17 · white label #15 — all rank, none top-10.",track:"Content",owner:"casey",pri:"p1",status:"todo",due:"2026-08-14",isNew:true},
- {n:"Lift CTR on /embedded-analytics",ins:"3,900 impressions, ~0.05% CTR at #17 — title / AI Overview.",track:"Content",owner:"casey",pri:"p1",status:"todo",due:"2026-08-01"},
- {n:"301 redirect /glossary/embedded-bi-business-intelligence → /embedded-bi",ins:"",track:"Product",owner:"casey",pri:"p1",status:"todo",due:"2026-08-10"},
- {n:"Add homepage internal link to /embedded-bi (anchor: “embedded BI”)",ins:"",track:"Product",owner:"casey",pri:"p1",status:"todo",due:"2026-08-10"},
- {n:"Audit Amplitude AI-visibility setup & close tracking gaps",ins:"Reconfig live (27.4%); Power BI / Tableau still read 0% SoV.",track:"Measurement",owner:"casey",pri:"p2",status:"prog",due:"2026-07-28"},
- {n:"Fix rising hreflang / localization errors",ins:"",track:"Technical",owner:"dev",pri:"p2",status:"todo",due:"2026-08-06"},
- {n:"Publish “best embedded analytics tools” comparison (content cadence)",ins:"",track:"Content",owner:"none",pri:"p2",status:"todo",due:""},
- {n:"Investigate newly-slow pages (+43) & broken images (266)",ins:"",track:"Technical",owner:"dev",pri:"p3",status:"todo",due:"2026-08-15"},
- {n:"Regenerate clean XML sitemap (drop 5xx/3xx/non-canonical)",ins:"",track:"Technical",owner:"dev",pri:"p2",status:"done",due:"2026-08-01"},
- {n:"Update internal links pointing at redirects (1,833)",ins:"",track:"Technical",owner:"dev",pri:"p2",status:"done",due:"2026-08-08"},
- {n:"Add missing cluster & competitor terms to Ahrefs Rank Tracker (1241581)",ins:"Downgraded — GSC now covers our positions; Ahrefs for compete only.",track:"Monitoring",owner:"casey",pri:"p3",status:"todo",due:"2026-07-31"}
+/* ---------- SPARKLINES ---------- */
+document.querySelectorAll('[data-spark]').forEach(el=>{
+  const pts=el.dataset.spark.split(',').map(Number);
+  const col=el.dataset.color||'#6C8CFD';
+  const w=132,h=34,pad=3;
+  const min=Math.min(...pts),max=Math.max(...pts),rng=(max-min)||1;
+  const step=pts.length>1?(w-pad*2)/(pts.length-1):0;
+  const xy=pts.map((v,i)=>[pad+step*i, h-pad-((v-min)/rng)*(h-pad*2)]);
+  const d=xy.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
+  const last=xy[xy.length-1];
+  el.innerHTML='<svg width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'">'+
+    '<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'+
+    '<circle cx="'+last[0].toFixed(1)+'" cy="'+last[1].toFixed(1)+'" r="2.6" fill="'+col+'"/></svg>';
+});
+
+/* ---------- TASKS DATA (synced from Slingshot list) ---------- */
+const TASKS=[
+  {n:"AEO: break into “embedded analytics platforms” + “AI-powered embedded analytics” AI topics (0% SoV)",trk:"Content",owner:"Casey Ciniello",pr:"medium",st:"open",due:"2026-09-15",isNew:true},
+  {n:"Build /embedded-bi product page (P1) — shift cluster off the homepage",trk:"Product",owner:"Casey Ciniello",pr:"high",st:"prog",due:"2026-08-07"},
+  {n:"Build /embedded-dashboards product page (P2) — convert the #9 into a top-5",trk:"Product",owner:"Casey Ciniello",pr:"high",st:"open",due:"2026-08-21"},
+  {n:"On-page: move page-2 money terms to page 1 (embedded analytics · white label)",trk:"Content",owner:"Casey Ciniello",pr:"high",st:"open",due:"2026-08-14"},
+  {n:"Lift CTR on /embedded-analytics (GSC #17, 4,120 impr, ~0.05% CTR)",trk:"Content",owner:"Casey Ciniello",pr:"high",st:"open",due:"2026-08-01"},
+  {n:"Add homepage internal link to /embedded-bi (anchor: “embedded BI”)",trk:"Technical",owner:"Casey Ciniello",pr:"high",st:"open",due:"2026-08-10"},
+  {n:"301 redirect /glossary/embedded-bi-business-intelligence → /embedded-bi",trk:"Technical",owner:"Casey Ciniello",pr:"high",st:"open",due:"2026-08-10"},
+  {n:"Target “white label reporting tool” (800 vol, GSC #20)",trk:"Content",owner:"Casey Ciniello",pr:"medium",st:"open",due:"2026-08-29"},
+  {n:"Backlinks to white-label page — push “white label analytics” from #2 to #1",trk:"Backlinks",owner:"Beth",pr:"medium",st:"open",due:"2026-08-29"},
+  {n:"Publish “best embedded analytics tools” comparison (cluster cadence)",trk:"Content",owner:"Casey Ciniello",pr:"medium",st:"open",due:""},
+  {n:"Rebuild thin competitor “vs” pages (tableau / looker / sisense)",trk:"Content",owner:"Casey Ciniello",pr:"low",st:"open",due:"2026-09-05"},
+  {n:"Stabilize monthly AI-visibility metric (July run was a half-size sample)",trk:"Content",owner:"Casey Ciniello",pr:"medium",st:"open",due:"2026-08-12"},
+  {n:"Add cluster/competitor terms to Ahrefs Rank Tracker (downgraded — GSC is truth)",trk:"Content",owner:"Casey Ciniello",pr:"low",st:"open",due:"2026-07-31"},
+  {n:"Audit Amplitude AI-visibility setup & close tracking gaps",trk:"Content",owner:"Casey Ciniello",pr:"medium",st:"done",due:"2026-07-28"},
+  {n:"Clean up sitewide errors & stray subdomains",trk:"Technical",owner:"Dian Jelyazkov",owner2:"Sathya Sundaresan",pr:"high",st:"review",due:"2026-07-28"},
+  {n:"Tech SEO [P1]: Retire wp-staging + block old./dev. subdomains",trk:"Technical",owner:"Dian Jelyazkov",owner2:"Sathya Sundaresan",pr:"high",st:"open",due:"2026-07-29"},
+  {n:"Tech SEO [P1]: Fix support@ email-as-link bug (broken URLs sitewide)",trk:"Technical",owner:"Dian Jelyazkov",owner2:"Sathya Sundaresan",pr:"high",st:"open",due:"2026-07-25"},
+  {n:"Tech SEO [P1]: Fix 403 errors on localized pages (/ja /ko /es /pt-BR)",trk:"Technical",owner:"Dian Jelyazkov",owner2:"Sathya Sundaresan",pr:"high",st:"open",due:"2026-07-30"},
+  {n:"Tech SEO [P1]: Repoint canonicals aimed at broken/redirecting URLs (383)",trk:"Technical",owner:"Dian Jelyazkov",owner2:"Sathya Sundaresan",pr:"high",st:"open",due:"2026-07-31"},
+  {n:"Tech SEO [P2]: Fix rising hreflang / localization errors",trk:"Technical",owner:"Dian Jelyazkov",owner2:"Sathya Sundaresan",pr:"medium",st:"open",due:"2026-08-06"},
+  {n:"Tech SEO [P3]: Investigate newly-slow pages (+43) & broken images (266)",trk:"Technical",owner:"Dian Jelyazkov",owner2:"Sathya Sundaresan",pr:"low",st:"open",due:"2026-08-15"},
+  {n:"Fix the erroring embedded-analytics pages",trk:"Technical",owner:"Unassigned",pr:"high",st:"open",due:""},
+  {n:"Tech SEO [P2]: Regenerate clean XML sitemap",trk:"Technical",owner:"Dian Jelyazkov",owner2:"Sathya Sundaresan",pr:"medium",st:"done",due:"2026-08-01"},
+  {n:"Tech SEO [P2]: Update internal links pointing at redirects (1,833)",trk:"Technical",owner:"Dian Jelyazkov",owner2:"Sathya Sundaresan",pr:"medium",st:"done",due:"2026-08-08"}
 ];
-var OWNERS={casey:{label:"Casey",cls:"casey",init:"CC"},dev:{label:"Dian + Sathya",cls:"dev",init:"WD"},none:{label:"Unassigned",cls:"none",init:"—"}};
-var STATUS={todo:{label:"To do",cls:"st-todo"},prog:{label:"In progress",cls:"st-prog"},review:{label:"In review",cls:"st-review"},done:{label:"Done",cls:"st-done"}};
-var PRI={p1:"P1",p2:"P2",p3:"P3",pnone:"—"};
+const TODAY=new Date('2026-08-03');
+const STLAB={open:"To Do",prog:"In Progress",review:"In Review",done:"Completed"};
+function initials(n){if(!n||n==="Unassigned")return"–";return n.split(" ").map(x=>x[0]).slice(0,2).join("").toUpperCase();}
+function avatar(t){let h='<span class="av"><span class="dot">'+initials(t.owner)+'</span>'+t.owner;if(t.owner2)h+=' <span class="dot" title="'+t.owner2+'">'+initials(t.owner2)+'</span>';return h+'</span>';}
+function dueCell(t){if(!t.due)return '<span class="flat">—</span>';const d=new Date(t.due);const od=(d<TODAY&&t.st!=='done');const s=d.toLocaleDateString('en-US',{month:'short',day:'numeric'});return od?'<span class="overdue">'+s+' ⚠</span>':s;}
+function nameCell(t){return t.n.replace(/</g,'&lt;')+(t.isNew?'<span class="new">NEW</span>':'');}
 
-function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-function dueCell(d){if(!d)return '<span class="due">—</span>';var over=(d<TODAY);return '<span class="due'+(over?' over':'')+'">'+d+'</span>';}
-function ownerCell(o){var m=OWNERS[o];return '<span class="owner"><span class="av '+m.cls+'">'+m.init+'</span>'+m.label+'</span>';}
-function statCell(s){var m=STATUS[s];return '<span class="stat '+m.cls+'"><span class="dot"></span>'+m.label+'</span>';}
+/* table */
+const tb=document.getElementById('tbody');
+tb.innerHTML=TASKS.map(t=>'<tr><td class="tk">'+nameCell(t)+'</td>'+
+  '<td><span class="trk '+t.trk+'">'+t.trk+'</span></td>'+
+  '<td>'+avatar(t)+'</td>'+
+  '<td><span class="pr '+t.pr+'">'+t.pr[0].toUpperCase()+t.pr.slice(1)+'</span></td>'+
+  '<td><span class="st '+t.st+'">'+STLAB[t.st]+'</span></td>'+
+  '<td>'+dueCell(t)+'</td></tr>').join('');
 
-function renderTable(){
-  var h='<div class="tkwrap"><table class="tkt"><thead><tr><th>Task</th><th class="col-track">Track</th><th>Owner</th><th>Priority</th><th>Status</th><th class="col-due">Due</th></tr></thead><tbody>';
-  TASKS.forEach(function(t){
-    var ins=t.ins?'<span class="tins">'+esc(t.ins)+'</span>':'';
-    h+='<tr><td class="tname">'+esc(t.n)+(t.isNew?' <span class="tnew">NEW</span>':'')+ins+'</td><td class="col-track"><span class="trk">'+t.track+'</span></td><td>'+ownerCell(t.owner)+'</td><td><span class="pri '+t.pri+'">'+PRI[t.pri]+'</span></td><td>'+statCell(t.status)+'</td><td class="col-due">'+dueCell(t.due)+'</td></tr>';
-  });
-  h+='</tbody></table></div>';
-  return h;
-}
-function renderBoard(){
-  var cols=[['todo','To do'],['prog','In progress'],['review','In review'],['done','Done']];
-  var h='<div class="board">';
-  cols.forEach(function(c){
-    var items=TASKS.filter(function(t){return t.status===c[0];});
-    h+='<div class="bcol"><h5>'+c[1]+' <span class="c">'+items.length+'</span></h5>';
-    items.forEach(function(t){h+='<div class="bcard">'+esc(t.n)+'<div class="bm"><span class="pri '+t.pri+'">'+PRI[t.pri]+'</span>'+dueCell(t.due)+'</div></div>';});
-    if(!items.length) h+='<div style="font-size:11px;color:var(--gray)">—</div>';
-    h+='</div>';
-  });
-  return h+'</div>';
-}
-function renderTimeline(){
-  var dated=TASKS.filter(function(t){return t.due;}).slice().sort(function(a,b){return a.due<b.due?-1:1;});
-  var undated=TASKS.filter(function(t){return !t.due;});
-  var h='<div class="tkwrap" style="padding:6px 18px">';
-  dated.forEach(function(t){var over=(t.due<TODAY);h+='<div class="tl-row"><span class="tl-date'+(over?' over':'')+'">'+t.due+'</span><span><span class="tname">'+esc(t.n)+'</span> &nbsp;<span class="pri '+t.pri+'">'+PRI[t.pri]+'</span> &nbsp;'+statCell(t.status)+'</span></div>';});
-  undated.forEach(function(t){h+='<div class="tl-row"><span class="tl-date">no date</span><span><span class="tname">'+esc(t.n)+'</span> &nbsp;<span class="pri '+t.pri+'">'+PRI[t.pri]+'</span> &nbsp;'+statCell(t.status)+'</span></div>';});
-  return h+'</div>';
-}
-function drawView(v){document.getElementById('tkview').innerHTML = v==='board'?renderBoard():v==='timeline'?renderTimeline():renderTable();}
-document.querySelectorAll('#seg button').forEach(function(b){
-  b.addEventListener('click',function(){
-    document.querySelectorAll('#seg button').forEach(function(x){x.classList.remove('active');});
-    b.classList.add('active');drawView(b.getAttribute('data-view'));
+/* board */
+const cols=[['open','To Do'],['prog','In Progress'],['review','In Review'],['done','Completed']];
+document.getElementById('tv-board').innerHTML=cols.map(([k,lab])=>{
+  const items=TASKS.filter(t=>t.st===k);
+  return '<div class="col"><h4>'+lab+' · '+items.length+'</h4>'+items.map(t=>
+    '<div class="tcard"><div class="tn">'+nameCell(t)+'</div><div class="mrow"><span class="trk '+t.trk+'">'+t.trk+'</span><span class="pr '+t.pr+'">'+t.pr[0].toUpperCase()+t.pr.slice(1)+'</span></div></div>').join('')+'</div>';
+}).join('');
+
+/* timeline */
+const dated=TASKS.filter(t=>t.due).sort((a,b)=>new Date(a.due)-new Date(b.due));
+document.getElementById('tl').innerHTML=dated.map(t=>{
+  const d=new Date(t.due).toLocaleDateString('en-US',{month:'short',day:'numeric'});
+  const od=(new Date(t.due)<TODAY&&t.st!=='done');
+  return '<div class="ev"><div class="d'+(od?' overdue':'')+'">'+d+(od?' ⚠':'')+' · '+STLAB[t.st]+'</div><div class="n">'+nameCell(t)+'</div></div>';
+}).join('');
+
+/* toggles */
+document.querySelectorAll('.toggles button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.toggles button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById('tv-table').classList.toggle('hide',b.dataset.view!=='table');
+    document.getElementById('tv-board').classList.toggle('hide',b.dataset.view!=='board');
+    document.getElementById('tv-timeline').classList.toggle('hide',b.dataset.view!=='timeline');
   });
 });
-drawView('table');
 
-var SUMMARY_TEXT=[
-"*Reveal SEO — week of Aug 3.* We've built the visibility; now we convert it.",
-"",
-"Two-line version: Reveal is winning in AI search and ranking in Google, but our commercial pages are stuck on page 2 where nobody clicks. The work now is execution, not strategy.",
-"",
-"*What's working:* AI search. After rebuilding how we track it, Reveal appears in about 1 in 4 AI answers on embedded analytics (27% visibility), 80% positive sentiment, strong on both Google AI Overview (38%) and ChatGPT (18%).",
-"",
-"*What's not:* our money pages rank but sit on page 2 (embedded analytics ~#17, white label ~#15) — page 2 earns almost no clicks. Technical health is still 36/100 with thousands of erroring URLs, capping how high anything can climb.",
-"",
-"*Priority this week:*",
-"• Ship two product pages — /embedded-bi (only ranks via the homepage today) and /embedded-dashboards (already ~#9, quickest win).",
-"• Optimize the page-2 pages — titles, internal links, content — to cross onto page 1.",
-"• Clear the technical errors — dev shipped 2 fixes; the P1 subdomain/canonical/403 set is queued.",
-"",
-"*For leadership:* leads are steady but modest — ~24/mo (deduped by email), about a quarter of the 100/mo goal. This is a conversion-and-execution story: the demand and AI visibility are there; the constraint is getting pages onto page 1.",
-"",
-"Full brief + live task list attached."
-].join("\n");
-document.getElementById('copybtn').addEventListener('click',function(){
-  var btn=this;
-  var done=function(){btn.classList.add('ok');btn.textContent='✓ Copied';setTimeout(function(){btn.classList.remove('ok');btn.innerHTML='📋 Copy summary';},1800);};
-  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(SUMMARY_TEXT).then(done,fallback);}else fallback();
-  function fallback(){var ta=document.createElement('textarea');ta.value=SUMMARY_TEXT;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}
+/* toast + copy summary */
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1600);}
+document.getElementById('copysum').addEventListener('click',()=>{
+  const txt=`Reveal SEO — week of Jul 27–Aug 2, 2026
+
+Technical cleanup is landing: site-audit health recovered 36 → 48 after the clean sitemap + redirect-link fixes shipped.
+
+Demand cooled short-term: organic clicks 235 (-6% WoW), sessions 291 (-24% WoW), July deduped organic leads 23 vs a 100/mo goal. Impressions rose to 123k (+10%) — shown more, clicked less. A page-2 / CTR problem, not a reach problem.
+
+Priority: ship the two missing money pages — /embedded-bi (live Aug 15) and /embedded-dashboards (live Aug 31). "embedded dashboards" is already #8 off the homepage.
+
+- White Label strongest: "white label platform" #4, long-tail at #1
+- Embedded Analytics: everything #15–20, nothing top-10 — on-page + CTR
+- AI answers: we own comparison (77%) but 0% on "embedded analytics platforms" and "AI-powered embedded" — new action opened
+- DR 55 (goal 60); technical health 48 (goal 60 by Oct 1)
+
+One new task this run; 23 existing actions reviewed and still valid.`;
+  navigator.clipboard.writeText(txt).then(()=>toast('Summary copied')).catch(()=>toast('Copy failed'));
 });
 
-function cssv(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
-function drawSparks(){
-  document.querySelectorAll('svg.spark').forEach(function(svg){
-    if(svg.getAttribute('data-done'))return;
-    var vals=svg.getAttribute('data-spark').split(',').map(Number);
-    var dir=svg.getAttribute('data-dir')||'flat';
-    var col=dir==='up'?cssv('--good'):dir==='down'?cssv('--bad'):cssv('--gray');
-    var W=svg.clientWidth||220,H=30,pad=3;
-    var min=Math.min.apply(null,vals),max=Math.max.apply(null,vals),rng=(max-min)||1;
-    var n=vals.length,step=n>1?(W-pad*2)/(n-1):0;
-    var pts=vals.map(function(v,i){return [pad+i*step,H-pad-((v-min)/rng)*(H-pad*2)];});
-    var line=pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ');
-    var area='M'+pts[0][0].toFixed(1)+','+H+' L'+line.split(' ').join(' L')+' L'+pts[n-1][0].toFixed(1)+','+H+' Z';
-    var id='g'+Math.random().toString(36).slice(2,7);
-    svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.setAttribute('preserveAspectRatio','none');
-    svg.innerHTML='<defs><linearGradient id="'+id+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+col+'" stop-opacity="0.16"/><stop offset="1" stop-color="'+col+'" stop-opacity="0"/></linearGradient></defs><path d="'+area+'" fill="url(#'+id+')"/><polyline points="'+line+'" fill="none" stroke="'+col+'" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/><circle cx="'+pts[n-1][0].toFixed(1)+'" cy="'+pts[n-1][1].toFixed(1)+'" r="2.1" fill="'+col+'"/>';
-    svg.setAttribute('data-done','1');
-  });
-}
-drawSparks();
-</script>
-<!-- ===== FEEDBACK LOOP (teaches the agent) ===== -->
-<style>
-  .fbx{position:relative}
-  .fbtn{position:absolute;top:6px;right:6px;z-index:3;width:22px;height:22px;border:none;border-radius:7px;background:#eef1fb;color:#2A41A2;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .12s;padding:0;box-shadow:0 1px 2px rgba(15,23,42,.14)}
-  .fbtn:hover{background:#2A41A2;color:#fff}
-  .fbtn svg{width:13px;height:13px}
-  .fbx:hover>.fbtn,.fbtn:focus-visible{opacity:1}
-  .wl li>.fbtn,li>.fbtn{top:-1px;right:0;width:20px;height:20px}
-  .fbmodal{position:fixed;inset:0;background:rgba(15,23,42,.5);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
-  .fbmodal.on{display:flex}
-  .fbcard{background:#fff;border-radius:16px;max-width:470px;width:100%;box-shadow:0 20px 60px rgba(15,23,42,.32);overflow:hidden;font-family:system-ui,sans-serif}
-  .fbhd{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 20px}
-  .fbhd .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.85;font-weight:600}
-  .fbhd .l{font-size:15px;font-weight:800;margin-top:3px;line-height:1.3}
-  .fbbd{padding:16px 20px}
-  .fbbd label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#5f6b7a;display:block;margin:0 0 7px}
-  .fbcats{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
-  .fbcat{font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;border:1.5px solid #e3e7f2;background:#fff;color:#41506b;cursor:pointer;font-family:inherit}
-  .fbcat.sel{border-color:#2A41A2;background:#eef1fb;color:#2A41A2}
-  .fbbd textarea{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13.5px;resize:vertical;min-height:74px;box-sizing:border-box}
-  .fbbd textarea:focus,.fbval:focus{outline:none;border-color:#2A41A2}
-  .fbvalwrap{display:none;margin-top:12px}.fbvalwrap.on{display:block}
-  .fbval{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:9px 12px;font-family:inherit;font-size:13.5px;box-sizing:border-box}
-  .fbft{display:flex;gap:10px;justify-content:flex-end;padding:14px 20px;border-top:1px solid #eef1f7;background:#fbfcff}
-  .fbbtn{font-family:inherit;font-size:13px;font-weight:600;padding:9px 15px;border-radius:9px;cursor:pointer;border:none}
-  .fbbtn.sec{background:#eef0f5;color:#41506b}
-  .fbbtn.pri{background:linear-gradient(120deg,#2A41A2,#3a54cf);color:#fff}
-  .fbbtn.pri:disabled{opacity:.5;cursor:not-allowed}
-  .fbtoast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0F172A;color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:300;opacity:0;transition:opacity .2s;box-shadow:0 8px 30px rgba(0,0,0,.3);max-width:90%;text-align:center;pointer-events:none}
-  .fbtoast.on{opacity:1}
-</style>
-<div class="fbmodal" id="fbModal" role="dialog" aria-modal="true" aria-label="Send feedback to the agent">
-  <div class="fbcard">
-    <div class="fbhd"><div class="k">Feedback to the agent</div><div class="l" id="fbLabel">—</div></div>
-    <div class="fbbd">
-      <label>What kind of feedback?</label>
-      <div class="fbcats" id="fbCats">
-        <button type="button" class="fbcat" data-cat="Won't do — strategic">Won't do — strategic</button>
-        <button type="button" class="fbcat" data-cat="Disagree">Disagree</button>
-        <button type="button" class="fbcat" data-cat="Wrong number">Wrong number</button>
-        <button type="button" class="fbcat" data-cat="Add context">Add context</button>
-        <button type="button" class="fbcat" data-cat="Approve">Approve</button>
-      </div>
-      <label>Why / details</label>
-      <textarea id="fbReason" placeholder="e.g. Don't chase 'task management' — it's off-ICP; hold that recommendation."></textarea>
-      <div class="fbvalwrap" id="fbValWrap"><label>Correct value</label><input class="fbval" id="fbVal" placeholder="e.g. DR 56"></div>
-    </div>
-    <div class="fbft">
-      <button type="button" class="fbbtn sec" id="fbCancel">Cancel</button>
-      <button type="button" class="fbbtn pri" id="fbSend" disabled>Copy &amp; open Slingshot</button>
-    </div>
-  </div>
-</div>
-<div class="fbtoast" id="fbToast"></div>
-<script>
+/* ================= FEEDBACK LOOP ================= */
 (function(){
-  var FEEDBACK_URL="https://app.slingshotapp.io/openDiscussion/e97e10ef_bf70fba8-9d61-4bcf-9a81-0183219d41a6";
-  var SCOPE="#report";
-  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
-  var secs=[],modal,curLabel="",curSection="",cat=null;
-  function labelFor(el){var t=(el.getAttribute('data-fb-label')||el.textContent||'').replace(/\s+/g,' ').trim();return t.length>90?t.slice(0,88)+'…':t;}
-  function sectionFor(el){var best="";for(var i=0;i<secs.length;i++){if(secs[i].compareDocumentPosition(el)&Node.DOCUMENT_POSITION_FOLLOWING){best=secs[i].textContent.replace(/\s+/g,' ').trim();}}return best;}
-  function addIcons(){document.querySelectorAll(SCOPE+' .fbx').forEach(function(el){if(el.querySelector(':scope > .fbtn'))return;var b=document.createElement('button');b.className='fbtn';b.type='button';b.title='Send feedback to the agent';b.innerHTML=ICON;b.addEventListener('click',function(ev){ev.stopPropagation();ev.preventDefault();openModal(el);});el.appendChild(b);});}
-  function openModal(el){curLabel=labelFor(el);curSection=sectionFor(el);cat=null;document.getElementById('fbLabel').textContent=(curSection?curSection+' › ':'')+curLabel;document.getElementById('fbReason').value='';document.getElementById('fbVal').value='';document.getElementById('fbValWrap').classList.remove('on');document.querySelectorAll('.fbcat').forEach(function(c){c.classList.remove('sel');});document.getElementById('fbSend').disabled=true;modal.classList.add('on');setTimeout(function(){document.getElementById('fbReason').focus();},60);}
-  function closeModal(){modal.classList.remove('on');}
-  function refreshSend(){var r=document.getElementById('fbReason').value.trim();document.getElementById('fbSend').disabled=!(cat&&r);}
-  function toast(m){var t=document.getElementById('fbToast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on');},3600);}
-  function send(){var reason=document.getElementById('fbReason').value.trim();var val=document.getElementById('fbVal').value.trim();var d=new Date().toISOString().slice(0,10);var lines=['📋 *Agent feedback — SEO report*','Element: '+(curSection?curSection+' › ':'')+curLabel,'Category: '+cat,'Reason: '+reason];if(cat==='Wrong number'&&val)lines.push('Correct value: '+val);lines.push('Submitted: '+d);var payload=lines.join('\n');var done=function(){toast('Feedback copied — paste (⌘/Ctrl+V) into the Slingshot thread');window.open(FEEDBACK_URL,'_blank');closeModal();};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(payload).then(done,done);}else{var ta=document.createElement('textarea');ta.value=payload;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}}
-  document.addEventListener('DOMContentLoaded',function(){modal=document.getElementById('fbModal');secs=[].slice.call(document.querySelectorAll(SCOPE+' h2.sec, '+SCOPE+' h2, '+SCOPE+' h3'));addIcons();document.getElementById('fbCats').addEventListener('click',function(e){var b=e.target.closest('.fbcat');if(!b)return;cat=b.dataset.cat;document.querySelectorAll('.fbcat').forEach(function(c){c.classList.toggle('sel',c===b);});document.getElementById('fbValWrap').classList.toggle('on',cat==='Wrong number');refreshSend();});document.getElementById('fbReason').addEventListener('input',refreshSend);document.getElementById('fbCancel').addEventListener('click',closeModal);document.getElementById('fbSend').addEventListener('click',send);modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});});
+  const FEEDBACK_URL="https://app.slingshotapp.io/openDiscussion/e97e10ef_bf70fba8-9d61-4bcf-9a81-0183219d41a6";
+  const SCOPE="#report";
+  const RUN="Reveal SEO Brief · Aug 3, 2026";
+  const css=document.createElement('style');
+  css.textContent=`
+  ${SCOPE} .fbx{position:relative}
+  .fb-ic{position:absolute;top:6px;right:6px;width:22px;height:22px;border-radius:7px;border:1px solid var(--line);background:#fff;color:var(--magenta);font-size:12px;line-height:20px;text-align:center;cursor:pointer;opacity:0;transition:opacity .12s;z-index:5;box-shadow:var(--shadow)}
+  ${SCOPE} .fbx:hover .fb-ic{opacity:1}
+  .fb-ic:hover{background:var(--magenta);color:#fff}
+  .fb-back{position:fixed;inset:0;background:rgba(15,23,42,.42);display:none;align-items:center;justify-content:center;z-index:200}
+  .fb-back.on{display:flex}
+  .fb-modal{background:#fff;border-radius:14px;max-width:460px;width:92%;box-shadow:0 20px 60px rgba(0,0,0,.3);overflow:hidden}
+  .fb-hd{background:linear-gradient(100deg,var(--amber),var(--magenta));color:#fff;padding:14px 18px;font-weight:600;font-size:14px}
+  .fb-bd{padding:16px 18px}
+  .fb-bd .q{font-size:12px;color:var(--muted);margin-bottom:4px}
+  .fb-bd .ctx{font-size:13px;font-weight:600;background:var(--graybg);border-radius:8px;padding:8px 10px;margin-bottom:12px}
+  .fb-seg{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+  .fb-seg button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 11px;font-family:var(--sans);font-size:12px;font-weight:600;color:var(--muted);cursor:pointer}
+  .fb-seg button.on{background:var(--cobalt);color:#fff;border-color:var(--cobalt)}
+  .fb-modal textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:10px;font-family:var(--sans);font-size:13px;resize:vertical;min-height:74px}
+  .fb-ft{display:flex;gap:8px;justify-content:flex-end;padding:0 18px 16px}
+  .fb-x{position:absolute;top:12px;right:14px;color:#fff;cursor:pointer;font-size:18px;opacity:.9}
+  `;
+  document.head.appendChild(css);
+
+  const back=document.createElement('div');
+  back.className='fb-back';
+  back.innerHTML=`<div class="fb-modal" style="position:relative">
+    <span class="fb-x">&times;</span>
+    <div class="fb-hd">Feedback → Agent Feedback — SEO</div>
+    <div class="fb-bd">
+      <div class="q">Reacting to</div>
+      <div class="ctx" id="fbctx"></div>
+      <div class="fb-seg" id="fbseg">
+        <button data-k="Approve">Approve</button>
+        <button data-k="Won't do / Disagree">Won't do</button>
+        <button data-k="Wrong number">Wrong number</button>
+        <button data-k="Add context">Add context</button>
+      </div>
+      <div class="q">Note</div>
+      <textarea id="fbnote" placeholder="What should change (or lock in) next run?"></textarea>
+    </div>
+    <div class="fb-ft">
+      <button class="btn ghost" id="fbcopy">Copy for Slingshot</button>
+      <a class="btn" id="fbopen" target="_blank" rel="noopener" href="${FEEDBACK_URL}">Open discussion ↗</a>
+    </div>
+  </div>`;
+  document.body.appendChild(back);
+
+  let curCtx="",curKind="";
+  const ctxEl=back.querySelector('#fbctx'),noteEl=back.querySelector('#fbnote');
+  back.querySelectorAll('#fbseg button').forEach(b=>b.addEventListener('click',()=>{
+    back.querySelectorAll('#fbseg button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');curKind=b.dataset.k;
+  }));
+  function close(){back.classList.remove('on');curKind="";back.querySelectorAll('#fbseg button').forEach(x=>x.classList.remove('on'));noteEl.value="";}
+  back.querySelector('.fb-x').addEventListener('click',close);
+  back.addEventListener('click',e=>{if(e.target===back)close();});
+  back.querySelector('#fbcopy').addEventListener('click',()=>{
+    const txt=`[Feedback · ${RUN}]\nItem: ${curCtx}\nType: ${curKind||'(unspecified)'}\nNote: ${noteEl.value||'(none)'}`;
+    navigator.clipboard.writeText(txt).then(()=>toast('Copied — paste into Agent Feedback — SEO')).catch(()=>toast('Copy failed'));
+  });
+
+  function label(el){
+    const t=el.querySelector('h3,.lab,.ct,.goal,.kw');
+    let s=(t?t.textContent:el.textContent).trim().replace(/\s+/g,' ');
+    return s.length>90?s.slice(0,90)+'…':s;
+  }
+  document.querySelectorAll(SCOPE+' .fbx').forEach(el=>{
+    const ic=document.createElement('span');ic.className='fb-ic';ic.textContent='✎';ic.title='Send feedback';
+    ic.addEventListener('click',e=>{e.stopPropagation();curCtx=label(el);ctxEl.textContent=curCtx;back.classList.add('on');});
+    el.appendChild(ic);
+  });
 })();
 </script>
 </body>
