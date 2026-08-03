@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#0F172A;--cobalt:#2A41A2;--cobalt2:#3a54cf;--peri:#8593e8;--peri-bg:#eef1fb;
+    --navy:#0F172A;--cobalt:#C9367F;--cobalt2:#EC417A;--peri:#F19CBB;--peri-bg:#fde4ee;
     --ink:#0F172A;--muted:#5f6b7a;--line:#E9E9F4;--card:#fff;--bg:#f6f7fc;
     --green:#127a45;--green-bg:#e3f5ec;--red:#c62a4f;--red-bg:#fde8ec;--amber:#8a6412;--amber-bg:#fdf0d6;
   }
@@ -19,15 +19,15 @@
   h1,h2,h3,h4{font-family:'Roboto',system-ui,sans-serif;margin:0}
   a{color:var(--cobalt)}
   /* header */
-  .hdr{background:linear-gradient(105deg,#1b2a72,#2A41A2 55%,#3a54cf);color:#fff;border-radius:18px;padding:22px 26px;margin-bottom:18px;box-shadow:0 6px 22px rgba(20,30,90,.18)}
-  .hdr .kick{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:#cdd6f7;font-weight:600}
+  .hdr{background:linear-gradient(105deg,#A62C6E,#C9367F 55%,#EC417A);color:#fff;border-radius:18px;padding:22px 26px;margin-bottom:18px;box-shadow:0 6px 22px rgba(20,30,90,.18)}
+  .hdr .kick{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:#fbdcea;font-weight:600}
   .hdr h1{font-size:26px;font-weight:900;margin:5px 0 3px}
-  .hdr .meta{font-size:13px;color:#dfe5fb}
+  .hdr .meta{font-size:13px;color:#fdeaf3}
   .hdr .badges{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
   .hdr .badge{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:4px 12px;font-size:12px;font-weight:600}
   .hdr .badge .mono{color:#fff}
   .hdr .brand{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
-  .hdr .brand .tag2{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#cdd6f7;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:12px}
+  .hdr .brand .tag2{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#fbdcea;font-weight:700;border-left:1px solid rgba(255,255,255,.28);padding-left:12px}
   /* tabs */
   .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;position:sticky;top:0;z-index:20;background:var(--bg);padding:8px 0}
   .tab{border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:11px;padding:9px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
@@ -93,17 +93,17 @@
   .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
   .note{font-size:12px;color:var(--muted);font-style:italic;margin-top:8px}
   .foot{font-size:12px;color:var(--muted);text-align:center;margin-top:22px}
-  .verdict{background:linear-gradient(105deg,#12224f,#2A41A2);color:#fff;border-radius:16px;padding:20px 24px}
+  .verdict{background:linear-gradient(105deg,#7E2154,#C9367F);color:#fff;border-radius:16px;padding:20px 24px}
   .verdict h3{font-size:18px;font-weight:900;margin-bottom:6px}
   .verdict .g4 .kpi{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.16)}
-  .verdict .kpi .l{color:#c7d0f4}.verdict .kpi .v{color:#fff}
+  .verdict .kpi .l{color:#f5cfe0}.verdict .kpi .v{color:#fff}
   ul.tight{margin:6px 0 0;padding-left:18px}
   ul.tight li{margin:5px 0}
   /* VP banner */
   .vpbanner{border:1px solid #E9E9F4;border-radius:16px;overflow:hidden;margin:0 0 24px;box-shadow:0 1px 3px rgba(15,23,42,.05);font-family:'Roboto',system-ui,sans-serif}
-  .vpbanner .vbar{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .vpbanner .vbar{background:linear-gradient(100deg,#C9367F,#EC417A);color:#fff;padding:15px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
   .vpbanner .vbar .t{font-size:18px;font-weight:800}
-  .vpbanner .vbar .g{font-size:12.5px;color:#cdd6f7;font-weight:600;text-align:right}
+  .vpbanner .vbar .g{font-size:12.5px;color:#fbdcea;font-weight:600;text-align:right}
   .vpbanner .vrow{display:flex;gap:18px;align-items:flex-start;padding:16px 22px;border-top:1px solid #E9E9F4}
   .vpbanner .vrow:first-of-type{border-top:none}
   .pill2{flex:none;width:92px;text-align:center;font-size:11px;font-weight:800;letter-spacing:.05em;padding:5px 0;border-radius:16px;text-transform:uppercase;margin-top:2px}
@@ -117,14 +117,7 @@
 
   <div class="hdr">
     <div class="brand">
-      <svg width="152" height="34" viewBox="0 0 152 34" role="img" aria-label="Reveal">
-        <rect x="0" y="2" width="30" height="30" rx="8" fill="#fff"/>
-        <rect x="7" y="17" width="4.5" height="8" rx="1.5" fill="#2A41A2"/>
-        <rect x="13" y="12" width="4.5" height="13" rx="1.5" fill="#3a54cf"/>
-        <rect x="19" y="7" width="4.5" height="18" rx="1.5" fill="#8593e8"/>
-        <text x="40" y="25" font-family="'Roboto',sans-serif" font-weight="900" font-size="23" fill="#fff" letter-spacing="-0.5">Reveal</text>
-        <text x="132" y="15" font-family="'Roboto',sans-serif" font-weight="700" font-size="10" fill="#cdd6f7">®</text>
-      </svg>
+      <img src="https://tpc.googlesyndication.com/simgad/9672679339688012062" alt="Reveal — Embedded Analytics" style="height:44px;width:auto;display:block;border-radius:9px;background:#fff">
       <span class="tag2">Embedded Analytics · revealbi.io</span>
     </div>
     <div class="kick">Google Ads · Weekly Paid Performance</div>
@@ -223,14 +216,14 @@
       <div class="sec">Spend mix — where the money went (Week 31)</div>
       <div style="margin-bottom:6px;font-size:12px;color:var(--muted)">By campaign type — sums to 100%</div>
       <div class="stack" style="margin-bottom:14px">
-        <div style="width:50.1%;background:#2A41A2">Search 50%</div>
-        <div style="width:38.0%;background:#3a54cf">DemandGen 38%</div>
-        <div style="width:11.9%;background:#8593e8">PMax 12%</div>
+        <div style="width:50.1%;background:#C9367F">Search 50%</div>
+        <div style="width:38.0%;background:#EC417A">DemandGen 38%</div>
+        <div style="width:11.9%;background:#F19CBB">PMax 12%</div>
       </div>
       <div style="margin-bottom:6px;font-size:12px;color:var(--muted)">Brand vs non-brand</div>
       <div class="split">
         <div style="width:2.7%;background:#127a45"></div>
-        <div style="width:97.3%;background:#2A41A2">Non-brand 97.3% &nbsp;·&nbsp; Brand 2.7%</div>
+        <div style="width:97.3%;background:#C9367F">Non-brand 97.3% &nbsp;·&nbsp; Brand 2.7%</div>
       </div>
       <p class="note">Only ~$259 (2.7%) of spend defends the brand — yet brand delivered 3 of 7 leads. Search and awareness are split almost evenly (50 / 50).</p>
     </div>
@@ -376,15 +369,15 @@
   <!-- ===================== CREATIVE ===================== -->
   <section class="panel" id="creative">
     <div class="card fbx">
-      <div class="sec">Creative gallery — text assets (real, top-served)</div>
-      <p class="lead">Image/YouTube creative for DemandGen &amp; PMax is not URL-exposed by the API, so thumbnails can't be embedded (see note). Text assets below are the actual served creative, sized by impressions.</p>
+      <div class="sec">Creative gallery — real served creative (top by impressions)</div>
+      <p class="lead">The actual served DemandGen / PMax creative, pulled from the ad account. YouTube video creative isn't URL-exposed, so it's covered by performance in the format table below.</p>
       <div class="gal">
-        <div class="chartcard fbx" style="border-top:3px solid var(--cobalt)"><div style="font-weight:800;font-size:13px">#1 Most Affordable BI for SaaS</div><div class="note" style="margin-top:6px">Headline · 295,774 impr · 0.92% CTR</div></div>
-        <div class="chartcard fbx" style="border-top:3px solid var(--cobalt)"><div style="font-weight:800;font-size:13px">Embed Analytics Anywhere</div><div class="note" style="margin-top:6px">Headline · 270,466 impr · 0.71% CTR</div></div>
-        <div class="chartcard fbx" style="border-top:3px solid var(--green)"><div style="font-weight:800;font-size:13px">White-label, multi-tenant embedded bi</div><div class="note" style="margin-top:6px">Description · 3.71% CTR — top performer</div></div>
-        <div class="chartcard fbx" style="border-top:3px solid var(--green)"><div style="font-weight:800;font-size:13px">Looking for an alternative? Compare Reveal</div><div class="note" style="margin-top:6px">Description · 5.91% CTR — compete hook</div></div>
-        <div class="chartcard fbx" style="border-top:3px solid var(--peri)"><div style="font-weight:800;font-size:13px">[Logo asset]</div><div class="note" style="margin-top:6px">753,267 impr · not URL-exposed</div></div>
-        <div class="chartcard fbx" style="border-top:3px solid var(--peri)"><div style="font-weight:800;font-size:13px">[Square marketing image]</div><div class="note" style="margin-top:6px">319,879 impr · not URL-exposed</div></div>
+        <div class="chartcard fbx" style="padding:8px"><img src="https://tpc.googlesyndication.com/simgad/1332486347453723894" alt="Theming feature" style="width:100%;height:120px;object-fit:cover;border-radius:8px;display:block"><div class="note" style="margin-top:6px">Theming feature · 1200×1200</div></div>
+        <div class="chartcard fbx" style="padding:8px"><img src="https://tpc.googlesyndication.com/simgad/5015482204191944044" alt="Complete control feature" style="width:100%;height:120px;object-fit:cover;border-radius:8px;display:block"><div class="note" style="margin-top:6px">Complete-control feature</div></div>
+        <div class="chartcard fbx" style="padding:8px"><img src="https://tpc.googlesyndication.com/simgad/11047036333219168424" alt="Drill downs feature" style="width:100%;height:120px;object-fit:cover;border-radius:8px;display:block"><div class="note" style="margin-top:6px">Drill-downs feature</div></div>
+        <div class="chartcard fbx" style="padding:8px"><img src="https://tpc.googlesyndication.com/simgad/8597717355428617972" alt="Retail dashboard" style="width:100%;height:120px;object-fit:cover;border-radius:8px;display:block"><div class="note" style="margin-top:6px">Retail dashboard creative</div></div>
+        <div class="chartcard fbx" style="padding:8px"><img src="https://tpc.googlesyndication.com/simgad/7541330117426025426" alt="Banking risk dashboard" style="width:100%;height:120px;object-fit:cover;border-radius:8px;display:block"><div class="note" style="margin-top:6px">Banking risk dashboard</div></div>
+        <div class="chartcard fbx" style="padding:8px"><img src="https://tpc.googlesyndication.com/simgad/12366106378577708627" alt="Theming 1200x628" style="width:100%;height:120px;object-fit:cover;border-radius:8px;display:block"><div class="note" style="margin-top:6px">Theming · 1200×628</div></div>
       </div>
     </div>
 
@@ -415,7 +408,7 @@
       </div>
       <div class="card fbx">
         <div class="sec">Asset-grading blind spot</div>
-        <div class="callout warn" style="margin:0"><b>DemandGen marketing images &amp; YouTube aren't URL-exposed</b> by the reporting API, so real thumbnails can't be shown here — performance is covered in the table by format. Combined with Google's "Pending" grading on every asset (conversion import down), creative decisions this week rest on CTR + serve volume only.</div>
+        <div class="callout warn" style="margin:0"><b>YouTube video creative isn't URL-exposed</b> by the reporting API, so it's covered by performance in the table rather than shown as a thumbnail. Combined with Google's "Pending" grading on every asset (conversion import down), creative decisions this week rest on CTR + serve volume only.</div>
       </div>
     </div>
   </section>
@@ -437,7 +430,7 @@
         <svg viewBox="0 0 460 180" width="100%" height="180" role="img" aria-label="Sessions by month">
           <line x1="40" y1="150" x2="450" y2="150" stroke="#E9E9F4"/>
           <line x1="40" y1="20" x2="40" y2="150" stroke="#E9E9F4"/>
-          <polyline fill="none" stroke="#2A41A2" stroke-width="2.5"
+          <polyline fill="none" stroke="#C9367F" stroke-width="2.5"
             points="55,149 100,124 145,94 190,20 235,74 280,113 325,66 370,111 415,149"/>
           <g font-family="Roboto Mono" font-size="9" fill="#5f6b7a">
             <text x="47" y="165">D</text><text x="92" y="165">J</text><text x="137" y="165">F</text>
@@ -445,7 +438,7 @@
             <text x="317" y="165">J</text><text x="362" y="165">J</text><text x="407" y="165">A</text>
             <text x="6" y="24">20k</text><text x="10" y="150">0</text>
           </g>
-          <circle cx="190" cy="20" r="3" fill="#2A41A2"/><text x="176" y="14" font-size="9" font-family="Roboto Mono" fill="#2A41A2">19.9k</text>
+          <circle cx="190" cy="20" r="3" fill="#C9367F"/><text x="176" y="14" font-size="9" font-family="Roboto Mono" fill="#C9367F">19.9k</text>
         </svg>
         <p class="note">Peaked March (19.9K), summer softer; July 5.9K. Aug partial.</p>
       </div>
@@ -472,7 +465,7 @@
       <div class="sec">Where paid traffic lands — homepage dominates</div>
       <div class="stack" style="margin-bottom:12px">
         <div style="width:84%;background:#c62a4f">Homepage "/" 84%</div>
-        <div style="width:16%;background:#2A41A2">Intent pages 16%</div>
+        <div style="width:16%;background:#C9367F">Intent pages 16%</div>
       </div>
       <p class="lead" style="margin-bottom:12px">723 of 859 paid sessions land on the homepage — a generic entry with a 66% bounce. The intent and comparison pages that actually engage get a trickle. Route DemandGen/PMax final URLs to them.</p>
       <div class="bars">
@@ -492,11 +485,11 @@
       <div class="card fbx">
         <div class="sec">Device split — Week 31</div>
         <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
-          <div class="donut" style="background:conic-gradient(#2A41A2 0 71.1%,#3a54cf 71.1% 95.4%,#8593e8 95.4% 100%)"></div>
+          <div class="donut" style="background:conic-gradient(#C9367F 0 71.1%,#EC417A 71.1% 95.4%,#F19CBB 95.4% 100%)"></div>
           <div style="font-size:13px">
-            <div><span style="display:inline-block;width:10px;height:10px;background:#2A41A2;border-radius:2px"></span> Mobile — <b class="mono">611</b> (71%) · 33.7% eng · 133s</div>
-            <div style="margin-top:6px"><span style="display:inline-block;width:10px;height:10px;background:#3a54cf;border-radius:2px"></span> Desktop — <b class="mono">209</b> (24%) · <b>41.6% eng · 365s</b></div>
-            <div style="margin-top:6px"><span style="display:inline-block;width:10px;height:10px;background:#8593e8;border-radius:2px"></span> Tablet — <b class="mono">37</b> (4%) · 35% eng · 156s</div>
+            <div><span style="display:inline-block;width:10px;height:10px;background:#C9367F;border-radius:2px"></span> Mobile — <b class="mono">611</b> (71%) · 33.7% eng · 133s</div>
+            <div style="margin-top:6px"><span style="display:inline-block;width:10px;height:10px;background:#EC417A;border-radius:2px"></span> Desktop — <b class="mono">209</b> (24%) · <b>41.6% eng · 365s</b></div>
+            <div style="margin-top:6px"><span style="display:inline-block;width:10px;height:10px;background:#F19CBB;border-radius:2px"></span> Tablet — <b class="mono">37</b> (4%) · 35% eng · 156s</div>
           </div>
         </div>
         <p class="note">Mobile carries 71% of paid sessions but desktop engages better and stays ~6× longer — the CTO/dev buyer converts on desktop. Consider device bid adjustments for search and treat mobile DemandGen as awareness.</p>
@@ -514,10 +507,10 @@
     <div class="card fbx">
       <div class="sec">Funnel — spend → clicks → sessions → leads → opps → pipeline (Week 31)</div>
       <div class="bars">
-        <div class="row"><div class="nm">Spend</div><div class="bar" style="width:520px;background:#12224f"></div><div class="vl">$9,759</div></div>
-        <div class="row"><div class="nm">Clicks</div><div class="bar" style="width:430px;background:#2A41A2"></div><div class="vl">2,001</div></div>
-        <div class="row"><div class="nm">GA4 cpc sessions</div><div class="bar" style="width:200px;background:#3a54cf"></div><div class="vl">859</div></div>
-        <div class="row"><div class="nm">Paid leads (SF)</div><div class="bar" style="width:26px;background:#8593e8"></div><div class="vl">7</div></div>
+        <div class="row"><div class="nm">Spend</div><div class="bar" style="width:520px;background:#7E2154"></div><div class="vl">$9,759</div></div>
+        <div class="row"><div class="nm">Clicks</div><div class="bar" style="width:430px;background:#C9367F"></div><div class="vl">2,001</div></div>
+        <div class="row"><div class="nm">GA4 cpc sessions</div><div class="bar" style="width:200px;background:#EC417A"></div><div class="vl">859</div></div>
+        <div class="row"><div class="nm">Paid leads (SF)</div><div class="bar" style="width:26px;background:#F19CBB"></div><div class="vl">7</div></div>
         <div class="row"><div class="nm">New paid opps</div><div class="bar" style="width:10px;background:#127a45"></div><div class="vl">0 this wk (1 prior)</div></div>
         <div class="row"><div class="nm">Pipeline created</div><div class="bar" style="width:120px;background:#127a45"></div><div class="vl">$47.5K (prior wk)</div></div>
       </div>
@@ -558,14 +551,14 @@
 
     <div class="verdict fbx">
       <h3>Verdict — Keep &amp; Fix</h3>
-      <p style="color:#dfe5fb;font-size:14px;margin-bottom:14px">The paid engine is fundamentally sound and pipeline-positive — brand + PMax remarketing are producing $40–50K opps — but this week it got 20% more expensive for 14% fewer clicks, almost entirely from one undisciplined US non-brand search campaign. This is a tightening week, not a scaling week. No budget increase is warranted: all lost visibility is rank-driven.</p>
+      <p style="color:#fdeaf3;font-size:14px;margin-bottom:14px">The paid engine is fundamentally sound and pipeline-positive — brand + PMax remarketing are producing $40–50K opps — but this week it got 20% more expensive for 14% fewer clicks, almost entirely from one undisciplined US non-brand search campaign. This is a tightening week, not a scaling week. No budget increase is warranted: all lost visibility is rank-driven.</p>
       <div class="grid g4">
         <div class="kpi"><div class="l">1 · Cut the leak</div><div class="v" style="font-size:15px">Non-Brand US → exact + negatives</div></div>
         <div class="kpi"><div class="l">2 · Defend brand</div><div class="v" style="font-size:15px">Raise brand bids → reclaim 43% rank-lost IS</div></div>
         <div class="kpi"><div class="l">3 · Reroute</div><div class="v" style="font-size:15px">Paid → vs / pricing pages, off homepage</div></div>
         <div class="kpi"><div class="l">4 · Fill gaps</div><div class="v" style="font-size:15px">Add quicksight + looker embedded (exact)</div></div>
       </div>
-      <p style="color:#c7d0f4;font-size:12.5px;margin-top:14px">Expected: cutting the Non-Brand US waste frees ~$1.5–2K/wk and pulls blended CPC back toward $3.50; brand-bid lift recovers IS on our own name within days; page rerouting lifts engagement off the 34% homepage floor. Questions → owner / David.</p>
+      <p style="color:#f5cfe0;font-size:12.5px;margin-top:14px">Expected: cutting the Non-Brand US waste frees ~$1.5–2K/wk and pulls blended CPC back toward $3.50; brand-bid lift recovers IS on our own name within days; page rerouting lifts engagement off the 34% homepage floor. Questions → owner / David.</p>
     </div>
   </section>
 
@@ -576,30 +569,30 @@
 <!-- ===== FEEDBACK LOOP (teaches the agent) ===== -->
 <style>
   .fbx{position:relative}
-  .fbtn{position:absolute;top:6px;right:6px;z-index:3;width:22px;height:22px;border:none;border-radius:7px;background:#eef1fb;color:#2A41A2;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .12s;padding:0;box-shadow:0 1px 2px rgba(15,23,42,.14)}
-  .fbtn:hover{background:#2A41A2;color:#fff}
+  .fbtn{position:absolute;top:6px;right:6px;z-index:3;width:22px;height:22px;border:none;border-radius:7px;background:#fde4ee;color:#C9367F;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .12s;padding:0;box-shadow:0 1px 2px rgba(15,23,42,.14)}
+  .fbtn:hover{background:#C9367F;color:#fff}
   .fbtn svg{width:13px;height:13px}
   .fbx:hover>.fbtn,.fbtn:focus-visible{opacity:1}
   li.fbx>.fbtn{top:-1px;right:0;width:20px;height:20px}
   .fbmodal{position:fixed;inset:0;background:rgba(15,23,42,.5);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
   .fbmodal.on{display:flex}
   .fbcard{background:#fff;border-radius:16px;max-width:470px;width:100%;box-shadow:0 20px 60px rgba(15,23,42,.32);overflow:hidden;font-family:'Roboto',system-ui,sans-serif}
-  .fbhd{background:linear-gradient(100deg,#2A41A2,#3a54cf);color:#fff;padding:15px 20px}
+  .fbhd{background:linear-gradient(100deg,#C9367F,#EC417A);color:#fff;padding:15px 20px}
   .fbhd .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.85;font-weight:600}
   .fbhd .l{font-size:15px;font-weight:800;margin-top:3px;line-height:1.3}
   .fbbd{padding:16px 20px}
   .fbbd label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#5f6b7a;display:block;margin:0 0 7px}
   .fbcats{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
   .fbcat{font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;border:1.5px solid #e3e7f2;background:#fff;color:#41506b;cursor:pointer;font-family:inherit}
-  .fbcat.sel{border-color:#2A41A2;background:#eef1fb;color:#2A41A2}
+  .fbcat.sel{border-color:#C9367F;background:#fde4ee;color:#C9367F}
   .fbbd textarea{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13.5px;resize:vertical;min-height:74px;box-sizing:border-box}
-  .fbbd textarea:focus,.fbval:focus{outline:none;border-color:#2A41A2}
+  .fbbd textarea:focus,.fbval:focus{outline:none;border-color:#C9367F}
   .fbvalwrap{display:none;margin-top:12px}.fbvalwrap.on{display:block}
   .fbval{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:9px 12px;font-family:inherit;font-size:13.5px;box-sizing:border-box}
   .fbft{display:flex;gap:10px;justify-content:flex-end;padding:14px 20px;border-top:1px solid #eef1f7;background:#fbfcff}
   .fbbtn{font-family:inherit;font-size:13px;font-weight:600;padding:9px 15px;border-radius:9px;cursor:pointer;border:none}
   .fbbtn.sec{background:#eef0f5;color:#41506b}
-  .fbbtn.pri{background:linear-gradient(120deg,#2A41A2,#3a54cf);color:#fff}
+  .fbbtn.pri{background:linear-gradient(120deg,#C9367F,#EC417A);color:#fff}
   .fbbtn.pri:disabled{opacity:.5;cursor:not-allowed}
   .fbtoast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0F172A;color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:300;opacity:0;transition:opacity .2s;box-shadow:0 8px 30px rgba(0,0,0,.3);max-width:90%;text-align:center;pointer-events:none}
   .fbtoast.on{opacity:1}
