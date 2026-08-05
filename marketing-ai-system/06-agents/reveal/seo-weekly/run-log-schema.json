@@ -1,0 +1,54 @@
+{
+  "run_date": "YYYY-MM-DD",
+  "timezone": "America/New_York",
+  "reporting_window": {
+    "current": "",
+    "comparison": "",
+    "gsc_28_day": ""
+  },
+  "source_status": {
+    "gsc": {
+      "status": "",
+      "details": ""
+    },
+    "ahrefs": {
+      "status": "",
+      "details": ""
+    },
+    "ga4": {
+      "status": "",
+      "details": ""
+    },
+    "salesforce": {
+      "status": "",
+      "details": ""
+    },
+    "amplitude": {
+      "status": "",
+      "details": ""
+    },
+    "slingshot_tasks": {
+      "status": "",
+      "details": ""
+    },
+    "slingshot_opportunities": {
+      "status": "",
+      "details": ""
+    }
+  },
+  "metrics": {
+    "organic_leads": null,
+    "tier1_organic_leads": null,
+    "organic_opportunities": null,
+    "high_intent_sessions": null
+  },
+  "allowlist_changes": [],
+  "feedback_applied": [],
+  "tasks_created": [],
+  "tasks_updated": [],
+  "tasks_validated": [],
+  "proposed_not_created": [],
+  "assumptions": [],
+  "errors": [],
+  "quality_gate": {}
+}
