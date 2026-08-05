@@ -17,10 +17,11 @@ Monday at 5:00 AM America/New_York.
 3. `marketing-ai-system/03-standards/universal-agent-framework.md`
 4. `marketing-ai-system/03-standards/reveal-seo-report-standard.md`
 5. `marketing-ai-system/03-standards/task-creation-standard.md`
-6. `marketing-ai-system/05-feedback/reveal-feedback.md`
-7. Current Slingshot Reveal SEO tracker
-8. Prior Reveal SEO report
-9. Prior run log
+6. `marketing-ai-system/06-agents/reveal/seo-weekly/slingshot-field-map.md`
+7. `marketing-ai-system/05-feedback/reveal-feedback.md`
+8. Current Slingshot Reveal SEO tracker
+9. Prior Reveal SEO report
+10. Prior run log
 
 The latest approved `seo/reveal/analysis/index.html` is the canonical visual and functional template. Copy its structure, CSS, JavaScript, feedback block, and component markup exactly. Do not simplify it.
 
@@ -87,11 +88,13 @@ Score candidates using the Task Creation Standard.
 - Update existing tasks before creating new ones
 
 ### 6. Sync tasks
-Required fields:
-Product, Track, Category, Cluster, Primary SEO Keyword, Current Rankings, Why it Matters, Step by Step Fix, Success KPI, Insight, Effort, priority, owner, due date, dependencies, acceptance criteria, goal, confidence, priority score.
+Required writable fields:
+Product, Category, Cluster, Primary SEO Keyword, Current Rankings, Why it Matters, Step by Step Fix, Success KPI, Insight, Effort, priority, owner, due date, dependencies, acceptance criteria, goal, confidence, priority score.
+
+Track is report-only. Infer it for the HTML and never write it to Slingshot.
 
 Routing:
-- Technical: Dian Jelyazkov; mention Sathya Sundaresan as FYI.
+- Technical: assign Dian Jelyazkov only; post a plain-text FYI comment naming Sathya Sundaresan and his email. Do not display Sathya as a second assignee and do not claim a native mention/notification occurred.
 - Everything else: Casey Ciniello.
 - Never Alex.
 
@@ -141,3 +144,8 @@ Before publishing, verify:
 - All four tabs and feedback controls work.
 - Opportunity and Tier 1 lead sections use approved definitions.
 - Every source has a status.
+- All repeated metrics and dates agree across every report section.
+- AI headline tiles and detailed AI section use the same report/value/freshness state.
+- Footer date matches the current run.
+- Cluster narrative numbers match the cluster table.
+- FYI people are not rendered as co-assignees.
