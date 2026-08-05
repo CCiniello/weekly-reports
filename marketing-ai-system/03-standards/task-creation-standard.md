@@ -67,7 +67,7 @@ Each task must include:
 
 ## 5. Owner routing
 
-- Technical task: assign **Dian Jelyazkov** and mention **Sathya Sundaresan** as FYI in the task description or comment.
+- Technical task: assign **Dian Jelyazkov** only. Post a plain-text FYI comment naming **Sathya Sundaresan** and his email. The current connector cannot create a native notifying mention, so never claim he was notified.
 - All other Reveal SEO tasks: assign **Casey Ciniello**.
 - Never assign Alex.
 - Do not add Sathya as a second assignee unless Casey changes this rule.
@@ -110,3 +110,15 @@ Match against:
 - Parent/child or dependency relationship
 
 When a match exists, enrich or update the existing task rather than creating another.
+
+## 9. Report-only Track
+
+Track is not a Slingshot field and must not be included in customFields.
+
+Infer Track only for rendering the report:
+- Technical
+- Product
+- Content
+- Backlinks
+
+The underlying task remains governed by Category, Cluster, Recommendation, Page Type, title, and context.

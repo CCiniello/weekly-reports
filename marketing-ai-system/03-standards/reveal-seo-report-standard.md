@@ -80,3 +80,28 @@ State:
 - Completed tasks validated
 - Proposed actions not created and why
 - Blockers or owner questions
+
+## Cross-section consistency quality gate
+
+Before publication, compare every repeated number and date across:
+- VP cards
+- Executive summary
+- Goal scoreboard
+- KPI cards
+- Cluster tables and verdict text
+- AI visibility headline tiles and detail cards
+- Summary tab and copy-summary text
+- Footer
+- Task tab
+
+A metric may not have two different values or freshness labels in the same report.
+
+Required checks:
+- Report date, generated date, and reporting window match.
+- The lead goal is 50/month everywhere.
+- Tier 1 count is identical everywhere.
+- AI visibility value, report ID, completion date, response count, and Fresh/Stale/Rebaselined label are identical across all AI components.
+- Cluster verdict text uses the same impressions/position shown in its row.
+- Task owner display reflects actual assignees. FYI people must not appear as co-owners.
+- A report-only Track label must never be presented as a Slingshot field.
+- Opportunity data labeled stale must not be interpreted as proof that no opportunities were created.
