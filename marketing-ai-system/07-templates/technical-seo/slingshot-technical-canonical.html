@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technical SEO Audit / Slingshot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
+    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
+    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
+    --accent:#4B45C6; --accent-deep:#2D2A90; --accent-soft:#ECEBFB; --hero:linear-gradient(120deg,#6C5CE7,#4B45C6 55%,#2D2A90);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .hubnav{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:8px;background:#0B1220;color:#fff;font-weight:600;font-size:13px;padding:11px 20px;text-decoration:none}
+  .hubnav:hover{background:#111a2e}
+  .hubnav svg{width:14px;height:14px}
+  .wrap{max-width:1000px;margin:0 auto;padding:20px 22px 80px}
+
+  header.top{background:var(--hero);color:#fff;border-radius:16px;padding:24px 28px 22px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:260px;height:260px;background:radial-gradient(circle,rgba(255,255,255,.28),transparent 70%)}
+  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
+  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
+  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)}
+  .meta b{color:#fff;font-weight:700}
+
+  .jump{position:sticky;top:42px;z-index:5;display:flex;gap:4px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 10px;margin:14px 0 22px;box-shadow:0 2px 10px rgba(15,23,42,.03)}
+  .jump a{font-size:12.5px;font-weight:600;color:var(--muted);text-decoration:none;padding:6px 11px;border-radius:8px}
+  .jump a:hover{background:var(--accent-soft);color:var(--accent-deep)}
+
+  section.block{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 24px 24px;margin-bottom:18px}
+  .snum{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600}
+  h2.sh{font-size:19px;color:var(--navy);font-weight:900;margin:2px 0 4px}
+  .sdesc{font-size:13px;color:var(--muted);margin-bottom:16px}
+
+  /* health */
+  .health{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
+  .dial{width:118px;height:118px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--warn) 0 46%, #e7e9f2 46% 100%);flex:0 0 auto;position:relative}
+  .dial span{position:absolute;inset:11px;background:#fff;border-radius:50%;display:grid;place-items:center;flex-direction:column;font-family:var(--mono)}
+  .dial .n{font-size:32px;font-weight:700;color:var(--warn);line-height:1}
+  .dial .o{font-size:11px;color:var(--muted);margin-top:2px}
+  .hexplain{flex:1;min-width:260px;font-size:14.5px}
+  .hexplain b{color:var(--navy)}
+  .statline{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:18px}
+  .stat{border:1px solid var(--line);border-radius:11px;padding:11px 13px}
+  .stat .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600}
+  .stat .v{font-size:20px;font-weight:900;color:var(--navy);font-family:var(--mono);margin-top:3px}
+  .stat .d{font-size:11px;font-weight:700;font-family:var(--mono);margin-top:2px}
+  .d.good{color:var(--good)} .d.bad{color:var(--bad)} .d.flat{color:var(--gray)}
+
+  /* what changed */
+  ul.plain{list-style:none;margin:6px 0 0}
+  ul.plain li{position:relative;padding:6px 0 6px 22px;font-size:14px;border-bottom:1px solid var(--line)}
+  ul.plain li:last-child{border-bottom:none}
+  ul.plain li::before{content:"";position:absolute;left:2px;top:13px;width:8px;height:8px;border-radius:2px;background:var(--accent)}
+  ul.plain li.up::before{background:var(--good)} ul.plain li.warnc::before{background:var(--warn)}
+  .cause{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:12px 15px;margin:10px 0;background:#fcfdff}
+  .cause h4{font-size:14px;color:var(--navy);margin-bottom:3px}
+  .cause p{font-size:13px;color:var(--ink)}
+  .fault{margin-top:14px;background:var(--accent-soft);border-radius:10px;padding:13px 16px;font-size:14px}
+  .fault b{color:var(--accent-deep)}
+
+  /* issue cards */
+  .card{border:1px solid var(--line);border-radius:14px;padding:0 0 16px;margin-bottom:14px;overflow:hidden}
+  .whystrip{padding:9px 16px;font-size:12.5px;font-weight:600;color:#fff;display:flex;gap:8px;align-items:flex-start}
+  .whystrip.err{background:linear-gradient(90deg,#c23b39,#a92e2c)} .whystrip.warn{background:linear-gradient(90deg,#b7791f,#9c6412)}
+  .whystrip .lbl{background:rgba(255,255,255,.22);border-radius:5px;padding:1px 7px;font-size:10px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+  .cbody{padding:14px 16px 4px}
+  .ctitle{font-size:16px;font-weight:900;color:var(--navy);display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:8px}
+  .sev{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:.03em}
+  .sev.err{background:var(--bad-bg);color:var(--bad)} .sev.warn{background:var(--warn-bg);color:var(--warn)}
+  .cnt{font-family:var(--mono);font-size:12px;color:var(--muted);font-weight:600}
+  .card p{font-size:13.5px;margin:7px 0}
+  .card .role{font-size:12.5px;color:var(--muted)} .card .role b{color:var(--navy)}
+  details{margin:9px 0;border:1px solid var(--line);border-radius:9px;background:#fbfbfe}
+  summary{cursor:pointer;font-size:12.5px;font-weight:600;color:var(--accent-deep);padding:9px 12px;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▸ ";color:var(--accent)}
+  details[open] summary::before{content:"▾ "}
+  details .urls{padding:2px 12px 11px}
+  .u{font-family:var(--mono);font-size:11.5px;color:var(--cobalt);word-break:break-all;padding:3px 0;border-top:1px dashed var(--line)}
+  .u .code{color:var(--bad);font-weight:700}
+  .fix{background:var(--good-bg);border-radius:9px;padding:10px 13px;margin:9px 0;font-size:13px}
+  .fix b{color:var(--good)}
+  .handrow{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:8px;padding-top:9px;border-top:1px solid var(--line)}
+  .handrow b{color:var(--navy)}
+
+  /* safe to ignore */
+  .safe li{padding:6px 0 6px 22px;font-size:13.5px;position:relative;list-style:none;border-bottom:1px solid var(--line)}
+  .safe li:last-child{border-bottom:none}
+  .safe li::before{content:"✓";position:absolute;left:0;top:6px;color:var(--good);font-weight:700}
+  .safe .m{color:var(--muted);font-size:12px}
+
+  /* hand-off table */
+  table.dt{width:100%;border-collapse:collapse;font-size:13px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  table.dt thead th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 12px;text-align:left;border-bottom:1px solid #dce3f0}
+  table.dt tbody td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.dt tbody tr:last-child td{border-bottom:none}
+  .pri{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;white-space:nowrap}
+  .pri.P1{background:var(--bad-bg);color:var(--bad)} .pri.P2{background:var(--warn-bg);color:var(--warn)} .pri.P3{background:var(--gray-bg);color:var(--gray)}
+  .tk{font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px}
+  .tk.yes{background:var(--good-bg);color:var(--good)} .tk.no{background:var(--gray-bg);color:var(--muted)}
+
+  /* cheat sheet */
+  .glo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:720px){.glo{grid-template-columns:1fr}}
+  .term{border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+  .term dt{font-weight:800;color:var(--navy);font-size:13px;margin-bottom:3px}
+  .term dd{font-size:12.5px;color:var(--muted);line-height:1.5}
+  .foot{font-size:12px;color:var(--muted);text-align:center;margin-top:22px}
+</style>
+</head>
+<body>
+<a class="hubnav" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg> All Reports</a>
+<div class="wrap">
+
+  <header class="top">
+    <div class="logochip">Slingshot</div>
+    <div class="kick">slingshotapp.io · Technical SEO Audit</div>
+    <h1>Technical SEO Audit / Slingshot</h1>
+    <div class="meta"><span>Updated <b>Jul 28, 2026</b></span><span>Crawl <b>Jul 22, 2026</b></span><span>Health <b>46 / 100</b></span><span>Ahrefs Site Audit <b>8155906</b></span></div>
+  </header>
+
+  <nav class="jump">
+    <a href="#health">1 · Site health</a>
+    <a href="#changed">2 · What changed</a>
+    <a href="#issues">3 · Issues that matter</a>
+    <a href="#safe">4 · Safe to ignore</a>
+    <a href="#handoff">5 · Dev hand-off</a>
+    <a href="#cheat">6 · Cheat sheet</a>
+  </nav>
+
+  <!-- 1 — SITE HEALTH -->
+  <section class="block" id="health">
+    <div class="snum">SECTION 1</div>
+    <h2 class="sh">Site health</h2>
+    <p class="sdesc">One number for how clean the site looks to a search engine right now.</p>
+    <div class="health">
+      <div class="dial"><span><span class="n">46</span><span class="o">/ 100</span></span></div>
+      <div class="hexplain">
+        <b>46 out of 100 — think of it as the share of your pages that are clean.</b> Just over half aren't, but the reason matters: it's <b>not</b> that your important marketing pages are broken. It's two self-inflicted messes — a multi-language section that's serving locked doors, and a batch of old help-centre links — inflating the count. The score held flat versus the last crawl, and the raw error count actually came down. Nothing new broke this week.
+      </div>
+    </div>
+    <div class="statline">
+      <div class="stat"><div class="k">Health score</div><div class="v">46</div><div class="d flat">±0</div></div>
+      <div class="stat"><div class="k">URLs crawled</div><div class="v">6,417</div><div class="d good">▼ 42</div></div>
+      <div class="stat"><div class="k">Errors</div><div class="v">3,434</div><div class="d good">▼ 44</div></div>
+      <div class="stat"><div class="k">Warnings</div><div class="v">3,351</div><div class="d good">▼ 7</div></div>
+      <div class="stat"><div class="k">Notices</div><div class="v">1,507</div><div class="d good">▼ 287</div></div>
+    </div>
+    <p class="sdesc" style="margin-top:14px;margin-bottom:0">Numbers are from the Ahrefs crawl finished <b>Jul 22, 2026</b> (6 days old — still fresh). Week-over-week compares it to the <b>Jul 8</b> crawl. For errors/warnings/notices, down is good.</p>
+  </section>
+
+  <!-- 2 — WHAT CHANGED -->
+  <section class="block" id="changed">
+    <div class="snum">SECTION 2</div>
+    <h2 class="sh">What changed since last crawl</h2>
+    <p class="sdesc">Small cleanup, no new fires — and three named sources behind almost all the noise.</p>
+    <ul class="plain">
+      <li class="up">44 fewer error pages and 287 fewer notices; health held at 46.</li>
+      <li class="up">Broken internal pages (4xx) down 35; broken redirects down 4.</li>
+      <li>No new <em>types</em> of error appeared — the mix is the same debt as last week.</li>
+    </ul>
+    <p class="sdesc" style="margin:16px 0 6px;font-weight:700;color:var(--navy)">Where the error count actually comes from — three root causes, not thousands of unrelated problems:</p>
+    <div class="cause"><h4>1. Blocked language pages (the biggest driver)</h4><p>The Japanese, Spanish, Korean and Portuguese sections (<span class="u" style="color:var(--cobalt)">/ja/ /es/ /ko/ /pt-BR/</span>) return "403 Forbidden" — a locked door — on hundreds of pages the site itself links to. This single fault also creates most of the multi-language-tag errors.</p></div>
+    <div class="cause"><h4>2. Old help-centre URLs</h4><p>Knowledge-base pages in the old <span class="u" style="color:var(--cobalt)">/en/…​.html</span> shape bounce through a redirect to their clean address instead of pointing straight at it, and a handful throw a 500 server error.</p></div>
+    <div class="cause"><h4>3. A webinar link bug</h4><p>A template is building webinar links with the query part mangled (<span class="u" style="color:var(--cobalt)">%3Ftopic=…?fr=1</span>), inventing URLs that don't exist and then dead-ending — this is most of the "broken redirects."</p></div>
+    <div class="fault"><b>Is this our fault?</b> Yes — all three are our own configuration and template issues, not a Google penalty or anything external. That's the good news: they're fully in our control, and fixing them can't hurt rankings — the pages that rank aren't the ones breaking.</div>
+  </section>
+
+  <!-- 3 — ISSUES THAT MATTER -->
+  <section class="block" id="issues">
+    <div class="snum">SECTION 3</div>
+    <h2 class="sh">The issues that matter</h2>
+    <p class="sdesc">Ranked by impact. Each card: why it matters, what it actually is, real examples, and the fix.</p>
+
+    <!-- Card A -->
+    <div class="card">
+      <div class="whystrip err"><span class="lbl">Why it matters</span><span>Every blocked page is invisible in search, and Google wastes its limited crawl time hitting locked doors instead of your money pages.</span></div>
+      <div class="cbody">
+        <div class="ctitle">Blocked language pages return 403 <span class="sev err">Error</span> <span class="cnt">~1,100+ URLs</span></div>
+        <p><b>What it actually is:</b> The whole non-English site — Japanese, Spanish, Korean, Portuguese — answers with "403 Forbidden" (a locked door) instead of showing the page. These aren't obscure URLs: the site links to them hundreds of times each, so crawlers and buyers keep hitting them.</p>
+        <details><summary>Show real example URLs</summary><div class="urls">
+          <div class="u">/ja/blog/ <span class="code">403</span> · 300 internal links</div>
+          <div class="u">/ja/templates/ <span class="code">403</span> · 311 internal links</div>
+          <div class="u">/ko/solutions/marketing/marketing-analytics/ <span class="code">403</span></div>
+          <div class="u">/es/solutions/marketing/campaign-launch/ <span class="code">403</span></div>
+          <div class="u">/pt-BR/product-tour/data-analytics/dashboarding-software/ <span class="code">403</span></div>
+        </div></details>
+        <p class="role"><b>Likely cause:</b> a locale access rule (CDN or app) forbidding those path prefixes, or a half-retired translation that still ships internal links and language tags pointing at dead pages.</p>
+        <div class="fix"><b>Fix:</b> Decide per language. If we still support it, remove the 403 rule so the pages return 200 (normal). If we don't, 301-redirect each locale URL to its English equivalent and strip the internal links + language tags. Either way, stop serving 403.</div>
+        <div class="handrow"><span>Owner: <b>Web dev / infra</b></span><span>Effort: <b>Medium</b></span><span>Est: <b>4–6h + QA</b></span><span>Priority: <b>P1</b></span></div>
+      </div>
+    </div>
+
+    <!-- Card B -->
+    <div class="card">
+      <div class="whystrip err"><span class="lbl">Why it matters</span><span>Language tags tell Google which version to show which country. Ours point at the blocked pages above, so Google distrusts them and can hide the right page.</span></div>
+      <div class="cbody">
+        <div class="ctitle">Broken multi-language tags (hreflang) <span class="sev err">Error</span> <span class="cnt">1,131 + 950 URLs</span></div>
+        <p><b>What it actually is:</b> 1,131 language tags point to redirected or broken URLs, and 950 pages list more than one address for the same language — so the signals contradict each other.</p>
+        <p class="role"><b>Likely cause:</b> the same broken locale system as the card above — the tags are generated from it.</p>
+        <div class="fix"><b>Fix:</b> Mostly fixed for free once the locale pages are sorted (Card A). Then regenerate the language tags so each points to a live page and lists exactly one URL per language.</div>
+        <div class="handrow"><span>Owner: <b>Web dev</b></span><span>Effort: <b>Bundled with Card A</b></span><span>Priority: <b>P1</b></span></div>
+      </div>
+    </div>
+
+    <!-- Card C -->
+    <div class="card">
+      <div class="whystrip err"><span class="lbl">Why it matters</span><span>Help-centre pages carry links and rank. Old URL shapes leak that value through detours, and 500 errors make real pages disappear.</span></div>
+      <div class="cbody">
+        <div class="ctitle">Old help-centre URLs (.html + /en/) <span class="sev err">Error</span> <span class="cnt">180 + 4 URLs</span></div>
+        <p><b>What it actually is:</b> Knowledge-base pages in the old <span class="u" style="color:var(--cobalt)">/en/help/docs/….html</span> shape point their "official version" tag at a redirect instead of the final page (180 of these), and four docs pages return a 500 server error.</p>
+        <details><summary>Show real example URLs</summary><div class="urls">
+          <div class="u">/en/help/docs/analytics/datasources/overview.html → canonical is a <span class="code">301</span></div>
+          <div class="u">/en/help/docs/analytics/dashboards/dashboard-linking.html → <span class="code">301</span></div>
+          <div class="u">/en/help/docs/user-account/ <span class="code">500</span></div>
+          <div class="u">/en/help/docs/tasks-faq/ <span class="code">500</span></div>
+        </div></details>
+        <p class="role"><b>Likely cause:</b> a help-centre migration where the old URL shapes were never fully retired.</p>
+        <div class="fix"><b>Fix:</b> Point the "official version" tags and internal links straight at the final <span class="u" style="color:var(--cobalt)">/help/docs/…</span> address; investigate and fix the four pages returning 500.</div>
+        <div class="handrow"><span>Owner: <b>Web dev</b></span><span>Effort: <b>Small</b></span><span>Est: <b>2–3h</b></span><span>Priority: <b>P2</b></span></div>
+      </div>
+    </div>
+
+    <!-- Card D -->
+    <div class="card">
+      <div class="whystrip err"><span class="lbl">Why it matters</span><span>Broken redirects burn crawl budget and look sloppy to anyone who lands on one — including press and buyers.</span></div>
+      <div class="cbody">
+        <div class="ctitle">Webinar links with an encoding bug <span class="sev err">Error</span> <span class="cnt">568 broken redirects</span></div>
+        <p><b>What it actually is:</b> A template is building webinar links with the query string mangled — <span class="u" style="color:var(--cobalt)">?topic=</span> becomes <span class="u" style="color:var(--cobalt)">%3Ftopic=</span> with a stray <span class="u" style="color:var(--cobalt)">?fr=1</span> and <span class="u" style="color:var(--cobalt)">.html</span> tacked on. These invented URLs redirect once, then dead-end at 403.</p>
+        <details><summary>Show real example URLs</summary><div class="urls">
+          <div class="u">/webinars%3Ftopic=Trends?fr=1/ → <span class="code">403</span></div>
+          <div class="u">/ko/webinars/webinars%3Ftopic=Best%20Practices?fr=1.html → <span class="code">403</span></div>
+          <div class="u">/webinars/upgrading-reveal-to-slingshot-all-you-need-to-know → <span class="code">403</span></div>
+        </div></details>
+        <p class="role"><b>Likely cause:</b> a link/template generator encoding the query part incorrectly.</p>
+        <div class="fix"><b>Fix:</b> Fix the template so webinar links use a normal <span class="u" style="color:var(--cobalt)">?topic=</span> parameter (drop the <span class="u" style="color:var(--cobalt)">?fr=1</span> and <span class="u" style="color:var(--cobalt)">.html</span>); 301 the mangled variants to the clean <span class="u" style="color:var(--cobalt)">/webinars/</span> pages.</p>
+        <div class="handrow"><span>Owner: <b>Web dev</b></span><span>Effort: <b>Small–Medium</b></span><span>Est: <b>2–4h</b></span><span>Priority: <b>P2</b></span></div>
+      </div>
+    </div>
+
+    <!-- Card E -->
+    <div class="card">
+      <div class="whystrip warn"><span class="lbl">Why it matters</span><span>The same page reachable at two addresses splits its ranking power in half.</span></div>
+      <div class="cbody">
+        <div class="ctitle">Trailing-slash duplicates <span class="sev warn">Warning</span> <span class="cnt">1,610 redirects · 1,185 internal links</span></div>
+        <p><b>What it actually is:</b> Pages exist both with and without a trailing "/" (e.g. <span class="u" style="color:var(--cobalt)">/blog/project-management-goals/</span> vs no slash). Google treats them as two pages and halves the credit.</p>
+        <div class="fix"><b>Fix:</b> Pick one slash convention, 301-redirect the other form site-wide, and update internal links to the chosen form. Guardrail: 301 every retired URL — never delete.</div>
+        <div class="handrow"><span>Owner: <b>Web dev</b></span><span>Effort: <b>Medium</b></span><span>Est: <b>3–5h</b></span><span>Priority: <b>P1</b></span><span>Status: <b>Ticketed · in progress</b></span></div>
+      </div>
+    </div>
+
+    <!-- Card F -->
+    <div class="card">
+      <div class="whystrip err"><span class="lbl">Why it matters</span><span>This is on our main conversion page — a wrong-product email and a broken link erode trust exactly where buyers convert.</span></div>
+      <div class="cbody">
+        <div class="ctitle">Wrong-product reference on the forms <span class="sev err">Error</span> <span class="cnt">demo + contact</span></div>
+        <p><b>What it actually is:</b> The demo and contact forms reference <span class="u" style="color:var(--cobalt)">support@revealbi.io</span> (the wrong product) and contain a broken internal link built from that email — leftover from cloning Reveal's templates.</p>
+        <div class="fix"><b>Fix:</b> Replace every revealbi.io reference with the correct Slingshot contact and fix the broken link.</div>
+        <div class="handrow"><span>Owner: <b>Web dev</b></span><span>Effort: <b>Small</b></span><span>Est: <b>1–2h</b></span><span>Priority: <b>P1</b></span><span>Status: <b>Ticketed · in progress</b></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 — SAFE TO IGNORE -->
+  <section class="block" id="safe">
+    <div class="snum">SECTION 4</div>
+    <h2 class="sh">Safe to ignore this week</h2>
+    <p class="sdesc">Considered and deliberately parked — none of these block crawling or indexing, so chasing them now would just be noise against the big three.</p>
+    <ul class="safe">
+      <li><b>1,689 images missing alt text</b> <span class="m">— accessibility nicety, no effect on indexing. Batch later.</span></li>
+      <li><b>Meta descriptions too long / short / missing</b> <span class="m">— cosmetic; handled naturally in the content rewrites, not a dev job.</span></li>
+      <li><b>864 schema / structured-data warnings</b> <span class="m">— real, but belong to the planned schema workstream, not a crawl blocker.</span></li>
+      <li><b>Multiple H1s, title-length notices</b> <span class="m">— page-polish, low impact.</span></li>
+      <li><b>"Pages to submit to IndexNow" (1,157)</b> <span class="m">— informational, not an error.</span></li>
+    </ul>
+  </section>
+
+  <!-- 5 — HAND-OFF -->
+  <section class="block" id="handoff">
+    <div class="snum">SECTION 5</div>
+    <h2 class="sh">Hand-off list for web dev</h2>
+    <p class="sdesc">Everything a developer needs, in priority order. Mirrors the Slingshot Technical SEO list.</p>
+    <table class="dt">
+      <thead><tr><th>Priority</th><th>Fix</th><th>Owner</th><th>Est</th><th>Ticketed</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pri P1">P1</span></td><td>Stop the /ja /es /ko /pt-BR sections serving 403 — return 200 or 301 to English + fix language tags</td><td>Web dev / infra</td><td>4–6h</td><td><span class="tk no">New</span></td></tr>
+        <tr><td><span class="pri P1">P1</span></td><td>Pick one slash convention; 301 trailing-slash duplicates; set canonicals</td><td>Web dev</td><td>3–5h</td><td><span class="tk yes">Yes</span></td></tr>
+        <tr><td><span class="pri P1">P1</span></td><td>Fix revealbi.io references + broken link on demo/contact forms</td><td>Web dev</td><td>1–2h</td><td><span class="tk yes">Yes</span></td></tr>
+        <tr><td><span class="pri P2">P2</span></td><td>Point help-centre canonicals/links at final URL; fix 4 docs returning 500</td><td>Web dev</td><td>2–3h</td><td><span class="tk no">New</span></td></tr>
+        <tr><td><span class="pri P2">P2</span></td><td>Fix webinar link template (%3F encoding); 301 mangled URLs to clean /webinars/</td><td>Web dev</td><td>2–4h</td><td><span class="tk no">New</span></td></tr>
+        <tr><td><span class="pri P2">P2</span></td><td>Repoint remaining broken redirects + canonical-to-redirect to final 200 targets</td><td>Web dev</td><td>3–5h</td><td><span class="tk yes">Yes</span></td></tr>
+      </tbody>
+    </table>
+    <p class="sdesc" style="margin-top:12px;margin-bottom:0">Owner routing is "Web dev / infra" pending confirmation of who owns slingshotapp.io fixes (likely Ryan / Pam). Tasks currently sit with Casey to route.</p>
+  </section>
+
+  <!-- 6 — CHEAT SHEET -->
+  <section class="block" id="cheat">
+    <div class="snum">SECTION 6</div>
+    <h2 class="sh">Cheat sheet — plain-English glossary</h2>
+    <p class="sdesc">What the terms in this report actually mean.</p>
+    <div class="glo">
+      <dl class="term"><dt>Crawl</dt><dd>When a search engine's robot visits your pages to read them. Our audit is a crawl by Ahrefs' robot.</dd></dl>
+      <dl class="term"><dt>Health score</dt><dd>Ahrefs' 0–100 rating of how clean the site looks technically. Higher is better; 46 means lots of fixable debt.</dd></dl>
+      <dl class="term"><dt>404 (Not Found)</dt><dd>The page doesn't exist. A dead link.</dd></dl>
+      <dl class="term"><dt>403 (Forbidden)</dt><dd>The page exists but the server refuses to show it — a locked door. Worse than a 404 because we're blocking our own content.</dd></dl>
+      <dl class="term"><dt>500 (Server Error)</dt><dd>The page broke while loading — the server crashed on it.</dd></dl>
+      <dl class="term"><dt>Redirect (301 / 302)</dt><dd>Sends a visitor from an old URL to a new one. 301 = permanent (passes ranking value); 302 = temporary.</dd></dl>
+      <dl class="term"><dt>Broken redirect</dt><dd>A redirect that ends at a dead or forbidden page instead of a working one.</dd></dl>
+      <dl class="term"><dt>Redirect chain</dt><dd>Several redirects in a row before reaching the real page. Slows crawling and leaks value.</dd></dl>
+      <dl class="term"><dt>Canonical</dt><dd>A tag naming the "official" version of a page when duplicates exist, so Google credits the right one.</dd></dl>
+      <dl class="term"><dt>hreflang</dt><dd>A tag telling Google which language/country version of a page to show. Broken ones confuse it.</dd></dl>
+      <dl class="term"><dt>Indexing</dt><dd>A page being stored in Google's library so it can appear in results. No index = no traffic.</dd></dl>
+      <dl class="term"><dt>Crawl budget</dt><dd>The limited number of pages Google will crawl per visit. Broken URLs waste it.</dd></dl>
+      <dl class="term"><dt>Orphan page</dt><dd>A page with no internal links pointing to it, so it's hard to find and rarely crawled.</dd></dl>
+      <dl class="term"><dt>Trailing slash</dt><dd>The "/" at the end of a URL. With and without it count as two different pages unless you standardise.</dd></dl>
+    </div>
+  </section>
+
+  <p class="foot">Slingshot Technical SEO Audit · data: Ahrefs Site Audit project 8155906 · crawl Jul 22, 2026 · generated Jul 28, 2026</p>
+
+</div>
+</body>
+</html>
