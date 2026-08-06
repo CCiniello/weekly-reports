@@ -1,0 +1,37 @@
+{
+  "Paid Performance Weekly - All Products": {
+    "cadence": "Wednesday 7:00 AM America/New_York",
+    "launcher": "marketing-ai-system/04-agents/paid-performance/all-products.md",
+    "report": "paid-intelligence/executive/index.html"
+  },
+  "Reveal Search Marketing Weekly - Google + Microsoft": {
+    "cadence": "Monday 8:00 AM America/New_York",
+    "launcher": "marketing-ai-system/04-agents/search-marketing/reveal.md",
+    "report": "paid-intelligence/reveal/search/index.html"
+  },
+  "UI Tools Search Marketing Weekly - Google + Microsoft": {
+    "cadence": "Monday 8:30 AM America/New_York",
+    "launcher": "marketing-ai-system/04-agents/search-marketing/ui-tools.md",
+    "report": "paid-intelligence/ui-tools/search/index.html"
+  },
+  "Reveal Audience & Demand Weekly": {
+    "cadence": "Tuesday 5:00 AM America/New_York",
+    "launcher": "marketing-ai-system/04-agents/audience-demand/reveal.md",
+    "report": "paid-intelligence/reveal/audience-demand/index.html"
+  },
+  "Reveal Landing Page & Conversion Weekly": {
+    "cadence": "Tuesday 5:30 AM America/New_York",
+    "launcher": "marketing-ai-system/04-agents/landing-conversion/reveal.md",
+    "report": "paid-intelligence/reveal/landing-conversion/index.html"
+  },
+  "UI Tools Landing Page & Adoption Weekly": {
+    "cadence": "Tuesday 6:00 AM America/New_York",
+    "launcher": "marketing-ai-system/04-agents/landing-conversion/ui-tools.md",
+    "report": "paid-intelligence/ui-tools/landing-adoption/index.html"
+  },
+  "Paid Growth Strategy Weekly - All Products": {
+    "cadence": "Thursday 7:00 AM America/New_York",
+    "launcher": "marketing-ai-system/04-agents/paid-growth-strategy/all-products.md",
+    "report": "paid-intelligence/strategy/index.html"
+  }
+}
