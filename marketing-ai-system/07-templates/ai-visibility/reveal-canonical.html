@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Search Visibility / Reveal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
+    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
+    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
+  }
+  body.theme-reveal   {--accent:#EC417A;--accent-deep:#C9367F;--accent-soft:#fde4ee;--hero:linear-gradient(120deg,#FBB764,#EC417A 62%,#d63384)}
+  body.theme-slingshot{--accent:#4B45C6;--accent-deep:#2D2A90;--accent-soft:#ECEBFB;--hero:linear-gradient(120deg,#6C5CE7,#4B45C6 55%,#2D2A90)}
+  body.theme-ui       {--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
+  body.theme-all      {--accent:#2563EB;--accent-deep:#7C3AED;--accent-soft:#EEF1FF;--hero:linear-gradient(120deg,#2563EB,#7C3AED)}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .hubnav{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:8px;background:#0B1220;color:#fff;font-weight:600;font-size:13px;padding:11px 20px;text-decoration:none}
+  .hubnav:hover{background:#111a2e}
+  .hubnav svg{width:14px;height:14px}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 80px}
+
+  header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
+  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
+  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
+  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)}
+  .meta b{color:#fff;font-weight:700}
+
+  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:42px;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03)}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;display:flex;align-items:center;gap:8px}
+  .tab .cbadge{font-family:var(--mono);font-size:11px;font-weight:600;background:var(--gray-bg);color:var(--muted);border-radius:999px;padding:1px 8px}
+  .tab:hover{color:var(--ink)}
+  .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+  .tab.on .cbadge{background:var(--accent-soft);color:var(--accent-deep)}
+
+  .panel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
+  .panel.on{display:block}
+
+  .slink{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:#fff;background:linear-gradient(120deg,var(--accent),var(--accent-deep));padding:9px 15px;border-radius:9px;white-space:nowrap;text-decoration:none}
+  .slink:hover{filter:brightness(1.05)}
+  .slink svg{width:13px;height:13px}
+
+  /* report body */
+  #report h2.sec{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent-deep);font-weight:700;margin:26px 0 12px;padding-bottom:7px;border-bottom:2px solid var(--accent-soft)}
+  #report h2.sec:first-child{margin-top:0}
+  #report .lead{font-size:15px;line-height:1.6;color:var(--ink)}
+  #report .lead b{color:var(--navy)}
+  #report p{margin:0 0 12px}
+  #report .vp{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:#fcfdff;margin-bottom:8px}
+  #report .vp .goal{font-size:14px;color:var(--navy);font-weight:700;margin-bottom:14px;padding:11px 14px;background:var(--accent-soft);border-radius:10px;line-height:1.5}
+  #report .vp .goal span{font-weight:400;color:var(--ink)}
+  #report .vprow{display:flex;gap:12px;padding:11px 0;border-top:1px dashed var(--line);align-items:flex-start}
+  #report .vprow .tg{flex:none;font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:6px;margin-top:1px;min-width:74px;text-align:center}
+  #report .tg.work{background:var(--good-bg);color:var(--good)}
+  #report .tg.watch{background:var(--warn-bg);color:var(--warn)}
+  #report .tg.fix{background:var(--bad-bg);color:var(--bad)}
+  #report .vprow .txt{font-size:13.5px;line-height:1.5}
+  #report .vprow .txt b{color:var(--navy)}
+
+  #report .score{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+  #report .score .sc{flex:1;min-width:210px;border:1px solid var(--line);border-left:4px solid var(--gray);border-radius:12px;padding:13px 15px;background:#fff}
+  #report .score .sc.on-track{border-left-color:var(--good)}
+  #report .score .sc.at-risk{border-left-color:var(--warn)}
+  #report .score .sc .g{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px}
+  #report .score .sc .s{font-size:12.5px;color:var(--muted);line-height:1.45}
+
+  #report .kpigrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px;margin:4px 0 8px}
+  #report .kpi{border:1px solid var(--line);border-radius:12px;padding:14px 15px;background:#fff}
+  #report .kpi .l{font-size:11px;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  #report .kpi .v{font-size:23px;font-weight:900;color:var(--navy);margin-top:5px;font-family:var(--mono)}
+  #report .kpi .d{font-size:12px;font-weight:700;margin-top:3px;font-family:var(--mono)}
+  #report .kpi .d.up{color:var(--good)} #report .kpi .d.down{color:var(--bad)} #report .kpi .d.flat{color:var(--muted)}
+  #report table.dt{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0 4px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  #report table.dt th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:9px 12px;text-align:left;border-bottom:1px solid #dce3f0}
+  #report table.dt td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+  #report table.dt tr:last-child td{border-bottom:none}
+  #report table.dt td.num{font-family:var(--mono);text-align:right;white-space:nowrap}
+  #report .win{color:var(--good);font-weight:700} #report .lose{color:var(--bad);font-weight:700}
+  #report .tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:2px 7px;border-radius:5px}
+  #report .tag.add{background:var(--good-bg);color:var(--good)} #report .tag.rem{background:var(--bad-bg);color:var(--bad)} #report .tag.gap{background:var(--warn-bg);color:var(--warn)}
+  #report .note{font-size:12px;color:var(--muted);font-style:italic;margin-top:4px}
+  #report ul.clean{margin:0 0 12px;padding-left:20px} #report ul.clean li{margin-bottom:6px;font-size:13.5px;line-height:1.5}
+
+  /* ===== TASKS (scoped) ===== */
+  #tasks .taskhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+  #tasks .viewtoggle{display:inline-flex;background:var(--gray-bg);border-radius:10px;padding:3px}
+  #tasks .vbtn{appearance:none;border:none;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:8px}
+  #tasks .vbtn.on{background:#fff;color:var(--accent-deep);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+  #tasks .tsum{font-size:12.5px;color:var(--muted)} #tasks .tsum b{color:var(--navy)}
+  #tasks .push{margin-left:auto}
+  #tasks .view{display:none} #tasks .view.on{display:block}
+  #tasks .tablewrap{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  #tasks table{width:100%;border-collapse:collapse;font-size:13px}
+  #tasks thead th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left;border-bottom:1px solid #dce3f0}
+  #tasks tbody td{padding:11px 13px;border-bottom:1px solid var(--line);vertical-align:middle}
+  #tasks tbody tr:last-child td{border-bottom:none}
+  #tasks tbody tr:hover{background:#fafbff}
+  #tasks .tname{font-weight:600;color:var(--navy)}
+  #tasks .who{display:inline-flex;align-items:center;gap:7px}
+  #tasks .av{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:700;color:#fff;font-family:var(--mono)}
+  #tasks .pri{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:.03em}
+  #tasks .P1{background:var(--bad-bg);color:var(--bad)} #tasks .P2{background:var(--warn-bg);color:var(--warn)} #tasks .P3{background:var(--gray-bg);color:var(--gray)}
+  #tasks .stat{font-size:11px;font-weight:600;padding:2px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:5px}
+  #tasks .stat::before{content:"";width:6px;height:6px;border-radius:50%}
+  #tasks .todo{background:var(--gray-bg);color:#566} #tasks .todo::before{background:var(--gray)}
+  #tasks .prog{background:var(--peri-soft);color:var(--cobalt)} #tasks .prog::before{background:var(--cobalt)}
+  #tasks .done{background:var(--good-bg);color:var(--good)} #tasks .done::before{background:var(--good)}
+  #tasks .review{background:#e7ecff;color:#3E5BD0} #tasks .review::before{background:#6C8CFD}
+  #tasks .deferred{background:#fbf1dd;color:#8a6412} #tasks .deferred::before{background:#b7791f}
+  #tasks .blocked{background:#fbe4e3;color:#c23b39} #tasks .blocked::before{background:#c23b39}
+  #tasks .stat[title]{cursor:help}
+  #tasks .whymark{font-size:10px;opacity:.7}
+  #tasks td.due{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  #tasks .donedate{font-family:var(--mono);font-size:11px;color:var(--good);white-space:nowrap}
+  #tasks .donedate::before{content:"\2713 "}
+  #tasks .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px}
+  @media(max-width:820px){#tasks .board{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){#tasks .board{grid-template-columns:1fr}}
+  #tasks .col{background:#f7f8fc;border:1px solid var(--line);border-radius:14px;padding:12px}
+  #tasks .col-h{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;margin-bottom:11px;padding:0 4px}
+  #tasks .col-h .cc{font-family:var(--mono);font-size:11px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:0 8px;color:var(--muted)}
+  #tasks .col-h .dt{width:8px;height:8px;border-radius:50%}
+  #tasks .tcard{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 13px;margin-bottom:9px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+  #tasks .tcard .tt{font-weight:600;font-size:13px;color:var(--navy);line-height:1.35}
+  #tasks .tcard .tm{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+  #tasks .tcard .plt{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+  #tasks .tl{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#fcfdff;overflow-x:auto}
+  #tasks .tlrow{display:grid;grid-template-columns:210px 1fr;gap:14px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
+  #tasks .tlrow:last-child{border-bottom:none}
+  #tasks .tlname{font-size:12.5px;font-weight:600;color:var(--navy)} #tasks .tlname .sub{font-size:10.5px;color:var(--muted);font-weight:400}
+  #tasks .tltrack{position:relative;height:26px;background:#f1f4fb;border-radius:7px}
+  #tasks .bar{position:absolute;top:4px;height:18px;border-radius:6px;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:700;color:#fff;font-family:var(--mono);white-space:nowrap;background:var(--accent-deep)}
+  #tasks .empty{font-size:13px;color:var(--muted);padding:30px;text-align:center}
+
+  /* ===== SUMMARY (scoped) ===== */
+  #summary .sumhead{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  #summary .dtitle{font-size:13px;font-weight:700;color:var(--navy)}
+  #summary .push{margin-left:auto;border:none;cursor:pointer;font-family:inherit}
+  #summary .copied{background:var(--good)!important;filter:none!important}
+  #summary .summary-card{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:22px 24px;background:#fff;font-size:14.5px;line-height:1.6;color:var(--ink)}
+  #summary .summary-card h1,#summary .summary-card h2,#summary .summary-card h3{color:var(--navy);font-weight:900;margin:0 0 10px}
+  #summary .summary-card h2{font-size:18px} #summary .summary-card h3{font-size:15px;margin-top:16px}
+  #summary .summary-card p{margin:0 0 12px} #summary .summary-card b,#summary .summary-card strong{color:var(--navy)}
+  #summary .summary-card ul{margin:0 0 12px;padding-left:20px} #summary .summary-card li{margin-bottom:6px}
+</style>
+</head>
+<body class="theme-reveal">
+<a class="hubnav" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg> All Reports</a>
+<div class="wrap">
+
+  <header class="top">
+    <div class="logochip">Reveal</div>
+    <div class="kick">revealbi.io · AI Search Visibility</div>
+    <h1>AI Search Visibility / Reveal</h1>
+    <div class="meta"><span>Updated <b>Jul 29, 2026</b></span><span>Window <b>Jul 20–26</b> vs <b>Jul 13–19, 2026</b></span><span>Source <b>Amplitude AI Visibility</b> · brand 30690</span></div>
+  </header>
+
+  <div class="tabbar">
+    <button class="tab on" data-tab="report">Report</button>
+    <button class="tab" data-tab="tasks">Tasks <span class="cbadge" id="taskCount">0</span></button>
+    <button class="tab" data-tab="summary">Summary</button>
+  </div>
+
+  <section class="panel on" id="report">
+
+    <h2 class="sec">VP readout</h2>
+    <div class="vp">
+      <div class="goal">Goal: <span>be present &amp; cited in AI answers on our money topics; grow share of voice vs Luzmo / Explo / Qrvey / Domo.</span></div>
+      <div class="vprow"><span class="tg work">Working</span><span class="txt"><b>Comparison &amp; alternatives is our shining light.</b> The "Brand &amp; Competitive Comparison" topic hit <b>77% visibility at avg rank 3.4</b>, and revealbi.io is our #1 cited source (58 citations, 94% brand-mention) — led by the white-label page. So-what: when buyers ask "X vs Y" or "alternatives to…", we show up near the top.</span></div>
+      <div class="vprow"><span class="tg watch">Watch</span><span class="txt"><b>The headline jump is partly a sampling effect.</b> Visibility rose to 27.4% but on a much smaller response sample (124 vs 367 the prior week) and prompt coverage fell to 37.9% (from 48.5%). SoV is also measured against BI giants (Microsoft, Looker, Salesforce), not our real competitors. So-what: real momentum, but don't over-read 27.4% until the sample and tracking normalize.</span></div>
+      <div class="vprow"><span class="tg fix">Fix</span><span class="txt"><b>We're absent on the core money topics.</b> "Embedded analytics platforms" = <b>0% visibility</b> (95 relevancy) and "SaaS &amp; ISV" = 10%, and we have no comparison page for Explo, Qrvey, or Domo (only Luzmo). Top fix: build the three missing comparison pages and add answer-first blocks + FAQ schema to the platform pages.</span></div>
+    </div>
+
+    <h2 class="sec">Executive summary</h2>
+    <p class="lead">Reveal's AI answer presence <b>more than doubled week over week — visibility 11.7% → 27.4%, avg rank 9.3 → 7.9</b> — and our own domain is now the single most-cited source on our topics. The strength is concentrated in comparison and white-label queries, where we rank in the top 3. The weakness is equally clear: on the highest-volume category query, "embedded analytics platforms," we are cited in <b>zero</b> responses despite relevant content, and three of our four named competitors have no comparison page. Two caveats temper the win — this week's sample was ~3× smaller than last week's, and our share-of-voice is being measured against the wrong competitor set. This week's actions fix the content gaps and realign measurement.</p>
+
+    <h2 class="sec">Goals scorecard</h2>
+    <div class="score">
+      <div class="sc on-track"><div class="g">Be present &amp; cited on money topics</div><div class="s">On track where it's a comparison/white-label query (77% / 27%); off track on the category term "embedded analytics platforms" (0%).</div></div>
+      <div class="sc at-risk"><div class="g">Grow SoV vs Luzmo/Explo/Qrvey/Domo</div><div class="s">At risk — those four aren't in the tracked competitor set, so SoV can't yet be measured against them. Fix queued this week.</div></div>
+      <div class="sc on-track"><div class="g">Weekly momentum</div><div class="s">On track — visibility up 5 of the trailing weeks' swings; this week the strongest yet, with rank improving to 7.9.</div></div>
+    </div>
+
+    <h2 class="sec">KPI snapshot — WoW</h2>
+    <div class="kpigrid">
+      <div class="kpi"><div class="l">Visibility score</div><div class="v">27.4%</div><div class="d up">▲ +15.7 pts</div></div>
+      <div class="kpi"><div class="l">Avg rank</div><div class="v">7.9</div><div class="d up">▲ better by 1.4</div></div>
+      <div class="kpi"><div class="l">Prompt coverage</div><div class="v">37.9%</div><div class="d down">▼ −10.6 pts</div></div>
+      <div class="kpi"><div class="l">Share of voice</div><div class="v">9.0%</div><div class="d up">▲ +5.1 pts</div></div>
+      <div class="kpi"><div class="l">Topics we appear in</div><div class="v">5 / 8</div><div class="d flat">3 at 0% or dormant</div></div>
+      <div class="kpi"><div class="l">Models covering us</div><div class="v">2 / 2</div><div class="d flat">AIO + ChatGPT only</div></div>
+    </div>
+    <p class="note">Share of voice = Reveal visibility as a share of Reveal + the 8 tracked competitors with any visibility. Coverage &amp; sample: this week 34 mentions across 124 responses vs 43 / 367 last week — the smaller sample inflates the visibility %, so weight the rank and topic movement more heavily than the headline number.</p>
+
+    <h2 class="sec">AI visibility deep-dive</h2>
+    <p><b>By topic</b> — where we win and lose (latest report):</p>
+    <table class="dt">
+      <thead><tr><th>Topic</th><th>Visibility</th><th>Avg rank</th><th>Prompts</th><th>Read</th></tr></thead>
+      <tbody>
+        <tr><td>Brand &amp; Competitive Comparison</td><td class="num">77%</td><td class="num">3.4</td><td class="num">12</td><td><span class="win">Win</span></td></tr>
+        <tr><td>Developer &amp; Stack Fit</td><td class="num">27%</td><td class="num">8.2</td><td class="num">12</td><td>Mid</td></tr>
+        <tr><td>White-label embedded analytics</td><td class="num">27%</td><td class="num">8.4</td><td class="num">13</td><td>Mid</td></tr>
+        <tr><td>Pricing &amp; Licensing Model</td><td class="num">14%</td><td class="num">9.4</td><td class="num">8</td><td>Weak</td></tr>
+        <tr><td>Embedded Analytics for SaaS &amp; ISV</td><td class="num">10%</td><td class="num">9.5</td><td class="num">11</td><td class="lose">Lose</td></tr>
+        <tr><td>Embedded analytics platforms</td><td class="num">0%</td><td class="num">10</td><td class="num">10</td><td class="lose">Lose</td></tr>
+        <tr><td>AI powered embedded analytics</td><td class="num">0%</td><td class="num">—</td><td class="num">0</td><td class="lose">Dormant</td></tr>
+      </tbody>
+    </table>
+    <p class="note">"Embedded analytics platforms" has 95 relevancy but 0% visibility — the content is on-topic and simply isn't being cited. "AI powered embedded analytics" fired 0 prompts — misconfigured or dormant.</p>
+
+    <p><b>By model</b> — only two engines are tracked, and we appear in both:</p>
+    <table class="dt">
+      <thead><tr><th>Model</th><th>Visibility</th><th>Avg rank</th><th>Responses</th></tr></thead>
+      <tbody>
+        <tr><td>Google AI Overview</td><td class="num">37.9%</td><td class="num">7.0</td><td class="num">58</td></tr>
+        <tr><td>ChatGPT</td><td class="num">18.2%</td><td class="num">8.8</td><td class="num">66</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Gemini, Claude, and Perplexity are not currently monitored — a blind spot given the goal names all five engines.</p>
+
+    <p><b>Vs competitors</b> — the tracked set is BI incumbents, not our named rivals. Our visibility rose while most incumbents fell:</p>
+    <table class="dt">
+      <thead><tr><th>Brand</th><th>Visibility (this wk)</th><th>Visibility (last wk)</th><th>WoW</th></tr></thead>
+      <tbody>
+        <tr><td>Microsoft</td><td class="num">57.3%</td><td class="num">66.8%</td><td class="num lose">−9.5</td></tr>
+        <tr><td>Looker</td><td class="num">55.6%</td><td class="num">63.8%</td><td class="num lose">−8.2</td></tr>
+        <tr><td>Salesforce</td><td class="num">49.2%</td><td class="num">56.7%</td><td class="num lose">−7.5</td></tr>
+        <tr><td>Metabase</td><td class="num">45.2%</td><td class="num">37.9%</td><td class="num win">+7.3</td></tr>
+        <tr><td>Sisense</td><td class="num">39.5%</td><td class="num">27.5%</td><td class="num win">+12.0</td></tr>
+        <tr><td><b>Reveal BI</b></td><td class="num"><b>27.4%</b></td><td class="num">11.7%</td><td class="num win">+15.7</td></tr>
+        <tr><td>Qlik Sense</td><td class="num">22.6%</td><td class="num">25.6%</td><td class="num lose">−3.0</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Reveal posted the largest single-week gain of any tracked brand. But none of Luzmo, Explo, Qrvey, or Domo — our actual competitive set — is tracked here; that's fixed in this week's tasks.</p>
+
+    <h2 class="sec">Prompt audit</h2>
+    <p>Eight topics are tracked across ~66 prompts. Read against volume and buyer intent on the money topics:</p>
+    <ul class="clean">
+      <li><span class="tag add">Add</span> High-intent prompts we don't cover: <b>"best embedded analytics SDK for React/Angular"</b>, <b>"Luzmo vs Explo vs Qrvey vs Domo"</b>, <b>"build vs buy embedded analytics"</b>, and per-competitor <b>"[competitor] alternatives"</b>. These map directly to comparison — our strongest topic — and to the category term where we're absent.</li>
+      <li><span class="tag gap">Gap</span> <b>Alternatives intent</b> is under-represented as its own prompts, and the <b>"AI powered embedded analytics"</b> topic is dormant (0 prompts firing) despite being a core positioning theme. <b>Model gap:</b> Gemini, Claude, Perplexity untracked.</li>
+      <li><span class="tag rem">Remove/Repair</span> No clearly off-ICP topics, but the dormant AI topic and the BI-giant competitor set should be repaired rather than left as noise. Replace the incumbent-heavy comparison set with our named rivals.</li>
+    </ul>
+    <p class="note">Prompt-level detail isn't exposed by the current tracked set (prompts view returned empty); recommendations are derived from the topic-level breakdown. Adding/editing prompts happens in Amplitude — see the tracking task.</p>
+
+    <h2 class="sec">Website actions (this week's fixes)</h2>
+    <ul class="clean">
+      <li><b>Publish llms.txt</b> — revealbi.io currently serves none. Curated crawler map of our canonical answer pages compounds our existing #1-source strength.</li>
+      <li><b>Build reveal-vs-explo / -qrvey / -domo</b> — Explo is empty and Qrvey redirects to the homepage; only Luzmo exists. Comparison is our top topic, so this targets the highest-converting intent.</li>
+      <li><b>Add FAQPage + SoftwareApplication/Organization schema</b> — strong FAQ copy already exists but isn't machine-extractable; this is the lever for the 0% "platforms" topic.</li>
+      <li><b>Answer-first blocks + quotable stats</b> on the embedded-analytics guide and SaaS pages, to win citations back from competitor listicles.</li>
+      <li><b>Fix entity consistency</b> — the tracked brand URL is revealbi.com, not revealbi.io; name varies across surfaces.</li>
+      <li><b>Realign Amplitude tracking</b> — add Luzmo/Explo/Qrvey/Domo, add Gemini/Claude/Perplexity, repair the dormant AI topic.</li>
+    </ul>
+    <p class="note">All six are created as tasks in the Slingshot "LLM Visibility" list, assigned to Casey — see the Tasks tab.</p>
+
+  </section>
+
+  <section class="panel" id="tasks">
+    <div class="taskhead">
+      <div class="viewtoggle">
+        <button class="vbtn on" data-view="table">Table</button>
+        <button class="vbtn" data-view="board">Board</button>
+        <button class="vbtn" data-view="timeline">Timeline</button>
+      </div>
+      <span class="tsum" id="taskSummary"></span>
+      <a class="slink push" href="https://my.slingshotapp.io/openTaskList/e97e10ef_2c725623-6433-46af-a877-f4fb25b260e3_tg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg> Open this list in Slingshot</a>
+    </div>
+    <div class="view on" data-view="table"><div class="tablewrap"><table><thead><tr><th>Task</th><th>Channel</th><th>Owner</th><th>Priority</th><th>Status</th><th>Due</th></tr></thead><tbody id="tblBody"></tbody></table></div></div>
+    <div class="view" data-view="board"><div class="board" id="boardWrap"></div></div>
+    <div class="view" data-view="timeline"><div class="tl" id="tlWrap"></div></div>
+  </section>
+
+  <section class="panel" id="summary">
+    <div class="sumhead"><span class="dtitle">Executive summary</span><button class="slink push" id="copyBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg> <span id="copyLabel">Copy summary</span></button></div>
+    <div class="summary-card" id="summaryCard">
+      <h2>AI Search Visibility — Reveal · week of Jul 20–26, 2026</h2>
+      <p><b>What we're doing to win in AI search:</b> getting Reveal cited in AI answers (ChatGPT, Google AI Overview, and the engines we're adding) on the topics our buyers ask — embedded analytics, dashboard SDKs, build-vs-buy, and competitor alternatives — and growing share of voice against Luzmo, Explo, Qrvey, and Domo.</p>
+      <p><b>Where we stand:</b> AI visibility <b>more than doubled to 27.4%</b> (from 11.7%) and average rank improved to <b>7.9</b>. Reveal posted the biggest single-week gain of any tracked brand, and revealbi.io is now our #1 cited source. We win comparison and white-label queries (top-3), and our white-label page is doing the heavy lifting.</p>
+      <p><b>Top focus and why:</b> we're cited in <b>zero</b> answers on the highest-volume term "embedded analytics platforms," and three of four named competitors (Explo, Qrvey, Domo) have no comparison page. Comparison is our strongest topic, so the fastest gains are (1) building those three comparison pages, (2) adding answer-first content + FAQ schema to the category pages, and (3) publishing llms.txt. In parallel we're realigning tracking to the right competitors and engines.</p>
+      <p><b>Read the win carefully:</b> this week's sample was ~3× smaller than last week's (124 vs 367 responses) and prompt coverage dipped to 37.9%, so treat 27.4% as directional. The rank improvement and topic wins are the more reliable signal. Six fixes are queued in Slingshot, owned by Casey.</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  const TASKS = [
+    {name:"Realign Amplitude AI Visibility tracking: competitor set, models, prompts", channel:"Measurement", owner:"Casey Ciniello", initials:"CC", color:"#C9367F", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-03", lever:"Measurement alignment"},
+    {name:"Publish llms.txt for revealbi.io", channel:"Technical / SEO", owner:"Casey Ciniello", initials:"CC", color:"#C9367F", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-03", lever:"AI crawlability"},
+    {name:"Fix Reveal entity consistency (brand URL + name)", channel:"Entity", owner:"Casey Ciniello", initials:"CC", color:"#C9367F", priority:"P2", status:"todo", start:"2026-07-27", due:"2026-08-03", lever:"Entity resolution"},
+    {name:"Add FAQPage + SoftwareApplication/Organization JSON-LD schema", channel:"Schema", owner:"Casey Ciniello", initials:"CC", color:"#C9367F", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-10", lever:"Extractability"},
+    {name:"Add answer-first blocks + stats to embedded-analytics pages", channel:"Content", owner:"Casey Ciniello", initials:"CC", color:"#C9367F", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-10", lever:"Category citations"},
+    {name:"Build reveal-vs-explo, reveal-vs-qrvey, reveal-vs-domo pages", channel:"Content", owner:"Casey Ciniello", initials:"CC", color:"#C9367F", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-17", lever:"Alternatives intent"}
+  ];
+
+  var accentDeep = getComputedStyle(document.body).getPropertyValue('--accent-deep').trim() || '#333';
+  function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  var STAT={todo:'To do',prog:'In progress',review:'In review',deferred:'Deferred',blocked:'Blocked',done:'Done'};
+
+  document.getElementById('taskCount').textContent = TASKS.length;
+  var prog = TASKS.filter(function(t){return t.status==='prog';}).length;
+  var review = TASKS.filter(function(t){return t.status==='review';}).length;
+  var deferred = TASKS.filter(function(t){return t.status==='deferred';}).length;
+  var done = TASKS.filter(function(t){return t.status==='done';}).length;
+  var bits=[]; if(prog)bits.push('<b>'+prog+'</b> in progress'); if(review)bits.push('<b>'+review+'</b> in review'); if(deferred)bits.push('<b>'+deferred+'</b> deferred'); if(done)bits.push('<b>'+done+'</b> done');
+  bits.push('<b>'+TASKS.filter(function(t){return t.status==='todo';}).length+'</b> to do');
+  document.getElementById('taskSummary').innerHTML = '<b>'+TASKS.length+' tasks</b> · live from Slingshot · '+bits.join(' · ');
+
+  document.getElementById('tblBody').innerHTML = TASKS.length ? TASKS.map(function(t){
+    return '<tr><td class="tname">'+esc(t.name)+'</td><td>'+esc(t.channel||'')+'</td>'+
+      '<td><span class="who"><span class="av" style="background:'+(t.color||accentDeep)+'">'+esc(t.initials||'')+'</span> '+esc(t.owner||'')+'</span></td>'+
+      '<td><span class="pri '+t.priority+'">'+esc(t.priority)+'</span></td>'+
+      '<td><span class="stat '+t.status+'"'+(t.deferred?' title="'+esc(t.deferred)+'"':'')+'>'+STAT[t.status]+(t.deferred?' <span class="whymark">&#9432;</span>':'')+'</span>'+(t.completed?' <span class="donedate">'+esc(t.completed)+'</span>':'')+'</td>'+
+      '<td class="due">'+esc(t.due||'')+'</td></tr>';
+  }).join('') : '<tr><td colspan="6" class="empty">No tasks yet for this report.</td></tr>';
+
+  function col(key,label,dot){
+    var items = TASKS.filter(function(t){return t.status===key;});
+    return '<div class="col"><div class="col-h"><span class="dt" style="background:'+dot+'"></span> '+label+' <span class="cc">'+items.length+'</span></div>'+
+      items.map(function(t){return '<div class="tcard"><div class="tt">'+esc(t.name)+'</div><div class="tm"><span class="plt">'+esc(t.channel||'')+(t.completed?' · <span class="donedate">'+esc(t.completed)+'</span>':'')+'</span><span class="pri '+t.priority+'">'+esc(t.priority)+'</span></div></div>';}).join('')+'</div>';
+  }
+  var STATUS_COLS=[['todo','To do','#8a93a3'],['prog','In progress','#2A41A2'],['review','In review','#6C8CFD'],['deferred','Deferred','#b7791f'],['done','Done','#12915b']];
+  document.getElementById('boardWrap').innerHTML = STATUS_COLS.filter(function(c){return TASKS.some(function(t){return t.status===c[0];});}).map(function(c){return col(c[0],c[1],c[2]);}).join('');
+
+  (function(){
+    var wrap=document.getElementById('tlWrap');
+    var withDue = TASKS.filter(function(t){return t.due;});
+    if(!withDue.length){ wrap.innerHTML='<div class="empty">No dated tasks to plot.</div>'; return; }
+    var starts = withDue.map(function(t){return new Date(t.start||t.due).getTime();});
+    var ends = withDue.map(function(t){return new Date(t.due).getTime();});
+    var min=Math.min.apply(null,starts), max=Math.max.apply(null,ends), span=Math.max(1,max-min);
+    wrap.innerHTML = withDue.map(function(t){
+      var s=new Date(t.start||t.due).getTime(), e=new Date(t.due).getTime();
+      var left=((s-min)/span*100), width=Math.max(7,(e-s)/span*100);
+      if(left+width>100){width=100-left;}
+      return '<div class="tlrow"><div class="tlname">'+esc(t.name)+'<div class="sub">'+esc(t.owner||'')+' · '+esc(t.priority)+'</div></div>'+
+        '<div class="tltrack"><div class="bar" style="left:'+left+'%;width:'+width+'%">'+esc(t.due)+'</div></div></div>';
+    }).join('');
+  })();
+
+  var copyBtn=document.getElementById('copyBtn'), copyLabel=document.getElementById('copyLabel'), card=document.getElementById('summaryCard');
+  copyBtn.addEventListener('click',function(){
+    var html=card.innerHTML.trim(), text=card.innerText.trim();
+    function done(){ copyBtn.classList.add('copied'); copyLabel.textContent='Copied!'; setTimeout(function(){copyBtn.classList.remove('copied');copyLabel.textContent='Copy summary';},1800); }
+    if(navigator.clipboard && window.ClipboardItem){
+      navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([text],{type:'text/plain'})})]).then(done).catch(function(){ navigator.clipboard.writeText(text).then(done); });
+    } else if(navigator.clipboard){ navigator.clipboard.writeText(text).then(done); }
+    else { var r=document.createRange(); r.selectNode(card); var s=getSelection(); s.removeAllRanges(); s.addRange(r); try{document.execCommand('copy');done();}catch(e){} s.removeAllRanges(); }
+  });
+
+  document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
+    t.classList.add('on'); document.getElementById(t.dataset.tab).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });});
+  document.querySelectorAll('.vbtn').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('.vbtn').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('#tasks .view').forEach(function(v){v.classList.remove('on');});
+    b.classList.add('on'); document.querySelector('#tasks .view[data-view="'+b.dataset.view+'"]').classList.add('on');
+  });});
+</script>
+</body>
+</html>
