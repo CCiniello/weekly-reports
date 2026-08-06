@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEO Program / Slingshot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#141537; --ink:#2b2d42; --muted:#6b7280; --line:#E7E8F3; --bg:#F6F7FC; --card:#fff;
+    --good:#1a9e63; --good-bg:#e4f6ec; --warn:#c07d16; --warn-bg:#fbf1dd; --bad:#d24b6f; --bad-bg:#fbe6ec;
+    --gray:#9aa2b1; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
+    --accent:#334ad3; --accent-deep:#20226f; --accent-soft:#eaecfb;
+    --sl-pink:#ed4a99; --sl-green:#8de846; --sl-peri:#6988FF;
+    --hero:linear-gradient(125deg,#334ad3 0%,#20226f 78%);
+    --p1:#334ad3; --p2:#ed4a99; --p3:#1a9e63; --p4:#7b5cf0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Figtree',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .hubnav{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:8px;background:#141537;color:#fff;font-weight:600;font-size:13px;padding:11px 20px;text-decoration:none}
+  .hubnav:hover{background:#1d1e4d}
+  .hubnav svg{width:14px;height:14px}
+  .wrap{max-width:1160px;margin:0 auto;padding:20px 22px 80px}
+  header.top{background:var(--hero);color:#fff;border-radius:18px 18px 0 0;padding:24px 28px 22px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.26),transparent 70%)}
+  header.top::before{content:"";position:absolute;right:24px;bottom:-34px;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(141,232,70,.30),transparent 68%)}
+  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:11px;padding:7px 14px;margin-bottom:12px;box-shadow:0 4px 14px rgba(0,0,0,.18);font-weight:900;font-size:16px;color:var(--accent-deep);letter-spacing:-.02em}
+  .logochip svg{width:18px;height:18px}
+  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:27px;font-weight:900;letter-spacing:-.02em}
+  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)}
+  .meta b{color:#fff;font-weight:700}
+  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:42px;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03);overflow-x:auto}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 16px 13px;border-bottom:3px solid transparent;display:flex;align-items:center;gap:8px;white-space:nowrap}
+  .tab .cbadge{font-family:var(--mono);font-size:11px;font-weight:600;background:var(--gray-bg);color:var(--muted);border-radius:999px;padding:1px 8px}
+  .tab:hover{color:var(--ink)}
+  .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+  .tab.on .cbadge{background:var(--accent-soft);color:var(--accent-deep)}
+  .panel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 18px 18px;padding:24px 26px 30px}
+  .panel.on{display:block}
+  .slink{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:#fff;background:linear-gradient(120deg,var(--accent),var(--accent-deep));padding:9px 15px;border-radius:9px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;font-family:inherit}
+  .slink:hover{filter:brightness(1.06)}
+  .slink svg{width:13px;height:13px}
+  h2.sec{font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent-deep);font-weight:800;margin:30px 0 14px;display:flex;align-items:center;gap:9px}
+  h2.sec:first-child{margin-top:4px}
+  h2.sec::before{content:"";width:9px;height:9px;border-radius:3px;background:var(--accent)}
+  .note{font-size:12.5px;color:var(--muted);margin:-6px 0 14px}
+  .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  thead th{background:#eef1fc;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#3a3f7a;font-weight:700;padding:9px 12px;text-align:left;border-bottom:1px solid #dbe0f5;white-space:nowrap}
+  tbody td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:#fafbff}
+  .vol{font-family:var(--mono);white-space:nowrap}
+  .kwd{font-weight:600;color:var(--navy)} .url{font-family:var(--mono);font-size:11px;color:var(--accent)}
+  .icp{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;padding:2px 7px;border-radius:999px}
+  .icp.brand{background:#e9ecff;color:#3a41b5}.icp.icpf{background:var(--good-bg);color:var(--good)}.icp.stretch{background:var(--warn-bg);color:var(--warn)}.icp.off{background:var(--gray-bg);color:#6b7280}
+  .callout{border-radius:12px;padding:13px 16px;font-size:13px;background:var(--accent-soft);border:1px solid #cdd4f7;color:#2a2c66;margin-top:14px}
+  .callout b{color:var(--accent-deep)}
+
+  /* REPORT */
+  #report .lead{font-size:15.5px;line-height:1.65;border-left:4px solid var(--accent);background:var(--accent-soft);padding:16px 20px;border-radius:0 12px 12px 0;margin-bottom:8px}
+  #report .lead b{color:var(--accent-deep)}
+  #report .score{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media(max-width:860px){#report .score{grid-template-columns:repeat(2,1fr)}}
+  #report .goal{border:1px solid var(--line);border-radius:14px;padding:14px 15px;background:#fcfdff}
+  #report .goal .gt{font-size:12px;font-weight:700;color:var(--navy);min-height:32px}
+  #report .goal .gv{font-family:var(--mono);font-size:20px;font-weight:600;color:var(--accent-deep);margin-top:8px}
+  #report .goal .gtar{font-size:11.5px;color:var(--muted);margin-top:4px}
+  #report .pill{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:2px 8px;border-radius:999px;margin-top:9px}
+  #report .pill.base{background:var(--gray-bg);color:#566}#report .pill.start{background:var(--accent-soft);color:var(--accent-deep)}#report .pill.wait{background:var(--warn-bg);color:var(--warn)}
+  #report .kpigrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:860px){#report .kpigrid{grid-template-columns:repeat(2,1fr)}}
+  #report .kpi{border:1px solid var(--line);border-radius:14px;padding:14px 15px;background:#fff}
+  #report .kpi.gsc{border-color:#cdd4f7;background:linear-gradient(180deg,#f4f6ff,#fff)}
+  #report .kpi.sf{border-color:#f6d3e2;background:linear-gradient(180deg,#fdf2f7,#fff)}
+  #report .kpi .kl{font-size:11.5px;color:var(--muted);font-weight:600}
+  #report .kpi .kv{font-family:var(--mono);font-size:23px;font-weight:600;color:var(--navy);margin-top:6px;line-height:1}
+  #report .kpi .kd{font-size:11.5px;font-weight:700;margin-top:7px;display:inline-flex;align-items:center;gap:4px}
+  #report .up{color:var(--good)}#report .down{color:var(--bad)}#report .flat{color:var(--muted)}#report .pend{color:var(--warn)}
+  #report .kpi .sub{font-size:11px;color:var(--muted);font-weight:500}
+  #report .srcpill{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-radius:4px;padding:1px 5px;margin-left:5px;vertical-align:middle}
+  #report .srcpill.g{color:var(--accent-deep);background:var(--accent-soft)}#report .srcpill.s{color:#b02e63;background:#fbe0ec}
+  #report .pillar-row td{background:var(--accent-soft);font-weight:800;color:var(--accent-deep);font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+  #report .rank-none{color:var(--muted);font-style:italic}#report .rank-own{color:var(--good);font-weight:700}
+  #report .twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:860px){#report .twocol{grid-template-columns:1fr}}
+  #report .card{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:16px 18px;background:#fcfdff}
+  #report .card h3{font-size:13px;color:var(--navy);font-weight:800;margin:0 0 6px}
+  #report .card ul{margin:6px 0 10px;padding-left:20px}#report .card li{margin-bottom:5px;font-size:13px}
+  #report .card code{font-family:var(--mono);font-size:11.5px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 6px;border-radius:5px}
+  #report .maptbl td{padding:6px 10px;border-bottom:1px solid var(--line);font-size:12.5px}
+  #report .maptbl td:first-child{font-family:var(--mono);font-size:11px;color:var(--accent);white-space:nowrap;width:46%}
+  #report .card p code,#report .card li code{font-family:var(--mono);font-size:11px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+  #report .weekgrid{display:flex;flex-direction:column;gap:8px}
+  #report .wk{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fcfdff}
+  #report .wkn{flex:none;width:26px;height:26px;border-radius:50%;background:linear-gradient(120deg,var(--accent),var(--accent-deep));color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center}
+  #report .wkt{font-weight:700;color:var(--navy);font-size:13.5px;line-height:1.35}
+  #report .wkd{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+  #report .wtag{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:600;color:var(--accent-deep);background:var(--accent-soft);border-radius:5px;padding:1px 7px;margin-top:6px}
+
+  /* TRAFFIC */
+  #traffic .lead{font-size:14.5px;line-height:1.6;border-left:4px solid var(--accent);background:var(--accent-soft);padding:14px 18px;border-radius:0 12px 12px 0;margin-bottom:6px}
+  #traffic .lead b{color:var(--accent-deep)}
+  #traffic td.q{font-weight:600;color:var(--navy)}
+  #traffic td.pg{font-family:var(--mono);font-size:10.5px;color:var(--accent);max-width:230px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  #traffic .num{font-family:var(--mono);text-align:right;white-space:nowrap}
+  #traffic .gagrid{display:grid;grid-template-columns:280px 1fr;gap:14px;margin:2px 0 6px}
+  @media(max-width:760px){#traffic .gagrid{grid-template-columns:1fr}}
+  #traffic .gacard{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:#fcfdff}
+  #traffic .gah{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:10px}
+  #traffic .donutwrap{display:flex;align-items:center;gap:14px}
+  #traffic .donut{width:104px;height:104px;border-radius:50%;flex:none;display:grid;place-items:center}
+  #traffic .donuthole{width:64px;height:64px;border-radius:50%;background:#fcfdff;display:grid;place-items:center;text-align:center;line-height:1.05}
+  #traffic .donuthole b{font-family:var(--mono);font-size:18px;color:var(--navy);display:block}#traffic .donuthole span{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  #traffic .dleg{font-size:11.5px;color:var(--muted);line-height:1.8}
+  #traffic .dleg .d{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:middle}
+  #traffic .bars{display:flex;align-items:flex-end;gap:6px;height:118px;padding-top:4px}
+  #traffic .bar{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
+  #traffic .bar .bb{width:100%;border-radius:4px 4px 0 0;background:linear-gradient(180deg,var(--accent),var(--accent-deep));min-height:2px}
+  #traffic .bar .bl{font-size:9px;color:var(--muted);font-family:var(--mono)}
+  #traffic .bar .bv{font-size:9px;color:var(--navy);font-family:var(--mono);font-weight:600}
+  #traffic .gasub{font-size:11.5px;color:var(--muted);margin-top:9px;line-height:1.5}
+
+  /* ROADMAP */
+  #tasks .execsnap{border:1px solid var(--line);border-radius:16px;padding:4px;background:linear-gradient(180deg,#f7f8ff,#fff);margin-bottom:8px}
+  #tasks .phases{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:10px}
+  @media(max-width:900px){#tasks .phases{grid-template-columns:1fr 1fr}}
+  #tasks .ph{border:1px solid var(--line);border-radius:13px;padding:13px 14px;background:#fff;position:relative;overflow:hidden}
+  #tasks .ph::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px}
+  #tasks .ph.p1::before{background:var(--p1)}#tasks .ph.p2::before{background:var(--p2)}#tasks .ph.p3::before{background:var(--p3)}#tasks .ph.p4::before{background:var(--p4)}
+  #tasks .ph .pn{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  #tasks .ph .pt{font-size:14px;font-weight:800;color:var(--navy);margin:3px 0 2px}
+  #tasks .ph .pw{font-family:var(--mono);font-size:10.5px;color:var(--accent-deep);margin-bottom:7px}
+  #tasks .ph .pd{font-size:12px;color:var(--muted);line-height:1.45}
+  #tasks .arrowrow{display:flex;align-items:center;gap:6px;padding:0 12px 10px;font-size:11px;color:var(--muted);flex-wrap:wrap}
+  #tasks .arrowrow .st{font-weight:800;color:var(--accent-deep)}
+  #tasks h3.block{font-size:15px;font-weight:800;color:var(--navy);margin:26px 0 4px}
+  #tasks .divider{height:1px;background:var(--line);margin:8px 0 16px}
+  #tasks .rmviewtoggle,#tasks .viewtoggle{display:inline-flex;background:var(--gray-bg);border-radius:10px;padding:3px}
+  #tasks .rmbtn,#tasks .vbtn{appearance:none;border:none;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:8px}
+  #tasks .rmbtn.on,#tasks .vbtn.on{background:#fff;color:var(--accent-deep);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+  #tasks .rmhead,#tasks .taskhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 14px}
+  #tasks .push{margin-left:auto}
+  #tasks .rmview{display:none}#tasks .rmview.on{display:block}
+  #tasks .rmtl{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fcfdff}
+  #tasks .rmrow{display:grid;grid-template-columns:60px 1fr;gap:12px;align-items:center;padding:6px 0;border-bottom:1px dashed var(--line)}
+  #tasks .rmrow:last-child{border-bottom:none}
+  #tasks .rmwk{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent-deep)}
+  #tasks .rmbar{height:24px;border-radius:7px;display:flex;align-items:center;padding:0 10px;font-size:11.5px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden}
+  #tasks .rmbar.done{opacity:.55}
+  #tasks .kb{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  @media(max-width:900px){#tasks .kb{grid-template-columns:1fr 1fr}}
+  #tasks .kbcol{background:#f7f8fc;border:1px solid var(--line);border-radius:13px;padding:11px}
+  #tasks .kbh{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--navy);margin-bottom:9px;display:flex;align-items:center;gap:7px}
+  #tasks .kbh .dt{width:8px;height:8px;border-radius:50%}
+  #tasks .kbcard{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 11px;margin-bottom:8px;font-size:12.5px;font-weight:600;color:var(--navy)}
+  #tasks .kbcard .kw2{font-family:var(--mono);font-size:10px;color:var(--muted);display:block;margin-top:4px}
+  #tasks .rmphase{border:1px solid var(--line);border-radius:13px;padding:12px 14px;margin-bottom:10px}
+  #tasks .rmphase .ph-t{font-size:13px;font-weight:800;color:var(--navy);display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  #tasks .rmphase .chip{font-size:10px;font-weight:800;text-transform:uppercase;color:#fff;border-radius:999px;padding:2px 9px}
+  #tasks .rmitem{display:flex;align-items:baseline;gap:8px;font-size:13px;padding:4px 0;color:var(--navy)}
+  #tasks .rmitem .wk{font-family:var(--mono);font-size:10.5px;color:var(--muted);white-space:nowrap;min-width:34px}
+  #tasks .rmitem .sdot{width:8px;height:8px;border-radius:50%;flex:none;align-self:center}
+  #tasks .tsum{font-size:12.5px;color:var(--muted)}#tasks .tsum b{color:var(--navy)}
+  #tasks .view{display:none}#tasks .view.on{display:block}
+  #tasks .tname{font-weight:600;color:var(--navy)}
+  #tasks .who{display:inline-flex;align-items:center;gap:7px}
+  #tasks .av{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:700;color:#fff;font-family:var(--mono)}
+  #tasks .pri{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px;text-transform:uppercase}
+  #tasks .P1{background:var(--bad-bg);color:var(--bad)}
+  #tasks .stat{font-size:11px;font-weight:600;padding:2px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:5px}
+  #tasks .stat::before{content:"";width:6px;height:6px;border-radius:50%}
+  #tasks .todo{background:var(--gray-bg);color:#566}#tasks .todo::before{background:var(--gray)}
+  #tasks .done{background:var(--good-bg);color:var(--good)}#tasks .done::before{background:var(--good)}
+  #tasks td.due{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  #tasks .donedate{font-family:var(--mono);font-size:11px;color:var(--good);white-space:nowrap}#tasks .donedate::before{content:"\2713 "}
+  #tasks .board{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:820px){#tasks .board{grid-template-columns:1fr}}
+  #tasks .col{background:#f7f8fc;border:1px solid var(--line);border-radius:14px;padding:12px}
+  #tasks .col-h{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;margin-bottom:11px;padding:0 4px}
+  #tasks .col-h .cc{font-family:var(--mono);font-size:11px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:0 8px;color:var(--muted)}
+  #tasks .col-h .dt{width:8px;height:8px;border-radius:50%}
+  #tasks .tcard{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 13px;margin-bottom:9px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+  #tasks .tcard .tt{font-weight:600;font-size:13px;color:var(--navy);line-height:1.35}
+  #tasks .tcard .tm{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+  #tasks .tcard .plt{font-size:10px;font-weight:700;text-transform:uppercase;color:var(--muted)}
+
+  /* SITEMAP */
+  #sitemap .smhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  #sitemap .viewtoggle{display:inline-flex;background:var(--gray-bg);border-radius:10px;padding:3px}
+  #sitemap .vbtn{appearance:none;border:none;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:8px}
+  #sitemap .vbtn.on{background:#fff;color:var(--accent-deep);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+  #sitemap .smsum{font-size:12.5px;color:var(--muted)}#sitemap .smsum b{color:var(--navy)}
+  #sitemap .toggle{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;user-select:none}
+  #sitemap .switch{width:34px;height:19px;border-radius:999px;background:var(--gray-bg);position:relative;transition:background .15s}
+  #sitemap .switch::after{content:"";position:absolute;top:2px;left:2px;width:15px;height:15px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s}
+  #sitemap .toggle.on .switch{background:var(--accent)}#sitemap .toggle.on .switch::after{left:17px}
+  #sitemap .filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+  #sitemap .fchip{appearance:none;border:1px solid var(--line);background:#fff;cursor:pointer;font-family:inherit;font-size:11.5px;font-weight:600;color:var(--muted);padding:5px 11px;border-radius:999px;display:inline-flex;align-items:center;gap:6px}
+  #sitemap .fchip .d{width:8px;height:8px;border-radius:50%}
+  #sitemap .fchip.on{border-color:var(--accent);color:var(--accent-deep);background:var(--accent-soft)}
+  #sitemap .view{display:none}#sitemap .view.on{display:block}
+  #sitemap .tablewrap{border:1px solid var(--line);border-radius:12px;overflow:auto;max-height:660px}
+  #sitemap thead th{position:sticky;top:0;z-index:2}
+  #sitemap tbody td{vertical-align:top}
+  #sitemap .u{font-family:var(--mono);font-size:11px;color:var(--accent-deep);font-weight:600}
+  #sitemap .kw{color:var(--navy);font-weight:500}#sitemap .muted2{color:var(--muted)}
+  #sitemap .cl{font-size:10.5px;color:var(--muted)}
+  #sitemap .why{font-size:11px;color:var(--ink);max-width:280px;line-height:1.4}
+  #sitemap .chk{color:var(--good);font-weight:700}#sitemap .no{color:var(--gray)}
+  #sitemap .st{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;padding:2px 8px;border-radius:999px;white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
+  #sitemap .st::before{content:"";width:6px;height:6px;border-radius:50%}
+  #sitemap .st.keep{background:var(--gray-bg);color:#566}#sitemap .st.keep::before{background:var(--gray)}
+  #sitemap .st.optimize{background:var(--accent-soft);color:var(--accent-deep)}#sitemap .st.optimize::before{background:var(--accent)}
+  #sitemap .st.optimized{background:var(--good-bg);color:var(--good)}#sitemap .st.optimized::before{background:var(--good)}
+  #sitemap .st.redirect{background:var(--warn-bg);color:var(--warn)}#sitemap .st.redirect::before{background:var(--warn)}
+  #sitemap .st.remove{background:var(--bad-bg);color:var(--bad)}#sitemap .st.remove::before{background:var(--bad)}
+  #sitemap .st.build{background:#efeafc;color:#5b3fc4}#sitemap .st.build::before{background:#7b5cf0}
+  #sitemap .tree{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fcfdff;font-size:13px;overflow-x:auto}
+  #sitemap .tseg{display:inline-flex;align-items:center;gap:7px;padding:3px 8px;border-radius:7px}
+  #sitemap .tseg:hover{background:var(--accent-soft)}
+  #sitemap .tdir{font-weight:700;color:var(--navy)}#sitemap .tleaf{font-family:var(--mono);font-size:11.5px;color:var(--accent-deep)}
+  #sitemap .tdot{width:8px;height:8px;border-radius:50%;flex:none}
+  #sitemap ul.tree-ul{list-style:none;margin:0;padding-left:18px;border-left:1px dashed var(--line)}
+  #sitemap ul.tree-ul.root{padding-left:0;border-left:none}
+  #sitemap .tcount{font-family:var(--mono);font-size:10px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:999px;padding:0 6px}
+  #sitemap .legend{font-size:11px;color:var(--muted);margin-top:12px;display:flex;gap:14px;flex-wrap:wrap}
+  #sitemap .legend span{display:inline-flex;align-items:center;gap:5px}#sitemap .legend .d{width:8px;height:8px;border-radius:50%}
+
+  /* SUMMARY */
+  #summary .sumhead{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  #summary .dtitle{font-size:13px;font-weight:800;color:var(--navy)}
+  #summary .push{margin-left:auto;border:none;cursor:pointer;font-family:inherit}
+  #summary .copied{background:var(--good)!important;filter:none!important}
+  #summary .summary-card{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:24px 26px;background:#fff;font-size:15px;line-height:1.65}
+  #summary .summary-card h2{color:var(--navy);font-weight:900;font-size:19px;margin:0 0 12px;letter-spacing:-.01em}
+  #summary .summary-card h3{color:var(--accent-deep);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.04em;margin:18px 0 7px}
+  #summary .summary-card p{margin:0 0 12px}#summary .summary-card b{color:var(--accent-deep)}
+</style>
+</head>
+<body>
+<a class="hubnav" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg> All Reports</a>
+<div class="wrap">
+  <header class="top">
+    <div class="logochip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2c.9-.9.9-2.3 0-3.2s-2.1-.7-3 .2z"/><path d="M9 12c1.5-4 4-7 9-8 0 5-3 7.5-7 9"/><path d="M14.5 6.5 17.5 9.5"/></svg> Slingshot</div>
+    <div class="kick">slingshotapp.io · SEO Program</div>
+    <h1>SEO Program / Slingshot</h1>
+    <div class="meta"><span><b>Updated</b> Jul 28, 2026</span> <span><b>Window</b> Jul 20–26 vs Jul 13–19</span> <span><b>Phase</b> Reset · Week 1</span></div>
+  </header>
+  <div class="tabbar">
+    <button class="tab on" data-tab="report">Report</button>
+    <button class="tab" data-tab="traffic">Traffic</button>
+    <button class="tab" data-tab="tasks">Roadmap <span class="cbadge" id="taskCount">0</span></button>
+    <button class="tab" data-tab="sitemap">Sitemap <span class="cbadge" id="smCount">0</span></button>
+    <button class="tab" data-tab="summary">Executive summary</button>
+  </div>
+
+  <!-- REPORT -->
+  <section class="panel on" id="report">
+    <div style="border:1px solid #E9E9F4;border-radius:14px;overflow:hidden;margin:0 0 24px;font-family:inherit">
+      <div style="background:linear-gradient(120deg,var(--accent,#2563EB),var(--accent-deep,#7C3AED));color:#fff;padding:13px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <span style="font-weight:800;font-size:14px">VP Readout — 30-second view</span>
+        <span style="font-weight:600;font-size:12px;opacity:.92">Goal: qualified organic demand + rankings on the money terms marketers search</span>
+      </div>
+      <div style="padding:4px 18px 12px">
+        <div style="display:grid;grid-template-columns:82px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid #f1f1f7;align-items:start">
+          <span style="width:82px;text-align:center;margin-top:1px;font-weight:700;font-size:10.5px;letter-spacing:.04em;padding:4px 0;border-radius:999px;background:#fbe4e3;color:#c23b39">FIX</span>
+          <div><div style="font-weight:700;color:#0F172A;font-size:14px;line-height:1.3">We rank for our own name — and almost nothing else</div><div style="color:#5f6b7a;font-size:13px;margin-top:2px;line-height:1.45">0 of 6 money pages rank, and of ~150k weekly impressions the clicks are essentially all brand. The single most important fix: ship the comparison + hub pages so we appear where buyers actually search — until they exist, organic can't produce pipeline.</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:82px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid #f1f1f7;align-items:start">
+          <span style="width:82px;text-align:center;margin-top:1px;font-weight:700;font-size:10.5px;letter-spacing:.04em;padding:4px 0;border-radius:999px;background:#e3f5ec;color:#12915b">WORKING</span>
+          <div><div style="font-weight:700;color:#0F172A;font-size:14px;line-height:1.3">The comparison foothold is already ours — the shining light</div><div style="color:#5f6b7a;font-size:13px;margin-top:2px;line-height:1.45">We rank #14 for "agencyanalytics alternative" and 14 competitor pages already exist. Consolidating them under /compare/ is the fastest path to qualified traffic and the pages AI assistants cite for "X vs Y."</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:82px 1fr;gap:14px;padding:13px 0;align-items:start">
+          <span style="width:82px;text-align:center;margin-top:1px;font-weight:700;font-size:10.5px;letter-spacing:.04em;padding:4px 0;border-radius:999px;background:#fbf1dd;color:#b7791f">WATCH</span>
+          <div><div style="font-weight:700;color:#0F172A;font-size:14px;line-height:1.3">Huge generic demand we're invisible for — and shouldn't chase</div><div style="color:#5f6b7a;font-size:13px;margin-top:2px;line-height:1.45">"Task management" (44k impressions) and "data analysis" (41k) sit at position 36–88 with ~0 clicks. It's enormous but off-ICP — watch it, don't fund it; our effort goes to the marketing money terms.</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="lead">This is <b>week one of a reset</b>. The domain is a real asset — <b>DR 55, 1,225 referring domains, ~150k Google impressions/wk</b> — but that authority sits too deep to earn clicks (avg position <b>~33</b>) and points at the wrong pages. None of the six money-page hubs rank yet. Leads are now pulled live from <b>Salesforce</b>; GSC is wired directly; the <b>Traffic</b> tab shows exactly what we're found for today.</p>
+
+    <h2 class="sec">Goals scorecard — reset targets</h2>
+    <div class="score">
+      <div class="goal"><div class="gt">Money-page rankings (top 10)</div><div class="gv">0 / 6</div><div class="gtar">Only the SEO discipline page ranks today (#3).</div><span class="pill start">Just starting</span></div>
+      <div class="goal"><div class="gt">Organic → demos (Salesforce)</div><div class="gv">0 demos</div><div class="gtar">+1 self-serve first login. Product Family = Slingshot, medium = organic.</div><span class="pill base">Live</span></div>
+      <div class="goal"><div class="gt">AI share of voice (Amplitude)</div><div class="gv">3.1%</div><div class="gtar">vs Asana 47%, monday 41%, ClickUp 25%. We register only on comparison prompts.</div><span class="pill base">Live</span></div>
+      <div class="goal"><div class="gt">Clean, crawlable site</div><div class="gv">Audit due</div><div class="gtar">Trailing-slash + locale duplication to 301 (Sitemap tab).</div><span class="pill wait">Lane 2 · Wk 1</span></div>
+    </div>
+
+    <h2 class="sec">KPI snapshot — week over week</h2>
+    <div class="note">Search Console pulled <b>directly from GSC</b>; leads pulled <b>live from Salesforce</b> (Lead Event · Product Family = Slingshot · Tracking Medium = organic).</div>
+    <div class="kpigrid">
+      <div class="kpi gsc"><div class="kl">Organic clicks <span class="srcpill g">GSC</span></div><div class="kv">213</div><div class="kd down">▼ 18.7% WoW <span class="sub">(262)</span></div></div>
+      <div class="kpi gsc"><div class="kl">Impressions <span class="srcpill g">GSC</span></div><div class="kv">151,355</div><div class="kd up">▲ 6.9% WoW</div></div>
+      <div class="kpi gsc"><div class="kl">Avg position <span class="srcpill g">GSC</span></div><div class="kv">32.8</div><div class="kd down">▼ 0.6 (deeper)</div></div>
+      <div class="kpi sf"><div class="kl">Organic demos — Request Demo <span class="srcpill s">SFDC</span></div><div class="kv">0</div><div class="kd flat">flat WoW (0)</div></div>
+      <div class="kpi sf"><div class="kl">First logins — organic, self-serve <span class="srcpill s">SFDC</span></div><div class="kv">1</div><div class="kd flat">flat WoW (1) · PLG</div></div>
+      <div class="kpi"><div class="kl">Ranking keywords (Ahrefs)</div><div class="kv">461</div><div class="kd flat">baseline · 127 in top 3</div></div>
+      <div class="kpi"><div class="kl">Organic sessions (GA4)</div><div class="kv">185</div><div class="kd down">▼ 3.1% WoW</div></div>
+      <div class="kpi"><div class="kl">Referring domains</div><div class="kv">1,225</div><div class="kd up">▲ 56 WoW</div></div>
+      <div class="kpi sf" style="border-color:#d9c9f5;background:linear-gradient(180deg,#f4efff,#fff)"><div class="kl">AI share of voice <span class="srcpill" style="color:#5b3fc4;background:#efeafc">AMPLITUDE</span></div><div class="kv">3.1%</div><div class="kd pend">baseline · avg rank 9.7</div><div class="sub">seen in 1 of 32 AI answers</div></div>
+    </div>
+    <div class="note">Also organic + Slingshot this week: 1 trial, 2 onboarding-completed (context; not counted as demos). See the <b>Traffic</b> tab for what we're actually found for.</div>
+
+    <h2 class="sec">Cluster map — the six pillars</h2>
+    <div class="dtable">
+      <table>
+        <thead><tr><th>Target keyword</th><th>Vol (US)</th><th>KD</th><th>Page we'll target</th><th>Rank today</th></tr></thead>
+        <tbody>
+          <tr class="pillar-row"><td colspan="5">Pillar 1 · Marketing Analytics &amp; Reporting — P1</td></tr>
+          <tr><td class="kwd">marketing analytics platform</td><td class="vol">900</td><td class="vol">32</td><td class="url">/marketing-analytics/</td><td class="rank-none">none yet</td></tr>
+          <tr><td class="kwd">marketing reporting software</td><td class="vol">600</td><td class="vol">12</td><td class="url">/marketing-analytics/</td><td class="rank-none">none yet</td></tr>
+          <tr><td class="kwd">marketing dashboard software</td><td class="vol">600</td><td class="vol">23</td><td class="url">/marketing-analytics/</td><td class="rank-none">#14 (blog)</td></tr>
+          <tr class="pillar-row"><td colspan="5">Pillar 2 · Campaign Management — P1</td></tr>
+          <tr><td class="kwd">campaign management software</td><td class="vol">1,000</td><td class="vol">8</td><td class="url">/campaign-management/</td><td class="rank-none">none yet</td></tr>
+          <tr><td class="kwd">marketing calendar software</td><td class="vol">600</td><td class="vol">2</td><td class="url">/campaign-management/</td><td class="rank-none">none yet</td></tr>
+          <tr class="pillar-row"><td colspan="5">Pillar 3 · Marketing Project Management — P1</td></tr>
+          <tr><td class="kwd">marketing project management software</td><td class="vol">1,200</td><td class="vol">33</td><td class="url">/marketing-project-management/</td><td class="rank-none">none yet</td></tr>
+          <tr><td class="kwd">marketing work management</td><td class="vol">200</td><td class="vol">1</td><td class="url">/marketing-project-management/</td><td class="rank-none">none yet</td></tr>
+          <tr class="pillar-row"><td colspan="5">Pillar 4 · Combined Category (create demand) — P2</td></tr>
+          <tr><td class="kwd">marketing execution platform</td><td class="vol">40</td><td class="vol">—</td><td class="url">/marketing-execution-platform/</td><td class="rank-none">none yet</td></tr>
+          <tr class="pillar-row"><td colspan="5">Pillar 5 · Discipline Workflows — P2</td></tr>
+          <tr><td class="kwd">seo workflow (software)</td><td class="vol">800</td><td class="vol">—</td><td class="url">/solutions/marketing/seo/</td><td class="rank-own">#7–10 · own already</td></tr>
+          <tr><td class="kwd">content marketing workflow</td><td class="vol">450</td><td class="vol">9</td><td class="url">/solutions/marketing/content/</td><td class="rank-none">content KPIs #9</td></tr>
+          <tr><td class="kwd">social media reporting</td><td class="vol">800</td><td class="vol">50</td><td class="url">/solutions/marketing/social/</td><td class="rank-none">none yet</td></tr>
+          <tr class="pillar-row"><td colspan="5">Pillar 6 · Comparisons &amp; Alternatives — P1 (start here)</td></tr>
+          <tr><td class="kwd">agencyanalytics alternative</td><td class="vol">450</td><td class="vol">1</td><td class="url">/compare/agencyanalytics-alternative/</td><td class="rank-own">#14 · own already</td></tr>
+          <tr><td class="kwd">databox alternative</td><td class="vol">150</td><td class="vol">0</td><td class="url">/compare/databox-alternative/</td><td class="rank-none">none yet</td></tr>
+          <tr><td class="kwd">slingshot vs asana</td><td class="vol">0</td><td class="vol">—</td><td class="url">/compare/slingshot-vs-asana/</td><td class="rank-none">exists (flat, #54)</td></tr>
+          <tr><td class="kwd">slingshot vs monday</td><td class="vol">0</td><td class="vol">—</td><td class="url">/compare/slingshot-vs-monday/</td><td class="rank-none">exists (flat)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="sec">Analysis — what the data is telling us</h2>
+    <div class="twocol">
+      <div class="card" style="border-left-color:var(--bad)">
+        <h3>1 · Cannibalization is the biggest self-inflicted wound</h3>
+        <p style="font-size:13px;margin:0">Three near-identical marketing-analytics pages (<code>/solutions/marketing/marketing-analytics/</code>, <code>/analytics/</code>, <code>/performance-tracking/</code>) and three campaign pages compete for the same terms, so none rank. Two SEO pages do it too. Collapsing each cluster into one canonical hub and 301-ing the rest is the fastest ranking win on the board — zero new content.</p>
+      </div>
+      <div class="card" style="border-left-color:#7b5cf0">
+        <h3>2 · AI / LLM visibility — invisible except on comparisons</h3>
+        <p style="font-size:13px;margin:0">Amplitude puts our AI share of voice at <b>3.1%</b> (1 of 32 answers). We only register on the <b>Comparisons</b> topic (10%); we're at <b>0%</b> for marketing analytics, campaign management and marketing PM, where Asana, monday, HubSpot and Databox get named. Same fix as SEO: ship <code>/compare/</code> and earn citations on the third-party lists LLMs quote. A faint "AI Assistant" referral channel is already showing in GA4 — real, but tiny.</p>
+      </div>
+      <div class="card" style="border-left-color:var(--warn)">
+        <h3>3 · Content cleanup — our magnets don't fit the ICP</h3>
+        <p style="font-size:13px;margin:0">Off-ICP posts pull impressions but don't convert and bounce hard — <b>"top task management tools"</b> 72% bounce / 1:07 avg, and <b>"micromanagement"</b>, our biggest magnet, converts nobody. On-ICP posts behave far better — <b>"types of data analysis"</b> holds 67% engagement / ~8 min. Prune or re-angle the off-ICP set; internal-link the on-ICP winners up to the money hubs.</p>
+      </div>
+      <div class="card">
+        <h3>Standing rules + open flag</h3>
+        <ul style="margin:0;font-size:13px;padding-left:18px">
+          <li>URL law: lowercase, hyphenated, one canonical form; every removed URL gets a <code>301</code>, never a delete; money pages max two levels deep.</li>
+          <li><b>Slingshot connector bug:</b> the integration errors on <code>list_tasks</code> / <code>list_custom_fields</code> and field writes for this org's task schema — so task metadata still lands in the description. Not a setup issue on your end; flagged for the dev team. This week's tasks are specified below, ready to push once it's fixed.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="sec">This week — the 5 moves</h2>
+    <div class="note">The agent picks 3–5 highest-leverage actions each week (no more) and works them to done. This week goes aggressive on consolidation.</div>
+    <div class="weekgrid">
+      <div class="wk"><span class="wkn">1</span><div><div class="wkt">Migrate all 14 <code>/slingshot-vs-*/</code> pages into <code>/compare/</code></div><div class="wkd">301 + optimize every competitor page at once — not just Asana/Monday — so the whole cluster consolidates under one hub.<br><span class="wtag">SEO Optimization · P1</span></div></div></div>
+      <div class="wk"><span class="wkn">2</span><div><div class="wkt">Optimize the <code>/compare/</code> hub as the canonical anchor</div><div class="wkd">Answer-first intros, comparison tables, internal links down to each spoke — the page that wins both search and the AI "X vs Y" answer.<br><span class="wtag">SEO Optimization · P1</span></div></div></div>
+      <div class="wk"><span class="wkn">3</span><div><div class="wkt">Kill the marketing-analytics cannibalization</div><div class="wkd">Stand up <code>/marketing-analytics/</code> and 301 the three competing pages into it.<br><span class="wtag">Website · P1</span></div></div></div>
+      <div class="wk"><span class="wkn">4</span><div><div class="wkt">Kill the campaign cannibalization</div><div class="wkd">Stand up <code>/campaign-management/</code> and 301 the three scattered campaign pages into it.<br><span class="wtag">Website · P1</span></div></div></div>
+      <div class="wk"><span class="wkn">5</span><div><div class="wkt">Win "X vs Y" in AI answers</div><div class="wkd">Add comparison schema and pitch the review/listicle domains LLMs cite — attack the one topic (Comparisons, 10%) where we already register.<br><span class="wtag">SEO / GEO · P1</span></div></div></div>
+    </div>
+  </section>
+
+  <!-- TRAFFIC -->
+  <section class="panel" id="traffic">
+    <p class="lead">We don't rank for our goals yet — so this is the honest picture of <b>what Google actually finds us for today</b>, and how well it matches our ICP. Each row combines Search Console (clicks, impressions, CTR, position, landing page) with Ahrefs search volume, plus GA4 engagement per landing page. <b>Window: last 28 days.</b></p>
+
+    <h2 class="sec">GA4 — engagement snapshot (last 30 days)</h2>
+    <div class="gagrid">
+      <div class="gacard">
+        <div class="gah">Sessions by device</div>
+        <div class="donutwrap">
+          <div class="donut" style="background:conic-gradient(var(--accent) 0 95.4%,var(--sl-pink) 95.4% 99.8%,var(--gray) 99.8% 100%)"><div class="donuthole"><b>95%</b><span>desktop</span></div></div>
+          <div class="dleg">
+            <div><span class="d" style="background:var(--accent)"></span>Desktop — 6,124 (95.4%)</div>
+            <div><span class="d" style="background:var(--sl-pink)"></span>Mobile — 282 (4.4%)</div>
+            <div><span class="d" style="background:var(--gray)"></span>Tablet — 12 (0.2%)</div>
+          </div>
+        </div>
+        <div class="gasub">Slingshot is a desktop work app — near-zero mobile. Mobile UX isn't the SEO lever here.</div>
+      </div>
+      <div class="gacard">
+        <div class="gah">Organic sessions by week</div>
+        <div class="bars" id="ogBars"></div>
+        <div class="gasub">Organic sessions sliding <b>418 → 185/wk</b> and bounce climbing <b>~39% → 54%</b> as brand/blog traffic tapers — the money pages need to start carrying traffic. <span style="color:#5b3fc4;font-weight:600">A small "AI Assistant" referral channel is now appearing in GA4.</span></div>
+      </div>
+    </div>
+
+    <h2 class="sec">Top queries by clicks</h2>
+    <div class="dtable"><table>
+      <thead><tr><th>Query</th><th class="num">Clicks</th><th class="num">Impr.</th><th class="num">CTR</th><th class="num">Pos</th><th>Top landing page</th><th class="num">Volume<span style="font-weight:400;text-transform:none"> (Ahrefs)</span></th><th class="num">Engmt<span style="font-weight:400;text-transform:none"> (GA4)</span></th><th class="num">Avg time</th><th>ICP fit</th></tr></thead>
+      <tbody id="clkBody"></tbody>
+    </table></div>
+
+    <h2 class="sec">Top queries by impressions</h2>
+    <div class="dtable"><table>
+      <thead><tr><th>Query</th><th class="num">Clicks</th><th class="num">Impr.</th><th class="num">CTR</th><th class="num">Pos</th><th>Top landing page</th><th class="num">Volume<span style="font-weight:400;text-transform:none"> (Ahrefs)</span></th><th class="num">Engmt<span style="font-weight:400;text-transform:none"> (GA4)</span></th><th class="num">Avg time</th><th>ICP fit</th></tr></thead>
+      <tbody id="imprBody"></tbody>
+    </table></div>
+
+    <div class="callout"><b>The read:</b> clicks are almost entirely our <b>own brand</b> ("slingshot", misspellings like "singshort") — we earn next to nothing for non-branded terms. Where we get big impressions — <b>task management (44k impr / 15k vol), data analysis (41k / 147k), project management software (19k / 142k), notion, trello</b> — we sit at position 36–88 with ~0 clicks: enormous generic demand we're invisible for, and mostly <b>off-ICP</b>. The only non-brand terms where we rank respectably (pos 7–10) <b>and</b> are on-ICP are the SEO / content-marketing cluster — <b>seo workflow, seo tasks & workflow, content marketing kpis, ctor, seo analytics dashboard</b>. That cluster is the toehold the marketing pillars build on; everything else is demand to earn, not demand we're missing by inches.</div>
+    <div class="note" style="margin-top:12px">GSC also anonymizes a large block of long-tail queries (~742 clicks / 179k impressions over the window) that Google won't attribute to a specific term — excluded above.</div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="panel" id="tasks">
+    <h2 class="sec">Executive snapshot — the plan, and why in this order</h2>
+    <div class="execsnap">
+      <div class="phases">
+        <div class="ph p1"><div class="pn">Phase 1 · now</div><div class="pt">Comparisons</div><div class="pw">Wk 1–3</div><div class="pd">Start where intent is highest and difficulty lowest. We already rank #14 for "agencyanalytics alternative" — comparison &amp; alternative pages are the fastest path to qualified traffic, and the pages AI assistants cite for "X vs Y".</div></div>
+        <div class="ph p2"><div class="pn">Phase 2 · next</div><div class="pt">Marketing Analytics</div><div class="pw">Wk 4</div><div class="pd">Claim the biggest head-term demand — "marketing analytics platform / reporting / dashboards" — the core of what a revenue-accountable marketer searches for.</div></div>
+        <div class="ph p3"><div class="pn">Phase 3 · then</div><div class="pt">Campaign + Project Mgmt</div><div class="pw">Wk 5–7</div><div class="pd">Extend from data into the work: campaign management and marketing project management, and consolidate our two SEO pages into one strong page.</div></div>
+        <div class="ph p4"><div class="pn">Phase 4 · later</div><div class="pt">Category + AI</div><div class="pw">Wk 8+</div><div class="pd">Define and own the combined category ("where data and work live together") and seed the thought-leadership that gets Slingshot cited in AI answers.</div></div>
+      </div>
+      <div class="arrowrow"><span class="st">Compare</span> → Marketing Analytics → Campaign &amp; PM → <span class="st">Own the category</span> &nbsp;·&nbsp; capture existing demand first, create new demand second.</div>
+    </div>
+
+    <h3 class="block">Content roadmap</h3>
+    <div class="divider"></div>
+    <div class="rmhead">
+      <div class="rmviewtoggle">
+        <button class="rmbtn on" data-rm="phase">Phases</button>
+        <button class="rmbtn" data-rm="kanban">Kanban</button>
+        <button class="rmbtn" data-rm="timeline">Timeline</button>
+      </div>
+      <span class="note" style="margin:0">The 2-month plan · driven from the roadmap file</span>
+    </div>
+    <div class="rmview on" data-rm="phase" id="rmPhase"></div>
+    <div class="rmview" data-rm="kanban" id="rmKanban"></div>
+    <div class="rmview" data-rm="timeline" id="rmTimeline"></div>
+
+    <h3 class="block">Live in Slingshot — this week's tasks</h3>
+    <div class="divider"></div>
+    <div class="taskhead">
+      <div class="viewtoggle">
+        <button class="vbtn on" data-view="table">Table</button>
+        <button class="vbtn" data-view="board">Board</button>
+      </div>
+      <span class="tsum" id="taskSummary"></span>
+      <a class="slink push" href="https://my.slingshotapp.io/openTaskList/e97e10ef_4fd91189-7dca-4e07-b1dd-dcbf69d4eb89_tg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg> Open in Slingshot</a>
+    </div>
+    <div class="view on" data-view="table"><div class="dtable"><table><thead><tr><th>Task</th><th>Type</th><th>Owner</th><th>Priority</th><th>Status</th><th>Due</th></tr></thead><tbody id="tblBody"></tbody></table></div></div>
+    <div class="view" data-view="board"><div class="board" id="boardWrap"></div></div>
+  </section>
+
+  <!-- SITEMAP -->
+  <section class="panel" id="sitemap">
+    <div class="smhead">
+      <div class="viewtoggle">
+        <button class="vbtn on" data-smview="list">List</button>
+        <button class="vbtn" data-smview="tree">Tree</button>
+      </div>
+      <div class="toggle" id="blogToggle"><span class="switch"></span> Show blog posts</div>
+      <span class="smsum push" id="smSummary"></span>
+    </div>
+    <div class="filters" id="smFilters"></div>
+    <div class="view on" data-smview="list"><div class="tablewrap"><table>
+      <thead><tr><th>URL</th><th>Status</th><th>Why</th><th>Primary keyword</th><th>Cluster</th><th>Vol</th><th>Secondary</th><th>Sec vol</th><th>SEO</th><th>Tech</th></tr></thead>
+      <tbody id="smBody"></tbody>
+    </table></div></div>
+    <div class="view" data-smview="tree"><div class="tree" id="smTree"></div>
+      <div class="legend">
+        <span><span class="d" style="background:var(--gray)"></span>keep</span>
+        <span><span class="d" style="background:var(--accent)"></span>optimize</span>
+        <span><span class="d" style="background:var(--good)"></span>optimized</span>
+        <span><span class="d" style="background:var(--warn)"></span>redirect</span>
+        <span><span class="d" style="background:var(--bad)"></span>remove</span>
+        <span><span class="d" style="background:#7b5cf0"></span>build</span>
+      </div>
+    </div>
+    <div class="note" style="margin-top:14px"><b>Full-domain crawl resolved.</b> The root <code>/sitemap.xml</code> returns AccessDenied — the real map is RankMath's <code>/sitemap_index.xml</code>, read via the browser: 6 sub-sitemaps · <b>446 page URLs, 144 solution URLs</b> (+ post/stories/templates/whitepapers). This view lists the canonical English set with a verdict + plain-English <b>why</b> per row. Headline finds: <b>all 14 competitor pages already exist</b> as flat <code>/slingshot-vs-*/</code> URLs (migrate → /compare/, don't build); <b>/marketing-project-management/ already exists</b> (optimize, don't build); and there are <b>3 duplicate marketing-analytics pages + 3 campaign pages</b> cannibalizing each other. Help/docs excluded; blog behind the toggle; ~5 locale copies (/es,/ja,/ko,/pt-BR) per URL rolled up for hreflang + 301 review. <b>This tab reads live from <code>sitemap.json</code></b> in this repo (the "● live" badge above confirms it loaded; if the fetch fails it falls back to the embedded snapshot). That same file is the single source of truth edited in the "Slingshot — Ideal Sitemap" tool in Cowork — expand/collapse org-chart, click a node for its full rationale, paste a URL to auto-classify + add, then Publish to write changes back here.</div>
+  </section>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <section class="panel" id="summary">
+    <div class="sumhead"><span class="dtitle">For Dean — CEO briefing</span><button class="slink push" id="copyBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg> <span id="copyLabel">Copy</span></button></div>
+    <div class="summary-card" id="summaryCard">
+      <h2>Slingshot SEO &amp; AI Visibility — where we are</h2>
+      <p><b>The 60-second version.</b> We're rebuilding Slingshot's search presence on the site we already own rather than starting over — the domain has real authority (1,225 referring domains) that would take roughly two years to rebuild from scratch. The catch: that authority is pointed at the wrong pages. We get about 150,000 Google impressions a week, but we sit around position 33 and really only get clicked for our own brand name. None of the six pages we want to win on rank yet. For week one of a reset, that's exactly the expected starting line.</p>
+      <h3>What we're doing about it</h3>
+      <p>We start with <b>comparison pages</b> — "Slingshot vs Asana," "AgencyAnalytics alternative" — because that's where a buyer is closest to choosing, and where we can win fastest (we already rank on page 2 for one of them). From there we build the three pages a marketing buyer cares about most — <b>analytics, campaign management, project management</b> — and then define the category itself so Slingshot gets named when someone asks ChatGPT or Perplexity for the best tool.</p>
+      <h3>Where the numbers stand</h3>
+      <p>Target-page rankings: <b>0 of 6</b> (expected this early). From organic search this week we drove <b>0 demo requests and 1 self-serve first login</b> for Slingshot — tiny, but now tracked live from Salesforce and separated the way our product-led model actually works. Referring domains are <b>up 56</b>. AI share-of-voice: baseline pending. The honest tension is lots of impressions but almost no clicks — we rank too deep, on the wrong queries. Moving our money pages up is the whole game.</p>
+      <h3>What I need from you</h3>
+      <p>Nothing this week. One heads-up: when we restructure the URLs in a few weeks, rankings typically dip for 4–8 weeks before recovering higher — that's normal for this kind of rebuild, and I'll flag it in advance so a temporary dip isn't misread as the program failing.</p>
+    </div>
+  </section>
+</div>
+
+<script>
+  function esc(s){return (s==null?'':String(s)).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+  var accentDeep = getComputedStyle(document.body).getPropertyValue('--accent-deep').trim()||'#20226f';
+  var ACC = getComputedStyle(document.body).getPropertyValue('--accent').trim()||'#334ad3';
+  var ICPL={brand:"Brand",icpf:"ICP",stretch:"Stretch",off:"Off-ICP"};
+  function icpTag(k){return '<span class="icp '+k+'">'+ICPL[k]+'</span>';}
+  function pg(u){return u? '<span title="'+esc(u)+'">'+esc(u.replace('https://www.slingshotapp.io',''))+'</span>':'—';}
+  function volf(v){return v? v.toLocaleString():'—';}
+
+  /* ---- Traffic (GSC 28d + Ahrefs volume) ---- rows: [query,clicks,impr,ctr%,pos,page,ahrefsVol,icp] */
+  var CLK=[
+    ["slingshot",14,1778,"0.8%","9.3","/","brand",null],
+    ["slingshot app",11,289,"3.8%","4.7","/","brand",null],
+    ["singshort subscription",10,142,"7.0%","3.1","/en/help/docs/slingshot-subscription","brand",null],
+    ["singshort",9,262,"3.4%","7.7","/en/help/docs/slingshot-subscription","brand",null],
+    ["data catalog",8,1221,"0.7%","19.6","/blog/data-catalog/","off",3100],
+    ["data analysis example",7,1222,"0.6%","3.9","/blog/types-of-data-analysis/","off",null],
+    ["notion",6,16277,"0.04%","37.3","/blog/the-top-11-notion-alternatives/","off",667000],
+    ["slingshot application",5,62,"8.1%","3.5","/","brand",null],
+    ["slingshot apps",5,12,"41.7%","1.7","/","brand",null],
+    ["types of data visualization",4,98,"4.1%","19.1","/blog/9-best-data-visualization-examples/","off",null],
+    ["project management goals",3,273,"1.1%","11.2","/blog/project-management-goals/","stretch",200],
+    ["trello",3,4320,"0.07%","53.7","/blog/top-14-trello-alternatives/","off",335000],
+    ["agile marketing",2,803,"0.2%","40.4","/blog/agile-marketing/","stretch",1200]
+  ];
+  var IMP=[
+    ["task management",0,43758,"0%","36","/blog/top-task-management-tools/","off",15000],
+    ["data analysis",1,40675,"0.002%","60","/blog/types-of-data-analysis/","off",147000],
+    ["project management software",0,18654,"0%","88","/blog/ (project-management)","stretch",142000],
+    ["notion",6,16277,"0.04%","37","/blog/the-top-11-notion-alternatives/","off",667000],
+    ["trello",3,4320,"0.07%","54","/blog/top-14-trello-alternatives/","off",335000],
+    ["seo workflow",1,2327,"0.04%","9.7","/solutions/marketing/seo-workflow-software/","icpf",800],
+    ["construction project management software",0,2055,"0%","32","/blog/construction-project-management-software/","off",5200],
+    ["advanced analytics",0,1930,"0%","27","/blog/advanced-analytics-and-how-to-use-it/","off",3000],
+    ["data analytics tools",0,1852,"0%","15","/blog/best-data-analysis-tools/","stretch",3800],
+    ["machine learning visualization",0,1653,"0%","20","/blog/machine-learning-models-visualization/","off",150],
+    ["operations management",0,1646,"0%","26","/blog/what-is-operations-management/","off",8900],
+    ["seo tasks & workflow",0,1485,"0%","7","/solutions/marketing/seo-workflow-software/","icpf",200],
+    ["micromanagement",0,1390,"0%","18","/blog/what-is-micromanagement/","off",4400],
+    ["content marketing metrics",0,1356,"0%","31","/blog/content-marketing-kpis/","icpf",1100],
+    ["content marketing kpis",0,1267,"0%","9","/blog/content-marketing-kpis/","icpf",500],
+    ["ctor",0,1197,"0%","10","/blog/how-to-achieve-a-perfect-ctor/","icpf",1800],
+    ["seo analytics dashboard",0,1128,"0%","53","/templates/seo-google-analytics-dashboard/","icpf",1300],
+    ["predictive analytics",1,1100,"0.09%","22","/blog/predictive-analytics/","off",7400]
+  ];
+  var GAENG={"/":[85,819],"/en/help/docs/slingshot-subscription":[44,40],"/blog/data-catalog":[100,1333],"/blog/types-of-data-analysis":[67,476],"/blog/9-best-data-visualization-examples":[64,573],"/blog/project-management-goals":[32,318],"/blog/top-task-management-tools":[28,67],"/blog/best-data-analysis-tools":[47,271]};
+  function fmtDur(s){var m=Math.floor(s/60),ss=s%60;return m+':'+(ss<10?'0':'')+ss;}
+  function engFor(pageStr){if(!pageStr)return null;var k=String(pageStr).replace(/\/$/,'');if(k==='')k='/';return GAENG[k]||null;}
+  function trow(r){var e=engFor(r[5]);return '<tr><td class="q">'+esc(r[0])+'</td><td class="num">'+r[1]+'</td><td class="num">'+r[2].toLocaleString()+'</td><td class="num">'+r[3]+'</td><td class="num">'+r[4]+'</td><td class="pg">'+pg(r[5])+'</td><td class="num">'+volf(r[7])+'</td><td class="num">'+(e?e[0]+'%':'—')+'</td><td class="num">'+(e?fmtDur(e[1]):'—')+'</td><td>'+icpTag(r[6])+'</td></tr>';}
+  document.getElementById('clkBody').innerHTML=CLK.map(trow).join('');
+  document.getElementById('imprBody').innerHTML=IMP.map(trow).join('');
+  var OG=[["W22",418],["W23",483],["W24",386],["W25",242],["W26",230],["W27",224],["W28",248],["W29",191],["W30",185]];
+  var ogMax=Math.max.apply(null,OG.map(function(r){return r[1];}));
+  document.getElementById('ogBars').innerHTML=OG.map(function(r){var h=Math.round(r[1]/ogMax*100);return '<div class="bar"><span class="bv">'+r[1]+'</span><div class="bb" style="height:'+h+'%"></div><span class="bl">'+r[0]+'</span></div>';}).join('');
+
+  /* ---- Content roadmap ---- */
+  var PH={1:{n:"Comparisons",c:getComputedStyle(document.body).getPropertyValue('--p1').trim()},2:{n:"Marketing Analytics",c:getComputedStyle(document.body).getPropertyValue('--p2').trim()},3:{n:"Campaign + Project Mgmt",c:getComputedStyle(document.body).getPropertyValue('--p3').trim()},4:{n:"Category + AI",c:getComputedStyle(document.body).getPropertyValue('--p4').trim()}};
+  var STc={done:"#1a9e63",now:ACC,next:"#c07d16",later:"#9aa2b1"};
+  var ROADMAP=[
+    {wk:"Wk 1",ph:1,t:"Baseline scoreboard",s:"done"},
+    {wk:"Wk 1",ph:1,t:"Optimize the /compare/ hub",s:"now"},
+    {wk:"Wk 1",ph:1,t:"Migrate + optimize vs-Asana → /compare/",s:"now"},
+    {wk:"Wk 1",ph:1,t:"Build /compare/slingshot-vs-monday/",s:"now"},
+    {wk:"Wk 2",ph:1,t:"Ship vs-ClickUp; consolidate AgencyAnalytics + Klipfolio; spec 3 P1 hubs",s:"next"},
+    {wk:"Wk 3",ph:1,t:"Ship vs-Databox; finalize P1 hub briefs",s:"next"},
+    {wk:"Wk 4",ph:2,t:"Build /marketing-analytics/ hub",s:"later"},
+    {wk:"Wk 5",ph:3,t:"Build /campaign-management/ hub",s:"later"},
+    {wk:"Wk 6",ph:3,t:"Build /marketing-project-management/ hub",s:"later"},
+    {wk:"Wk 7",ph:3,t:"Consolidate 2 SEO pages; refresh KPI + content-KPI winners",s:"later"},
+    {wk:"Wk 8",ph:4,t:"Launch /marketing-execution-platform/ + thought-leadership",s:"later"}
+  ];
+  (function(){
+    var byPhase={1:[],2:[],3:[],4:[]}; ROADMAP.forEach(function(r){byPhase[r.ph].push(r);});
+    document.getElementById('rmPhase').innerHTML=[1,2,3,4].map(function(p){
+      return '<div class="rmphase"><div class="ph-t"><span class="chip" style="background:'+PH[p].c+'">Phase '+p+'</span> '+esc(PH[p].n)+'</div>'+
+        byPhase[p].map(function(r){return '<div class="rmitem"><span class="sdot" style="background:'+STc[r.s]+'"></span><span class="wk">'+r.wk+'</span><span>'+esc(r.t)+'</span></div>';}).join('')+'</div>';
+    }).join('');
+    var cols=[["done","Done"],["now","This week"],["next","Next"],["later","Later"]];
+    document.getElementById('rmKanban').innerHTML='<div class="kb">'+cols.map(function(c){
+      var items=ROADMAP.filter(function(r){return r.s===c[0];});
+      return '<div class="kbcol"><div class="kbh"><span class="dt" style="background:'+STc[c[0]]+'"></span>'+c[1]+' <span class="tcount">'+items.length+'</span></div>'+
+        items.map(function(r){return '<div class="kbcard" style="border-left:3px solid '+PH[r.ph].c+'">'+esc(r.t)+'<span class="kw2">'+r.wk+' · Phase '+r.ph+'</span></div>';}).join('')+'</div>';
+    }).join('')+'</div>';
+    document.getElementById('rmTimeline').innerHTML='<div class="rmtl">'+ROADMAP.map(function(r){
+      return '<div class="rmrow"><span class="rmwk">'+r.wk+'</span><div class="rmbar '+(r.s==='done'?'done':'')+'" style="background:'+PH[r.ph].c+'">'+esc(r.t)+'</div></div>';
+    }).join('')+'</div>';
+  })();
+  document.querySelectorAll('#tasks .rmbtn').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('#tasks .rmbtn').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('#tasks .rmview').forEach(function(v){v.classList.remove('on');});
+    b.classList.add('on');document.querySelector('#tasks .rmview[data-rm="'+b.dataset.rm+'"]').classList.add('on');
+  });});
+
+  /* ---- Live Slingshot tasks ---- */
+  var STAT={todo:'To do',done:'Done'};
+  var TASKS=[
+    {name:"Migrate all 14 /slingshot-vs-*/ pages into /compare/ (301 + optimize)",channel:"SEO Optimization",status:"todo",due:"2026-08-02"},
+    {name:"Optimize the /compare/ hub as the canonical anchor",channel:"SEO Optimization",status:"todo",due:"2026-08-02"},
+    {name:"Kill marketing-analytics cannibalization: stand up /marketing-analytics/, 301 the 3 dupes",channel:"Website",status:"todo",due:"2026-08-02"},
+    {name:"Kill campaign cannibalization: stand up /campaign-management/, 301 the 3 dupes",channel:"Website",status:"todo",due:"2026-08-02"},
+    {name:"Win \"X vs Y\" in AI answers: comparison schema + pitch the review domains LLMs cite",channel:"SEO / GEO",status:"todo",due:"2026-08-02"}
+  ];
+  document.getElementById('taskCount').textContent=TASKS.length;
+  var doneN=TASKS.filter(function(t){return t.status==='done';}).length;
+  document.getElementById('taskSummary').innerHTML='<b>'+TASKS.length+' tasks</b> · live from Slingshot · <b>'+doneN+'</b> done';
+  document.getElementById('tblBody').innerHTML=TASKS.map(function(t){
+    return '<tr><td class="tname">'+esc(t.name)+'</td><td>'+esc(t.channel)+'</td>'+
+      '<td><span class="who"><span class="av" style="background:'+accentDeep+'">CC</span> Casey Ciniello</span></td>'+
+      '<td><span class="pri P1">P1</span></td>'+
+      '<td><span class="stat '+t.status+'">'+STAT[t.status]+'</span>'+(t.completed?' <span class="donedate">'+esc(t.completed)+'</span>':'')+'</td>'+
+      '<td class="due">'+esc(t.due)+'</td></tr>';
+  }).join('');
+  function col(key,label,dot){var items=TASKS.filter(function(t){return t.status===key;});
+    return '<div class="col"><div class="col-h"><span class="dt" style="background:'+dot+'"></span> '+label+' <span class="cc">'+items.length+'</span></div>'+
+      items.map(function(t){return '<div class="tcard"><div class="tt">'+esc(t.name)+'</div><div class="tm"><span class="plt">'+esc(t.channel)+'</span><span class="pri P1">P1</span></div></div>';}).join('')+'</div>';}
+  document.getElementById('boardWrap').innerHTML=col('todo','To do','#9aa2b1')+'<div class="col"><div class="col-h"><span class="dt" style="background:'+ACC+'"></span> In progress <span class="cc">0</span></div></div>'+col('done','Done','#1a9e63');
+  document.querySelectorAll('#tasks .vbtn').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('#tasks .vbtn').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('#tasks .view').forEach(function(v){v.classList.remove('on');});
+    b.classList.add('on');document.querySelector('#tasks .view[data-view="'+b.dataset.view+'"]').classList.add('on');
+  });});
+
+  /* ---- Sitemap ---- */
+  var SITEMAP=[
+    /* ---- Money pages / hubs ---- */
+    {url:"/",status:"optimize",why:"Only ranks for our own brand today; make it the clear front door for the marketing-execution story.",kw:"slingshot software",cl:"Brand / Home",vol:60,sec:"slingshot app",sv:170,seo:false,tech:false},
+    {url:"/pricing/",status:"keep",why:"Converts branded/bottom-funnel traffic; no SEO change needed now.",kw:"slingshot pricing",cl:"Brand",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/why-slingshot/",status:"optimize",why:"Positioning page — align to the marketing-execution narrative and link to the pillars.",kw:"why slingshot",cl:"Positioning",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/all-features/",status:"keep",why:"Feature index; keep, ensure it links up to the money pages.",kw:"slingshot features",cl:"Product",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/product-tour/",status:"keep",why:"Product-tour hub; keep as the product proof layer.",kw:"product tour",cl:"Product",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/product-tour/data-analytics/",status:"optimize",why:"Real analytics proof — link up to the /marketing-analytics/ hub.",kw:"marketing dashboards",cl:"Product · Analytics",vol:350,sec:"",sv:0,seo:false,tech:false},
+    {url:"/product-tour/project-management/",status:"keep",why:"Work-management proof; link to the marketing-PM hub.",kw:"work management",cl:"Product · Work",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/product-tour/data-catalog/",status:"keep",why:"Ranks for 'data catalog' (3.1k) — weak ICP but keep and link.",kw:"data catalog",cl:"Product",vol:3100,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-ai/",status:"keep",why:"AI product page; keep, part of the AI-visibility story.",kw:"slingshot ai",cl:"Product · AI",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/integrations/",status:"keep",why:"Integrations hub (+ facebook-ads, google-ads, teams children); keep for coverage.",kw:"slingshot integrations",cl:"Product",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/marketing-leaders/",status:"optimize",why:"On-ICP landing for marketing leaders — tie into the analytics + category story.",kw:"marketing leaders",cl:"ICP landing",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/marketing-project-management/",status:"optimize",why:"ALREADY EXISTS (Nov 2024) — this IS the P1 Work hub; optimize + consolidate /solutions/marketing/project-management/ into it, don't rebuild.",kw:"marketing project management software",cl:"P1 Work hub",vol:1200,sec:"marketing work management",sv:200,seo:false,tech:false},
+    {url:"/marketing-analytics/",status:"build",why:"P1 Analytics hub — doesn't exist top-level yet; build it and consolidate the 3 marketing-analytics solution pages into it.",kw:"marketing analytics platform",cl:"P1 Analytics hub",vol:900,sec:"marketing reporting software; marketing dashboard software",sv:1200,seo:false,tech:false},
+    {url:"/campaign-management/",status:"build",why:"P1 Campaign hub — 1,000/mo, KD 8; consolidate the 3 scattered campaign pages here.",kw:"campaign management software",cl:"P1 Campaign hub",vol:1000,sec:"marketing calendar software",sv:600,seo:false,tech:false},
+    {url:"/marketing-execution-platform/",status:"build",why:"Category-defining pillar — seeds the demand we want to own and anchors the AI-citation play.",kw:"marketing execution platform",cl:"P2 Category",vol:40,sec:"",sv:0,seo:false,tech:false},
+    {url:"/content-seo/",status:"optimize",why:"Existing SEO-ish landing page — fold into the consolidated SEO discipline page.",kw:"content seo",cl:"P2 SEO",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/data-analytics/",status:"redirect",why:"Top-level data-analytics page overlapping the analytics hub — consolidate/301 into /marketing-analytics/.",kw:"data analytics",cl:"Dup / analytics",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/ppc-marketing-data-analytics/",status:"optimize",why:"PPC-analytics landing — align to the PPC discipline page.",kw:"ppc reporting dashboard",cl:"P2 PPC",vol:100,sec:"",sv:0,seo:false,tech:false},
+    {url:"/social-media-analytics/",status:"optimize",why:"Social-analytics landing — align to the social discipline page.",kw:"social media reporting",cl:"P2 Social",vol:800,sec:"",sv:0,seo:false,tech:false},
+    {url:"/ai-data-driven-growth/",status:"keep",why:"AI/GTM narrative page; keep, supports the category story.",kw:"ai data driven growth",cl:"Category",vol:0,sec:"",sv:0,seo:false,tech:false},
+
+    /* ---- Comparisons: 14 flat pages ALL EXIST → migrate under /compare/ + optimize ---- */
+    {url:"/compare/",status:"optimize",why:"Hub already exists but isn't optimized — make it the anchor all 14 competitor pages 301 into.",kw:"slingshot alternatives",cl:"P1 Compare hub",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-agency-analytics/",status:"redirect",why:"EXISTS · our best comparison asset (#14, 900/mo) — 301 to /compare/agencyanalytics-alternative/ and push to page 1.",kw:"agencyanalytics alternative",cl:"P1 Compare",vol:900,sec:"agencyanalytics alternatives",sv:600,seo:false,tech:false},
+    {url:"/slingshot-vs-asana/",status:"redirect",why:"EXISTS (flat, ~pos 54) — 301 into /compare/slingshot-vs-asana/. This week's task.",kw:"slingshot vs asana",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-monday/",status:"redirect",why:"EXISTS — 301 into /compare/slingshot-vs-monday/. This week's task (was mislabelled 'build').",kw:"slingshot vs monday",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-clickup/",status:"redirect",why:"EXISTS — 301 into /compare/slingshot-vs-clickup/ and optimize.",kw:"slingshot vs clickup",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-trello/",status:"redirect",why:"EXISTS — migrate into /compare/; also fold the /blog/trello-vs-asana/ post here.",kw:"slingshot vs trello",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-wrike/",status:"redirect",why:"EXISTS — migrate into /compare/; fold the /blog/wrike-vs-asana/ post here.",kw:"slingshot vs wrike",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-teamwork/",status:"redirect",why:"EXISTS — migrate into /compare/ and optimize.",kw:"slingshot vs teamwork",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-notion/",status:"redirect",why:"EXISTS — high-value (notion = 667k vol); migrate into /compare/ and optimize the answer-first intro.",kw:"slingshot vs notion",cl:"P1 Compare",vol:0,sec:"notion alternative",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-slack/",status:"redirect",why:"EXISTS — migrate into /compare/; align to collaboration-in-context angle.",kw:"slingshot vs slack",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-databox/",status:"redirect",why:"EXISTS — migrate into /compare/; pairs with 'databox alternative' (150).",kw:"slingshot vs databox",cl:"P1 Compare",vol:0,sec:"databox alternative",sv:150,seo:false,tech:false},
+    {url:"/slingshot-vs-dashthis/",status:"redirect",why:"EXISTS — migrate into /compare/ and optimize.",kw:"slingshot vs dashthis",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-funnel/",status:"redirect",why:"EXISTS — migrate into /compare/ and optimize.",kw:"slingshot vs funnel",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-klipfolio/",status:"redirect",why:"EXISTS · ranks #7–8 — migrate into /compare/ to consolidate the cluster.",kw:"klipfolio alternatives",cl:"P1 Compare",vol:200,sec:"",sv:150,seo:false,tech:false},
+    {url:"/slingshot-vs-looker-studio/",status:"redirect",why:"EXISTS — migrate into /compare/; 'looker studio alternative' is a strong BI-adjacent term.",kw:"slingshot vs looker studio",cl:"P1 Compare",vol:0,sec:"looker studio alternative",sv:0,seo:false,tech:false},
+    {url:"/slingshot-vs-tableau/",status:"redirect",why:"EXISTS — migrate into /compare/ and optimize.",kw:"slingshot vs tableau",cl:"P1 Compare",vol:0,sec:"",sv:0,seo:false,tech:false},
+
+    /* ---- Solutions · marketing (heavy cannibalization to consolidate) ---- */
+    {url:"/solutions/marketing/",status:"optimize",why:"Marketing overview — funnel to the discipline pages; tighten and interlink.",kw:"marketing work management",cl:"P2 overview",vol:200,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/marketing-analytics/",status:"redirect",why:"1 of THREE competing marketing-analytics pages — 301 into the /marketing-analytics/ hub.",kw:"marketing analytics",cl:"Dup · analytics",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/analytics/",status:"redirect",why:"2 of 3 analytics dupes — consolidate into /marketing-analytics/.",kw:"marketing analytics",cl:"Dup · analytics",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/performance-tracking/",status:"redirect",why:"3 of 3 analytics dupes — consolidate into /marketing-analytics/.",kw:"marketing performance tracking",cl:"Dup · analytics",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/project-management/",status:"redirect",why:"Overlaps the existing /marketing-project-management/ hub — 301 into it.",kw:"marketing project management",cl:"Dup · work",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/campaign-launch/",status:"redirect",why:"Campaign dupe — 301 into /campaign-management/.",kw:"campaign launch",cl:"Dup · campaign",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/paid-campaign-management/",status:"redirect",why:"Campaign dupe — 301 into /campaign-management/.",kw:"paid campaign management",cl:"Dup · campaign",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/campaign-management/",status:"redirect",why:"Campaign dupe — 301 into /campaign-management/.",kw:"campaign management",cl:"Dup · campaign",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/seo/",status:"build",why:"Consolidated SEO discipline page — merge the two existing SEO pages here (we rank #7–10).",kw:"seo workflow software",cl:"P2 SEO",vol:800,sec:"seo tasks & workflow",sv:200,seo:false,tech:false},
+    {url:"/solutions/marketing/seo-workflow-software/",status:"redirect",why:"Ranks #7–10 but competes with the other SEO page — 301 into /solutions/marketing/seo/.",kw:"seo workflow",cl:"P2 SEO",vol:800,sec:"",sv:0,seo:true,tech:false},
+    {url:"/solutions/marketing/seo-management/",status:"redirect",why:"Second SEO page splitting authority — 301 into the consolidated /seo/ page.",kw:"slingshot seo",cl:"P2 SEO",vol:60,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/content-calendar/",status:"optimize",why:"Content discipline candidate — align to content-marketing-workflow cluster.",kw:"content calendar software",cl:"P2 Content",vol:450,sec:"content marketing kpis",sv:500,seo:false,tech:false},
+    {url:"/solutions/marketing/social-media/",status:"optimize",why:"Rename to /social/ for taxonomy consistency; target social-reporting demand.",kw:"social media reporting",cl:"P2 Social",vol:800,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/growth-marketing/",status:"keep",why:"Satellite marketing page; keep and interlink.",kw:"growth marketing",cl:"P2 Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/growth-hacking/",status:"keep",why:"Satellite; keep, low priority.",kw:"growth hacking",cl:"P2 Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/abm/",status:"keep",why:"ABM landing; keep for coverage, maintenance only.",kw:"abm software",cl:"P2 Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/design-management/",status:"keep",why:"Creative-ops satellite; keep, low priority.",kw:"design management",cl:"P2 Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/event-management/",status:"keep",why:"Event-marketing satellite; keep. Dedupe with top-level /event-management/.",kw:"event management",cl:"P2 Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/marketing/marketing-agency/",status:"keep",why:"Agency ICP satellite; keep, links to client-collaboration content.",kw:"marketing agency software",cl:"P2 Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+
+    /* ---- Solutions · satellite / maintenance ---- */
+    {url:"/solutions/executive-team/",status:"keep",why:"Executive satellite audience; maintain, feeds the marketing core.",kw:"executive dashboards",cl:"Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/product-development/",status:"keep",why:"Product satellite (+ bug-tracking, roadmap, sprint, user-testing children); maintain.",kw:"product development",cl:"Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/private-equity-analytics/",status:"keep",why:"Finance satellite that earns impressions; maintain, don't invest.",kw:"private equity analytics",cl:"Satellite",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/operations-management/",status:"keep",why:"Ops satellite; maintain.",kw:"operations management",cl:"Satellite",vol:8900,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/it-management/",status:"keep",why:"IT — maintenance-only per ICP rules.",kw:"it management",cl:"Maintenance",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/hr/",status:"keep",why:"HR — maintenance-only; keep what ranks.",kw:"hr software",cl:"Maintenance",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/construction/",status:"keep",why:"Off-ICP but earns impressions; keep as maintenance, do not build out.",kw:"construction management",cl:"Maintenance",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/manufacturing-operations/",status:"keep",why:"Off-ICP satellite; maintenance only.",kw:"manufacturing operations",cl:"Maintenance",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/team-management/",status:"keep",why:"Generic PM satellite; maintenance only.",kw:"team management",cl:"Maintenance",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/remote-work-software/",status:"keep",why:"Off-ICP satellite; maintenance only.",kw:"remote work software",cl:"Maintenance",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/solutions/startups/",status:"keep",why:"Startup satellite; keep, low priority.",kw:"startup software",cl:"Maintenance",vol:0,sec:"",sv:0,seo:false,tech:false},
+
+    /* ---- Whitepapers (GEO / citation + PR assets) ---- */
+    {url:"/whitepapers/the-revenue-accountable-marketing-playbook-for-saas-teams/",status:"optimize",why:"Directly on-message for the reset — a prime AI-citation + gated-lead asset; surface it from the pillars.",kw:"revenue accountable marketing",cl:"GEO asset",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/whitepapers/signal-to-action-marketing-framework/",status:"optimize",why:"Category framework content — quotable for LLMs; link from the category pillar.",kw:"marketing execution framework",cl:"GEO asset",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/whitepapers/the-future-of-gtm/",status:"keep",why:"GTM thought-leadership; keep as a citation/PR asset.",kw:"future of gtm",cl:"GEO asset",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/2025-digital-work-trends-report/",status:"keep",why:"Quotable original data — a citation magnet for AI answers and PR.",kw:"digital work trends",cl:"GEO asset",vol:0,sec:"",sv:0,seo:false,tech:false},
+
+    /* ---- Templates (hub + top rankers; ~40 more not listed individually) ---- */
+    {url:"/templates/",status:"optimize",why:"Templates hub — strong long-tail engine; ensure it links up to the discipline pages.",kw:"dashboard templates",cl:"Templates hub",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/templates/ppc-google-analytics-4/",status:"keep",why:"Ranks #2 and supports the PPC discipline — keep and link up.",kw:"google analytics ppc dashboard",cl:"Template",vol:90,sec:"",sv:0,seo:true,tech:false},
+    {url:"/templates/seo-google-analytics-dashboard/",status:"keep",why:"Ranks #5, on-ICP — link into the SEO discipline page.",kw:"seo google analytics dashboard",cl:"Template",vol:350,sec:"",sv:0,seo:true,tech:false},
+
+    /* ---- Blog (toggle) ---- */
+    {url:"/blog/dashboards-dont-improve-marketing-performance/",status:"optimize",blog:true,why:"On-message category thought-leadership — link into the analytics hub and the category pillar.",kw:"marketing execution",cl:"Category spoke",vol:0,sec:"",sv:0,seo:false,tech:false},
+    {url:"/blog/top-35-marketing-kpis-to-track/",status:"optimize",blog:true,why:"On-ICP winner — refresh and internal-link up to the analytics hub.",kw:"marketing kpis",cl:"Analytics spoke",vol:1200,sec:"kpi in marketing",sv:400,seo:true,tech:false},
+    {url:"/blog/content-marketing-kpis/",status:"optimize",blog:true,why:"Ranks #9 and on-ICP — feed it into the content discipline page.",kw:"content marketing kpis",cl:"Content spoke",vol:500,sec:"content marketing metrics",sv:1100,seo:false,tech:false},
+    {url:"/blog/marketing-dashboard-tool/",status:"optimize",blog:true,why:"#14 for a commercial term — strengthen or fold into /marketing-analytics/.",kw:"marketing dashboard software",cl:"Analytics spoke",vol:350,sec:"",sv:0,seo:false,tech:false},
+    {url:"/blog/what-is-micromanagement/",status:"keep",blog:true,why:"Our biggest traffic magnet but converts nobody — keep live (has links), stop treating as a win.",kw:"micromanagement",cl:"Off-ICP",vol:4400,sec:"",sv:0,seo:false,tech:false},
+    {url:"/blog/top-12-slack-alternatives/",status:"remove",blog:true,why:"Off-ICP and sends buyers elsewhere — re-angle around collaboration-in-context or prune with a 301.",kw:"slack alternatives",cl:"Off-ICP",vol:1600,sec:"",sv:0,seo:false,tech:false},
+    {url:"/blog/trello-vs-asana/",status:"redirect",blog:true,why:"Actively unhelpful — sends buyers to weigh competitors with us absent; 301 into /compare/slingshot-vs-trello/.",kw:"trello vs asana",cl:"Compete",vol:1200,sec:"",sv:0,seo:false,tech:false},
+    {url:"/blog/wrike-vs-asana/",status:"redirect",blog:true,why:"Same problem as trello-vs-asana — 301 into /compare/slingshot-vs-wrike/.",kw:"wrike vs asana",cl:"Compete",vol:600,sec:"",sv:0,seo:false,tech:false}
+  ];
+  var ST_ORDER=["build","optimize","redirect","keep","optimized","remove"];
+  var ST_LABEL={keep:"Keep",optimize:"Optimize",optimized:"Optimized",redirect:"Redirect",remove:"Remove",build:"Build"};
+  var ST_DOT={keep:"#9aa2b1",optimize:ACC,optimized:"#1a9e63",redirect:"#c07d16",remove:"#d24b6f",build:"#7b5cf0"};
+  var smFilter="all", showBlog=false;
+  function visible(){return SITEMAP.filter(function(p){return (showBlog||!p.blog)&&(smFilter==='all'||p.status===smFilter);});}
+  function buildFilters(){
+    var host=document.getElementById('smFilters'), c={}; SITEMAP.forEach(function(p){c[p.status]=(c[p.status]||0)+1;});
+    var html='<button class="fchip'+(smFilter==='all'?' on':'')+'" data-f="all">All</button>';
+    ST_ORDER.forEach(function(s){if(c[s])html+='<button class="fchip'+(smFilter===s?' on':'')+'" data-f="'+s+'"><span class="d" style="background:'+ST_DOT[s]+'"></span>'+ST_LABEL[s]+' <span class="tcount">'+c[s]+'</span></button>';});
+    host.innerHTML=html;
+    host.querySelectorAll('.fchip').forEach(function(b){b.addEventListener('click',function(){
+      host.querySelectorAll('.fchip').forEach(function(x){x.classList.remove('on');});b.classList.add('on');
+      smFilter=b.dataset.f;renderList();renderTree();
+    });});
+  }
+  function renderList(){
+    var data=visible();
+    document.getElementById('smSummary').innerHTML='<b>'+data.length+'</b> URLs shown';
+    document.getElementById('smBody').innerHTML=data.map(function(p){
+      return '<tr><td><span class="u">'+esc(p.url)+'</span></td>'+
+        '<td><span class="st '+p.status+'">'+ST_LABEL[p.status]+'</span></td>'+
+        '<td class="why">'+esc(p.why||'')+'</td>'+
+        '<td class="kw">'+esc(p.kw||'—')+'</td>'+
+        '<td class="cl">'+esc(p.cl||'')+'</td>'+
+        '<td class="vol">'+(p.vol?p.vol.toLocaleString():'—')+'</td>'+
+        '<td class="'+(p.sec?'kw':'muted2')+'">'+esc(p.sec||'—')+'</td>'+
+        '<td class="vol">'+(p.sv?p.sv.toLocaleString():'—')+'</td>'+
+        '<td>'+(p.seo?'<span class="chk">✓</span>':'<span class="no">—</span>')+'</td>'+
+        '<td>'+(p.tech?'<span class="chk">✓</span>':'<span class="no">—</span>')+'</td></tr>';
+    }).join('')||'<tr><td colspan="10" style="padding:26px;text-align:center;color:var(--muted)">Nothing in this view.</td></tr>';
+  }
+  function renderTree(){
+    var data=visible(),root={};
+    data.forEach(function(p){var segs=p.url.split('/').filter(Boolean);if(!segs.length)segs=['(home)'];var node=root;
+      segs.forEach(function(seg,i){node.children=node.children||{};node.children[seg]=node.children[seg]||{seg:seg,children:null,leaf:null};if(i===segs.length-1)node.children[seg].leaf=p;node=node.children[seg];});});
+    function draw(node,depth){if(!node.children)return '';
+      return '<ul class="tree-ul'+(depth===0?' root':'')+'">'+Object.keys(node.children).map(function(k){
+        var ch=node.children[k],p=ch.leaf,hasKids=ch.children&&Object.keys(ch.children).length;
+        var dot=p?'<span class="tdot" style="background:'+ST_DOT[p.status]+'"></span>':'<span class="tdot" style="background:transparent;border:1px solid var(--line)"></span>';
+        var label=p?'<span class="tleaf">/'+esc(k)+'/</span> <span class="st '+p.status+'" style="transform:scale(.85)">'+ST_LABEL[p.status]+'</span>':'<span class="tdir">/'+esc(k)+'/</span>'+(hasKids?' <span class="tcount">'+Object.keys(ch.children).length+'</span>':'');
+        return '<li><span class="tseg">'+dot+label+'</span>'+(hasKids?draw(ch,depth+1):'')+'</li>';
+      }).join('')+'</ul>';}
+    document.getElementById('smTree').innerHTML=draw(root,0);
+  }
+  var bt=document.getElementById('blogToggle');
+  bt.addEventListener('click',function(){showBlog=!showBlog;bt.classList.toggle('on',showBlog);renderList();renderTree();});
+  function initSitemap(){document.getElementById('smCount').textContent=SITEMAP.length;buildFilters();renderList();renderTree();}
+  initSitemap();
+  /* Upgrade to the live source of truth: sitemap.json sits next to this file in the repo and is
+     written by the editable Cowork sitemap tool. If it loads, render from it; otherwise keep the
+     embedded snapshot below. */
+  (function(){
+    try{fetch('sitemap.json',{cache:'no-store'})
+      .then(function(r){return r&&r.ok?r.json():null;})
+      .then(function(j){if(j&&Array.isArray(j.urls)&&j.urls.length){SITEMAP=j.urls;smFilter='all';initSitemap();
+        var head=document.querySelector('#sitemap .smhead');
+        if(head&&!document.getElementById('smLive')){var s=document.createElement('span');s.id='smLive';s.style.cssText='font-size:11px;font-weight:700;color:var(--good)';head.appendChild(s);}
+        var b=document.getElementById('smLive');if(b)b.textContent='● live from sitemap.json'+(j.updated?' · updated '+j.updated:'');
+      }})
+      .catch(function(){});}catch(e){}
+  })();
+  document.querySelectorAll('#sitemap .vbtn').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('#sitemap .vbtn').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('#sitemap .view').forEach(function(v){v.classList.remove('on');});
+    b.classList.add('on');document.querySelector('#sitemap .view[data-smview="'+b.dataset.smview+'"]').classList.add('on');
+  });});
+
+  /* ---- copy ---- */
+  var copyBtn=document.getElementById('copyBtn'),copyLabel=document.getElementById('copyLabel'),card=document.getElementById('summaryCard');
+  copyBtn.addEventListener('click',function(){var html=card.innerHTML.trim(),text=card.innerText.trim();
+    function fin(){copyBtn.classList.add('copied');copyLabel.textContent='Copied!';setTimeout(function(){copyBtn.classList.remove('copied');copyLabel.textContent='Copy';},1800);}
+    if(navigator.clipboard&&window.ClipboardItem){navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([text],{type:'text/plain'})})]).then(fin).catch(function(){navigator.clipboard.writeText(text).then(fin);});}
+    else if(navigator.clipboard){navigator.clipboard.writeText(text).then(fin);}
+    else{var r=document.createRange();r.selectNode(card);var s=getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy');fin();}catch(e){}s.removeAllRanges();}
+  });
+
+  /* ---- tabs ---- */
+  document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
+    t.classList.add('on');document.getElementById(t.dataset.tab).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });});
+</script>
+</body>
+</html>

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ignite UI for Angular — Weekly SEO Brief · Aug 2 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
+    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
+    --gray:#8a93a3; --gray-bg:#eef0f5;
+    /* Ignite UI brand — orange (theme-ui) */
+    --magenta:#FF6B2C; --magenta-soft:#FFEEE2; --amber:#FF9A4D; --pink:#FFB07A; --accent-deep:#E14E12;
+    --mono:'Roboto Mono',monospace;
+    --sans:'GT Walsheim','GT Walsheim Pro','GT Walsheim App',Roboto,system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:28px 22px 80px}
+
+  header.top{background:linear-gradient(120deg,var(--amber) 0%,var(--magenta) 55%,var(--accent-deep) 100%);color:#fff;border-radius:16px;padding:22px 26px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
+  header.top .logochip{display:inline-block;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14)}
+  header.top .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:27px;font-weight:900}
+  header.top h1 span{font-weight:500;opacity:.9}
+  header.top .meta{margin-top:14px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)}
+  header.top .meta b{color:#fff;font-weight:700}
+
+  .tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin:8px 4px 0;padding-top:18px;flex-wrap:wrap}
+  .tab{appearance:none;background:none;border:none;font:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:12px 18px;cursor:pointer;border-bottom:2px solid transparent;display:flex;align-items:center;gap:8px}
+  .tab:hover{color:var(--navy)}
+  .tab.active{color:var(--magenta);border-bottom-color:var(--magenta)}
+  .tab .badge{background:var(--gray-bg);color:var(--muted);font-size:11px;font-weight:700;padding:1px 8px;border-radius:999px}
+  .tab.active .badge{background:var(--magenta-soft);color:var(--accent-deep)}
+  .tabpane{display:none}
+  .tabpane.active{display:block}
+
+  h2.sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:34px 4px 14px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{width:22px;height:22px;border-radius:6px;background:var(--magenta-soft);color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+  .pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px;letter-spacing:.02em;white-space:nowrap}
+  .p-good{background:var(--good-bg);color:var(--good)}.p-warn{background:var(--warn-bg);color:var(--warn)}.p-bad{background:var(--bad-bg);color:var(--bad)}.p-gray{background:var(--gray-bg);color:var(--gray)}.p-build{background:var(--magenta-soft);color:var(--accent-deep)}
+  .tnew{display:inline-block;font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.04em;color:#fff;background:var(--magenta);padding:1px 6px;border-radius:4px;margin-left:8px;vertical-align:middle}
+
+  /* VP readout */
+  .vp{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:760px){.vp{grid-template-columns:1fr}}
+  .vpcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;border-top:3px solid var(--gray)}
+  .vpcard.good{border-top-color:var(--good)}.vpcard.watch{border-top-color:var(--amber)}.vpcard.bad{border-top-color:var(--bad)}
+  .vpcard .vlab{font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:7px;color:var(--gray)}
+  .vpcard.good .vlab{color:var(--good)}.vpcard.watch .vlab{color:var(--warn)}.vpcard.bad .vlab{color:var(--bad)}
+  .vpcard h4{font-size:14.5px;font-weight:700;color:var(--navy);margin:0 0 6px;line-height:1.3}
+  .vpcard p{font-size:13px;line-height:1.5;color:var(--ink);margin:0}
+  .vpcard p b{color:var(--navy)}
+
+  .lead{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--magenta);border-radius:14px;padding:20px 24px}
+  .lead p{margin:0 0 11px;font-size:15px;line-height:1.62}.lead p:last-child{margin-bottom:0}
+  .lead b{font-weight:700;color:var(--navy)}.lead .bright{color:var(--good);font-weight:700}
+  .lead code{font-family:var(--mono);font-size:12.5px;background:var(--magenta-soft);color:#9a3b12;padding:1px 5px;border-radius:4px}
+
+  .kpigrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:820px){.kpigrid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.kpigrid{grid-template-columns:1fr 1fr}}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;position:relative}
+  .kpi .lab{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600;max-width:70%}
+  .toolbadge{position:absolute;top:12px;right:12px;font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.02em;padding:3px 7px;border-radius:5px;color:#fff}
+  .tb-gsc{background:#4285F4}.tb-ga4{background:#E37400}.tb-sf{background:#00A1E0}.tb-ahrefs{background:#0b4bd6}.tb-amp{background:#3a5bd9}
+  .kpi .row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:10px 0 2px}
+  .kpi .val{font-family:var(--mono);font-size:24px;font-weight:600;line-height:1;color:var(--navy)}
+  .kpi .val em{font-style:normal;font-size:12px;color:var(--muted)}
+  .kpi .delta{font-family:var(--mono);font-size:11px;font-weight:600}
+  .up{color:var(--good)}.down{color:var(--bad)}.flat{color:var(--gray)}
+  .kpi .spark{margin-top:8px}
+  .kpi .insight{font-size:11px;color:var(--muted);margin-top:9px;line-height:1.45}
+  .gauge{margin-top:8px;height:8px;border-radius:6px;background:#e9e9f4;position:relative;overflow:hidden}
+  .gauge i{position:absolute;left:0;top:0;bottom:0;background:var(--bad);border-radius:6px}
+  .gauge .tk{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--navy);opacity:.45}
+
+  .scorewrap{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  thead th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 16px;text-align:left;border-bottom:1px solid #dce3f0}
+  thead th.r{text-align:right}
+  tbody td{padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:#fafbff}
+  .g-goal{font-weight:500;color:var(--navy);line-height:1.35}
+  .g-goal small{display:block;font-family:var(--mono);font-weight:400;font-size:10px;color:var(--gray);margin-top:3px}
+  td.cur,td.tgt{font-family:var(--mono);text-align:right}
+  td.cur{font-weight:600;font-size:16px;color:var(--navy)}
+  td.cur small{font-size:11px;color:var(--muted);font-weight:400}
+  td.cur .na{font-size:11px;color:var(--gray)}
+  td.tgt{color:var(--muted);font-size:12px}
+  td.insightcol{font-size:12px;color:var(--muted);line-height:1.4;max-width:230px}
+  .prog{height:8px;background:#e9e9f4;border-radius:6px;overflow:hidden;position:relative;min-width:90px}
+  .prog i{display:block;height:100%;border-radius:6px}
+  .prog .tk{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--navy);opacity:.5}
+  .f-good{background:var(--good)}.f-warn{background:var(--amber)}.f-bad{background:var(--bad)}.f-neu{background:var(--gray)}
+  td.st{text-align:right}
+
+  .cluster{margin-top:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+  .cl-head{padding:16px 20px 14px}
+  .cl-top{display:flex;align-items:center;gap:10px;margin-bottom:9px;flex-wrap:wrap}
+  .cl-top h3{font-weight:700;font-size:16px;margin:0;color:var(--navy)}
+  .cl-top .page{font-family:var(--mono);font-size:11px;color:var(--cobalt);background:var(--peri-soft);padding:3px 8px;border-radius:6px}
+  .cl-top .verdict{margin-left:auto}
+  .cl-read{margin:0;font-size:14px;line-height:1.56;color:var(--ink)}
+  .cl-read b{color:var(--navy);font-weight:700}
+  .cl-read code{font-family:var(--mono);font-size:12px;background:var(--gray-bg);padding:1px 5px;border-radius:3px}
+  .kwt-wrap{border-top:1px solid var(--line)}
+  table.kwt{font-size:12.5px}
+  .kwt thead th{background:#f6f8fc;padding:8px 12px}
+  .kwt tbody td{padding:9px 12px}
+  .kwt tbody td:first-child{padding-left:20px}
+  .kw{color:var(--navy)}
+  .kwt td.num{font-family:var(--mono);text-align:right;color:var(--muted)}
+  .kwt td.vol{font-family:var(--mono);text-align:right;color:var(--navy);font-size:12px}
+  .kwt td.pageco{font-family:var(--mono);font-size:10.5px;color:var(--cobalt)}
+  .pos{font-family:var(--mono);font-weight:600;font-size:14px;color:var(--navy)}
+  .pos.best{color:var(--good)}
+  .cl-note{font-family:var(--mono);font-size:10.5px;color:var(--gray);margin:12px 4px 0;line-height:1.5}
+
+  .ai-top{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+  @media(max-width:640px){.ai-top{grid-template-columns:1fr 1fr}}
+  .ai-stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .ai-stat .l{font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .ai-stat .v{font-family:var(--mono);font-weight:600;font-size:23px;color:var(--navy);margin-top:6px}
+  .ai-stat .w{font-family:var(--mono);font-size:10.5px;margin-top:4px}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:720px){.twocol{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .card h4{font-weight:700;font-size:13.5px;margin:0 0 3px;color:var(--navy)}
+  .card .cap{font-size:11px;color:var(--muted);margin:0 0 14px}
+  .bars{display:flex;flex-direction:column;gap:9px}
+  .bar-row{display:grid;grid-template-columns:150px 1fr 40px;align-items:center;gap:10px}
+  .bar-row .bl{font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bar-row .bt{height:15px;background:var(--gray-bg);border-radius:4px;overflow:hidden}
+  .bar-row .bt i{display:block;height:100%;background:var(--peri);border-radius:4px;opacity:.55}
+  .bar-row .bv{font-family:var(--mono);font-size:11px;text-align:right;color:var(--muted)}
+  .bar-row.me .bl{color:var(--magenta);font-weight:700}.bar-row.me .bt i{background:var(--magenta);opacity:1}.bar-row.me .bv{color:var(--magenta);font-weight:600}
+  .sentiment{display:flex;height:24px;border-radius:6px;overflow:hidden;font-family:var(--mono);font-size:10px;font-weight:600}
+  .sentiment span{display:flex;align-items:center;justify-content:center;color:#fff}
+  .s-pos{background:var(--good)}.s-neu{background:var(--gray)}.s-neg{background:var(--bad)}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+  .chip{font-family:var(--mono);font-size:10.5px;color:#9a3b12;background:var(--magenta-soft);padding:4px 9px;border-radius:999px}
+  .tnote{font-size:13px;color:var(--ink);margin:12px 0 0;line-height:1.5}.tnote b{color:var(--navy);font-weight:700}
+  .ainote{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--amber);border-radius:14px;padding:18px 22px;font-size:14px;line-height:1.6;color:var(--ink)}
+  .ainote b{color:var(--navy)}
+  .ainote code{font-family:var(--mono);font-size:12.5px;background:var(--magenta-soft);color:#9a3b12;padding:1px 5px;border-radius:4px}
+
+  .task{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:12px}
+
+  /* tasks tab */
+  .tk-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:20px 0 16px}
+  .seg{display:inline-flex;background:#eef0f5;border-radius:9px;padding:3px}
+  .seg button{appearance:none;border:none;background:none;font:inherit;font-size:12.5px;font-weight:600;color:var(--muted);padding:6px 15px;border-radius:7px;cursor:pointer}
+  .seg button.active{background:#fff;color:var(--navy);box-shadow:0 1px 3px rgba(0,0,0,.10)}
+  .tk-meta{font-size:13px;color:var(--muted)}.tk-meta b{color:var(--navy);font-weight:700}
+  .tk-open{margin-left:auto;background:var(--magenta);color:#fff;border-radius:9px;padding:9px 16px;font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;gap:7px;align-items:center}
+  .tk-open:hover{background:var(--accent-deep)}
+  .tkwrap{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  table.tkt{width:100%;border-collapse:collapse;font-size:13px}
+  .tkt thead th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:11px 16px;text-align:left;border-bottom:1px solid #dce3f0}
+  .tkt tbody td{padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
+  .tkt tbody tr:last-child td{border-bottom:none}
+  .tkt tbody tr:hover{background:#fafbff}
+  .tkt .tname{font-weight:600;color:var(--navy);max-width:440px;line-height:1.35}
+  .tkt .tname .tins{display:block;font-weight:400;font-size:11px;color:var(--muted);margin-top:3px}
+  .trk{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+  .owner{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+  .av{width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;font-family:var(--mono);flex:none}
+  .av.casey{background:#d9a441}.av.pooj{background:#E14E12}.av.dev{background:#2A41A2}.av.none{background:var(--gray)}
+  .pri{font-family:var(--mono);font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:6px}
+  .pri.p1{background:var(--bad-bg);color:var(--bad)}.pri.p2{background:var(--warn-bg);color:var(--warn)}.pri.p3{background:var(--magenta-soft);color:var(--accent-deep)}.pri.pnone{background:var(--gray-bg);color:var(--gray)}
+  .stat{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--navy);white-space:nowrap}
+  .stat .dot{width:7px;height:7px;border-radius:50%;flex:none}
+  .st-todo .dot{background:var(--gray)}.st-todo{color:var(--muted)}
+  .st-prog .dot{background:var(--cobalt)}.st-prog{color:var(--cobalt)}
+  .st-review .dot{background:var(--peri)}.st-review{color:var(--peri)}
+  .st-done .dot{background:var(--good)}.st-done{color:var(--good)}
+  .due{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+  .due.over{color:var(--bad);font-weight:600}
+  .board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media(max-width:820px){.board{grid-template-columns:1fr 1fr}}
+  .bcol{background:#fafbff;border:1px solid var(--line);border-radius:12px;padding:12px}
+  .bcol h5{margin:0 0 10px;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:7px}
+  .bcol h5 .c{background:#fff;border:1px solid var(--line);border-radius:999px;font-size:10px;padding:0 7px;color:var(--muted)}
+  .bcard{background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin-bottom:8px;font-size:12px;line-height:1.35;color:var(--navy)}
+  .bcard:last-child{margin-bottom:0}
+  .bcard .bm{display:flex;justify-content:space-between;align-items:center;margin-top:8px;gap:8px}
+  .tl-row{display:grid;grid-template-columns:96px 1fr;gap:14px;padding:11px 4px;border-bottom:1px solid var(--line);align-items:center}
+  .tl-row:last-child{border-bottom:none}
+  .tl-date{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+  .tl-date.over{color:var(--bad);font-weight:600}
+
+  /* summary tab */
+  .sum-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:22px 4px 14px;flex-wrap:wrap}
+  .sum-head h3{margin:0;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .copybtn{background:var(--magenta);color:#fff;border:none;border-radius:9px;padding:9px 16px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+  .copybtn:hover{background:var(--accent-deep)}
+  .copybtn.ok{background:var(--good)}
+  .sumcard{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--magenta);border-radius:14px;padding:26px 30px}
+  .sumcard h4{font-size:19px;font-weight:800;color:var(--navy);margin:0 0 14px;line-height:1.3}
+  .sumcard h5{font-size:14px;font-weight:700;color:var(--navy);margin:22px 0 8px}
+  .sumcard p{font-size:14px;line-height:1.62;margin:0 0 12px;color:var(--ink)}
+  .sumcard ul{margin:0 0 12px;padding-left:20px}
+  .sumcard li{font-size:14px;line-height:1.55;margin-bottom:6px;color:var(--ink)}
+  .sumcard b{color:var(--navy);font-weight:700}
+  .sumcard code{font-family:var(--mono);font-size:12.5px;background:var(--magenta-soft);color:#9a3b12;padding:1px 5px;border-radius:4px}
+
+  /* definitions tab */
+  .defintro{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--cobalt);border-radius:14px;padding:18px 22px;margin:20px 0 18px;font-size:14px;line-height:1.6;color:var(--ink)}
+  .defintro b{color:var(--navy)}
+  .deftbl-wrap{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:26px}
+  table.deftbl{width:100%;border-collapse:collapse;font-size:13px}
+  .deftbl thead th{background:#eef2fa;font-size:10px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 14px;text-align:left;border-bottom:1px solid #dce3f0}
+  .deftbl tbody td{padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
+  .deftbl tbody tr:last-child td{border-bottom:none}
+  .deftbl .term{font-weight:700;color:var(--navy);width:150px}
+  .deftbl .src{font-family:var(--mono);font-size:11px;color:var(--accent-deep);font-weight:600;white-space:nowrap}
+  .deftbl .why b{color:var(--navy)}
+  .deftbl .alt{color:var(--muted);font-size:12px}
+  .deftbl .alt b{color:var(--bad)}
+  .subhead{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:6px 4px 12px}
+  .sot-rule{background:var(--magenta-soft);border:1px solid #ffd9c2;border-radius:14px;padding:14px 18px;margin-bottom:24px;font-size:13.5px;line-height:1.55;color:#8a3a12}.sot-rule b{color:#9a3b12;font-weight:700}
+
+  .foot{margin-top:30px;font-size:11.5px;color:var(--gray);border-top:1px solid var(--line);padding-top:14px;line-height:1.7}
+  a{color:var(--cobalt)}
+  @media(max-width:720px){.wrap{padding:20px 14px 60px}.tkt .col-track,.tkt .col-due{display:none}.deftbl .col-mean{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="logochip"><svg width="150" height="26" viewBox="0 0 150 26" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ignite UI"><defs><linearGradient id="iu" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF9A4D"/><stop offset="0.6" stop-color="#FF6B2C"/><stop offset="1" stop-color="#E14E12"/></linearGradient></defs><rect x="0" y="3" width="20" height="20" rx="5" fill="url(#iu)"/><path d="M7 8 h6 v2 h-2 v6 h2 v2 h-6 v-2 h2 v-6 h-2 z" fill="#fff"/><text x="27" y="19" font-family="Roboto,system-ui,sans-serif" font-size="17" font-weight="900" fill="#0F172A">Ignite UI</text><text x="103" y="19" font-family="Roboto,system-ui,sans-serif" font-size="12" font-weight="600" fill="#E14E12">Angular</text></svg></div>
+    <div class="kick">infragistics.com/products/ignite-ui-angular · Organic / SEO</div>
+    <h1>Weekly SEO Brief <span>/ Angular UI components</span></h1>
+    <div class="meta">
+      <span>Report date <b>Sun 2 Aug 2026</b></span>
+      <span>Window <b>Jul 20&ndash;26</b> vs <b>Jul 13&ndash;19</b></span>
+      <span>Owner <b>Casey</b> (PMM)</span>
+      <span>Status <b>Ranking well, measuring poorly</b></span>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="report">Report</button>
+    <button class="tab" data-tab="tasks">Tasks <span class="badge">10</span></button>
+    <button class="tab" data-tab="summary">Summary</button>
+    <button class="tab" data-tab="definitions">Definitions</button>
+  </nav>
+
+  <!-- ============ REPORT ============ -->
+  <section id="report" class="tabpane active">
+
+  <h2 class="sec"><span class="n">&#9733;</span> VP readout — the 3 things to know</h2>
+  <div class="vp">
+    <div class="vpcard good fbx">
+      <div class="vlab">What's working</div>
+      <h4>Component docs own the top of Google</h4>
+      <p>We hold <b>134 keywords in the top 3</b> (+4 WoW) and just cracked page one for <code>data binding in angular</code> (1,200 vol) — that one entry lifted our biggest page <b>+63%</b> to 162 visits.</p>
+    </div>
+    <div class="vpcard bad fbx">
+      <div class="vlab">What's not</div>
+      <h4>The highest-volume terms aren't top 3 — and charts slipped</h4>
+      <p><code>angular datagrid</code> (300 vol) is stuck at <b>#6</b> and <code>angular chart</code> fell <b>5&rarr;8</b>. Big demand, but sitting just below the positions that get the clicks.</p>
+    </div>
+    <div class="vpcard watch fbx">
+      <div class="vlab">The priority</div>
+      <h4>Push the data-binding cluster, defend charts, fix tracking</h4>
+      <p>Optimize the WPF-to-Angular guide onto the top 3, refresh the charts page, and close the <b>GA4 blind spot</b> — our docs pages are nearly invisible to on-site analytics.</p>
+    </div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Executive summary</h2>
+  <div class="lead">
+    <p><b>Ignite UI for Angular ranks strongly across its component terms and just won its highest-volume query — but almost none of that traffic is measurable, and a couple of high-value terms are slipping.</b></p>
+    <p>The bright spot is <span class="bright">component docs</span>. The Angular section holds 134 keywords in the top 3, leads on the grid family (<code>angular tree grid</code> #1, <code>hierarchical grid</code> #1&ndash;2, <code>angular group by</code> #1), and this week the WPF-to-Angular guide picked up <code>data binding in angular</code> (1,200 vol, difficulty 1) at #8 — enough to make it our single biggest organic page at 162 visits (+63 WoW). Modeled organic traffic ticked up to <b>1,610/mo</b> (+4.5%).</p>
+    <p>The gaps are ours to fix. A few high-demand terms <b>rank but sit outside the top 3</b> — <code>angular datagrid</code> at #6, <code>angular chart</code> down to #8, the date-range-picker page off 15 visits. And the bigger flag isn't search at all, it's <b>measurement</b>: GA4 records only ~13 organic sessions/week on Angular pages against Ahrefs' 1,610/mo model, because the component and docs pages that carry the traffic are barely instrumented. We're steering on ranking data alone. The job now is execution: push the near-miss pages onto the top 3, defend charts, and get the docs app onto analytics.</p>
+  </div>
+
+  <h2 class="sec"><span class="n">2</span> Goal scoreboard</h2>
+  <div class="scorewrap"><table>
+    <thead><tr><th>Goal</th><th class="r">Current</th><th class="r">Target</th><th>Progress</th><th>Insight</th><th class="r">Status</th></tr></thead>
+    <tbody>
+      <tr><td class="g-goal fbx">Top-3: &ldquo;angular datagrid&rdquo;<small>head grid term · vol 300</small></td><td class="cur">#6</td><td class="tgt">Top 3</td><td><div class="prog"><i class="f-warn" style="width:45%"></i></div></td><td class="insightcol">Grid docs rank page-1 mid; on-page + internal links to reach top 3.</td><td class="st"><span class="pill p-warn">Page 1</span></td></tr>
+      <tr><td class="g-goal fbx">Own #1 on core grid terms<small>tree grid · hierarchical · group by</small></td><td class="cur">#1&ndash;2</td><td class="tgt">Hold #1</td><td><div class="prog"><i class="f-good" style="width:90%"></i></div></td><td class="insightcol">Leading the grid family — defend against refreshes.</td><td class="st"><span class="pill p-good">Leading</span></td></tr>
+      <tr><td class="g-goal fbx">Top-3: &ldquo;data binding in angular&rdquo;<small>highest-volume term · vol 1,200</small></td><td class="cur">#8</td><td class="tgt">Top 3</td><td><div class="prog"><i class="f-warn" style="width:40%"></i></div></td><td class="insightcol">New page-one entry; already our #1 traffic page — one push from top 3.</td><td class="st"><span class="pill p-build">Rising</span></td></tr>
+      <tr><td class="g-goal fbx">Defend &ldquo;angular chart&rdquo;<small>chart-overview page · vol 150</small></td><td class="cur">#8</td><td class="tgt">Top 3</td><td><div class="prog"><i class="f-bad" style="width:20%"></i></div></td><td class="insightcol">Slipped 5&rarr;8 WoW; refresh chart-overview before it compounds.</td><td class="st"><span class="pill p-bad">Slipping</span></td></tr>
+      <tr><td class="g-goal fbx">Grow top-3 footprint<small>Angular prefix, Ahrefs</small></td><td class="cur">134</td><td class="tgt">160</td><td><div class="prog"><i class="f-warn" style="width:70%"></i></div></td><td class="insightcol">+4 WoW; steady climb as near-miss pages convert.</td><td class="st"><span class="pill p-good">On track</span></td></tr>
+      <tr><td class="g-goal fbx">Domain Rating<small>infragistics.com · domain-level</small></td><td class="cur">72</td><td class="tgt">75</td><td><div class="prog"><i class="f-good" style="width:80%"></i></div></td><td class="insightcol">Strong and stable; shared across all UI Tools, not Angular-specific.</td><td class="st"><span class="pill p-gray">Stable</span></td></tr>
+      <tr><td class="g-goal fbx">Measurable organic sessions on Angular pages<small>GA4 · landing on /ignite-ui-angular</small></td><td class="cur">&asymp;13<small>/wk</small></td><td class="tgt">&asymp;370<small>/wk</small></td><td><div class="prog"><i class="f-bad" style="width:5%"></i></div></td><td class="insightcol">GA4 barely tracks docs/component pages — instrumentation gap, not a traffic drop.</td><td class="st"><span class="pill p-bad">Behind</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 class="sec"><span class="n">3</span> KPI snapshot</h2>
+  <div class="kpigrid">
+    <div class="kpi fbx"><span class="toolbadge tb-ahrefs">Ahrefs</span><div class="lab">Organic traffic · Angular</div><div class="row"><span class="val">1,610<em>/mo</em></span><span class="delta up">&#9650; 4.5%</span></div><svg class="spark" data-spark="1590,1560,1592,1592,1569,1534,1597,1579,1524,1516,1574,1610" data-dir="up" height="30" width="100%"></svg><div class="insight">Modeled; holding ~1,550&ndash;1,600 all quarter, up this week.</div></div>
+    <div class="kpi fbx"><span class="toolbadge tb-ahrefs">Ahrefs</span><div class="lab">Ranking keywords</div><div class="row"><span class="val">482</span><span class="delta down">&#9660; 0.4%</span></div><svg class="spark" data-spark="484,482" data-dir="flat" height="30" width="100%"></svg><div class="insight">Essentially flat; churn at the long tail.</div></div>
+    <div class="kpi fbx"><span class="toolbadge tb-ahrefs">Ahrefs</span><div class="lab">Keywords in top 3</div><div class="row"><span class="val">134</span><span class="delta up">&#9650; +4</span></div><svg class="spark" data-spark="130,134" data-dir="up" height="30" width="100%"></svg><div class="insight">The metric that matters — steady growth.</div></div>
+    <div class="kpi fbx"><span class="toolbadge tb-ahrefs">Ahrefs</span><div class="lab">Domain Rating</div><div class="row"><span class="val">72</span><span class="delta flat">&mdash; flat</span></div><div class="insight">Domain-level (infragistics.com); shared across UI Tools, not Angular-specific.</div></div>
+    <div class="kpi fbx"><span class="toolbadge tb-ga4">GA4</span><div class="lab">Organic sessions · Angular</div><div class="row"><span class="val">13<em>/wk</em></span><span class="delta down">&#9660; 24%</span></div><svg class="spark" data-spark="17,13" data-dir="down" height="30" width="100%"></svg><div class="insight">Tracking-limited — docs pages under-instrumented (see verdict).</div></div>
+    <div class="kpi fbx"><span class="toolbadge tb-ga4">GA4</span><div class="lab">Engagement rate · organic</div><div class="row"><span class="val">76.9<em>%</em></span><span class="delta up">&#9650; 0.4pt</span></div><svg class="spark" data-spark="76.5,76.9" data-dir="up" height="30" width="100%"></svg><div class="insight">Healthy on the sessions we can see; 77% returning.</div></div>
+  </div>
+
+  <h2 class="sec"><span class="n">4</span> Clusters</h2>
+
+  <div class="cluster">
+    <div class="cl-head"><div class="cl-top"><h3>Data binding &amp; WPF-to-Angular guide</h3><span class="page">/general/wpf-to-angular-guide</span><span class="verdict pill p-build">Page 1 · rising</span></div>
+      <p class="cl-read fbx"><b>The breakout of the week.</b> The guide already owned <code>two way binding in angular</code> at #1, and this cycle it added <code>data binding in angular</code> (1,200 vol, difficulty 1) at #8 — making the two-way-binding page our single biggest organic page (162 visits, +63 WoW). The play is a title/H1 tilt toward &ldquo;data binding&rdquo; plus internal links from the grid and forms docs to push the head term into the top 3.</p></div>
+    <div class="kwt-wrap"><table class="kwt"><thead><tr><th>Keyword</th><th class="r">Vol</th><th>Ranking page (Ahrefs)</th><th class="r">Position</th></tr></thead><tbody>
+      <tr><td class="kw">data binding in angular</td><td class="vol">1,200</td><td class="pageco">/wpf-to-angular-guide/two-way-binding</td><td class="num"><span class="pos">8</span></td></tr>
+      <tr><td class="kw">two way binding in angular</td><td class="vol">150</td><td class="pageco">/wpf-to-angular-guide/two-way-binding</td><td class="num"><span class="pos best">1</span></td></tr>
+      <tr><td class="kw">two way data binding in angular</td><td class="vol">150</td><td class="pageco">/wpf-to-angular-guide/two-way-binding</td><td class="num"><span class="pos">5</span></td></tr>
+      <tr><td class="kw">event binding in angular</td><td class="vol">150</td><td class="pageco">/wpf-to-angular-guide/angular-events</td><td class="num"><span class="pos">8</span></td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="cluster">
+    <div class="cl-head"><div class="cl-top"><h3>Grids</h3><span class="page">/components/grid · treegrid · hierarchicalgrid</span><span class="verdict pill p-good">Top-3 leader</span></div>
+      <p class="cl-read fbx"><b>Our strongest cluster — mostly won, one gap.</b> We lead the grid family (<code>angular tree grid</code> #1, <code>hierarchical grid</code> #1&ndash;2, <code>angular group by</code> #1, <code>pagination in angular</code> #3), but the highest-volume head term <code>angular datagrid</code> (300) sits at #6 and <code>angular grid component</code> at #3. Closing datagrid is the biggest single ranking opportunity in the section.</p></div>
+    <div class="kwt-wrap"><table class="kwt"><thead><tr><th>Keyword</th><th class="r">Vol</th><th>Ranking page (Ahrefs)</th><th class="r">Position</th></tr></thead><tbody>
+      <tr><td class="kw">angular datagrid</td><td class="vol">300</td><td class="pageco">/components/grid/grid</td><td class="num"><span class="pos">6</span></td></tr>
+      <tr><td class="kw">angular grid component</td><td class="vol">300</td><td class="pageco">/components/grid/grid</td><td class="num"><span class="pos best">3</span></td></tr>
+      <tr><td class="kw">angular tree grid</td><td class="vol">40</td><td class="pageco">/components/treegrid/tree-grid</td><td class="num"><span class="pos best">1</span></td></tr>
+      <tr><td class="kw">hierarchical grid</td><td class="vol">70</td><td class="pageco">/components/hierarchicalgrid/hierarchical-grid</td><td class="num"><span class="pos best">2</span></td></tr>
+      <tr><td class="kw">pivot grid</td><td class="vol">150</td><td class="pageco">/components/pivotGrid/pivot-grid</td><td class="num"><span class="pos">5</span></td></tr>
+      <tr><td class="kw">pagination in angular</td><td class="vol">90</td><td class="pageco">/components/grid/paging</td><td class="num"><span class="pos best">3</span></td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="cluster">
+    <div class="cl-head"><div class="cl-top"><h3>Date &amp; time pickers</h3><span class="page">/components/date-range-picker · date-picker · time-picker</span><span class="verdict pill p-warn">Strong · one decliner</span></div>
+      <p class="cl-read fbx">Deep top-3 coverage — <code>angular date range picker</code> #2, <code>angular datepicker</code> #3 (up 4&rarr;3), <code>angular time picker</code> #2&ndash;3, <code>angular calendar</code> #3. The watch item is the <b>date-range-picker page, off 15 visits WoW</b>, still holding #4 on the generic <code>date range picker</code> (450 vol) — reclaim that term with a refresh.</p></div>
+    <div class="kwt-wrap"><table class="kwt"><thead><tr><th>Keyword</th><th class="r">Vol</th><th>Ranking page (Ahrefs)</th><th class="r">Position</th></tr></thead><tbody>
+      <tr><td class="kw">date range picker</td><td class="vol">450</td><td class="pageco">/components/date-range-picker</td><td class="num"><span class="pos">4</span></td></tr>
+      <tr><td class="kw">angular date range picker</td><td class="vol">70</td><td class="pageco">/components/date-range-picker</td><td class="num"><span class="pos best">2</span></td></tr>
+      <tr><td class="kw">angular datepicker</td><td class="vol">70</td><td class="pageco">/components/date-picker</td><td class="num"><span class="pos best">3</span></td></tr>
+      <tr><td class="kw">angular time picker</td><td class="vol">70</td><td class="pageco">/components/time-picker</td><td class="num"><span class="pos best">2</span></td></tr>
+      <tr><td class="kw">angular calendar</td><td class="vol">100</td><td class="pageco">/components/calendar</td><td class="num"><span class="pos best">3</span></td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="cluster">
+    <div class="cl-head"><div class="cl-top"><h3>Charts</h3><span class="page">/components/charts/chart-overview</span><span class="verdict pill p-bad">Slipping · defend</span></div>
+      <p class="cl-read fbx"><b>The cluster to defend.</b> <code>angular chart</code> fell 5&rarr;8 WoW and the chart-overview page shed traffic (99&rarr;96) — and it's our second-highest traffic-value Angular page. We still hold <code>angular shape</code> #1 and <code>angular bar chart</code> #4, but the head terms need a content refresh with current examples and updated meta before the slide compounds.</p></div>
+    <div class="kwt-wrap"><table class="kwt"><thead><tr><th>Keyword</th><th class="r">Vol</th><th>Ranking page (Ahrefs)</th><th class="r">Position</th></tr></thead><tbody>
+      <tr><td class="kw">angular chart</td><td class="vol">150</td><td class="pageco">/components/charts/chart-overview</td><td class="num"><span class="pos">8</span></td></tr>
+      <tr><td class="kw">angular charts</td><td class="vol">150</td><td class="pageco">/components/charts/chart-overview</td><td class="num"><span class="pos">5</span></td></tr>
+      <tr><td class="kw">angular graphs</td><td class="vol">100</td><td class="pageco">/components/charts/chart-overview</td><td class="num"><span class="pos">6</span></td></tr>
+      <tr><td class="kw">angular bar chart</td><td class="vol">150</td><td class="pageco">/components/charts/types/bar-chart</td><td class="num"><span class="pos">4</span></td></tr>
+      <tr><td class="kw">angular shape</td><td class="vol">90</td><td class="pageco">/components/charts/types/shape-chart</td><td class="num"><span class="pos best">1</span></td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="cluster">
+    <div class="cl-head"><div class="cl-top"><h3>Inputs &amp; layout components</h3><span class="page">slider · stepper · tabs · navbar · tooltip &hellip;</span><span class="verdict pill p-warn">Solid spread · quick wins</span></div>
+      <p class="cl-read fbx">A broad, healthy page-1 spread with several <b>zero-difficulty quick wins</b> just outside the top 3: <code>angular tooltip</code> (#7, KD 0), <code>angular material navbar</code> (#8, KD 0), <code>angular spreadsheet</code> (#4). Anchor terms like <code>angular stepper</code> (#2) and <code>angular accordion</code> (#4) are already strong; light on-page tuning should convert the near-misses.</p></div>
+    <div class="kwt-wrap"><table class="kwt"><thead><tr><th>Keyword</th><th class="r">Vol</th><th>Ranking page (Ahrefs)</th><th class="r">Position</th></tr></thead><tbody>
+      <tr><td class="kw">angular slider</td><td class="vol">400</td><td class="pageco">/components/slider/slider</td><td class="num"><span class="pos">6</span></td></tr>
+      <tr><td class="kw">angular spreadsheet</td><td class="vol">250</td><td class="pageco">/components/spreadsheet-overview</td><td class="num"><span class="pos">4</span></td></tr>
+      <tr><td class="kw">angular material navbar</td><td class="vol">250</td><td class="pageco">/components/navbar</td><td class="num"><span class="pos">8</span></td></tr>
+      <tr><td class="kw">angular tooltip</td><td class="vol">250</td><td class="pageco">/components/tooltip</td><td class="num"><span class="pos">7</span></td></tr>
+      <tr><td class="kw">angular stepper</td><td class="vol">100</td><td class="pageco">/components/stepper</td><td class="num"><span class="pos best">2</span></td></tr>
+      <tr><td class="kw">angular chat component</td><td class="vol">150</td><td class="pageco">/components/chat</td><td class="num"><span class="pos">6</span></td></tr>
+    </tbody></table></div>
+  </div>
+  <p class="cl-note">Positions &amp; traffic from Ahrefs Site Explorer (prefix on the Angular product path, US, monthly volume mode) — our source of truth for the Angular section since this agent scopes to the framework subtree. Volumes from Ahrefs. On-site behavior from GA4. See the Definitions tab for the source-of-truth rules.</p>
+
+  <h2 class="sec"><span class="n">5</span> AI visibility (AEO)</h2>
+  <div class="ainote fbx">
+    <p style="margin:0 0 10px"><b>Framework-scoped AI visibility isn't live yet — by design, this is the honest state.</b></p>
+    <p style="margin:0 0 10px">AI/LLM visibility for Infragistics is tracked in <b>Amplitude AI Visibility</b>, but today it resolves at the <b>whole-brand level</b> (&ldquo;Infragistics&rdquo;), not per framework — so there's no clean Angular-only read to report here without blending scopes, which our one-metric-one-tool rule forbids. This section is kept in every UI Tools brief for parity; the number lands once the tracking is framework-specific.</p>
+    <p style="margin:0"><b>Standing action (see Tasks):</b> stand up Angular-specific prompts/topics in Amplitude so <code>angular grid</code>, <code>angular charts</code>, and the component clusters get their own AEO baseline. From the first framework-scoped pull, this section fills in with visibility, share of voice, sentiment, and by-model breakdowns — identical to the Reveal brief.</p>
+  </div>
+
+  <div class="foot">
+    Sources — rankings, positions, keywords, top pages, organic traffic &amp; Domain Rating: Ahrefs Site Explorer (prefix on www.infragistics.com/products/ignite-ui-angular; DR is domain-level for infragistics.com) · on-site sessions &amp; behavior: GA4 via Supermetrics (property 516222862, landing pages containing /ignite-ui-angular) · AI visibility: Amplitude AI Visibility (Infragistics brand-level; framework scope pending) · volumes: Ahrefs. Window: Ahrefs snapshot Jul 26 vs Jul 19; GA4 Jul 19&ndash;25 vs Jul 12&ndash;18.<br>
+    Ignite UI brand style (theme-ui orange hero · navy #0F172A · Roboto). Layout consistent with the Reveal weekly brief.
+  </div>
+
+  </section>
+
+  <!-- ============ TASKS ============ -->
+  <section id="tasks" class="tabpane">
+    <div class="tk-bar">
+      <div class="seg" id="seg">
+        <button data-view="table" class="active">Table</button>
+        <button data-view="board">Board</button>
+        <button data-view="timeline">Timeline</button>
+      </div>
+      <div class="tk-meta"><b>10 tasks</b> · proposed this week · <b>0</b> in progress · <b>0</b> in review · <b>0</b> done · <b>10</b> to do</div>
+      <a class="tk-open" href="https://my.slingshotapp.io/openTaskList/e97e10ef_b1501d7b-f89f-4e0b-be53-50d49a93bf2d_tg" target="_blank" rel="noopener">&#8599; Open UI Tools SEO list in Slingshot</a>
+    </div>
+    <div id="tkview"></div>
+  </section>
+
+  <!-- ============ SUMMARY ============ -->
+  <section id="summary" class="tabpane">
+    <div class="sum-head">
+      <h3>Executive summary — post to Slingshot</h3>
+      <button class="copybtn" id="copybtn">&#128203; Copy summary</button>
+    </div>
+    <div class="sumcard">
+      <h4>Ignite UI Angular SEO: we rank well — now make it measurable and win the near-misses</h4>
+      <p>Two-line version: <b>Angular owns the top 3 for its component terms and just won its highest-volume query, but the traffic is barely measurable and a few high-value terms sit just below the top 3.</b> The work now is execution, not strategy.</p>
+      <h5>What's working</h5>
+      <p>Component docs. We hold <b>134 keywords in the top 3</b> (+4 WoW), lead the grid family (tree grid #1, hierarchical #1&ndash;2, group by #1), and the WPF-to-Angular guide just cracked page one for <b>&ldquo;data binding in angular&rdquo;</b> (1,200 vol) &mdash; lifting our biggest page +63% to 162 visits. Modeled organic traffic is up to ~1,610/mo.</p>
+      <h5>What's not</h5>
+      <p>The highest-volume terms rank <b>just outside the top 3</b> (&ldquo;angular datagrid&rdquo; #6), &ldquo;angular chart&rdquo; slipped <b>5&rarr;8</b>, and the date-range-picker page shed 15 visits. The bigger flag is measurement: GA4 sees only <b>~13 organic sessions/week</b> on Angular pages vs ~1,610/mo modeled &mdash; the docs/component pages aren't properly instrumented.</p>
+      <h5>The priority this week</h5>
+      <ul>
+        <li><b>Push the data-binding cluster</b> &mdash; optimize the WPF-to-Angular guide (title/H1 + internal links) to move &ldquo;data binding in angular&rdquo; from #8 toward the top 3.</li>
+        <li><b>Defend charts &amp; convert near-misses</b> &mdash; refresh chart-overview; push grid/grid on &ldquo;angular datagrid&rdquo;; quick wins on tooltip/navbar (KD 0).</li>
+        <li><b>Fix the GA4 blind spot</b> &mdash; get the Angular docs/component pages onto the analytics stream so we can measure engagement and conversions.</li>
+      </ul>
+      <h5>For leadership</h5>
+      <p>Rankings are healthy and growing; the ceiling this quarter is <b>measurement, not search</b>. Once the docs pages are tracked and the near-miss terms cross into the top 3, both visible traffic and engagement should step up on the usual lag. AI-visibility for Angular is a known gap &mdash; it's brand-level today, and we're standing up framework-specific tracking.</p>
+    </div>
+  </section>
+
+  <!-- ============ DEFINITIONS ============ -->
+  <section id="definitions" class="tabpane">
+    <div class="defintro">
+      <b>Two things live here:</b> (1) our <b>source of truth</b> — which tool is the authority for each number and why, so nobody compares two tools that measure different things; and (2) a plain-English <b>SEO glossary</b> so anyone reading the report knows what the terms mean. The rule underneath it all: <b>one metric, one tool</b> — a trend is only trustworthy if it comes from the same place every week.</div>
+
+    <div class="subhead">Source of truth — where each number comes from</div>
+    <div class="deftbl-wrap"><table class="deftbl">
+      <thead><tr><th>Metric</th><th>Source of truth</th><th class="col-mean">What it tells us</th><th>Why here — and why not the alternative</th></tr></thead>
+      <tbody>
+        <tr><td class="term">Angular keyword rankings &amp; positions</td><td class="src">Ahrefs Site Explorer</td><td class="col-mean">How the Angular pages rank, scoped to the framework subtree (prefix).</td><td class="why"><b>Why Ahrefs Site Explorer:</b> it lets us isolate one framework's pages via a URL prefix and compare week over week. <span class="alt">Positions are modeled/sampled (US), so they run a touch more optimistic than a blended 28-day GSC average — fine as a consistent weekly trend for this section.</span></td></tr>
+        <tr><td class="term">Keywords we don't rank for yet &amp; volume/difficulty</td><td class="src">Ahrefs (Keywords / Site Explorer)</td><td class="col-mean">Search volume, difficulty, and striking-distance whitespace terms.</td><td class="why"><b>Why Ahrefs:</b> it can see terms we don't appear for and supplies volume/difficulty. <span class="alt">Volume and difficulty always come from Ahrefs, never mixed with another estimator.</span></td></tr>
+        <tr><td class="term">Sessions &amp; on-site behavior</td><td class="src">GA4 (via Supermetrics)</td><td class="col-mean">What organic visitors do once they land on Angular pages.</td><td class="why"><b>Why GA4:</b> it measures real on-site behavior. <span class="alt"><b>Not Ahrefs traffic</b> — Ahrefs is a modeled search estimate; GA4 is measured sessions. They measure different things, so we never reconcile them. (Today GA4 under-counts the docs pages — a tracking gap, see the report.)</span></td></tr>
+        <tr><td class="term">Domain authority &amp; backlinks</td><td class="src">Ahrefs (Site Explorer)</td><td class="col-mean">Domain Rating, referring domains, backlink growth.</td><td class="why"><b>Why Ahrefs:</b> DR is Ahrefs' own model. <span class="alt">DR is <b>domain-level</b> for infragistics.com — shared across all UI Tools, not Angular-specific. Reported with that caveat; don't read it as an Angular signal.</span></td></tr>
+        <tr><td class="term">AI / LLM visibility</td><td class="src">Amplitude AI Visibility</td><td class="col-mean">How often AI answers mention the brand, at what rank, with what sentiment.</td><td class="why"><b>Why Amplitude:</b> single source for everything AI/AEO, so the trend stays consistent. <span class="alt">Currently resolves at <b>brand level (Infragistics)</b>, not per framework — so no Angular-only number yet. Framework-specific prompts are a standing action.</span></td></tr>
+        <tr><td class="term">Technical site health</td><td class="src">Ahrefs Site Audit</td><td class="col-mean">Crawl-based health score, broken URLs, canonicals, sitemaps.</td><td class="why"><b>Why Ahrefs Site Audit:</b> consistent crawl-based scoring week to week. <span class="alt">The audit is <b>whole-site</b> (infragistics.com) and not isolable to Angular today — mirror it with a caveat until a framework-prefix audit exists.</span></td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="subhead">SEO glossary — plain English</div>
+    <div class="deftbl-wrap"><table class="deftbl">
+      <thead><tr><th>Term</th><th>What it means</th><th>Where / why we track it</th></tr></thead>
+      <tbody>
+        <tr><td class="term">Keyword</td><td>A word or phrase people type into search (e.g. &ldquo;angular datagrid&rdquo;). We group related keywords into <b>clusters</b> around one component page.</td><td class="alt">Ahrefs for volume &amp; position.</td></tr>
+        <tr><td class="term">Head term vs. long-tail</td><td>A <b>head term</b> is short and high-volume (&ldquo;angular chart&rdquo;). A <b>long-tail keyword</b> is longer, more specific and lower-volume (&ldquo;angular reactive form validation example&rdquo;) — less traffic each, but easier to rank for and higher intent.</td><td class="alt">Ahrefs.</td></tr>
+        <tr><td class="term">Position / ranking</td><td>Where our page sits in Google results for a query. <b>Page 1</b> = positions 1&ndash;10 (almost all clicks); <b>top 3</b> = the bulk of those clicks; <b>page 2</b> = 11&ndash;20 (almost none).</td><td class="alt">Ahrefs Site Explorer.</td></tr>
+        <tr><td class="term">Striking distance</td><td>Keywords ranking roughly #4&ndash;15 — close enough that on-page work can push them onto page 1 / into the top 3. Our highest-ROI list.</td><td class="alt">Ahrefs.</td></tr>
+        <tr><td class="term">Keyword difficulty (KD)</td><td>Ahrefs' 0&ndash;100 estimate of how hard it is to rank in the top 10 for a term. Low KD + decent volume = a quick win.</td><td class="alt">Ahrefs.</td></tr>
+        <tr><td class="term">Impressions / Clicks / CTR</td><td>Impressions = times a page showed in results; clicks = people who clicked; <b>CTR</b> = clicks ÷ impressions. Low CTR at a good position usually means a weak title or an AI Overview taking the click.</td><td class="alt">GA4 / search tools.</td></tr>
+        <tr><td class="term">Backlink</td><td>A link from another website to ours — a vote of confidence. More good ones generally means Google trusts the site more.</td><td class="alt">Ahrefs.</td></tr>
+        <tr><td class="term">Domain Rating (DR)</td><td>Ahrefs' 0&ndash;100 score of a site's overall backlink strength. Higher DR makes it easier to rank. Ours (infragistics.com) is 72 — domain-wide, not Angular-specific.</td><td class="alt">Ahrefs.</td></tr>
+        <tr><td class="term">Technical health</td><td>A crawl-based score (0&ndash;100) of how clean the site is — broken links, errors, redirects, sitemaps. Low health caps how high anything can rank.</td><td class="alt">Ahrefs Site Audit.</td></tr>
+        <tr><td class="term">AI visibility (AEO)</td><td>How often AI answers (Google AI Overview, ChatGPT) mention our brand for relevant questions — the AI-era version of ranking. AEO = Answer Engine Optimization.</td><td class="alt">Amplitude AI Visibility.</td></tr>
+        <tr><td class="term">Cluster</td><td>A group of related keywords one component page should own (e.g. the <b>Grids</b> cluster around the grid/tree-grid docs). We report and optimize by cluster, not one keyword at a time.</td><td class="alt">Ahrefs.</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="sot-rule"><b>The one rule:</b> one metric, one tool — never blend sources for the same number. When two tools disagree, they're usually measuring two different things (search vs. on-site, our real data vs. a model's estimate), not contradicting each other.</div>
+  </section>
+
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active');});
+    document.querySelectorAll('.tabpane').forEach(function(x){x.classList.remove('active');});
+    t.classList.add('active');
+    document.getElementById(t.getAttribute('data-tab')).classList.add('active');
+    if(t.getAttribute('data-tab')==='report') drawSparks();
+  });
+});
+
+var TODAY='2026-08-02';
+var TASKS=[
+ {n:"Optimize /wpf-to-angular-guide/two-way-binding for “data binding in angular”",ins:"#8, vol 1,200, KD 1 — tighten title/H1; already our #1 traffic page.",track:"Content",owner:"pooj",pri:"p1",status:"todo",due:"2026-08-15",isNew:true},
+ {n:"Add internal links from grid & forms docs to the two-way-binding guide",ins:"Consolidate the data-binding cluster to push the head term top 3.",track:"Content",owner:"pooj",pri:"p2",status:"todo",due:"2026-08-15"},
+ {n:"Refresh charts/chart-overview to defend “angular chart”",ins:"Slipped 5→8 WoW; second-highest traffic-value Angular page.",track:"Content",owner:"pooj",pri:"p1",status:"todo",due:"2026-08-09"},
+ {n:"Push grid/grid to top 3 for “angular datagrid”",ins:"#6, vol 300 — on-page + internal links.",track:"Content",owner:"pooj",pri:"p2",status:"todo",due:"2026-08-16"},
+ {n:"Reclaim generic “date range picker” (#4, vol 450)",ins:"Page already #2 for the “angular” variant.",track:"Content",owner:"pooj",pri:"p2",status:"todo",due:"2026-08-16"},
+ {n:"Investigate date-range-picker traffic drop (−15 WoW)",ins:"Largest decliner; check SERP / snippet loss.",track:"Measurement",owner:"pooj",pri:"p2",status:"todo",due:"2026-08-09"},
+ {n:"Quick-win on-page: angular tooltip (#7) & angular material navbar (#8)",ins:"KD 0, vol 250 each — easy top-5 gains.",track:"Content",owner:"pooj",pri:"p3",status:"todo",due:"2026-08-23"},
+ {n:"Fix GA4 tracking coverage on Angular docs/component pages",ins:"GA4 sees ~13 sessions/wk vs ~370/wk modeled — instrumentation gap.",track:"Technical",owner:"dev",pri:"p1",status:"todo",due:"2026-08-12",isNew:true},
+ {n:"Stand up Angular-specific AI-visibility prompts in Amplitude",ins:"AEO is brand-level today; make it framework-scoped.",track:"Measurement",owner:"casey",pri:"p2",status:"todo",due:"2026-08-16"},
+ {n:"SERP check on dropped-out keyword (was #5, ~11 visits)",ins:"Confirm temporary flux vs a lost page.",track:"Monitoring",owner:"pooj",pri:"p3",status:"todo",due:"2026-08-09"}
+];
+var OWNERS={casey:{label:"Casey",cls:"casey",init:"CC"},pooj:{label:"Poojitha",cls:"pooj",init:"PJ"},dev:{label:"UI Tools web dev",cls:"dev",init:"WD"},none:{label:"Unassigned",cls:"none",init:"—"}};
+var STATUS={todo:{label:"To do",cls:"st-todo"},prog:{label:"In progress",cls:"st-prog"},review:{label:"In review",cls:"st-review"},done:{label:"Done",cls:"st-done"}};
+var PRI={p1:"P1",p2:"P2",p3:"P3",pnone:"—"};
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function dueCell(d){if(!d)return '<span class="due">—</span>';var over=(d<TODAY);return '<span class="due'+(over?' over':'')+'">'+d+'</span>';}
+function ownerCell(o){var m=OWNERS[o];return '<span class="owner"><span class="av '+m.cls+'">'+m.init+'</span>'+m.label+'</span>';}
+function statCell(s){var m=STATUS[s];return '<span class="stat '+m.cls+'"><span class="dot"></span>'+m.label+'</span>';}
+
+function renderTable(){
+  var h='<div class="tkwrap"><table class="tkt"><thead><tr><th>Task</th><th class="col-track">Track</th><th>Owner</th><th>Priority</th><th>Status</th><th class="col-due">Due</th></tr></thead><tbody>';
+  TASKS.forEach(function(t){
+    var ins=t.ins?'<span class="tins">'+esc(t.ins)+'</span>':'';
+    h+='<tr><td class="tname">'+esc(t.n)+(t.isNew?' <span class="tnew">NEW</span>':'')+ins+'</td><td class="col-track"><span class="trk">'+t.track+'</span></td><td>'+ownerCell(t.owner)+'</td><td><span class="pri '+t.pri+'">'+PRI[t.pri]+'</span></td><td>'+statCell(t.status)+'</td><td class="col-due">'+dueCell(t.due)+'</td></tr>';
+  });
+  h+='</tbody></table></div>';
+  return h;
+}
+function renderBoard(){
+  var cols=[['todo','To do'],['prog','In progress'],['review','In review'],['done','Done']];
+  var h='<div class="board">';
+  cols.forEach(function(c){
+    var items=TASKS.filter(function(t){return t.status===c[0];});
+    h+='<div class="bcol"><h5>'+c[1]+' <span class="c">'+items.length+'</span></h5>';
+    items.forEach(function(t){h+='<div class="bcard">'+esc(t.n)+'<div class="bm"><span class="pri '+t.pri+'">'+PRI[t.pri]+'</span>'+dueCell(t.due)+'</div></div>';});
+    if(!items.length) h+='<div style="font-size:11px;color:var(--gray)">—</div>';
+    h+='</div>';
+  });
+  return h+'</div>';
+}
+function renderTimeline(){
+  var dated=TASKS.filter(function(t){return t.due;}).slice().sort(function(a,b){return a.due<b.due?-1:1;});
+  var undated=TASKS.filter(function(t){return !t.due;});
+  var h='<div class="tkwrap" style="padding:6px 18px">';
+  dated.forEach(function(t){var over=(t.due<TODAY);h+='<div class="tl-row"><span class="tl-date'+(over?' over':'')+'">'+t.due+'</span><span><span class="tname">'+esc(t.n)+'</span> &nbsp;<span class="pri '+t.pri+'">'+PRI[t.pri]+'</span> &nbsp;'+statCell(t.status)+'</span></div>';});
+  undated.forEach(function(t){h+='<div class="tl-row"><span class="tl-date">no date</span><span><span class="tname">'+esc(t.n)+'</span> &nbsp;<span class="pri '+t.pri+'">'+PRI[t.pri]+'</span> &nbsp;'+statCell(t.status)+'</span></div>';});
+  return h+'</div>';
+}
+function drawView(v){document.getElementById('tkview').innerHTML = v==='board'?renderBoard():v==='timeline'?renderTimeline():renderTable();}
+document.querySelectorAll('#seg button').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('#seg button').forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');drawView(b.getAttribute('data-view'));
+  });
+});
+drawView('table');
+
+var SUMMARY_TEXT=[
+"*Ignite UI Angular SEO — week of Aug 2.* We rank well; now make it measurable and win the near-misses.",
+"",
+"Two-line version: Angular owns the top 3 for its component terms and just won its highest-volume query, but the traffic is barely measurable and a few high-value terms sit just below the top 3. The work now is execution, not strategy.",
+"",
+"*What's working:* component docs. 134 keywords in the top 3 (+4 WoW), leading the grid family (tree grid #1, hierarchical #1–2, group by #1), and the WPF-to-Angular guide just cracked page one for 'data binding in angular' (1,200 vol) — lifting our biggest page +63% to 162 visits. Modeled organic ~1,610/mo.",
+"",
+"*What's not:* highest-volume terms rank just outside the top 3 ('angular datagrid' #6), 'angular chart' slipped 5→8, date-range-picker page −15 visits. Bigger flag: GA4 sees only ~13 organic sessions/wk on Angular pages vs ~1,610/mo modeled — docs/component pages under-instrumented.",
+"",
+"*Priority this week:*",
+"• Push the data-binding cluster — optimize the WPF-to-Angular guide (title/H1 + internal links) toward top 3.",
+"• Defend charts & convert near-misses — refresh chart-overview; push grid/grid on 'angular datagrid'; quick wins on tooltip/navbar (KD 0).",
+"• Fix the GA4 blind spot — get the Angular docs/component pages onto the analytics stream.",
+"",
+"*For leadership:* rankings are healthy and growing; the ceiling this quarter is measurement, not search. AI-visibility for Angular is brand-level today — standing up framework-specific tracking.",
+"",
+"Full brief + task list attached."
+].join("\n");
+document.getElementById('copybtn').addEventListener('click',function(){
+  var btn=this;
+  var done=function(){btn.classList.add('ok');btn.textContent='✓ Copied';setTimeout(function(){btn.classList.remove('ok');btn.innerHTML='📋 Copy summary';},1800);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(SUMMARY_TEXT).then(done,fallback);}else fallback();
+  function fallback(){var ta=document.createElement('textarea');ta.value=SUMMARY_TEXT;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}
+});
+
+function cssv(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
+function drawSparks(){
+  document.querySelectorAll('svg.spark').forEach(function(svg){
+    if(svg.getAttribute('data-done'))return;
+    var vals=svg.getAttribute('data-spark').split(',').map(Number);
+    var dir=svg.getAttribute('data-dir')||'flat';
+    var col=dir==='up'?cssv('--good'):dir==='down'?cssv('--bad'):cssv('--gray');
+    var W=svg.clientWidth||220,H=30,pad=3;
+    var min=Math.min.apply(null,vals),max=Math.max.apply(null,vals),rng=(max-min)||1;
+    var n=vals.length,step=n>1?(W-pad*2)/(n-1):0;
+    var pts=vals.map(function(v,i){return [pad+i*step,H-pad-((v-min)/rng)*(H-pad*2)];});
+    var line=pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ');
+    var area='M'+pts[0][0].toFixed(1)+','+H+' L'+line.split(' ').join(' L')+' L'+pts[n-1][0].toFixed(1)+','+H+' Z';
+    var id='g'+Math.random().toString(36).slice(2,7);
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.setAttribute('preserveAspectRatio','none');
+    svg.innerHTML='<defs><linearGradient id="'+id+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+col+'" stop-opacity="0.16"/><stop offset="1" stop-color="'+col+'" stop-opacity="0"/></linearGradient></defs><path d="'+area+'" fill="url(#'+id+')"/><polyline points="'+line+'" fill="none" stroke="'+col+'" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/><circle cx="'+pts[n-1][0].toFixed(1)+'" cy="'+pts[n-1][1].toFixed(1)+'" r="2.1" fill="'+col+'"/>';
+    svg.setAttribute('data-done','1');
+  });
+}
+drawSparks();
+</script>
+<!-- ===== FEEDBACK LOOP (teaches the agent) ===== -->
+<style>
+  .fbx{position:relative}
+  .fbtn{position:absolute;top:6px;right:6px;z-index:3;width:22px;height:22px;border:none;border-radius:7px;background:#fdece1;color:#E14E12;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .12s;padding:0;box-shadow:0 1px 2px rgba(15,23,42,.14)}
+  .fbtn:hover{background:#E14E12;color:#fff}
+  .fbtn svg{width:13px;height:13px}
+  .fbx:hover>.fbtn,.fbtn:focus-visible{opacity:1}
+  .wl li>.fbtn,li>.fbtn{top:-1px;right:0;width:20px;height:20px}
+  .fbmodal{position:fixed;inset:0;background:rgba(15,23,42,.5);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
+  .fbmodal.on{display:flex}
+  .fbcard{background:#fff;border-radius:16px;max-width:470px;width:100%;box-shadow:0 20px 60px rgba(15,23,42,.32);overflow:hidden;font-family:system-ui,sans-serif}
+  .fbhd{background:linear-gradient(100deg,#FF6B2C,#E14E12);color:#fff;padding:15px 20px}
+  .fbhd .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.85;font-weight:600}
+  .fbhd .l{font-size:15px;font-weight:800;margin-top:3px;line-height:1.3}
+  .fbbd{padding:16px 20px}
+  .fbbd label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#5f6b7a;display:block;margin:0 0 7px}
+  .fbcats{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+  .fbcat{font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;border:1.5px solid #e3e7f2;background:#fff;color:#41506b;cursor:pointer;font-family:inherit}
+  .fbcat.sel{border-color:#E14E12;background:#fdece1;color:#E14E12}
+  .fbbd textarea{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13.5px;resize:vertical;min-height:74px;box-sizing:border-box}
+  .fbbd textarea:focus,.fbval:focus{outline:none;border-color:#E14E12}
+  .fbvalwrap{display:none;margin-top:12px}.fbvalwrap.on{display:block}
+  .fbval{width:100%;border:1.5px solid #e3e7f2;border-radius:10px;padding:9px 12px;font-family:inherit;font-size:13.5px;box-sizing:border-box}
+  .fbft{display:flex;gap:10px;justify-content:flex-end;padding:14px 20px;border-top:1px solid #eef1f7;background:#fbfcff}
+  .fbbtn{font-family:inherit;font-size:13px;font-weight:600;padding:9px 15px;border-radius:9px;cursor:pointer;border:none}
+  .fbbtn.sec{background:#eef0f5;color:#41506b}
+  .fbbtn.pri{background:linear-gradient(120deg,#FF6B2C,#E14E12);color:#fff}
+  .fbbtn.pri:disabled{opacity:.5;cursor:not-allowed}
+  .fbtoast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0F172A;color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:300;opacity:0;transition:opacity .2s;box-shadow:0 8px 30px rgba(0,0,0,.3);max-width:90%;text-align:center;pointer-events:none}
+  .fbtoast.on{opacity:1}
+</style>
+<div class="fbmodal" id="fbModal" role="dialog" aria-modal="true" aria-label="Send feedback to the agent">
+  <div class="fbcard">
+    <div class="fbhd"><div class="k">Feedback to the agent</div><div class="l" id="fbLabel">—</div></div>
+    <div class="fbbd">
+      <label>What kind of feedback?</label>
+      <div class="fbcats" id="fbCats">
+        <button type="button" class="fbcat" data-cat="Won't do — strategic">Won't do — strategic</button>
+        <button type="button" class="fbcat" data-cat="Disagree">Disagree</button>
+        <button type="button" class="fbcat" data-cat="Wrong number">Wrong number</button>
+        <button type="button" class="fbcat" data-cat="Add context">Add context</button>
+        <button type="button" class="fbcat" data-cat="Approve">Approve</button>
+      </div>
+      <label>Why / details</label>
+      <textarea id="fbReason" placeholder="e.g. Don't chase 'angular material navbar' — off-brand for Ignite UI; hold that recommendation."></textarea>
+      <div class="fbvalwrap" id="fbValWrap"><label>Correct value</label><input class="fbval" id="fbVal" placeholder="e.g. angular datagrid #5"></div>
+    </div>
+    <div class="fbft">
+      <button type="button" class="fbbtn sec" id="fbCancel">Cancel</button>
+      <button type="button" class="fbbtn pri" id="fbSend" disabled>Copy &amp; open Slingshot</button>
+    </div>
+  </div>
+</div>
+<div class="fbtoast" id="fbToast"></div>
+<script>
+(function(){
+  var FEEDBACK_URL="https://my.slingshotapp.io/openTaskList/e97e10ef_b1501d7b-f89f-4e0b-be53-50d49a93bf2d_tg";
+  var SCOPE="#report";
+  var ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+  var secs=[],modal,curLabel="",curSection="",cat=null;
+  function labelFor(el){var t=(el.getAttribute('data-fb-label')||el.textContent||'').replace(/\s+/g,' ').trim();return t.length>90?t.slice(0,88)+'…':t;}
+  function sectionFor(el){var best="";for(var i=0;i<secs.length;i++){if(secs[i].compareDocumentPosition(el)&Node.DOCUMENT_POSITION_FOLLOWING){best=secs[i].textContent.replace(/\s+/g,' ').trim();}}return best;}
+  function addIcons(){document.querySelectorAll(SCOPE+' .fbx').forEach(function(el){if(el.querySelector(':scope > .fbtn'))return;var b=document.createElement('button');b.className='fbtn';b.type='button';b.title='Send feedback to the agent';b.innerHTML=ICON;b.addEventListener('click',function(ev){ev.stopPropagation();ev.preventDefault();openModal(el);});el.appendChild(b);});}
+  function openModal(el){curLabel=labelFor(el);curSection=sectionFor(el);cat=null;document.getElementById('fbLabel').textContent=(curSection?curSection+' › ':'')+curLabel;document.getElementById('fbReason').value='';document.getElementById('fbVal').value='';document.getElementById('fbValWrap').classList.remove('on');document.querySelectorAll('.fbcat').forEach(function(c){c.classList.remove('sel');});document.getElementById('fbSend').disabled=true;modal.classList.add('on');setTimeout(function(){document.getElementById('fbReason').focus();},60);}
+  function closeModal(){modal.classList.remove('on');}
+  function refreshSend(){var r=document.getElementById('fbReason').value.trim();document.getElementById('fbSend').disabled=!(cat&&r);}
+  function toast(m){var t=document.getElementById('fbToast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on');},3600);}
+  function send(){var reason=document.getElementById('fbReason').value.trim();var val=document.getElementById('fbVal').value.trim();var d=new Date().toISOString().slice(0,10);var lines=['📋 *Agent feedback — Angular SEO report*','Element: '+(curSection?curSection+' › ':'')+curLabel,'Category: '+cat,'Reason: '+reason];if(cat==='Wrong number'&&val)lines.push('Correct value: '+val);lines.push('Submitted: '+d);var payload=lines.join('\n');var done=function(){toast('Feedback copied — paste (⌘/Ctrl+V) into the Slingshot thread');window.open(FEEDBACK_URL,'_blank');closeModal();};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(payload).then(done,done);}else{var ta=document.createElement('textarea');ta.value=payload;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}}
+  document.addEventListener('DOMContentLoaded',function(){modal=document.getElementById('fbModal');secs=[].slice.call(document.querySelectorAll(SCOPE+' h2.sec, '+SCOPE+' h2, '+SCOPE+' h3'));addIcons();document.getElementById('fbCats').addEventListener('click',function(e){var b=e.target.closest('.fbcat');if(!b)return;cat=b.dataset.cat;document.querySelectorAll('.fbcat').forEach(function(c){c.classList.toggle('sel',c===b);});document.getElementById('fbValWrap').classList.toggle('on',cat==='Wrong number');refreshSend();});document.getElementById('fbReason').addEventListener('input',refreshSend);document.getElementById('fbCancel').addEventListener('click',closeModal);document.getElementById('fbSend').addEventListener('click',send);modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});});
+})();
+</script>
+</body>
+</html>
