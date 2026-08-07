@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI Tools — Paid Media Executive Brief · 2026-08-07</title>
+<style>
+  :root{
+    --azure:#0099ff; --azure-hi:#00B4F5; --azure-lo:#0066E6;
+    --navy:#0A2540; --page:#F4F7FB; --sky:#E6F4FF;
+    --green:#1DAA6D; --amber:#E8A400; --red:#E5484D;
+    --ink-soft:#4A5A6A; --line:#E3EAF2; --white:#fff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--navy);
+    font-family:Inter,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px 64px}
+  a{color:var(--azure-lo);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .hero{background:linear-gradient(120deg,var(--azure-hi) 0%,var(--azure) 48%,var(--azure-lo) 100%);
+    border-radius:0 0 22px 22px;padding:26px 30px 30px;color:#fff;margin-bottom:22px}
+  .hero .logo{display:inline-flex;align-items:center;background:#fff;border-radius:9px;
+    padding:8px 14px;margin-bottom:16px}
+  .hero .logo img{height:22px;display:block}
+  .hero h1{margin:0 0 6px;font-size:26px;font-weight:800;letter-spacing:-.4px}
+  .hero .sub{font-size:14px;opacity:.95;font-weight:500}
+  .hero .meta{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+  .hero .chip{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
+    border-radius:999px;padding:4px 12px;font-size:12px;font-weight:600}
+
+  .tabbar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;position:sticky;top:0;
+    background:var(--page);padding:8px 0;z-index:10}
+  .tabbtn{background:var(--white);border:1px solid var(--line);color:var(--navy);
+    font-weight:700;font-size:13px;padding:9px 16px;border-radius:10px;cursor:pointer}
+  .tabbtn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .tabpanel{display:none}
+  .tabpanel.active{display:block}
+
+  section{background:var(--white);border:1px solid var(--line);border-radius:14px;
+    padding:22px 24px;margin-bottom:18px}
+  h2{font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
+    color:var(--azure-lo);margin:0 0 4px}
+  h2 .num{color:var(--navy);opacity:.35;margin-right:8px}
+  .lead{font-size:16px;font-weight:600;margin:8px 0 0}
+  p{margin:10px 0}
+  .muted{color:var(--ink-soft)}
+  .small{font-size:13px}
+
+  .badge{display:inline-block;border-radius:999px;padding:2px 10px;font-size:11px;
+    font-weight:700;letter-spacing:.3px;vertical-align:middle}
+  .b-green{background:#E4F7EE;color:#0F7A4C}
+  .b-amber{background:#FCF2D9;color:#9A7000}
+  .b-red{background:#FCE4E5;color:#B3282D}
+  .b-blue{background:var(--sky);color:var(--azure-lo)}
+  .up{color:var(--green);font-weight:700}
+  .down{color:var(--red);font-weight:700}
+  .flat{color:var(--ink-soft);font-weight:700}
+
+  .scoreboard{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .goal{background:var(--sky);border:1px solid #CFE8FF;border-radius:12px;padding:14px 14px 16px}
+  .goal .k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft)}
+  .goal .v{font-size:24px;font-weight:800;margin:6px 0 2px;letter-spacing:-.5px}
+  .goal .t{font-size:12px;color:var(--ink-soft)}
+
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .kpi{border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .kpi .k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft)}
+  .kpi .v{font-size:23px;font-weight:800;margin:4px 0;letter-spacing:-.5px}
+  .kpi .d{font-size:12px}
+
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13.5px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);font-weight:700}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  tr:last-child td{border-bottom:none}
+  .pill{font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px}
+
+  ul{margin:10px 0;padding-left:18px}
+  li{margin:6px 0}
+  .action{border-left:3px solid var(--azure);background:#F7FBFF;border-radius:0 10px 10px 0;
+    padding:14px 18px;margin:14px 0}
+  .action .h{font-weight:700;font-size:15px}
+  .action .m{font-size:13px;color:var(--ink-soft);margin-top:6px}
+  .action .grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;margin-top:8px;font-size:12.5px}
+  .action .grid2 b{color:var(--navy)}
+  .cheat{background:#0A2540;color:#D7E4F2;border-radius:14px;padding:20px 24px}
+  .cheat h2{color:#7FC4FF}
+  .cheat code{background:rgba(255,255,255,.08);padding:1px 6px;border-radius:5px;font-size:12px}
+  .cheat table td,.cheat table th{border-color:rgba(255,255,255,.12);color:#D7E4F2}
+  .cheat th{color:#9FC4E6}
+  .foot{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:22px}
+  code{background:#EEF3F9;padding:1px 6px;border-radius:5px;font-size:12.5px}
+
+  .fb-btn{position:fixed;right:22px;bottom:22px;background:var(--navy);color:#fff;border:none;
+    border-radius:999px;padding:12px 20px;font-weight:700;font-size:13px;cursor:pointer;
+    box-shadow:0 6px 18px rgba(10,37,64,.25);z-index:50}
+  .fb-modal{display:none;position:fixed;inset:0;background:rgba(10,37,64,.45);z-index:60;
+    align-items:center;justify-content:center}
+  .fb-modal.open{display:flex}
+  .fb-card{background:#fff;border-radius:14px;padding:24px;max-width:440px;width:92%}
+  .fb-card h3{margin:0 0 8px;font-size:16px}
+  .fb-card textarea{width:100%;min-height:90px;border:1px solid var(--line);border-radius:8px;
+    padding:10px;font-family:inherit;font-size:13.5px}
+  .fb-card .row{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}
+  .fb-card button{border-radius:8px;padding:8px 16px;font-weight:700;font-size:13px;cursor:pointer;border:none}
+  .fb-card .cancel{background:#EEF3F9;color:var(--navy)}
+  .fb-card .send{background:var(--azure);color:#fff}
+  @media(max-width:900px){.scoreboard{grid-template-columns:repeat(2,1fr)}.kpis{grid-template-columns:1fr 1fr}.action .grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="wrap" style="padding:0">
+    <div class="logo"><img src="https://static.infragistics.com/marketing/Website/General/Infragistics-horizontal.svg" alt="Infragistics · Ignite UI"></div>
+    <h1>UI Tools — Paid Media Executive Brief</h1>
+    <div class="sub">Ignite UI for React, Angular, Blazor &amp; Ultimate · combining Search + Landing/Adoption intelligence into one decision-first read</div>
+    <div class="meta">
+      <span class="chip">Run: Aug 7, 2026</span>
+      <span class="chip">Google Ads &amp; GA4: UNAVAILABLE this run</span>
+      <span class="chip">Salesforce &amp; Ahrefs: Live</span>
+      <span class="chip">Baseline executive run #1</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<div class="tabbar">
+  <button class="tabbtn active" data-tab="t1">Executive Report</button>
+  <button class="tabbtn" data-tab="t2">Budget &amp; Forecast</button>
+  <button class="tabbtn" data-tab="t3">Funnel &amp; Outcomes</button>
+  <button class="tabbtn" data-tab="t4">Tasks</button>
+  <button class="tabbtn" data-tab="t5">Summary &amp; Definitions</button>
+</div>
+
+<!-- TAB 1: EXECUTIVE REPORT -->
+<div class="tabpanel active" id="t1">
+
+<section>
+  <h2><span class="num">01</span>Executive summary</h2>
+  <p class="lead">This is a baseline run with a real data blackout: Google Ads and GA4 returned zero connected accounts today, so pacing, spend, impression share, and session data cannot be reported live. What <b>is</b> live and verified: Ahrefs demand data across every priority term, and Salesforce trial-event data for Ultimate.</p>
+  <p><b>The one clean signal this week:</b> Ultimate cpc-attributed trial starts are <span class="up">up 25% MoM</span> (15 in the last 30 days vs. 12 in the prior 30) — verified directly against <code>Lead_Event__c</code>, cross-checked source-by-source (Google cpc = 14, YouTube cpc = 1, sums to 15). But paid is a minority channel: cpc trials are only <b>13% of Ultimate's 115 trial starts</b> in the last 30 days — organic (55) and direct (12) still dominate.</p>
+  <p><b>Framework attention is badly lopsided in the tracker, independent of any spend data.</b> The shared UI Tools "Optimizations" list carries 31 React tasks (8 completed, 3 in‑progress, 20 open) against exactly <b>1 Angular task, 1 Blazor task, and zero Ultimate tasks</b>. That's not a spend number, but it's a real, verifiable proxy for where operational attention is going, and it says React is getting essentially all of it.</p>
+  <p><b>Demand capture reads differently by framework.</b> Ahrefs US volume shows React's own product terms (grid/table/charts/components ≈ 6,000 searches/mo) outweigh its competitor terms (TanStack, MUI, AG Grid ≈ 2,030/mo) — React can win on generic terms. Angular is the opposite: Angular Material + PrimeNG alone pull <b>5,940/mo</b>, roughly 5.4× Angular's own product-term volume (~1,100/mo) — Angular's paid opportunity is mostly a competitor-conquest problem, not a generic-term problem. Blazor's market runs on vendor brand searches (Telerik 1,700, Syncfusion 800, DevExpress 900 = 3,400/mo) that dwarf both Blazor's generic terms (~790/mo) and Blazor-specific competitor terms (~110/mo) — a structurally different, brand-vs-brand buying problem.</p>
+  <p><b>Two measurement items need a leadership decision, not more analysis:</b> (1) React has no gated conversion by design (the trial download doesn't require a form) — "0 conversions" was never a tracking bug, and the report has already been corrected to score React on cpc sessions + engagement rate, pending JJ's sign-off on permanent KPI targets. (2) The npm-installs pipe that was marked "Completed" on Aug 3 is <b>still blocked</b> in this reporting run — <code>api.npmjs.org</code> returns HTTP 403 here — so package adoption cannot be shown this run either.</p>
+</section>
+
+<section>
+  <h2><span class="num">02</span>Source health</h2>
+  <table>
+    <thead><tr><th>Source</th><th>Feeds</th><th>Status</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td>Google Ads (Supermetrics, acct 9179838229)</td><td>Spend, impression share, search terms, campaign types</td><td><span class="badge b-red">UNAVAILABLE</span></td><td>accounts_discovery returned zero connected accounts; Supermetrics trial expired. Same fault as the open "Harden Supermetrics connection" task.</td></tr>
+      <tr><td>GA4 (Supermetrics, property 516222862)</td><td>Sessions, engagement rate, landing-page behavior</td><td><span class="badge b-red">UNAVAILABLE</span></td><td>Same Supermetrics outage as Google Ads — one root cause, two blind spots.</td></tr>
+      <tr><td>npm downloads API</td><td>Package/adoption trend (directional only)</td><td><span class="badge b-red">UNAVAILABLE</span></td><td><code>api.npmjs.org</code> returns 403 via this environment's proxy. Marked "Completed" in the tracker on 8/3 — the fix has not taken effect here. Flagged as a regression below.</td></tr>
+      <tr><td>Ahrefs Keywords Explorer</td><td>US search volume/CPC/difficulty, 42 priority + competitor + brand terms</td><td><span class="badge b-green">FRESH</span></td><td>Queried live this run.</td></tr>
+      <tr><td>Salesforce <code>Lead_Event__c</code></td><td>Ultimate trial starts by channel/medium</td><td><span class="badge b-green">FRESH</span></td><td>Queried live this run; internally consistent (channel breakdown sums to the cpc total).</td></tr>
+      <tr><td>Slingshot Optimizations task list</td><td>Standing work, statuses, dates</td><td><span class="badge b-green">LIVE</span></td><td>31 tasks read across 5 sections.</td></tr>
+    </tbody>
+  </table>
+  <p class="small muted">Per the marketing constitution: never fabricate, silently estimate, or substitute an unapproved source. Every Google Ads/GA4/npm figure in this report is either explicitly labeled <b>Carried</b> (sourced from an Aug 3 task description, not re-verified today) or omitted entirely.</p>
+</section>
+
+<section>
+  <h2><span class="num">03</span>Attribution confidence</h2>
+  <table>
+    <thead><tr><th>Claim</th><th>Confidence</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>Ultimate cpc trials +25% MoM (15 vs. 12)</td><td><span class="badge b-green">HIGH</span></td><td>Directly queried today from <code>Lead_Event__c</code> with <code>TrackingMedium__c = 'cpc'</code>; channel split (Google 14 + YouTube 1 = 15) reconciles exactly.</td></tr>
+      <tr><td>Paid is 13% of Ultimate trial volume</td><td><span class="badge b-green">HIGH</span></td><td>Same query; organic/direct/referral counted from the same object, same window.</td></tr>
+      <tr><td>Search-Compete budget raise (+$50/day, 7/24) recaptured top-slot share</td><td><span class="badge b-amber">CARRIED — UNVERIFIED</span></td><td>Stated in the task description from the 7/23–31 run. No Google Ads access this run to confirm abs-top IS moved back toward 52%.</td></tr>
+      <tr><td>Grids search-term cleanup (7/31) recovered ~$564</td><td><span class="badge b-amber">CARRIED — UNVERIFIED</span></td><td>Same limitation — cannot re-pull the search-terms report this run.</td></tr>
+      <tr><td>React GA4 cpc sessions running far below Google Ads clicks (~56 vs. ~1,426 in a recent week)</td><td><span class="badge b-amber">CARRIED — UNVERIFIED</span></td><td>Flagged in the tracker as a measurement gap, not a conversion gap (React has no gated conversion by design). Needs Supermetrics access to re-check.</td></tr>
+      <tr><td>Framework attention imbalance (31 React tasks vs. 1/1/0)</td><td><span class="badge b-green">HIGH</span></td><td>Directly counted from Slingshot today. This is a tracker-attention fact, not a spend fact — treat the imbalance as directional evidence, not proof of budget misallocation.</td></tr>
+      <tr><td>Demand-side gaps (Ahrefs volume by framework)</td><td><span class="badge b-green">HIGH</span></td><td>Live Ahrefs query today. Volume is a demand signal, not a captured-traffic signal — pairing it with Google Ads impression share is the next step once that source is back.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">04</span>Goal progress &amp; forecast</h2>
+  <p>No numeric monthly budget, spend-pacing, or trial-volume target for UI Tools paid media exists in the governance docs, product configuration, or the tracker as of this run. That is itself a finding — see Action 5. Without a documented target, "pacing" and "forecast" cannot be scored against a plan; they can only be reported as trend.</p>
+  <div class="scoreboard">
+    <div class="goal">
+      <div class="k">Budget pacing vs. plan</div>
+      <div class="v">—</div>
+      <div class="t">No live spend data + no documented plan<br><span class="badge b-red">UNSCORABLE</span></div>
+    </div>
+    <div class="goal">
+      <div class="k">Ultimate cpc trials</div>
+      <div class="v up">+25%</div>
+      <div class="t">MoM (15 vs. 12) · small base<br><span class="badge b-green">TRENDING UP</span></div>
+    </div>
+    <div class="goal">
+      <div class="k">Paid share of Ultimate trials</div>
+      <div class="v">13%</div>
+      <div class="t">15 of 115, last 30 days<br><span class="badge b-amber">MINORITY CHANNEL</span></div>
+    </div>
+    <div class="goal">
+      <div class="k">Package adoption (npm)</div>
+      <div class="v">—</div>
+      <div class="t">Blocked in this environment<br><span class="badge b-red">UNAVAILABLE</span></div>
+    </div>
+  </div>
+  <p class="small muted" style="margin-top:14px">Forecast: cannot be produced responsibly this run. A forecast needs a spend trend (Google Ads, dark) and a documented target (doesn't exist). The only forward-looking statement supportable by live data: if the last two 30-day windows hold, cpc-attributed Ultimate trials continue climbing off a small base — worth a target once Casey/JJ set one.</p>
+</section>
+
+</div>
+
+<!-- TAB 2: BUDGET & FORECAST -->
+<div class="tabpanel" id="t2">
+
+<section>
+  <h2><span class="num">01</span>Why this tab is short this run</h2>
+  <p>Google Ads is the approved source of truth for UI Tools spend, and it returned zero connected accounts today. Per the constitution, proposing dollar-specific reallocations without live spend data would be fabrication. This run does <b>not</b> propose new budget moves for React/Angular/Blazor. It reports what's already on record and recommends fixing the data pipe before the next spend decision — that fix is Action 1 in the Tasks tab.</p>
+</section>
+
+<section>
+  <h2><span class="num">02</span>Budget moves already on record</h2>
+  <table>
+    <thead><tr><th>Move</th><th>Amount</th><th>Status</th><th>Verified this run?</th></tr></thead>
+    <tbody>
+      <tr><td>React Search‑Compete: raise daily budget to recapture top‑slot share lost to budget caps</td><td class="num">+$50/day (~+$350/wk), from ~$94/day</td><td><span class="badge b-blue">Executed 7/24</span></td><td><span class="badge b-amber">No — Google Ads dark</span></td></tr>
+      <tr><td>React Search‑Charts: fund to defend "react chart library" Quality Score work</td><td class="num">+$30/day</td><td><span class="badge b-blue">Proposed, open task, not yet executed</span></td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p class="small muted">The Search‑Charts +$30/day item is already an open task in the tracker (owner Poojitha). This report is not duplicating it — see the Tasks tab for the existing‑backlog rollup.</p>
+</section>
+
+<section>
+  <h2><span class="num">03</span>What the evidence supports once data is back</h2>
+  <p>Two directional (not yet fundable) observations for when Google Ads reconnects:</p>
+  <ul>
+    <li><b>Angular:</b> Ahrefs shows Angular Material + PrimeNG demand (5,940/mo) at roughly 5.4× Angular's own product-term demand (~1,100/mo). If Google Ads shows no active Angular competitor-conquest campaign once reconnected, that's a real gap — sized at zero cost today because we don't know current Angular spend or bids.</li>
+    <li><b>Blazor:</b> the market runs on vendor-brand search (Telerik/Syncfusion/DevExpress ≈ 3,400/mo) far more than generic Blazor terms (~790/mo). Any Blazor budget conversation should be framed as brand-conquest, not generic-term SEM, once we can see what Blazor is currently bidding on.</li>
+  </ul>
+  <p><b>No dollar amount, percentage, or from/to is proposed for either</b> — sizing them requires the Google Ads data this run doesn't have. Both are captured as investigation tasks, not budget asks, in the Tasks tab.</p>
+</section>
+
+</div>
+
+<!-- TAB 3: FUNNEL & OUTCOMES -->
+<div class="tabpanel" id="t3">
+
+<section>
+  <h2><span class="num">01</span>Funnel — what's lit up and what's dark</h2>
+  <table>
+    <thead><tr><th>Stage</th><th>React</th><th>Angular</th><th>Blazor</th><th>Ultimate</th></tr></thead>
+    <tbody>
+      <tr><td>Impressions / clicks (Google Ads)</td><td colspan="4" style="text-align:center"><span class="badge b-red">UNAVAILABLE — all frameworks</span></td></tr>
+      <tr><td>Sessions / engagement (GA4)</td><td colspan="4" style="text-align:center"><span class="badge b-red">UNAVAILABLE — all frameworks</span></td></tr>
+      <tr><td>Gated conversion</td><td>N/A by design (ungated trial)</td><td>Setup task open (CTA key events)</td><td>Setup task open (CTA key events)</td><td><b>115 trial starts</b> / 30d <span class="badge b-green">LIVE</span></td></tr>
+      <tr><td>Paid-attributable outcome</td><td>Directional only</td><td>Directional only</td><td>Directional only</td><td><b>15 cpc trials</b> / 30d, +25% MoM <span class="badge b-green">LIVE</span></td></tr>
+      <tr><td>Package adoption (npm)</td><td colspan="4" style="text-align:center"><span class="badge b-red">UNAVAILABLE this run — proxy-blocked</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">02</span>Ultimate trial funnel — the one live channel breakdown</h2>
+  <p>Last 30 days, 115 total "ultimate trial" events in <code>Lead_Event__c</code>:</p>
+  <table>
+    <thead><tr><th>Source</th><th>Medium</th><th class="num">Events</th><th>Directly attributable?</th></tr></thead>
+    <tbody>
+      <tr><td>google</td><td>organic</td><td class="num">40</td><td>Directional (not paid)</td></tr>
+      <tr><td>google</td><td><b>cpc</b></td><td class="num"><b>14</b></td><td><span class="badge b-green">Yes — High confidence</span></td></tr>
+      <tr><td>live (Bing/MSN legacy)</td><td>organic</td><td class="num">15</td><td>Directional (not paid)</td></tr>
+      <tr><td>(direct)</td><td>(none)</td><td class="num">12</td><td>Directional (not paid)</td></tr>
+      <tr><td>null / unclassified</td><td>null</td><td class="num">13</td><td>Unclassified — do not force a channel</td></tr>
+      <tr><td>teams.public.onecdn.static.microsoft</td><td>referral</td><td class="num">7</td><td>Directional (not paid)</td></tr>
+      <tr><td>infragistics.lightning.force.com</td><td>referral</td><td class="num">3</td><td>Internal/CRM self-referral — likely noise, exclude from external-demand reads</td></tr>
+      <tr><td>chatgpt.com</td><td>(none)</td><td class="num">2</td><td>Directional — notable AI-assistant referral source</td></tr>
+      <tr><td>www.so.com</td><td>referral</td><td class="num">2</td><td>Directional</td></tr>
+      <tr><td>jts.hill.af.mil</td><td>referral</td><td class="num">2</td><td>Directional</td></tr>
+      <tr><td>nurture</td><td>email</td><td class="num">2</td><td>Directional (owned channel)</td></tr>
+      <tr><td>duckduckgo.com / youtube.com</td><td>referral</td><td class="num">2</td><td>Directional</td></tr>
+      <tr><td>youtube</td><td><b>cpc</b></td><td class="num"><b>1</b></td><td><span class="badge b-green">Yes — High confidence</span></td></tr>
+    </tbody>
+  </table>
+  <p class="small muted">Google cpc (14) + YouTube cpc (1) = 15, matching the top-line cpc count exactly — the query reconciles. 393 "ultimate trial" events total over the trailing 90 days.</p>
+</section>
+
+<section>
+  <h2><span class="num">03</span>Directly attributable vs. directional — the hard line</h2>
+  <p><b>Directly attributable to paid media (High confidence):</b> 15 Ultimate cpc trial starts (last 30 days), all traced to <code>TrackingMedium__c = cpc</code> records.</p>
+  <p><b>Directional / associated only — never claimed as paid-caused:</b> npm/package install trends (unavailable this run regardless), overall new-seat trends, and organic/direct/referral trial volume for Ultimate. React, Angular, and Blazor have no live paid-funnel data this run at all, so nothing about their funnels — attributable or directional — can be stated beyond the carried, unverified notes in the Executive tab.</p>
+</section>
+
+</div>
+
+<!-- TAB 4: TASKS -->
+<div class="tabpanel" id="t4">
+
+<section>
+  <h2><span class="num">01</span>Backlog health — Optimizations task list</h2>
+  <table>
+    <thead><tr><th>Section</th><th class="num">Total</th><th class="num">Completed</th><th class="num">In progress</th><th class="num">Open</th><th>Notable</th></tr></thead>
+    <tbody>
+      <tr><td>React Paid</td><td class="num">31</td><td class="num">8</td><td class="num">3</td><td class="num">20</td><td>3 in‑progress items are past their due date</td></tr>
+      <tr><td>Angular Paid</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">1</td><td>Measurement setup only — no strategy task exists</td></tr>
+      <tr><td>Blazor Paid</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">1</td><td>Measurement setup only — no strategy task exists</td></tr>
+      <tr><td>Ultimate Paid</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td>Empty — no visible paid strategy despite Ultimate cpc trials being a named KPI</td></tr>
+      <tr><td>All Paid (shared)</td><td class="num">4</td><td class="num">0</td><td class="num">0</td><td class="num">4</td><td>2 platform-compliance forms due 8/14; 2 landing-page reviews due 8/12</td></tr>
+    </tbody>
+  </table>
+  <p class="small muted"><b>At risk / overdue today:</b> "React Paid: Fix 'react grid' ad rank on Search-Grids" (in‑progress, due 7/29, 9 days late) · "React Paid: Audit &amp; cap Demand Gen React" (in‑progress, due 7/30, 8 days late) · "Add CLI videos to Demand Gen Campaigns" (in‑progress, due 8/3, 4 days late) · "Ad Copy and Landing page opti" (open, due 8/3, 4 days late) · "Need brand guidelines for Infragistics &amp; Ignite UI" (open, due today). Flagging for owner check-in, not reassigning or closing — status unverified beyond the tracker record.</p>
+</section>
+
+<section>
+  <h2><span class="num">02</span>This run's executive actions <span class="small muted" style="text-transform:none;letter-spacing:0;font-weight:500">· 2 updates + 3 new · owner: Poojitha for all · max 5 respected</span></h2>
+
+  <div class="action">
+    <div class="h">1 (UPDATE) · Escalate: Supermetrics reconnection recurred today</div>
+    <div class="m">The open task "React Paid: Harden Supermetrics connection" (created 8/3, due 8/10) predicted this would break again — it did, again, on 8/7. Escalating priority and adding today's confirmation.</div>
+    <div class="grid2">
+      <div><b>Product:</b> UI Tools (all frameworks)</div><div><b>Evidence:</b> accounts_discovery returned zero accounts for both AW and GAWA, 8/7</div>
+      <div><b>Why it matters:</b> every executive number that isn't Ahrefs or Salesforce is dark until this is fixed</div><div><b>Fix:</b> confirm paid subscription vs. lapsing trial; reconnect Google Ads 9179838229 + GA4 516222862; set a renewal reminder</div>
+      <div><b>Owner:</b> Poojitha (with Supermetrics subscription owner)</div><div><b>Effort:</b> 30–45 min</div>
+      <div><b>Measurement window:</b> confirmed fixed by next Monday run</div><div><b>Confidence:</b> High · <b>Dependency:</b> Subscription/billing decision</div>
+    </div>
+  </div>
+
+  <div class="action">
+    <div class="h">2 (UPDATE) · Reopen: npm installs pipe is not actually fixed for this reporting run</div>
+    <div class="m">"React Paid: Wire up an NPM installs read" was marked Completed 8/3, but <code>api.npmjs.org</code> still returns HTTP 403 from this environment. Moving back to in‑progress with the concrete evidence attached rather than leaving a false "done" on record.</div>
+    <div class="grid2">
+      <div><b>Product:</b> UI Tools (React packages named; extend to Angular/Blazor if applicable)</div><div><b>Evidence:</b> curl to api.npmjs.org returned 403 Forbidden via this session's proxy, 8/7</div>
+      <div><b>Why it matters:</b> package adoption is the north-star metric and it's been unreportable for two runs</div><div><b>Fix:</b> verify the allowlist change actually reached the agent's runtime, not just IT's ticket; re-test with a live curl before marking complete again</div>
+      <div><b>Owner:</b> Poojitha (with IT/analytics)</div><div><b>Effort:</b> 30–60 min to verify + re-close</div>
+      <div><b>Measurement window:</b> npm figures render in next run</div><div><b>Confidence:</b> High · <b>Dependency:</b> IT confirming allowlist scope</div>
+    </div>
+  </div>
+
+  <div class="action">
+    <div class="h">3 (NEW) · Ultimate Paid: open a baseline task — the section has zero tasks despite a live, growing signal</div>
+    <div class="m">Ultimate cpc trials are up 25% MoM (15 vs. 12) but are only 13% of total trial volume (15 of 115). There is no visible paid strategy or campaign-confirmation task for Ultimate anywhere in the tracker.</div>
+    <div class="grid2">
+      <div><b>Product:</b> Ultimate</div><div><b>Evidence:</b> Salesforce Lead_Event__c query, 8/7 (High confidence)</div>
+      <div><b>Why it matters:</b> a growing, verifiable paid signal with zero tracked follow-up is a missed compounding opportunity</div><div><b>Fix:</b> confirm whether a dedicated Ultimate Google Ads campaign exists once Supermetrics reconnects; if not, scope one against the 87% organic/direct trial volume it isn't yet capturing</div>
+      <div><b>Owner:</b> Poojitha</div><div><b>Effort:</b> 1 hr investigation once data access returns</div>
+      <div><b>Measurement window:</b> next 30-day cpc trial count vs. this run's 15</div><div><b>Confidence:</b> Medium · <b>Dependency:</b> Google Ads reconnection</div>
+    </div>
+  </div>
+
+  <div class="action">
+    <div class="h">4 (NEW) · Angular Paid: investigate the competitor-term demand gap</div>
+    <div class="m">Angular Material + PrimeNG pull 5,940 US searches/mo — 5.4× Angular's own product-term volume (~1,100/mo). Angular Paid currently has exactly one task (a CTA measurement setup), no strategy task.</div>
+    <div class="grid2">
+      <div><b>Product:</b> Angular</div><div><b>Evidence:</b> Ahrefs Keywords Explorer, US, 8/7 (High confidence — volume, not captured traffic)</div>
+      <div><b>Why it matters:</b> if Angular isn't bidding on Material/PrimeNG conquest terms, that's the single biggest uncaptured demand pool in UI Tools paid</div><div><b>Fix:</b> once Google Ads reconnects, check for an active Angular competitor/conquest campaign and its impression share on these terms specifically</div>
+      <div><b>Owner:</b> Poojitha</div><div><b>Effort:</b> 45 min once data access returns</div>
+      <div><b>Measurement window:</b> impression share on named terms, next run</div><div><b>Confidence:</b> Medium · <b>Dependency:</b> Google Ads reconnection</div>
+    </div>
+  </div>
+
+  <div class="action">
+    <div class="h">5 (NEW) · UI Tools Paid: document a monthly budget/pacing goal</div>
+    <div class="m">No numeric spend, pacing, or trial-volume target exists in governance docs or the tracker for UI Tools paid. Every future executive report will hit the same "unscorable" wall on Goal Progress without one.</div>
+    <div class="grid2">
+      <div><b>Product:</b> UI Tools (all frameworks)</div><div><b>Evidence:</b> absence confirmed across marketing-constitution.md, configuration.md, and the tracker, 8/7</div>
+      <div><b>Why it matters:</b> "are we pacing to budget" cannot be answered objectively without a documented plan</div><div><b>Fix:</b> 15–20 min working session, Poojitha + JJ + Casey, to set and record a monthly $ target and an Ultimate-trial target</div>
+      <div><b>Owner:</b> Poojitha (approval: JJ)</div><div><b>Effort:</b> 20 min</div>
+      <div><b>Measurement window:</b> goal on record by next run</div><div><b>Confidence:</b> High · <b>Dependency:</b> JJ/Casey availability</div>
+    </div>
+  </div>
+
+  <p class="small muted">No duplicates created: the existing "Search-Charts +$30/day" and Search-Compete/Grids items stay as-is (see Budget &amp; Forecast). Completed, in‑progress, and blocked work is treated as standing memory, not re‑litigated.</p>
+</section>
+
+</div>
+
+<!-- TAB 5: SUMMARY & DEFINITIONS -->
+<div class="tabpanel" id="t5">
+
+<section>
+  <h2><span class="num">01</span>Summary — the numbers that matter</h2>
+  <table>
+    <thead><tr><th>Metric</th><th>Value</th><th>Label</th></tr></thead>
+    <tbody>
+      <tr><td>Ultimate cpc trials, last 30 days</td><td class="num">15</td><td><span class="badge b-green">Fresh</span></td></tr>
+      <tr><td>Ultimate cpc trials, prior 30 days</td><td class="num">12</td><td><span class="badge b-green">Fresh</span></td></tr>
+      <tr><td>Ultimate cpc trial MoM change</td><td class="num up">+25.0%</td><td><span class="badge b-green">Fresh</span></td></tr>
+      <tr><td>Paid share of Ultimate trial volume (30d)</td><td class="num">13%</td><td><span class="badge b-green">Fresh</span></td></tr>
+      <tr><td>Ultimate trial events, trailing 90 days</td><td class="num">393</td><td><span class="badge b-green">Fresh</span></td></tr>
+      <tr><td>React Paid tracker tasks</td><td class="num">31 (8 done / 3 in‑progress / 20 open)</td><td><span class="badge b-green">Live</span></td></tr>
+      <tr><td>Angular / Blazor / Ultimate Paid tracker tasks</td><td class="num">1 / 1 / 0</td><td><span class="badge b-green">Live</span></td></tr>
+      <tr><td>Google Ads spend, impression share, search terms</td><td class="num">—</td><td><span class="badge b-red">Unavailable</span></td></tr>
+      <tr><td>GA4 sessions/engagement</td><td class="num">—</td><td><span class="badge b-red">Unavailable</span></td></tr>
+      <tr><td>npm installs (all frameworks)</td><td class="num">—</td><td><span class="badge b-red">Unavailable</span></td></tr>
+      <tr><td>Search-Compete abs-top IS recovery (carried claim)</td><td class="num">~46%→52%+ target</td><td><span class="badge b-amber">Carried, unverified</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="cheat">
+  <h2><span class="num" style="color:#4E7CA8">02</span>Definitions</h2>
+  <table>
+    <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td>Directly attributable</td><td>Traced to a specific paid medium/source field on an actual conversion record (e.g., <code>TrackingMedium__c = 'cpc'</code> on a Salesforce Lead_Event__c). Reported with High confidence.</td></tr>
+      <tr><td>Directional / associated</td><td>Correlated with paid activity but not provably caused by it — organic, direct, referral trial volume; npm/install trends; overall new-seat counts. Never claimed as paid-caused.</td></tr>
+      <tr><td>Carried</td><td>A number sourced from a prior run's task description, not re-verified with live tool access this run. Always labeled and dated.</td></tr>
+      <tr><td>Fresh / Live</td><td>Queried directly from an approved source during this run.</td></tr>
+      <tr><td>Unavailable</td><td>Source could not be reached or returned no data this run; never estimated or substituted.</td></tr>
+      <tr><td>cpc trial</td><td>An "ultimate trial" Lead_Event__c record whose TrackingMedium__c equals cpc — i.e., a trial start where the click itself was paid.</td></tr>
+      <tr><td>Engagement rate (GA4)</td><td>The GA4-native replacement for bounce rate; not reported this run (source unavailable) but is the correct metric per governance, not bounce rate.</td></tr>
+    </tbody>
+  </table>
+  <p class="small">One metric, one tool — never blended. Reveal and Slingshot are out of scope for this brief. 6sense/ABM excluded. No budget or campaign changes were executed; every action above is a recommendation pending owner action.</p>
+</section>
+
+<section>
+  <h2><span class="num">03</span>Governance read this run</h2>
+  <p class="small muted">marketing-constitution.md · universal-agent-framework.md · report-quality-standard.md · task-creation-standard.md · feedback-learning-standard.md · 06-brains/paid-performance/framework.md, report-standard.md, attribution-normalization.md, task-standard.md · 03-products/ignite-ui/paid/configuration.md · 04-agents/search-marketing/ui-tools.md · 04-agents/landing-conversion/ui-tools.md · Slingshot Optimizations task list (31 tasks) · no standing paid feedback on file for UI Tools this run.</p>
+  <p class="small muted">No published UI Tools Search Intelligence or Conversion/Adoption Intelligence reports existed at <code>paid-intelligence/ui-tools/search/</code> or <code>paid-intelligence/ui-tools/landing-adoption/</code> as of this run — this is the first executive synthesis, built directly from source data rather than from prior specialist reports.</p>
+</section>
+
+</div>
+
+<div class="foot">
+  Ignite UI for UI Tools · Paid Media Executive Brief · generated Aug 7, 2026 · data windows as noted per metric · published to CCiniello/weekly-reports
+</div>
+
+</div>
+
+<button class="fb-btn" onclick="document.getElementById('fbModal').classList.add('open')">Send feedback</button>
+<div class="fb-modal" id="fbModal">
+  <div class="fb-card">
+    <h3>Feedback on this report</h3>
+    <p class="small muted">Wrong number, missing context, or a decision on an open item — this goes to the UI Tools Paid discussion in Slingshot.</p>
+    <textarea id="fbText" placeholder="What should change?"></textarea>
+    <div class="row">
+      <button class="cancel" onclick="document.getElementById('fbModal').classList.remove('open')">Cancel</button>
+      <button class="send" onclick="alert('Thanks — copy this note into the UI Tools Paid discussion in Slingshot so it is tracked for the next run.'); document.getElementById('fbModal').classList.remove('open')">Note it</button>
+    </div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.tabbtn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('active')});
+    document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('active')});
+    btn.classList.add('active');
+    document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
