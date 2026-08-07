@@ -173,6 +173,9 @@
 
   var accentDeep = getComputedStyle(document.body).getPropertyValue('--accent-deep').trim() || '#333';
   function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  /* Slingshot dates are date-only YYYY-MM-DD; parse as LOCAL midnight so they never shift a day
+     (new Date("YYYY-MM-DD") parses as UTC and renders as the prior day in negative-offset zones). */
+  function localDate(iso){ var p=String(iso).split('-'); return new Date(+p[0], (+p[1])-1, +p[2]); }
   var STAT={todo:'To do',prog:'In progress',review:'In review',deferred:'Deferred',blocked:'Blocked',done:'Done'};
 
   // counts + summary
@@ -207,11 +210,11 @@
     var wrap=document.getElementById('tlWrap');
     var withDue = TASKS.filter(function(t){return t.due;});
     if(!withDue.length){ wrap.innerHTML='<div class="empty">No dated tasks to plot.</div>'; return; }
-    var starts = withDue.map(function(t){return new Date(t.start||t.due).getTime();});
-    var ends = withDue.map(function(t){return new Date(t.due).getTime();});
+    var starts = withDue.map(function(t){return localDate(t.start||t.due).getTime();});
+    var ends = withDue.map(function(t){return localDate(t.due).getTime();});
     var min=Math.min.apply(null,starts), max=Math.max.apply(null,ends), span=Math.max(1,max-min);
     wrap.innerHTML = withDue.map(function(t){
-      var s=new Date(t.start||t.due).getTime(), e=new Date(t.due).getTime();
+      var s=localDate(t.start||t.due).getTime(), e=localDate(t.due).getTime();
       var left=((s-min)/span*100), width=Math.max(7,(e-s)/span*100);
       if(left+width>100){width=100-left;}
       return '<div class="tlrow"><div class="tlname">'+esc(t.name)+'<div class="sub">'+esc(t.owner||'')+' · '+esc(t.priority)+'</div></div>'+

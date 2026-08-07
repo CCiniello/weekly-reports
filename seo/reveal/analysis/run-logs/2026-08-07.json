@@ -1,0 +1,53 @@
+{
+  "agent": "Reveal SEO Weekly",
+  "run_date": "2026-08-07",
+  "run_type": "off-cycle weekly production run (Fri; scheduled cadence is Mon 05:00 ET)",
+  "windows": {
+    "wow_current": "2026-07-31..2026-08-06 (rolling 7-day)",
+    "wow_prior": "2026-07-24..2026-07-30",
+    "rankings_28d": "2026-07-10..2026-08-06"
+  },
+  "source_bindings": {
+    "rankings_clicks_impressions": "Google Search Console (sc-domain:revealbi.io)",
+    "gsc_connector_note": "Ahrefs GSC feed was STALE (data ended 2026-07-12); GSC read via Supermetrics (GW) instead — same source of truth (GSC), fresher connector. NOT a source substitution.",
+    "sessions": "GA4 property 516472465 (Supermetrics), sessionDefaultChannelGrouping == Organic Search",
+    "leads": "Salesforce COUNT_DISTINCT Email__c on Lead_Event__c where ProductFamilyName__c=Reveal AND TrackingMedium__c=organic",
+    "domain_rating_health_volume": "Ahrefs (DR, Site Audit project 1241581 crawl 2026-08-06, keyword volumes)",
+    "ai_visibility": "Amplitude AI Visibility orgBrandId 30690, report 190203 (completed 2026-08-05)"
+  },
+  "metrics": {
+    "organic_clicks": {"value": 209, "prior": 254, "wow_pct": -18, "source": "GSC"},
+    "organic_impressions": {"value": 119077, "prior": 118011, "wow_pct": 1, "source": "GSC"},
+    "organic_sessions_weekly": {"value": 193, "prior": 364, "wow_pct": -47, "source": "GA4", "note": "Aug 1-2 unusually low (8,9)"},
+    "organic_sessions_monthly_jul": {"value": 1749, "prior_jun": 2170, "mom_pct": -19, "source": "GA4"},
+    "organic_leads_mo_jul": {"value": 23, "prior_jun": 24, "source": "Salesforce", "aug_mtd": 4},
+    "domain_rating": {"value": 56, "prior": 55, "source": "Ahrefs"},
+    "technical_health": {"value": 48, "prior": 48, "trough": 36, "source": "Ahrefs Site Audit 1241581 (crawl 2026-08-06)"},
+    "ai_visibility": {"value_pct": 32.3, "prior_run_pct": 27.4, "avg_rank": 7.6, "citations": 624, "sentiment_pos_pct": 73, "responses": 155, "coverage_pct": 44.4, "report": 190203, "label": "brand-level single-run baseline"}
+  },
+  "ai_topics_190203": {"Brand & Comparison": 76, "White label embedded": 32, "Developer & Stack Fit": 20, "AI-powered embedded": 17, "Pricing & Licensing": 17, "Embedded for SaaS/ISV": 10, "Embedded analytics platforms": 0},
+  "ai_key_change": "'AI-powered embedded analytics' broke 0% -> 17%; 'embedded analytics platforms' still 0%.",
+  "completed_work_review": [
+    {"task": "Trigger fresh Ahrefs crawl [P2]", "status": "done 2026-08-06", "result": "crawl ran; health 48 (no movement) — P2 fixes did not lift health"},
+    {"task": "Regenerate clean XML sitemap [P2]", "status": "done 2026-07-28", "result": "no health movement yet"},
+    {"task": "Update internal links pointing at redirects [P2]", "status": "done 2026-07-28", "result": "no health movement yet"},
+    {"task": "Audit Amplitude AI-visibility setup", "status": "done 2026-07-28", "result": "worked — richer topic/model/competitor data; coverage up to 44%"}
+  ],
+  "tasks_created": [
+    {"id": "e97e10ef_90b115f9-a465-4573-9f15-7d2e572daaec_tk", "name": "Consolidate duplicate white-label URLs into /blog/white-label-analytics-platform (301 + canonical)", "owner": "Dian Jelyazkov", "fyi": "Sathya (plain-text)", "priority": "high", "due": "2026-08-18", "verified": true}
+  ],
+  "tasks_modified": [],
+  "limits_check": {"new_tasks": "1/5", "modifications": "0/15", "weekly_priorities": "3", "urgent": "0/1"},
+  "flags_for_human": [
+    "GOAL DISCREPANCY: report shows organic-leads goal 100/mo; product config + reveal-feedback standing decision say 50/mo organic. Published 100 preserved (did not unilaterally change an exec goal); needs Casey's decision on the correct target.",
+    "TECHNICAL: site-audit health flat at 48 despite P2 completions. The four P1 fixes (retire old/dev subdomains, support@ link bug, 403s on localized pages, repoint canonicals) are OVERDUE (Jul 25-31) and are the gate to 60.",
+    "GA4 sessions -47% WoW is exaggerated by two anomalously low days (Aug 1=8, Aug 2=9). Watch next run; not yet a task.",
+    "PUBLICATION: git push blocked (repo not in session's authorized sources); report delivered as artifact + saved to Project, awaiting repo authorization to commit to main."
+  ],
+  "self_evaluation": {
+    "one_metric_one_tool": "held — no blended sources; GSC read via alternate connector but same source of truth, documented.",
+    "no_fabrication": "all values are actual tool outputs.",
+    "report_integrity": "canonical HTML/CSS/JS/tabs/feedback module/brand/Definitions cheat-sheet preserved; only run data, date, windows, and task array changed.",
+    "verification": "JS node --check passed; tag balance ok; screenshots of Report + Tasks tabs reviewed; Slingshot task re-read and confirmed."
+  }
+}
