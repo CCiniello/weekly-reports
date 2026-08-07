@@ -1,0 +1,86 @@
+{
+  "agent": "Reveal AI Visibility Weekly",
+  "run_date": "2026-08-07",
+  "run_type": "production run (off-cycle Fri; scheduled cadence Tue 05:00 ET)",
+  "source_of_truth": "Amplitude AI Visibility only (one metric, one tool)",
+  "report": {
+    "current": {"reportId": 190203, "completedAt": "2026-08-05", "isLatestUsable": true},
+    "prior_wow": {"reportId": 187963, "completedAt": "2026-07-28"}
+  },
+  "config": {"orgBrandId": 30690, "brand": "Reveal BI", "brandUrl": "https://revealbi.io", "topics": 7, "prompts": 81, "competitors": 14, "models_tracked": 2},
+  "freshness": "Fresh; visibility labeled REBASELINED (methodology changed at 2026-07-28 run 187963; pre-Jul-28 figures on ~230-response basis are not comparable)",
+  "metrics_190203": {
+    "visibility_pct": 32.3, "prior_pct": 31.3,
+    "avg_rank": 7.6, "prior_avg_rank": 7.5,
+    "prompt_coverage_pct": 44.4, "prior_coverage_pct": 43.2,
+    "citations": 624, "prior_citations": 560,
+    "total_responses": 155, "mentioned_responses": 50, "prompts_with_mentions": 36,
+    "sentiment_pos_pct": 73.2
+  },
+  "topics_190203": {
+    "Brand & Competitive Comparison": {"vis": 76, "prior": 71, "rank": 3.3, "relevance": 93, "prompts": 22},
+    "White label embedded analytics": {"vis": 32, "prior": 27, "rank": 9.1, "relevance": 96, "prompts": 13},
+    "Developer & Stack Fit": {"vis": 20, "prior": 29, "rank": 8.4, "relevance": 85, "prompts": 13},
+    "AI powered embedded analytics": {"vis": 17, "prior": 33, "rank": 8.5, "relevance": 83, "prompts": 3, "note": "thin sample: 6 responses"},
+    "Pricing & Licensing Model": {"vis": 17, "prior": 13, "rank": 9.3, "relevance": 83, "prompts": 9},
+    "Embedded Analytics for SaaS & ISV": {"vis": 10, "prior": 10, "rank": 9.5, "relevance": 91, "prompts": 11},
+    "Embedded analytics platforms": {"vis": 0, "prior": 0, "rank": 10, "relevance": 95, "prompts": 10}
+  },
+  "models_190203": {"google ai overview": {"vis": 39.2, "prior": 45.7, "rank": 6.9}, "gpt": {"vis": 25.9, "prior": 18.8, "rank": 8.2}},
+  "competitors_190203_rank": [
+    {"Microsoft Power BI": 52.9}, {"Looker": 51.0}, {"Salesforce": 45.2}, {"Metabase": 38.1}, {"Sisense": 36.1},
+    {"Reveal BI": 32.3}, {"Sigma Computing": 17.4}, {"Qlik Sense": 16.8}, {"GoodData": 15.5}, {"Luzmo": 12.3},
+    {"Bold BI": 11.0}, {"Qrvey": 7.7}, {"Embeddable": 5.8}, {"Zoho Analytics": 3.2}, {"Tableau": 0}
+  ],
+  "goal_progress": {
+    "30day": {
+      "Embedded Analytics Platforms 0->15": {"current": 0, "status": "behind"},
+      "SaaS/ISV 10->20": {"current": 10, "status": "watch"},
+      "AI-Powered 17->25": {"current": 17, "status": "watch-thin"},
+      "Pricing 17->25": {"current": 17, "status": "watch"},
+      "Maintain Brand&Comparison >=65": {"current": 76, "status": "met"},
+      "Appear >=5 of 7 topics": {"current": "6/7", "status": "met"},
+      "Measurement health Green": {"current": "Amber", "status": "watch"}
+    },
+    "90day": {
+      "Overall visibility >=35": {"baseline": 31.3, "current": 32.3, "status": "on_track"},
+      "Avg rank <=6": {"baseline": 7.5, "current": 7.6, "status": "watch"},
+      "Priority-topic coverage >=70": {"baseline": 43.2, "current": 44.4, "status": "behind"},
+      "At least 4 topics >=25": {"baseline": 4, "current": 2, "status": "regressed"},
+      "Authoritative citations every money-topic family": {"current": "partial", "status": "partial"},
+      "Surpass 3 of Luzmo/Explo/Qrvey/Domo": {"current": "2/4 (Explo+Domo untracked)", "status": "blocked_measurement"}
+    }
+  },
+  "measurement_health": {"status": "Amber", "gaps": ["Explo + Domo not in tracked competitor set (2 of 4 named SOV peers)", "only 2 of 5 charter model families tracked (Claude/Gemini/Perplexity missing)"], "fixed_this_cycle": "competitor set now includes Luzmo, Qrvey, Bold BI, GoodData, Embeddable, Sigma"},
+  "citation_patterns": {
+    "own_pages_cited": [{"revealbi.io/": 11}, {"/white-label-analytics": 6}, {"/embedded-analytics": 5}],
+    "third_party_omitting_reveal": ["omni.co Best Embedded Analytics Platforms 2026 (10)", "holistics.io white-label (9) + pricing (7)", "toucantoco white-label guide (9)", "querypanel.io 10 Best for SaaS (7, lists Explo)", "astrato.io Top 10 (7)", "gooddata.ai comparison (6)"],
+    "third_party_including_reveal": ["toucantoco 10 Best White Label Reporting Tools (6)", "holistics.io Top 11 Embedded BI Tools (5)"]
+  },
+  "entity_aliases_detected": ["Reveal (reveal.co)", "Reveal Embedded Analytics (revealanalytics.com)", "Reveal SDK (revealbi.io)", "RevealBI", "revealbi.io", "YouTube.Reveal BI (revealbi.com)"],
+  "completed_work_review": [
+    {"task": "Realign Amplitude tracking (competitor set, models, prompts)", "status": "done 2026-08-03", "result": "WORKED on competitor set (real peers now measured; Reveal 6th of 14; visibility rebaselined to ~32%). INCOMPLETE on models (still 2) and Explo/Domo (still missing) -> follow-up task created."}
+  ],
+  "tasks_created": [
+    {"id": "e97e10ef_34dd25dd-6307-4808-806a-345c9effbd14_tk", "name": "Complete Amplitude tracking realignment: add Explo + Domo competitors and Claude/Gemini/Perplexity models", "owner": "Casey Ciniello", "priority": "high", "due": "2026-08-11", "verified": true}
+  ],
+  "tasks_modified": [
+    {"id": "e97e10ef_dbf4f885-d948-4b9d-9b8f-20cae4804429_tk", "change": "renamed + progress note: AI-powered now 3 prompts live / 17% (was 0/0)", "verified": true},
+    {"id": "e97e10ef_c44fa1d6-c984-4309-acc0-7826c5c648e9_tk", "change": "refreshed off-site GEO source list with report 190203 citation evidence", "verified": true}
+  ],
+  "tasks_untouched_existing": ["entity consistency (in_review)", "publish llms.txt (open, web-dev owned Dian+Sathya)", "answer-first blocks (open)", "FAQPage/JSON-LD schema (open)", "reveal-vs-explo/qrvey/domo pages (open)"],
+  "limits_check": {"new_tasks": "1/5", "modifications": "2/15", "weekly_priorities": 3, "urgent": "0/1"},
+  "seo_dedup_note": "No overlap with SEO agent: new task is Amplitude config only. SEO owns technical health / URL consolidation (Dian). llms.txt left with existing web-dev owners.",
+  "flags_for_human": [
+    "MEASUREMENT: Explo + Domo still not in tracked competitor set and only 2 of 5 charter models run -> Measurement Health Amber and 90-day 'surpass 3 of 4 peers' goal not fully scoreable. New task (due 2026-08-11) fixes both.",
+    "REGRESSION: 90-day 'at least 4 topics >=25%' fell from 4 to 2 (Developer 29->20, AI-powered 33->17). The two dropped topics were thin/volatile (AI-powered on 6 responses).",
+    "PRIOR-REPORT DISCREPANCY: the live report dated Aug 03 showed 27.4% / 124 responses / prev 11.7%; the current Amplitude API reads 187963 (Jul 28) = 31.3% / 150 responses. Methodology rebaselined at Jul 28; older basis not comparable. This run uses actual API values (190203 vs 187963)."
+  ],
+  "self_evaluation": {
+    "one_metric_one_tool": "held - AI visibility entirely from Amplitude AI Visibility (brand 30690); no blended sources.",
+    "no_fabrication": "all values are actual Amplitude tool outputs; baselines quoted from product config / first rebaselined run.",
+    "report_integrity": "canonical HTML/CSS/JS/tabs/task views/copy button/Reveal brand preserved; upgraded Goals scorecard to full Goal Progress Scorecard (every 30/90-day goal shows baseline, current, target, progress, forecast, confidence, status) per report-standard; added required Measurement Health section.",
+    "goals_visibility": "all 7 thirty-day and 6 ninety-day goals rendered in the Goal Progress Scorecard tables, not prose.",
+    "verification": "node --check passed on report JS; tag balance verified (tables/sections/thead/tbody/script/style); stale-value scan clean; Slingshot writes re-read and confirmed (9 tasks); GitHub publication verified by commit + remote read."
+  }
+}
