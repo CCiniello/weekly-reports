@@ -96,6 +96,10 @@
   #report .rec.add .rh{color:var(--good)} #report .rec.remove .rh{color:var(--bad)} #report .rec.gap .rh{color:var(--warn)}
   #report .rec ul{margin:0;padding-left:18px;font-size:13px} #report .rec li{margin-bottom:4px}
   #report .note{font-size:12px;color:var(--muted);margin-top:6px}
+  #report .mh{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-left:4px solid var(--warn);border-radius:12px;padding:14px 16px;background:#fffdf8}
+  #report .mh .mhbadge{flex:none;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 11px;border-radius:999px;background:var(--warn-bg);color:var(--warn)}
+  #report .mh .mtxt{font-size:13px;line-height:1.55} #report .mh .mtxt b{color:var(--navy)}
+  #report td .sc-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
 
   /* ===== TASKS (scoped) ===== */
   #tasks .taskhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
@@ -168,7 +172,7 @@
     <div class="logochip">Reveal</div>
     <div class="kick">revealbi.io · AI Search Visibility</div>
     <h1>AI Search Visibility / Reveal</h1>
-    <div class="meta"><span>Updated <b>Aug 03, 2026</b></span><span>Window <b>Jul 27–Aug 2, 2026</b> vs Jul 20–26</span><span>Source <b>Amplitude AI Visibility</b> · brand 30690</span></div>
+    <div class="meta"><span>Updated <b>Aug 07, 2026</b></span><span>Run <b>Aug 5, 2026</b> (report 190203) vs Jul 28 (187963)</span><span>Source <b>Amplitude AI Visibility</b> · brand 30690</span></div>
   </header>
 
   <div class="tabbar">
@@ -185,104 +189,146 @@
       <div class="goal">Goal: be present &amp; cited in AI answers on our money topics — and grow share of voice vs Luzmo, Explo, Qrvey &amp; Domo.
         <span>Money topics: embedded analytics/BI, dashboard SDKs, React/Angular embedded dashboards, build-vs-buy, and Luzmo/Explo/Qrvey/Domo alternatives.</span>
       </div>
-      <div class="vpitem"><span class="tag work">Working</span><div class="txt"><b>We win the comparison query.</b> "Brand &amp; Competitive Comparison" scored <b>77% visibility at avg rank 3.4</b> — by far our strongest topic. <span class="so">So what: when a buyer asks "Reveal vs X," models surface us. Extend this asset to the peer set we don't yet have pages for.</span></div></div>
-      <div class="vpitem"><span class="tag watch">Watch</span><div class="txt"><b>The headline jump is partly a smaller sample.</b> Visibility rose to 27.4% from 11.7%, but on 124 responses vs 367 last week; absolute mentions actually fell (34 vs 43) and prompt coverage dropped to 37.9% from 48.5%. <span class="so">So what: rank and per-model gains are real — but don't bank the score until breadth recovers next week.</span></div></div>
-      <div class="vpitem"><span class="tag fix">Fix</span><div class="txt"><b>We're invisible on the core discovery query and measuring the wrong race.</b> "Embedded analytics platforms" scores <b>0% visibility at 95/100 relevance</b>, and the tracked competitor set is BI giants (Microsoft, Looker, Sisense) — not Luzmo/Explo/Qrvey/Domo. <span class="so">So what: our SOV target isn't even being measured, and the highest-relevance money query returns zero Reveal.</span></div></div>
-      <div class="flags"><b>Shining light:</b> Google AI Overview visibility more than doubled (15.7% → 37.9%). &nbsp;·&nbsp; <b>Top fix:</b> realign Amplitude tracking (competitor set + prompts + models) — carried over from last week and due today.</div>
+      <div class="vpitem"><span class="tag work">Working</span><div class="txt"><b>The rebaselined tracker is holding, and we win the comparison query.</b> Overall visibility is <b>32.3% at avg rank 7.6</b> on a stable 81-prompt / 14-competitor config, and "Brand &amp; Competitive Comparison" scored <b>76% at rank 3.3</b> — our strongest asset by far. <span class="so">So what: the measurement realignment worked; when a buyer asks "Reveal vs X," models surface us. Extend that asset to the peer set.</span></div></div>
+      <div class="vpitem"><span class="tag watch">Watch</span><div class="txt"><b>We range better where we appear, but breadth barely moved and two topics slipped.</b> Visibility ticked +1.0 pt WoW (32.3% vs 31.3%) and coverage is flat at 44.4%; meanwhile "Developer &amp; Stack Fit" fell to 20% (from 29%) and "AI-powered" to 17% (from a noisy 33% on 6 responses), so topics ≥25% dropped from 4 to 2. <span class="so">So what: the 90-day "4 topics ≥25%" goal regressed — the two we lost were thin/volatile, not durable.</span></div></div>
+      <div class="vpitem"><span class="tag fix">Fix</span><div class="txt"><b>Still invisible on the core discovery query, and the peer race is still half-measured.</b> "Embedded analytics platforms" scores <b>0% at 95/100 relevance</b> — on-topic content models never cite — and <b>Explo &amp; Domo</b> (2 of our 4 named peers) still aren't in the tracker. <span class="so">So what: we beat Luzmo &amp; Qrvey but can't yet confirm the 90-day "surpass 3 of 4" goal, and the highest-relevance money query returns zero Reveal.</span></div></div>
+      <div class="flags"><b>Shining light:</b> ChatGPT visibility jumped to 25.9% (from 18.8%) and citations grew to 624 (from 560). &nbsp;·&nbsp; <b>Top fix:</b> finish the tracker realignment (add Explo + Domo + Claude/Gemini/Perplexity) to turn Measurement Health Green and make the peer goal reportable.</div>
     </div>
 
     <h2>Executive summary</h2>
-    <p class="lead">Reveal's AI answer visibility <b>improved on quality but narrowed on breadth</b> this week. Our visibility score more than doubled to <b>27.4%</b> and average rank improved to <b>7.9</b> from 9.3, and both tracked models moved up — Google AI Overview to 37.9% (from 15.7%) and ChatGPT to 18.2% (from 7.9%). But the sample was one-third the size of last week (124 responses vs 367), our absolute mentions slipped from 43 to 34, and we now appear in <b>37.9% of prompts, down from 48.5%</b>. Translation: we're ranking better where we show up, but we're showing up in fewer places. The engine of our strength is unchanged — <b>comparison and alternatives content</b> (77% visibility) — and the drag is unchanged too: we're absent from the "best/top embedded analytics" listicles and Reddit threads that models cite for discovery queries, and the tracker still isn't measuring our real competitive set. The plan is to press the comparison advantage into the peer set (Explo/Qrvey/Domo pages), earn citations in the third-party lists models actually quote, and fix the Amplitude configuration so we're measuring the race we're trying to win.</p>
+    <p class="lead">On the now-stable measurement config, Reveal's AI answer visibility <b>held and edged up</b>: overall visibility <b>32.3%</b> (from 31.3%), avg rank <b>7.6</b> (from 7.5), prompt coverage <b>44.4%</b> (from 43.2%), and <b>624 citations</b> (from 560), across <b>155 responses</b>. The engine is unchanged — <b>comparison and alternatives</b> content (76% visibility, rank 3.3) — and so is the drag: we score <b>0% on "Embedded analytics platforms"</b> despite 95/100 relevance, and 10% on "SaaS &amp; ISV," because third-party listicles drive those answers and mostly omit us. Two model families flipped this week (Google AI Overview down to 39.2% from 45.7%; ChatGPT up to 25.9% from 18.8%). The realignment that fixed most of the competitor set is <b>Done and validated</b> — Luzmo, Qrvey, Bold BI, GoodData, Embeddable and Sigma are now measured, and Reveal sits 6th of 14 — but it left two gaps: <b>Explo and Domo aren't tracked</b>, and only 2 of 5 charter models are. The plan: finish the tracker config, press the comparison advantage into Explo/Qrvey/Domo pages, and earn third-party citations in the "best embedded analytics" roundups models actually quote.</p>
 
-    <h2>Goals scorecard</h2>
+    <h2>Measurement Health</h2>
+    <div class="mh">
+      <span class="mhbadge">Amber</span>
+      <div class="mtxt"><b>Usable and decision-ready on trends, with two known gaps.</b> Brand/entity is correct (Reveal BI, brand 30690, revealbi.io) and the competitor set now contains the real peer group — a material fix over the prior BI-incumbent-only set. Methodology is stable across the last two runs (81 prompts, 14 competitors), so WoW is clean. <b>Gaps:</b> (1) <b>Explo &amp; Domo</b> — 2 of the 4 named SOV peers — are not in the tracked set, so the peer goal is only half-measurable; (2) only <b>2 of 5</b> charter model families run (Google AI Overview + ChatGPT); Claude, Gemini and Perplexity are unmeasured. Both are config-only fixes and are the top action this week. Health stays <b>Amber</b> until they land, then <b>Green</b>.</div>
+    </div>
+    <p class="note">Rebaseline note: methodology changed at the Jul 28 run (report 187963) — pre-Jul-28 visibility (≈5–12% on ~230 responses) is a different measurement basis and is not comparable. All WoW figures here compare Aug 5 (190203) vs Jul 28 (187963), both on the new config.</p>
+
+    <h2>Goal Progress Scorecard</h2>
     <div class="score">
-      <span class="goal-pill"><span class="dot" style="background:var(--good)"></span> Be cited in AI answers on money topics — <b>&nbsp;on track</b></span>
-      <span class="goal-pill"><span class="dot" style="background:var(--warn)"></span> Grow prompt coverage / breadth — <b>&nbsp;slipping</b></span>
-      <span class="goal-pill"><span class="dot" style="background:var(--bad)"></span> Grow SOV vs Luzmo/Explo/Qrvey/Domo — <b>&nbsp;not yet measured</b></span>
+      <span class="goal-pill"><span class="dot" style="background:var(--good)"></span> Cited on comparison money topics — <b>&nbsp;met / on track</b></span>
+      <span class="goal-pill"><span class="dot" style="background:var(--warn)"></span> Overall visibility &amp; coverage toward 90-day — <b>&nbsp;on pace, slow</b></span>
+      <span class="goal-pill"><span class="dot" style="background:var(--bad)"></span> Discovery topic (0%) &amp; full peer SOV — <b>&nbsp;behind / half-measured</b></span>
     </div>
+    <p style="font-size:13px;margin:10px 0 4px"><b>30-day goals</b> — window opened at the Jul 28 rebaseline (~1 of 4 weeks elapsed):</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Goal</th><th class="num">Baseline</th><th class="num">Current</th><th class="num">30-day target</th><th>Insight (forecast · confidence)</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Embedded Analytics Platforms visibility</td><td class="num">0%</td><td class="num">0%</td><td class="num">15%</td><td>No movement; 0 mentions on 19 responses at 95 relevance. Needs off-site citations + answer-first page — on-site alone won't move it. <i>Forecast: at risk · Conf Med</i></td><td><span class="sc-dot" style="background:var(--bad)"></span><span class="bpill lose">Behind</span></td></tr>
+        <tr><td>Embedded Analytics for SaaS &amp; ISV visibility</td><td class="num">10%</td><td class="num">10%</td><td class="num">20%</td><td>Flat; listicle-citation dependent (Omni/QueryPanel omit us). Off-site GEO task queued. <i>Forecast: behind · Conf Med</i></td><td><span class="sc-dot" style="background:var(--warn)"></span><span class="bpill mid">Watch</span></td></tr>
+        <tr><td>AI-Powered Embedded Analytics visibility</td><td class="num">17%</td><td class="num">17%</td><td class="num">25%</td><td>Flat, and thin: only 3 prompts / 6 responses. Prompt-expansion task in flight. <i>Forecast: unreliable until breadth grows · Conf Low</i></td><td><span class="sc-dot" style="background:var(--warn)"></span><span class="bpill mid">Watch</span></td></tr>
+        <tr><td>Pricing &amp; Licensing visibility</td><td class="num">17%</td><td class="num">17%</td><td class="num">25%</td><td>Flat vs baseline (WoW +4 pts from 13%). Needs pricing-page citable stats. <i>Forecast: behind but improving · Conf Med</i></td><td><span class="sc-dot" style="background:var(--warn)"></span><span class="bpill mid">Watch</span></td></tr>
+        <tr><td>Maintain Brand &amp; Competitive Comparison ≥65%</td><td class="num">65%</td><td class="num">76%</td><td class="num">≥65%</td><td>+11 pts above floor (WoW 71%→76%, rank 4.1→3.3). Our strongest asset. <i>Forecast: hold · Conf High</i></td><td><span class="sc-dot" style="background:var(--good)"></span><span class="bpill win">Met</span></td></tr>
+        <tr><td>Appear in ≥5 of 7 topics</td><td class="num">6/7</td><td class="num">6/7</td><td class="num">≥5/7</td><td>Only "Embedded analytics platforms" is at 0%. <i>Forecast: hold · Conf High</i></td><td><span class="sc-dot" style="background:var(--good)"></span><span class="bpill win">Met</span></td></tr>
+        <tr><td>Measurement Health = Green</td><td>Amber</td><td>Amber</td><td>Green</td><td>Competitor set fixed; Explo/Domo + 3 model families remain (config-only, task open, due Aug 11). <i>Forecast: Green within 1–2 runs · Conf High</i></td><td><span class="sc-dot" style="background:var(--warn)"></span><span class="bpill mid">Watch</span></td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:13px;margin:16px 0 4px"><b>90-day goals</b>:</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Goal</th><th class="num">Baseline</th><th class="num">Current</th><th class="num">90-day target</th><th>Insight (forecast · confidence)</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Overall visibility ≥35%</td><td class="num">31.3%</td><td class="num">32.3%</td><td class="num">≥35%</td><td>+1.0 pt (≈27% of the gap closed) since the rebaseline. On pace if breadth grows. <i>Forecast: reachable · Conf Med</i></td><td><span class="sc-dot" style="background:var(--warn)"></span><span class="bpill mid">On track</span></td></tr>
+        <tr><td>Avg rank ≤6</td><td class="num">7.5</td><td class="num">7.6</td><td class="num">≤6</td><td>Essentially flat (−0.1). Rank follows citation depth on lost topics. <i>Forecast: behind · Conf Med</i></td><td><span class="sc-dot" style="background:var(--warn)"></span><span class="bpill mid">Watch</span></td></tr>
+        <tr><td>Priority-topic coverage ≥70%</td><td class="num">43.2%</td><td class="num">44.4%</td><td class="num">≥70%</td><td>+1.2 pts; large gap remains — breadth-limited. Depends on discovery/listicle wins. <i>Forecast: behind · Conf Med</i></td><td><span class="sc-dot" style="background:var(--bad)"></span><span class="bpill lose">Behind</span></td></tr>
+        <tr><td>At least 4 topics ≥25%</td><td class="num">4</td><td class="num">2</td><td class="num">4</td><td>Regressed: Developer (29%→20%) and AI-powered (33%→17%) fell below 25%. Both were thin/volatile. <i>Forecast: recoverable · Conf Med</i></td><td><span class="sc-dot" style="background:var(--bad)"></span><span class="bpill lose">Regressed</span></td></tr>
+        <tr><td>Authoritative citations in every money-topic family</td><td>Partial</td><td>Partial</td><td>All families</td><td>Present in comparison + white-label roundups (Toucan, Holistics Top 11); absent in platforms/pricing/SaaS-ISV/AI roundups. <i>Forecast: off-site GEO task · Conf Med</i></td><td><span class="sc-dot" style="background:var(--warn)"></span><span class="bpill mid">Partial</span></td></tr>
+        <tr><td>Surpass ≥3 of Luzmo / Explo / Qrvey / Domo</td><td class="num">2/4</td><td class="num">2/4</td><td class="num">≥3/4</td><td>Beat Luzmo (12.3%) &amp; Qrvey (7.7%); Explo &amp; Domo not tracked, so the 3rd is unmeasurable until config fix (task open). <i>Forecast: likely once tracked · Conf High</i></td><td><span class="sc-dot" style="background:var(--warn)"></span><span class="bpill mid">Blocked</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Baselines: 30-day topic baselines are the documented config targets set at the Jul 28 rebaseline; 90-day baselines use the first rebaselined run (187963, Jul 28). Current = report 190203 (Aug 5). "Coverage" = share of the 81 prompts returning a Reveal mention (36/81 = 44.4%).</p>
 
-    <h2>KPI snapshot — week over week</h2>
+    <h2>KPI snapshot — run over run</h2>
     <div class="kpigrid">
-      <div class="kpi"><div class="lab">Visibility score</div><div class="val">27.4%</div><div class="prev">prev 11.7%</div><div class="d up">▲ +15.7 pts</div></div>
-      <div class="kpi"><div class="lab">Avg rank <span style="font-weight:400;text-transform:none">(lower=better)</span></div><div class="val">7.9</div><div class="prev">prev 9.3</div><div class="d up">▲ +1.4 better</div></div>
-      <div class="kpi"><div class="lab">Prompt coverage</div><div class="val">37.9%</div><div class="prev">prev 48.5%</div><div class="d down">▼ −10.6 pts</div></div>
-      <div class="kpi"><div class="lab">Share of voice <span style="font-weight:400;text-transform:none">(tracked set)</span></div><div class="val">~9%</div><div class="prev">prev ~4%</div><div class="d up">▲ +5 pts</div></div>
-      <div class="kpi"><div class="lab">Topics we appear in</div><div class="val">5<span style="font-size:15px;color:var(--muted)"> / 7</span></div><div class="prev">2 topics at 0%</div><div class="d flat">— see deep-dive</div></div>
-      <div class="kpi"><div class="lab">Models covering us</div><div class="val">2<span style="font-size:15px;color:var(--muted)"> / 2</span></div><div class="prev">Google AIO · ChatGPT</div><div class="d flat">— Claude/Gemini/Perplexity not tracked</div></div>
+      <div class="kpi"><div class="lab">Visibility score</div><div class="val">32.3%</div><div class="prev">prev 31.3%</div><div class="d up">▲ +1.0 pt</div></div>
+      <div class="kpi"><div class="lab">Avg rank <span style="font-weight:400;text-transform:none">(lower=better)</span></div><div class="val">7.6</div><div class="prev">prev 7.5</div><div class="d down">▼ −0.1</div></div>
+      <div class="kpi"><div class="lab">Prompt coverage</div><div class="val">44.4%</div><div class="prev">prev 43.2%</div><div class="d up">▲ +1.2 pts</div></div>
+      <div class="kpi"><div class="lab">Citations</div><div class="val">624</div><div class="prev">prev 560</div><div class="d up">▲ +64</div></div>
+      <div class="kpi"><div class="lab">Topics we appear in</div><div class="val">6<span style="font-size:15px;color:var(--muted)"> / 7</span></div><div class="prev">1 topic at 0%</div><div class="d flat">— see deep-dive</div></div>
+      <div class="kpi"><div class="lab">SOV rank <span style="font-weight:400;text-transform:none">(tracked set)</span></div><div class="val">6<span style="font-size:15px;color:var(--muted)"> / 14</span></div><div class="prev">32.3% share</div><div class="d flat">— beat Luzmo &amp; Qrvey</div></div>
     </div>
-    <p class="note">SOV is computed against the tracked competitor set (BI incumbents), not the Luzmo/Explo/Qrvey/Domo peers the goal targets — those four aren't in the tracker yet. Visibility, avg rank and coverage come straight from Amplitude AI Visibility (brand 30690); the visibility jump is inflated by a smaller response sample this week (124 vs 367).</p>
+    <p class="note">All values are actual Amplitude AI Visibility outputs for brand 30690, report 190203 (completed Aug 5, 2026), compared to report 187963 (Jul 28). Sentiment 73.2% positive · 155 total responses · 50 mentioned · 36 of 81 prompts with a mention. Only two model families are monitored, so the model counts below are a config ceiling, not a true ceiling.</p>
 
     <h2>AI visibility deep-dive</h2>
-    <p style="font-size:13.5px;margin-bottom:6px"><b>By topic</b> — where we win and lose (this week):</p>
+    <p style="font-size:13.5px;margin-bottom:6px"><b>By topic</b> — where we win and lose (Aug 5 run, WoW vs Jul 28):</p>
     <div class="tablewrap"><table>
-      <thead><tr><th>Topic</th><th class="num">Visibility</th><th class="num">Avg rank</th><th class="num">Relevance</th><th class="num">Prompts</th><th>Standing</th></tr></thead>
+      <thead><tr><th>Topic</th><th class="num">Visibility</th><th class="num">WoW</th><th class="num">Avg rank</th><th class="num">Relevance</th><th class="num">Prompts</th><th>Standing</th></tr></thead>
       <tbody>
-        <tr><td>Brand &amp; Competitive Comparison</td><td class="num">77%</td><td class="num">3.4</td><td class="num">96</td><td class="num">12</td><td><span class="bpill win">Winning</span></td></tr>
-        <tr><td>Developer &amp; Stack Fit</td><td class="num">27%</td><td class="num">8.2</td><td class="num">88</td><td class="num">12</td><td><span class="bpill mid">Mid</span></td></tr>
-        <tr><td>White-label embedded analytics</td><td class="num">27%</td><td class="num">8.4</td><td class="num">88</td><td class="num">13</td><td><span class="bpill mid">Mid</span></td></tr>
-        <tr><td>Pricing &amp; Licensing Model</td><td class="num">14%</td><td class="num">9.4</td><td class="num">81</td><td class="num">8</td><td><span class="bpill lose">Weak</span></td></tr>
-        <tr><td>Embedded Analytics for SaaS &amp; ISV</td><td class="num">10%</td><td class="num">9.5</td><td class="num">82</td><td class="num">11</td><td><span class="bpill lose">Weak</span></td></tr>
-        <tr><td>Embedded analytics platforms</td><td class="num">0%</td><td class="num">10</td><td class="num">95</td><td class="num">10</td><td><span class="bpill lose">Losing</span></td></tr>
-        <tr><td>AI-powered embedded analytics</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">0</td><td><span class="bpill lose">Not running</span></td></tr>
+        <tr><td>Brand &amp; Competitive Comparison</td><td class="num">76%</td><td class="num">▲ +5</td><td class="num">3.3</td><td class="num">93</td><td class="num">22</td><td><span class="bpill win">Winning</span></td></tr>
+        <tr><td>White label embedded analytics</td><td class="num">32%</td><td class="num">▲ +5</td><td class="num">9.1</td><td class="num">96</td><td class="num">13</td><td><span class="bpill mid">Mid</span></td></tr>
+        <tr><td>Developer &amp; Stack Fit</td><td class="num">20%</td><td class="num">▼ −9</td><td class="num">8.4</td><td class="num">85</td><td class="num">13</td><td><span class="bpill lose">Slipped</span></td></tr>
+        <tr><td>AI-powered embedded analytics</td><td class="num">17%</td><td class="num">▼ −16</td><td class="num">8.5</td><td class="num">83</td><td class="num">3</td><td><span class="bpill lose">Thin</span></td></tr>
+        <tr><td>Pricing &amp; Licensing Model</td><td class="num">17%</td><td class="num">▲ +4</td><td class="num">9.3</td><td class="num">83</td><td class="num">9</td><td><span class="bpill lose">Weak</span></td></tr>
+        <tr><td>Embedded Analytics for SaaS &amp; ISV</td><td class="num">10%</td><td class="num">— flat</td><td class="num">9.5</td><td class="num">91</td><td class="num">11</td><td><span class="bpill lose">Weak</span></td></tr>
+        <tr><td>Embedded analytics platforms</td><td class="num">0%</td><td class="num">— flat</td><td class="num">10</td><td class="num">95</td><td class="num">10</td><td><span class="bpill lose">Losing</span></td></tr>
       </tbody>
     </table></div>
-    <p class="note">"Embedded analytics platforms" is our worst result and our clearest opportunity: 95/100 relevance but 0% visibility — the content is on-topic yet never extracted or cited. "AI-powered embedded analytics" is a defined topic with zero prompts, so we have no read on a money query buyers increasingly ask.</p>
+    <p class="note">"Embedded analytics platforms" is again our worst result and clearest opportunity: 95/100 relevance but 0% visibility — the content is on-topic yet never extracted or cited. "AI-powered" swung from 33% to 17%, but on just 3 prompts / 6 responses — read it as noise, not a trend, until the prompt set expands.</p>
 
-    <p style="font-size:13.5px;margin:16px 0 6px"><b>By model</b> — both up week over week:</p>
+    <p style="font-size:13.5px;margin:16px 0 6px"><b>By model</b> — the two tracked families flipped this run:</p>
     <div class="tablewrap"><table>
-      <thead><tr><th>Model</th><th class="num">Visibility (this wk)</th><th class="num">Prev</th><th class="num">Avg rank</th></tr></thead>
+      <thead><tr><th>Model</th><th class="num">Visibility (this run)</th><th class="num">Prev</th><th class="num">Avg rank</th></tr></thead>
       <tbody>
-        <tr><td>Google AI Overview</td><td class="num">37.9%</td><td class="num">15.7%</td><td class="num">7.0</td></tr>
-        <tr><td>ChatGPT (GPT family)</td><td class="num">18.2%</td><td class="num">7.9%</td><td class="num">8.8</td></tr>
+        <tr><td>Google AI Overview</td><td class="num">39.2%</td><td class="num">45.7%</td><td class="num">6.9</td></tr>
+        <tr><td>ChatGPT (GPT family)</td><td class="num">25.9%</td><td class="num">18.8%</td><td class="num">8.2</td></tr>
       </tbody>
     </table></div>
-    <p class="note">Only two model families are monitored. Claude, Gemini and Perplexity — all named in our charter — aren't in the tracker, so "models covering us" is capped at 2 by configuration, not by reality.</p>
+    <p class="note">Only two model families are monitored. Claude, Gemini and Perplexity — all named in our charter — aren't in the tracker, so "models covering us" is capped at 2 by configuration, not by reality. Adding them is part of this week's top task.</p>
 
-    <p style="font-size:13.5px;margin:16px 0 6px"><b>Vs competitors</b> — visibility within the tracked set (Reveal = 6th of 11, passed Qlik this week):</p>
+    <p style="font-size:13.5px;margin:16px 0 6px"><b>Vs competitors</b> — visibility within the tracked set (Reveal = 6th of 14; peer set now measured):</p>
     <div class="tablewrap"><table>
       <thead><tr><th>Brand</th><th class="num">Visibility</th><th class="num">Avg rank</th></tr></thead>
       <tbody>
-        <tr><td>Microsoft</td><td class="num">57.3%</td><td class="num">6.0</td></tr>
-        <tr><td>Looker</td><td class="num">55.6%</td><td class="num">6.3</td></tr>
-        <tr><td>Salesforce</td><td class="num">49.2%</td><td class="num">7.0</td></tr>
-        <tr><td>Metabase</td><td class="num">45.2%</td><td class="num">7.7</td></tr>
-        <tr><td>Sisense</td><td class="num">39.5%</td><td class="num">8.1</td></tr>
-        <tr><td class="us">Reveal BI</td><td class="num us">27.4%</td><td class="num us">7.9</td></tr>
-        <tr><td>Qlik Sense</td><td class="num">22.6%</td><td class="num">9.0</td></tr>
-        <tr><td>Zoho Analytics</td><td class="num">4.8%</td><td class="num">9.7</td></tr>
-        <tr><td>AWS</td><td class="num">3.2%</td><td class="num">9.8</td></tr>
+        <tr><td>Microsoft Power BI</td><td class="num">52.9%</td><td class="num">6.4</td></tr>
+        <tr><td>Looker</td><td class="num">51.0%</td><td class="num">6.8</td></tr>
+        <tr><td>Salesforce</td><td class="num">45.2%</td><td class="num">7.3</td></tr>
+        <tr><td>Metabase</td><td class="num">38.1%</td><td class="num">8.0</td></tr>
+        <tr><td>Sisense</td><td class="num">36.1%</td><td class="num">8.3</td></tr>
+        <tr><td class="us">Reveal BI</td><td class="num us">32.3%</td><td class="num us">7.6</td></tr>
+        <tr><td>Sigma Computing</td><td class="num">17.4%</td><td class="num">9.1</td></tr>
+        <tr><td>Qlik Sense</td><td class="num">16.8%</td><td class="num">9.2</td></tr>
+        <tr><td>GoodData</td><td class="num">15.5%</td><td class="num">9.4</td></tr>
+        <tr><td>Luzmo</td><td class="num">12.3%</td><td class="num">9.2</td></tr>
+        <tr><td>Bold BI</td><td class="num">11.0%</td><td class="num">9.5</td></tr>
+        <tr><td>Qrvey</td><td class="num">7.7%</td><td class="num">9.5</td></tr>
+        <tr><td>Embeddable</td><td class="num">5.8%</td><td class="num">9.7</td></tr>
+        <tr><td>Zoho Analytics</td><td class="num">3.2%</td><td class="num">9.8</td></tr>
       </tbody>
     </table></div>
-    <p class="note">This table is the problem in one view: it's a ranking of BI incumbents, not embedded-analytics SDKs. Our actual head-to-head buyers (Luzmo, Explo, Qrvey, Domo) are not tracked, so we can't yet report the SOV number the goal is written around. Fixing the competitor set is the top carry-over action.</p>
+    <p class="note">The realigned set now includes our real peers. On the named SOV group, Reveal (32.3%) clears <b>Luzmo (12.3%)</b> and <b>Qrvey (7.7%)</b> — but <b>Explo and Domo are still not tracked</b> (both appear in the cited third-party sources), so the "surpass 3 of 4" goal can't yet be fully scored. Adding them is the top carry-over action.</p>
+
+    <h2>Citation &amp; source patterns</h2>
+    <p style="font-size:13.5px;margin-bottom:8px">Our own domain is cited well — <b>revealbi.io</b> homepage (11 citations), <b>/white-label-analytics</b> (6), <b>/embedded-analytics</b> (5). But discovery and roundup answers are built from third-party comparison content that mostly omits us: <b>omni.co</b> "Best Embedded Analytics Platforms 2026" (10 cites), <b>holistics.io</b> white-label (9) + pricing (7), <b>toucantoco.com</b> white-label guide (9), <b>querypanel.io</b> "10 Best Embedded Analytics Tools for SaaS" (7, lists Explo), <b>astrato.io</b> "Top 10 Embedded BI Tools" (7), <b>gooddata.ai</b> comparison (6). We <b>do</b> appear in <b>toucantoco.com</b> "10 Best White Label Reporting Tools for SaaS &amp; ISVs" (6) and <b>holistics.io</b> "Top 11 Embedded BI Tools" (5) — proof inclusion is winnable.</p>
+    <div class="rec gap"><div class="rh">Citation gap → this week's off-site task</div><ul>
+      <li>Get Reveal into the roundups that feed the 0% / 10% topics — Omni, Holistics (white-label + pricing), QueryPanel, Astrato, GoodData.ai — with accurate spec, logo and one quotable stat.</li>
+      <li>Reinforce where we already appear (Toucan Toco, Holistics Top 11) so the entry stays accurate and current.</li>
+    </ul></div>
 
     <h2>Prompt audit</h2>
-    <p style="font-size:13.5px;margin-bottom:8px">66 prompts across 7 topics. The set is well-aligned to money topics — nothing is clearly off-ICP to remove — but it has coverage holes and a competitor-set mismatch that cap what we can win.</p>
+    <p style="font-size:13.5px;margin-bottom:8px">81 prompts across 7 topics; 36 return a Reveal mention (44.4% coverage). The set is well-aligned to money topics — nothing is clearly off-ICP to remove — but coverage holes and a half-complete peer set cap what we can win.</p>
     <div class="rec add"><div class="rh">Add</div><ul>
-      <li><b>Peer-alternative prompts</b> naming the real competitors: "Luzmo alternatives," "Explo vs Reveal," "best embedded analytics vs Qrvey/Domo." These are our strongest intent (comparison = 77%) and currently unmeasured.</li>
-      <li><b>AI-powered embedded analytics</b> prompts — the topic exists but runs zero prompts. Seed 6–8 (e.g. "AI/natural-language embedded dashboards," "AI analytics SDK for React").</li>
-      <li><b>React/Angular embedded dashboard</b> how-to and "best SDK for React" prompts — core to our developer ICP, thin in the current set.</li>
+      <li><b>Expand "AI-powered embedded analytics"</b> from 3 to 6–8 prompts (plus 2–3 React/Angular buyer prompts) — the topic is real but too thin to trust at 6 responses.</li>
+      <li><b>Peer-alternative prompts</b> naming Explo and Domo once they're added to the tracked set — comparison is our strongest intent (76%) and is currently only measured against Luzmo/Qrvey.</li>
     </ul></div>
     <div class="rec gap"><div class="rh">Gaps by intent</div><ul>
-      <li><b>Discovery / "best X" listicles:</b> we win comparison (77%) but score 0% on "Embedded analytics platforms" and 10% on "SaaS &amp; ISV" — the listicle/roundup intent where models quote third parties. This is a citation-source gap, not a prompt gap.</li>
-      <li><b>Alternatives intent</b> vs the peer set is absent because those competitors aren't tracked.</li>
+      <li><b>Discovery / "best X" listicles:</b> we win comparison (76%) but score 0% on "Embedded analytics platforms" and 10% on "SaaS &amp; ISV" — a citation-source gap, not a prompt gap.</li>
+      <li><b>Full peer SOV</b> is unmeasurable until Explo + Domo are tracked.</li>
     </ul></div>
     <div class="rec remove"><div class="rh">Remove</div><ul>
-      <li>Nothing to cut this week — all 66 prompts map to money topics. The fix is competitor-set and coverage, not pruning.</li>
+      <li>Nothing to cut — all 81 prompts map to money topics. The fix is competitor-set completion and coverage, not pruning.</li>
     </ul></div>
 
-    <h2>Website actions found this week</h2>
-    <p style="font-size:13.5px;margin-bottom:8px">Models built this week's answers largely from third-party comparison content — <b>holistics.io</b> ("Top 11 Embedded BI Tools"), <b>knowi.com</b>, <b>boldbi.com</b>, <b>datatako.com</b>, <b>embeddable.com</b> and <b>reddit.com</b> (r/BusinessIntelligence "Best Embedded Analytics Tool" — cites Explo, Metabase, Looker, GoodData; Reveal absent). Our own domain is cited well (revealbi.io, 58 citations; white-label page cited 7×), but on discovery queries the aggregators win and often omit us. The gaps below become this week's tasks; six actions from last week's audit remain open and are carried in the Tasks tab.</p>
-    <div class="rec gap"><div class="rh">New this week</div><ul>
-      <li><b>Off-site citations:</b> get Reveal added to the listicles and Reddit threads models actually quote (Holistics, Knowi, BoldBI, DataTako, r/BusinessIntelligence). On-site fixes alone won't move the 0% discovery topics.</li>
-      <li><b>Stand up "AI-powered embedded analytics":</b> add tracked prompts + one answer-first page for a money topic with zero current presence.</li>
-    </ul></div>
-    <div class="rec add"><div class="rh">Carried over (still open)</div><ul>
-      <li>Realign Amplitude tracking — competitor set, models, prompt set (due today).</li>
-      <li>Publish llms.txt for revealbi.io (still returns empty).</li>
-      <li>Fix Reveal entity consistency (brand URL/name across site, tracker, G2, LinkedIn).</li>
+    <h2>Website readiness &amp; actions</h2>
+    <p style="font-size:13.5px;margin-bottom:8px">Entity signals are still mixed: the tracker's brand record now reads revealbi.io, but LLM responses conflate <b>Reveal BI</b> with <b>reveal.co</b>, <b>revealanalytics.com</b> and <b>revealbi.com</b> — the entity-consistency task is in review. Crawlability and structured-data gaps remain the on-site levers into the 0% discovery topic.</p>
+    <div class="rec gap"><div class="rh">Open on-site actions (in Tasks tab)</div><ul>
+      <li>Publish llms.txt for revealbi.io (owned by web dev; due today).</li>
+      <li>Fix Reveal entity consistency across site, tracker, G2, LinkedIn (in review).</li>
       <li>Add FAQPage + SoftwareApplication/Organization JSON-LD to key pages.</li>
-      <li>Add answer-first, citable blocks + stats to the Embedded Analytics guide/platform page.</li>
+      <li>Add answer-first, citable blocks + stats to the Embedded Analytics guide/platform page (the 0% topic).</li>
       <li>Build reveal-vs-explo, reveal-vs-qrvey, reveal-vs-domo comparison pages.</li>
+    </ul></div>
+    <div class="rec add"><div class="rh">New this week</div><ul>
+      <li><b>Complete the Amplitude realignment</b> — add Explo + Domo competitors and Claude/Gemini/Perplexity models — to turn Measurement Health Green and make the peer SOV goal reportable.</li>
     </ul></div>
 
   </section>
@@ -307,11 +353,11 @@
   <section class="panel" id="summary">
     <div class="sumhead"><span class="dtitle">Executive summary</span><button class="slink push" id="copyBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg> <span id="copyLabel">Copy summary</span></button></div>
     <div class="summary-card" id="summaryCard">
-      <h2>AI Search Visibility — Reveal · Week of Jul 27–Aug 2, 2026</h2>
-      <p><b>Where we are:</b> Reveal ranks better but appears in fewer places. Visibility rose to <b>27.4%</b> (from 11.7%) and avg rank improved to <b>7.9</b> (from 9.3), with both tracked models up — Google AI Overview <b>37.9%</b> and ChatGPT <b>18.2%</b>. But that was on a third of last week's sample; absolute mentions fell (34 vs 43) and prompt coverage dropped to <b>37.9%</b> from 48.5%. Read the score as encouraging, not banked.</p>
-      <p><b>What we're doing to win in AI search:</b> lean into our one clear strength — comparison and alternatives content scored <b>77% visibility</b> — and extend it to the competitors buyers actually weigh us against (Explo, Qrvey, Domo pages). In parallel, earn citations in the third-party listicles and Reddit threads models quote for "best embedded analytics" (we're absent there, which is why discovery queries return 0% for us).</p>
-      <p><b>Top focus and why:</b> fix the Amplitude configuration. Our share-of-voice goal is vs Luzmo/Explo/Qrvey/Domo, but the tracker measures BI incumbents (Microsoft, Looker, Sisense) and only two models — so we're scoring the wrong race, and the highest-relevance money query ("Embedded analytics platforms," 95/100) returns zero Reveal. Until that's fixed, the SOV number leadership wants can't be reported accurately.</p>
-      <p><b>WoW progress:</b> rank and per-model visibility up; breadth (coverage) down; SOV within the tracked set roughly doubled to ~9%. Two new actions opened this week (off-site citations; AI-powered-analytics prompts + page); six from last week's audit remain open, three due today.</p>
+      <h2>AI Search Visibility — Reveal · Run of Aug 5, 2026 (report 190203)</h2>
+      <p><b>Where we are:</b> On the now-stable measurement config, Reveal held and edged up. Visibility <b>32.3%</b> (from 31.3%), avg rank <b>7.6</b> (from 7.5), coverage <b>44.4%</b> (from 43.2%), and <b>624 citations</b> (from 560) across 155 responses. The two tracked models flipped — Google AI Overview <b>39.2%</b> (down from 45.7%), ChatGPT <b>25.9%</b> (up from 18.8%). Sentiment is 73% positive.</p>
+      <p><b>Goal progress:</b> Met — Brand &amp; Comparison (76%, our strongest), appear in 6 of 7 topics. On track but slow — overall visibility toward the 90-day ≥35%. Behind / regressed — "Embedded analytics platforms" still 0% at 95 relevance; topics ≥25% fell from 4 to 2 (Developer and a thin AI-powered dropped below the line); priority-topic coverage far from 70%.</p>
+      <p><b>What we're doing to win in AI search:</b> lean into our clear strength — comparison content (76%) — and extend it to Explo/Qrvey/Domo pages. Earn citations in the third-party "best embedded analytics" roundups that drive discovery answers and mostly omit us (Omni, Holistics, QueryPanel, Astrato, GoodData). Ship answer-first, citable blocks on the platform page.</p>
+      <p><b>Top focus and why:</b> finish the Amplitude realignment. The competitor set is fixed (Reveal now 6th of 14, beating Luzmo &amp; Qrvey), but <b>Explo and Domo still aren't tracked</b> and only 2 of 5 charter models run — so Measurement Health is Amber and the 90-day "surpass 3 of 4 peers" goal can't be fully scored. It's a config-only fix, owned by Casey, due Aug 11.</p>
     </div>
   </section>
 
@@ -319,14 +365,15 @@
 
 <script>
   const TASKS = [
-    {name:"Realign Amplitude AI Visibility tracking: competitor set, models, and prompt set", channel:"Measurement", owner:"Casey Ciniello", initials:"CC", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-03"},
-    {name:"Publish llms.txt for revealbi.io", channel:"Crawlability", owner:"Casey Ciniello", initials:"CC", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-03"},
-    {name:"Fix Reveal entity consistency (brand URL + name) across site, tracker, G2, LinkedIn", channel:"Entity", owner:"Casey Ciniello", initials:"CC", priority:"P2", status:"todo", start:"2026-07-27", due:"2026-08-03"},
-    {name:"Add FAQPage + SoftwareApplication/Organization JSON-LD schema to key pages", channel:"Schema", owner:"Casey Ciniello", initials:"CC", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-10"},
-    {name:"Add answer-first, citable blocks + stats to Embedded Analytics guide/platform page", channel:"On-site content", owner:"Casey Ciniello", initials:"CC", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-10"},
-    {name:"Build reveal-vs-explo, reveal-vs-qrvey, reveal-vs-domo comparison pages", channel:"Comparison pages", owner:"Casey Ciniello", initials:"CC", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-17"},
+    {name:"Complete Amplitude tracking realignment: add Explo + Domo competitors and Claude/Gemini/Perplexity models", channel:"Measurement", owner:"Casey Ciniello", initials:"CC", priority:"P1", status:"todo", start:"2026-08-07", due:"2026-08-11"},
     {name:"Get Reveal cited in third-party \"best embedded analytics\" listicles & Reddit threads (off-site GEO)", channel:"Off-site GEO", owner:"Casey Ciniello", initials:"CC", priority:"P1", status:"todo", start:"2026-08-03", due:"2026-08-17"},
-    {name:"Stand up \"AI-powered embedded analytics\" — add tracked prompts + a supporting answer page", channel:"Prompts + content", owner:"Casey Ciniello", initials:"CC", priority:"P2", status:"todo", start:"2026-08-03", due:"2026-08-17"}
+    {name:"Stand up \"AI-powered embedded analytics\" — expand prompts + add a supporting answer page (now 3 prompts live / 17%)", channel:"Prompts + content", owner:"Casey Ciniello", initials:"CC", priority:"P2", status:"todo", start:"2026-08-03", due:"2026-08-17"},
+    {name:"Fix Reveal entity consistency (brand URL + name) across site, tracker, G2, LinkedIn", channel:"Entity", owner:"Casey Ciniello", initials:"CC", priority:"P2", status:"review", start:"2026-07-27", due:"2026-08-05"},
+    {name:"Publish llms.txt for revealbi.io", channel:"Crawlability", owner:"Dian Jelyazkov", initials:"DJ", color:"#2A41A2", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-07"},
+    {name:"Realign Amplitude AI Visibility tracking: competitor set, models, and prompt set", channel:"Measurement", owner:"Casey Ciniello", initials:"CC", priority:"P1", status:"done", start:"2026-07-27", due:"2026-08-03", completed:"2026-08-03"},
+    {name:"Add answer-first, citable blocks + stats to Embedded Analytics guide/platform page", channel:"On-site content", owner:"Casey Ciniello", initials:"CC", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-10"},
+    {name:"Add FAQPage + SoftwareApplication/Organization JSON-LD schema to key pages", channel:"Schema", owner:"Casey Ciniello", initials:"CC", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-10"},
+    {name:"Build reveal-vs-explo, reveal-vs-qrvey, reveal-vs-domo comparison pages", channel:"Comparison pages", owner:"Casey Ciniello", initials:"CC", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-17"}
   ];
 
   var accentDeep = getComputedStyle(document.body).getPropertyValue('--accent-deep').trim() || '#333';
