@@ -1,1 +1,455 @@
-&lt;!DOCTYPE html&gt;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UI Tools Paid Growth Strategy — Aug 7, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
+    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
+    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
+  }
+  body.theme-ui{--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .hubnav{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:8px;background:#0B1220;color:#fff;font-weight:600;font-size:13px;padding:11px 20px;text-decoration:none}
+  .hubnav:hover{background:#111a2e}
+  .hubnav svg{width:14px;height:14px}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 80px}
+
+  header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
+  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14)}
+  .logochip img{height:18px;display:block}
+  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
+  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)}
+  .meta b{color:#fff;font-weight:700}
+
+  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:42px;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03);overflow-x:auto}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:13.5px;font-weight:600;color:var(--muted);padding:15px 14px 13px;border-bottom:3px solid transparent;display:flex;align-items:center;gap:8px;white-space:nowrap}
+  .tab .cbadge{font-family:var(--mono);font-size:11px;font-weight:600;background:var(--gray-bg);color:var(--muted);border-radius:999px;padding:1px 8px}
+  .tab:hover{color:var(--ink)}
+  .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+  .tab.on .cbadge{background:var(--accent-soft);color:var(--accent-deep)}
+
+  .panel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
+  .panel.on{display:block}
+
+  .slink{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:#fff;background:linear-gradient(120deg,var(--accent),var(--accent-deep));padding:9px 15px;border-radius:9px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;font-family:inherit}
+  .slink:hover{filter:brightness(1.05)}
+  .slink svg{width:13px;height:13px}
+
+  h2.sec{font-size:19px;font-weight:900;color:var(--navy);margin:26px 0 10px}
+  h2.sec:first-child{margin-top:0}
+  h3.sub{font-size:14.5px;font-weight:700;color:var(--navy);margin:18px 0 8px}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul,ol{margin:0 0 14px;padding-left:20px} li{margin-bottom:6px;font-size:14.5px}
+  .callout{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:16px 18px;background:#fffaf6;margin:0 0 16px}
+  .callout.bad{border-left-color:var(--bad);background:var(--bad-bg)}
+  .callout.warn{border-left-color:var(--warn);background:var(--warn-bg)}
+  .callout.good{border-left-color:var(--good);background:var(--good-bg)}
+  .badge{display:inline-block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:2px 9px;border-radius:999px;margin-left:6px;vertical-align:middle}
+  .badge.fresh{background:var(--good-bg);color:var(--good)}
+  .badge.stale{background:var(--warn-bg);color:var(--warn)}
+  .badge.unavail{background:var(--bad-bg);color:var(--bad)}
+  .badge.carried{background:var(--peri-soft);color:var(--cobalt)}
+  table.dt{width:100%;border-collapse:collapse;font-size:13px;margin:0 0 16px}
+  table.dt th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:9px 11px;text-align:left;border-bottom:1px solid #dce3f0}
+  table.dt td{padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.dt tbody tr:hover{background:#fafbff}
+  table.dt tfoot td{font-weight:700;background:#f7f8fc}
+  .scorecard{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 16px}
+  .stat{border:1px solid var(--line);border-radius:12px;padding:13px 14px;background:#fbfcfe}
+  .stat .n{font-size:20px;font-weight:900;color:var(--navy);font-family:var(--mono)}
+  .stat .l{font-size:11px;color:var(--muted);margin-top:2px}
+  .stat .d{font-size:11px;font-weight:700;margin-top:4px}
+  .stat .d.up{color:var(--good)} .stat .d.down{color:var(--bad)} .stat .d.flat{color:var(--muted)}
+  .fw-tag{font-family:var(--mono);font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px;text-transform:uppercase}
+  .fw-react{background:#FFEEE2;color:#E14E12} .fw-angular{background:#e7ecff;color:#2A41A2} .fw-blazor{background:#f1e9ff;color:#7C3AED}
+  .fw-ultimate{background:var(--good-bg);color:var(--good)} .fw-all{background:#eef2fa;color:#41506b}
+  .budgetcard{border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:0 0 14px;background:#fbfcfe}
+  .budgetcard .bt{font-weight:800;color:var(--navy);font-size:14.5px;margin-bottom:4px}
+  .budgetcard .bamt{font-family:var(--mono);font-weight:800;color:var(--accent-deep);font-size:18px}
+  .kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px 16px;margin:10px 0}
+  .kv div{font-size:12.5px} .kv b{display:block;color:var(--navy);font-size:11px;text-transform:uppercase;letter-spacing:.03em;margin-bottom:2px;font-weight:700}
+
+  /* ===== TASKS (scoped) ===== */
+  #tasks .taskhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+  #tasks .viewtoggle{display:inline-flex;background:var(--gray-bg);border-radius:10px;padding:3px}
+  #tasks .vbtn{appearance:none;border:none;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:8px}
+  #tasks .vbtn.on{background:#fff;color:var(--accent-deep);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+  #tasks .tsum{font-size:12.5px;color:var(--muted)} #tasks .tsum b{color:var(--navy)}
+  #tasks .push{margin-left:auto}
+  #tasks .view{display:none} #tasks .view.on{display:block}
+  #tasks .tablewrap{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  #tasks table{width:100%;border-collapse:collapse;font-size:13px}
+  #tasks thead th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left;border-bottom:1px solid #dce3f0}
+  #tasks tbody td{padding:11px 13px;border-bottom:1px solid var(--line);vertical-align:middle}
+  #tasks tbody tr:last-child td{border-bottom:none}
+  #tasks tbody tr:hover{background:#fafbff}
+  #tasks .tname{font-weight:600;color:var(--navy)}
+  #tasks .who{display:inline-flex;align-items:center;gap:7px}
+  #tasks .av{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:700;color:#fff;font-family:var(--mono)}
+  #tasks .pri{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:.03em}
+  #tasks .P1{background:var(--bad-bg);color:var(--bad)} #tasks .P2{background:var(--warn-bg);color:var(--warn)} #tasks .P3{background:var(--gray-bg);color:var(--gray)}
+  #tasks .stat2{font-size:11px;font-weight:600;padding:2px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:5px}
+  #tasks .stat2::before{content:"";width:6px;height:6px;border-radius:50%}
+  #tasks .todo{background:var(--gray-bg);color:#566} #tasks .todo::before{background:var(--gray)}
+  #tasks .prog{background:var(--peri-soft);color:var(--cobalt)} #tasks .prog::before{background:var(--cobalt)}
+  #tasks .done{background:var(--good-bg);color:var(--good)} #tasks .done::before{background:var(--good)}
+  #tasks .new{background:#fff4e0;color:#a15c00} #tasks .new::before{background:#a15c00}
+  #tasks .upd{background:#e7ecff;color:#2A41A2} #tasks .upd::before{background:#2A41A2}
+  #tasks td.due{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  #tasks .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px}
+  @media(max-width:820px){#tasks .board{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){#tasks .board{grid-template-columns:1fr}}
+  #tasks .col{background:#f7f8fc;border:1px solid var(--line);border-radius:14px;padding:12px}
+  #tasks .col-h{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;margin-bottom:11px;padding:0 4px}
+  #tasks .col-h .cc{font-family:var(--mono);font-size:11px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:0 8px;color:var(--muted)}
+  #tasks .col-h .dt{width:8px;height:8px;border-radius:50%}
+  #tasks .tcard{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 13px;margin-bottom:9px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+  #tasks .tcard .tt{font-weight:600;font-size:13px;color:var(--navy);line-height:1.35}
+  #tasks .tcard .tm{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+  #tasks .tcard .plt{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+  #tasks .note{font-size:12.5px;color:var(--muted);margin-top:14px}
+
+  /* ===== SUMMARY (scoped) ===== */
+  #summary .sumhead{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  #summary .dtitle{font-size:13px;font-weight:700;color:var(--navy)}
+  #summary .push{margin-left:auto;border:none;cursor:pointer;font-family:inherit}
+  #summary .copied{background:var(--good)!important;filter:none!important}
+  #summary .summary-card{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:22px 24px;background:#fff;font-size:14.5px;line-height:1.6;color:var(--ink)}
+  #summary .summary-card h1,#summary .summary-card h2,#summary .summary-card h3{color:var(--navy);font-weight:900;margin:0 0 10px}
+  #summary .summary-card h2{font-size:18px} #summary .summary-card h3{font-size:15px;margin-top:16px}
+  #summary .summary-card p{margin:0 0 12px} #summary .summary-card b,#summary .summary-card strong{color:var(--navy)}
+  #summary .summary-card ul{margin:0 0 12px;padding-left:20px} #summary .summary-card li{margin-bottom:6px}
+  #summary .defcard{border:1px solid var(--line);border-radius:14px;padding:20px 22px;background:#fbfcfe;margin-top:18px;font-size:13.5px}
+  #summary .defcard h3{font-size:14px;color:var(--navy);margin:0 0 10px}
+  #summary .defcard table.dt{margin-bottom:0}
+</style>
+</head>
+<body class="theme-ui">
+<a class="hubnav" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg> All Reports</a>
+<div class="wrap">
+
+  <header class="top">
+    <div class="logochip"><img src="https://static.infragistics.com/marketing/Website/General/Infragistics-horizontal.svg" alt="Infragistics"></div>
+    <div class="kick">IGNITE UI &middot; UI TOOLS &middot; PAID GROWTH STRATEGY</div>
+    <h1>UI Tools Paid Growth Strategy Weekly</h1>
+    <div class="meta">
+      <span>Run date <b>Aug 7, 2026</b></span>
+      <span>Window <b>Jul 27&ndash;Aug 2, 2026</b> vs prior <b>Jul 20&ndash;26, 2026</b></span>
+      <span>Scope <b>React &middot; Angular &middot; Blazor &middot; Ultimate</b></span>
+      <span>Synthesizes <b>Search Intelligence + Landing/Conversion &amp; Adoption</b> reports, both Aug 7</span>
+    </div>
+  </header>
+
+  <div class="tabbar">
+    <button class="tab on" data-tab="readout">Strategic Readout</button>
+    <button class="tab" data-tab="gaps">Missing Opportunities</button>
+    <button class="tab" data-tab="budget">Budget Scenarios</button>
+    <button class="tab" data-tab="experiments">Experiment Portfolio</button>
+    <button class="tab" data-tab="tasks">Tasks <span class="cbadge" id="taskCount">0</span></button>
+    <button class="tab" data-tab="summary">Summary &amp; Definitions</button>
+  </div>
+
+  <!-- ============ TAB 1: STRATEGIC READOUT ============ -->
+  <section class="panel on" id="readout">
+
+    <div class="callout bad">
+      <b>Bottom line:</b> UI Tools paid media has no documented monthly budget or pacing goal today (open task, due Aug 12) and Google Ads + GA4 have been unreadable for two straight reporting periods (Supermetrics trial expired Aug 5; re-confirmed dark again live at the start of this run). That means <b>&ldquo;is UI Tools pacing to budget&rdquo; and &ldquo;forecast vs. goal&rdquo; are both genuinely Unavailable this run</b> &mdash; not fabricated, not estimated. Everything below that is real comes from Ahrefs, Salesforce <code>Lead_Event__c</code>, and the npm public API, cross-checked against both specialist reports published earlier today and independently re-verified live where it matters most (Ultimate trial count, npm downloads).
+    </div>
+
+    <h2 class="sec">Source health (re-verified live at report time)</h2>
+    <table class="dt">
+      <thead><tr><th>Source</th><th>Status</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td>Google Ads (Supermetrics AW, acct 9179838229)</td><td><span class="badge unavail">Unavailable</span></td><td>Re-checked live this run: <code>accounts_discovery</code> returns zero connected accounts, trial expired. Second consecutive week. Owned fix: Poojitha, due Aug 10.</td></tr>
+        <tr><td>GA4 (Supermetrics GAWA, property 516222862)</td><td><span class="badge unavail">Unavailable</span></td><td>Same outage, re-checked live this run, same root cause.</td></tr>
+        <tr><td>Microsoft Advertising</td><td><span class="badge unavail">Unavailable</span></td><td>Per Search Intelligence report: never authenticated in Supermetrics. Not independently re-checked this run (no Supermetrics tool covers it without the same auth flow).</td></tr>
+        <tr><td>Ahrefs Keywords Explorer</td><td><span class="badge carried">Carried &mdash; same-day, not re-pulled</span></td><td>All keyword-volume figures below are taken from the Search Intelligence report's live Ahrefs pulls earlier today (2026-08-07). Not independently re-queried this run; Ahrefs search volumes are not day-volatile, so this is treated as reliable but is labeled Carried, not Fresh, for full transparency.</td></tr>
+        <tr><td>Salesforce Lead_Event__c</td><td><span class="badge fresh">Fresh</span></td><td>Independently re-queried live this run. Ultimate cpc-attributed trailing-30-day trial count verified at <b>17</b> &mdash; matches the Search Intelligence report's same-day-corrected figure exactly.</td></tr>
+        <tr><td>npm public API</td><td><span class="badge fresh">Fresh</span></td><td>Independently re-queried live this run. igniteui-react weekly total (Jul 27&ndash;Aug 2) verified at <b>499</b> &mdash; matches both specialist reports exactly.</td></tr>
+        <tr><td>Slingshot Optimizations list</td><td><span class="badge fresh">Fresh</span></td><td>45 tasks read live; 2 updated, 3 created this run (see Tasks tab).</td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="sec">Pacing &amp; forecast vs. goals</h2>
+    <div class="callout warn">
+      <b>Unavailable, structurally &mdash; not just a data outage.</b> Two separate things are missing at once: (1) live Google Ads spend, blocked by the Supermetrics outage, and (2) a documented monthly budget or pacing target for UI Tools paid media at all, which the open "UI Tools Paid: Document a monthly budget/pacing goal" task (due Aug 12) confirms doesn't exist yet in any source. Even when Google Ads reconnects, there is nothing to pace against until that task ships. The only spend figure in either specialist report is a <b>stale, carried, single-framework</b> number: React at $4,761/wk as of Aug 5, not reconfirmed since. Angular, Blazor, and Ultimate have <i>zero</i> confirmed live or historic Google Ads spend figures anywhere in this system.
+    </div>
+
+    <h2 class="sec">Framework-by-framework verdict</h2>
+    <table class="dt">
+      <thead><tr><th>Framework</th><th>Earning or wasting investment?</th><th>Evidence</th></tr></thead>
+      <tbody>
+        <tr><td><span class="fw-tag fw-react">React</span></td><td><b>Earning.</b> Only framework with a funded, working campaign (Search-Compete-React, +$50/day since 7/24) and the only framework that produced a fresh, attributable Ultimate cross-sell proof point this run. Flagship npm package genuinely down (&minus;35.4% MoM) &mdash; a demand headwind to watch, not a paid-media failure.</td><td>Search + Landing/Adoption reports, npm re-verified live (499/wk)</td></tr>
+        <tr><td><span class="fw-tag fw-angular">Angular</span></td><td><b>Underfunded, unconfirmed.</b> Largest documented demand-coverage gap in the account (4.7&ndash;11.8&times; owned terms) but zero confirmed spend and zero conversion visibility. Cannot say "wasting" or "earning" &mdash; there is no baseline to judge against.</td><td>Search Intelligence report, independently reconfirmed there</td></tr>
+        <tr><td><span class="fw-tag fw-blazor">Blazor</span></td><td><b>Weakest signal.</b> Thinnest product-term demand, exactly one clean digital cpc trial in 5+ weeks, no reliable adoption metric (NuGet snapshot is 2 data points), and its one Ultimate cross-sell proof point carries an unresolved attribution conflict. Best candidate to examine for a cut &mdash; see Budget Scenarios for why the dollar amount can't be confirmed yet.</td><td>Search + Landing/Adoption reports</td></tr>
+        <tr><td><span class="fw-tag fw-ultimate">Ultimate</span></td><td><b>Real, small, growing.</b> Cpc trial volume trending up WoW (see discrepancy note below) off Salesforce data neither Supermetrics outage touches. No owned search demand at all &mdash; 100% conquest-dependent, and currently riding on accidental framework-page cross-sell rather than a dedicated campaign or landing page.</td><td>Salesforce, re-verified live this run</td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="sec">Demand-coverage gaps (grid/table/charts/component/competitor/brand)</h2>
+    <ul>
+      <li><b>React &mdash; "ag grid" (5,700/mo, KD14) + "tanstack table" (1,500/mo, KD18):</b> uncontested competitor terms nearly matching React's entire owned category (~6,000/mo) combined, sitting in an already-funded ad group. Highest-confidence, $0-incremental move in the account.</li>
+      <li><b>Angular &mdash; Angular Material + PrimeNG (5,900&ndash;6,100/mo):</b> 4.7&ndash;11.8&times; Angular's own product-term volume. Largest absolute gap in the account; sizing blocked on Google Ads reconnection to check current coverage.</li>
+      <li><b>Blazor &amp; Ultimate &mdash; bare competitor brands (telerik/devexpress/syncfusion, 3,400/mo combined):</b> the real competitive demand for both Blazor and Ultimate sits on un-qualified brand terms, not "blazor + X" or suite-branded queries. This is one finite pool that both frameworks are strategically eyeing &mdash; they must be coordinated, not independently funded, or they'll bid against each other and inflate CPC.</li>
+      <li><b>Ultimate &mdash; no owned demand at all:</b> "ignite ui ultimate," "ui component suite," "enterprise ui components" all return 0 measurable US volume. There is no brand or category moat to defend.</li>
+    </ul>
+
+    <h2 class="sec">Landing-experience &amp; page coverage</h2>
+    <p>Per the Search Intelligence report's standing review: React and Blazor have Grids pages; Angular has one too. <b>Ultimate has no Grids page.</b> Blazor and Angular have Compare pages; <b>React and Ultimate do not.</b> This matters directly for this run's finding &mdash; both attributable framework&rarr;Ultimate cross-sell touchpoints this window traced through a <i>framework</i> page (React video, Blazor compare page), because Ultimate has no equivalent asset of its own to capture that intent directly. Building one is a prerequisite for the Ultimate conquest campaign proposed in Budget Scenarios, not an optional nice-to-have.</p>
+
+    <h2 class="sec">Is Ultimate cpc trial volume increasing? (with a disclosed discrepancy)</h2>
+    <div class="callout warn">
+      <b>The two specialist reports disagree on the exact current-week number, though both agree on direction.</b> Both start from the same Salesforce query and the same root fact: on Jul 30, one person (xin.zhang@3dmotion.de) submitted the Ultimate trial form three times in five minutes under an untagged campaign. Search Intelligence's convention: dedupe the three submissions to one legitimate trial from one real person &rarr; current week = <b>4</b>, prior week = 1, <b>+300% WoW</b>. Landing/Adoption's convention: exclude the entire burst cluster until the bot/duplicate audit clears it &rarr; current week = <b>3</b>, prior week = 1, reported as the safer number to trust today. <b>Neither number is wrong given its stated methodology</b> &mdash; but they are different numbers for the same week, and no one has reconciled which convention this program should standardize on. The open "Ultimate Paid: Audit the Jul 30 trial burst" task (due Aug 12) is the right place to settle this; until then, report the range as <b>3&ndash;4</b>, not a single number. The independently re-verified trailing-30-day total (17, both reports agree after Search Intelligence's same-day correction) is solid and not in dispute.
+    </div>
+
+    <h2 class="sec">Package adoption &amp; new-seat trend (directional, not attributed to paid)</h2>
+    <p>Both specialist reports agree the week-over-week swings (React combined npm &minus;60.9% WoW / Angular &minus;33.4% WoW this window) are single-day CI/CDN spike reversion in the -core/-charts packages, not real developer-demand change &mdash; a spike-adjusted metric is already an open task (due Aug 11). The steadier read is 30-day: React combined npm 70,505, down 26.9% MoM, with the flagship <code>igniteui-react</code> package itself down 35.4% MoM &mdash; a genuine decline worth watching. Angular combined npm 108,512, up 44.2% MoM, but the flagship <code>igniteui-angular</code> package itself is only +11.3% MoM ("least volatile Angular package" per Search Intelligence) &mdash; the headline MoM figure is inflated by noisy companion packages. Blazor has no reliable npm/NuGet trend (2-point snapshot only). <b>No package-install or overall new-seat number is claimed as paid-caused anywhere in this report</b> &mdash; no valid click-to-install attribution mechanism exists for any package, per configuration.md and the marketing constitution.</p>
+
+  </section>
+
+  <!-- ============ TAB 2: MISSING OPPORTUNITIES ============ -->
+  <section class="panel" id="gaps">
+    <h2 class="sec">What campaign, coverage, or asset should exist but doesn't</h2>
+    <table class="dt">
+      <thead><tr><th>Framework</th><th>What's missing</th><th>Size</th><th>Confidence</th></tr></thead>
+      <tbody>
+        <tr><td><span class="fw-tag fw-react">React</span></td><td>"ag grid" + "tanstack table" not yet in Search-Compete-React</td><td>7,200/mo, KD 14&ndash;18</td><td>High</td></tr>
+        <tr><td><span class="fw-tag fw-angular">Angular</span></td><td>No confirmed conquest ad group against Angular Material/PrimeNG</td><td>5,900&ndash;6,100/mo</td><td>Medium &mdash; coverage unconfirmed</td></tr>
+        <tr><td><span class="fw-tag fw-blazor">Blazor</span></td><td>Campaign structure only targets "blazor"-qualified queries, missing bare-brand demand</td><td>3,400/mo (shared pool with Ultimate)</td><td>Medium</td></tr>
+        <tr><td><span class="fw-tag fw-ultimate">Ultimate</span></td><td>No dedicated Google Ads campaign, no suite-level landing page, no Grids or Compare page</td><td>Same 3,400/mo shared pool</td><td>Medium</td></tr>
+        <tr><td><span class="fw-tag fw-all">All</span></td><td>No documented monthly budget/pacing goal (open task, due 8/12)</td><td>N/A &mdash; structural</td><td>High (confirmed absent)</td></tr>
+        <tr><td><span class="fw-tag fw-angular">Angular</span> / <span class="fw-tag fw-blazor">Blazor</span></td><td>No CTA key-event tracking live on either framework's 3 flagship pages (open, due 8/11)</td><td>N/A &mdash; blocks future ROI reads</td><td>High</td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="sec">Which competitor opportunities deserve investment</h2>
+    <ul>
+      <li><b>"ag grid" (React)</b> &mdash; uncontested, cheap (KD14), already-funded ad group. Fund immediately once Google Ads returns.</li>
+      <li><b>Angular Material / PrimeNG (Angular)</b> &mdash; largest absolute gap; needs a net-new conquest ad group, sizing pending impression-share check.</li>
+      <li><b>telerik / devexpress / syncfusion bare-brand (Blazor + Ultimate)</b> &mdash; real demand, but a shared pool. Fund once, split by intent, not twice.</li>
+    </ul>
+
+    <h2 class="sec">Which region, device, or offer needs a dedicated strategy</h2>
+    <p><span class="badge unavail">Unavailable</span> Region and device data require GA4/Google Ads, both down. The only real geographic signal available this run: Salesforce shows the current window's Ultimate cpc trials sourced from the United States, Brazil, and New Zealand, plus one Bing/conflicting-tag record with no country field &mdash; a sample of 3&ndash;4 leads is far too small to justify a region-specific strategy yet.</p>
+
+    <h2 class="sec">Which product release lacks paid support</h2>
+    <p>No new UI Tools product release was identified in this run's required reading or either specialist report. This question carries forward unanswered pending a release calendar being added to standing context.</p>
+
+    <h2 class="sec">Which landing experience suppresses trials or adoption</h2>
+    <p>Ultimate's total lack of a Grids or Compare page (see Strategic Readout) is the clearest landing-experience gap found this run &mdash; it forces 100% of Ultimate's conquest intent to be captured secondhand through framework pages instead of a dedicated asset built for suite-level buyers.</p>
+  </section>
+
+  <!-- ============ TAB 3: BUDGET SCENARIOS ============ -->
+  <section class="panel" id="budget">
+    <div class="callout warn">
+      <b>Read this before the numbers below:</b> No live Google Ads spend exists for any of the four frameworks this run, and no documented budget/pacing goal exists at all (see Strategic Readout). The Add-$10,000 scenario below is sized from real, approved-source unit economics (Ahrefs CPC &times; search volume, Salesforce trial evidence) &mdash; not from a verified current budget. The Cut-$10,000 and parts of the Flat-reallocation scenario are explicitly marked Blocked where a live spend baseline is required and doesn't exist. This is a data limitation being reported honestly, not a scenario being skipped.
+    </div>
+
+    <h2 class="sec">1. Base plan</h2>
+    <p>Cannot be fully specified. What is known: React is the only framework with any spend figure on record at all, and it is stale (carried from Aug 5, not reconfirmed). Angular, Blazor, and Ultimate have zero confirmed spend figures in any source this run or in either specialist report published today. <b>The base plan today is, functionally, undocumented</b> &mdash; which is itself the most important structural finding in this report and is why "UI Tools Paid: Document a monthly budget/pacing goal" (open, due Aug 12) is the highest-leverage non-spend action on the tracker right now.</p>
+
+    <h2 class="sec">2. Add $10,000 scenario</h2>
+    <div class="budgetcard">
+      <div class="bt">React &mdash; "ag grid" + "tanstack table" conquest</div>
+      <div class="bamt">$0 (of the $10,000)</div>
+      <div class="kv">
+        <div><b>Move-from</b>&mdash;</div><div><b>Move-to</b>Search-Compete-React (existing)</div>
+        <div><b>Reason</b>7,200/mo uncontested demand, KD 14&ndash;18</div><div><b>Expected result</b>Incremental low-CPC clicks within 2 weeks</div>
+        <div><b>Confidence</b>High</div><div><b>Dependency</b>Google Ads reconnection</div>
+      </div>
+    </div>
+    <div class="budgetcard">
+      <div class="bt">Angular &mdash; new Angular Material/PrimeNG conquest ad group</div>
+      <div class="bamt">$5,000/mo test</div>
+      <div class="kv">
+        <div><b>Move-from</b>Uncommitted incremental budget</div><div><b>Move-to</b>New Angular Search ad group</div>
+        <div><b>Reason</b>5,900&ndash;6,100/mo pool, 4.7&ndash;11.8&times; owned terms, $0.60&ndash;$1.40 CPC &rarr; ~3,500&ndash;8,300 clicks/mo</div><div><b>Expected result</b>&ge;15% impression share on named terms; first cpc-tagged Angular leads once CTA tracking ships</div>
+        <div><b>Confidence</b>Medium &mdash; math is solid, current coverage unknown</div><div><b>Dependency</b>Google Ads reconnection; Angular CTA key-event tracking</div>
+      </div>
+    </div>
+    <div class="budgetcard">
+      <div class="bt">Ultimate &mdash; bare competitor-brand conquest campaign</div>
+      <div class="bamt">$2,000/mo test</div>
+      <div class="kv">
+        <div><b>Move-from</b>Uncommitted incremental budget</div><div><b>Move-to</b>New Ultimate-only ad group</div>
+        <div><b>Reason</b>3,400/mo pool at ~$0.66 blended CPC covers full volume with headroom; 2 attributable framework&rarr;Ultimate proof points this run show the funnel works</div><div><b>Expected result</b>&ge;3 net-new cpc-attributed Ultimate trials/mo</div>
+        <div><b>Confidence</b>Medium</div><div><b>Dependency</b>Google Ads reconnection; suite-level landing page; keyword split with Blazor (below)</div>
+      </div>
+    </div>
+    <div class="budgetcard">
+      <div class="bt">React + Blazor &mdash; Ultimate cross-sell video creative experiment</div>
+      <div class="bamt">$1,000/mo test</div>
+      <div class="kv">
+        <div><b>Move-from</b>Uncommitted incremental budget</div><div><b>Move-to</b>Existing React + Blazor Demand Gen ad groups (new creative only)</div>
+        <div><b>Reason</b>2 incidental framework&rarr;Ultimate proof points this run; deliberate test is the highest learning-per-dollar available</div><div><b>Expected result</b>&ge;2 attributable Ultimate trials/signups in 4 weeks</div>
+        <div><b>Confidence</b>Low/Medium &mdash; 2-point base</div><div><b>Dependency</b>Creative production; clean UTM tagging</div>
+      </div>
+    </div>
+    <p><b>Total: $8,000/mo committed of the $10,000 add</b> (React $0 + Angular $5,000 + Ultimate $2,000 + Experiment $1,000). The remaining $2,000/mo is intentionally held back pending the first measurement window on Angular and Ultimate &mdash; scale into it only if the scale rules on those two tasks trigger (see Tasks tab for full scale/kill rules).</p>
+
+    <h2 class="sec">3. Cut $10,000 scenario</h2>
+    <div class="callout bad">
+      <b>Blocked this run.</b> No live Google Ads spend by framework exists to identify $10,000 of underperforming spend with confidence. The only even semi-current figure (React, $4,761/wk, stale from Aug 5, single framework) predates the outage and covers only one of four frameworks &mdash; cutting from it would be a guess dressed up as a diagnosis, which the marketing constitution explicitly prohibits.
+    </div>
+    <p><b>Directional candidate, clearly labeled as such:</b> if a $10,000 cut becomes unavoidable before Supermetrics reconnects, Blazor is the most defensible place to look first &mdash; it has the thinnest product-term demand (~1,030/mo), exactly one clean digital cpc trial in 5+ weeks, no reliable adoption metric, and its one Ultimate cross-sell proof point carries an unresolved attribution conflict. This is a direction, not a dollar figure &mdash; sizing requires confirming Blazor's actual current spend first. <b>Confidence: Low (structurally blocked). Dependency: Google Ads/Supermetrics reconnection.</b></p>
+
+    <h2 class="sec">4. Flat-budget reallocation ($0 net change)</h2>
+    <div class="budgetcard">
+      <div class="bt">Blazor &mdash; shift existing competitor spend from "blazor"-qualified terms to bare-brand terms</div>
+      <div class="bamt">$0 net change</div>
+      <div class="kv">
+        <div><b>Move-from</b>Blazor's current "blazor + competitor" keywords (amount unconfirmed)</div><div><b>Move-to</b>Bare-brand terms (telerik/devexpress/syncfusion), coordinated with Ultimate's new campaign above</div>
+        <div><b>Reason</b>34&times; more demand sits on bare-brand terms than on "blazor"-qualified ones</div><div><b>Expected result</b>&ge;1 additional clean cpc-attributed Blazor trial in the measurement window</div>
+        <div><b>Confidence</b>Medium</div><div><b>Dependency</b>Google Ads reconnection; keyword-ownership split vs. Ultimate; resolution of the open Bing/Ultimate/Blazor tag-conflict task</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAB 4: EXPERIMENT PORTFOLIO ============ -->
+  <section class="panel" id="experiments">
+    <h2 class="sec">Ranked by expected learning/impact per dollar</h2>
+    <table class="dt">
+      <thead><tr><th>#</th><th>Experiment</th><th>Cost</th><th>Scale rule</th><th>Kill rule</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><b>React &mdash; add "ag grid" + "tanstack table"</b> to Search-Compete-React</td><td>$0 (existing budget)</td><td>Extend to Search-Grids if CTR/QS support it</td><td>Pause a term at &gt;$2.50 CPC with no conversions after 3 weeks</td></tr>
+        <tr><td>2</td><td><b>Ultimate &mdash; bare competitor-brand conquest</b> campaign</td><td>$2,000/mo</td><td>Scale to $3,500/mo if CAC beats Blazor's equivalent and share of voice &lt;60%</td><td>Kill if 0 attributed trials after 8 weeks</td></tr>
+        <tr><td>3</td><td><b>Angular &mdash; Material/PrimeNG conquest</b> ad group</td><td>$5,000/mo</td><td>Scale to $8,000/mo if &ge;3 cpc-tagged leads in 4 weeks</td><td>Kill/pause if 0 leads after 8 weeks and CPC &gt;$2.50</td></tr>
+        <tr><td>4</td><td><b>React/Blazor &mdash; Ultimate cross-sell video creative</b></td><td>$1,000/mo</td><td>Scale to $2,500/mo if &ge;4 attributed trials/signups in window 1</td><td>Kill after 2 full 4-week windows with 0 attributed conversions</td></tr>
+        <tr><td>5</td><td><b>Blazor &mdash; bare-brand restructure</b> (flat reallocation)</td><td>$0 net</td><td>Scale if CPC stays &lt;$4 and trials continue</td><td>Kill if 0 trials after 8 weeks or if it cannibalizes Ultimate's campaign</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px;color:var(--muted)">All five experiments share one hard dependency: Google Ads/Supermetrics reconnection. None can launch until "React Paid: Harden Supermetrics connection" (due Aug 10) closes. Experiments 2 and 5 additionally depend on each other (shared keyword pool) and must be sequenced, not launched independently.</p>
+  </section>
+
+  <!-- ============ TAB 5: TASKS ============ -->
+  <section class="panel" id="tasks">
+    <div class="taskhead">
+      <div class="viewtoggle">
+        <button class="vbtn on" data-view="table">Table</button>
+        <button class="vbtn" data-view="board">Board</button>
+      </div>
+      <span class="tsum" id="taskSummary"></span>
+      <a class="slink push" href="https://my.slingshotapp.io/openTaskList/e97e10ef_db463f36-99e3-4842-8951-2431a8403178_tg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg> Open UI Tools list in Slingshot</a>
+    </div>
+    <div class="view on" data-view="table"><div class="tablewrap"><table><thead><tr><th>Task</th><th>Framework</th><th>Owner</th><th>Priority</th><th>Status</th><th>Due</th></tr></thead><tbody id="tblBody"></tbody></table></div></div>
+    <div class="view" data-view="board"><div class="board" id="boardWrap"></div></div>
+    <p class="note">This run touched 5 tasks (max allowed): <b>2 updated</b> with budget-scenario sizing (Angular Material/PrimeNG, Ultimate dedicated campaign) and <b>3 created</b> (React ag grid keywords, Blazor bare-brand restructure, cross-sell video experiment) &mdash; each checked against the full 45-task list first; none duplicate existing open, in-progress, or completed work. Showing 20 of 45 tasks in the Optimizations list: the 5 touched this run plus every strategy-level and notable framework item. Full list is one click away above.</p>
+  </section>
+
+  <!-- ============ TAB 6: SUMMARY & DEFINITIONS ============ -->
+  <section class="panel" id="summary">
+    <div class="sumhead"><span class="dtitle">Executive summary</span><button class="slink push" id="copyBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg> <span id="copyLabel">Copy summary</span></button></div>
+    <div class="summary-card" id="summaryCard">
+      <h2>UI Tools Paid Growth Strategy &mdash; Aug 7, 2026</h2>
+      <p><b>Headline:</b> UI Tools paid media has no documented budget/pacing goal and Google Ads/GA4 have been dark for two straight weeks (re-confirmed live again this run). Pacing-to-budget and forecast-vs-goal are genuinely Unavailable &mdash; not fabricated. This report combines and cross-checks today's Search Intelligence and Landing/Conversion &amp; Adoption reports against live Salesforce and npm data.</p>
+      <p><b>Framework verdicts:</b> React is earning investment (funded, working, only framework with a fresh Ultimate proof point). Angular has the largest documented demand gap in the account (4.7&ndash;11.8&times; owned terms) but an unconfirmed spend baseline. Blazor is the weakest signal and the best candidate to examine for a cut once spend data returns. Ultimate is small, real, and growing on Salesforce evidence alone, with zero owned search demand of its own.</p>
+      <p><b>Biggest single opportunity:</b> React's "ag grid" + "tanstack table" gap (7,200/mo, low difficulty) needs $0 in new budget &mdash; fold into the already-funded Search-Compete-React ad group. Now a tracked, high-priority task.</p>
+      <p><b>Discrepancy disclosed:</b> the Search Intelligence and Landing/Adoption reports disagree on this week's exact Ultimate cpc trial count (4 vs. 3) because they use different conventions for the Jul 30 duplicate-submission burst. Both agree the trailing 30-day total is 17 (independently re-verified live this run) and that the trend is positive. The open trial-burst audit task should settle which weekly convention this program standardizes on.</p>
+      <p><b>Budget scenarios:</b> Add-$10,000 is sized at $8,000/mo committed (React $0 + Angular $5,000 + Ultimate $2,000 + a cross-sell creative experiment $1,000), $2,000 held back pending first-window results. Cut-$10,000 is explicitly blocked &mdash; no live spend baseline exists for any framework to size a defensible cut; Blazor is named as the directional candidate once data returns. Flat reallocation proposes shifting Blazor's existing competitor spend toward the same bare-brand terms Ultimate is now also pursuing, coordinated rather than duplicated.</p>
+      <p><b>This run's actions:</b> updated 2 existing tasks (Angular Material/PrimeNG, Ultimate dedicated campaign) with full dollar-sized budget scenarios; created 3 new tasks (React ag grid keywords, Blazor bare-brand restructure, cross-sell video experiment) &mdash; all checked against the full 45-task list, none duplicate. Independently re-verified two load-bearing numbers live against source (Ultimate cpc trials: 17 trailing 30-day; igniteui-react npm: 499/wk) &mdash; both matched the specialist reports exactly.</p>
+    </div>
+    <div class="defcard">
+      <h3>Definitions &amp; source health</h3>
+      <table class="dt">
+        <thead><tr><th>Source</th><th>Status</th><th>Used for</th></tr></thead>
+        <tbody>
+          <tr><td>Google Ads (Supermetrics AW)</td><td><span class="badge unavail">Unavailable</span></td><td>Spend, impressions, clicks, IS, search terms, pacing/forecast &mdash; all sections</td></tr>
+          <tr><td>GA4 (Supermetrics GAWA)</td><td><span class="badge unavail">Unavailable</span></td><td>Sessions, engagement, device/geo, landing-page routing</td></tr>
+          <tr><td>Microsoft Advertising</td><td><span class="badge unavail">Unavailable</span></td><td>Bing spend/performance (per Search Intelligence report; never authenticated)</td></tr>
+          <tr><td>Ahrefs Keywords Explorer</td><td><span class="badge carried">Carried, same-day</span></td><td>All demand/keyword-volume figures &mdash; taken from today's Search Intelligence report, not independently re-pulled this run</td></tr>
+          <tr><td>Salesforce Lead_Event__c</td><td><span class="badge fresh">Fresh</span></td><td>Ultimate cpc trials, framework&rarr;Ultimate cross-sell evidence &mdash; independently re-verified live this run</td></tr>
+          <tr><td>npm public downloads API</td><td><span class="badge fresh">Fresh</span></td><td>React &amp; Angular adoption context &mdash; independently re-verified live this run</td></tr>
+          <tr><td>Slingshot</td><td><span class="badge fresh">Fresh</span></td><td>Task backlog, dedup check, this run's 5 writes</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:12px"><b>Fresh</b> = queried live this run. <b>Carried</b> = a same-day or prior value quoted forward, not independently re-pulled this run. <b>Stale</b> = an older value, explicitly dated. <b>Unavailable</b> = queried and failed; no value substituted. <b>Directly attributable</b> = a cpc-tagged Salesforce Lead_Event__c record. <b>Directional</b> = a real number (e.g., npm downloads) with no valid click-to-outcome attribution mechanism; never described as paid-caused. Framework classification (React/Angular/Blazor/Ultimate) follows product name in campaign name/URL path per configuration.md; Reveal, Slingshot (the product), App Builder, 6sense, and ABM are explicitly excluded from every section of this report.</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  const TASKS = [
+    {name:"UI Tools Paid: Document a monthly budget/pacing goal",fw:"All",owner:"Poojitha Battala",initials:"PB",color:"#8a93a3",priority:"P1",status:"todo",due:"2026-08-12"},
+    {name:"React Paid: Harden Supermetrics connection — prevent recurring Monday auth lapses",fw:"React",owner:"Poojitha Battala",initials:"PB",color:"#E14E12",priority:"P1",status:"todo",due:"2026-08-10"},
+    {name:"React Paid: Add \"ag grid\" + \"tanstack table\" conquest keywords to Search-Compete-React",fw:"React",owner:"Poojitha Battala",initials:"PB",color:"#E14E12",priority:"P1",status:"new",due:"2026-08-12",tag:"Created this run"},
+    {name:"Angular Paid: Investigate the Angular Material / PrimeNG competitor-term demand gap",fw:"Angular",owner:"Poojitha Battala",initials:"PB",color:"#2A41A2",priority:"P2",status:"upd",due:"2026-08-14",tag:"Updated this run — added $5,000/mo budget scenario"},
+    {name:"Ultimate Paid: Confirm dedicated Google Ads trial campaign + size the paid upside",fw:"Ultimate",owner:"Poojitha Battala",initials:"PB",color:"#12915b",priority:"P2",status:"upd",due:"2026-08-14",tag:"Updated this run — added $2,000/mo budget scenario"},
+    {name:"Blazor Paid: Restructure competitor conquest around bare brand terms (telerik/devexpress/syncfusion), not \"blazor\"-qualified queries only",fw:"Blazor",owner:"Poojitha Battala",initials:"PB",color:"#7C3AED",priority:"P2",status:"new",due:"2026-08-15",tag:"Created this run"},
+    {name:"UI Tools Paid: Experiment — replicate the React/Blazor page → Ultimate trial cross-sell pattern with dedicated video creative",fw:"All",owner:"Poojitha Battala",initials:"PB",color:"#8a93a3",priority:"P2",status:"new",due:"2026-08-15",tag:"Created this run"},
+    {name:"Ultimate Paid: Audit the Jul 30 trial burst (3 in 5 min, untagged campaign) for bot/duplicate traffic",fw:"Ultimate",owner:"Poojitha Battala",initials:"PB",color:"#12915b",priority:"P2",status:"todo",due:"2026-08-12"},
+    {name:"UI Tools Paid: Resolve conflicting Bing/Ultimate/Blazor lead-event tag (attribution audit)",fw:"All",owner:"Poojitha Battala",initials:"PB",color:"#8a93a3",priority:"P2",status:"todo",due:"2026-08-10"},
+    {name:"UI Tools Paid: Authenticate Microsoft Advertising (Bing) in Supermetrics",fw:"All",owner:"Poojitha Battala",initials:"PB",color:"#8a93a3",priority:"P1",status:"todo",due:"2026-08-11"},
+    {name:"UI Tools Paid: Stop letting single-day npm/registry spikes distort the weekly install north-star",fw:"All",owner:"Poojitha Battala",initials:"PB",color:"#8a93a3",priority:"P2",status:"todo",due:"2026-08-11"},
+    {name:"Set up conversion Key events on CTA buttons on Angular Pages",fw:"Angular",owner:"Poojitha Battala",initials:"PB",color:"#2A41A2",priority:"P1",status:"todo",due:"2026-08-11"},
+    {name:"Set up conversion Key events on CTA buttons on Blazor Pages",fw:"Blazor",owner:"Poojitha Battala",initials:"PB",color:"#7C3AED",priority:"P1",status:"todo",due:"2026-08-11"},
+    {name:"Review Grids Pages",fw:"All",owner:"JJ + Poojitha",initials:"JP",color:"#6C8CFD",priority:"P3",status:"todo",due:"2026-08-12"},
+    {name:"Review Compare Pages",fw:"All",owner:"JJ + Poojitha",initials:"JP",color:"#6C8CFD",priority:"P3",status:"todo",due:"2026-08-12"},
+    {name:"React Paid: Wire up an NPM installs read (allowlist api.npmjs.org)",fw:"React",owner:"Poojitha Battala",initials:"PB",color:"#E14E12",priority:"P1",status:"prog",due:"2026-08-11"},
+    {name:"React Paid: Fix \"react grid\" ad rank on Search-Grids",fw:"React",owner:"Poojitha Battala",initials:"PB",color:"#E14E12",priority:"P1",status:"prog",due:"2026-07-29"},
+    {name:"React Paid: Decide Bing React fund-vs-hold after a week of search-term data",fw:"React",owner:"Poojitha Battala",initials:"PB",color:"#E14E12",priority:"P2",status:"todo",due:"2026-08-11"},
+    {name:"React Paid: Fund Search-Compete to recapture top slot",fw:"React",owner:"Poojitha Battala",initials:"PB",color:"#E14E12",priority:"P1",status:"done",due:"2026-07-25",completed:"2026-07-24"},
+    {name:"Agentic AI Ad Groups",fw:"React",owner:"Poojitha Battala",initials:"PB",color:"#E14E12",priority:"P3",status:"done",due:"2026-08-07",completed:"2026-08-06"}
+  ];
+
+  function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  var STAT={todo:'To do',prog:'In progress',done:'Done',new:'New this run',upd:'Updated this run'};
+  var TODAY = '2026-08-07';
+
+  document.getElementById('taskCount').textContent = TASKS.length;
+  var newC = TASKS.filter(function(t){return t.status==='new';}).length;
+  var updC = TASKS.filter(function(t){return t.status==='upd';}).length;
+  document.getElementById('taskSummary').innerHTML = '<b>'+TASKS.length+' shown</b> of 45 total · <b>'+newC+'</b> created, <b>'+updC+'</b> updated this run · live from Slingshot, Aug 7 2026';
+
+  document.getElementById('tblBody').innerHTML = TASKS.map(function(t){
+    var overdue = (t.status!=='done') && t.due && t.due < TODAY;
+    return '<tr><td class="tname">'+esc(t.name)+(t.tag?' <br><span style="font-size:10.5px;color:var(--accent-deep);font-weight:700">'+esc(t.tag)+'</span>':'')+'</td><td><span class="fw-tag fw-'+esc((t.fw||'all').toLowerCase())+'">'+esc(t.fw||'')+'</span></td>'+
+      '<td><span class="who"><span class="av" style="background:'+(t.color||'#8a93a3')+'">'+esc(t.initials||'')+'</span> '+esc(t.owner||'')+'</span></td>'+
+      '<td><span class="pri '+t.priority+'">'+esc(t.priority)+'</span></td>'+
+      '<td><span class="stat2 '+t.status+'">'+STAT[t.status]+'</span>'+(t.completed?' <br><span style="font-size:10.5px;color:var(--muted)">done '+esc(t.completed)+'</span>':'')+'</td>'+
+      '<td class="due">'+esc(t.due||'—')+(overdue?' ⚠':'')+'</td></tr>';
+  }).join('');
+
+  function col(key,label,dot){
+    var items = TASKS.filter(function(t){return t.status===key;});
+    return '<div class="col"><div class="col-h"><span class="dt" style="background:'+dot+'"></span> '+label+' <span class="cc">'+items.length+'</span></div>'+
+      items.map(function(t){return '<div class="tcard"><div class="tt">'+esc(t.name)+'</div><div class="tm"><span class="plt">'+esc(t.fw||'')+'</span><span class="pri '+t.priority+'">'+esc(t.priority)+'</span></div></div>';}).join('')+'</div>';
+  }
+  var STATUS_COLS=[['new','New this run','#a15c00'],['upd','Updated this run','#2A41A2'],['todo','To do','#8a93a3'],['prog','In progress','#6C8CFD'],['done','Done','#12915b']];
+  document.getElementById('boardWrap').innerHTML = STATUS_COLS.filter(function(c){return TASKS.some(function(t){return t.status===c[0];});}).map(function(c){return col(c[0],c[1],c[2]);}).join('');
+
+  document.querySelectorAll('#tasks .vbtn').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('#tasks .vbtn').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('#tasks .view').forEach(function(v){v.classList.remove('on');});
+    b.classList.add('on'); document.querySelector('#tasks .view[data-view="'+b.dataset.view+'"]').classList.add('on');
+  });});
+
+  var copyBtn=document.getElementById('copyBtn'), copyLabel=document.getElementById('copyLabel'), card=document.getElementById('summaryCard');
+  copyBtn.addEventListener('click',function(){
+    var html=card.innerHTML.trim(), text=card.innerText.trim();
+    function done(){ copyBtn.classList.add('copied'); copyLabel.textContent='Copied!'; setTimeout(function(){copyBtn.classList.remove('copied');copyLabel.textContent='Copy summary';},1800); }
+    if(navigator.clipboard && window.ClipboardItem){
+      navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([text],{type:'text/plain'})})]).then(done).catch(function(){ navigator.clipboard.writeText(text).then(done); });
+    } else if(navigator.clipboard){ navigator.clipboard.writeText(text).then(done); }
+    else { var r=document.createRange(); r.selectNode(card); var s=getSelection(); s.removeAllRanges(); s.addRange(r); try{document.execCommand('copy');done();}catch(e){} s.removeAllRanges(); }
+  });
+
+  document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
+    t.classList.add('on'); document.getElementById(t.dataset.tab).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });});
+</script>
+</body>
+</html>
