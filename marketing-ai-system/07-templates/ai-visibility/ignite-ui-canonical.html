@@ -11,27 +11,29 @@
     --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
     --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
     --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
-    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace;
+    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace; --radius:14px;
+    --shadow:0 1px 2px rgba(15,23,42,.04),0 6px 20px rgba(15,23,42,.05);
   }
   body.theme-reveal   {--accent:#EC417A;--accent-deep:#C9367F;--accent-soft:#fde4ee;--hero:linear-gradient(120deg,#FBB764,#EC417A 62%,#d63384)}
   body.theme-slingshot{--accent:#4B45C6;--accent-deep:#2D2A90;--accent-soft:#ECEBFB;--hero:linear-gradient(120deg,#6C5CE7,#4B45C6 55%,#2D2A90)}
   body.theme-ui       {--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
-  body.theme-all      {--accent:#2563EB;--accent-deep:#7C3AED;--accent-soft:#EEF1FF;--hero:linear-gradient(120deg,#2563EB,#7C3AED)}
 
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums}
   .hubnav{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:8px;background:#0B1220;color:#fff;font-weight:600;font-size:13px;padding:11px 20px;text-decoration:none}
   .hubnav:hover{background:#111a2e}
   .hubnav svg{width:14px;height:14px}
-  .wrap{max-width:1080px;margin:0 auto;padding:20px 22px 80px}
+  .wrap{max-width:1120px;margin:0 auto;padding:20px 22px 80px}
 
   header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
   header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
   .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
   .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
   header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
-  .meta{margin-top:13px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.85)}
-  .meta b{color:#fff;font-weight:700}
+  .meta{margin-top:13px;display:flex;gap:8px;flex-wrap:wrap;font-size:12px}
+  .meta .pill{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 11px;color:#fff;font-weight:500}
+  .meta .pill b{font-weight:700}
 
   .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:42px;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03)}
   .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;display:flex;align-items:center;gap:8px}
@@ -40,59 +42,113 @@
   .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
   .tab.on .cbadge{background:var(--accent-soft);color:var(--accent-deep)}
 
-  .panel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:24px 26px 30px}
+  .panel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:22px 24px 30px}
   .panel.on{display:block}
 
-  .slink{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:#fff;background:linear-gradient(120deg,var(--accent),var(--accent-deep));padding:9px 15px;border-radius:9px;white-space:nowrap;text-decoration:none}
-  .slink:hover{filter:brightness(1.05)}
-  .slink svg{width:13px;height:13px}
+  h2.sec{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:28px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  h2.sec:first-child{margin-top:2px}
+  h2.sec .hint{float:right;text-transform:none;letter-spacing:0;font-weight:500;color:var(--gray);font-size:11px}
+  .lead{font-size:14.5px;line-height:1.65} .lead b{color:var(--navy)}
 
-  /* ===== SHARED CONTENT VOCABULARY (report body) ===== */
-  #report .sec{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:26px 2px 13px;display:flex;align-items:center;gap:10px}
-  #report .sec:first-child{margin-top:2px}
-  #report .sec .n{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
-  #report .lead{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:16px 20px;font-size:14.5px;line-height:1.6} #report .lead b{color:var(--navy)}
-  #report .vpread{background:linear-gradient(120deg,var(--accent-soft),#fff);border:1px solid var(--accent-soft);border-left:5px solid var(--accent);border-radius:14px;padding:18px 22px;margin-bottom:6px}
-  #report .vpread .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:8px}
-  #report .vpread p{font-size:14.5px;line-height:1.6;margin:0 0 10px} #report .vpread p:last-child{margin-bottom:0} #report .vpread b{color:var(--navy)}
+  .slink{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:#fff;background:linear-gradient(120deg,var(--accent),var(--accent-deep));padding:9px 15px;border-radius:9px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;font-family:inherit}
+  .slink:hover{filter:brightness(1.05)} .slink svg{width:13px;height:13px}
+  .copied{background:var(--good)!important;filter:none!important}
 
-  #report .kpigrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
-  @media(max-width:820px){#report .kpigrid{grid-template-columns:repeat(2,1fr)}}
-  #report .kpi{background:#fcfdff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column}
-  #report .kpi .lab{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;min-height:28px}
-  #report .kpi .val{font-size:22px;font-weight:700;margin:2px 0 8px;font-family:var(--mono)}
-  #report .kpi .delta{align-self:flex-start;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
-  #report .delta.up{background:var(--good-bg);color:var(--good)} #report .delta.down{background:var(--bad-bg);color:var(--bad)} #report .delta.flat{background:var(--warn-bg);color:var(--warn)}
+  .wow{font-size:12px;font-weight:700;font-family:var(--mono);display:inline-flex;align-items:center;gap:3px}
+  .wow.up{color:var(--good)} .wow.down{color:var(--bad)} .wow.flat{color:var(--gray)}
 
-  #report .score{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
-  #report .score table{width:100%;border-collapse:collapse;font-size:13px}
-  #report .score th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
-  #report .score td{padding:11px 13px;border-top:1px solid var(--line);vertical-align:middle}
-  #report .score .goal{font-weight:600;color:var(--navy)}
-  #report .pill{font-size:11px;font-weight:600;padding:2px 10px;border-radius:999px}
-  #report .pill.good{background:var(--good-bg);color:var(--good)} #report .pill.warn{background:var(--warn-bg);color:var(--warn)} #report .pill.bad{background:var(--bad-bg);color:var(--bad)}
+  .gauges{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media(max-width:820px){.gauges{grid-template-columns:1fr 1fr}}
+  .gauge{border:1px solid var(--line);border-radius:var(--radius);background:#fcfdff;box-shadow:var(--shadow);padding:14px 12px 12px;text-align:center;position:relative}
+  .gauge .glab{font-size:11px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--muted);min-height:26px;display:flex;align-items:center;justify-content:center}
+  .gauge svg{display:block;margin:2px auto 0}
+  .gauge .gval{font-size:22px;font-weight:900;font-family:var(--mono);color:var(--navy)}
+  .gauge .gsub{font-size:11px;color:var(--muted);margin-top:1px}
+  .gauge .gfoot{margin-top:8px;display:flex;justify-content:center;gap:8px;align-items:center;font-size:11px}
+  .gauge .gtarget{color:var(--muted)}
+  .statusdot{display:inline-block;width:9px;height:9px;border-radius:50%;vertical-align:middle}
 
-  #report .cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
-  #report .card{border:1px solid var(--line);border-radius:14px;overflow:hidden}
-  #report .card .ch{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:var(--accent-soft);border-bottom:1px solid var(--line);gap:10px}
-  #report .card .ch .nm{font-size:15px;font-weight:700;color:var(--accent-deep)} #report .card .ch .sp{font-family:var(--mono);font-size:12.5px;color:var(--navy);white-space:nowrap}
-  #report .card .cb{padding:14px 18px;font-size:13.5px;line-height:1.55} #report .card .cb b{color:var(--navy)}
+  .kpigrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:820px){.kpigrid{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.kpigrid{grid-template-columns:1fr}}
+  .kpi{position:relative;border:1px solid var(--line);border-radius:12px;padding:14px 15px 12px;background:#fcfdff;box-shadow:var(--shadow)}
+  .kpi .lab{font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--muted);font-weight:700;padding-right:56px}
+  .kpi .chip{position:absolute;top:12px;right:12px;font-size:9.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:6px}
+  .chip.good{background:var(--good-bg);color:var(--good)} .chip.warn{background:var(--warn-bg);color:var(--warn)} .chip.bad{background:var(--bad-bg);color:var(--bad)} .chip.neutral{background:var(--gray-bg);color:var(--gray)}
+  .kpi .val{font-size:25px;font-weight:900;color:var(--navy);font-family:var(--mono);margin:7px 0 1px}
+  .kpi .row2{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:2px}
+  .kpi .tgt{font-size:11px;color:var(--muted)} .kpi .tgt b{color:var(--navy);font-weight:700}
+  .kpi .spark{margin-top:8px;height:34px}
 
-  #report .dtable{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px}
-  #report .dtable table{width:100%;border-collapse:collapse;font-size:13px}
-  #report .dtable th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left}
-  #report .dtable td{padding:10px 13px;border-top:1px solid var(--line)} #report .dtable td.num{font-family:var(--mono);text-align:right}
-  #report .dtable tr:hover td{background:#fafbff}
-  #report .dtable tr.us td{background:var(--accent-soft);font-weight:600}
-  #report .tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:2px 7px;border-radius:5px;margin-right:4px}
-  #report .tag.add{background:var(--good-bg);color:var(--good)} #report .tag.rem{background:var(--bad-bg);color:var(--bad)} #report .tag.gap{background:var(--warn-bg);color:var(--warn)}
+  .sbwrap{border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:6px}
+  table.sb{width:100%;border-collapse:collapse;font-size:13px}
+  table.sb thead th{background:#eef2fa;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:#41506b;font-weight:700;padding:9px 12px;text-align:left;border-bottom:1px solid #dce3f0}
+  table.sb tbody td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+  table.sb tbody tr:last-child td{border-bottom:none}
+  table.sb .gname{font-weight:600;color:var(--navy);max-width:260px}
+  table.sb .num{text-align:right;white-space:nowrap}
+  .prog{display:flex;align-items:center;gap:8px;min-width:150px}
+  .track{flex:1;height:8px;border-radius:999px;background:var(--gray-bg);overflow:hidden;min-width:70px}
+  .track > i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--peri),var(--cobalt))}
+  .track.g > i{background:linear-gradient(90deg,#34d17f,var(--good))}
+  .track.w > i{background:linear-gradient(90deg,#f0c674,var(--warn))}
+  .track.b > i{background:linear-gradient(90deg,#e88a88,var(--bad))}
+  .pct{font-family:var(--mono);font-size:11px;color:var(--muted);width:34px;text-align:right}
+  .badge{display:inline-block;padding:3px 9px;border-radius:999px;font-size:10.5px;font-weight:800;letter-spacing:.02em;white-space:nowrap}
+  .badge.met{background:var(--good-bg);color:var(--good)} .badge.track{background:var(--good-bg);color:var(--good)}
+  .badge.watch{background:var(--warn-bg);color:var(--warn)} .badge.partial{background:var(--warn-bg);color:var(--warn)} .badge.blocked{background:var(--warn-bg);color:var(--warn)}
+  .badge.behind{background:var(--bad-bg);color:var(--bad)} .badge.regressed{background:var(--bad-bg);color:var(--bad)}
+  .badge.neutral{background:var(--gray-bg);color:var(--gray)}
+  .ins{font-size:12px;color:var(--muted);max-width:340px}
+  .sbsub{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin:14px 0 6px}
 
-  #report .verdict{margin-top:18px;border:1px solid var(--accent-soft);background:linear-gradient(120deg,var(--accent-soft),#fff);border-radius:14px;padding:18px 20px}
-  #report .verdict .vh{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
-  #report .verdict p{font-size:15px;line-height:1.6;margin:0} #report .verdict b{color:var(--navy)}
-  #report code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent-deep);padding:1px 5px;border-radius:4px}
+  .barlist{border:1px solid var(--line);border-radius:12px;background:#fcfdff;box-shadow:var(--shadow);padding:12px 14px}
+  .barrow{display:grid;grid-template-columns:150px 1fr 92px;gap:10px;align-items:center;padding:5px 0}
+  @media(max-width:560px){.barrow{grid-template-columns:110px 1fr 70px}}
+  .barrow .bl{font-size:12.5px;color:var(--ink);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .barrow.us .bl{font-weight:800;color:var(--accent-deep)}
+  .bt{height:16px;border-radius:6px;background:var(--gray-bg);overflow:hidden}
+  .bt > i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--peri),var(--cobalt))}
+  .barrow.us .bt > i{background:linear-gradient(90deg,var(--accent),var(--accent-deep))}
+  .bt.g > i{background:linear-gradient(90deg,#34d17f,var(--good))} .bt.w > i{background:linear-gradient(90deg,#f0c674,var(--warn))} .bt.b > i{background:linear-gradient(90deg,#e88a88,var(--bad))}
+  .bmeta{font-size:12px;font-family:var(--mono);color:var(--muted);text-align:right;white-space:nowrap}
+  .bmeta b{color:var(--navy)}
 
-  /* ===== TASKS (scoped) ===== */
+  .wintabs{display:inline-flex;background:var(--gray-bg);border-radius:10px;padding:3px;margin-bottom:10px}
+  .wbtn{appearance:none;border:none;background:none;cursor:pointer;font-family:inherit;font-size:12px;font-weight:700;color:var(--muted);padding:6px 13px;border-radius:8px}
+  .wbtn.on{background:#fff;color:var(--accent-deep);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+  .trendbox{border:1px solid var(--line);border-radius:12px;background:#fcfdff;box-shadow:var(--shadow);padding:16px}
+  .trendbox .thead{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
+  .trendbox .tval{font-size:24px;font-weight:900;font-family:var(--mono);color:var(--navy)}
+  .trendnote{font-size:11.5px;color:var(--muted);margin-top:8px}
+
+  .execgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:720px){.execgrid{grid-template-columns:1fr}}
+  .ecard{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff;box-shadow:var(--shadow);border-top:4px solid var(--line)}
+  .ecard.good{border-top-color:var(--good)} .ecard.watch{border-top-color:var(--warn)} .ecard.pri{border-top-color:var(--accent)}
+  .ecard .eh{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+  .ecard.good .eh{color:var(--good)} .ecard.watch .eh{color:var(--warn)} .ecard.pri .eh{color:var(--accent-deep)}
+  .ecard ul{margin:0;padding-left:17px} .ecard li{font-size:13px;margin-bottom:6px;line-height:1.45} .ecard li:last-child{margin-bottom:0}
+  .ecard.pri p{font-size:13.5px;line-height:1.5} .ecard.pri p b{color:var(--navy)}
+  .ecard.span2{grid-column:1 / -1}
+
+  .mh{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;box-shadow:var(--shadow);margin-top:10px}
+  .mh .mb{flex:none;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 11px;border-radius:999px}
+  .mb.Green{background:var(--good-bg);color:var(--good)} .mb.Amber{background:var(--warn-bg);color:var(--warn)} .mb.Red{background:var(--bad-bg);color:var(--bad)}
+  .mh .mt{font-size:12.5px;line-height:1.5} .mh .mt b{color:var(--navy)}
+
+  .ev{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:720px){.ev{grid-template-columns:1fr}}
+  .evcard{border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:#fff;box-shadow:var(--shadow)}
+  .evcard h4{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+  .evcard ul{margin:0;padding-left:16px} .evcard li{font-size:12.5px;margin-bottom:4px;line-height:1.45}
+  .evcard.full{grid-column:1 / -1}
+
+  .gloss{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
+  @media(max-width:720px){.gloss{grid-template-columns:1fr}}
+  .gloss div{font-size:12.5px;line-height:1.5} .gloss b{color:var(--navy)}
+  .note{font-size:11.5px;color:var(--muted);margin-top:8px}
+
   #tasks .taskhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
   #tasks .viewtoggle{display:inline-flex;background:var(--gray-bg);border-radius:10px;padding:3px}
   #tasks .vbtn{appearance:none;border:none;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:8px}
@@ -107,6 +163,7 @@
   #tasks tbody tr:last-child td{border-bottom:none}
   #tasks tbody tr:hover{background:#fafbff}
   #tasks .tname{font-weight:600;color:var(--navy)}
+  #tasks .newbadge{display:inline-block;margin-left:7px;font-size:9px;font-weight:800;letter-spacing:.06em;color:#fff;background:var(--accent);padding:2px 6px;border-radius:5px;vertical-align:middle}
   #tasks .who{display:inline-flex;align-items:center;gap:7px}
   #tasks .av{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:700;color:#fff;font-family:var(--mono)}
   #tasks .pri{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:.03em}
@@ -117,12 +174,12 @@
   #tasks .prog{background:var(--peri-soft);color:var(--cobalt)} #tasks .prog::before{background:var(--cobalt)}
   #tasks .done{background:var(--good-bg);color:var(--good)} #tasks .done::before{background:var(--good)}
   #tasks .review{background:#e7ecff;color:#3E5BD0} #tasks .review::before{background:#6C8CFD}
-  #tasks .deferred{background:#fbf1dd;color:#8a6412} #tasks .deferred::before{background:#b7791f}
   #tasks .blocked{background:#fbe4e3;color:#c23b39} #tasks .blocked::before{background:#c23b39}
   #tasks td.due{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  #tasks .donedate{font-family:var(--mono);font-size:11px;color:var(--good);white-space:nowrap}
+  #tasks .donedate::before{content:"\2713 "}
   #tasks .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px}
   @media(max-width:820px){#tasks .board{grid-template-columns:1fr 1fr}}
-  @media(max-width:520px){#tasks .board{grid-template-columns:1fr}}
   #tasks .col{background:#f7f8fc;border:1px solid var(--line);border-radius:14px;padding:12px}
   #tasks .col-h{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;margin-bottom:11px;padding:0 4px}
   #tasks .col-h .cc{font-family:var(--mono);font-size:11px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:0 8px;color:var(--muted)}
@@ -132,23 +189,21 @@
   #tasks .tcard .tm{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
   #tasks .tcard .plt{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
   #tasks .tl{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#fcfdff;overflow-x:auto}
-  #tasks .tlrow{display:grid;grid-template-columns:260px 1fr;gap:14px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
+  #tasks .tlrow{display:grid;grid-template-columns:220px 1fr;gap:14px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
   #tasks .tlrow:last-child{border-bottom:none}
   #tasks .tlname{font-size:12.5px;font-weight:600;color:var(--navy)} #tasks .tlname .sub{font-size:10.5px;color:var(--muted);font-weight:400}
   #tasks .tltrack{position:relative;height:26px;background:#f1f4fb;border-radius:7px}
   #tasks .bar{position:absolute;top:4px;height:18px;border-radius:6px;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:700;color:#fff;font-family:var(--mono);white-space:nowrap;background:var(--accent-deep)}
   #tasks .empty{font-size:13px;color:var(--muted);padding:30px;text-align:center}
 
-  /* ===== SUMMARY (scoped) ===== */
   #summary .sumhead{display:flex;align-items:center;gap:12px;margin-bottom:14px}
   #summary .dtitle{font-size:13px;font-weight:700;color:var(--navy)}
-  #summary .push{margin-left:auto;border:none;cursor:pointer;font-family:inherit}
-  #summary .copied{background:var(--good)!important;filter:none!important}
-  #summary .summary-card{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:22px 24px;background:#fff;font-size:14.5px;line-height:1.6;color:var(--ink)}
-  #summary .summary-card h2,#summary .summary-card h3{color:var(--navy);font-weight:900;margin:0 0 10px}
-  #summary .summary-card h2{font-size:18px} #summary .summary-card h3{font-size:15px;margin-top:16px}
-  #summary .summary-card p{margin:0 0 12px} #summary .summary-card b,#summary .summary-card strong{color:var(--navy)}
-  #summary .summary-card ul{margin:0 0 12px;padding-left:20px} #summary .summary-card li{margin-bottom:6px}
+  #summary .push{margin-left:auto}
+  #summary .summary-card{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:20px 22px;background:#fff;font-size:14px;line-height:1.6}
+  #summary .summary-card h2{font-size:17px;color:var(--navy);font-weight:900;margin:0 0 10px}
+  #summary .summary-card h3{font-size:13px;color:var(--accent-deep);margin:14px 0 6px;text-transform:uppercase;letter-spacing:.04em}
+  #summary .summary-card ul{margin:0 0 10px;padding-left:19px} #summary .summary-card li{margin-bottom:5px}
+  #summary .summary-card b{color:var(--navy)}
 </style>
 </head>
 <body class="theme-ui">
@@ -156,10 +211,10 @@
 <div class="wrap">
 
   <header class="top">
-    <div class="logochip">Ignite UI</div>
-    <div class="kick">UI Tools · AI Search Visibility</div>
-    <h1>AI Search Visibility / Ignite UI</h1>
-    <div class="meta"><span>Updated <b>Jul 29, 2026</b></span><span>Window <b>Jul 20–26</b> vs <b>Jul 13–19</b></span><span>Amplitude report <b>#185443</b> (Jul 23) vs <b>#181665</b> (Jul 16)</span><span>Source <b>Amplitude AI Visibility</b> · brand Infragistics (35242)</span></div>
+    <div class="logochip" id="logochip"></div>
+    <div class="kick" id="kick"></div>
+    <h1 id="h1"></h1>
+    <div class="meta" id="meta"></div>
   </header>
 
   <div class="tabbar">
@@ -168,145 +223,37 @@
     <button class="tab" data-tab="summary">Summary</button>
   </div>
 
-  <!-- ============ TAB 1: REPORT ============ -->
   <section class="panel on" id="report">
+    <h2 class="sec">Executive Dashboard <span class="hint">30-second read · gauges vs target</span></h2>
+    <div class="gauges" id="gauges"></div>
+    <div class="mh" id="mh"></div>
 
-    <div class="sec"><span class="n">0</span> VP readout</div>
-    <div class="vpread">
-      <div class="vh">The goal &amp; where we stand</div>
-      <p><b>Goal:</b> be present &amp; cited in AI answers on the dev/component topics developers actually ask about, and grow share-of-voice vs Telerik/KendoReact, DevExpress, Syncfusion and AG Grid — week over week.</p>
-      <p><b>Where we stand:</b> Ignite UI's parent brand <b>Infragistics sits at 6.1% AI visibility</b>, down from 7.1% last week, tied for <b>last with Figma</b> and roughly <b>5–7&times; behind</b> Material UI (40.8%), Syncfusion (32.7%) and Ant Design (30.6%). Even our direct paid-suite peers DevExpress and Kendo UI (22.4% each) out-appear us ~4&times;. Average answer rank is 9.6 of ~10. The one positive: prompt coverage rose 50% → 75%. When we do get named, it's almost always <b>our own comparison blogs</b> doing the work; the neutral third-party listicles LLMs trust still leave us out.</p>
-      <p><b>Read this cut with two caveats (both now action items for JJ):</b> (1) AI Visibility tracks only the parent <b>"Infragistics" brand — there is no Ignite UI / React / Angular / Blazor brand</b>, so nothing here isolates the product or a framework. (2) The account currently queries just <b>4 prompts in a single populated topic ("React – Best-of &amp; Discovery"), where we score 0%</b> — and <b>AG Grid, the most-cited grid in our own source data, isn't even a tracked competitor.</b> We are being measured on almost nothing, and losing what little we're measured on. Fixing measurement is this week's top lever.</p>
-    </div>
+    <h2 class="sec">Goal Scoreboard <span class="hint">every goal · progress to target</span></h2>
+    <div id="scoreboard"></div>
 
-    <div class="sec"><span class="n">1</span> Executive summary</div>
-    <div class="lead">Flat-to-down week on a thin measurement base. Visibility 6.1% (&minus;1.0 pp WoW), dead last alongside Figma. The story isn't ranking finesse — it's <b>raw presence</b>: competitors get named in AI answers on enterprise, data-grid and comparison prompts; we don't. Our owned "best X" blogs are the only assets reliably surfacing Ignite (our data-grid performance guide cites us in 28.6% of answers where infragistics.com is the source) — proof the playbook works, but 7 self-citations can't move a 49-response denominator. The fastest gains this cycle are <b>infrastructural</b>: set up product/framework brands and a real prompt set in Amplitude, add AG Grid as a competitor, ship llms.txt, and scale the comparison content that already earns citations.</div>
+    <h2 class="sec">Executive Summary</h2>
+    <div class="execgrid" id="execsum"></div>
 
-    <div class="sec"><span class="n">2</span> Goals scorecard &amp; KPI snapshot <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— vs report #181665 (Jul 16)</span></div>
-    <div class="kpigrid">
-      <div class="kpi"><div class="lab">Visibility Score</div><div class="val">6.1%</div><span class="delta down">&#9660; &minus;1.0 pp</span></div>
-      <div class="kpi"><div class="lab">Avg Rank (of ~10)</div><div class="val">9.6</div><span class="delta flat">&#9660; 0.1 worse</span></div>
-      <div class="kpi"><div class="lab">Prompt Coverage</div><div class="val">75%</div><span class="delta up">&#9650; +25 pp (3/4)</span></div>
-      <div class="kpi"><div class="lab">Answers Mentioning Us</div><div class="val">3 / 49</div><span class="delta flat">&#8213; flat (was 3/42)</span></div>
-      <div class="kpi"><div class="lab">Total Citations</div><div class="val">396</div><span class="delta down">&#9660; from 414</span></div>
-    </div>
-    <div class="score">
-      <table>
-        <thead><tr><th>Metric</th><th>This week</th><th>Target / benchmark</th><th>Status</th></tr></thead>
-        <tbody>
-          <tr><td class="goal">Visibility score</td><td>6.1%</td><td>Pass Chakra/Handsontable (14.3%) &rarr; chase DevExpress/Kendo (22.4%)</td><td><span class="pill bad">Behind</span></td></tr>
-          <tr><td class="goal">Avg answer rank</td><td>9.6</td><td>&le; 8.0 (competitor band)</td><td><span class="pill bad">Behind</span></td></tr>
-          <tr><td class="goal">Prompt coverage</td><td>75% (3/4)</td><td>Broaden base to 20+ prompts, keep 50%+</td><td><span class="pill warn">Thin base</span></td></tr>
-          <tr><td class="goal">Model coverage</td><td>2 of 4 engines</td><td>ChatGPT, Gemini, Claude, AI Overview</td><td><span class="pill warn">Partial</span></td></tr>
-          <tr><td class="goal">Own-site citations</td><td>10 cites / 7 pages</td><td>Maintain &amp; expand to gap prompts</td><td><span class="pill good">Holding</span></td></tr>
-        </tbody>
-      </table>
-    </div>
+    <h2 class="sec">KPI Cards <span class="hint">value · target · WoW · trend</span></h2>
+    <div class="kpigrid" id="kpis"></div>
 
-    <div class="sec"><span class="n">3</span> AI visibility deep-dive — competitors (share of voice)</div>
-    <div class="lead">On the identical prompt set, <b>Infragistics ties Figma for last at 6.1%.</b> The field is led by <b>Material UI (40.8%)</b>, <b>Syncfusion (32.7%)</b> and <b>Ant Design (30.6%)</b>. Our closest positioning peers — paid enterprise suites <b>DevExpress and Kendo UI (22.4% each)</b> — out-appear us nearly 4&times;. <b>AG Grid is missing from the tracked competitor set entirely</b>, despite being the single most-cited grid across our source data — a blind spot to fix.</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Brand</th><th class="num">Visibility</th><th class="num">Avg Rank</th><th class="num">Gap vs us</th></tr></thead>
-        <tbody>
-          <tr><td>Material UI</td><td class="num">40.8%</td><td class="num">7.3</td><td class="num">+34.7</td></tr>
-          <tr><td>Syncfusion</td><td class="num">32.7%</td><td class="num">8.0</td><td class="num">+26.6</td></tr>
-          <tr><td>Ant Design</td><td class="num">30.6%</td><td class="num">8.1</td><td class="num">+24.5</td></tr>
-          <tr><td>DevExpress</td><td class="num">22.4%</td><td class="num">8.8</td><td class="num">+16.3</td></tr>
-          <tr><td>Kendo UI</td><td class="num">22.4%</td><td class="num">8.5</td><td class="num">+16.3</td></tr>
-          <tr><td>Chakra UI</td><td class="num">14.3%</td><td class="num">9.1</td><td class="num">+8.2</td></tr>
-          <tr><td>Handsontable</td><td class="num">14.3%</td><td class="num">9.2</td><td class="num">+8.2</td></tr>
-          <tr><td>Figma</td><td class="num">6.1%</td><td class="num">9.7</td><td class="num">tie</td></tr>
-          <tr class="us"><td>Infragistics (Ignite UI)</td><td class="num">6.1%</td><td class="num">9.6</td><td class="num">&mdash;</td></tr>
-          <tr><td>PrimeNG</td><td class="num">2.0%</td><td class="num">9.9</td><td class="num">&minus;4.1</td></tr>
-          <tr><td>Telerik</td><td class="num">0%</td><td class="num">10.0</td><td class="num">&minus;6.1</td></tr>
-          <tr><td>AG Grid</td><td class="num" colspan="3" style="text-align:left;color:var(--bad)">Not tracked — add to competitor set (most-cited grid in source data)</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <h2 class="sec">Visibility Trends</h2>
+    <div class="wintabs" id="wintabs"></div>
+    <div class="trendbox" id="trendbox"></div>
 
-    <div class="sec"><span class="n">4</span> AI visibility deep-dive — topics &amp; models</div>
-    <div class="cards">
-      <div class="card">
-        <div class="ch"><span class="nm">Only one topic is populated — and we score 0 on it</span><span class="sp">React – Best-of &amp; Discovery</span></div>
-        <div class="cb">The single topic Amplitude is querying — <b>"React – Best-of &amp; Discovery"</b> (4 prompts, 8 responses) — returns <b>0% visibility, avg rank 10, 0 mentions</b> for Infragistics. Material UI (5 mentions), Ant Design, Handsontable and Chakra take the slots. Overall brand visibility (6.1%, 3/49) comes from mentions outside this one topic that the API isn't breaking out this run. <b>No Angular, Blazor, data-grid or comparison topic exists</b> — the money topics are entirely unmeasured.</div>
-      </div>
-    </div>
-    <div class="dtable" style="margin-top:12px">
-      <table>
-        <thead><tr><th>Engine</th><th class="num">Visibility</th><th class="num">Avg Rank</th><th class="num">Responses</th><th class="num">Mentions</th></tr></thead>
-        <tbody>
-          <tr><td>Google AI Overview</td><td class="num">8.0%</td><td class="num">9.5</td><td class="num">25</td><td class="num">2</td></tr>
-          <tr><td>ChatGPT (GPT)</td><td class="num">4.2%</td><td class="num">9.8</td><td class="num">24</td><td class="num">1</td></tr>
-          <tr><td>&nbsp;&nbsp;&mdash; GPT-5 specifically</td><td class="num">0%</td><td class="num">10.0</td><td class="num">4</td><td class="num">0</td></tr>
-          <tr><td>Gemini</td><td class="num">n/a</td><td class="num">&mdash;</td><td class="num">0</td><td class="num">0</td></tr>
-          <tr><td>Claude</td><td class="num">n/a</td><td class="num">&mdash;</td><td class="num">0</td><td class="num">0</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card" style="margin-top:12px"><div class="cb"><b>Caveat:</b> this report only ran <b>Google AI Overview and ChatGPT</b>; Gemini and Claude returned no responses. Our best surface is AI Overview (8%); we are absent on GPT-5. Read the model split as a two-engine picture and add Gemini/Claude to complete it.</div></div>
+    <h2 class="sec">Competitor Snapshot <span class="hint">share of voice</span></h2>
+    <div class="barlist" id="competitors"></div>
 
-    <div class="sec"><span class="n">5</span> AI visibility deep-dive — who cites us</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Our page (cited by LLMs)</th><th class="num">Cites</th><th class="num">Answers</th></tr></thead>
-        <tbody>
-          <tr><td>blogs/best-react-data-grid-for-large-datasets-performance-guide</td><td class="num">3</td><td class="num">3</td></tr>
-          <tr><td>blogs/best-react-ui-library — "Best React UI Library: Top 9"</td><td class="num">2</td><td class="num">2</td></tr>
-          <tr><td>infragistics.com (other Ignite pages, incl. Angular grid via htmlelements)</td><td class="num">5</td><td class="num">2</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="cards" style="margin-top:12px">
-      <div class="card">
-        <div class="ch"><span class="nm">Own-domain: our only reliable citation source</span><span class="sp">infragistics.com · 28.6% mention</span></div>
-        <div class="cb">When infragistics.com is the source, Ignite gets named in <b>28.6% of answers</b> — our best hit-rate anywhere. Our "best X" comparison blogs are what pull us in, and they work. But 10 self-citations sit inside <b>396 total</b>; self-citation caps out fast.</div>
-      </div>
-      <div class="card">
-        <div class="ch"><span class="nm">Third-party listicles: cited heavily, rarely include us</span><span class="sp">the real gap</span></div>
-        <div class="cb">The most-cited external sources — <b>Reddit (37), Medium (29), YouTube (25), dev.to (15)</b> and listicles like builder.io, hashbyt.com, adminlte.io, tailgrids — list MUI, Ant Design, Chakra, shadcn, AG Grid — <b>not Ignite UI</b>. Enterprise-leaning lists that <b>do</b> include us (htmlelements.com "Best Angular Grid", gleexa.com "Best Blazor") prove placement is winnable; faciletechnolab's "Top 10 Enterprise React" lists Syncfusion/DevExpress/KendoReact but drops us.</div>
-      </div>
-    </div>
+    <h2 class="sec">Topic Coverage <span class="hint">ranked by visibility</span></h2>
+    <div class="barlist" id="topics"></div>
 
-    <div class="sec"><span class="n">6</span> Prompt audit — ADD / REMOVE / GAP</div>
-    <div class="lead">The prompt set is the binding constraint. We track <b>4 prompts, one topic</b>, all React best-of/discovery — structurally the hardest place for a paid enterprise vendor to win (free/OSS libraries own it). We're leaving our real strengths — Angular, Blazor, data grids, and head-to-head comparisons — completely unmeasured.</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Change</th><th>Prompt / competitor</th><th>Why</th></tr></thead>
-        <tbody>
-          <tr><td><span class="tag add">Add</span></td><td>best angular data grid · best angular component library</td><td>We rank organically for "angular datagrid" (pos 6) &amp; many Angular components — natural strength, untracked in AI</td></tr>
-          <tr><td><span class="tag add">Add</span></td><td>best react data grid for large datasets</td><td>Our top-cited asset already wins here — measure it</td></tr>
-          <tr><td><span class="tag add">Add</span></td><td>best blazor component library / UI controls</td><td>Ignite/Infragistics appears in Blazor listicles (gleexa) — winnable</td></tr>
-          <tr><td><span class="tag add">Add</span></td><td>enterprise react ui component library</td><td>Head term (480+/mo); our positioning, currently forfeited</td></tr>
-          <tr><td><span class="tag add">Add</span></td><td>KendoReact vs Ignite UI · Syncfusion vs DevExpress vs Infragistics · AG Grid alternatives</td><td>Comparison intent is where owned content converts to citations</td></tr>
-          <tr><td><span class="tag rem">Rethink</span></td><td>generic "best free / open-source React UI"</td><td>Structurally unwinnable for a paid suite (MUI/shadcn/Chakra own it) — deprioritize vs enterprise/grid intent</td></tr>
-          <tr><td><span class="tag gap">Gap</span></td><td>AG Grid missing from tracked competitors</td><td>Most-cited grid in our source data — add it or SoV is distorted</td></tr>
-          <tr><td><span class="tag gap">Gap</span></td><td>No Ignite UI / React / Angular / Blazor brand in Amplitude</td><td>All numbers are parent-company level; can't isolate product or framework</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <h2 class="sec">Supporting Evidence</h2>
+    <div class="ev" id="evidence"></div>
 
-    <div class="sec"><span class="n">7</span> Website actions — LLM optimization</div>
-    <div class="dtable">
-      <table>
-        <thead><tr><th>Finding</th><th>Action</th></tr></thead>
-        <tbody>
-          <tr><td><b>No llms.txt</b> — infragistics.com/llms.txt is empty/absent</td><td>Publish llms.txt mapping Ignite UI product hubs + top comparison blogs; confirm GPTBot/Google-Extended/ClaudeBot/PerplexityBot allowed</td></tr>
-          <tr><td>Our comparison blogs are the only assets earning citations</td><td>Scale answer-first, schema-marked comparison pages (Angular grid, Kendo vs Ignite, AG Grid alternatives, Best Blazor)</td></tr>
-          <tr><td>Top organic Ignite pages are Angular component docs (grid pos 6, charts pos 6, date pickers pos 2–3, form validation pos 4) but aren't structured for AI extraction</td><td>Add TL;DR answer blocks + FAQPage/HowTo schema + canonical entity naming to highest-traffic component docs</td></tr>
-          <tr><td>Ignite docs live under /ignite-ui-angular, -react, -web-components (not /products/ignite-ui)</td><td>Ensure internal linking + consistent entity naming across framework hubs so LLMs resolve "Ignite UI for React/Angular"</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="verdict">
-      <div class="vh">Verdict — the moves this week</div>
-      <p><b>Fix measurement first, then feed the machine that already works.</b> (1) Stand up Ignite UI / React / Angular / Blazor brands in Amplitude and a real prompt set covering data-grid, Angular, Blazor and comparison intent — add AG Grid as a competitor. (2) Ship llms.txt. (3) Scale the owned comparison content that already earns our only citations, and add answer-first summaries + schema to the component docs that already rank. Our own blogs prove we can be cited; the head-term answer real estate (enterprise UI, react datagrid rankings, excel-like grids) is decided by neutral listicles where we're absent but DevExpress/Kendo/Syncfusion are present. <b>All actions assigned to JJ McGuigan — see the Tasks tab.</b></p>
-    </div>
-
+    <h2 class="sec">Definitions</h2>
+    <div class="gloss" id="gloss"></div>
   </section>
 
-  <!-- ============ TAB 2: TASKS ============ -->
   <section class="panel" id="tasks">
     <div class="taskhead">
       <div class="viewtoggle">
@@ -315,108 +262,227 @@
         <button class="vbtn" data-view="timeline">Timeline</button>
       </div>
       <span class="tsum" id="taskSummary"></span>
-      <a class="slink push" href="https://my.slingshotapp.io/openTaskList/e97e10ef_5b6b4783-3ef3-4b34-ac52-95c1902a62a2_tg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg> Open this list in Slingshot</a>
+      <a class="slink push" id="slingLink" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg> Open this list in Slingshot</a>
     </div>
     <div class="view on" data-view="table"><div class="tablewrap"><table><thead><tr><th>Task</th><th>Channel</th><th>Owner</th><th>Priority</th><th>Status</th><th>Due</th></tr></thead><tbody id="tblBody"></tbody></table></div></div>
     <div class="view" data-view="board"><div class="board" id="boardWrap"></div></div>
     <div class="view" data-view="timeline"><div class="tl" id="tlWrap"></div></div>
   </section>
 
-  <!-- ============ TAB 3: SUMMARY ============ -->
   <section class="panel" id="summary">
-    <div class="sumhead"><span class="dtitle">Executive summary</span><button class="slink push" id="copyBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg> <span id="copyLabel">Copy summary</span></button></div>
-    <div class="summary-card" id="summaryCard">
-      <h2>AI Search Visibility / Ignite UI — week of Jul 20–26, 2026</h2>
-      <p><b>Headline:</b> Ignite UI's parent brand Infragistics sits at <b>6.1% AI visibility</b> (down from 7.1% WoW), <b>tied for last with Figma</b> and 5–7&times; behind Material UI (40.8%), Syncfusion (32.7%) and Ant Design (30.6%). Direct paid-suite peers DevExpress and Kendo UI (22.4% each) out-appear us ~4&times;. Avg answer rank 9.6/10. Bright spot: prompt coverage rose 50% → 75%.</p>
-      <h3>What / why</h3>
-      <p>The problem is <b>presence, not polish</b> — competitors get named in AI answers on enterprise, data-grid and comparison prompts; we don't. When we are named, it's almost entirely our own comparison blogs (our data-grid performance guide surfaces Ignite in 28.6% of answers where infragistics.com is the source). The neutral third-party listicles LLMs trust most — Reddit, Medium, builder.io, hashbyt — omit us while listing MUI, Ant Design and AG Grid.</p>
-      <p>Two measurement gaps make this cut thinner than it looks: Amplitude tracks only the parent <b>"Infragistics" brand</b> (no Ignite UI / framework brands), and it queries just <b>4 prompts in one topic</b> where we score 0% — with <b>AG Grid, the most-cited grid in our data, not even a tracked competitor</b>.</p>
-      <h3>Progress &amp; next moves</h3>
-      <ul>
-        <li><b>Fix measurement (top lever):</b> add Ignite UI / React / Angular / Blazor brands in Amplitude; expand the prompt set to data-grid, Angular, Blazor and comparison intent; add AG Grid as a competitor.</li>
-        <li><b>Ship llms.txt</b> — currently absent — mapping Ignite product hubs + comparison blogs.</li>
-        <li><b>Scale what works:</b> more answer-first, schema-marked comparison pages (Angular grid, Kendo vs Ignite, AG Grid alternatives, Best Blazor).</li>
-        <li><b>Make our ranking docs AI-legible:</b> TL;DR answer blocks + FAQ/HowTo schema on top Angular component docs.</li>
-      </ul>
-      <p>All five actions are assigned to <b>JJ McGuigan</b> and dated (start Jul 27; due Aug 3–17).</p>
-    </div>
+    <div class="sumhead"><span class="dtitle">Executive summary — copy-ready</span><button class="slink push" id="copyBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg> <span id="copyLabel">Copy summary</span></button></div>
+    <div class="summary-card" id="summaryCard"></div>
   </section>
 
 </div>
 
 <script>
-  const TASKS = [
-    {name:"Add Ignite UI / React / Angular brands in Amplitude AI Visibility", channel:"AI Visibility setup", owner:"JJ McGuigan", initials:"JJ", color:"#E14E12", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-10"},
-    {name:"Expand AI Visibility prompt set + add AG Grid as tracked competitor", channel:"AI Visibility setup", owner:"JJ McGuigan", initials:"JJ", color:"#E14E12", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-03"},
-    {name:"Publish llms.txt for infragistics.com (+ Ignite UI sections)", channel:"Technical / crawlability", owner:"JJ McGuigan", initials:"JJ", color:"#E14E12", priority:"P2", status:"todo", start:"2026-07-27", due:"2026-08-03"},
-    {name:"Ship answer-first comparison pages (Angular grid, Kendo vs Ignite, AG Grid alternatives)", channel:"Content", owner:"JJ McGuigan", initials:"JJ", color:"#E14E12", priority:"P1", status:"todo", start:"2026-07-27", due:"2026-08-17"},
-    {name:"Add answer-first summaries + FAQ/HowTo schema to top Ignite component docs", channel:"Technical / on-page", owner:"JJ McGuigan", initials:"JJ", color:"#E14E12", priority:"P2", status:"todo", start:"2026-07-27", due:"2026-08-10"}
-  ];
-
-  var accentDeep = getComputedStyle(document.body).getPropertyValue('--accent-deep').trim() || '#333';
-  function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-  var STAT={todo:'To do',prog:'In progress',review:'In review',deferred:'Deferred',blocked:'Blocked',done:'Done'};
-
-  document.getElementById('taskCount').textContent = TASKS.length;
-  var prog = TASKS.filter(function(t){return t.status==='prog';}).length;
-  var review = TASKS.filter(function(t){return t.status==='review';}).length;
-  var done = TASKS.filter(function(t){return t.status==='done';}).length;
-  var bits=[]; if(prog)bits.push('<b>'+prog+'</b> in progress'); if(review)bits.push('<b>'+review+'</b> in review'); if(done)bits.push('<b>'+done+'</b> done');
-  document.getElementById('taskSummary').innerHTML = '<b>'+TASKS.length+' tasks</b> · live from Slingshot · '+(bits.length?bits.join(' · '):'<b>'+TASKS.length+'</b> to do');
-
-  document.getElementById('tblBody').innerHTML = TASKS.length ? TASKS.map(function(t){
-    return '<tr><td class="tname">'+esc(t.name)+'</td><td>'+esc(t.channel||'')+'</td>'+
-      '<td><span class="who"><span class="av" style="background:'+(t.color||accentDeep)+'">'+esc(t.initials||'')+'</span> '+esc(t.owner||'')+'</span></td>'+
-      '<td><span class="pri '+t.priority+'">'+esc(t.priority)+'</span></td>'+
-      '<td><span class="stat '+t.status+'">'+STAT[t.status]+'</span></td>'+
-      '<td class="due">'+esc(t.due||'')+'</td></tr>';
-  }).join('') : '<tr><td colspan="6" class="empty">No tasks yet for this report.</td></tr>';
-
-  function col(key,label,dot){
-    var items = TASKS.filter(function(t){return t.status===key;});
-    return '<div class="col"><div class="col-h"><span class="dt" style="background:'+dot+'"></span> '+label+' <span class="cc">'+items.length+'</span></div>'+
-      items.map(function(t){return '<div class="tcard"><div class="tt">'+esc(t.name)+'</div><div class="tm"><span class="plt">'+esc(t.channel||'')+'</span><span class="pri '+t.priority+'">'+esc(t.priority)+'</span></div></div>';}).join('')+'</div>';
+var REPORT = {
+  "product":"Ignite UI","domain":"infragistics.com","theme":"ui",
+  "slingshotUrl":"https://my.slingshotapp.io/openTaskList/e97e10ef_5b6b4783-3ef3-4b34-ac52-95c1902a62a2_tg",
+  "meta":["Updated <b>Aug 7, 2026</b>","Window <b>Jul 31–Aug 6</b> vs Jul 24–30","Source <b>Amplitude</b> · report 190384","Scope <b>Infragistics</b> · 12 topics / 50 prompts"],
+  "measurementHealth":{"status":"Amber","note":"<b>Usable but incomplete.</b> Decision-ready for framework-level topic trends; not yet for company-vs-product attribution or full share of voice. Solid: brand/entity correct, 12/12 topics live, 98 of ~100 responses. Gaps: <b>AG Grid</b> (top-mentioned in 10/12 topics) and TanStack untracked; only 2 of 5 model families; still one parent “Infragistics” brand. <b>Rebaselined Jul 30</b> (prompts 4→50, topics 1→12) — pre/post visibility not comparable."},
+  "gauges":[
+    {"label":"Overall Visibility","pct":18.4,"display":"18.4%","targetLabel":"Target ≥30%","status":"bad","wow":{"dir":"down","text":"−3.5 pts"}},
+    {"label":"Prompt Coverage","pct":98,"display":"98%","targetLabel":"sample: 98 of ~100","status":"good","wow":{"dir":"up","text":"full set"}},
+    {"label":"Discovery Coverage","pct":4.3,"display":"4.3%","targetLabel":"Target 20%","status":"bad","wow":{"dir":"flat","text":"Angular carries it"}},
+    {"label":"Competitive Citations","pct":100,"display":"656","targetLabel":"all 3 frameworks cited","status":"good","wow":{"dir":"up","text":"materially up"}}
+  ],
+  "kpis":[
+    {"label":"Overall AI Visibility","value":"18.4%","target":"≥30%","status":"bad","statusLabel":"Behind","wow":{"dir":"down","text":"−3.5 pts"},"spark":[21.9,18.4]},
+    {"label":"Prompt Coverage","value":"98 / 100","target":"full","status":"good","statusLabel":"Full","wow":{"dir":"up","text":"+2 resp"},"spark":[96,98]},
+    {"label":"Discovery Topic Coverage","value":"4.3%","target":"20%","status":"bad","statusLabel":"Behind","wow":{"dir":"flat","text":"React/Blazor 0%"},"spark":[0,4.3]},
+    {"label":"Competitive Citations","value":"656","target":"grow","status":"good","statusLabel":"Up","wow":{"dir":"up","text":"all 3 fw"},"spark":[]},
+    {"label":"AI Answers Found","value":"98 resp","target":"—","status":"neutral","statusLabel":"Full sample","wow":{"dir":"flat","text":"50 prompts×2"},"spark":[96,98]},
+    {"label":"Average Prompt Position","value":"8.6","target":"≤6","status":"warn","statusLabel":"Watch","wow":{"dir":"flat","text":"new metric"},"spark":[]}
+  ],
+  "goals":[
+    {"name":"Remove Ignite UI React/Angular/Blazor from competitor treatment","current":"Clean","target":"Clean","progressPct":100,"status":"met","statusLabel":"Achieved","insight":"No Ignite UI brand appears in the 12-competitor set.","horizon":"30"},
+    {"name":"Confirm framework competitor sets","current":"12 tracked","target":"Accurate","progressPct":85,"status":"watch","statusLabel":"Amber","insight":"AG Grid + TanStack Table still missing despite being top-mentioned.","horizon":"30"},
+    {"name":"Preserve 4 topic families per framework","current":"12 (4×3)","target":"4 per fw","progressPct":100,"status":"met","statusLabel":"Achieved","insight":"Fully built — React, Angular, Blazor all have 4 topic families.","horizon":"30"},
+    {"name":"Measurement health = Green","current":"Amber","target":"Green","progressPct":60,"status":"watch","statusLabel":"Amber","insight":"Blocked on AG Grid gap, single model set, single parent brand.","horizon":"30"},
+    {"name":"Maintain Head-to-Head ≥55% (floor)","current":"50% avg","target":"≥55%","progressPct":0,"status":"behind","statusLabel":"At risk","insight":"React, Angular, Blazor all read exactly 50% — below the maintenance floor.","horizon":"30"},
+    {"name":"React/Angular/Blazor Discovery (collective)","current":"~4.3%","target":"10%","progressPct":43,"status":"watch","statusLabel":"Amber","insight":"Angular (14%) carries this alone; React and Blazor are both 0%.","horizon":"30"},
+    {"name":"React Component-Specific","current":"10%","target":"10%","progressPct":100,"status":"met","statusLabel":"Achieved","insight":"Target hit exactly this cycle.","horizon":"30"},
+    {"name":"Angular Component-Specific","current":"0%","target":"10%","progressPct":0,"status":"behind","statusLabel":"Off track","insight":"No movement — 0 of 10 responses mentioned Ignite UI.","horizon":"30"},
+    {"name":"Blazor Component-Specific","current":"13%","target":"20%","progressPct":0,"status":"watch","statusLabel":"Amber","insight":"Flat at baseline — holding, not gaining.","horizon":"30"},
+    {"name":"React Migration & Troubleshooting","current":"25%","target":"30%","progressPct":0,"status":"watch","statusLabel":"Amber","insight":"Flat at baseline.","horizon":"30"},
+    {"name":"Angular Migration & Troubleshooting","current":"0%","target":"20%","progressPct":0,"status":"regressed","statusLabel":"Regressed","insight":"Dropped below baseline — investigation opened; may be noise on 8 responses.","horizon":"30"},
+    {"name":"Blazor Migration & Troubleshooting","current":"14%","target":"20%","progressPct":14,"status":"watch","statusLabel":"Amber","insight":"Small uptick.","horizon":"30"},
+    {"name":"Overall visibility ≥30%","current":"18.4%","target":"≥30%","progressPct":0,"status":"behind","statusLabel":"At risk","insight":"Declined 3.5 pts WoW on the new baseline (21.9%→18.4%).","horizon":"90"},
+    {"name":"Avg rank ≤6","current":"8.6","target":"≤6","progressPct":0,"status":"watch","statusLabel":"Amber","insight":"No pre-rebaseline avg rank at this granularity to compare against.","horizon":"90"},
+    {"name":"Every framework visible in all 4 intent groups","current":"0 / 3","target":"3 / 3","progressPct":0,"status":"behind","statusLabel":"At risk","insight":"React & Blazor miss Discovery; Angular misses Component-Specific & Migration.","horizon":"90"},
+    {"name":"Every framework has ≥2 topics ≥25%","current":"1 / 3","target":"3 / 3","progressPct":33,"status":"watch","statusLabel":"Amber","insight":"React qualifies (Migration 25%, H2H 50%); Angular and Blazor don’t yet.","horizon":"90"},
+    {"name":"Head-to-Head ≥60%","current":"50%","target":"≥60%","progressPct":0,"status":"behind","statusLabel":"Below target","insight":"Same gap as the 30-day floor — comparison content is the fix.","horizon":"90"},
+    {"name":"Discovery collectively ≥20%","current":"~4.3%","target":"≥20%","progressPct":22,"status":"watch","statusLabel":"Amber","insight":"Angular carrying it alone; content task targets React/Blazor directly.","horizon":"90"},
+    {"name":"Component-Specific collectively ≥20%","current":"~7.7%","target":"≥20%","progressPct":38,"status":"watch","statusLabel":"Amber","insight":"Angular’s 0% drags the average; React and Blazor are ahead.","horizon":"90"},
+    {"name":"Owned + third-party citations for all frameworks","current":"All 3","target":"All 3","progressPct":100,"status":"met","statusLabel":"Met","insight":"23+ owned infragistics.com URLs + third parties name Ignite UI.","horizon":"90"}
+  ],
+  "summary":{
+    "working":["Measurement fully built — <b>12 topics / 50 prompts</b> across React, Angular & Blazor (from 1 topic / 4 prompts).","Citations jumped — infragistics.com cited for <b>all 3 frameworks</b> (23+ URLs); Telerik, TheNewStack, dev.to name Ignite UI.","React clears the 90-day “≥2 topics ≥25%” bar (Migration 25%, Head-to-Head 50%)."],
+    "watch":["Overall visibility declined <b>21.9%→18.4%</b> on the new baseline.","Head-to-Head reads exactly <b>50%</b> across all three frameworks — below the 55% floor.","React & Blazor 0% in Best-of/Discovery; Angular Migration regressed 13%→0% (investigating)."],
+    "priority":"<b>Fix competitor-set accuracy and close the Head-to-Head gap.</b> Add AG Grid (top-mentioned in 10/12 topics) + TanStack, ship the answer-first comparison pages targeting the 50% Head-to-Head gap, and publish the overdue llms.txt."
+  },
+  "trends":{"windows":[
+    {"label":"30 Days","current":"18.4%","wow":{"dir":"down","text":"−3.5 pts"},"points":[21.9,18.4],"note":"Post-rebaseline runs only (Jul 30 onward). Down from 21.9% the week the expanded set went live."},
+    {"label":"90 Days","current":"18.4%","wow":{"dir":"down","text":"−3.5 pts"},"points":[21.9,18.4],"note":"Rebaselined Jul 30 (prompts 4→50, topics 1→12). Pre-Jul-30 visibility (6–17%) is a different instrument."},
+    {"label":"YTD","current":"18.4%","wow":{"dir":"flat","text":"new program"},"points":[21.9,18.4],"note":"Program moved from a single-topic React pilot to a full 3-framework build-out around Jul 30 — treat Jul 30 onward as the baseline."}
+  ]},
+  "competitors":[],
+  "competitorsNote":"Per-competitor share isn’t isolated yet — Amplitude scores everything under one parent “Infragistics” brand. <b>AG Grid</b> is the most-mentioned brand in 10 of 12 topics and is still untracked; peer set: Kendo UI/Telerik, DevExpress, Syncfusion, MUI. Adding AG Grid + TanStack and product-level brand scoping is this run’s top measurement fix.",
+  "topics":[
+    {"label":"React · Head-to-Head","value":50,"display":"50%","tone":"g"},
+    {"label":"Angular · Head-to-Head","value":50,"display":"50%","tone":"g"},
+    {"label":"Blazor · Head-to-Head","value":50,"display":"50%","tone":"g"},
+    {"label":"React · Migration","value":25,"display":"25%","tone":"w"},
+    {"label":"Angular · Discovery","value":14,"display":"14%","tone":"w"},
+    {"label":"Blazor · Migration","value":14,"display":"14%","tone":"w"},
+    {"label":"Blazor · Component-Specific","value":13,"display":"13%","tone":"w"},
+    {"label":"React · Component-Specific","value":10,"display":"10%","tone":"w"},
+    {"label":"Angular · Component-Specific","value":0,"display":"0%","tone":"b"},
+    {"label":"Angular · Migration","value":0,"display":"0%","tone":"b"},
+    {"label":"React · Best-of / Discovery","value":0,"display":"0%","tone":"b"},
+    {"label":"Blazor · Best-of / Discovery","value":0,"display":"0%","tone":"b"}
+  ],
+  "evidence":[
+    {"title":"By model","items":["ChatGPT + Google AI Overview only — 2 of 5 historical families","No Gemini, Claude, or Perplexity this cycle","98 of ~100 expected responses (50 prompts × 2 models)"]},
+    {"title":"Citation & source patterns","items":["infragistics.com cited for all 3 frameworks — 23+ owned URLs (up from 1 React-only blog)","Third parties name Ignite UI directly: Telerik, TheNewStack, dev.to","90-day “owned + third-party citations for every framework” goal effectively met"]},
+    {"title":"Correction & rebaseline","items":["Last week’s “0% degraded run” was wrong — run 188594 actually carried 96 responses at 21.9%; investigation closed","Methodology changed Jul 30: prompts 4→50, topics 1→12 (Angular & Blazor added)","Do not compare pre-Jul-30 visibility (6–17%) against post-Jul-30 (18–22%)"]},
+    {"title":"Structural blockers","items":["llms.txt still 404 — now overdue","Amplitude scores under one parent “Infragistics” brand — can’t isolate Ignite UI’s own number","AG Grid (most-mentioned in 10/12 topics) missing from the tracked competitor set"]}
+  ],
+  "glossary":[
+    {"term":"Visibility","def":"Share of tracked AI answers that mention the brand."},
+    {"term":"Prompt Coverage","def":"Share of the expected responses collected this run (sample completeness)."},
+    {"term":"Avg Prompt Position","def":"Average rank of the brand within an answer when mentioned (lower is better)."},
+    {"term":"Intent group","def":"Prompt family: Best-of/Discovery, Component-Specific, Migration & Troubleshooting, Head-to-Head."},
+    {"term":"Citation","def":"A source URL an AI model quoted when composing an answer."},
+    {"term":"Rebaseline","def":"A reset of the comparison basis after a material change to prompts, topics, competitors, or models."}
+  ],
+  "tasks":[
+    {"name":"Investigate degraded Jul 30 AI Visibility run (8 responses / 2 models → 0%)","channel":"Measurement","owner":"JJ McGuigan","initials":"JM","color":"#E14E12","priority":"P1","status":"done","start":"2026-08-03","due":"2026-08-10","completed":"2026-08-07"},
+    {"name":"Expand AI Visibility prompt set + add AG Grid as tracked competitor","channel":"Measurement","owner":"JJ McGuigan","initials":"JM","color":"#E14E12","priority":"P1","status":"todo","start":"2026-07-27","due":"2026-08-12"},
+    {"name":"Add Ignite UI / React / Angular brands in Amplitude AI Visibility","channel":"Measurement","owner":"JJ McGuigan","initials":"JM","color":"#E14E12","priority":"P1","status":"todo","start":"2026-07-27","due":"2026-08-10"},
+    {"name":"Publish llms.txt for infragistics.com (+ Ignite UI sections)","channel":"Website","owner":"JJ McGuigan","initials":"JM","color":"#E14E12","priority":"P1","status":"todo","start":"2026-07-27","due":"2026-08-12"},
+    {"name":"Ship answer-first comparison pages (Angular grid, Kendo vs Ignite, AG Grid alternatives)","channel":"Content","owner":"JJ McGuigan","initials":"JM","color":"#E14E12","priority":"P1","status":"todo","start":"2026-07-27","due":"2026-08-17"},
+    {"name":"Add answer-first summaries + FAQ/HowTo schema to top Ignite component docs","channel":"Website","owner":"JJ McGuigan","initials":"JM","color":"#E14E12","priority":"P2","status":"todo","start":"2026-07-27","due":"2026-08-10"},
+    {"name":"Build answer-first Best-of/Discovery content for React & Blazor (0% visibility)","channel":"Content","owner":"JJ McGuigan","initials":"JM","color":"#E14E12","priority":"P1","status":"todo","start":"2026-08-07","due":"2026-08-21","isNew":true},
+    {"name":"Investigate Angular Migration & Troubleshooting visibility regression (13% → 0%)","channel":"Measurement","owner":"JJ McGuigan","initials":"JM","color":"#E14E12","priority":"P2","status":"todo","start":"2026-08-07","due":"2026-08-12","isNew":true}
+  ],
+  "summaryCard":{
+    "title":"AI Search Visibility — Ignite UI · Week of Jul 31, 2026 (report 190384)",
+    "html":"<p><b>Where we are:</b> overall visibility <b>18.4%</b> (down from 21.9%) across 98 responses / 656 citations, on a full 12-topic / 50-prompt build spanning React, Angular & Blazor. Rebaselined Jul 30 — pre/post not comparable.</p><h3>What’s working</h3><ul><li>Measurement fully built — all 3 frameworks × 4 intent families</li><li>Citations jumped — infragistics.com cited for all 3 frameworks + third parties name Ignite UI</li><li>React clears the 90-day “≥2 topics ≥25%” bar</li></ul><h3>Watch</h3><ul><li>Visibility declined 21.9%→18.4% on the new baseline</li><li>Head-to-Head exactly 50% across all frameworks — below the 55% floor</li><li>React & Blazor 0% in Best-of/Discovery; Angular Migration regressed to 0%</li></ul><h3>Priority</h3><p>Add AG Grid (+ TanStack) to the tracked set, ship comparison pages targeting the Head-to-Head 50% gap, and publish the overdue llms.txt.</p>"
   }
-  var STATUS_COLS=[['todo','To do','#8a93a3'],['prog','In progress','#2A41A2'],['review','In review','#6C8CFD'],['deferred','Deferred','#b7791f'],['done','Done','#12915b']];
-  document.getElementById('boardWrap').innerHTML = STATUS_COLS.filter(function(c){return TASKS.some(function(t){return t.status===c[0];});}).map(function(c){return col(c[0],c[1],c[2]);}).join('');
+}
+;
+(function(){
+  var R=REPORT, D=document, css=getComputedStyle(D.body);
+  function cv(n){return css.getPropertyValue(n).trim();}
+  var C={good:cv('--good'),warn:cv('--warn'),bad:cv('--bad'),gray:cv('--gray'),accent:cv('--accent'),accentDeep:cv('--accent-deep'),peri:cv('--peri'),cobalt:cv('--cobalt')};
+  function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function el(id){return D.getElementById(id);}
+  var STCOLOR={good:C.good,warn:C.warn,bad:C.bad,neutral:C.gray,met:C.good,track:C.good,watch:C.warn,partial:C.warn,blocked:C.warn,behind:C.bad,regressed:C.bad};
+  function wowHtml(w){ if(!w) return ''; var d=w.dir||'flat'; var a=d==='up'?'▲':d==='down'?'▼':'►'; return '<span class="wow '+d+'">'+a+' '+esc(w.text||'')+'</span>'; }
+  function spark(pts,color){ pts=(pts||[]).map(Number).filter(function(n){return !isNaN(n);}); if(pts.length<2) return ''; var w=132,h=34,pad=3; var mn=Math.min.apply(null,pts),mx=Math.max.apply(null,pts),rng=(mx-mn)||1; var step=(w-pad*2)/(pts.length-1); var xy=pts.map(function(v,i){return [pad+step*i, h-pad-((v-mn)/rng)*(h-pad*2)];}); var d=xy.map(function(p,i){return (i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1);}).join(' '); var last=xy[xy.length-1]; return '<svg width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'"><path d="'+d+'" fill="none" stroke="'+(color||C.peri)+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="'+last[0].toFixed(1)+'" cy="'+last[1].toFixed(1)+'" r="2.6" fill="'+(color||C.peri)+'"/></svg>'; }
 
-  (function(){
-    var wrap=document.getElementById('tlWrap');
-    var withDue = TASKS.filter(function(t){return t.due;});
-    if(!withDue.length){ wrap.innerHTML='<div class="empty">No dated tasks to plot.</div>'; return; }
-    var starts = withDue.map(function(t){return new Date(t.start||t.due).getTime();});
-    var ends = withDue.map(function(t){return new Date(t.due).getTime();});
-    var min=Math.min.apply(null,starts), max=Math.max.apply(null,ends), span=Math.max(1,max-min);
-    wrap.innerHTML = withDue.map(function(t){
-      var s=new Date(t.start||t.due).getTime(), e=new Date(t.due).getTime();
-      var left=((s-min)/span*100), width=Math.max(7,(e-s)/span*100);
-      if(left+width>100){width=100-left;}
-      return '<div class="tlrow"><div class="tlname">'+esc(t.name)+'<div class="sub">'+esc(t.owner||'')+' · '+esc(t.priority)+'</div></div>'+
-        '<div class="tltrack"><div class="bar" style="left:'+left+'%;width:'+width+'%">'+esc(t.due)+'</div></div></div>';
-    }).join('');
-  })();
+  el('logochip').textContent=R.product;
+  el('kick').textContent=(R.domain?R.domain+' · ':'')+'AI Search Visibility';
+  el('h1').textContent='AI Search Visibility / '+R.product;
+  el('meta').innerHTML=(R.meta||[]).map(function(m){return '<span class="pill">'+m+'</span>';}).join('');
 
-  var copyBtn=document.getElementById('copyBtn'), copyLabel=document.getElementById('copyLabel'), card=document.getElementById('summaryCard');
-  copyBtn.addEventListener('click',function(){
-    var html=card.innerHTML.trim(), text=card.innerText.trim();
-    function done(){ copyBtn.classList.add('copied'); copyLabel.textContent='Copied!'; setTimeout(function(){copyBtn.classList.remove('copied');copyLabel.textContent='Copy summary';},1800); }
-    if(navigator.clipboard && window.ClipboardItem){
-      navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([text],{type:'text/plain'})})]).then(done).catch(function(){ navigator.clipboard.writeText(text).then(done); });
-    } else if(navigator.clipboard){ navigator.clipboard.writeText(text).then(done); }
-    else { var r=document.createRange(); r.selectNode(card); var s=getSelection(); s.removeAllRanges(); s.addRange(r); try{document.execCommand('copy');done();}catch(e){} s.removeAllRanges(); }
-  });
+  el('gauges').innerHTML=(R.gauges||[]).map(function(g){
+    var pct=Math.max(0,Math.min(100,g.pct)); var r=30,circ=Math.PI*r;
+    var col=STCOLOR[g.status]||C.cobalt;
+    var off=circ*(1-pct/100);
+    var svg='<svg width="80" height="50" viewBox="0 0 80 50">'+
+      '<path d="M10 40 A30 30 0 0 1 70 40" fill="none" stroke="#e9edf5" stroke-width="8" stroke-linecap="round"/>'+
+      '<path d="M10 40 A30 30 0 0 1 70 40" fill="none" stroke="'+col+'" stroke-width="8" stroke-linecap="round" stroke-dasharray="'+circ.toFixed(1)+'" stroke-dashoffset="'+off.toFixed(1)+'"/></svg>';
+    return '<div class="gauge"><div class="glab">'+esc(g.label)+'</div>'+svg+
+      '<div class="gval">'+esc(g.display)+'</div>'+
+      '<div class="gfoot"><span class="statusdot" style="background:'+col+'"></span>'+(g.wow?wowHtml(g.wow):'<span class="gtarget">'+esc(g.targetLabel||'')+'</span>')+'</div>'+
+      '<div class="gsub">'+esc(g.targetLabel||'')+'</div></div>';
+  }).join('');
 
-  document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
-    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
-    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
-    t.classList.add('on'); document.getElementById(t.dataset.tab).classList.add('on');
-    window.scrollTo({top:0,behavior:'smooth'});
-  });});
-  document.querySelectorAll('.vbtn').forEach(function(b){b.addEventListener('click',function(){
-    document.querySelectorAll('.vbtn').forEach(function(x){x.classList.remove('on');});
-    document.querySelectorAll('#tasks .view').forEach(function(v){v.classList.remove('on');});
-    b.classList.add('on'); document.querySelector('#tasks .view[data-view="'+b.dataset.view+'"]').classList.add('on');
-  });});
+  if(R.measurementHealth){ el('mh').innerHTML='<span class="mb '+R.measurementHealth.status+'">'+esc(R.measurementHealth.status)+'</span><div class="mt">'+R.measurementHealth.note+'</div>'; } else { el('mh').style.display='none'; }
+
+  function goalRows(list){ return list.map(function(g){
+    var pct=(g.progressPct==null?null:Math.max(0,Math.min(100,g.progressPct)));
+    var tcls=g.status==='met'||g.status==='track'?'g':(g.status==='behind'||g.status==='regressed'?'b':'w');
+    var bar=pct==null?'<span class="ins">—</span>':'<span class="prog"><span class="track '+tcls+'"><i style="width:'+pct+'%"></i></span><span class="pct">'+pct+'%</span></span>';
+    return '<tr><td class="gname">'+esc(g.name)+'</td><td class="num">'+esc(g.current)+'</td><td class="num">'+esc(g.target)+'</td><td>'+bar+'</td><td class="ins">'+esc(g.insight)+'</td><td><span class="badge '+g.status+'">'+esc(g.statusLabel||g.status)+'</span></td></tr>';
+  }).join(''); }
+  function sbTable(list){ return '<div class="sbwrap"><table class="sb"><thead><tr><th>Goal</th><th class="num">Current</th><th class="num">Target</th><th>Progress</th><th>Insight</th><th>Status</th></tr></thead><tbody>'+goalRows(list)+'</tbody></table></div>'; }
+  var g30=(R.goals||[]).filter(function(g){return g.horizon!=='90';});
+  var g90=(R.goals||[]).filter(function(g){return g.horizon==='90';});
+  var sbHtml='';
+  if(g30.length){ sbHtml+='<div class="sbsub">30-day goals</div>'+sbTable(g30); }
+  if(g90.length){ sbHtml+='<div class="sbsub">90-day goals</div>'+sbTable(g90); }
+  el('scoreboard').innerHTML=sbHtml;
+
+  var S=R.summary||{};
+  el('execsum').innerHTML=
+    '<div class="ecard good"><div class="eh">What’s working</div><ul>'+(S.working||[]).map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div>'+
+    '<div class="ecard watch"><div class="eh">Watch</div><ul>'+(S.watch||[]).map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div>'+
+    '<div class="ecard pri span2"><div class="eh">Priority — highest-impact move</div><p>'+(S.priority||'')+'</p></div>';
+
+  el('kpis').innerHTML=(R.kpis||[]).map(function(k){
+    return '<div class="kpi"><span class="chip '+(k.status||'neutral')+'">'+esc(k.statusLabel||k.status||'')+'</span>'+
+      '<div class="lab">'+esc(k.label)+'</div>'+
+      '<div class="val">'+esc(k.value)+'</div>'+
+      '<div class="row2"><span class="tgt">Target <b>'+esc(k.target)+'</b></span>'+wowHtml(k.wow)+'</div>'+
+      '<div class="spark">'+spark(k.spark,STCOLOR[k.status]||C.cobalt)+'</div></div>';
+  }).join('');
+
+  var T=R.trends||{windows:[]};
+  el('wintabs').innerHTML=(T.windows||[]).map(function(w,i){return '<button class="wbtn'+(i===0?' on':'')+'" data-win="'+i+'">'+esc(w.label)+'</button>';}).join('');
+  function renderTrend(i){
+    var w=(T.windows||[])[i]; if(!w){el('trendbox').innerHTML='';return;}
+    var body= (w.points&&w.points.length>=2) ? '<div style="height:60px">'+spark(w.points,C.cobalt).replace('width="132" height="34" viewBox="0 0 132 34"','width="100%" height="60" viewBox="0 0 132 34" preserveAspectRatio="none"')+'</div>' : '<div class="trendnote">Limited history in this window — '+((w.points||[]).length)+' data point(s). Trend line needs ≥2 comparable runs.</div>';
+    el('trendbox').innerHTML='<div class="thead"><span class="tval">'+esc(w.current)+'</span>'+wowHtml(w.wow)+'</div>'+body+'<div class="trendnote">'+ (w.note||'') +'</div>';
+  }
+  renderTrend(0);
+  D.querySelectorAll('#wintabs .wbtn').forEach(function(b){b.addEventListener('click',function(){ D.querySelectorAll('#wintabs .wbtn').forEach(function(x){x.classList.remove('on');}); b.classList.add('on'); renderTrend(+b.dataset.win); });});
+
+  function bars(list,maxv){ var mx=maxv||Math.max.apply(null,list.map(function(x){return x.value;}).concat([1])); return list.map(function(x){
+    var w=Math.max(2,Math.round(x.value/mx*100)); var cls=x.us?'us':''; var tcls=x.tone?(' '+x.tone):'';
+    return '<div class="barrow '+cls+'"><span class="bl">'+esc(x.label)+'</span><span class="bt'+tcls+'"><i style="width:'+w+'%"></i></span><span class="bmeta"><b>'+esc(x.display)+'</b>'+(x.sub?' '+esc(x.sub):'')+'</span></div>';
+  }).join(''); }
+  el('competitors').innerHTML=((R.competitors&&R.competitors.length)?bars(R.competitors,100):'')+(R.competitorsNote?'<div class="note">'+R.competitorsNote+'</div>':'');
+  el('topics').innerHTML=((R.topics&&R.topics.length)?bars(R.topics,100):'')+(R.topicsNote?'<div class="note">'+R.topicsNote+'</div>':'');
+
+  el('evidence').innerHTML=(R.evidence||[]).map(function(e){
+    return '<div class="evcard'+(e.full?' full':'')+'"><h4>'+esc(e.title)+'</h4><ul>'+(e.items||[]).map(function(i){return '<li>'+i+'</li>';}).join('')+'</ul></div>';
+  }).join('');
+
+  el('gloss').innerHTML=(R.glossary||[]).map(function(g){return '<div><b>'+esc(g.term)+'.</b> '+esc(g.def)+'</div>';}).join('');
+
+  var TASKS=R.tasks||[]; var STAT={todo:'To do',prog:'In progress',review:'In review',blocked:'Blocked',done:'Done'};
+  el('slingLink').href=R.slingshotUrl||'#';
+  el('taskCount').textContent=TASKS.length;
+  var counts={}; ['todo','prog','review','blocked','done'].forEach(function(s){counts[s]=TASKS.filter(function(t){return t.status===s;}).length;});
+  var bits=[]; if(counts.todo)bits.push('<b>'+counts.todo+'</b> to do'); if(counts.prog)bits.push('<b>'+counts.prog+'</b> in progress'); if(counts.review)bits.push('<b>'+counts.review+'</b> in review'); if(counts.blocked)bits.push('<b>'+counts.blocked+'</b> blocked'); if(counts.done)bits.push('<b>'+counts.done+'</b> done');
+  var newCount=TASKS.filter(function(t){return t.isNew;}).length;
+  el('taskSummary').innerHTML='<b>'+TASKS.length+' tasks</b> · live from Slingshot'+(newCount?' · <b>'+newCount+'</b> new this run':'')+' · '+bits.join(' · ');
+  function nb(t){return t.isNew?'<span class="newbadge">NEW</span>':'';}
+  el('tblBody').innerHTML=TASKS.length?TASKS.map(function(t){
+    return '<tr><td class="tname">'+esc(t.name)+nb(t)+'</td><td>'+esc(t.channel||'')+'</td>'+
+      '<td><span class="who"><span class="av" style="background:'+(t.color||C.accentDeep)+'">'+esc(t.initials||'')+'</span> '+esc(t.owner||'')+'</span></td>'+
+      '<td><span class="pri '+t.priority+'">'+esc(t.priority)+'</span></td>'+
+      '<td><span class="stat '+t.status+'">'+STAT[t.status]+'</span>'+(t.completed?' <span class="donedate">'+esc(t.completed)+'</span>':'')+'</td>'+
+      '<td class="due">'+esc(t.due||'')+'</td></tr>';
+  }).join(''):'<tr><td colspan="6" class="empty">No tasks yet for this report.</td></tr>';
+  function col(key,label,dot){ var items=TASKS.filter(function(t){return t.status===key;}); return '<div class="col"><div class="col-h"><span class="dt" style="background:'+dot+'"></span> '+label+' <span class="cc">'+items.length+'</span></div>'+items.map(function(t){return '<div class="tcard"><div class="tt">'+esc(t.name)+nb(t)+'</div><div class="tm"><span class="plt">'+esc(t.channel||'')+(t.completed?' · <span class="donedate">'+esc(t.completed)+'</span>':'')+'</span><span class="pri '+t.priority+'">'+esc(t.priority)+'</span></div></div>';}).join('')+'</div>'; }
+  var COLS=[['todo','To do',C.gray],['prog','In progress',C.cobalt],['review','In review',C.peri],['blocked','Blocked',C.bad],['done','Done',C.good]];
+  el('boardWrap').innerHTML=COLS.filter(function(c){return TASKS.some(function(t){return t.status===c[0];});}).map(function(c){return col(c[0],c[1],c[2]);}).join('');
+  (function(){ var wrap=el('tlWrap'); var wd=TASKS.filter(function(t){return t.due;}); if(!wd.length){wrap.innerHTML='<div class="empty">No dated tasks to plot.</div>';return;} var st=wd.map(function(t){return new Date(t.start||t.due).getTime();}); var en=wd.map(function(t){return new Date(t.due).getTime();}); var mn=Math.min.apply(null,st),mx=Math.max.apply(null,en),span=Math.max(1,mx-mn); wrap.innerHTML=wd.map(function(t){var s=new Date(t.start||t.due).getTime(),e=new Date(t.due).getTime(); var left=(s-mn)/span*100,width=Math.max(7,(e-s)/span*100); if(left+width>100)width=100-left; return '<div class="tlrow"><div class="tlname">'+esc(t.name)+'<div class="sub">'+esc(t.owner||'')+' · '+esc(t.priority)+(t.isNew?' · NEW':'')+'</div></div><div class="tltrack"><div class="bar" style="left:'+left+'%;width:'+width+'%">'+esc(t.due)+'</div></div></div>';}).join(''); })();
+
+  var sc=R.summaryCard||{};
+  el('summaryCard').innerHTML='<h2>'+esc(sc.title||('AI Search Visibility — '+R.product))+'</h2>'+(sc.html||'');
+
+  var copyBtn=el('copyBtn'),copyLabel=el('copyLabel'),card=el('summaryCard');
+  copyBtn.addEventListener('click',function(){ var html=card.innerHTML.trim(),text=card.innerText.trim(); function ok(){copyBtn.classList.add('copied');copyLabel.textContent='Copied!';setTimeout(function(){copyBtn.classList.remove('copied');copyLabel.textContent='Copy summary';},1800);} if(navigator.clipboard&&window.ClipboardItem){navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([text],{type:'text/plain'})})]).then(ok).catch(function(){navigator.clipboard.writeText(text).then(ok);});}else if(navigator.clipboard){navigator.clipboard.writeText(text).then(ok);}else{var r=D.createRange();r.selectNode(card);var s=getSelection();s.removeAllRanges();s.addRange(r);try{D.execCommand('copy');ok();}catch(e){}s.removeAllRanges();} });
+  D.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){D.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});D.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});t.classList.add('on');el(t.dataset.tab).classList.add('on');window.scrollTo({top:0,behavior:'smooth'});});});
+  D.querySelectorAll('.vbtn').forEach(function(b){b.addEventListener('click',function(){D.querySelectorAll('.vbtn').forEach(function(x){x.classList.remove('on');});D.querySelectorAll('#tasks .view').forEach(function(v){v.classList.remove('on');});b.classList.add('on');D.querySelector('#tasks .view[data-view="'+b.dataset.view+'"]').classList.add('on');});});
+})();
 </script>
 </body>
 </html>
