@@ -1,1 +1,478 @@
-PENDING
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Search Visibility / Slingshot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F172A; --cobalt:#2A41A2; --peri:#6C8CFD; --peri-soft:#e7ecff;
+    --ink:#212529; --muted:#5f6b7a; --line:#E9E9F4; --bg:#F6F7FA; --card:#fff;
+    --good:#12915b; --good-bg:#e3f5ec; --warn:#b7791f; --warn-bg:#fbf1dd; --bad:#c23b39; --bad-bg:#fbe4e3;
+    --gray:#8a93a3; --gray-bg:#eef0f5; --mono:'Roboto Mono',monospace; --radius:14px;
+    --shadow:0 1px 2px rgba(15,23,42,.04),0 6px 20px rgba(15,23,42,.05);
+  }
+  body.theme-reveal   {--accent:#EC417A;--accent-deep:#C9367F;--accent-soft:#fde4ee;--hero:linear-gradient(120deg,#FBB764,#EC417A 62%,#d63384)}
+  body.theme-slingshot{--accent:#4B45C6;--accent-deep:#2D2A90;--accent-soft:#ECEBFB;--hero:linear-gradient(120deg,#6C5CE7,#4B45C6 55%,#2D2A90)}
+  body.theme-ui       {--accent:#FF6B2C;--accent-deep:#E14E12;--accent-soft:#FFEEE2;--hero:linear-gradient(120deg,#FF9A4D,#FF6B2C 55%,#E14E12)}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .hubnav{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:8px;background:#0B1220;color:#fff;font-weight:600;font-size:13px;padding:11px 20px;text-decoration:none}
+  .hubnav:hover{background:#111a2e}
+  .hubnav svg{width:14px;height:14px}
+  .wrap{max-width:1120px;margin:0 auto;padding:20px 22px 80px}
+
+  header.top{background:var(--hero);color:#fff;border-radius:16px 16px 0 0;padding:22px 26px 20px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,.30),transparent 70%)}
+  .logochip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:9px;padding:7px 13px;margin-bottom:12px;box-shadow:0 3px 12px rgba(0,0,0,.14);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:-.01em}
+  .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);font-weight:600}
+  header.top h1{margin:5px 0 0;font-size:26px;font-weight:900}
+  .meta{margin-top:13px;display:flex;gap:8px;flex-wrap:wrap;font-size:12px}
+  .meta .pill{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 11px;color:#fff;font-weight:500}
+  .meta .pill b{font-weight:700}
+
+  .tabbar{background:#fff;border:1px solid var(--line);border-top:none;display:flex;align-items:center;gap:2px;padding:0 12px;position:sticky;top:42px;z-index:5;box-shadow:0 2px 10px rgba(15,23,42,.03)}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:15px 18px 13px;border-bottom:3px solid transparent;display:flex;align-items:center;gap:8px}
+  .tab .cbadge{font-family:var(--mono);font-size:11px;font-weight:600;background:var(--gray-bg);color:var(--muted);border-radius:999px;padding:1px 8px}
+  .tab:hover{color:var(--ink)}
+  .tab.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+  .tab.on .cbadge{background:var(--accent-soft);color:var(--accent-deep)}
+
+  .panel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:22px 24px 30px}
+  .panel.on{display:block}
+
+  h2.sec{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:28px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  h2.sec:first-child{margin-top:2px}
+  h2.sec .hint{float:right;text-transform:none;letter-spacing:0;font-weight:500;color:var(--gray);font-size:11px}
+  .lead{font-size:14.5px;line-height:1.65} .lead b{color:var(--navy)}
+
+  .slink{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:#fff;background:linear-gradient(120deg,var(--accent),var(--accent-deep));padding:9px 15px;border-radius:9px;white-space:nowrap;text-decoration:none;border:none;cursor:pointer;font-family:inherit}
+  .slink:hover{filter:brightness(1.05)} .slink svg{width:13px;height:13px}
+  .copied{background:var(--good)!important;filter:none!important}
+
+  .wow{font-size:12px;font-weight:700;font-family:var(--mono);display:inline-flex;align-items:center;gap:3px}
+  .wow.up{color:var(--good)} .wow.down{color:var(--bad)} .wow.flat{color:var(--gray)}
+
+  .gauges{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media(max-width:820px){.gauges{grid-template-columns:1fr 1fr}}
+  .gauge{border:1px solid var(--line);border-radius:var(--radius);background:#fcfdff;box-shadow:var(--shadow);padding:14px 12px 12px;text-align:center;position:relative}
+  .gauge .glab{font-size:11px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--muted);min-height:26px;display:flex;align-items:center;justify-content:center}
+  .gauge svg{display:block;margin:2px auto 0}
+  .gauge .gval{font-size:22px;font-weight:900;font-family:var(--mono);color:var(--navy)}
+  .gauge .gsub{font-size:11px;color:var(--muted);margin-top:1px}
+  .gauge .gfoot{margin-top:8px;display:flex;justify-content:center;gap:8px;align-items:center;font-size:11px}
+  .gauge .gtarget{color:var(--muted)}
+  .statusdot{display:inline-block;width:9px;height:9px;border-radius:50%;vertical-align:middle}
+
+  .kpigrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:820px){.kpigrid{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.kpigrid{grid-template-columns:1fr}}
+  .kpi{position:relative;border:1px solid var(--line);border-radius:12px;padding:14px 15px 12px;background:#fcfdff;box-shadow:var(--shadow)}
+  .kpi .lab{font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--muted);font-weight:700;padding-right:56px}
+  .kpi .chip{position:absolute;top:12px;right:12px;font-size:9.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:6px}
+  .chip.good{background:var(--good-bg);color:var(--good)} .chip.warn{background:var(--warn-bg);color:var(--warn)} .chip.bad{background:var(--bad-bg);color:var(--bad)} .chip.neutral{background:var(--gray-bg);color:var(--gray)}
+  .kpi .val{font-size:25px;font-weight:900;color:var(--navy);font-family:var(--mono);margin:7px 0 1px}
+  .kpi .row2{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:2px}
+  .kpi .tgt{font-size:11px;color:var(--muted)} .kpi .tgt b{color:var(--navy);font-weight:700}
+  .kpi .spark{margin-top:8px;height:34px}
+
+  .sbwrap{border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:6px}
+  table.sb{width:100%;border-collapse:collapse;font-size:13px}
+  table.sb thead th{background:#eef2fa;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:#41506b;font-weight:700;padding:9px 12px;text-align:left;border-bottom:1px solid #dce3f0}
+  table.sb tbody td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+  table.sb tbody tr:last-child td{border-bottom:none}
+  table.sb .gname{font-weight:600;color:var(--navy);max-width:260px}
+  table.sb .num{text-align:right;white-space:nowrap}
+  .prog{display:flex;align-items:center;gap:8px;min-width:150px}
+  .track{flex:1;height:8px;border-radius:999px;background:var(--gray-bg);overflow:hidden;min-width:70px}
+  .track > i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--peri),var(--cobalt))}
+  .track.g > i{background:linear-gradient(90deg,#34d17f,var(--good))}
+  .track.w > i{background:linear-gradient(90deg,#f0c674,var(--warn))}
+  .track.b > i{background:linear-gradient(90deg,#e88a88,var(--bad))}
+  .pct{font-family:var(--mono);font-size:11px;color:var(--muted);width:34px;text-align:right}
+  .badge{display:inline-block;padding:3px 9px;border-radius:999px;font-size:10.5px;font-weight:800;letter-spacing:.02em;white-space:nowrap}
+  .badge.met{background:var(--good-bg);color:var(--good)} .badge.track{background:var(--good-bg);color:var(--good)}
+  .badge.watch{background:var(--warn-bg);color:var(--warn)} .badge.partial{background:var(--warn-bg);color:var(--warn)} .badge.blocked{background:var(--warn-bg);color:var(--warn)}
+  .badge.behind{background:var(--bad-bg);color:var(--bad)} .badge.regressed{background:var(--bad-bg);color:var(--bad)}
+  .badge.neutral{background:var(--gray-bg);color:var(--gray)}
+  .ins{font-size:12px;color:var(--muted);max-width:340px}
+  .sbsub{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin:14px 0 6px}
+
+  .barlist{border:1px solid var(--line);border-radius:12px;background:#fcfdff;box-shadow:var(--shadow);padding:12px 14px}
+  .barrow{display:grid;grid-template-columns:150px 1fr 92px;gap:10px;align-items:center;padding:5px 0}
+  @media(max-width:560px){.barrow{grid-template-columns:110px 1fr 70px}}
+  .barrow .bl{font-size:12.5px;color:var(--ink);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .barrow.us .bl{font-weight:800;color:var(--accent-deep)}
+  .bt{height:16px;border-radius:6px;background:var(--gray-bg);overflow:hidden}
+  .bt > i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--peri),var(--cobalt))}
+  .barrow.us .bt > i{background:linear-gradient(90deg,var(--accent),var(--accent-deep))}
+  .bt.g > i{background:linear-gradient(90deg,#34d17f,var(--good))} .bt.w > i{background:linear-gradient(90deg,#f0c674,var(--warn))} .bt.b > i{background:linear-gradient(90deg,#e88a88,var(--bad))}
+  .bmeta{font-size:12px;font-family:var(--mono);color:var(--muted);text-align:right;white-space:nowrap}
+  .bmeta b{color:var(--navy)}
+
+  .wintabs{display:inline-flex;background:var(--gray-bg);border-radius:10px;padding:3px;margin-bottom:10px}
+  .wbtn{appearance:none;border:none;background:none;cursor:pointer;font-family:inherit;font-size:12px;font-weight:700;color:var(--muted);padding:6px 13px;border-radius:8px}
+  .wbtn.on{background:#fff;color:var(--accent-deep);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+  .trendbox{border:1px solid var(--line);border-radius:12px;background:#fcfdff;box-shadow:var(--shadow);padding:16px}
+  .trendbox .thead{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
+  .trendbox .tval{font-size:24px;font-weight:900;font-family:var(--mono);color:var(--navy)}
+  .trendnote{font-size:11.5px;color:var(--muted);margin-top:8px}
+
+  .execgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:720px){.execgrid{grid-template-columns:1fr}}
+  .ecard{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff;box-shadow:var(--shadow);border-top:4px solid var(--line)}
+  .ecard.good{border-top-color:var(--good)} .ecard.watch{border-top-color:var(--warn)} .ecard.pri{border-top-color:var(--accent)}
+  .ecard .eh{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+  .ecard.good .eh{color:var(--good)} .ecard.watch .eh{color:var(--warn)} .ecard.pri .eh{color:var(--accent-deep)}
+  .ecard ul{margin:0;padding-left:17px} .ecard li{font-size:13px;margin-bottom:6px;line-height:1.45} .ecard li:last-child{margin-bottom:0}
+  .ecard.pri p{font-size:13.5px;line-height:1.5} .ecard.pri p b{color:var(--navy)}
+  .ecard.span2{grid-column:1 / -1}
+
+  .mh{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;box-shadow:var(--shadow);margin-top:10px}
+  .mh .mb{flex:none;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 11px;border-radius:999px}
+  .mb.Green{background:var(--good-bg);color:var(--good)} .mb.Amber{background:var(--warn-bg);color:var(--warn)} .mb.Red{background:var(--bad-bg);color:var(--bad)}
+  .mh .mt{font-size:12.5px;line-height:1.5} .mh .mt b{color:var(--navy)}
+
+  .ev{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:720px){.ev{grid-template-columns:1fr}}
+  .evcard{border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:#fff;box-shadow:var(--shadow)}
+  .evcard h4{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+  .evcard ul{margin:0;padding-left:16px} .evcard li{font-size:12.5px;margin-bottom:4px;line-height:1.45}
+  .evcard.full{grid-column:1 / -1}
+
+  .gloss{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
+  @media(max-width:720px){.gloss{grid-template-columns:1fr}}
+  .gloss div{font-size:12.5px;line-height:1.5} .gloss b{color:var(--navy)}
+  .note{font-size:11.5px;color:var(--muted);margin-top:8px}
+
+  #tasks .taskhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+  #tasks .viewtoggle{display:inline-flex;background:var(--gray-bg);border-radius:10px;padding:3px}
+  #tasks .vbtn{appearance:none;border:none;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:8px}
+  #tasks .vbtn.on{background:#fff;color:var(--accent-deep);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+  #tasks .tsum{font-size:12.5px;color:var(--muted)} #tasks .tsum b{color:var(--navy)}
+  #tasks .push{margin-left:auto}
+  #tasks .view{display:none} #tasks .view.on{display:block}
+  #tasks .tablewrap{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  #tasks table{width:100%;border-collapse:collapse;font-size:13px}
+  #tasks thead th{background:#eef2fa;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:#41506b;font-weight:600;padding:10px 13px;text-align:left;border-bottom:1px solid #dce3f0}
+  #tasks tbody td{padding:11px 13px;border-bottom:1px solid var(--line);vertical-align:middle}
+  #tasks tbody tr:last-child td{border-bottom:none}
+  #tasks tbody tr:hover{background:#fafbff}
+  #tasks .tname{font-weight:600;color:var(--navy)}
+  #tasks .newbadge{display:inline-block;margin-left:7px;font-size:9px;font-weight:800;letter-spacing:.06em;color:#fff;background:var(--accent);padding:2px 6px;border-radius:5px;vertical-align:middle}
+  #tasks .who{display:inline-flex;align-items:center;gap:7px}
+  #tasks .av{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:700;color:#fff;font-family:var(--mono)}
+  #tasks .pri{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:.03em}
+  #tasks .P1{background:var(--bad-bg);color:var(--bad)} #tasks .P2{background:var(--warn-bg);color:var(--warn)} #tasks .P3{background:var(--gray-bg);color:var(--gray)}
+  #tasks .stat{font-size:11px;font-weight:600;padding:2px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:5px}
+  #tasks .stat::before{content:"";width:6px;height:6px;border-radius:50%}
+  #tasks .todo{background:var(--gray-bg);color:#566} #tasks .todo::before{background:var(--gray)}
+  #tasks .prog{background:var(--peri-soft);color:var(--cobalt)} #tasks .prog::before{background:var(--cobalt)}
+  #tasks .done{background:var(--good-bg);color:var(--good)} #tasks .done::before{background:var(--good)}
+  #tasks .review{background:#e7ecff;color:#3E5BD0} #tasks .review::before{background:#6C8CFD}
+  #tasks .blocked{background:#fbe4e3;color:#c23b39} #tasks .blocked::before{background:#c23b39}
+  #tasks td.due{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  #tasks .donedate{font-family:var(--mono);font-size:11px;color:var(--good);white-space:nowrap}
+  #tasks .donedate::before{content:"\2713 "}
+  #tasks .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px}
+  @media(max-width:820px){#tasks .board{grid-template-columns:1fr 1fr}}
+  #tasks .col{background:#f7f8fc;border:1px solid var(--line);border-radius:14px;padding:12px}
+  #tasks .col-h{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;margin-bottom:11px;padding:0 4px}
+  #tasks .col-h .cc{font-family:var(--mono);font-size:11px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:0 8px;color:var(--muted)}
+  #tasks .col-h .dt{width:8px;height:8px;border-radius:50%}
+  #tasks .tcard{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 13px;margin-bottom:9px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+  #tasks .tcard .tt{font-weight:600;font-size:13px;color:var(--navy);line-height:1.35}
+  #tasks .tcard .tm{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+  #tasks .tcard .plt{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+  #tasks .tl{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#fcfdff;overflow-x:auto}
+  #tasks .tlrow{display:grid;grid-template-columns:220px 1fr;gap:14px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
+  #tasks .tlrow:last-child{border-bottom:none}
+  #tasks .tlname{font-size:12.5px;font-weight:600;color:var(--navy)} #tasks .tlname .sub{font-size:10.5px;color:var(--muted);font-weight:400}
+  #tasks .tltrack{position:relative;height:26px;background:#f1f4fb;border-radius:7px}
+  #tasks .bar{position:absolute;top:4px;height:18px;border-radius:6px;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:700;color:#fff;font-family:var(--mono);white-space:nowrap;background:var(--accent-deep)}
+  #tasks .empty{font-size:13px;color:var(--muted);padding:30px;text-align:center}
+
+  #summary .sumhead{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  #summary .dtitle{font-size:13px;font-weight:700;color:var(--navy)}
+  #summary .push{margin-left:auto}
+  #summary .summary-card{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:20px 22px;background:#fff;font-size:14px;line-height:1.6}
+  #summary .summary-card h2{font-size:17px;color:var(--navy);font-weight:900;margin:0 0 10px}
+  #summary .summary-card h3{font-size:13px;color:var(--accent-deep);margin:14px 0 6px;text-transform:uppercase;letter-spacing:.04em}
+  #summary .summary-card ul{margin:0 0 10px;padding-left:19px} #summary .summary-card li{margin-bottom:5px}
+  #summary .summary-card b{color:var(--navy)}
+</style>
+</head>
+<body class="theme-slingshot">
+<a class="hubnav" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg> All Reports</a>
+<div class="wrap">
+
+  <header class="top">
+    <div class="logochip" id="logochip"></div>
+    <div class="kick" id="kick"></div>
+    <h1 id="h1"></h1>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <div class="tabbar">
+    <button class="tab on" data-tab="report">Report</button>
+    <button class="tab" data-tab="tasks">Tasks <span class="cbadge" id="taskCount">0</span></button>
+    <button class="tab" data-tab="summary">Summary</button>
+  </div>
+
+  <section class="panel on" id="report">
+    <h2 class="sec">Executive Dashboard <span class="hint">30-second read · gauges vs target</span></h2>
+    <div class="gauges" id="gauges"></div>
+    <div class="mh" id="mh"></div>
+
+    <h2 class="sec">Goal Scoreboard <span class="hint">every goal · progress to target</span></h2>
+    <div id="scoreboard"></div>
+
+    <h2 class="sec">Executive Summary</h2>
+    <div class="execgrid" id="execsum"></div>
+
+    <h2 class="sec">KPI Cards <span class="hint">value · target · WoW · trend</span></h2>
+    <div class="kpigrid" id="kpis"></div>
+
+    <h2 class="sec">Visibility Trends</h2>
+    <div class="wintabs" id="wintabs"></div>
+    <div class="trendbox" id="trendbox"></div>
+
+    <h2 class="sec">Competitor Snapshot <span class="hint">share of voice</span></h2>
+    <div class="barlist" id="competitors"></div>
+
+    <h2 class="sec">Topic Coverage <span class="hint">ranked by visibility</span></h2>
+    <div class="barlist" id="topics"></div>
+
+    <h2 class="sec">Supporting Evidence</h2>
+    <div class="ev" id="evidence"></div>
+
+    <h2 class="sec">Definitions</h2>
+    <div class="gloss" id="gloss"></div>
+  </section>
+
+  <section class="panel" id="tasks">
+    <div class="taskhead">
+      <div class="viewtoggle">
+        <button class="vbtn on" data-view="table">Table</button>
+        <button class="vbtn" data-view="board">Board</button>
+        <button class="vbtn" data-view="timeline">Timeline</button>
+      </div>
+      <span class="tsum" id="taskSummary"></span>
+      <a class="slink push" id="slingLink" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg> Open this list in Slingshot</a>
+    </div>
+    <div class="view on" data-view="table"><div class="tablewrap"><table><thead><tr><th>Task</th><th>Channel</th><th>Owner</th><th>Priority</th><th>Status</th><th>Due</th></tr></thead><tbody id="tblBody"></tbody></table></div></div>
+    <div class="view" data-view="board"><div class="board" id="boardWrap"></div></div>
+    <div class="view" data-view="timeline"><div class="tl" id="tlWrap"></div></div>
+  </section>
+
+  <section class="panel" id="summary">
+    <div class="sumhead"><span class="dtitle">Executive summary — copy-ready</span><button class="slink push" id="copyBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg> <span id="copyLabel">Copy summary</span></button></div>
+    <div class="summary-card" id="summaryCard"></div>
+  </section>
+
+</div>
+
+<script>
+var REPORT = {
+  "product":"Slingshot","domain":"slingshotapp.io","theme":"slingshot",
+  "slingshotUrl":"https://my.slingshotapp.io/openTaskList/e97e10ef_4098951c-1332-4db7-82ff-0bdd1fb59622_tg",
+  "meta":["Updated <b>Aug 3, 2026</b>","Window <b>Jul 27–Aug 2</b> vs Jul 20–26","Source <b>Amplitude</b> · report 187892 · brand 49405"],
+  "measurementHealth":{"status":"Amber","note":"<b>Usable but incomplete.</b> Building a category presence from scratch, so zeros are expected. Gaps: an <b>entity-resolution failure</b> (AI conflates “Slingshot” with the Polaris Slingshot vehicle, a movie thread, and the NZ ISP slingshot.co.nz) and <b>single-model coverage</b> (mentioned on ChatGPT only, 0 on GPT-5 and Google AI Overview). No new crawl landed this window — metrics carry from report 187892 (Jul 28)."},
+  "gauges":[
+    {"label":"Overall Visibility","pct":3.1,"display":"3.1%","targetLabel":"Target 5%","status":"bad","wow":{"dir":"flat","text":"flat · no new crawl"}},
+    {"label":"Prompt Coverage","pct":5.9,"display":"5.9%","targetLabel":"1 of 17 prompts","status":"bad","wow":{"dir":"flat","text":"flat"}},
+    {"label":"Discovery Coverage","pct":0,"display":"0%","targetLabel":"non-branded money queries","status":"bad","wow":{"dir":"flat","text":"flat"}},
+    {"label":"Competitive Citations","pct":33,"display":"1","targetLabel":"Target 3 owned-page cites","status":"bad","wow":{"dir":"flat","text":"flat"}}
+  ],
+  "kpis":[
+    {"label":"Overall AI Visibility","value":"3.1%","target":"5%","status":"bad","statusLabel":"Behind","wow":{"dir":"flat","text":"flat"},"spark":[3.1,3.1]},
+    {"label":"Prompt Coverage","value":"1 / 17","target":"grow","status":"bad","statusLabel":"Behind","wow":{"dir":"flat","text":"5.9%"},"spark":[5.9,5.9]},
+    {"label":"Discovery Topic Coverage","value":"0%","target":"build","status":"bad","statusLabel":"Behind","wow":{"dir":"flat","text":"flat"},"spark":[0,0]},
+    {"label":"Competitive Citations","value":"1","target":"3","status":"bad","statusLabel":"Behind","wow":{"dir":"flat","text":"MEP blog only"},"spark":[1,1]},
+    {"label":"AI Answers Found","value":"1 / 32","target":"grow","status":"bad","statusLabel":"Behind","wow":{"dir":"flat","text":"flat"},"spark":[1,1]},
+    {"label":"Average Prompt Position","value":"9.7","target":"≤6","status":"bad","statusLabel":"Watch","wow":{"dir":"flat","text":"low / late"},"spark":[9.7,9.7]}
+  ],
+  "goals":[
+    {"name":"Be present in AI answers — visibility score","current":"3.1%","target":"5%","progressPct":0,"status":"behind","statusLabel":"Behind","insight":"Flat vs Jul 28 baseline; no new crawl this window.","horizon":"30"},
+    {"name":"Win branded comparisons — comparison-topic visibility","current":"10%","target":"15%","progressPct":0,"status":"watch","statusLabel":"Watch","insight":"“Slingshot vs Asana” ranks #1 on ChatGPT; extend the format.","horizon":"30"},
+    {"name":"Grow SoV vs Asana/Monday/ClickUp","current":"~2%","target":"grow","progressPct":null,"status":"behind","statusLabel":"Behind","insight":"~2% of the money-competitor set; still building from scratch.","horizon":"30"},
+    {"name":"Get cited by AI — owned-page citations","current":"1","target":"3","progressPct":33,"status":"behind","statusLabel":"Behind","insight":"Only the MEP blog is cited; clone its answer-first + FAQ format.","horizon":"30"},
+    {"name":"Win Google AI Overview — AIO mentions","current":"0 / 15","target":"1","progressPct":0,"status":"behind","statusLabel":"Behind","insight":"Zero AIO presence; every money-query answer is built from third-party listicles.","horizon":"30"}
+  ],
+  "summary":{
+    "working":["“Slingshot vs Asana” ranks <b>#1</b> on ChatGPT — framed correctly as unified work + analytics.","The MEP blog is our one cited owned page — proof the answer-first + FAQ format works.","We now have the <b>exact listicle URLs</b> LLMs quote per money pillar, so PR is named and targeted."],
+    "watch":["<b>Entity confusion</b> — the Polaris Slingshot vehicle, a movie thread, and NZ ISP slingshot.co.nz dilute “Slingshot”.","<b>Zero</b> presence in non-branded money queries (0 / 15 on Google AI Overview).","Metrics flat — no new Amplitude crawl landed in-window (carries from Jul 28)."],
+    "priority":"<b>Double down on the proven MEP format</b> — turn the MEP blog into a category hub and clone its answer-first + FAQ structure into vs-Asana / vs-Monday pages — then run named-listicle PR outreach using the exact cited URLs. Depth over spread."
+  },
+  "trends":{"windows":[
+    {"label":"30 Days","current":"3.1%","wow":{"dir":"flat","text":"flat"},"points":[3.1,3.1],"note":"No new crawl in-window; carries from report 187892 (Jul 28)."},
+    {"label":"90 Days","current":"3.1%","wow":{"dir":"flat","text":"flat"},"points":[3.1,3.1],"note":"Category presence being built from scratch — early-stage, low base."},
+    {"label":"YTD","current":"3.1%","wow":{"dir":"flat","text":"flat"},"points":[3.1,3.1],"note":"Limited comparable history; program is new. Numbers move once the next crawl and this week’s fixes land."}
+  ]},
+  "competitors":[
+    {"label":"Asana","value":46.9,"display":"46.9%"},
+    {"label":"Google","value":46.9,"display":"46.9%"},
+    {"label":"Monday.com","value":40.6,"display":"40.6%"},
+    {"label":"HubSpot","value":37.5,"display":"37.5%"},
+    {"label":"Microsoft","value":34.4,"display":"34.4%"},
+    {"label":"ClickUp","value":25.0,"display":"25.0%"},
+    {"label":"Databox","value":21.9,"display":"21.9%"},
+    {"label":"Supermetrics","value":21.9,"display":"21.9%"},
+    {"label":"Slingshot","value":3.1,"display":"3.1%","us":true}
+  ],
+  "competitorsNote":"~2% share of voice vs the money-competitor set — building from scratch.",
+  "topics":[
+    {"label":"Comparisons","value":10,"display":"10%","sub":"6 prompts","tone":"w"},
+    {"label":"Campaign management","value":0,"display":"0%","sub":"3 prompts","tone":"b"},
+    {"label":"Marketing Analytics & Reporting","value":0,"display":"0%","sub":"3 prompts","tone":"b"},
+    {"label":"Marketing project management","value":0,"display":"0%","sub":"2 prompts","tone":"b"},
+    {"label":"Reimagined Vision (MEP)","value":0,"display":"0%","sub":"3 prompts","tone":"b"}
+  ],
+  "evidence":[
+    {"title":"By model","items":["ChatGPT <b>11.1%</b> (1 / 9)","GPT-5 0% (0 / 8)","Google AI Overview 0% (0 / 15)"]},
+    {"title":"Citation & source patterns","items":["Only owned page cited: /blog/what-is-a-marketing-execution-platform (100% brand-mention on that citation)","Entity-confusion sources: Polaris Slingshot (Yahoo Autos), a movie thread (r/RegalUnlimited), slingshot.co.nz (Trustpilot)","Non-branded money queries assembled from third-party listicles that omit us — exact URLs now captured"]},
+    {"title":"Website actions (AI-answer angle)","items":["Populate llms.txt + confirm AI-bot crawlability","Add SoftwareApplication + Organization schema for entity disambiguation","Answer-first blocks on money solution pages; vs-Asana / vs-Monday comparison pages"]}
+  ],
+  "glossary":[
+    {"term":"Visibility","def":"Share of tracked AI answers that mention the brand."},
+    {"term":"Prompt Coverage","def":"Share of tracked prompts returning at least one brand mention."},
+    {"term":"Avg Prompt Position","def":"Average rank of the brand within an answer when mentioned (lower is better)."},
+    {"term":"Share of Voice","def":"Brand visibility relative to the tracked competitor set."},
+    {"term":"Citation","def":"A source URL an AI model quoted when composing an answer."},
+    {"term":"Entity resolution","def":"Whether AI models correctly identify “Slingshot” as the work-intelligence platform vs unrelated same-name entities."}
+  ],
+  "tasks":[
+    {"name":"Build answer-first “Slingshot vs Asana” & “vs Monday.com” comparison pages","channel":"Comparison pages","owner":"Casey Ciniello","initials":"CC","color":"#4B45C6","priority":"P1","status":"todo","start":"2026-08-03","due":"2026-08-10","isNew":true},
+    {"name":"Expand the MEP blog into a category hub (our only LLM-cited page)","channel":"Website / content","owner":"Casey Ciniello","initials":"CC","color":"#4B45C6","priority":"P1","status":"todo","start":"2026-08-03","due":"2026-08-10","isNew":true},
+    {"name":"Refresh Amplitude prompt set — concrete ADD/REMOVE (Aug 3 spec)","channel":"Prompt set","owner":"Casey Ciniello","initials":"CC","color":"#4B45C6","priority":"P1","status":"todo","start":"2026-08-03","due":"2026-08-10","isNew":true},
+    {"name":"Win Google AI Overview on the 4 money pillars (currently 0%)","channel":"Website / AIO","owner":"Casey Ciniello","initials":"CC","color":"#4B45C6","priority":"P1","status":"todo","start":"2026-08-03","due":"2026-08-17","isNew":true},
+    {"name":"Earn Slingshot into the exact listicles LLMs cite (Campaign & Analytics)","channel":"Digital PR","owner":"Casey Ciniello","initials":"CC","color":"#4B45C6","priority":"P2","status":"todo","start":"2026-08-03","due":"2026-08-17","isNew":true},
+    {"name":"Update Amplitude AI Visibility prompt set (ADD / REMOVE / GAP)","channel":"Prompt set","owner":"Casey Ciniello","initials":"CC","color":"#4B45C6","priority":"P1","status":"todo","start":"2026-07-27","due":"2026-08-03"},
+    {"name":"Populate llms.txt + confirm AI-bot crawlability","channel":"Website / crawl","owner":"Casey Ciniello","initials":"CC","color":"#4B45C6","priority":"P1","status":"todo","start":"2026-07-27","due":"2026-08-03"},
+    {"name":"Add SoftwareApplication + Organization schema (entity disambiguation)","channel":"Website / schema","owner":"Casey Ciniello","initials":"CC","color":"#4B45C6","priority":"P1","status":"todo","start":"2026-07-27","due":"2026-08-10"},
+    {"name":"Rework Slingshot vs AgencyAnalytics + build Slingshot vs Databox","channel":"Comparison pages","owner":"Casey Ciniello","initials":"CC","color":"#4B45C6","priority":"P2","status":"todo","start":"2026-07-27","due":"2026-08-10"},
+    {"name":"Add answer-first blocks to money solution pages","channel":"Website / content","owner":"Casey Ciniello","initials":"CC","color":"#4B45C6","priority":"P2","status":"todo","start":"2026-07-27","due":"2026-08-10"},
+    {"name":"Digital PR: earn Slingshot into the listicles LLMs cite","channel":"Digital PR","owner":"Casey Ciniello","initials":"CC","color":"#4B45C6","priority":"P1","status":"todo","start":"2026-07-27","due":"2026-08-17"}
+  ],
+  "summaryCard":{
+    "title":"AI Search Visibility — Slingshot · Week of Jul 27–Aug 2, 2026",
+    "html":"<p><b>Where we are:</b> visibility <b>3.1%</b>, mentioned in 1 of 32 responses across 1 of 17 prompts, ~2% share of voice. Metrics carry from report 187892 (Jul 28) — no new crawl this window. Building category presence from scratch.</p><h3>What’s working</h3><ul><li>“Slingshot vs Asana” ranks #1 on ChatGPT</li><li>MEP blog is our one cited owned page — answer-first + FAQ format proven</li><li>Exact listicle URLs now captured for targeted PR</li></ul><h3>Watch</h3><ul><li>Entity confusion (Polaris vehicle, movie, NZ ISP) dilutes “Slingshot”</li><li>0% in non-branded money queries; 0/15 on Google AI Overview</li></ul><h3>Priority</h3><p>Double down on the proven MEP answer-first + FAQ format — category hub + vs-Asana/vs-Monday clones — and named-listicle PR using the exact cited URLs.</p>"
+  }
+}
+;
+(function(){
+  var R=REPORT, D=document, css=getComputedStyle(D.body);
+  function cv(n){return css.getPropertyValue(n).trim();}
+  var C={good:cv('--good'),warn:cv('--warn'),bad:cv('--bad'),gray:cv('--gray'),accent:cv('--accent'),accentDeep:cv('--accent-deep'),peri:cv('--peri'),cobalt:cv('--cobalt')};
+  function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function el(id){return D.getElementById(id);}
+  var STCOLOR={good:C.good,warn:C.warn,bad:C.bad,neutral:C.gray,met:C.good,track:C.good,watch:C.warn,partial:C.warn,blocked:C.warn,behind:C.bad,regressed:C.bad};
+  function wowHtml(w){ if(!w) return ''; var d=w.dir||'flat'; var a=d==='up'?'▲':d==='down'?'▼':'►'; return '<span class="wow '+d+'">'+a+' '+esc(w.text||'')+'</span>'; }
+  function spark(pts,color){ pts=(pts||[]).map(Number).filter(function(n){return !isNaN(n);}); if(pts.length<2) return ''; var w=132,h=34,pad=3; var mn=Math.min.apply(null,pts),mx=Math.max.apply(null,pts),rng=(mx-mn)||1; var step=(w-pad*2)/(pts.length-1); var xy=pts.map(function(v,i){return [pad+step*i, h-pad-((v-mn)/rng)*(h-pad*2)];}); var d=xy.map(function(p,i){return (i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1);}).join(' '); var last=xy[xy.length-1]; return '<svg width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'"><path d="'+d+'" fill="none" stroke="'+(color||C.peri)+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="'+last[0].toFixed(1)+'" cy="'+last[1].toFixed(1)+'" r="2.6" fill="'+(color||C.peri)+'"/></svg>'; }
+
+  el('logochip').textContent=R.product;
+  el('kick').textContent=(R.domain?R.domain+' · ':'')+'AI Search Visibility';
+  el('h1').textContent='AI Search Visibility / '+R.product;
+  el('meta').innerHTML=(R.meta||[]).map(function(m){return '<span class="pill">'+m+'</span>';}).join('');
+
+  el('gauges').innerHTML=(R.gauges||[]).map(function(g){
+    var pct=Math.max(0,Math.min(100,g.pct)); var r=30,circ=Math.PI*r;
+    var col=STCOLOR[g.status]||C.cobalt;
+    var off=circ*(1-pct/100);
+    var svg='<svg width="80" height="50" viewBox="0 0 80 50">'+
+      '<path d="M10 40 A30 30 0 0 1 70 40" fill="none" stroke="#e9edf5" stroke-width="8" stroke-linecap="round"/>'+
+      '<path d="M10 40 A30 30 0 0 1 70 40" fill="none" stroke="'+col+'" stroke-width="8" stroke-linecap="round" stroke-dasharray="'+circ.toFixed(1)+'" stroke-dashoffset="'+off.toFixed(1)+'"/></svg>';
+    return '<div class="gauge"><div class="glab">'+esc(g.label)+'</div>'+svg+
+      '<div class="gval">'+esc(g.display)+'</div>'+
+      '<div class="gfoot"><span class="statusdot" style="background:'+col+'"></span>'+(g.wow?wowHtml(g.wow):'<span class="gtarget">'+esc(g.targetLabel||'')+'</span>')+'</div>'+
+      '<div class="gsub">'+esc(g.targetLabel||'')+'</div></div>';
+  }).join('');
+
+  if(R.measurementHealth){ el('mh').innerHTML='<span class="mb '+R.measurementHealth.status+'">'+esc(R.measurementHealth.status)+'</span><div class="mt">'+R.measurementHealth.note+'</div>'; } else { el('mh').style.display='none'; }
+
+  function goalRows(list){ return list.map(function(g){
+    var pct=(g.progressPct==null?null:Math.max(0,Math.min(100,g.progressPct)));
+    var tcls=g.status==='met'||g.status==='track'?'g':(g.status==='behind'||g.status==='regressed'?'b':'w');
+    var bar=pct==null?'<span class="ins">—</span>':'<span class="prog"><span class="track '+tcls+'"><i style="width:'+pct+'%"></i></span><span class="pct">'+pct+'%</span></span>';
+    return '<tr><td class="gname">'+esc(g.name)+'</td><td class="num">'+esc(g.current)+'</td><td class="num">'+esc(g.target)+'</td><td>'+bar+'</td><td class="ins">'+esc(g.insight)+'</td><td><span class="badge '+g.status+'">'+esc(g.statusLabel||g.status)+'</span></td></tr>';
+  }).join(''); }
+  function sbTable(list){ return '<div class="sbwrap"><table class="sb"><thead><tr><th>Goal</th><th class="num">Current</th><th class="num">Target</th><th>Progress</th><th>Insight</th><th>Status</th></tr></thead><tbody>'+goalRows(list)+'</tbody></table></div>'; }
+  var g30=(R.goals||[]).filter(function(g){return g.horizon!=='90';});
+  var g90=(R.goals||[]).filter(function(g){return g.horizon==='90';});
+  var sbHtml='';
+  if(g30.length){ sbHtml+='<div class="sbsub">30-day goals</div>'+sbTable(g30); }
+  if(g90.length){ sbHtml+='<div class="sbsub">90-day goals</div>'+sbTable(g90); }
+  el('scoreboard').innerHTML=sbHtml;
+
+  var S=R.summary||{};
+  el('execsum').innerHTML=
+    '<div class="ecard good"><div class="eh">What’s working</div><ul>'+(S.working||[]).map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div>'+
+    '<div class="ecard watch"><div class="eh">Watch</div><ul>'+(S.watch||[]).map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div>'+
+    '<div class="ecard pri span2"><div class="eh">Priority — highest-impact move</div><p>'+(S.priority||'')+'</p></div>';
+
+  el('kpis').innerHTML=(R.kpis||[]).map(function(k){
+    return '<div class="kpi"><span class="chip '+(k.status||'neutral')+'">'+esc(k.statusLabel||k.status||'')+'</span>'+
+      '<div class="lab">'+esc(k.label)+'</div>'+
+      '<div class="val">'+esc(k.value)+'</div>'+
+      '<div class="row2"><span class="tgt">Target <b>'+esc(k.target)+'</b></span>'+wowHtml(k.wow)+'</div>'+
+      '<div class="spark">'+spark(k.spark,STCOLOR[k.status]||C.cobalt)+'</div></div>';
+  }).join('');
+
+  var T=R.trends||{windows:[]};
+  el('wintabs').innerHTML=(T.windows||[]).map(function(w,i){return '<button class="wbtn'+(i===0?' on':'')+'" data-win="'+i+'">'+esc(w.label)+'</button>';}).join('');
+  function renderTrend(i){
+    var w=(T.windows||[])[i]; if(!w){el('trendbox').innerHTML='';return;}
+    var body= (w.points&&w.points.length>=2) ? '<div style="height:60px">'+spark(w.points,C.cobalt).replace('width="132" height="34" viewBox="0 0 132 34"','width="100%" height="60" viewBox="0 0 132 34" preserveAspectRatio="none"')+'</div>' : '<div class="trendnote">Limited history in this window — '+((w.points||[]).length)+' data point(s). Trend line needs ≥2 comparable runs.</div>';
+    el('trendbox').innerHTML='<div class="thead"><span class="tval">'+esc(w.current)+'</span>'+wowHtml(w.wow)+'</div>'+body+'<div class="trendnote">'+ (w.note||'') +'</div>';
+  }
+  renderTrend(0);
+  D.querySelectorAll('#wintabs .wbtn').forEach(function(b){b.addEventListener('click',function(){ D.querySelectorAll('#wintabs .wbtn').forEach(function(x){x.classList.remove('on');}); b.classList.add('on'); renderTrend(+b.dataset.win); });});
+
+  function bars(list,maxv){ var mx=maxv||Math.max.apply(null,list.map(function(x){return x.value;}).concat([1])); return list.map(function(x){
+    var w=Math.max(2,Math.round(x.value/mx*100)); var cls=x.us?'us':''; var tcls=x.tone?(' '+x.tone):'';
+    return '<div class="barrow '+cls+'"><span class="bl">'+esc(x.label)+'</span><span class="bt'+tcls+'"><i style="width:'+w+'%"></i></span><span class="bmeta"><b>'+esc(x.display)+'</b>'+(x.sub?' '+esc(x.sub):'')+'</span></div>';
+  }).join(''); }
+  el('competitors').innerHTML=((R.competitors&&R.competitors.length)?bars(R.competitors,100):'')+(R.competitorsNote?'<div class="note">'+R.competitorsNote+'</div>':'');
+  el('topics').innerHTML=((R.topics&&R.topics.length)?bars(R.topics,100):'')+(R.topicsNote?'<div class="note">'+R.topicsNote+'</div>':'');
+
+  el('evidence').innerHTML=(R.evidence||[]).map(function(e){
+    return '<div class="evcard'+(e.full?' full':'')+'"><h4>'+esc(e.title)+'</h4><ul>'+(e.items||[]).map(function(i){return '<li>'+i+'</li>';}).join('')+'</ul></div>';
+  }).join('');
+
+  el('gloss').innerHTML=(R.glossary||[]).map(function(g){return '<div><b>'+esc(g.term)+'.</b> '+esc(g.def)+'</div>';}).join('');
+
+  var TASKS=R.tasks||[]; var STAT={todo:'To do',prog:'In progress',review:'In review',blocked:'Blocked',done:'Done'};
+  el('slingLink').href=R.slingshotUrl||'#';
+  el('taskCount').textContent=TASKS.length;
+  var counts={}; ['todo','prog','review','blocked','done'].forEach(function(s){counts[s]=TASKS.filter(function(t){return t.status===s;}).length;});
+  var bits=[]; if(counts.todo)bits.push('<b>'+counts.todo+'</b> to do'); if(counts.prog)bits.push('<b>'+counts.prog+'</b> in progress'); if(counts.review)bits.push('<b>'+counts.review+'</b> in review'); if(counts.blocked)bits.push('<b>'+counts.blocked+'</b> blocked'); if(counts.done)bits.push('<b>'+counts.done+'</b> done');
+  var newCount=TASKS.filter(function(t){return t.isNew;}).length;
+  el('taskSummary').innerHTML='<b>'+TASKS.length+' tasks</b> · live from Slingshot'+(newCount?' · <b>'+newCount+'</b> new this run':'')+' · '+bits.join(' · ');
+  function nb(t){return t.isNew?'<span class="newbadge">NEW</span>':'';}
+  el('tblBody').innerHTML=TASKS.length?TASKS.map(function(t){
+    return '<tr><td class="tname">'+esc(t.name)+nb(t)+'</td><td>'+esc(t.channel||'')+'</td>'+
+      '<td><span class="who"><span class="av" style="background:'+(t.color||C.accentDeep)+'">'+esc(t.initials||'')+'</span> '+esc(t.owner||'')+'</span></td>'+
+      '<td><span class="pri '+t.priority+'">'+esc(t.priority)+'</span></td>'+
+      '<td><span class="stat '+t.status+'">'+STAT[t.status]+'</span>'+(t.completed?' <span class="donedate">'+esc(t.completed)+'</span>':'')+'</td>'+
+      '<td class="due">'+esc(t.due||'')+'</td></tr>';
+  }).join(''):'<tr><td colspan="6" class="empty">No tasks yet for this report.</td></tr>';
+  function col(key,label,dot){ var items=TASKS.filter(function(t){return t.status===key;}); return '<div class="col"><div class="col-h"><span class="dt" style="background:'+dot+'"></span> '+label+' <span class="cc">'+items.length+'</span></div>'+items.map(function(t){return '<div class="tcard"><div class="tt">'+esc(t.name)+nb(t)+'</div><div class="tm"><span class="plt">'+esc(t.channel||'')+(t.completed?' · <span class="donedate">'+esc(t.completed)+'</span>':'')+'</span><span class="pri '+t.priority+'">'+esc(t.priority)+'</span></div></div>';}).join('')+'</div>'; }
+  var COLS=[['todo','To do',C.gray],['prog','In progress',C.cobalt],['review','In review',C.peri],['blocked','Blocked',C.bad],['done','Done',C.good]];
+  el('boardWrap').innerHTML=COLS.filter(function(c){return TASKS.some(function(t){return t.status===c[0];});}).map(function(c){return col(c[0],c[1],c[2]);}).join('');
+  (function(){ var wrap=el('tlWrap'); var wd=TASKS.filter(function(t){return t.due;}); if(!wd.length){wrap.innerHTML='<div class="empty">No dated tasks to plot.</div>';return;} var st=wd.map(function(t){return new Date(t.start||t.due).getTime();}); var en=wd.map(function(t){return new Date(t.due).getTime();}); var mn=Math.min.apply(null,st),mx=Math.max.apply(null,en),span=Math.max(1,mx-mn); wrap.innerHTML=wd.map(function(t){var s=new Date(t.start||t.due).getTime(),e=new Date(t.due).getTime(); var left=(s-mn)/span*100,width=Math.max(7,(e-s)/span*100); if(left+width>100)width=100-left; return '<div class="tlrow"><div class="tlname">'+esc(t.name)+'<div class="sub">'+esc(t.owner||'')+' · '+esc(t.priority)+(t.isNew?' · NEW':'')+'</div></div><div class="tltrack"><div class="bar" style="left:'+left+'%;width:'+width+'%">'+esc(t.due)+'</div></div></div>';}).join(''); })();
+
+  var sc=R.summaryCard||{};
+  el('summaryCard').innerHTML='<h2>'+esc(sc.title||('AI Search Visibility — '+R.product))+'</h2>'+(sc.html||'');
+
+  var copyBtn=el('copyBtn'),copyLabel=el('copyLabel'),card=el('summaryCard');
+  copyBtn.addEventListener('click',function(){ var html=card.innerHTML.trim(),text=card.innerText.trim(); function ok(){copyBtn.classList.add('copied');copyLabel.textContent='Copied!';setTimeout(function(){copyBtn.classList.remove('copied');copyLabel.textContent='Copy summary';},1800);} if(navigator.clipboard&&window.ClipboardItem){navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([text],{type:'text/plain'})})]).then(ok).catch(function(){navigator.clipboard.writeText(text).then(ok);});}else if(navigator.clipboard){navigator.clipboard.writeText(text).then(ok);}else{var r=D.createRange();r.selectNode(card);var s=getSelection();s.removeAllRanges();s.addRange(r);try{D.execCommand('copy');ok();}catch(e){}s.removeAllRanges();} });
+  D.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){D.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});D.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});t.classList.add('on');el(t.dataset.tab).classList.add('on');window.scrollTo({top:0,behavior:'smooth'});});});
+  D.querySelectorAll('.vbtn').forEach(function(b){b.addEventListener('click',function(){D.querySelectorAll('.vbtn').forEach(function(x){x.classList.remove('on');});D.querySelectorAll('#tasks .view').forEach(function(v){v.classList.remove('on');});b.classList.add('on');D.querySelector('#tasks .view[data-view="'+b.dataset.view+'"]').classList.add('on');});});
+})();
+</script>
+</body>
+</html>
